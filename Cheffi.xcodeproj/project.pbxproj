@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		296236DF1AC0B1A79BC70DC9 /* Pods_Cheffi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFE5AB9FA75B3E04B6128B0 /* Pods_Cheffi.framework */; };
 		CE0D45172A61712400636989 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE0D45162A61712400636989 /* SwifterSwift */; };
+		CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45182A617FC500636989 /* NationalTrendSceneDIContainer.swift */; };
+		CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45202A618E5700636989 /* NationalTrendFlowCoordinator.swift */; };
+		CE0D45242A618F0C00636989 /* NationalTrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45232A618F0C00636989 /* NationalTrendViewController.swift */; };
+		CE0D45262A618F8700636989 /* NationalTrend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0D45252A618F8700636989 /* NationalTrend.storyboard */; };
+		CE0D45282A6195BD00636989 /* RestaurantRegistSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45272A6195BC00636989 /* RestaurantRegistSceneDIContainer.swift */; };
+		CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45292A6195CA00636989 /* MyPageSceneDIContainer.swift */; };
+		CE0D45322A61967700636989 /* RestaurantRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45312A61967700636989 /* RestaurantRegistViewController.swift */; };
+		CE0D45342A61968200636989 /* RestaurantRegist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0D45332A61968200636989 /* RestaurantRegist.storyboard */; };
+		CE0D45362A61975100636989 /* RestaurantRegistFlowCoodinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45352A61975100636989 /* RestaurantRegistFlowCoodinator.swift */; };
+		CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45372A61AA5A00636989 /* MyPageViewController.swift */; };
+		CE0D453A2A61AA7700636989 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0D45392A61AA7700636989 /* MyPage.storyboard */; };
+		CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D453B2A61AAD700636989 /* MyPageFlowCoodinator.swift */; };
 		D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FA2A612600003EF1EC /* Storyboarded.swift */; };
 		D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */; };
 		D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */; };
@@ -16,8 +28,8 @@
 		D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */; };
 		D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244B82A60FF5A004E0167 /* AppDelegate.swift */; };
 		D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */; };
-		D4E244BD2A60FF5A004E0167 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BC2A60FF5A004E0167 /* ViewController.swift */; };
-		D4E244C02A60FF5A004E0167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E244BE2A60FF5A004E0167 /* Main.storyboard */; };
+		D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */; };
+		D4E244C02A60FF5A004E0167 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E244BE2A60FF5A004E0167 /* Home.storyboard */; };
 		D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E244C12A60FF5D004E0167 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +37,18 @@
 		1B24CC8C1560BF374B8A3ED8 /* Pods-Cheffi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheffi.debug.xcconfig"; path = "Target Support Files/Pods-Cheffi/Pods-Cheffi.debug.xcconfig"; sourceTree = "<group>"; };
 		4FFE5AB9FA75B3E04B6128B0 /* Pods_Cheffi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheffi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D148B9BF9EC9E451CCFEBDE /* Pods-Cheffi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheffi.release.xcconfig"; path = "Target Support Files/Pods-Cheffi/Pods-Cheffi.release.xcconfig"; sourceTree = "<group>"; };
+		CE0D45182A617FC500636989 /* NationalTrendSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendSceneDIContainer.swift; sourceTree = "<group>"; };
+		CE0D45202A618E5700636989 /* NationalTrendFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendFlowCoordinator.swift; sourceTree = "<group>"; };
+		CE0D45232A618F0C00636989 /* NationalTrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendViewController.swift; sourceTree = "<group>"; };
+		CE0D45252A618F8700636989 /* NationalTrend.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NationalTrend.storyboard; sourceTree = "<group>"; };
+		CE0D45272A6195BC00636989 /* RestaurantRegistSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistSceneDIContainer.swift; sourceTree = "<group>"; };
+		CE0D45292A6195CA00636989 /* MyPageSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSceneDIContainer.swift; sourceTree = "<group>"; };
+		CE0D45312A61967700636989 /* RestaurantRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistViewController.swift; sourceTree = "<group>"; };
+		CE0D45332A61968200636989 /* RestaurantRegist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RestaurantRegist.storyboard; sourceTree = "<group>"; };
+		CE0D45352A61975100636989 /* RestaurantRegistFlowCoodinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistFlowCoodinator.swift; sourceTree = "<group>"; };
+		CE0D45372A61AA5A00636989 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		CE0D45392A61AA7700636989 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		CE0D453B2A61AAD700636989 /* MyPageFlowCoodinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFlowCoodinator.swift; sourceTree = "<group>"; };
 		D41B45FA2A612600003EF1EC /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
@@ -33,8 +57,8 @@
 		D4E244B52A60FF5A004E0167 /* Cheffi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheffi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E244B82A60FF5A004E0167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D4E244BC2A60FF5A004E0167 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D4E244BF2A60FF5A004E0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D4E244BF2A60FF5A004E0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		D4E244C12A60FF5D004E0167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4E244C62A60FF5D004E0167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +85,84 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CE0D451E2A6180AD00636989 /* NationalTrendScene */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D451F2A618E3700636989 /* Flow */,
+				CE0D45222A618E5F00636989 /* Views */,
+			);
+			path = NationalTrendScene;
+			sourceTree = "<group>";
+		};
+		CE0D451F2A618E3700636989 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D45202A618E5700636989 /* NationalTrendFlowCoordinator.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		CE0D45222A618E5F00636989 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D45232A618F0C00636989 /* NationalTrendViewController.swift */,
+				CE0D45252A618F8700636989 /* NationalTrend.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE0D452B2A61962C00636989 /* RestaurantRegistScene */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D45302A61965900636989 /* Flow */,
+				CE0D452F2A61965300636989 /* View */,
+			);
+			path = RestaurantRegistScene;
+			sourceTree = "<group>";
+		};
+		CE0D452C2A61963D00636989 /* MyPageScene */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D452E2A61964E00636989 /* Flow */,
+				CE0D452D2A61964600636989 /* Views */,
+			);
+			path = MyPageScene;
+			sourceTree = "<group>";
+		};
+		CE0D452D2A61964600636989 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D45372A61AA5A00636989 /* MyPageViewController.swift */,
+				CE0D45392A61AA7700636989 /* MyPage.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE0D452E2A61964E00636989 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D453B2A61AAD700636989 /* MyPageFlowCoodinator.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		CE0D452F2A61965300636989 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D45312A61967700636989 /* RestaurantRegistViewController.swift */,
+				CE0D45332A61968200636989 /* RestaurantRegist.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE0D45302A61965900636989 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D45352A61975100636989 /* RestaurantRegistFlowCoodinator.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
 		D41B45E72A611836003EF1EC /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +180,9 @@
 			children = (
 				D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */,
 				D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */,
+				CE0D45182A617FC500636989 /* NationalTrendSceneDIContainer.swift */,
+				CE0D45272A6195BC00636989 /* RestaurantRegistSceneDIContainer.swift */,
+				CE0D45292A6195CA00636989 /* MyPageSceneDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -96,6 +201,9 @@
 			isa = PBXGroup;
 			children = (
 				D41B45EE2A611936003EF1EC /* HomeScene */,
+				CE0D451E2A6180AD00636989 /* NationalTrendScene */,
+				CE0D452B2A61962C00636989 /* RestaurantRegistScene */,
+				CE0D452C2A61963D00636989 /* MyPageScene */,
 				D41B45F22A6119D1003EF1EC /* Utils */,
 			);
 			path = Presentation;
@@ -154,8 +262,8 @@
 		D41B45F12A61196B003EF1EC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D4E244BC2A60FF5A004E0167 /* ViewController.swift */,
-				D4E244BE2A60FF5A004E0167 /* Main.storyboard */,
+				D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */,
+				D4E244BE2A60FF5A004E0167 /* Home.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -324,7 +432,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */,
-				D4E244C02A60FF5A004E0167 /* Main.storyboard in Resources */,
+				CE0D453A2A61AA7700636989 /* MyPage.storyboard in Resources */,
+				CE0D45342A61968200636989 /* RestaurantRegist.storyboard in Resources */,
+				CE0D45262A618F8700636989 /* NationalTrend.storyboard in Resources */,
+				D4E244C02A60FF5A004E0167 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,26 +488,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4E244BD2A60FF5A004E0167 /* ViewController.swift in Sources */,
+				CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */,
+				CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */,
+				D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */,
 				D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */,
 				D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */,
+				CE0D45242A618F0C00636989 /* NationalTrendViewController.swift in Sources */,
 				D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */,
 				D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */,
+				CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */,
+				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
+				CE0D45362A61975100636989 /* RestaurantRegistFlowCoodinator.swift in Sources */,
 				D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */,
+				CE0D45322A61967700636989 /* RestaurantRegistViewController.swift in Sources */,
 				D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */,
+				CE0D45282A6195BD00636989 /* RestaurantRegistSceneDIContainer.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
+				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D4E244BE2A60FF5A004E0167 /* Main.storyboard */ = {
+		D4E244BE2A60FF5A004E0167 /* Home.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D4E244BF2A60FF5A004E0167 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Home.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

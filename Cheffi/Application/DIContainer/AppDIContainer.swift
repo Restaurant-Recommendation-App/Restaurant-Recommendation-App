@@ -11,4 +11,16 @@ final class AppDIContainer {
     func makeHomeSceneDIContainer() -> HomeSceneDIContainer {
         HomeSceneDIContainer()
     }
+    
+    func makeNationalTrendSceneDIContainer() -> NationalTrendSceneDIContainer {
+        NationalTrendSceneDIContainer()
+    }
+    
+    func makeRestaurantRegistSceneDIContainer() -> RestaurantRegistSceneDIContainer {
+        RestaurantRegistSceneDIContainer()
+    }
+    
+    func makeMyPageFlowCoordinator() -> MyPageSceneDIContainer {
+        MyPageSceneDIContainer()
+    }
 }

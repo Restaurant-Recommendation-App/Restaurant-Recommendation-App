@@ -16,13 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let navigationController = UINavigationController()
-        navigationController.navigationBar.backgroundColor = .clear
-        navigationController.navigationBar.isTranslucent = false
-        
-        window?.rootViewController = navigationController
+        let tabBarController = UITabBarController()
+        window?.rootViewController = tabBarController
         let appFlowCoordinator = AppFlowCoordinator(
-            navigationController: navigationController,
+            tabBarController: tabBarController,
             appDIContainer: appDIContainer
         )
         appFlowCoordinator.start()
