@@ -2,45 +2,23 @@ PODS:
   - Alamofire (5.0.5)
   - Kingfisher (6.3.1)
   - SnapKit (5.0.1)
-  - SwifterSwift (5.0.0):
-    - SwifterSwift/AppKit (= 5.0.0)
-    - SwifterSwift/CoreGraphics (= 5.0.0)
-    - SwifterSwift/CoreLocation (= 5.0.0)
-    - SwifterSwift/Dispatch (= 5.0.0)
-    - SwifterSwift/Foundation (= 5.0.0)
-    - SwifterSwift/MapKit (= 5.0.0)
-    - SwifterSwift/SpriteKit (= 5.0.0)
-    - SwifterSwift/SwiftStdlib (= 5.0.0)
-    - SwifterSwift/UIKit (= 5.0.0)
-  - SwifterSwift/AppKit (5.0.0)
-  - SwifterSwift/CoreGraphics (5.0.0)
-  - SwifterSwift/CoreLocation (5.0.0)
-  - SwifterSwift/Dispatch (5.0.0)
-  - SwifterSwift/Foundation (5.0.0)
-  - SwifterSwift/MapKit (5.0.0)
-  - SwifterSwift/SpriteKit (5.0.0)
-  - SwifterSwift/SwiftStdlib (5.0.0)
-  - SwifterSwift/UIKit (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0)
   - Kingfisher (~> 6.3.1)
   - SnapKit (~> 5.0.0)
-  - SwifterSwift (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
     - SnapKit
-    - SwifterSwift
 
 SPEC CHECKSUMS:
   Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SwifterSwift: 96f90594b370802f01647c2b1229c74a84ffafee
 
-PODFILE CHECKSUM: 850c431ddff5673f766214f2d938f7b2a96c7e11
+PODFILE CHECKSUM: 7a6f8dbb6210806024668d45ea726ded7f60ba1d
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.12.1
