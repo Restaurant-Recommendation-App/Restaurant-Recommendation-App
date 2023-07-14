@@ -46,7 +46,6 @@
 				5C55409C8327500EEDB593B7 /* Pods-Cheffi.debug.xcconfig */,
 				D48AAB57DFA43AC8AD2FE7FD /* Pods-Cheffi.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -56,6 +55,157 @@
 				6C88D7F1C143B7B24A56FC52 /* Pods_Cheffi.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D41B45E72A611836003EF1EC /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D4E244B82A60FF5A004E0167 /* AppDelegate.swift */,
+				D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */,
+				D41B45E82A611859003EF1EC /* DIContainer */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		D41B45E82A611859003EF1EC /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DIContainer;
+			sourceTree = "<group>";
+		};
+		D41B45E92A61186F003EF1EC /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D41B45F42A6119EE003EF1EC /* Entities */,
+				D41B45F52A6119F4003EF1EC /* Usecases */,
+				D41B45EB2A61187B003EF1EC /* Interfaces */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D41B45EA2A611875003EF1EC /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D41B45EE2A611936003EF1EC /* HomeScene */,
+				D41B45F22A6119D1003EF1EC /* Utils */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D41B45EB2A61187B003EF1EC /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				D41B45F62A611A02003EF1EC /* Repositories */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		D41B45EC2A611888003EF1EC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D41B45F72A611A31003EF1EC /* Network */,
+				D41B45F82A611A3D003EF1EC /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D41B45ED2A61188B003EF1EC /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				D41B45F92A611A4E003EF1EC /* Network */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		D41B45EE2A611936003EF1EC /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				D41B45EF2A611958003EF1EC /* Flow */,
+				D41B45F02A61195F003EF1EC /* ViewModels */,
+				D41B45F12A61196B003EF1EC /* Views */,
+			);
+			path = HomeScene;
+			sourceTree = "<group>";
+		};
+		D41B45EF2A611958003EF1EC /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		D41B45F02A61195F003EF1EC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D41B45F12A61196B003EF1EC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4E244BC2A60FF5A004E0167 /* ViewController.swift */,
+				D4E244BE2A60FF5A004E0167 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D41B45F22A6119D1003EF1EC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D41B45F32A6119D6003EF1EC /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D41B45F32A6119D6003EF1EC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D41B45F42A6119EE003EF1EC /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		D41B45F52A6119F4003EF1EC /* Usecases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Usecases;
+			sourceTree = "<group>";
+		};
+		D41B45F62A611A02003EF1EC /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		D41B45F72A611A31003EF1EC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D41B45F82A611A3D003EF1EC /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		D41B45F92A611A4E003EF1EC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		D4E244AC2A60FF5A004E0167 = {
@@ -79,10 +229,11 @@
 		D4E244B72A60FF5A004E0167 /* Cheffi */ = {
 			isa = PBXGroup;
 			children = (
-				D4E244B82A60FF5A004E0167 /* AppDelegate.swift */,
-				D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */,
-				D4E244BC2A60FF5A004E0167 /* ViewController.swift */,
-				D4E244BE2A60FF5A004E0167 /* Main.storyboard */,
+				D41B45E72A611836003EF1EC /* Application */,
+				D41B45EA2A611875003EF1EC /* Presentation */,
+				D41B45E92A61186F003EF1EC /* Domain */,
+				D41B45EC2A611888003EF1EC /* Data */,
+				D41B45ED2A61188B003EF1EC /* Infrastructure */,
 				D4E244C12A60FF5D004E0167 /* Assets.xcassets */,
 				D4E244C62A60FF5D004E0167 /* Info.plist */,
 			);
