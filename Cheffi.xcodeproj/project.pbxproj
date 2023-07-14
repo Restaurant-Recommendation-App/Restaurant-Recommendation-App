@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		CCFD1C96190531B54766E859 /* Pods_Cheffi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C88D7F1C143B7B24A56FC52 /* Pods_Cheffi.framework */; };
+		D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FA2A612600003EF1EC /* Storyboarded.swift */; };
+		D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */; };
+		D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */; };
+		D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B46002A6128C1003EF1EC /* HomeFlowCoordinator.swift */; };
+		D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */; };
 		D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244B82A60FF5A004E0167 /* AppDelegate.swift */; };
 		D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */; };
 		D4E244BD2A60FF5A004E0167 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BC2A60FF5A004E0167 /* ViewController.swift */; };
@@ -18,6 +23,11 @@
 /* Begin PBXFileReference section */
 		5C55409C8327500EEDB593B7 /* Pods-Cheffi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheffi.debug.xcconfig"; path = "Target Support Files/Pods-Cheffi/Pods-Cheffi.debug.xcconfig"; sourceTree = "<group>"; };
 		6C88D7F1C143B7B24A56FC52 /* Pods_Cheffi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheffi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D41B45FA2A612600003EF1EC /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
+		D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
+		D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		D41B46002A6128C1003EF1EC /* HomeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFlowCoordinator.swift; sourceTree = "<group>"; };
+		D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSceneDIContainer.swift; sourceTree = "<group>"; };
 		D48AAB57DFA43AC8AD2FE7FD /* Pods-Cheffi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheffi.release.xcconfig"; path = "Target Support Files/Pods-Cheffi/Pods-Cheffi.release.xcconfig"; sourceTree = "<group>"; };
 		D4E244B52A60FF5A004E0167 /* Cheffi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheffi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E244B82A60FF5A004E0167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +72,9 @@
 			children = (
 				D4E244B82A60FF5A004E0167 /* AppDelegate.swift */,
 				D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */,
+				D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */,
 				D41B45E82A611859003EF1EC /* DIContainer */,
+				D41B45FA2A612600003EF1EC /* Storyboarded.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -70,6 +82,8 @@
 		D41B45E82A611859003EF1EC /* DIContainer */ = {
 			isa = PBXGroup;
 			children = (
+				D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */,
+				D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -131,6 +145,7 @@
 		D41B45EF2A611958003EF1EC /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				D41B46002A6128C1003EF1EC /* HomeFlowCoordinator.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -356,7 +371,12 @@
 			files = (
 				D4E244BD2A60FF5A004E0167 /* ViewController.swift in Sources */,
 				D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */,
+				D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */,
+				D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */,
+				D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */,
 				D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */,
+				D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */,
+				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
