@@ -10,8 +10,9 @@ import UIKit
 class ProfileView: UIView {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "person")
         imageView.contentMode = .scaleAspectFit
+        imageView.layerCornerRadius = 32
+        imageView.backgroundColor = .gray
         return imageView
     }()
     
