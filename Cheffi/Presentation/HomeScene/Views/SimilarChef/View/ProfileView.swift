@@ -67,8 +67,9 @@ class ProfileView: UIView {
     private func setupViews() {
         self.addSubviews([profileImageView, nicknameLabel, tagLabel, followButton])
         profileImageView.snp.makeConstraints { make in
-            make.top.bottom.left.equalToSuperview()
-            make.width.height.equalTo(64)
+            make.top.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(16)
+            make.width.equalTo(64)
         }
         
         nicknameLabel.snp.makeConstraints { make in
@@ -86,7 +87,7 @@ class ProfileView: UIView {
         followButton.snp.makeConstraints { make in
             make.width.equalTo(70.0)
             make.height.equalTo(28)
-            make.right.equalToSuperview()
+            make.right.equalToSuperview().offset(-16)
             make.centerY.equalToSuperview()
         }
     }

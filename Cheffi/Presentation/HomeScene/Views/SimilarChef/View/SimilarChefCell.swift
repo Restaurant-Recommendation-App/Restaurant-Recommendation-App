@@ -55,6 +55,11 @@ class SimilarChefCell: UITableViewCell {
     private func setupViews() {
         collectionView.delegate = self
         collectionView.register(nibWithCellClass: SimilarChefProfileCell.self)
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
         
         // Initialize data source
         dataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: collectionView) {
@@ -74,10 +79,19 @@ class SimilarChefCell: UITableViewCell {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension SimilarChefCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.width-(Constants.cellInset*2), height: Constants.cellHeight)
+        return CGSize(width: collectionView.width, height: Constants.cellHeight)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: Constants.cellInset, left: Constants.cellInset,
-                            bottom: Constants.cellInset, right: Constants.cellInset)
+        return UIEdgeInsets(top: Constants.cellInset, left: 0.0,
+                            bottom: Constants.cellInset, right: 0.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
