@@ -35,7 +35,7 @@ class TagListView: UIView {
     private var tagList: [String] = []
     private let stackView = UIStackView()
     private let scrollView = UIScrollView()
-    private var selectedTagIndex: Int? {
+    private var selectedTagIndexes: [Int] = [] {
         didSet {
             updateTagSelection()
         }
@@ -89,18 +89,24 @@ class TagListView: UIView {
             stackView.addArrangedSubview(button)
         }
         
-        selectedTagIndex = 0
+        if !tagList.isEmpty {
+            selectedTagIndexes = [0]
+        }
     }
     
     private func updateTagSelection() {
         for (index, view) in stackView.arrangedSubviews.enumerated() {
             guard let button = view as? TagButton else { continue }
             
-            button.isSelectedTag = index == selectedTagIndex
+            button.isSelectedTag = selectedTagIndexes.contains(index)
         }
     }
     
     @objc private func tagTapped(_ sender: UIButton) {
-        selectedTagIndex = sender.tag
+        if let index = selectedTagIndexes.firstIndex(of: sender.tag) {
+            selectedTagIndexes.remove(at: index)
+        } else {
+            selectedTagIndexes.append(sender.tag)
+        }
     }
 }

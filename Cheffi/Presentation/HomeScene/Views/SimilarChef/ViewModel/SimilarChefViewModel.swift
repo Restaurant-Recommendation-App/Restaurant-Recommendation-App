@@ -28,7 +28,7 @@ final class SimilarChefViewModel: SimilarChefViewModelInput & SimilarChefViewMod
     
     // MARK: - Output
     var categories: AnyPublisher<[String], Never> {
-        Just(["#한식", "#노포", "#아시아음식", "#매운맛", "#천절함", "#한식", "#노포", "#아시아음식", "#매운맛", "#천절함"])
+        Just(["한식", "노포", "아시아음식", "매운맛", "천절함", "한식", "노포", "아시아음식", "매운맛", "천절함"])
             .eraseToAnyPublisher()
     }
     var profiles: AnyPublisher<[String], Never> {
