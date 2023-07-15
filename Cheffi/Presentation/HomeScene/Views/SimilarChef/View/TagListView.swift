@@ -66,7 +66,8 @@ class TagListView: UIView {
         stackView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16) // Add offset to trailing as well
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(scrollView)
         }
     }
     

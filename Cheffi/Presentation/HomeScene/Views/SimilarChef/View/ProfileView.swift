@@ -94,7 +94,6 @@ class ProfileView: UIView {
     @objc private func followButtonTapped() {
         followButton.isSelected.toggle()
         updateFollowButtonAppearance()
-        // 클로저를 호출하여 followButton 의 선택 상태를 전달합니다.
         followButtonSelectedHandler?(followButton.isSelected)
     }
     
