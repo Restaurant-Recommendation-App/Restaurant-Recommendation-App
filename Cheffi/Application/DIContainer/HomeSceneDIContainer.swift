@@ -10,15 +10,14 @@ import UIKit
 
 /// 홈화면 의존성 주입 컨테이너
 final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
-    
-    func makeHomeViewController() -> HomeViewController {
-        HomeViewController.instantiate(withStoryboarName: "Home")
-    }
-    
     func makeHomeFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> HomeFlowCoordinator {
         HomeFlowCoordinator(
             navigationController: navigationController,
             parentCoordinator: parentCoordinator,
             dependencies: self)
+    }
+    
+    func makeViewController() -> UIViewController {
+        HomeViewController.instantiate(withStoryboarName: "Home")
     }
 }

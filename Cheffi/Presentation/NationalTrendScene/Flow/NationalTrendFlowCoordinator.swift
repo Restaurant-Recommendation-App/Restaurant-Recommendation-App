@@ -7,25 +7,11 @@
 
 import UIKit
 
-protocol NationalTrendFlowCoodinatorDependencies {
-    func makeNationalTrendViewController() -> NationalTrendViewController
-}
-
-final class NationalTrendFlowCoodinator {
-    private weak var navigationController: UINavigationController?
-    private weak var parentCoordinator: AppFlowCoordinator?
+protocol NationalTrendFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {}
     
-    private let dependencies: NationalTrendFlowCoodinatorDependencies
-    
-    init(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator, dependencies: NationalTrendFlowCoodinatorDependencies) {
-        self.navigationController = navigationController
-        self.parentCoordinator = parentCoordinator
-        self.dependencies = dependencies
-    }
-    
-    func start() {
-        let vc = dependencies.makeNationalTrendViewController()
-        // 타이틀 등 네비게이션 관련 세팅
+final class NationalTrendFlowCoodinator: BaseFlowCoordinator {
+    override func start() {
+        let vc = dependencies.makeViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }

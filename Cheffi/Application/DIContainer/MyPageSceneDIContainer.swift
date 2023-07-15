@@ -8,14 +8,14 @@
 import UIKit
 
 final class MyPageSceneDIContainer: MyPageFlowCoodinatorDependencies {
-    func makeMyPageViewController() -> MyPageViewController {
-        MyPageViewController.instantiate(withStoryboarName: "MyPage")
-    }
-    
     func makeMyPageFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> MyPageFlowCoodinator {
         MyPageFlowCoodinator(
             navigationController: navigationController,
             parentCoordinator: parentCoordinator,
             dependencies: self)
+    }
+    
+    func makeViewController() -> UIViewController {
+        MyPageViewController.instantiate(withStoryboarName: "MyPage")
     }
 }
