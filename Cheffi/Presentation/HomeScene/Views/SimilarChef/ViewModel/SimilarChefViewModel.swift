@@ -40,6 +40,7 @@ final class SimilarChefViewModel: SimilarChefViewModelInput & SimilarChefViewMod
         selectedCategory
             .flatMap { category in
                 Just(["김맛집1", "김맛집2", "김맛집3", "김맛집4", "김맛집5", "김맛집6"])
+                    .map { Array($0.prefix(3)) }
                     .eraseToAnyPublisher()
             }
             .sink { [weak self] profiles in

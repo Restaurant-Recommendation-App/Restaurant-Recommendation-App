@@ -15,6 +15,11 @@ class SimilarChefCell: UITableViewCell {
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    enum Constants {
+        static let cellInset: CGFloat = 16.0
+        static let cellHeight: CGFloat = 64.0
+    }
+    
     private var viewModel: SimilarChefViewModel?
     private var cancellables = Set<AnyCancellable>()
     
@@ -69,9 +74,10 @@ class SimilarChefCell: UITableViewCell {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension SimilarChefCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 190.0, height: 230.0)
+        return CGSize(width: collectionView.width-(Constants.cellInset*2), height: Constants.cellHeight)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return UIEdgeInsets(top: Constants.cellInset, left: Constants.cellInset,
+                            bottom: Constants.cellInset, right: Constants.cellInset)
     }
 }

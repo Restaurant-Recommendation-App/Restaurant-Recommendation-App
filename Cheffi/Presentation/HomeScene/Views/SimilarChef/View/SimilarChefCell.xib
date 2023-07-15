@@ -62,12 +62,12 @@
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="IqK-Ut-TZ7">
-                        <rect key="frame" x="0.0" y="121.33333333333334" width="506" height="299.66666666666663"/>
+                        <rect key="frame" x="0.0" y="113.33333333333334" width="506" height="315.66666666666663"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="230" id="EhM-oN-wKd"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="240" id="EhM-oN-wKd"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ten-zn-RiJ">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ten-zn-RiJ">
                             <size key="itemSize" width="0.0" height="0.0"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -81,9 +81,9 @@
                     <constraint firstAttribute="trailing" secondItem="ngN-S7-HK3" secondAttribute="trailing" constant="16" id="3lp-Wj-R3S"/>
                     <constraint firstAttribute="trailing" secondItem="RHb-ve-k2p" secondAttribute="trailing" constant="16" id="Aco-aV-ENh"/>
                     <constraint firstAttribute="trailing" secondItem="7sI-Is-bfz" secondAttribute="trailing" id="B9r-iK-EI3"/>
-                    <constraint firstItem="RHb-ve-k2p" firstAttribute="top" secondItem="IqK-Ut-TZ7" secondAttribute="bottom" constant="16" id="FeX-H9-dOX"/>
+                    <constraint firstItem="RHb-ve-k2p" firstAttribute="top" secondItem="IqK-Ut-TZ7" secondAttribute="bottom" constant="8" id="FeX-H9-dOX"/>
                     <constraint firstAttribute="bottom" secondItem="RHb-ve-k2p" secondAttribute="bottom" id="Jhi-xf-z4B"/>
-                    <constraint firstItem="IqK-Ut-TZ7" firstAttribute="top" secondItem="7sI-Is-bfz" secondAttribute="bottom" constant="16" id="L4W-QG-AmA"/>
+                    <constraint firstItem="IqK-Ut-TZ7" firstAttribute="top" secondItem="7sI-Is-bfz" secondAttribute="bottom" constant="8" id="L4W-QG-AmA"/>
                     <constraint firstItem="e31-0v-ihG" firstAttribute="top" secondItem="ngN-S7-HK3" secondAttribute="bottom" constant="8" id="QaZ-Jb-Wzr"/>
                     <constraint firstItem="7sI-Is-bfz" firstAttribute="top" secondItem="e31-0v-ihG" secondAttribute="bottom" constant="16" id="XcK-vh-iqj"/>
                     <constraint firstItem="ngN-S7-HK3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YHE-fQ-dyC"/>

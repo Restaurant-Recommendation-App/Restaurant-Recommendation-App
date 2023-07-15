@@ -8,53 +8,51 @@
 import UIKit
 
 class ProfileView: UIView {
+    var followButtonSelectedHandler: ((Bool) -> Void)?
+    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.layerCornerRadius = 32
-        imageView.backgroundColor = .gray
+        imageView.backgroundColor = UIColor(hexString: "EAEAEA")
+        imageView.layerCornerRadius = 8
         return imageView
     }()
     
     private let nicknameLabel: UILabel = {
         let label = UILabel()
         label.text = nil
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = UIColor(argbHexString: "0A0A0A")
-        return label
-    }()
-    
-    private let followerLabel: UILabel = {
-        let label = UILabel()
-        label.text = "팔로워 : "
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 10, weight: .regular)
-        label.textColor = UIColor(argbHexString: "636363")
+        label.textColor = UIColor(argbHexString: "2F2F2F")
         return label
     }()
     
     private let tagLabel: UILabel = {
         let label = UILabel()
-        label.text = "#한식 #노포 #매운맛"
-        label.textAlignment = .center
+        label.text = "#한식 #노포 #아이사음식 #매운맛 #웨이팅 짧은 #매운맛 #웨이팅 #한식 #노포 #아이사음식 #매운맛 #웨이팅 짧은 #매운맛 #웨이팅"
+        label.numberOfLines = 2
+        label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textColor = UIColor(argbHexString: "9E9E9E")
+        label.textColor = UIColor(argbHexString: "5A5A5A")
         return label
     }()
     
-    private let followButton: UIButton = {
+    private lazy var followButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("팔로우".localized(), for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.layerCornerRadius = 10
-        button.backgroundColor = UIColor(argbHexString: "D82231")
+        button.setTitle("팔로잉".localized(), for: .selected)
+        button.setTitleColor(UIColor(hexString: "D82231"), for: .normal)
+        button.setTitleColor(UIColor(hexString: "0A0A0A"), for: .selected)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        button.layerCornerRadius = 8.0
+        button.addTarget(self, action: #selector(followButtonTapped), for: .touchUpInside)
         return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupViews()
+        self.updateFollowButtonAppearance()
     }
     
     required init?(coder: NSCoder) {
@@ -67,37 +65,44 @@ class ProfileView: UIView {
     
     // MARK: - private
     private func setupViews() {
-        self.addSubviews([profileImageView, nicknameLabel, followerLabel, tagLabel, followButton])
+        self.addSubviews([profileImageView, nicknameLabel, tagLabel, followButton])
         profileImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(16)
+            make.top.bottom.left.equalToSuperview()
             make.width.height.equalTo(64)
-            make.centerX.equalToSuperview()
         }
         
         nicknameLabel.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-        }
-        
-        followerLabel.snp.makeConstraints { make in
-            make.top.equalTo(nicknameLabel.snp.bottom).offset(4)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalTo(profileImageView.snp.top)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(12)
+            make.trailing.equalTo(followButton.snp.leading).offset(-32)
         }
         
         tagLabel.snp.makeConstraints { make in
-            make.top.equalTo(followerLabel.snp.bottom).offset(10)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalTo(nicknameLabel.snp.bottom).offset(6)
+            make.leading.equalTo(nicknameLabel.snp.leading)
+            make.trailing.equalTo(nicknameLabel.snp.trailing)
         }
         
         followButton.snp.makeConstraints { make in
-            make.top.equalTo(tagLabel.snp.bottom).offset(12)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.bottom.equalToSuperview().offset(-16)
-            make.height.equalTo(32)
+            make.width.equalTo(70.0)
+            make.height.equalTo(28)
+            make.right.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+    }
+    
+    @objc private func followButtonTapped() {
+        followButton.isSelected.toggle()
+        updateFollowButtonAppearance()
+        // 클로저를 호출하여 followButton 의 선택 상태를 전달합니다.
+        followButtonSelectedHandler?(followButton.isSelected)
+    }
+    
+    private func updateFollowButtonAppearance() {
+        if followButton.isSelected {
+            followButton.backgroundColor = UIColor(hexString: "EAEAEA")
+        } else {
+            followButton.backgroundColor = UIColor(hexString: "FFE5E8")
         }
     }
 }

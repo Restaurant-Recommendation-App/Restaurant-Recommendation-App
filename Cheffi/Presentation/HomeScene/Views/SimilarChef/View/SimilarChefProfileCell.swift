@@ -22,10 +22,6 @@ class SimilarChefProfileCell: UICollectionViewCell {
     
     // MARK: - private
     private func setupViews() {
-        self.layerCornerRadius = 10
-        self.layerBorderWidth = 1
-        self.layerBorderColor = UIColor(hexString: "C5C5C5")
-        
         self.contentView.addSubview(profileView)
         profileView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
