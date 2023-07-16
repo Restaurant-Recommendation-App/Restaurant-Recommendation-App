@@ -22,6 +22,15 @@
 		CE0D453A2A61AA7700636989 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0D45392A61AA7700636989 /* MyPage.storyboard */; };
 		CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D453B2A61AAD700636989 /* MyPageFlowCoodinator.swift */; };
 		CE0D453F2A61AECD00636989 /* BaseFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D453E2A61AECD00636989 /* BaseFlowCoordinator.swift */; };
+		CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45402A626C3B00636989 /* SimilarChefCell.swift */; };
+		CE0D45432A626C3B00636989 /* SimilarChefCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0D45412A626C3B00636989 /* SimilarChefCell.xib */; };
+		CE1A6A6D2A62716C00FFE93D /* SimilarChefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A6C2A62716C00FFE93D /* SimilarChefViewModel.swift */; };
+		CE1A6A722A6281E200FFE93D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A712A6281E200FFE93D /* ProfileView.swift */; };
+		CE1A6A752A6286CB00FFE93D /* SimilarChefProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A732A6286CB00FFE93D /* SimilarChefProfileCell.swift */; };
+		CE1A6A762A6286CB00FFE93D /* SimilarChefProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A6A742A6286CB00FFE93D /* SimilarChefProfileCell.xib */; };
+		CE1A6A782A6294DC00FFE93D /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A772A6294DC00FFE93D /* TagListView.swift */; };
+		CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A7A2A62961D00FFE93D /* BaseView.swift */; };
+		CE1A6A912A62AECA00FFE93D /* SimilarChefViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A902A62AECA00FFE93D /* SimilarChefViewModelTests.swift */; };
 		D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FA2A612600003EF1EC /* Storyboarded.swift */; };
 		D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */; };
 		D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */; };
@@ -33,6 +42,16 @@
 		D4E244C02A60FF5A004E0167 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E244BE2A60FF5A004E0167 /* Home.storyboard */; };
 		D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E244C12A60FF5D004E0167 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE1A6A892A62AE4D00FFE93D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4E244AD2A60FF5A004E0167 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4E244B42A60FF5A004E0167;
+			remoteInfo = Cheffi;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1B24CC8C1560BF374B8A3ED8 /* Pods-Cheffi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheffi.debug.xcconfig"; path = "Target Support Files/Pods-Cheffi/Pods-Cheffi.debug.xcconfig"; sourceTree = "<group>"; };
@@ -51,6 +70,16 @@
 		CE0D45392A61AA7700636989 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		CE0D453B2A61AAD700636989 /* MyPageFlowCoodinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFlowCoodinator.swift; sourceTree = "<group>"; };
 		CE0D453E2A61AECD00636989 /* BaseFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFlowCoordinator.swift; sourceTree = "<group>"; };
+		CE0D45402A626C3B00636989 /* SimilarChefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarChefCell.swift; sourceTree = "<group>"; };
+		CE0D45412A626C3B00636989 /* SimilarChefCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarChefCell.xib; sourceTree = "<group>"; };
+		CE1A6A6C2A62716C00FFE93D /* SimilarChefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimilarChefViewModel.swift; path = Cheffi/Presentation/HomeScene/Views/SimilarChef/ViewModel/SimilarChefViewModel.swift; sourceTree = SOURCE_ROOT; };
+		CE1A6A712A6281E200FFE93D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		CE1A6A732A6286CB00FFE93D /* SimilarChefProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarChefProfileCell.swift; sourceTree = "<group>"; };
+		CE1A6A742A6286CB00FFE93D /* SimilarChefProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarChefProfileCell.xib; sourceTree = "<group>"; };
+		CE1A6A772A6294DC00FFE93D /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
+		CE1A6A7A2A62961D00FFE93D /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		CE1A6A852A62AE4D00FFE93D /* CheffiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheffiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE1A6A902A62AECA00FFE93D /* SimilarChefViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarChefViewModelTests.swift; sourceTree = "<group>"; };
 		D41B45FA2A612600003EF1EC /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
@@ -66,6 +95,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CE1A6A822A62AE4D00FFE93D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4E244B22A60FF5A004E0167 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -173,6 +209,68 @@
 			path = BaseScene;
 			sourceTree = "<group>";
 		};
+		CE1A6A6E2A62814C00FFE93D /* SimilarChef */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6A6F2A62817300FFE93D /* View */,
+				CE1A6A702A62817F00FFE93D /* ViewModel */,
+			);
+			path = SimilarChef;
+			sourceTree = "<group>";
+		};
+		CE1A6A6F2A62817300FFE93D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D45402A626C3B00636989 /* SimilarChefCell.swift */,
+				CE0D45412A626C3B00636989 /* SimilarChefCell.xib */,
+				CE1A6A712A6281E200FFE93D /* ProfileView.swift */,
+				CE1A6A732A6286CB00FFE93D /* SimilarChefProfileCell.swift */,
+				CE1A6A742A6286CB00FFE93D /* SimilarChefProfileCell.xib */,
+				CE1A6A772A6294DC00FFE93D /* TagListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE1A6A702A62817F00FFE93D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6A6C2A62716C00FFE93D /* SimilarChefViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CE1A6A792A62960A00FFE93D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6A7A2A62961D00FFE93D /* BaseView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CE1A6A7D2A62AD7100FFE93D /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6A7E2A62AD8400FFE93D /* ViewModel */,
+			);
+			path = HomeScene;
+			sourceTree = "<group>";
+		};
+		CE1A6A7E2A62AD8400FFE93D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6A902A62AECA00FFE93D /* SimilarChefViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CE1A6A862A62AE4D00FFE93D /* CheffiTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6A7D2A62AD7100FFE93D /* HomeScene */,
+			);
+			path = CheffiTests;
+			sourceTree = "<group>";
+		};
 		D41B45E72A611836003EF1EC /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +373,7 @@
 			children = (
 				D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */,
 				D4E244BE2A60FF5A004E0167 /* Home.storyboard */,
+				CE1A6A6E2A62814C00FFE93D /* SimilarChef */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -340,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				D4E244B72A60FF5A004E0167 /* Cheffi */,
+				CE1A6A862A62AE4D00FFE93D /* CheffiTests */,
 				D4E244B62A60FF5A004E0167 /* Products */,
 				65BDD68A3ABF29456FF37264 /* Pods */,
 				D9B9B210488FFC9E099F948F /* Frameworks */,
@@ -350,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				D4E244B52A60FF5A004E0167 /* Cheffi.app */,
+				CE1A6A852A62AE4D00FFE93D /* CheffiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -358,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				D41B45E72A611836003EF1EC /* Application */,
+				CE1A6A792A62960A00FFE93D /* Common */,
 				D41B45EA2A611875003EF1EC /* Presentation */,
 				D41B45E92A61186F003EF1EC /* Domain */,
 				D41B45EC2A611888003EF1EC /* Data */,
@@ -379,6 +481,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CE1A6A842A62AE4D00FFE93D /* CheffiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE1A6A8B2A62AE4D00FFE93D /* Build configuration list for PBXNativeTarget "CheffiTests" */;
+			buildPhases = (
+				CE1A6A812A62AE4D00FFE93D /* Sources */,
+				CE1A6A822A62AE4D00FFE93D /* Frameworks */,
+				CE1A6A832A62AE4D00FFE93D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE1A6A8A2A62AE4D00FFE93D /* PBXTargetDependency */,
+			);
+			name = CheffiTests;
+			productName = CheffiTests;
+			productReference = CE1A6A852A62AE4D00FFE93D /* CheffiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D4E244B42A60FF5A004E0167 /* Cheffi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4E244C92A60FF5D004E0167 /* Build configuration list for PBXNativeTarget "Cheffi" */;
@@ -408,9 +528,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					CE1A6A842A62AE4D00FFE93D = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = D4E244B42A60FF5A004E0167;
+					};
 					D4E244B42A60FF5A004E0167 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -433,18 +557,28 @@
 			projectRoot = "";
 			targets = (
 				D4E244B42A60FF5A004E0167 /* Cheffi */,
+				CE1A6A842A62AE4D00FFE93D /* CheffiTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CE1A6A832A62AE4D00FFE93D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4E244B32A60FF5A004E0167 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1A6A762A6286CB00FFE93D /* SimilarChefProfileCell.xib in Resources */,
 				D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */,
 				CE0D453A2A61AA7700636989 /* MyPage.storyboard in Resources */,
 				CE0D45342A61968200636989 /* RestaurantRegist.storyboard in Resources */,
+				CE0D45432A626C3B00636989 /* SimilarChefCell.xib in Resources */,
 				CE0D45262A618F8700636989 /* NationalTrend.storyboard in Resources */,
 				D4E244C02A60FF5A004E0167 /* Home.storyboard in Resources */,
 			);
@@ -495,10 +629,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CE1A6A812A62AE4D00FFE93D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE1A6A912A62AECA00FFE93D /* SimilarChefViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4E244B12A60FF5A004E0167 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1A6A6D2A62716C00FFE93D /* SimilarChefViewModel.swift in Sources */,
+				CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */,
 				CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */,
 				CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */,
 				D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */,
@@ -508,19 +652,31 @@
 				D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */,
 				CE0D453F2A61AECD00636989 /* BaseFlowCoordinator.swift in Sources */,
 				D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */,
+				CE1A6A752A6286CB00FFE93D /* SimilarChefProfileCell.swift in Sources */,
 				CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */,
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
 				CE0D45362A61975100636989 /* RestaurantRegistFlowCoodinator.swift in Sources */,
+				CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */,
 				D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */,
 				CE0D45322A61967700636989 /* RestaurantRegistViewController.swift in Sources */,
 				D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */,
 				CE0D45282A6195BD00636989 /* RestaurantRegistSceneDIContainer.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
+				CE1A6A782A6294DC00FFE93D /* TagListView.swift in Sources */,
+				CE1A6A722A6281E200FFE93D /* ProfileView.swift in Sources */,
 				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE1A6A8A2A62AE4D00FFE93D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4E244B42A60FF5A004E0167 /* Cheffi */;
+			targetProxy = CE1A6A892A62AE4D00FFE93D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D4E244BE2A60FF5A004E0167 /* Home.storyboard */ = {
@@ -534,6 +690,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CE1A6A8C2A62AE4D00FFE93D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3D2GFZ7CZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sseoju.CheffiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cheffi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Cheffi";
+			};
+			name = Debug;
+		};
+		CE1A6A8D2A62AE4D00FFE93D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3D2GFZ7CZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sseoju.CheffiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cheffi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Cheffi";
+			};
+			name = Release;
+		};
 		D4E244C72A60FF5D004E0167 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -715,6 +909,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CE1A6A8B2A62AE4D00FFE93D /* Build configuration list for PBXNativeTarget "CheffiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE1A6A8C2A62AE4D00FFE93D /* Debug */,
+				CE1A6A8D2A62AE4D00FFE93D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D4E244B02A60FF5A004E0167 /* Build configuration list for PBXProject "Cheffi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

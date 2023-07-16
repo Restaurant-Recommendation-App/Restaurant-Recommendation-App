@@ -8,12 +8,11 @@
 import UIKit
 
 class HomeViewController: UIViewController, Storyboarded {
+    
+    @IBOutlet private weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        debugPrint("------------------------------------------")
-        debugPrint("HomeViewController viewDidLoad")
-        debugPrint("------------------------------------------")
     }
 }
 
