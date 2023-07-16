@@ -20,4 +20,28 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     func makeViewController() -> UIViewController {
         HomeViewController.instantiate(withStoryboarName: "Home")
     }
+    
+    func makeViewController(viewModel: HomeViewModel) -> UIViewController {
+        let vc = HomeViewController.instantiate(withStoryboarName: "Home")
+        vc.viewModel = viewModel
+        return vc
+    }
+    
+    func makeHomeViewModel() -> HomeViewModel {
+        return HomeViewModel(similarChefViewModel: makeSimilarChefViewModel())
+    }
+    
+    func makeSimilarChefViewModel() -> SimilarChefViewModel {
+        let repository = makeSimilarChefRepository()
+        return SimilarChefViewModel(fetchSimilarChefUseCase: makeFetchSimilarChefUseCase(repository: repository),
+                                    repository: repository)
+    }
+    
+    func makeFetchSimilarChefUseCase(repository: SimilarChefRepository) -> FetchSimilarChefUseCase {
+        DefaultFetchSimilarChefUseCase(repository: repository)
+    }
+    
+    func makeSimilarChefRepository() -> SimilarChefRepository {
+        DefaultSimilarChefRepository()
+    }
 }

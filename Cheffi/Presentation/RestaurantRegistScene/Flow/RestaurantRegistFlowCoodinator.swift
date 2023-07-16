@@ -10,7 +10,7 @@ import UIKit
 protocol RestaurantRegistFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {}
 
 final class RestaurantRegistFlowCoodinator: BaseFlowCoordinator {
-    override func start() {
+    func start() {
         let vc = dependencies.makeViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

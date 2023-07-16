@@ -10,7 +10,7 @@ import UIKit
 protocol NationalTrendFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {}
     
 final class NationalTrendFlowCoodinator: BaseFlowCoordinator {
-    override func start() {
+    func start() {
         let vc = dependencies.makeViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

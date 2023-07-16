@@ -27,11 +27,12 @@ final class AppFlowCoordinator {
                                           image: UIImage(named: "")?.withRenderingMode(.alwaysOriginal),
                                           selectedImage: UIImage(named: "")?.withRenderingMode(.alwaysOriginal))
         let homeNavigationController = createNavigationController(with: homeTabBarItem)
+        let homeViewModel = homeSceneDIContainer.makeHomeViewModel()
         let homeCoordinator = homeSceneDIContainer.makeHomeFlowCoordinator(
             navigationController: homeNavigationController,
             parentCoordinator: self
         )
-        homeCoordinator.start()
+        homeCoordinator.start(viewModel: homeViewModel)
         
         let nationalTrendSceneDIContainer = appDIContainer.makeNationalTrendSceneDIContainer()
         let nationalTrendTabBarItem = UITabBarItem(title: "전국트랜드".localized(),
