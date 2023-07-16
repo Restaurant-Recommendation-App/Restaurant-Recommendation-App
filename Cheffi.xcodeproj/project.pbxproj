@@ -355,6 +355,15 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		CE70F8A92A642A6A003D0ED9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D4E244C62A60FF5D004E0167 /* Info.plist */,
+				D4E244C12A60FF5D004E0167 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		D41B45E72A611836003EF1EC /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,8 +488,7 @@
 				CE70F8A02A63E7F5003D0ED9 /* Domain */,
 				CE70F89D2A63E7C0003D0ED9 /* Data */,
 				D41B45ED2A61188B003EF1EC /* Infrastructure */,
-				D4E244C12A60FF5D004E0167 /* Assets.xcassets */,
-				D4E244C62A60FF5D004E0167 /* Info.plist */,
+				CE70F8A92A642A6A003D0ED9 /* Resources */,
 			);
 			path = Cheffi;
 			sourceTree = "<group>";
@@ -871,7 +879,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Cheffi/Info.plist;
+				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -903,7 +911,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Cheffi/Info.plist;
+				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
