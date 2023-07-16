@@ -7,11 +7,17 @@
 
 import UIKit
 
-protocol HomeFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {}
+protocol HomeFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {
+    func makeViewController(viewModel: HomeViewModel) -> UIViewController
+}
 
 final class HomeFlowCoordinator: BaseFlowCoordinator {
-    override func start() {
-        let vc = dependencies.makeViewController()
+    private var homeDependencies: HomeFlowCoodinatorDependencies {
+        return self.dependencies as! HomeFlowCoodinatorDependencies
+    }
+    
+    func start(viewModel: HomeViewModel) {
+        let vc = homeDependencies.makeViewController(viewModel: viewModel)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -21,6 +21,4 @@ class BaseFlowCoordinator {
         self.parentCoordinator = parentCoordinator
         self.dependencies = dependencies
     }
-    
-    func start() { }
 }

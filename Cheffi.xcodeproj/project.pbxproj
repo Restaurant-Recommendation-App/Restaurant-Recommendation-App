@@ -31,6 +31,11 @@
 		CE1A6A782A6294DC00FFE93D /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A772A6294DC00FFE93D /* TagListView.swift */; };
 		CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A7A2A62961D00FFE93D /* BaseView.swift */; };
 		CE1A6A912A62AECA00FFE93D /* SimilarChefViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A902A62AECA00FFE93D /* SimilarChefViewModelTests.swift */; };
+		CE70F8872A63BFC8003D0ED9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F8862A63BFC8003D0ED9 /* HomeViewModel.swift */; };
+		CE70F8892A63BFEB003D0ED9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F8882A63BFEB003D0ED9 /* User.swift */; };
+		CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F88C2A63C0CC003D0ED9 /* SimilarChefRepository.swift */; };
+		CE70F8912A63C18C003D0ED9 /* FetchSimilarChefUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F8902A63C18C003D0ED9 /* FetchSimilarChefUseCase.swift */; };
+		CE70F8992A63C692003D0ED9 /* DefaultSimilarChefRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F8982A63C692003D0ED9 /* DefaultSimilarChefRepository.swift */; };
 		D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FA2A612600003EF1EC /* Storyboarded.swift */; };
 		D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */; };
 		D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */; };
@@ -80,6 +85,11 @@
 		CE1A6A7A2A62961D00FFE93D /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		CE1A6A852A62AE4D00FFE93D /* CheffiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheffiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1A6A902A62AECA00FFE93D /* SimilarChefViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarChefViewModelTests.swift; sourceTree = "<group>"; };
+		CE70F8862A63BFC8003D0ED9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Cheffi/Presentation/HomeScene/ViewModels/HomeViewModel.swift; sourceTree = SOURCE_ROOT; };
+		CE70F8882A63BFEB003D0ED9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Cheffi/Domain/Entities/User.swift; sourceTree = SOURCE_ROOT; };
+		CE70F88C2A63C0CC003D0ED9 /* SimilarChefRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimilarChefRepository.swift; path = Cheffi/Domain/Interfaces/Repositories/SimilarChefRepository.swift; sourceTree = SOURCE_ROOT; };
+		CE70F8902A63C18C003D0ED9 /* FetchSimilarChefUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FetchSimilarChefUseCase.swift; path = Cheffi/Domain/Usecases/FetchSimilarChefUseCase.swift; sourceTree = SOURCE_ROOT; };
+		CE70F8982A63C692003D0ED9 /* DefaultSimilarChefRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultSimilarChefRepository.swift; path = Cheffi/Data/Repositories/DefaultSimilarChefRepository.swift; sourceTree = SOURCE_ROOT; };
 		D41B45FA2A612600003EF1EC /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
@@ -271,6 +281,80 @@
 			path = CheffiTests;
 			sourceTree = "<group>";
 		};
+		CE70F89C2A63E77F003D0ED9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CE70F8862A63BFC8003D0ED9 /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CE70F89D2A63E7C0003D0ED9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CE70F89E2A63E7CD003D0ED9 /* Network */,
+				CE70F89F2A63E7D4003D0ED9 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		CE70F89E2A63E7CD003D0ED9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CE70F89F2A63E7D4003D0ED9 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				CE70F8982A63C692003D0ED9 /* DefaultSimilarChefRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		CE70F8A02A63E7F5003D0ED9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				CE70F8A12A63E802003D0ED9 /* Entities */,
+				CE70F8A22A63E80A003D0ED9 /* Usecases */,
+				CE70F8A32A63E811003D0ED9 /* Interfaces */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		CE70F8A12A63E802003D0ED9 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				CE70F8882A63BFEB003D0ED9 /* User.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		CE70F8A22A63E80A003D0ED9 /* Usecases */ = {
+			isa = PBXGroup;
+			children = (
+				CE70F8902A63C18C003D0ED9 /* FetchSimilarChefUseCase.swift */,
+			);
+			path = Usecases;
+			sourceTree = "<group>";
+		};
+		CE70F8A32A63E811003D0ED9 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				CE70F8A42A63E818003D0ED9 /* Repositories */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		CE70F8A42A63E818003D0ED9 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				CE70F88C2A63C0CC003D0ED9 /* SimilarChefRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		D41B45E72A611836003EF1EC /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,16 +379,6 @@
 			path = DIContainer;
 			sourceTree = "<group>";
 		};
-		D41B45E92A61186F003EF1EC /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				D41B45F42A6119EE003EF1EC /* Entities */,
-				D41B45F52A6119F4003EF1EC /* Usecases */,
-				D41B45EB2A61187B003EF1EC /* Interfaces */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
 		D41B45EA2A611875003EF1EC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,23 +390,6 @@
 				D41B45F22A6119D1003EF1EC /* Utils */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		D41B45EB2A61187B003EF1EC /* Interfaces */ = {
-			isa = PBXGroup;
-			children = (
-				D41B45F62A611A02003EF1EC /* Repositories */,
-			);
-			path = Interfaces;
-			sourceTree = "<group>";
-		};
-		D41B45EC2A611888003EF1EC /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				D41B45F72A611A31003EF1EC /* Network */,
-				D41B45F82A611A3D003EF1EC /* Repositories */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		D41B45ED2A61188B003EF1EC /* Infrastructure */ = {
@@ -347,7 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				D41B45EF2A611958003EF1EC /* Flow */,
-				D41B45F02A61195F003EF1EC /* ViewModels */,
+				CE70F89C2A63E77F003D0ED9 /* ViewModels */,
 				D41B45F12A61196B003EF1EC /* Views */,
 			);
 			path = HomeScene;
@@ -359,13 +416,6 @@
 				D41B46002A6128C1003EF1EC /* HomeFlowCoordinator.swift */,
 			);
 			path = Flow;
-			sourceTree = "<group>";
-		};
-		D41B45F02A61195F003EF1EC /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		D41B45F12A61196B003EF1EC /* Views */ = {
@@ -391,41 +441,6 @@
 			children = (
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		D41B45F42A6119EE003EF1EC /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		D41B45F52A6119F4003EF1EC /* Usecases */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Usecases;
-			sourceTree = "<group>";
-		};
-		D41B45F62A611A02003EF1EC /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		D41B45F72A611A31003EF1EC /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		D41B45F82A611A3D003EF1EC /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repositories;
 			sourceTree = "<group>";
 		};
 		D41B45F92A611A4E003EF1EC /* Network */ = {
@@ -461,8 +476,8 @@
 				D41B45E72A611836003EF1EC /* Application */,
 				CE1A6A792A62960A00FFE93D /* Common */,
 				D41B45EA2A611875003EF1EC /* Presentation */,
-				D41B45E92A61186F003EF1EC /* Domain */,
-				D41B45EC2A611888003EF1EC /* Data */,
+				CE70F8A02A63E7F5003D0ED9 /* Domain */,
+				CE70F89D2A63E7C0003D0ED9 /* Data */,
 				D41B45ED2A61188B003EF1EC /* Infrastructure */,
 				D4E244C12A60FF5D004E0167 /* Assets.xcassets */,
 				D4E244C62A60FF5D004E0167 /* Info.plist */,
@@ -641,14 +656,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE70F8892A63BFEB003D0ED9 /* User.swift in Sources */,
 				CE1A6A6D2A62716C00FFE93D /* SimilarChefViewModel.swift in Sources */,
+				CE70F8912A63C18C003D0ED9 /* FetchSimilarChefUseCase.swift in Sources */,
 				CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */,
 				CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */,
+				CE70F8872A63BFC8003D0ED9 /* HomeViewModel.swift in Sources */,
 				CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */,
 				D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */,
 				D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */,
 				D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */,
 				CE0D45242A618F0C00636989 /* NationalTrendViewController.swift in Sources */,
+				CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */,
 				D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */,
 				CE0D453F2A61AECD00636989 /* BaseFlowCoordinator.swift in Sources */,
 				D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */,
@@ -662,6 +681,7 @@
 				D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */,
 				CE0D45282A6195BD00636989 /* RestaurantRegistSceneDIContainer.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
+				CE70F8992A63C692003D0ED9 /* DefaultSimilarChefRepository.swift in Sources */,
 				CE1A6A782A6294DC00FFE93D /* TagListView.swift in Sources */,
 				CE1A6A722A6281E200FFE93D /* ProfileView.swift in Sources */,
 				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,

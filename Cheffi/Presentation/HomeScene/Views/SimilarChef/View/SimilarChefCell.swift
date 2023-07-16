@@ -33,21 +33,22 @@ class SimilarChefCell: UITableViewCell {
     func configure(with viewModel: SimilarChefViewModel) {
         self.viewModel = viewModel
         
-        viewModel.categories
+        viewModel.combinedData
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] categories in
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    debugPrint("------------------------------------------")
+                    debugPrint(error)
+                    debugPrint("------------------------------------------")
+                }
+            }, receiveValue: { [weak self] categories, profiles in
                 self?.tagListView.setupTags(categories)
-            }
-            .store(in: &cancellables)
-        
-        viewModel.profiles
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] profiles in
+                
                 var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
                 snapshot.appendSections([0])
-                snapshot.appendItems(profiles)
+                snapshot.appendItems(profiles.map { $0.name })
                 self?.dataSource?.apply(snapshot, animatingDifferences: true)
-            }
+            })
             .store(in: &cancellables)
     }
     
@@ -88,10 +89,10 @@ extension SimilarChefCell: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 0.0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 0.0
     }
 }

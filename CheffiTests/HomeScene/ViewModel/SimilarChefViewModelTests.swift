@@ -10,24 +10,68 @@ import Combine
 @testable import Cheffi
 
 final class SimilarChefViewModelTests: XCTestCase {
-
-    private var cancellables = Set<AnyCancellable>()
     
-    func testCategorySelection() {
-        let viewModel = SimilarChefViewModel()
+    private var viewModel: SimilarChefViewModel!
+    private var useCase: MockFetchSimilarChefUseCase!
+    private var repository: MockSimilarChefRepository!
+    private var cancellables: Set<AnyCancellable>!
+
+    override func setUp() {
+        super.setUp()
         
-        let expectation = XCTestExpectation(description: "선택한 카테고리에 대한 프로필 정보가 로드된다.")
+        useCase = MockFetchSimilarChefUseCase()
+        repository = MockSimilarChefRepository()
+        viewModel = SimilarChefViewModel(fetchSimilarChefUseCase: useCase, repository: repository)
+        cancellables = []
+    }
+
+    func testSelectedCategoryFetchesProfiles() {
+        let testCategory = "test"
+        let testUsers: [User] = (1...12).map({ User(id: "\($0)", name: "김맛집\($0)")})
+        useCase.result = .success(testUsers)
+        let expectation = XCTestExpectation(description: "")
         
-        viewModel.profiles
-            .sink { profiles in
-                XCTAssertEqual(profiles, ["김맛집1", "김맛집2", "김맛집3", "김맛집4", "김맛집5", "김맛집6", "김맛집7", "김맛집8", "김맛집9", "김맛집10", "김맛집11", "김맛집12"])
-                expectation.fulfill()
-            }
+        viewModel.combinedData
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { categories, users in
+                      XCTAssertTrue(testUsers[0].id == users[0].id)
+                      XCTAssertTrue(testUsers[0].name == users[0].name)
+                      expectation.fulfill()
+                  })
             .store(in: &cancellables)
+
         
-        viewModel.selectedCategory.send("")
+        viewModel.selectedCategory.send(testCategory)
         
         wait(for: [expectation], timeout: 1.0)
     }
-
 }
+
+class MockFetchSimilarChefUseCase: FetchSimilarChefUseCase {
+    var result: Result<[User], Error>!
+
+    func execute(category: String) -> AnyPublisher<[User], Error> {
+        return Future { promise in
+            promise(self.result)
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
+class MockSimilarChefRepository: SimilarChefRepository {
+    func getCategories() -> AnyPublisher<[String], Error> {
+        let exampleCategories = ["한식", "노포", "아시아음식", "매운맛", "천절함", "한식", "노포", "아시아음식", "매운맛", "천절함"]
+        return Just(exampleCategories)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+    
+    func getProfiles(category: String) -> AnyPublisher<[Cheffi.User], Error> {
+        let exampleProfiles = (1...12).map({ User(id: "\($0)", name: "김맛집\($0)")})
+        
+        return Just(exampleProfiles)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+}
+
