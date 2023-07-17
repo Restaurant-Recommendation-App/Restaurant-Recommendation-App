@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(nibWithCellClass: SimilarChefCell.self)
+        tableView.register(cellWithClass: PopularRestaurantCell.self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,7 +36,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withClass: PopularRestaurantCell.self, for: indexPath)
+            return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withClass: SimilarChefCell.self, for: indexPath)
             cell.configure(with: viewModel.similarChefViewModel)
@@ -44,6 +46,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         default:
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0: return 800
+        case 1: return 485
+        case 2: return 500
+        default: return 500
         }
     }
 }

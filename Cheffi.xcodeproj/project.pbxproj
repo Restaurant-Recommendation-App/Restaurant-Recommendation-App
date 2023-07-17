@@ -41,11 +41,17 @@
 		D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */; };
 		D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B46002A6128C1003EF1EC /* HomeFlowCoordinator.swift */; };
 		D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */; };
+		D49B59282A652330003C108E /* RestaurantContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B59272A652330003C108E /* RestaurantContentView.swift */; };
+		D49B592A2A652A35003C108E /* PopularRestaurantContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B59292A652A35003C108E /* PopularRestaurantContentsView.swift */; };
+		D49B592C2A653454003C108E /* RestaurantContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B592B2A653454003C108E /* RestaurantContentCell.swift */; };
 		D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244B82A60FF5A004E0167 /* AppDelegate.swift */; };
 		D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */; };
 		D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */; };
 		D4E244C02A60FF5A004E0167 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E244BE2A60FF5A004E0167 /* Home.storyboard */; };
 		D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E244C12A60FF5D004E0167 /* Assets.xcassets */; };
+		D4E24EDC2A64E97A00F9A3B3 /* PopularRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E24EDB2A64E97A00F9A3B3 /* PopularRestaurantCell.swift */; };
+		D4E24EDE2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E24EDD2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift */; };
+		D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +101,9 @@
 		D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		D41B46002A6128C1003EF1EC /* HomeFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFlowCoordinator.swift; sourceTree = "<group>"; };
 		D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSceneDIContainer.swift; sourceTree = "<group>"; };
+		D49B59272A652330003C108E /* RestaurantContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentView.swift; sourceTree = "<group>"; };
+		D49B59292A652A35003C108E /* PopularRestaurantContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantContentsView.swift; sourceTree = "<group>"; };
+		D49B592B2A653454003C108E /* RestaurantContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentCell.swift; sourceTree = "<group>"; };
 		D4E244B52A60FF5A004E0167 /* Cheffi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheffi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E244B82A60FF5A004E0167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +111,9 @@
 		D4E244BF2A60FF5A004E0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		D4E244C12A60FF5D004E0167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4E244C62A60FF5D004E0167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4E24EDB2A64E97A00F9A3B3 /* PopularRestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantCell.swift; sourceTree = "<group>"; };
+		D4E24EDD2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopularRestaurantView.swift; sourceTree = "<group>"; };
+		D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTimeLockBubbleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,6 +444,7 @@
 			children = (
 				D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */,
 				D4E244BE2A60FF5A004E0167 /* Home.storyboard */,
+				D4E24EDF2A64EF0E00F9A3B3 /* PopularRestaurant */,
 				CE1A6A6E2A62814C00FFE93D /* SimilarChef */,
 			);
 			path = Views;
@@ -440,6 +453,7 @@
 		D41B45F22A6119D1003EF1EC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D4E24EE02A64EFB900F9A3B3 /* Views */,
 				D41B45F32A6119D6003EF1EC /* Extensions */,
 			);
 			path = Utils;
@@ -491,6 +505,26 @@
 				CE70F8A92A642A6A003D0ED9 /* Resources */,
 			);
 			path = Cheffi;
+			sourceTree = "<group>";
+		};
+		D4E24EDF2A64EF0E00F9A3B3 /* PopularRestaurant */ = {
+			isa = PBXGroup;
+			children = (
+				D4E24EDB2A64E97A00F9A3B3 /* PopularRestaurantCell.swift */,
+				D4E24EDD2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift */,
+				D49B59292A652A35003C108E /* PopularRestaurantContentsView.swift */,
+				D49B592B2A653454003C108E /* RestaurantContentCell.swift */,
+			);
+			path = PopularRestaurant;
+			sourceTree = "<group>";
+		};
+		D4E24EE02A64EFB900F9A3B3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */,
+				D49B59272A652330003C108E /* RestaurantContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D9B9B210488FFC9E099F948F /* Frameworks */ = {
@@ -672,20 +706,26 @@
 				CE70F8872A63BFC8003D0ED9 /* HomeViewModel.swift in Sources */,
 				CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */,
 				D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */,
+				D49B592C2A653454003C108E /* RestaurantContentCell.swift in Sources */,
+				D49B592A2A652A35003C108E /* PopularRestaurantContentsView.swift in Sources */,
 				D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */,
 				D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */,
 				CE0D45242A618F0C00636989 /* NationalTrendViewController.swift in Sources */,
 				CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */,
+				D49B59282A652330003C108E /* RestaurantContentView.swift in Sources */,
 				D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */,
 				CE0D453F2A61AECD00636989 /* BaseFlowCoordinator.swift in Sources */,
+				D4E24EDE2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift in Sources */,
 				D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */,
 				CE1A6A752A6286CB00FFE93D /* SimilarChefProfileCell.swift in Sources */,
 				CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */,
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
 				CE0D45362A61975100636989 /* RestaurantRegistFlowCoodinator.swift in Sources */,
+				D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */,
 				CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */,
 				D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */,
 				CE0D45322A61967700636989 /* RestaurantRegistViewController.swift in Sources */,
+				D4E24EDC2A64E97A00F9A3B3 /* PopularRestaurantCell.swift in Sources */,
 				D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */,
 				CE0D45282A6195BD00636989 /* RestaurantRegistSceneDIContainer.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
