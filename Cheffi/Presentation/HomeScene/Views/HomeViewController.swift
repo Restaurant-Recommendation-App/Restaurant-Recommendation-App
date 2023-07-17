@@ -20,11 +20,6 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView.register(nibWithCellClass: SimilarChefCell.self)
         tableView.register(cellWithClass: PopularRestaurantCell.self)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.viewDidAppear.send(())
-    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -41,6 +36,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             let cell = tableView.dequeueReusableCell(withClass: SimilarChefCell.self, for: indexPath)
             cell.configure(with: viewModel.similarChefViewModel)
+            viewModel.selectedCategory.send(())
             return cell
         case 2:
             return UITableViewCell()
