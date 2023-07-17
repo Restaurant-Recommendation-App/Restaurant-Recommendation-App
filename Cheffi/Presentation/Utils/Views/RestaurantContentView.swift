@@ -102,7 +102,7 @@ class RestaurantContentView: UIView {
     }
     
     private func setUpContentImageHeight(with height: CGFloat) {
-        restaurantImageView.snp.makeConstraints {
+        restaurantImageView.snp.updateConstraints {
             $0.height.equalTo(height)
         }
     }
