@@ -13,7 +13,6 @@ class RestaurantContentCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.isUserInteractionEnabled = false
         setUp()
     }
     

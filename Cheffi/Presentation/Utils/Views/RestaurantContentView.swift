@@ -108,7 +108,6 @@ class RestaurantContentView: UIView {
     }
     
     @objc private func likeButtonTapped() {
-        //MARK: RestaurantContentCell 에서 버튼 작동하지 않음
         likeButton.isSelected.toggle()
     }
 }

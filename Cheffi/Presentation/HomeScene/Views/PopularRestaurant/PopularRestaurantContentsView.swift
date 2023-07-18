@@ -25,7 +25,6 @@ class PopularRestaurantContentsView: UICollectionView {
         
         register(cellWithClass: RestaurantContentCell.self)
         allowsSelection = false
-        isUserInteractionEnabled = false
         
         diffableDataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: self) {
             (collectionView: UICollectionView, indexPath: IndexPath, item: String) -> UICollectionViewCell? in
@@ -49,7 +48,7 @@ class PopularRestaurantContentsView: UICollectionView {
 
 extension PopularRestaurantContentsView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: UIWindow().screen.bounds.width / 2 - 25, height: 165)
+        CGSize(width: UIWindow().screen.bounds.width / 2 - 25, height: bounds.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
