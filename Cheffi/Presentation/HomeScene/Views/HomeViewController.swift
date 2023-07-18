@@ -18,11 +18,7 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(nibWithCellClass: SimilarChefCell.self)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.viewDidAppear.send(())
+        tableView.register(cellWithClass: PopularRestaurantCell.self)
     }
 }
 
@@ -35,15 +31,26 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withClass: PopularRestaurantCell.self, for: indexPath)
+            return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withClass: SimilarChefCell.self, for: indexPath)
             cell.configure(with: viewModel.similarChefViewModel)
+            viewModel.selectedCategory.send(())
             return cell
         case 2:
             return UITableViewCell()
         default:
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0: return 800
+        case 1: return 485
+        case 2: return 500
+        default: return 500
         }
     }
 }
