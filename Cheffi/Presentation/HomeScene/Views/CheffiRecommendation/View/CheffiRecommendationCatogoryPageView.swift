@@ -1,39 +1,44 @@
 //
-//  PopularRestaurantContentCell.swift
+//  CheffiRecommendationCatogoryPageView.swift
 //  Cheffi
 //
-//  Created by RONICK on 2023/07/17.
+//  Created by RONICK on 2023/07/18.
 //
 
 import UIKit
 
-class PopularRestaurantContentsView: UICollectionView {
+final class CheffiRecommendationCategoryPageView: UICollectionView {
+    
     
     private var diffableDataSource: UICollectionViewDiffableDataSource<Int, String>?
     
-    init() {
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        setUpCollectionView()
+        setUp()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpCollectionView() {
+    private func setUp() {
         delegate = self
         
-        register(cellWithClass: RestaurantContentCell.self)
+        register(cellWithClass: CheffiRecommendationCategoryPageCell.self)
         allowsSelection = false
+        isPagingEnabled = true
+        showsHorizontalScrollIndicator = false
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        
+        collectionViewLayout = layout
         
         diffableDataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: self) {
             (collectionView: UICollectionView, indexPath: IndexPath, item: String) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withClass: RestaurantContentCell.self, for: indexPath)
-            cell.configure(
-                contentImageHeight: 165,
-                title: "그시절낭만의 근본 경양식 돈가스",
-                subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 아물.."
-            )
+            let cell = collectionView.dequeueReusableCell(withClass: CheffiRecommendationCategoryPageCell.self, for: indexPath)
+            
             return cell
         }
         
@@ -46,13 +51,13 @@ class PopularRestaurantContentsView: UICollectionView {
     }
 }
 
-extension PopularRestaurantContentsView: UICollectionViewDelegateFlowLayout {
+extension CheffiRecommendationCategoryPageView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: UIWindow().screen.bounds.width / 2 - 25, height: bounds.height)
+        return CGSize(width: bounds.width, height: bounds.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        10
+        0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

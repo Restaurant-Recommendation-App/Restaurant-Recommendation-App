@@ -11,6 +11,10 @@ import Combine
 
 class MainPopularRestaurantView: UIView {
     
+    enum Constants {
+        static let inset = 16
+    }
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "인기 급등 맛집"
@@ -42,13 +46,14 @@ class MainPopularRestaurantView: UIView {
     private func setUp() {
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.leading.top.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
         
         addSubview(subtitleLabel)
         subtitleLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(16)
-            $0.leading.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
         
         addSubview(restaurantContentView)
@@ -70,7 +75,7 @@ class MainPopularRestaurantView: UIView {
         let combination = NSMutableAttributedString()
         
         let attr1 = [NSAttributedString.Key.foregroundColor: color1, NSAttributedString.Key.font: font1]
-        let part1 = NSMutableAttributedString(string: str1, attributes: attr1)
+        let part1 = NSMutableAttributedString(string: str1, attributes: attr1 as [NSAttributedString.Key : Any])
         
         let attr2 = [NSAttributedString.Key.foregroundColor: color2, NSAttributedString.Key.font: font2]
         let part2 = NSMutableAttributedString(string: str2, attributes: attr2)

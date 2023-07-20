@@ -19,6 +19,7 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView.dataSource = self
         tableView.register(nibWithCellClass: SimilarChefCell.self)
         tableView.register(cellWithClass: PopularRestaurantCell.self)
+        tableView.register(cellWithClass: CheffiRecommendationCell.self)
     }
 }
 
@@ -39,7 +40,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             viewModel.selectedCategory.send(())
             return cell
         case 2:
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withClass: CheffiRecommendationCell.self, for: indexPath)
+            return cell
         default:
             return UITableViewCell()
         }
