@@ -41,10 +41,11 @@ class ProfileView: UIView {
         let button = UIButton(type: .custom)
         button.setTitle("팔로우".localized(), for: .normal)
         button.setTitle("팔로잉".localized(), for: .selected)
-        button.setTitleColor(UIColor(hexString: "D82231"), for: .normal)
-        button.setTitleColor(UIColor(hexString: "0A0A0A"), for: .selected)
+        button.setTitleColor(.cheffiWhite, for: .normal)
+        button.setTitleColor(.cheffiGray9, for: .selected)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
         button.layerCornerRadius = 8.0
+        button.layerBorderWidth = 1.0
         button.addTarget(self, action: #selector(followButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -100,9 +101,11 @@ class ProfileView: UIView {
     
     private func updateFollowButtonAppearance() {
         if followButton.isSelected {
-            followButton.backgroundColor = UIColor(hexString: "EAEAEA")
+            followButton.layerBorderColor = UIColor(hexString: "E2E2E2")
+            followButton.backgroundColor = .cheffiWhite
         } else {
-            followButton.backgroundColor = UIColor(hexString: "FFE5E8")
+            followButton.layerBorderColor = .cheffiWhite
+            followButton.backgroundColor = .cheffiGray9
         }
     }
 }
