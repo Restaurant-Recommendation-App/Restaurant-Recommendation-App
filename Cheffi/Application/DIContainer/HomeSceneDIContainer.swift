@@ -43,10 +43,6 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
         return PopupViewController.instance(text: text, keyword: keyword)
     }
     
-    func makeSimilarChefList() -> UIViewController {
-        return UIViewController()
-    }
-    
     // MARK: - Search
     func makeSearchViewController() -> SearchViewController {
         let viewModel = makeSearchViewModel()
@@ -55,5 +51,15 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     
     func makeSearchViewModel() -> SearchViewModel {
         return SearchViewModel()
+    }
+    
+    // MARK: - Detail
+    func makeSimilarChefList() -> SimilarChefListViewController {
+        let viewModel = makeSimilarChefListViewModel()
+        return SimilarChefListViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeSimilarChefListViewModel() -> SimilarChefListViewModel {
+        return SimilarChefListViewModel()
     }
 }

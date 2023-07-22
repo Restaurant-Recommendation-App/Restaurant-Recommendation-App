@@ -10,7 +10,7 @@ import Combine
 
 protocol HomeFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {
     func makeViewController(actions: HomeViewModelActions) -> HomeViewController
-    func makeSimilarChefList() -> UIViewController
+    func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
 }
 
@@ -34,7 +34,7 @@ final class HomeFlowCoordinator: BaseFlowCoordinator {
     
     private func showSimilarChefList() {
         let vc = homeDependencies.makeSimilarChefList()
-        navigationController?.present(vc, animated: true)
+        navigationController?.pushViewController(vc)
     }
     
     private func showSearch() {

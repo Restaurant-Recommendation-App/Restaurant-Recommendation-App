@@ -23,7 +23,7 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindView()
+        bindViewModel()
         setupViews()
     }
     
@@ -38,7 +38,7 @@ class SearchViewController: UIViewController {
         viewModel.loadInitialData()
     }
     
-    private func bindView() {
+    private func bindViewModel() {
         viewModel.recentSearches
             .sink { [weak self] recentSearches in
                 

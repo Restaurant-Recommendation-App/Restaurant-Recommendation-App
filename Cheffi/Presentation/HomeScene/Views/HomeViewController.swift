@@ -95,8 +95,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - SimilarChefCellDelegate
 extension HomeViewController: SimilarChefCellDelegate {
     func didTapShowSimilarChefList() {
-//        viewModel.showSimilarChefList()
-        // TODO: Test 코드
-        viewModel.showPopup(text: "쉐피들 리스트로 이동", keywrod: "")
+        viewModel.showSimilarChefList()
     }
 }
