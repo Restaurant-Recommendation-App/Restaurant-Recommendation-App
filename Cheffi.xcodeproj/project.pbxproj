@@ -31,6 +31,7 @@
 		CE1A6A782A6294DC00FFE93D /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A772A6294DC00FFE93D /* TagListView.swift */; };
 		CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A7A2A62961D00FFE93D /* BaseView.swift */; };
 		CE1A6A912A62AECA00FFE93D /* SimilarChefViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A902A62AECA00FFE93D /* SimilarChefViewModelTests.swift */; };
+		CE42BA622A6B9D8F00EBB80A /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42BA612A6B9D8F00EBB80A /* UIColor+Extensions.swift */; };
 		CE70F8872A63BFC8003D0ED9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F8862A63BFC8003D0ED9 /* HomeViewModel.swift */; };
 		CE70F8892A63BFEB003D0ED9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F8882A63BFEB003D0ED9 /* User.swift */; };
 		CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F88C2A63C0CC003D0ED9 /* SimilarChefRepository.swift */; };
@@ -91,6 +92,7 @@
 		CE1A6A7A2A62961D00FFE93D /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		CE1A6A852A62AE4D00FFE93D /* CheffiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheffiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1A6A902A62AECA00FFE93D /* SimilarChefViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarChefViewModelTests.swift; sourceTree = "<group>"; };
+		CE42BA612A6B9D8F00EBB80A /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		CE70F8862A63BFC8003D0ED9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Cheffi/Presentation/HomeScene/ViewModels/HomeViewModel.swift; sourceTree = SOURCE_ROOT; };
 		CE70F8882A63BFEB003D0ED9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Cheffi/Domain/Entities/User.swift; sourceTree = SOURCE_ROOT; };
 		CE70F88C2A63C0CC003D0ED9 /* SimilarChefRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimilarChefRepository.swift; path = Cheffi/Domain/Interfaces/Repositories/SimilarChefRepository.swift; sourceTree = SOURCE_ROOT; };
@@ -264,6 +266,7 @@
 		CE1A6A792A62960A00FFE93D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CE42BA602A6B9D8000EBB80A /* Extensions */,
 				CE1A6A7A2A62961D00FFE93D /* BaseView.swift */,
 			);
 			path = Common;
@@ -291,6 +294,14 @@
 				CE1A6A7D2A62AD7100FFE93D /* HomeScene */,
 			);
 			path = CheffiTests;
+			sourceTree = "<group>";
+		};
+		CE42BA602A6B9D8000EBB80A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE42BA612A6B9D8F00EBB80A /* UIColor+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CE70F89C2A63E77F003D0ED9 /* ViewModels */ = {
@@ -705,6 +716,7 @@
 				CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */,
 				CE70F8872A63BFC8003D0ED9 /* HomeViewModel.swift in Sources */,
 				CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */,
+				CE42BA622A6B9D8F00EBB80A /* UIColor+Extensions.swift in Sources */,
 				D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */,
 				D49B592C2A653454003C108E /* RestaurantContentCell.swift in Sources */,
 				D49B592A2A652A35003C108E /* PopularRestaurantContentsView.swift in Sources */,
