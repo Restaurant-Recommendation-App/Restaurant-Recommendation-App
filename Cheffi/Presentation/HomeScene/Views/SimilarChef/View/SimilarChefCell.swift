@@ -50,6 +50,7 @@ class SimilarChefCell: UITableViewCell {
                 self?.dataSource?.apply(snapshot, animatingDifferences: true)
             })
             .store(in: &cancellables)
+        viewModel.selectedCategory.send("")
     }
     
     // MARK: - Private

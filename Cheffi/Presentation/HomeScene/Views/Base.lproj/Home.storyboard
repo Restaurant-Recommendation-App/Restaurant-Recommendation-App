@@ -4,7 +4,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,18 +18,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eWl-uA-f66">
-                                <rect key="frame" x="0.0" y="123" width="393" height="695"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eWl-uA-f66">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPo-Zv-Qda">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AZf-u0-JKX">
+                                        <rect key="frame" x="289" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="3pR-XC-7gk"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="icSearch"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viB-zr-0hE">
+                                        <rect key="frame" x="333" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="KRr-IT-KOi"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="icNotification"/>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="P5N-Id-5Qf">
+                                        <rect key="frame" x="16" y="6" width="171" height="32"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52F-3J-qi3">
+                                                <rect key="frame" x="0.0" y="0.0" width="139" height="32"/>
+                                                <color key="backgroundColor" name="CheffiBlack"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <inset key="contentEdgeInsets" minX="12" minY="6" maxX="12" maxY="6"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="서울특별시 성동구"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layerCornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icRightArrowBlack" translatesAutoresizingMaskIntoConstraints="NO" id="tze-rM-Oiq">
+                                                <rect key="frame" x="147" y="4" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="3Qw-EV-rU9"/>
+                                                    <constraint firstAttribute="width" constant="24" id="5oT-Km-ldg"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="P5N-Id-5Qf" secondAttribute="bottom" constant="6" id="6Oi-a1-MI9"/>
+                                    <constraint firstItem="viB-zr-0hE" firstAttribute="top" secondItem="iPo-Zv-Qda" secondAttribute="top" id="Epd-Jr-o4E"/>
+                                    <constraint firstItem="P5N-Id-5Qf" firstAttribute="top" secondItem="iPo-Zv-Qda" secondAttribute="top" constant="6" id="H3m-RQ-I9C"/>
+                                    <constraint firstAttribute="trailing" secondItem="viB-zr-0hE" secondAttribute="trailing" constant="16" id="HcU-Nt-TRY"/>
+                                    <constraint firstItem="AZf-u0-JKX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P5N-Id-5Qf" secondAttribute="trailing" priority="999" constant="16" id="P21-fq-vg0"/>
+                                    <constraint firstItem="viB-zr-0hE" firstAttribute="leading" secondItem="AZf-u0-JKX" secondAttribute="trailing" id="QgV-KD-J4y"/>
+                                    <constraint firstItem="P5N-Id-5Qf" firstAttribute="leading" secondItem="iPo-Zv-Qda" secondAttribute="leading" constant="16" id="db9-kl-GKd"/>
+                                    <constraint firstAttribute="bottom" secondItem="viB-zr-0hE" secondAttribute="bottom" id="hl3-oE-buV"/>
+                                    <constraint firstItem="AZf-u0-JKX" firstAttribute="top" secondItem="iPo-Zv-Qda" secondAttribute="top" id="i6q-AX-1kT"/>
+                                    <constraint firstAttribute="height" constant="44" id="jX4-VJ-eic"/>
+                                    <constraint firstAttribute="bottom" secondItem="AZf-u0-JKX" secondAttribute="bottom" id="zbl-cH-c8a"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="iPo-Zv-Qda" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0FA-Ab-1Wx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iPo-Zv-Qda" secondAttribute="trailing" id="57C-dA-vAo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eWl-uA-f66" secondAttribute="bottom" id="E2e-Gt-a4v"/>
-                            <constraint firstItem="eWl-uA-f66" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="64" id="Q3K-nA-BdD"/>
+                            <constraint firstItem="iPo-Zv-Qda" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="LkX-e9-bwQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eWl-uA-f66" secondAttribute="trailing" id="uaR-jY-JE0"/>
                             <constraint firstItem="eWl-uA-f66" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vzR-PU-6ap"/>
+                            <constraint firstItem="eWl-uA-f66" firstAttribute="top" secondItem="iPo-Zv-Qda" secondAttribute="bottom" id="yzY-4j-924"/>
                         </constraints>
                     </view>
                     <connections>
@@ -36,7 +101,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="49" y="-2"/>
+            <point key="canvasLocation" x="48.091603053435115" y="-2.1126760563380285"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icNotification" width="24" height="24"/>
+        <image name="icRightArrowBlack" width="24" height="24"/>
+        <image name="icSearch" width="24" height="24"/>
+        <namedColor name="CheffiBlack">
+            <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

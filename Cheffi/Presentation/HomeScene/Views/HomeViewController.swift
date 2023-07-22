@@ -11,6 +11,10 @@ class HomeViewController: UIViewController, Storyboarded {
     
     @IBOutlet private weak var tableView: UITableView!
     var viewModel: HomeViewModel!
+    
+    enum Constants {
+        static let headerHeight: CGFloat = 32.0
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +23,7 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView.dataSource = self
         tableView.register(nibWithCellClass: SimilarChefCell.self)
         tableView.register(cellWithClass: PopularRestaurantCell.self)
+        tableView.sectionHeaderTopPadding = 0
     }
 }
 
@@ -36,7 +41,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             let cell = tableView.dequeueReusableCell(withClass: SimilarChefCell.self, for: indexPath)
             cell.configure(with: viewModel.similarChefViewModel)
-            viewModel.selectedCategory.send(())
             return cell
         case 2:
             return UITableViewCell()
@@ -50,8 +54,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         case 0: return 800
         case 1: return 485
         case 2: return 500
-        default: return 500
+        default: return UITableView.automaticDimension
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return Constants.headerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNonzeroMagnitude
     }
 }
 
