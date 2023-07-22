@@ -46,4 +46,14 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     func makeSimilarChefList() -> UIViewController {
         return UIViewController()
     }
+    
+    // MARK: - Search
+    func makeSearchViewController() -> SearchViewController {
+        let viewModel = makeSearchViewModel()
+        return SearchViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeSearchViewModel() -> SearchViewModel {
+        return SearchViewModel()
+    }
 }

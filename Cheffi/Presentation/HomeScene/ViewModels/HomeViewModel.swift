@@ -11,6 +11,7 @@ import Combine
 struct HomeViewModelActions {
     let showPopup: (_ text: String, _ keyword: String) -> Void
     let showSimilarChefList: () -> Void
+    let showSearch: () -> Void
 }
 
 protocol HomeViewModelInput {
@@ -36,6 +37,11 @@ final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
     }
     
     func showSimilarChefList() {
+        actions?.showSimilarChefList()
+    }
+    
+    func showSearch() {
+        actions?.showSearch()
     }
 
     // MARK: - Init

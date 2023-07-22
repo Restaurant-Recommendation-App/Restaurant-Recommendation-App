@@ -30,6 +30,21 @@ class HomeViewController: UIViewController {
         tableView.register(cellWithClass: PopularRestaurantCell.self)
         tableView.sectionHeaderTopPadding = 0
     }
+    
+    // MARK: - Actions
+    @IBAction private func didTapLocation(_ sender: UIButton) {
+        // TODO: Test 코드
+        viewModel.showPopup(text: "잠긴 게시물은\n회원가입 후 확인할 수 있어요!", keywrod: "회원가입 후 확인")
+    }
+    
+    @IBAction private func didTapSearch(_ sender: UIButton) {
+        viewModel.showSearch()
+    }
+    
+    @IBAction private func didTapNotification(_ sender: UIButton) {
+        // TODO: Test 코드
+        viewModel.showPopup(text: "쉐피 코인 1개를 차감하여\n새로운 맛집을 찾아 떠나볼까요?", keywrod: "쉐피 코인 1개를 차감")
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -82,6 +97,6 @@ extension HomeViewController: SimilarChefCellDelegate {
     func didTapShowSimilarChefList() {
 //        viewModel.showSimilarChefList()
         // TODO: Test 코드
-        viewModel.showPopup(text: "쉐피 코인 1개를 차감하여\n새로운 맛집을 찾아 떠나볼까요?", keywrod: "쉐피 코인 1개를 차감")
+        viewModel.showPopup(text: "쉐피들 리스트로 이동", keywrod: "")
     }
 }
