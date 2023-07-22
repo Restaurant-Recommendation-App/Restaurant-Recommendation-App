@@ -46,6 +46,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             let cell = tableView.dequeueReusableCell(withClass: SimilarChefCell.self, for: indexPath)
             cell.configure(with: viewModel.similarChefViewModel)
+            cell.delegate = self
             return cell
         case 2:
             return UITableViewCell()
@@ -76,3 +77,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - SimilarChefCellDelegate
+extension HomeViewController: SimilarChefCellDelegate {
+    func didTapShowSimilarChefList() {
+//        viewModel.showSimilarChefList()
+        // TODO: Test 코드
+        viewModel.showPopup(text: "쉐피 코인 1개를 차감하여\n새로운 맛집을 찾아 떠나볼까요?", keywrod: "쉐피 코인 1개를 차감")
+    }
+}

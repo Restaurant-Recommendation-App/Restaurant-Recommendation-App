@@ -18,4 +18,8 @@ final class MyPageSceneDIContainer: MyPageFlowCoodinatorDependencies {
     func makeViewController() -> UIViewController {
         return MyPageViewController.instance()
     }
+    
+    func makePopupViewController(text: String, keyword: String) -> PopupViewController {
+        return PopupViewController.instance(text: text, keyword: keyword)
+    }
 }

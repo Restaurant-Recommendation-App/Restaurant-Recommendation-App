@@ -7,7 +7,9 @@
 
 import UIKit
 
-protocol BaseFlowCoordinatorDependencies {}
+protocol BaseFlowCoordinatorDependencies {
+    func makePopupViewController(text: String, keyword: String) -> PopupViewController
+}
 
 class BaseFlowCoordinator {
     weak var navigationController: UINavigationController?

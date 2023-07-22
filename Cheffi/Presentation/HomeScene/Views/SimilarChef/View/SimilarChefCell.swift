@@ -8,6 +8,10 @@
 import UIKit
 import Combine
 
+protocol SimilarChefCellDelegate: AnyObject {
+    func didTapShowSimilarChefList()
+}
+
 class SimilarChefCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -20,6 +24,7 @@ class SimilarChefCell: UITableViewCell {
         static let cellHeight: CGFloat = 64.0
     }
     
+    weak var delegate: SimilarChefCellDelegate?
     private var viewModel: SimilarChefViewModel?
     private var cancellables = Set<AnyCancellable>()
     
@@ -73,8 +78,8 @@ class SimilarChefCell: UITableViewCell {
     }
     
     // MARK: - Action
-    @IBAction private func showAllSimilarChefs(_ sender: UIButton) {
-        
+    @IBAction private func showSimilarChefList(_ sender: UIButton) {
+        delegate?.didTapShowSimilarChefList()
     }
 }
 

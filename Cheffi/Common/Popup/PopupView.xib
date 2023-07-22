@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopupView" customModule="Cheffi" customModuleProvider="target">
             <connections>
-                <outlet property="cancleButton" destination="qCv-OI-3LH" id="qE8-fY-deK"/>
+                <outlet property="cancelButton" destination="qCv-OI-3LH" id="qE8-fY-deK"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Z3O-0j-ETu"/>
                 <outlet property="findButton" destination="4f0-yi-UQA" id="a6k-Gw-Uxy"/>
                 <outlet property="textLabel" destination="xtp-15-8x7" id="q9I-ZJ-yHq"/>
@@ -39,6 +39,9 @@
                                     <real key="value" value="10"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="didTapCancel:" destination="-1" eventType="touchUpInside" id="3tY-tx-JbS"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4f0-yi-UQA">
                             <rect key="frame" x="303.5" y="0.0" width="295.5" height="40"/>
@@ -53,16 +56,19 @@
                                     <real key="value" value="10"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="didTapFind:" destination="-1" eventType="touchUpInside" id="sZy-Rl-Fkm"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Ghp-YK-HmC"/>
                     </constraints>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtp-15-8x7">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtp-15-8x7">
                     <rect key="frame" x="48" y="44" width="551" height="184"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

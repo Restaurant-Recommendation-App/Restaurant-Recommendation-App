@@ -17,12 +17,12 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
             dependencies: self)
     }
     
-    func makeViewController(viewModel: HomeViewModel) -> UIViewController {
-        return HomeViewController.instance(viewModel: viewModel)
+    func makeViewController(actions: HomeViewModelActions) -> HomeViewController {
+        return HomeViewController.instance(viewModel: makeHomeViewModel(actions: actions))
     }
     
-    func makeHomeViewModel() -> HomeViewModel {
-        return HomeViewModel(similarChefViewModel: makeSimilarChefViewModel())
+    func makeHomeViewModel(actions: HomeViewModelActions) -> HomeViewModel {
+        return HomeViewModel(actions: actions, similarChefViewModel: makeSimilarChefViewModel())
     }
     
     func makeSimilarChefViewModel() -> SimilarChefViewModel {
@@ -37,5 +37,13 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     
     func makeSimilarChefRepository() -> SimilarChefRepository {
         return DefaultSimilarChefRepository()
+    }
+    
+    func makePopupViewController(text: String, keyword: String) -> PopupViewController {
+        return PopupViewController.instance(text: text, keyword: keyword)
+    }
+    
+    func makeSimilarChefList() -> UIViewController {
+        return UIViewController()
     }
 }

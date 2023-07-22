@@ -18,4 +18,8 @@ final class NationalTrendSceneDIContainer: NationalTrendFlowCoodinatorDependenci
     func makeViewController() -> UIViewController {
         return NationalTrendViewController.instance()
     }
+    
+    func makePopupViewController(text: String, keyword: String) -> PopupViewController {
+        return PopupViewController.instance(text: text, keyword: keyword)
+    }
 }

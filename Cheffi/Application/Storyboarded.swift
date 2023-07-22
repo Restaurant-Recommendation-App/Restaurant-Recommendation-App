@@ -13,6 +13,7 @@ enum StoryboardName: String {
     case nationalTrend
     case restaurantRegist
     case myPage
+    case popup
 }
 
 extension StoryboardName {
