@@ -32,6 +32,8 @@
 		CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A7A2A62961D00FFE93D /* BaseView.swift */; };
 		CE1A6A912A62AECA00FFE93D /* SimilarChefViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A902A62AECA00FFE93D /* SimilarChefViewModelTests.swift */; };
 		CE42BA622A6B9D8F00EBB80A /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42BA612A6B9D8F00EBB80A /* UIColor+Extensions.swift */; };
+		CE42BA652A6BAF4500EBB80A /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42BA642A6BAF4500EBB80A /* PopupView.swift */; };
+		CE42BA672A6BAF5700EBB80A /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE42BA662A6BAF5700EBB80A /* PopupView.xib */; };
 		CE70F8872A63BFC8003D0ED9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F8862A63BFC8003D0ED9 /* HomeViewModel.swift */; };
 		CE70F8892A63BFEB003D0ED9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F8882A63BFEB003D0ED9 /* User.swift */; };
 		CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70F88C2A63C0CC003D0ED9 /* SimilarChefRepository.swift */; };
@@ -93,6 +95,8 @@
 		CE1A6A852A62AE4D00FFE93D /* CheffiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheffiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1A6A902A62AECA00FFE93D /* SimilarChefViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarChefViewModelTests.swift; sourceTree = "<group>"; };
 		CE42BA612A6B9D8F00EBB80A /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		CE42BA642A6BAF4500EBB80A /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		CE42BA662A6BAF5700EBB80A /* PopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		CE70F8862A63BFC8003D0ED9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Cheffi/Presentation/HomeScene/ViewModels/HomeViewModel.swift; sourceTree = SOURCE_ROOT; };
 		CE70F8882A63BFEB003D0ED9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Cheffi/Domain/Entities/User.swift; sourceTree = SOURCE_ROOT; };
 		CE70F88C2A63C0CC003D0ED9 /* SimilarChefRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimilarChefRepository.swift; path = Cheffi/Domain/Interfaces/Repositories/SimilarChefRepository.swift; sourceTree = SOURCE_ROOT; };
@@ -266,6 +270,7 @@
 		CE1A6A792A62960A00FFE93D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CE42BA632A6BAF3900EBB80A /* Popup */,
 				CE42BA602A6B9D8000EBB80A /* Extensions */,
 				CE1A6A7A2A62961D00FFE93D /* BaseView.swift */,
 			);
@@ -302,6 +307,15 @@
 				CE42BA612A6B9D8F00EBB80A /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE42BA632A6BAF3900EBB80A /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				CE42BA642A6BAF4500EBB80A /* PopupView.swift */,
+				CE42BA662A6BAF5700EBB80A /* PopupView.xib */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		CE70F89C2A63E77F003D0ED9 /* ViewModels */ = {
@@ -647,6 +661,7 @@
 				CE0D453A2A61AA7700636989 /* MyPage.storyboard in Resources */,
 				CE0D45342A61968200636989 /* RestaurantRegist.storyboard in Resources */,
 				CE0D45432A626C3B00636989 /* SimilarChefCell.xib in Resources */,
+				CE42BA672A6BAF5700EBB80A /* PopupView.xib in Resources */,
 				CE0D45262A618F8700636989 /* NationalTrend.storyboard in Resources */,
 				D4E244C02A60FF5A004E0167 /* Home.storyboard in Resources */,
 			);
@@ -740,6 +755,7 @@
 				D4E24EDC2A64E97A00F9A3B3 /* PopularRestaurantCell.swift in Sources */,
 				D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */,
 				CE0D45282A6195BD00636989 /* RestaurantRegistSceneDIContainer.swift in Sources */,
+				CE42BA652A6BAF4500EBB80A /* PopupView.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
 				CE70F8992A63C692003D0ED9 /* DefaultSimilarChefRepository.swift in Sources */,
 				CE1A6A782A6294DC00FFE93D /* TagListView.swift in Sources */,
