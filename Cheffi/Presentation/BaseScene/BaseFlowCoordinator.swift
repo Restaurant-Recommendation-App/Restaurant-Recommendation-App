@@ -7,9 +7,7 @@
 
 import UIKit
 
-protocol BaseFlowCoordinatorDependencies {
-    func makeViewController() -> UIViewController
-}
+protocol BaseFlowCoordinatorDependencies {}
 
 class BaseFlowCoordinator {
     weak var navigationController: UINavigationController?

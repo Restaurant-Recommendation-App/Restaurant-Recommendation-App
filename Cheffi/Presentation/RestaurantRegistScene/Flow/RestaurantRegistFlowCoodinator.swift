@@ -7,11 +7,17 @@
 
 import UIKit
 
-protocol RestaurantRegistFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {}
+protocol RestaurantRegistFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {
+    func makeViewController() -> UIViewController
+}
 
 final class RestaurantRegistFlowCoodinator: BaseFlowCoordinator {
+    private var restaurantRegistDependencies: RestaurantRegistFlowCoodinatorDependencies {
+        return self.dependencies as! RestaurantRegistFlowCoodinatorDependencies
+    }
+    
     func start() {
-        let vc = dependencies.makeViewController()
+        let vc = restaurantRegistDependencies.makeViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }

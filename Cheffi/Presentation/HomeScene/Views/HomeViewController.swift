@@ -7,7 +7,12 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, Storyboarded {
+class HomeViewController: UIViewController {
+    static func instance<T: HomeViewController>(viewModel: HomeViewModel) -> T {
+        let vc: T = .instance(storyboardName: .home)
+        vc.viewModel = viewModel
+        return vc
+    }
     
     @IBOutlet private weak var tableView: UITableView!
     var viewModel: HomeViewModel!

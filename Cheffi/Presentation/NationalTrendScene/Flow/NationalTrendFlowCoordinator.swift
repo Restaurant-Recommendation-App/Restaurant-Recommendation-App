@@ -7,11 +7,17 @@
 
 import UIKit
 
-protocol NationalTrendFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {}
+protocol NationalTrendFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {
+    func makeViewController() -> UIViewController
+}
     
 final class NationalTrendFlowCoodinator: BaseFlowCoordinator {
+    private var nationalTrendDependencies: NationalTrendFlowCoodinatorDependencies {
+        return self.dependencies as! NationalTrendFlowCoodinatorDependencies
+    }
+    
     func start() {
-        let vc = dependencies.makeViewController()
+        let vc = nationalTrendDependencies.makeViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }

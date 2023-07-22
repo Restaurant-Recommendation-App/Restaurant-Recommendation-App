@@ -11,20 +11,14 @@ import UIKit
 /// 홈화면 의존성 주입 컨테이너
 final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     func makeHomeFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> HomeFlowCoordinator {
-        HomeFlowCoordinator(
+        return HomeFlowCoordinator(
             navigationController: navigationController,
             parentCoordinator: parentCoordinator,
             dependencies: self)
     }
     
-    func makeViewController() -> UIViewController {
-        HomeViewController.instantiate(withStoryboarName: "Home")
-    }
-    
     func makeViewController(viewModel: HomeViewModel) -> UIViewController {
-        let vc = HomeViewController.instantiate(withStoryboarName: "Home")
-        vc.viewModel = viewModel
-        return vc
+        return HomeViewController.instance(viewModel: viewModel)
     }
     
     func makeHomeViewModel() -> HomeViewModel {
@@ -38,10 +32,10 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     }
     
     func makeFetchSimilarChefUseCase(repository: SimilarChefRepository) -> FetchSimilarChefUseCase {
-        DefaultFetchSimilarChefUseCase(repository: repository)
+        return DefaultFetchSimilarChefUseCase(repository: repository)
     }
     
     func makeSimilarChefRepository() -> SimilarChefRepository {
-        DefaultSimilarChefRepository()
+        return DefaultSimilarChefRepository()
     }
 }
