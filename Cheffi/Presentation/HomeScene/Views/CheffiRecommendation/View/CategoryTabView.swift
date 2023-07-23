@@ -115,7 +115,8 @@ class CategoryTabView: UIView {
     
     @objc func tappedCategory(_ sender: UIButton) {
         guard let deselectedButton = tabStackView.arrangedSubviews
-            .first(where: { ($0 as? TabButton)?.isSelectedTab ?? false }) as? TabButton
+            .compactMap({ element in element as? TabButton})
+            .first(where: { $0.isSelectedTab })
         else { return }
         deselectedButton.isSelectedTab = false
         
