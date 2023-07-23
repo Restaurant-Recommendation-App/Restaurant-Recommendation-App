@@ -9,10 +9,12 @@ import UIKit
 
 final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
     
-    private let popularRestaurantContentsView = PopularRestaurantContentsView()
+    private let popularRestaurantContentsView = PopularRestaurantContentsView(
+        items: ["Test1", "Test2", "Test3", "Test4"])
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        popularRestaurantContentsView.isScrollEnabled = false
         setUp()
     }
     
