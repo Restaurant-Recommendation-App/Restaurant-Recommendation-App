@@ -9,18 +9,23 @@ import UIKit
 
 class PopularRestaurantContentsView: UICollectionView {
     
+    enum Constants {
+        static let cellHeight = 270
+        static let cellLineSpcaing = 13
+    }
+    
     private var diffableDataSource: UICollectionViewDiffableDataSource<Int, String>?
     
-    init() {
+    init(items: [String] = ["Test1", "Test2"]) {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        setUpCollectionView()
+        setUpCollectionView(items: items)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    private func setUpCollectionView() {
+    private func setUpCollectionView(items: [String]) {
         delegate = self
         
         register(cellWithClass: RestaurantContentCell.self)
@@ -39,8 +44,9 @@ class PopularRestaurantContentsView: UICollectionView {
         
         var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
         
-        snapshot.appendSections([0, 1])
-        snapshot.appendItems(["Test1", "Test2"])
+        let sections = items.enumerated().map { $0.offset }
+        snapshot.appendSections(sections)
+        snapshot.appendItems(items)
         
         diffableDataSource?.apply(snapshot, animatingDifferences: true)
     }
@@ -48,11 +54,14 @@ class PopularRestaurantContentsView: UICollectionView {
 
 extension PopularRestaurantContentsView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: bounds.width / 2 - 6.5, height: bounds.height)
+        CGSize(
+            width: Double(bounds.width / 2) - Double(Constants.cellLineSpcaing / 2),
+            height: Double(Constants.cellHeight)
+        )
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        13
+        CGFloat(Constants.cellLineSpcaing)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
