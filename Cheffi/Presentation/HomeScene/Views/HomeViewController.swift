@@ -51,7 +51,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0: return 800
         case 1: return 485
-        case 2: return 500
+        case 2: return 830
         default: return 500
         }
     }
