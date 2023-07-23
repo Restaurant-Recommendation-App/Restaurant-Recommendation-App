@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 protocol HomeFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {
-    func makeViewController(viewModel: HomeViewModel) -> UIViewController
+    func makeViewController(actions: HomeViewModelActions) -> HomeViewController
+    func makeSimilarChefList() -> SimilarChefListViewController
+    func makeSearchViewController() -> SearchViewController
 }
 
 final class HomeFlowCoordinator: BaseFlowCoordinator {
@@ -16,9 +19,27 @@ final class HomeFlowCoordinator: BaseFlowCoordinator {
         return self.dependencies as! HomeFlowCoodinatorDependencies
     }
     
-    func start(viewModel: HomeViewModel) {
-        let vc = homeDependencies.makeViewController(viewModel: viewModel)
+    func start() {
+        let actions = HomeViewModelActions(showPopup: showPopup,
+                                           showSimilarChefList: showSimilarChefList,
+                                           showSearch: showSearch)
+        let vc = homeDependencies.makeViewController(actions: actions)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func showPopup(text: String, keyword: String) {
+        let vc = homeDependencies.makePopupViewController(text: text, keyword: keyword)
+        navigationController?.present(vc, animated: true)
+    }
+    
+    private func showSimilarChefList() {
+        let vc = homeDependencies.makeSimilarChefList()
+        navigationController?.pushViewController(vc)
+    }
+    
+    private func showSearch() {
+        let vc = homeDependencies.makeSearchViewController()
+        navigationController?.pushViewController(vc)
     }
 }
 

@@ -9,13 +9,17 @@ import UIKit
 
 final class MyPageSceneDIContainer: MyPageFlowCoodinatorDependencies {
     func makeMyPageFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> MyPageFlowCoodinator {
-        MyPageFlowCoodinator(
+        return MyPageFlowCoodinator(
             navigationController: navigationController,
             parentCoordinator: parentCoordinator,
             dependencies: self)
     }
     
     func makeViewController() -> UIViewController {
-        MyPageViewController.instantiate(withStoryboarName: "MyPage")
+        return MyPageViewController.instance()
+    }
+    
+    func makePopupViewController(text: String, keyword: String) -> PopupViewController {
+        return PopupViewController.instance(text: text, keyword: keyword)
     }
 }

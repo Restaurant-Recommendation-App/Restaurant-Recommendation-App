@@ -9,8 +9,9 @@ import UIKit
 import SnapKit
 
 class TagButton: UIButton {
-    private let defaultTagColor = UIColor(hexString: "9E9E9E")
-    private let selectedTagColor = UIColor.red
+    private let defaultTagColor = UIColor(hexString: "EDEDED")
+    private let defaultTextColor = UIColor.cheffiGray5
+    private let selectedTagColor = UIColor.main
     
     var isSelectedTag = false {
         didSet {
@@ -22,9 +23,9 @@ class TagButton: UIButton {
     
     override func updateConfiguration() {
         var config = UIButton.Configuration.filled()
-        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
-        config.baseForegroundColor = isSelectedTag ? .white : defaultTagColor
-        config.baseBackgroundColor = isSelectedTag ? selectedTagColor : .white
+        config.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16)
+        config.baseForegroundColor = isSelectedTag ? .cheffiWhite : defaultTextColor
+        config.baseBackgroundColor = isSelectedTag ? selectedTagColor : .cheffiWhite
         config.title = self.currentTitle
         
         self.configuration = config
@@ -32,6 +33,12 @@ class TagButton: UIButton {
 }
 
 class TagListView: UIView {
+    enum Constants {
+        static let spacing: CGFloat = 8.0
+        static let leftInset: CGFloat = 16
+        static let rightInset: CGFloat = -16
+    }
+    
     private var tagList: [String] = []
     private let stackView = UIStackView()
     private let scrollView = UIScrollView()
@@ -54,7 +61,7 @@ class TagListView: UIView {
     private func setupView() {
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
-        stackView.spacing = 8
+        stackView.spacing = Constants.spacing
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.addSubview(stackView)
         self.addSubview(scrollView)
@@ -65,8 +72,8 @@ class TagListView: UIView {
         
         stackView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.leading.equalToSuperview().offset(Constants.leftInset)
+            make.trailing.equalToSuperview().offset(Constants.rightInset)
             make.height.equalTo(scrollView)
         }
     }
@@ -81,7 +88,7 @@ class TagListView: UIView {
             let button = TagButton()
             button.setTitle(tag, for: .normal)
             button.titleLabel?.textAlignment = .center
-            button.layerCornerRadius = 10
+            button.layerCornerRadius = 15
             button.clipsToBounds = true
             button.tag = index
             

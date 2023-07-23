@@ -7,7 +7,11 @@
 
 import UIKit
 
-class RestaurantRegistViewController: UIViewController, Storyboarded {
+class RestaurantRegistViewController: UIViewController {
+    static func instance<T: RestaurantRegistViewController>() -> T {
+        let vc: T = .instance(storyboardName: .restaurantRegist)
+        return vc
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
