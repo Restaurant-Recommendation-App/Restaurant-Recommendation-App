@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,8 +24,9 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="DFm-33-pEV"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" title="전체보기">
+                        <state key="normal">
                             <color key="titleColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <userDefinedRuntimeAttributes>
@@ -39,30 +41,30 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="showAllSimilarChefs:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cov-uH-15n"/>
+                            <action selector="showSimilarChefList:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cov-uH-15n"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나와 비슷한 쉐피들의 이야기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngN-S7-HK3">
-                        <rect key="frame" x="16" y="0.0" width="474" height="24"/>
+                        <rect key="frame" x="19" y="0.0" width="468" height="24"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <color key="textColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="음식, 분위기 , 맛 나와 비슷한 사람들을 따라가요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e31-0v-ihG">
-                        <rect key="frame" x="16" y="40" width="474" height="19.333333333333329"/>
+                        <rect key="frame" x="19" y="32" width="468" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sI-Is-bfz" customClass="TagListView" customModule="Cheffi" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="79.333333333333329" width="506" height="32"/>
+                        <rect key="frame" x="0.0" y="75.333333333333329" width="506" height="32"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="aqY-bj-Pcr"/>
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="IqK-Ut-TZ7">
-                        <rect key="frame" x="0.0" y="119.33333333333334" width="506" height="309.66666666666663"/>
+                        <rect key="frame" x="0.0" y="115.33333333333334" width="506" height="313.66666666666663"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="240" id="EhM-oN-wKd"/>
@@ -74,24 +76,44 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
+                    <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fo5-R4-XoD">
+                        <rect key="frame" x="211.33333333333334" y="451" width="83.666666666666657" height="20"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biz-K8-pUj">
+                                <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" name="CheffiGray6"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icRightArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="6Hj-3V-6Bs">
+                                <rect key="frame" x="63.666666666666657" y="0.0" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="2Zs-CF-5qR"/>
+                                    <constraint firstAttribute="height" constant="20" id="Vfo-2p-5j2"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="7sI-Is-bfz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1Vf-1H-ylT"/>
-                    <constraint firstAttribute="trailing" secondItem="ngN-S7-HK3" secondAttribute="trailing" constant="16" id="3lp-Wj-R3S"/>
+                    <constraint firstAttribute="trailing" secondItem="ngN-S7-HK3" secondAttribute="trailing" constant="19" id="3lp-Wj-R3S"/>
                     <constraint firstAttribute="trailing" secondItem="RHb-ve-k2p" secondAttribute="trailing" constant="16" id="Aco-aV-ENh"/>
                     <constraint firstAttribute="trailing" secondItem="7sI-Is-bfz" secondAttribute="trailing" id="B9r-iK-EI3"/>
                     <constraint firstItem="RHb-ve-k2p" firstAttribute="top" secondItem="IqK-Ut-TZ7" secondAttribute="bottom" constant="8" id="FeX-H9-dOX"/>
+                    <constraint firstItem="fo5-R4-XoD" firstAttribute="centerX" secondItem="RHb-ve-k2p" secondAttribute="centerX" id="I3X-Ax-kuS"/>
                     <constraint firstAttribute="bottom" secondItem="RHb-ve-k2p" secondAttribute="bottom" id="Jhi-xf-z4B"/>
+                    <constraint firstItem="fo5-R4-XoD" firstAttribute="centerY" secondItem="RHb-ve-k2p" secondAttribute="centerY" id="Ji9-jb-hbM"/>
                     <constraint firstItem="IqK-Ut-TZ7" firstAttribute="top" secondItem="7sI-Is-bfz" secondAttribute="bottom" constant="8" id="L4W-QG-AmA"/>
-                    <constraint firstItem="e31-0v-ihG" firstAttribute="top" secondItem="ngN-S7-HK3" secondAttribute="bottom" constant="16" id="QaZ-Jb-Wzr"/>
-                    <constraint firstItem="7sI-Is-bfz" firstAttribute="top" secondItem="e31-0v-ihG" secondAttribute="bottom" constant="20" id="XcK-vh-iqj"/>
+                    <constraint firstItem="e31-0v-ihG" firstAttribute="top" secondItem="ngN-S7-HK3" secondAttribute="bottom" constant="8" id="QaZ-Jb-Wzr"/>
+                    <constraint firstItem="7sI-Is-bfz" firstAttribute="top" secondItem="e31-0v-ihG" secondAttribute="bottom" constant="24" id="XcK-vh-iqj"/>
                     <constraint firstItem="ngN-S7-HK3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YHE-fQ-dyC"/>
-                    <constraint firstAttribute="trailing" secondItem="e31-0v-ihG" secondAttribute="trailing" constant="16" id="cHC-XD-4xD"/>
-                    <constraint firstItem="ngN-S7-HK3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="fMX-bc-u6y"/>
+                    <constraint firstAttribute="trailing" secondItem="e31-0v-ihG" secondAttribute="trailing" constant="19" id="cHC-XD-4xD"/>
+                    <constraint firstItem="ngN-S7-HK3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="fMX-bc-u6y"/>
                     <constraint firstItem="RHb-ve-k2p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="j5h-iH-jP1"/>
                     <constraint firstAttribute="trailing" secondItem="IqK-Ut-TZ7" secondAttribute="trailing" id="jNU-yi-FUN"/>
-                    <constraint firstItem="e31-0v-ihG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="v1U-S5-dc3"/>
+                    <constraint firstItem="e31-0v-ihG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="v1U-S5-dc3"/>
                     <constraint firstItem="IqK-Ut-TZ7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="za0-Db-e6m"/>
                 </constraints>
             </tableViewCellContentView>
@@ -106,6 +128,10 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icRightArrowGray" width="20" height="20"/>
+        <namedColor name="CheffiGray6">
+            <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

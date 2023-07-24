@@ -9,13 +9,17 @@ import UIKit
 
 final class NationalTrendSceneDIContainer: NationalTrendFlowCoodinatorDependencies {
     func makeNationalTrendFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> NationalTrendFlowCoodinator {
-        NationalTrendFlowCoodinator(
+        return NationalTrendFlowCoodinator(
             navigationController: navigationController,
             parentCoordinator: parentCoordinator,
             dependencies: self)
     }
     
     func makeViewController() -> UIViewController {
-        NationalTrendViewController.instantiate(withStoryboarName: "NationalTrend")
+        return NationalTrendViewController.instance()
+    }
+    
+    func makePopupViewController(text: String, keyword: String) -> PopupViewController {
+        return PopupViewController.instance(text: text, keyword: keyword)
     }
 }

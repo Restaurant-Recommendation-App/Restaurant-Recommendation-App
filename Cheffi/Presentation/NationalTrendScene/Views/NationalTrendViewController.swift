@@ -7,7 +7,11 @@
 
 import UIKit
 
-final class NationalTrendViewController: UIViewController, Storyboarded {
+final class NationalTrendViewController: UIViewController {
+    static func instance<T: NationalTrendViewController>() -> T {
+        let vc: T = .instance(storyboardName: .nationalTrend)
+        return vc
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

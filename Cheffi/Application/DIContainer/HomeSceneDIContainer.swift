@@ -11,24 +11,18 @@ import UIKit
 /// 홈화면 의존성 주입 컨테이너
 final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     func makeHomeFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> HomeFlowCoordinator {
-        HomeFlowCoordinator(
+        return HomeFlowCoordinator(
             navigationController: navigationController,
             parentCoordinator: parentCoordinator,
             dependencies: self)
     }
     
-    func makeViewController() -> UIViewController {
-        HomeViewController.instantiate(withStoryboarName: "Home")
+    func makeViewController(actions: HomeViewModelActions) -> HomeViewController {
+        return HomeViewController.instance(viewModel: makeHomeViewModel(actions: actions))
     }
     
-    func makeViewController(viewModel: HomeViewModel) -> UIViewController {
-        let vc = HomeViewController.instantiate(withStoryboarName: "Home")
-        vc.viewModel = viewModel
-        return vc
-    }
-    
-    func makeHomeViewModel() -> HomeViewModel {
-        return HomeViewModel(similarChefViewModel: makeSimilarChefViewModel())
+    func makeHomeViewModel(actions: HomeViewModelActions) -> HomeViewModel {
+        return HomeViewModel(actions: actions, similarChefViewModel: makeSimilarChefViewModel())
     }
     
     func makeSimilarChefViewModel() -> SimilarChefViewModel {
@@ -38,10 +32,34 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     }
     
     func makeFetchSimilarChefUseCase(repository: SimilarChefRepository) -> FetchSimilarChefUseCase {
-        DefaultFetchSimilarChefUseCase(repository: repository)
+        return DefaultFetchSimilarChefUseCase(repository: repository)
     }
     
     func makeSimilarChefRepository() -> SimilarChefRepository {
-        DefaultSimilarChefRepository()
+        return DefaultSimilarChefRepository()
+    }
+    
+    func makePopupViewController(text: String, keyword: String) -> PopupViewController {
+        return PopupViewController.instance(text: text, keyword: keyword)
+    }
+    
+    // MARK: - Search
+    func makeSearchViewController() -> SearchViewController {
+        let viewModel = makeSearchViewModel()
+        return SearchViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeSearchViewModel() -> SearchViewModel {
+        return SearchViewModel()
+    }
+    
+    // MARK: - Detail
+    func makeSimilarChefList() -> SimilarChefListViewController {
+        let viewModel = makeSimilarChefListViewModel()
+        return SimilarChefListViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeSimilarChefListViewModel() -> SimilarChefListViewModel {
+        return SimilarChefListViewModel()
     }
 }

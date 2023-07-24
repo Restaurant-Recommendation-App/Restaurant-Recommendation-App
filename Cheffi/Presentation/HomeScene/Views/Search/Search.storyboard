@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="Y6W-OH-hqX" customClass="SearchViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mvp-EX-SYB">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldm-SX-Y7d">
+                                        <rect key="frame" x="16" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="nXT-eM-3vQ"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="icBack"/>
+                                        <connections>
+                                            <action selector="didTapBack:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3hu-aQ-FOc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ldm-SX-Y7d" secondAttribute="bottom" id="X4N-cr-7Bs"/>
+                                    <constraint firstItem="ldm-SX-Y7d" firstAttribute="leading" secondItem="Mvp-EX-SYB" secondAttribute="leading" constant="16" id="ecY-0u-ebf"/>
+                                    <constraint firstItem="ldm-SX-Y7d" firstAttribute="top" secondItem="Mvp-EX-SYB" secondAttribute="top" id="kw4-dd-7jj"/>
+                                    <constraint firstAttribute="height" constant="44" id="ldo-ki-SRx"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kfs-XM-eOJ">
+                                <rect key="frame" x="16" y="103" width="361" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUy-dg-V2n">
+                                        <rect key="frame" x="0.0" y="0.0" width="175.66666666666666" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="음식 검색">
+                                            <color key="titleColor" name="CheffiGray5"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" name="CheffiGray8"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbI-q0-G2e">
+                                        <rect key="frame" x="185.66666666666663" y="0.0" width="175.33333333333337" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="지역 검색">
+                                            <color key="titleColor" name="CheffiGray5"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" name="CheffiGray8"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="54v-xy-s5s"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7j-f9-0Jd">
+                                <rect key="frame" x="0.0" y="143" width="393" height="1"/>
+                                <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ekE-bX-Hqf"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8bA-zY-mJu">
+                                <rect key="frame" x="0.0" y="249" width="393" height="569"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="검색어를 입력해주세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MTK-0N-zkM">
+                                <rect key="frame" x="16" y="177" width="361" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Him-ZG-yWI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kfs-XM-eOJ" secondAttribute="trailing" constant="16" id="2Gq-gn-Iby"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="w7j-f9-0Jd" secondAttribute="trailing" id="8Fb-6g-TRv"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="MTK-0N-zkM" secondAttribute="trailing" constant="16" id="DOR-M9-pul"/>
+                            <constraint firstItem="MTK-0N-zkM" firstAttribute="top" secondItem="w7j-f9-0Jd" secondAttribute="bottom" constant="33" id="IO4-f1-PTz"/>
+                            <constraint firstItem="8bA-zY-mJu" firstAttribute="top" secondItem="MTK-0N-zkM" secondAttribute="bottom" constant="32" id="N0E-S0-3gY"/>
+                            <constraint firstItem="Mvp-EX-SYB" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="R0C-5N-JwW"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="8bA-zY-mJu" secondAttribute="bottom" id="R8N-ZV-yaa"/>
+                            <constraint firstItem="kfs-XM-eOJ" firstAttribute="top" secondItem="Mvp-EX-SYB" secondAttribute="bottom" id="RSy-dC-20d"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8bA-zY-mJu" secondAttribute="trailing" id="UW6-j4-iNh"/>
+                            <constraint firstItem="w7j-f9-0Jd" firstAttribute="top" secondItem="kfs-XM-eOJ" secondAttribute="bottom" id="aZr-yE-D7g"/>
+                            <constraint firstItem="Mvp-EX-SYB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="frX-da-zdd"/>
+                            <constraint firstItem="MTK-0N-zkM" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="iyo-A3-P5a"/>
+                            <constraint firstItem="8bA-zY-mJu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="kLS-80-mi1"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Mvp-EX-SYB" secondAttribute="trailing" id="sEp-cE-Vr8"/>
+                            <constraint firstItem="w7j-f9-0Jd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="xKC-PV-Qwe"/>
+                            <constraint firstItem="kfs-XM-eOJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="z1k-if-ldB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lineView" destination="w7j-f9-0Jd" id="jVF-0T-a0V"/>
+                        <outlet property="tableView" destination="8bA-zY-mJu" id="Wfx-gR-e3R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="84.732824427480907" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icBack" width="132" height="132"/>
+        <namedColor name="CheffiGray5">
+            <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CheffiGray8">
+            <color red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

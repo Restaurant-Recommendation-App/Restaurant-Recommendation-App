@@ -8,6 +8,12 @@
 import Foundation
 import Combine
 
+struct HomeViewModelActions {
+    let showPopup: (_ text: String, _ keyword: String) -> Void
+    let showSimilarChefList: () -> Void
+    let showSearch: () -> Void
+}
+
 protocol HomeViewModelInput {
     var selectedCategory: PassthroughSubject<Void, Never> { get }
 }
@@ -18,15 +24,32 @@ protocol HomeViewModelOutput {
 
 final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
     private var cancellables = Set<AnyCancellable>()
+    private let actions: HomeViewModelActions?
     
     // MARK: - Input
     var selectedCategory = PassthroughSubject<Void, Never>()
     
     // MARK: - Output
     var similarChefViewModel: SimilarChefViewModel
+    
+    func showPopup(text: String, keywrod: String) {
+        actions?.showPopup(text, keywrod)
+    }
+    
+    func showSimilarChefList() {
+        actions?.showSimilarChefList()
+    }
+    
+    func showSearch() {
+        actions?.showSearch()
+    }
 
     // MARK: - Init
-    init(similarChefViewModel: SimilarChefViewModel) {
+    init(
+        actions: HomeViewModelActions,
+        similarChefViewModel: SimilarChefViewModel
+    ) {
+        self.actions = actions
         self.similarChefViewModel = similarChefViewModel
 
         selectedCategory

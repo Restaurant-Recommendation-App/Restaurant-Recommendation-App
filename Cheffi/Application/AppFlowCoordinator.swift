@@ -32,12 +32,11 @@ final class AppFlowCoordinator {
         homeTabBarItem.setTitleTextAttributes(normalAttributeName, for: .normal)
         homeTabBarItem.setTitleTextAttributes(selectedAttributeName, for: .selected)
         let homeNavigationController = createNavigationController(with: homeTabBarItem)
-        let homeViewModel = homeSceneDIContainer.makeHomeViewModel()
         let homeCoordinator = homeSceneDIContainer.makeHomeFlowCoordinator(
             navigationController: homeNavigationController,
             parentCoordinator: self
         )
-        homeCoordinator.start(viewModel: homeViewModel)
+        homeCoordinator.start()
         
         let nationalTrendSceneDIContainer = appDIContainer.makeNationalTrendSceneDIContainer()
         let nationalTrendTabBarItem = UITabBarItem(title: "전국트랜드".localized(),
