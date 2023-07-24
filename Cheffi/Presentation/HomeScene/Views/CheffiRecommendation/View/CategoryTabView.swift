@@ -44,11 +44,17 @@ class TabButton: UIButton {
     }
 }
 
+protocol CategoryTabViewDelegate {
+    func didTapCategory(index: Int)
+}
+
 class CategoryTabView: UIView {
     
-    private let scrollView = UIScrollView()
+    enum Constants {
+        static let cellInset = 16
+    }
     
-    private var selectedTab = 0
+    private let scrollView = UIScrollView()
     
     private let tabStackView: UIStackView = {
         let stackView = UIStackView()
@@ -61,6 +67,10 @@ class CategoryTabView: UIView {
         let view = UIView()
         return view
     }()
+    
+    var delegate: CategoryTabViewDelegate?
+    
+    private var selectedTag = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -83,8 +93,7 @@ class CategoryTabView: UIView {
         
         tabStackView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.leading.trailing.equalToSuperview().inset(Constants.cellInset)
             make.height.equalTo(scrollView)
         }
         
@@ -109,19 +118,35 @@ class CategoryTabView: UIView {
         tabStackView.addArrangedSubviews(buttons)
             
         layoutIfNeeded()
-        tabsBottomBoder.addBottomBorderWithColor(layer: CALayer(), color: UIColor(hexString: "F5F5F5")!, width: 2)
+        tabsBottomBoder.addBottomBorderWithColor(
+            layer: CALayer(),
+            color: UIColor(hexString: "F5F5F5")!,
+            width: 2
+        )
         buttons.first?.isSelectedTab = true
     }
     
     @objc func tappedCategory(_ sender: UIButton) {
-        guard let deselectedButton = tabStackView.arrangedSubviews
-            .compactMap({ element in element as? TabButton})
-            .first(where: { $0.isSelectedTab })
-        else { return }
-        deselectedButton.isSelectedTab = false
-        
-        guard let button = sender as? TabButton else { return }
-        button.isSelectedTab = true
+        changeSelected(with: sender.tag)
+        delegate?.didTapCategory(index: sender.tag)
     }
     
+    private func changeSelected(with selectedTag: Int) {
+        let tabButtons = tabStackView.arrangedSubviews
+            .compactMap { $0 as? TabButton }
+        
+        guard let deselectingTag = tabButtons
+            .first(where: { $0.isSelectedTab })?.tag
+        else { return }
+
+        tabButtons[safe: deselectingTag]?.isSelectedTab = false
+        tabButtons[safe: selectedTag]?.isSelectedTab = true
+    }
+}
+
+extension CategoryTabView: CheffiRecommendationCategoryPageViewDelegate {
+    func didSwipe(indexPath: IndexPath?) {
+        guard let index = indexPath?.row else { return }
+        changeSelected(with: index)
+    }
 }
