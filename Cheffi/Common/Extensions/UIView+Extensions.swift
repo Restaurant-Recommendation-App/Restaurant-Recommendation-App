@@ -9,35 +9,35 @@ import UIKit
 
 
 extension UIView {
-    func addTopBorderWithColor(color: UIColor, width: CGFloat) {
-        let border = CALayer()
+    func addTopBorderWithColor(layer: CALayer = CALayer(), color: UIColor, width: CGFloat) {
+        let border = layer
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x:0,y: 0, width:self.frame.size.width, height:width)
         self.layer.addSublayer(border)
     }
 
-    func addRightBorderWithColor(color: UIColor, width: CGFloat) {
-        let border = CALayer()
+    func addRightBorderWithColor(layer: CALayer = CALayer(), color: UIColor, width: CGFloat) {
+        let border = layer
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x: self.frame.size.width - width,y: 0, width:width, height:self.frame.size.height)
         self.layer.addSublayer(border)
     }
 
-    func addBottomBorderWithColor(layer: CALayer, color: UIColor, width: CGFloat) {
+    func addBottomBorderWithColor(layer: CALayer = CALayer(), color: UIColor, width: CGFloat) {
         let border = layer
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x:0, y:self.frame.size.height - width, width:self.frame.size.width, height:width)
         self.layer.addSublayer(border)
     }
 
-    func addLeftBorderWithColor(color: UIColor, width: CGFloat) {
-        let border = CALayer()
+    func addLeftBorderWithColor(layer: CALayer = CALayer(), color: UIColor, width: CGFloat) {
+        let border = layer
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x:0, y:0, width:width, height:self.frame.size.height)
         self.layer.addSublayer(border)
     }
     
-    func removeBorder(layer: CALayer) {
+    func removeLayer(with layer: CALayer) {
         layer.removeFromSuperlayer()
     }
 }

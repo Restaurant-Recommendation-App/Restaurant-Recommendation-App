@@ -18,10 +18,10 @@ class TabButton: UIButton {
         didSet {
             self.updateConfiguration()
             if isSelectedTab {
-                removeBorder(layer: borderLayer)
+                removeLayer(with: borderLayer)
                 addBottomBorderWithColor(layer: borderLayer, color: UIColor(hexString: "D82231")!, width: 2)
             } else {
-                removeBorder(layer: borderLayer)
+                removeLayer(with: borderLayer)
             }
         }
     }
