@@ -353,6 +353,8 @@
 		CE42BA602A6B9D8000EBB80A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D41E99312A6BB9A80085F5D0 /* UIView+Extensions.swift */,
+				D43331A82A6D32AE00E6CB4B /* UICollectionView+Extensions.swift */,
 				CE42BA612A6B9D8F00EBB80A /* UIColor+Extensions.swift */,
 				CE42BA6A2A6BB48100EBB80A /* String+Extensions.swift */,
 				CE42BA702A6BCF3A00EBB80A /* UIViewController+Extensions.swift */,
@@ -554,6 +556,7 @@
 				CE1A6A6E2A62814C00FFE93D /* SimilarChef */,
 				D441C01C2A668FEC00063822 /* CheffiRecommendation */,
 				CEABD71E2A6BFF65001BC131 /* SImilarChefList */,
+				D4F3CDAC2A6E422A00B52213 /* Common */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -562,18 +565,8 @@
 			isa = PBXGroup;
 			children = (
 				D4E24EE02A64EFB900F9A3B3 /* Views */,
-				D41B45F32A6119D6003EF1EC /* Extensions */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		D41B45F32A6119D6003EF1EC /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D41E99312A6BB9A80085F5D0 /* UIView+Extensions.swift */,
-				D43331A82A6D32AE00E6CB4B /* UICollectionView+Extensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D41B45F92A611A4E003EF1EC /* Network */ = {
@@ -588,8 +581,6 @@
 			children = (
 				D4E24EDB2A64E97A00F9A3B3 /* PopularRestaurantCell.swift */,
 				D4E24EDD2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift */,
-				D49B59292A652A35003C108E /* PopularRestaurantContentsView.swift */,
-				D49B592B2A653454003C108E /* RestaurantContentCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -658,10 +649,27 @@
 		D4E24EE02A64EFB900F9A3B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */,
-				D49B59272A652330003C108E /* RestaurantContentView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D4F3CDAC2A6E422A00B52213 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D4F3CDAD2A6E423700B52213 /* RestaurantContent */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D4F3CDAD2A6E423700B52213 /* RestaurantContent */ = {
+			isa = PBXGroup;
+			children = (
+				D49B59292A652A35003C108E /* PopularRestaurantContentsView.swift */,
+				D49B592B2A653454003C108E /* RestaurantContentCell.swift */,
+				D49B59272A652330003C108E /* RestaurantContentView.swift */,
+				D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */,
+			);
+			path = RestaurantContent;
 			sourceTree = "<group>";
 		};
 		D9B9B210488FFC9E099F948F /* Frameworks */ = {
