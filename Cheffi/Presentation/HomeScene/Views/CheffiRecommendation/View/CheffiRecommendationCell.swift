@@ -10,7 +10,6 @@ import UIKit
 final class CheffiRecommendationCell: UITableViewCell {
     
     enum Constants {
-        static let cellTopInset: CGFloat = 48
         static let cellInset: CGFloat = 16.0
     }
     
@@ -68,7 +67,7 @@ final class CheffiRecommendationCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(
-            by: UIEdgeInsets(top: Constants.cellTopInset, left: 0, bottom: Constants.cellInset, right: 0)
+            by: UIEdgeInsets(top: 48, left: 0, bottom: 16, right: 0)
         )
     }
     

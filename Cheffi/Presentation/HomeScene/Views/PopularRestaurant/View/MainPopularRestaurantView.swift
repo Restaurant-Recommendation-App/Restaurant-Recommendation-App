@@ -11,10 +11,6 @@ import Combine
 
 class MainPopularRestaurantView: UIView {
     
-    enum Constants {
-        static let inset = 16
-    }
-    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "인기 급등 맛집"

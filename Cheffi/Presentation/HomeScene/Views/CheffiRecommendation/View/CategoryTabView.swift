@@ -9,6 +9,12 @@ import UIKit
 import SnapKit
 
 class TabButton: UIButton {
+    
+    enum Constants {
+        static let verticalInset: CGFloat = 10
+        static let horizontalInset: CGFloat = 16
+    }
+    
     private let defaultTabColor = UIColor.cheffiGray5
     private let selectedTabColor = UIColor.main
     
@@ -28,7 +34,12 @@ class TabButton: UIButton {
     
     override func updateConfiguration() {
         var config = UIButton.Configuration.filled()
-        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
+        config.contentInsets = NSDirectionalEdgeInsets(
+            top: Constants.verticalInset,
+            leading: Constants.horizontalInset,
+            bottom: Constants.verticalInset,
+            trailing: Constants.horizontalInset
+        )
         config.baseForegroundColor = isSelectedTab ? selectedTabColor : defaultTabColor
         config.baseBackgroundColor = .clear
         

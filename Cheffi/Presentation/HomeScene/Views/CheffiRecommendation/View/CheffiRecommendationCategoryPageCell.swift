@@ -9,6 +9,10 @@ import UIKit
 
 final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
     
+    enum Constants {
+        static let cellInset = 16
+    }
+    
     private let popularRestaurantContentsView = PopularRestaurantContentsView(
         items: ["Test1", "Test2", "Test3", "Test4"])
     
@@ -33,7 +37,7 @@ final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
         insetWrppingView.addSubview(popularRestaurantContentsView)
         popularRestaurantContentsView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
         }
     }
 }
