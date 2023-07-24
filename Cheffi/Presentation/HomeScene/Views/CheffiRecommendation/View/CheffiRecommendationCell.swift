@@ -18,7 +18,7 @@ final class CheffiRecommendationCell: UITableViewCell {
         let label = UILabel()
         label.text = "쉐피들의 인정 맛집"
         label.font = .systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .black
+        label.textColor = .cheffiBlack
         return label
     }()
     
@@ -26,7 +26,7 @@ final class CheffiRecommendationCell: UITableViewCell {
         let label = UILabel()
         label.text = "‘맛있어요’ 투표율이 높아요!"
         label.font = .systemFont(ofSize: 16, weight: .medium)
-        label.textColor = UIColor(hexString: "636363")
+        label.textColor = .cheffiGray7
         label.numberOfLines = 2
         return label
     }()
@@ -34,12 +34,12 @@ final class CheffiRecommendationCell: UITableViewCell {
     private let viewMoreContentsButton: UIButton = {
         let button = UIButton(type: .custom)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.cheffiBlack, for: .normal)
         button.setTitle("더보기", for: .normal)
         button.titleLabel?.textAlignment = .center
 
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(hexString: "E2E2E2")?.cgColor
+        button.layer.borderColor = UIColor.cheffiGray2.cgColor
         
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true

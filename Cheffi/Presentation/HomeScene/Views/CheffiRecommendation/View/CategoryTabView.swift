@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 
 class TabButton: UIButton {
-    private let defaultTabColor = UIColor(hexString: "9E9E9E")
-    private let selectedTabColor = UIColor(hexString: "D82231")
+    private let defaultTabColor = UIColor.cheffiGray5
+    private let selectedTabColor = UIColor.main
     
     private let borderLayer = CALayer()
     
@@ -19,7 +19,7 @@ class TabButton: UIButton {
             self.updateConfiguration()
             if isSelectedTab {
                 removeLayer(with: borderLayer)
-                addBottomBorderWithColor(layer: borderLayer, color: UIColor(hexString: "D82231")!, width: 2)
+                addBottomBorderWithColor(layer: borderLayer, color: .main, width: 2)
             } else {
                 removeLayer(with: borderLayer)
             }
@@ -120,7 +120,7 @@ class CategoryTabView: UIView {
         layoutIfNeeded()
         tabsBottomBoder.addBottomBorderWithColor(
             layer: CALayer(),
-            color: UIColor(hexString: "F5F5F5")!,
+            color: .cheffiWhite05,
             width: 2
         )
         buttons.first?.isSelectedTab = true

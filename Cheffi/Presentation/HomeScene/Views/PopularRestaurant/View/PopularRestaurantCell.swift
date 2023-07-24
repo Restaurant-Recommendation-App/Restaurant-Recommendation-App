@@ -19,12 +19,12 @@ class PopularRestaurantCell: UITableViewCell {
     private let viewMoreContentsButton: UIButton = {
         let button = UIButton(type: .custom)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.cheffiBlack, for: .normal)
         button.setTitle("전체 보기", for: .normal)
         button.titleLabel?.textAlignment = .center
 
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(hexString: "E2E2E2")?.cgColor
+        button.layer.borderColor = UIColor.cheffiGray2.cgColor
         
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true

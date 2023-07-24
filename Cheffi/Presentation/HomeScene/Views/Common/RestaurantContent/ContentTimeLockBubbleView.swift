@@ -21,7 +21,7 @@ class ContentTimeLockBubbleView: UIView {
         let label = UILabel()
         label.text = "00:30:25"
         label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .white
+        label.textColor = .cheffiWhite
         return label
     }()
     
@@ -36,7 +36,7 @@ class ContentTimeLockBubbleView: UIView {
     }
     
     private func setUpBackground() {
-        backgroundColor = .black.withAlphaComponent(0.32)
+        backgroundColor = .cheffiBlack.withAlphaComponent(0.32)
         layer.cornerRadius = 15
         layer.masksToBounds = true
     }
