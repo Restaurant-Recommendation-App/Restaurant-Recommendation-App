@@ -13,21 +13,19 @@ class TabButton: UIButton {
     enum Constants {
         static let verticalInset: CGFloat = 10
         static let horizontalInset: CGFloat = 16
+        static let defaultTabColor: UIColor = .cheffiGray5
+        static let selectedTabColor: UIColor = .main
     }
-    
-    private let defaultTabColor = UIColor.cheffiGray5
-    private let selectedTabColor = UIColor.main
     
     private let borderLayer = CALayer()
     
     var isSelectedTab = false {
         didSet {
             self.updateConfiguration()
+            
+            removeBorder(with: borderLayer)
             if isSelectedTab {
-                removeLayer(with: borderLayer)
-                addBottomBorderWithColor(layer: borderLayer, color: .main, width: 2)
-            } else {
-                removeLayer(with: borderLayer)
+                addBorderWithColor(layer: borderLayer, edge: .bottom ,color: .main, width: 2)
             }
         }
     }
@@ -40,7 +38,7 @@ class TabButton: UIButton {
             bottom: Constants.verticalInset,
             trailing: Constants.horizontalInset
         )
-        config.baseForegroundColor = isSelectedTab ? selectedTabColor : defaultTabColor
+        config.baseForegroundColor = isSelectedTab ? Constants.selectedTabColor : Constants.defaultTabColor
         config.baseBackgroundColor = .clear
         
         let attributedContainer = AttributeContainer(
@@ -128,9 +126,9 @@ class CategoryTabView: UIView {
         
         tabStackView.addArrangedSubviews(buttons)
             
-        layoutIfNeeded()
-        tabsBottomBoder.addBottomBorderWithColor(
+        tabsBottomBoder.addBorderWithColor(
             layer: CALayer(),
+            edge: .bottom,
             color: .cheffiWhite05,
             width: 2
         )

@@ -7,37 +7,35 @@
 
 import UIKit
 
-
 extension UIView {
-    func addTopBorderWithColor(layer: CALayer = CALayer(), color: UIColor, width: CGFloat) {
-        let border = layer
-        border.backgroundColor = color.cgColor
-        border.frame = CGRect(x:0,y: 0, width:self.frame.size.width, height:width)
-        self.layer.addSublayer(border)
+    
+    enum BorderEdge {
+        case top
+        case left
+        case bottom
+        case right
     }
-
-    func addRightBorderWithColor(layer: CALayer = CALayer(), color: UIColor, width: CGFloat) {
+    
+    func addBorderWithColor(layer: CALayer = CALayer(), edge: BorderEdge, color: UIColor, width: CGFloat) {
+        layoutIfNeeded()
         let border = layer
         border.backgroundColor = color.cgColor
-        border.frame = CGRect(x: self.frame.size.width - width,y: 0, width:width, height:self.frame.size.height)
-        self.layer.addSublayer(border)
-    }
-
-    func addBottomBorderWithColor(layer: CALayer = CALayer(), color: UIColor, width: CGFloat) {
-        let border = layer
-        border.backgroundColor = color.cgColor
-        border.frame = CGRect(x:0, y:self.frame.size.height - width, width:self.frame.size.width, height:width)
-        self.layer.addSublayer(border)
-    }
-
-    func addLeftBorderWithColor(layer: CALayer = CALayer(), color: UIColor, width: CGFloat) {
-        let border = layer
-        border.backgroundColor = color.cgColor
-        border.frame = CGRect(x:0, y:0, width:width, height:self.frame.size.height)
+        
+        switch edge {
+        case .top:
+            border.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: width)
+        case .left:
+            border.frame = CGRect(x: 0, y: 0, width: width, height: self.frame.size.height)
+        case .bottom:
+            border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height:width)
+        case .right:
+            border.frame = CGRect(x: self.frame.size.width - width, y: 0, width: width, height: self.frame.size.height)
+        }
+        
         self.layer.addSublayer(border)
     }
     
-    func removeLayer(with layer: CALayer) {
+    func removeBorder(with layer: CALayer) {
         layer.removeFromSuperlayer()
     }
 }
