@@ -25,7 +25,7 @@ class RestaurantContentView: UIView {
         let label = UILabel()
         label.text = "그시절낭만의 근본 경양식 돈가스"
         label.font = .systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .black
+        label.textColor = .cheffiBlack
         label.numberOfLines = 2
         return label
     }()
@@ -34,7 +34,7 @@ class RestaurantContentView: UIView {
         let label = UILabel()
         label.text = "짬뽕 외길의 근본이 느껴 지는 중식당짬뽕"
         label.font = .systemFont(ofSize: 15, weight: .regular)
-        label.textColor = UIColor(hexString: "636363")
+        label.textColor = .cheffiGray7
         label.numberOfLines = 2
         return label
     }()

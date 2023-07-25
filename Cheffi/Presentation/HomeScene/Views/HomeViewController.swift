@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(nibWithCellClass: SimilarChefCell.self)
         tableView.register(cellWithClass: PopularRestaurantCell.self)
+        tableView.register(cellWithClass: CheffiRecommendationCell.self)
         tableView.sectionHeaderTopPadding = 0
     }
     
@@ -64,7 +65,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             return cell
         case 2:
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withClass: CheffiRecommendationCell.self, for: indexPath)
+            return cell
         default:
             return UITableViewCell()
         }
@@ -74,7 +76,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0: return 800
         case 1: return 485
-        case 2: return 500
+        case 2: return 830
         default: return UITableView.automaticDimension
         }
     }
