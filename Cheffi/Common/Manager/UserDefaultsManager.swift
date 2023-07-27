@@ -16,6 +16,15 @@ extension UserDefaultsManager {
         case searchKeyword
     }
     
+    enum AuthInfo: String, CaseIterable {
+        case user
+    }
+    
+    static var user: User? {
+        get { return loadObject(key: AuthInfo.user.rawValue) }
+        set { saveObject(newValue, key: AuthInfo.user.rawValue) }
+    }
+    
     static func clear() {
         KeyConstant.allCases.map { $0.rawValue }.forEach { (key) in
             standard.set(nil, forKey: key)
