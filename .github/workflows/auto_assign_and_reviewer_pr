@@ -1,0 +1,47 @@
+name: Auto Assign and Reviewer PR
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Assignee and Reviewer Setup
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          const pr = context.payload.pull_request;
+          const creator = pr.user.login;
+          console.log(`PR 생성자 : ${creator}`);
+          let reviewer;
+
+          const userA = "${{ secrets.USER_A }}";
+          const userB = "${{ secrets.USER_B }}";
+
+          if (creator === userA) {
+            reviewer = userB;
+          } else if (creator === userB) {
+            reviewer = userA;
+          } else {
+            console.log('PR 생성자는 사용자 리스트에 없다. 리뷰어가 지정되지 않았습니다.');
+            return;
+          }
+
+          await github.rest.issues.addAssignees({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: pr.number,
+            assignees: [creator],
+          });
+
+          if (reviewer !== creator) {
+            await github.rest.pulls.requestReviewers({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              reviewers: [reviewer],
+            });
+          }
+
