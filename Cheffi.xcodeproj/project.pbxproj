@@ -79,6 +79,8 @@
 		D4E24EDC2A64E97A00F9A3B3 /* PopularRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E24EDB2A64E97A00F9A3B3 /* PopularRestaurantCell.swift */; };
 		D4E24EDE2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E24EDD2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift */; };
 		D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */; };
+		FFB50C4A2A72B5A80049B5E1 /* ShowAllContentsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB50C492A72B5A80049B5E1 /* ShowAllContentsButton.swift */; };
+		FFB50C4C2A72B6750049B5E1 /* ShowAllContentsButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB50C4B2A72B6750049B5E1 /* ShowAllContentsButton.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +170,8 @@
 		D4E24EDB2A64E97A00F9A3B3 /* PopularRestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantCell.swift; sourceTree = "<group>"; };
 		D4E24EDD2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopularRestaurantView.swift; sourceTree = "<group>"; };
 		D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTimeLockBubbleView.swift; sourceTree = "<group>"; };
+		FFB50C492A72B5A80049B5E1 /* ShowAllContentsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllContentsButton.swift; sourceTree = "<group>"; };
+		FFB50C4B2A72B6750049B5E1 /* ShowAllContentsButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowAllContentsButton.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +322,7 @@
 		CE1A6A792A62960A00FFE93D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FFB50C482A72B5160049B5E1 /* ShowAllContentsButton */,
 				CE42BA632A6BAF3900EBB80A /* Popup */,
 				CE42BA602A6B9D8000EBB80A /* Extensions */,
 				CE1A6A7A2A62961D00FFE93D /* BaseView.swift */,
@@ -680,6 +685,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FFB50C482A72B5160049B5E1 /* ShowAllContentsButton */ = {
+			isa = PBXGroup;
+			children = (
+				FFB50C492A72B5A80049B5E1 /* ShowAllContentsButton.swift */,
+				FFB50C4B2A72B6750049B5E1 /* ShowAllContentsButton.xib */,
+			);
+			path = ShowAllContentsButton;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -785,6 +799,7 @@
 				CE0D45342A61968200636989 /* RestaurantRegist.storyboard in Resources */,
 				CEABD7132A6BDE94001BC131 /* RecentSearchCell.xib in Resources */,
 				CE0D45432A626C3B00636989 /* SimilarChefCell.xib in Resources */,
+				FFB50C4C2A72B6750049B5E1 /* ShowAllContentsButton.xib in Resources */,
 				CEABD71B2A6BDF0A001BC131 /* TopPickCell.xib in Resources */,
 				CEABD7172A6BDEEE001BC131 /* RecommendSearchCell.xib in Resources */,
 				CE42BA672A6BAF5700EBB80A /* PopupView.xib in Resources */,
@@ -904,6 +919,7 @@
 				D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */,
 				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,
 				CEABD71A2A6BDF0A001BC131 /* TopPickCell.swift in Sources */,
+				FFB50C4A2A72B5A80049B5E1 /* ShowAllContentsButton.swift in Sources */,
 				CE42BA6D2A6BB98600EBB80A /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

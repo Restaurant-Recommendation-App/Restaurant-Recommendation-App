@@ -14,10 +14,11 @@ protocol SimilarChefCellDelegate: AnyObject {
 
 class SimilarChefCell: UITableViewCell {
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
-    @IBOutlet weak var tagListView: TagListView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var tagListView: TagListView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var showAllContentsDirection: ShowAllContentsButton!
     
     enum Constants {
         static let cellInset: CGFloat = 16.0
@@ -75,11 +76,12 @@ class SimilarChefCell: UITableViewCell {
             cell.configure(with: item)
             return cell
         }
-    }
-    
-    // MARK: - Action
-    @IBAction private func showSimilarChefList(_ sender: UIButton) {
-        delegate?.didTapShowSimilarChefList()
+        
+        // show all contents button
+        showAllContentsDirection.setTItle("전체보기".localized(), direction: .right)
+        showAllContentsDirection.didTapViewAllHandler = { [weak self] in
+            self?.delegate?.didTapShowSimilarChefList()
+        }
     }
 }
 
