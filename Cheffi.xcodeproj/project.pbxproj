@@ -71,6 +71,8 @@
 		D49B59282A652330003C108E /* RestaurantContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B59272A652330003C108E /* RestaurantContentView.swift */; };
 		D49B592A2A652A35003C108E /* PopularRestaurantContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B59292A652A35003C108E /* PopularRestaurantContentsView.swift */; };
 		D49B592C2A653454003C108E /* RestaurantContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B592B2A653454003C108E /* RestaurantContentCell.swift */; };
+		D49D1A8E2A73942700CB86FA /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D1A8D2A73942700CB86FA /* ViewModelType.swift */; };
+		D49D1A932A73986800CB86FA /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D1A922A73986800CB86FA /* Bindable.swift */; };
 		D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244B82A60FF5A004E0167 /* AppDelegate.swift */; };
 		D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */; };
 		D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */; };
@@ -158,6 +160,8 @@
 		D49B59272A652330003C108E /* RestaurantContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentView.swift; sourceTree = "<group>"; };
 		D49B59292A652A35003C108E /* PopularRestaurantContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantContentsView.swift; sourceTree = "<group>"; };
 		D49B592B2A653454003C108E /* RestaurantContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentCell.swift; sourceTree = "<group>"; };
+		D49D1A8D2A73942700CB86FA /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		D49D1A922A73986800CB86FA /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		D4E244B52A60FF5A004E0167 /* Cheffi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheffi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E244B82A60FF5A004E0167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -604,6 +608,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D49D1A8C2A73941B00CB86FA /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D49D1A8D2A73942700CB86FA /* ViewModelType.swift */,
+				D49D1A922A73986800CB86FA /* Bindable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		D4E244AC2A60FF5A004E0167 = {
 			isa = PBXGroup;
 			children = (
@@ -656,6 +669,7 @@
 		D4F3CDAC2A6E422A00B52213 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D49D1A8C2A73941B00CB86FA /* Protocols */,
 				D4F3CDAD2A6E423700B52213 /* RestaurantContent */,
 			);
 			path = Common;
@@ -870,6 +884,7 @@
 				CEABD7202A6BFF8E001BC131 /* SimilarChefListViewController.swift in Sources */,
 				D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */,
 				CE42BA732A6BD1AE00EBB80A /* UserDefaultsManager.swift in Sources */,
+				D49D1A8E2A73942700CB86FA /* ViewModelType.swift in Sources */,
 				CE0D45242A618F0C00636989 /* NationalTrendViewController.swift in Sources */,
 				CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */,
 				D49B59282A652330003C108E /* RestaurantContentView.swift in Sources */,
@@ -888,6 +903,7 @@
 				D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */,
 				D441C0202A66965400063822 /* CheffiRecommendationCatogoryPageView.swift in Sources */,
 				CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */,
+				D49D1A932A73986800CB86FA /* Bindable.swift in Sources */,
 				D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */,
 				CE0D45322A61967700636989 /* RestaurantRegistViewController.swift in Sources */,
 				CE42BA7B2A6BD56000EBB80A /* SearchViewModel.swift in Sources */,
@@ -1021,6 +1037,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1075,6 +1092,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
