@@ -29,7 +29,7 @@ class ProfileView: UIView {
     
     private let tagLabel: UILabel = {
         let label = UILabel()
-        label.text = "#한식 #노포 #아이사음식 #매운맛 #웨이팅 짧은 #매운맛 #웨이팅 #한식 #노포 #아이사음식 #매운맛 #웨이팅 짧은 #매운맛 #웨이팅"
+        label.text = "#한식 #노포 #아이사음식 #매운맛 #웨이팅 짧은 #매운맛 #웨이팅"
         label.numberOfLines = 2
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)

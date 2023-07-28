@@ -48,6 +48,8 @@ class TagListView: UIView {
         }
     }
     
+    var didTapTagsHandler: (([String]) -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -84,6 +86,11 @@ class TagListView: UIView {
         self.tagList = tagList
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
+        let selectedCategories = UserDefaultsManager.HomeSimilarChefInfo.categories
+        debugPrint("------------------------------------------")
+        debugPrint("저장된 카테고리 리스트 - ", selectedCategories)
+        debugPrint("------------------------------------------")
+        
         for (index, tag) in tagList.enumerated() {
             let button = TagButton()
             button.setTitle(tag, for: .normal)
@@ -92,14 +99,13 @@ class TagListView: UIView {
             button.clipsToBounds = true
             button.tag = index
             
-            button.addTarget(self, action: #selector(tagTapped(_:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(didTapTag(_:)), for: .touchUpInside)
             
             stackView.addArrangedSubview(button)
         }
         
-        if !tagList.isEmpty {
-            selectedTagIndexes = [0]
-        }
+        // UserDefaults에서 가져온 카테고리 리스트에 따라 selectedTagIndexes를 설정
+        selectedTagIndexes = tagList.indices.filter { selectedCategories.contains(tagList[$0]) }
     }
     
     private func updateTagSelection() {
@@ -110,11 +116,13 @@ class TagListView: UIView {
         }
     }
     
-    @objc private func tagTapped(_ sender: UIButton) {
+    @objc private func didTapTag(_ sender: UIButton) {
         if let index = selectedTagIndexes.firstIndex(of: sender.tag) {
             selectedTagIndexes.remove(at: index)
         } else {
             selectedTagIndexes.append(sender.tag)
         }
+        
+        didTapTagsHandler?(selectedTagIndexes.map({ self.tagList[$0] }))
     }
 }

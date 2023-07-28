@@ -10,7 +10,7 @@ import Combine
 
 
 protocol SimilarChefViewModelInput {
-    var selectedCategory: PassthroughSubject<String, Error> { get }
+    var selectedCategories: PassthroughSubject<[String], Error> { get }
 }
 
 protocol SimilarChefViewModelOutput {
@@ -25,7 +25,7 @@ final class SimilarChefViewModel: SimilarChefViewModelInput & SimilarChefViewMod
     private var _profiles = PassthroughSubject<[User], Error>()
     
     // MARK: - Input
-    var selectedCategory = PassthroughSubject<String, Error>()
+    var selectedCategories = PassthroughSubject<[String], Error>()
     
     // MARK: - Output
     var combinedData: AnyPublisher<([String], [User]), Error> {
@@ -38,10 +38,14 @@ final class SimilarChefViewModel: SimilarChefViewModelInput & SimilarChefViewMod
         self.fetchSimilarChefUseCase = fetchSimilarChefUseCase
         self.repository = repository
         
-        selectedCategory
-            .flatMap(fetchSimilarChefUseCase.execute)
+        selectedCategories
+            .flatMap({ [weak self] categories in
+                self?.saveCategories(categories)
+                return fetchSimilarChefUseCase.execute(categories: categories)
+            })
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
+                    // TODO: Error 헨들링
                     debugPrint("------------------------------------------")
                     debugPrint(error)
                     debugPrint("------------------------------------------")
@@ -50,5 +54,10 @@ final class SimilarChefViewModel: SimilarChefViewModelInput & SimilarChefViewMod
                 self?._profiles.send(profiles)
             })
             .store(in: &cancellables)
+    }
+    
+    // MARK: - Private
+    private func saveCategories(_ categories: [String]) {
+        UserDefaultsManager.HomeSimilarChefInfo.categories = categories
     }
 }

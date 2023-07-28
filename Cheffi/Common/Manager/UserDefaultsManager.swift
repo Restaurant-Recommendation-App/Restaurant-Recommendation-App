@@ -8,6 +8,11 @@
 import Foundation
 
 enum UserDefaultsManager {
+    enum HomeSimilarChefInfo {
+        @UserDefault(key: "categories", defaultValue: [])
+        static var categories: [String]
+    }
+    
     enum SearchInfo {
         @UserDefault(key: "keywords", defaultValue: [])
         static var keywords: [String]
@@ -20,11 +25,15 @@ enum UserDefaultsManager {
 }
 
 extension UserDefaultsManager {
-    static func AuthClear() {
-        UserDefaultsManager.AuthInfo.user = nil
+    static func HomeSimilarChefClear() {
+        UserDefaultsManager.HomeSimilarChefInfo.categories = []
     }
     
     static func SearchClear() {
         UserDefaultsManager.SearchInfo.keywords = []
+    }
+    
+    static func AuthClear() {
+        UserDefaultsManager.AuthInfo.user = nil
     }
 }

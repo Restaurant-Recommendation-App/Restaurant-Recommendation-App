@@ -41,7 +41,7 @@ final class SimilarChefViewModelTests: XCTestCase {
             .store(in: &cancellables)
 
         
-        viewModel.selectedCategory.send(testCategory)
+        viewModel.selectedCategories.send([testCategory])
         
         wait(for: [expectation], timeout: 1.0)
     }
@@ -50,7 +50,7 @@ final class SimilarChefViewModelTests: XCTestCase {
 class MockFetchSimilarChefUseCase: FetchSimilarChefUseCase {
     var result: Result<[User], Error>!
 
-    func execute(category: String) -> AnyPublisher<[User], Error> {
+    func execute(categories: [String]) -> AnyPublisher<[User], Error> {
         return Future { promise in
             promise(self.result)
         }
@@ -60,13 +60,13 @@ class MockFetchSimilarChefUseCase: FetchSimilarChefUseCase {
 
 class MockSimilarChefRepository: SimilarChefRepository {
     func getCategories() -> AnyPublisher<[String], Error> {
-        let exampleCategories = ["한식", "노포", "아시아음식", "매운맛", "천절함", "한식", "노포", "아시아음식", "매운맛", "천절함"]
+        let exampleCategories = ["한식", "노포", "아시아음식", "매운맛", "친절함"]
         return Just(exampleCategories)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
     
-    func getProfiles(category: String) -> AnyPublisher<[Cheffi.User], Error> {
+    func getProfiles(categories: [String]) -> AnyPublisher<[Cheffi.User], Error> {
         let exampleProfiles = (1...12).map({ User(id: "\($0)", name: "김맛집\($0)")})
         
         return Just(exampleProfiles)

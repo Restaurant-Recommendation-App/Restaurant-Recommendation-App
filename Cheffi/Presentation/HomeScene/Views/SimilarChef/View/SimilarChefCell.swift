@@ -56,7 +56,8 @@ class SimilarChefCell: UITableViewCell {
                 self?.dataSource?.apply(snapshot, animatingDifferences: true)
             })
             .store(in: &cancellables)
-        viewModel.selectedCategory.send("")
+        
+        viewModel.selectedCategories.send(UserDefaultsManager.HomeSimilarChefInfo.categories)
     }
     
     // MARK: - Private
@@ -75,6 +76,11 @@ class SimilarChefCell: UITableViewCell {
             let cell = collectionView.dequeueReusableCell(withClass: SimilarChefProfileCell.self, for: indexPath)
             cell.configure(with: item)
             return cell
+        }
+        
+        // TagListView
+        tagListView.didTapTagsHandler = { [weak self] tagList in
+            self?.viewModel?.selectedCategories.send(tagList)
         }
         
         // show all contents button
