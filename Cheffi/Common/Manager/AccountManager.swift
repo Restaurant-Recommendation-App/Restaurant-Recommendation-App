@@ -11,6 +11,6 @@ class AccountManager: NSObject {
     static var shared: AccountManager = AccountManager()
     
     var isLogin: Bool {
-        return UserDefaultsManager.user != nil
+        return UserDefaultsManager.AuthInfo.user != nil
     }
 }
