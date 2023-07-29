@@ -39,8 +39,8 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
         return DefaultSimilarChefRepository()
     }
     
-    func makePopupViewController(text: String, keyword: String) -> PopupViewController {
-        return PopupViewController.instance(text: text, keyword: keyword)
+    func makePopupViewController(text: String, keyword: String, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController {
+        return PopupViewController.instance(text: text, keyword: keyword, findHandler: findHandler, cancelHandler: cancelHandler)
     }
     
     // MARK: - Search
@@ -54,6 +54,11 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     }
     
     // MARK: - Detail
+    func makeCheffiDetail() -> CheffiDetailViewController {
+        let vc = CheffiDetailViewController.instance()
+        return vc
+    }
+    
     func makeSimilarChefList() -> SimilarChefListViewController {
         let viewModel = makeSimilarChefListViewModel()
         return SimilarChefListViewController.instance(viewModel: viewModel)

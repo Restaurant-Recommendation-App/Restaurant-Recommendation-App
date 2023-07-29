@@ -42,7 +42,7 @@ class RestaurantContentView: UIView {
     private lazy var likeButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "icDisLike"), for: .normal)
-        button.setImage(UIImage(named: "icLikeFilledRed"), for: .selected)
+        button.setImage(UIImage(named: "icLike"), for: .selected)
         button.imageView?.contentMode = .scaleAspectFit
         button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         button.isUserInteractionEnabled = true

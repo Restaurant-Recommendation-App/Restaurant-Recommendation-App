@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheffiReviewView" customModule="Cheffi" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="sQy-v5-zPZ"/>
+                <outlet property="titleLabel" destination="dq6-V5-ZS9" id="FQV-Ij-eht"/>
+                <outletCollection property="reviewButtons" destination="8bO-ky-LLd" collectionClass="NSMutableArray" id="zti-v8-UMM"/>
+                <outletCollection property="reviewButtons" destination="wqi-xS-RA0" collectionClass="NSMutableArray" id="aok-Th-Asa"/>
+                <outletCollection property="reviewButtons" destination="seI-hI-QuR" collectionClass="NSMutableArray" id="Jba-W6-zLv"/>
+                <outletCollection property="reviewLabels" destination="bKV-8g-TlK" collectionClass="NSMutableArray" id="Gqs-mL-EE6"/>
+                <outletCollection property="reviewLabels" destination="lhh-om-YAp" collectionClass="NSMutableArray" id="zdW-PM-Hnz"/>
+                <outletCollection property="reviewLabels" destination="T6d-ZV-xVa" collectionClass="NSMutableArray" id="HXH-mL-Fe9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="494" height="131"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dq6-V5-ZS9">
+                    <rect key="frame" x="12" y="12" width="7" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                    <color key="textColor" name="CheffiGray6"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="58" translatesAutoresizingMaskIntoConstraints="NO" id="dvk-Vx-rlm">
+                    <rect key="frame" x="35" y="46" width="424" height="73"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XkJ-UC-scl">
+                            <rect key="frame" x="0.0" y="0.0" width="102.66666666666667" height="73"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bO-ky-LLd">
+                                    <rect key="frame" x="31.333333333333329" y="0.0" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="ODM-Jw-GLh"/>
+                                        <constraint firstAttribute="height" constant="40" id="hWI-HI-JYH"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="icReviewPositive"/>
+                                    <state key="selected" image="icReviewPositiveFill"/>
+                                    <connections>
+                                        <action selector="didTapReview:" destination="-1" eventType="touchUpInside" id="DCT-Ow-KfY"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="맛있어요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKV-8g-TlK">
+                                    <rect key="frame" x="25.333333333333336" y="48" width="52.000000000000007" height="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" name="CheffiGray5"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cyw-aE-Siq">
+                            <rect key="frame" x="160.66666666666666" y="0.0" width="102.66666666666666" height="73"/>
+                            <subviews>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqi-xS-RA0">
+                                    <rect key="frame" x="31.333333333333343" y="0.0" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="bzf-gO-62b"/>
+                                        <constraint firstAttribute="width" constant="40" id="yqO-nq-rMc"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="icReviewNeutral"/>
+                                    <state key="selected" image="icReviewNeutralFill"/>
+                                    <connections>
+                                        <action selector="didTapReview:" destination="-1" eventType="touchUpInside" id="m3d-D7-VX5"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평범해요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhh-om-YAp">
+                                    <rect key="frame" x="25.333333333333343" y="48" width="52" height="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" name="CheffiGray5"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hkg-rO-bbZ">
+                            <rect key="frame" x="321.33333333333331" y="0.0" width="102.66666666666669" height="73"/>
+                            <subviews>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seI-hI-QuR">
+                                    <rect key="frame" x="31.333333333333371" y="0.0" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="1sj-AJ-mnu"/>
+                                        <constraint firstAttribute="height" constant="40" id="PeP-ye-Mac"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="icReviewNegative"/>
+                                    <state key="selected" image="icReviewNegativeFill"/>
+                                    <connections>
+                                        <action selector="didTapReview:" destination="-1" eventType="touchUpInside" id="OSa-F5-D8E"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="별로에요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6d-ZV-xVa">
+                                    <rect key="frame" x="25.333333333333371" y="48" width="52" height="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" name="CheffiGray5"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="dq6-V5-ZS9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="Lmz-Fv-Qyo"/>
+                <constraint firstItem="dq6-V5-ZS9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="Par-6o-4Gr"/>
+                <constraint firstAttribute="bottom" secondItem="dvk-Vx-rlm" secondAttribute="bottom" constant="12" id="fka-SV-QXg"/>
+                <constraint firstItem="dvk-Vx-rlm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="35" id="nXJ-dF-xHL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dvk-Vx-rlm" secondAttribute="trailing" constant="35" id="uoj-mI-fQz"/>
+                <constraint firstItem="dvk-Vx-rlm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="46" id="xjS-jd-zYT"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="174.04580152671755" y="-234.1549295774648"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icReviewNegative" width="40" height="40"/>
+        <image name="icReviewNegativeFill" width="40" height="40"/>
+        <image name="icReviewNeutral" width="40" height="40"/>
+        <image name="icReviewNeutralFill" width="40" height="40"/>
+        <image name="icReviewPositive" width="40" height="40"/>
+        <image name="icReviewPositiveFill" width="40" height="40"/>
+        <namedColor name="CheffiGray5">
+            <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CheffiGray6">
+            <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

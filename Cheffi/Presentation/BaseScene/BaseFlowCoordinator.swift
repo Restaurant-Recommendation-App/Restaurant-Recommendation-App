@@ -8,7 +8,7 @@
 import UIKit
 
 protocol BaseFlowCoordinatorDependencies {
-    func makePopupViewController(text: String, keyword: String) -> PopupViewController
+    func makePopupViewController(text: String, keyword: String, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController
 }
 
 class BaseFlowCoordinator {

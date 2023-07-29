@@ -19,7 +19,7 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoodinatorDepe
         return RestaurantRegistViewController.instance()
     }
     
-    func makePopupViewController(text: String, keyword: String) -> PopupViewController {
-        return PopupViewController.instance(text: text, keyword: keyword)
+    func makePopupViewController(text: String, keyword: String, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController {
+        return PopupViewController.instance(text: text, keyword: keyword, findHandler: findHandler, cancelHandler: cancelHandler)
     }
 }
