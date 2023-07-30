@@ -39,7 +39,7 @@ class CheffiMenuItemView: UIView {
         label.textColor = .cheffiGray8
         return label
     }()
-    let priceLabel: UILabel = {
+    private let priceLabel: UILabel = {
         let label = UILabel()
         label.text = "원"
         label.font = UIFont.boldSystemFont(ofSize: 17)
@@ -47,12 +47,12 @@ class CheffiMenuItemView: UIView {
         label.textAlignment = .right
         return label
     }()
-    let lineDashView: LineDashView = {
+    private let lineDashView: LineDashView = {
        let view = LineDashView()
         view.backgroundColor = UIColor(white: 0.0, alpha: 0.0)
         return view
     }()
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
@@ -75,22 +75,42 @@ class CheffiMenuItemView: UIView {
         priceLabel.text = menu.price.commaRepresentation + "원"
     }
     
+    func updatePriceLabelWidth(_ width: CGFloat) {
+        priceLabel.snp.updateConstraints { make in
+            make.width.equalTo(width)
+        }
+    }
+    
+    func updateMenuNameLabelWidth(_ width: CGFloat) {
+        menuNameLabel.snp.updateConstraints { make in
+            make.width.equalTo(width)
+        }
+    }
+    
+    func getWidhtOfPriceLabelWidth() -> CGFloat {
+        return self.getWidthOfLabel(label: self.priceLabel)
+    }
+    
+    func getWidhtOfMenuNameLabelWidth() -> CGFloat {
+        return self.getWidthOfLabel(label: self.menuNameLabel)
+    }
+    
     // MARK: - Private
     private func setupViews() {
         addSubview(stackView)
         stackView.addArrangedSubview(menuNameLabel)
         stackView.addArrangedSubview(lineDashView)
         stackView.addArrangedSubview(priceLabel)
-        lineDashView.snp.makeConstraints { make in
-            make.width.equalTo(120)
-        }
-        
-        priceLabel.snp.makeConstraints { make in
-            make.width.equalTo(90)
-        }
         
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
         }
+    }
+    
+    private func getWidthOfLabel(label: UILabel) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: label.frame.height)
+        let boundingBox = label.text!.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: label.font!], context: nil)
+
+        return ceil(boundingBox.width)
     }
 }

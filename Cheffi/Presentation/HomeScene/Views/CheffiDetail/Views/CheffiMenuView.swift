@@ -27,15 +27,21 @@ class CheffiMenuView: BaseView {
     }
     
     func setupMenu(_ menus: [Menu]) {
-        stackView.arrangedSubviews.forEach({
-            stackView.removeArrangedSubview($0)
-            $0.removeFromSuperview()
-        })
+        stackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
         
-        menus.forEach({ menu in
-            let menuItem = CheffiMenuItemView()
-            menuItem.set(menu: menu)
-            stackView.addArrangedSubview(menuItem)
-        })
+        let menuItemViews = menus.map { menu -> CheffiMenuItemView in
+            let menuItemView = CheffiMenuItemView()
+            menuItemView.set(menu: menu)
+            return menuItemView
+        }
+
+        let priceMaxWidth = menuItemViews.reduce(0) { max($0, $1.getWidhtOfPriceLabelWidth()) }
+        let menuNameMaxWidth = menuItemViews.reduce(0) { max($0, $1.getWidhtOfMenuNameLabelWidth()) }
+
+        menuItemViews.forEach { menuItemView in
+            menuItemView.updatePriceLabelWidth(priceMaxWidth)
+            menuItemView.updateMenuNameLabelWidth(menuNameMaxWidth)
+            stackView.addArrangedSubview(menuItemView)
+        }
     }
 }
