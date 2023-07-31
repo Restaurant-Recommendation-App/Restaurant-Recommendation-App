@@ -71,7 +71,7 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
         switch state {
         case .longForm:
             UIView.animate(withDuration: Constants.duration) {
-                self.topLayoutConstraint.constant = self.topSafeArea
+                self.topLayoutConstraint.constant = 0.0
                 self.indicatorView.alpha = 0.0
                 self.closeButton.alpha = 0.0
                 self.contentView.layoutIfNeeded()
