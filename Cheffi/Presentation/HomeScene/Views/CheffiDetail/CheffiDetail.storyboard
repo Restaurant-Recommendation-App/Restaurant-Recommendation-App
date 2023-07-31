@@ -27,33 +27,18 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Krt-ed-OLG">
                                                 <rect key="frame" x="0.0" y="40" width="393" height="360"/>
                                                 <subviews>
-                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFn-g1-Esz">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHl-jY-rBG" customClass="CheffiContensView" customModule="Cheffi" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="360"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9HH-ZD-72x">
-                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="360"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </view>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="9HH-ZD-72x" firstAttribute="leading" secondItem="65E-jx-mbd" secondAttribute="leading" id="3Pm-gs-lqm"/>
-                                                            <constraint firstItem="9HH-ZD-72x" firstAttribute="width" secondItem="odW-o8-ylb" secondAttribute="width" priority="250" id="TU7-w2-hXZ"/>
-                                                            <constraint firstItem="9HH-ZD-72x" firstAttribute="top" secondItem="65E-jx-mbd" secondAttribute="top" id="msg-tL-vJ5"/>
-                                                            <constraint firstItem="9HH-ZD-72x" firstAttribute="trailing" secondItem="65E-jx-mbd" secondAttribute="trailing" id="xc6-mR-btR"/>
-                                                            <constraint firstItem="9HH-ZD-72x" firstAttribute="bottom" secondItem="65E-jx-mbd" secondAttribute="bottom" id="xsx-rz-DdZ"/>
-                                                        </constraints>
-                                                        <viewLayoutGuide key="contentLayoutGuide" id="65E-jx-mbd"/>
-                                                        <viewLayoutGuide key="frameLayoutGuide" id="odW-o8-ylb"/>
-                                                    </scrollView>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="vFn-g1-Esz" secondAttribute="trailing" id="53f-OH-nKd"/>
-                                                    <constraint firstItem="vFn-g1-Esz" firstAttribute="leading" secondItem="Krt-ed-OLG" secondAttribute="leading" id="8aF-ho-8iv"/>
-                                                    <constraint firstItem="9HH-ZD-72x" firstAttribute="height" secondItem="Krt-ed-OLG" secondAttribute="height" id="EAc-U4-WGs"/>
-                                                    <constraint firstAttribute="bottom" secondItem="vFn-g1-Esz" secondAttribute="bottom" id="UQb-cb-HsH"/>
+                                                    <constraint firstItem="iHl-jY-rBG" firstAttribute="leading" secondItem="Krt-ed-OLG" secondAttribute="leading" id="Vap-5j-d47"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iHl-jY-rBG" secondAttribute="trailing" id="VcE-j7-epa"/>
+                                                    <constraint firstItem="iHl-jY-rBG" firstAttribute="top" secondItem="Krt-ed-OLG" secondAttribute="top" id="ov1-4R-EgS"/>
                                                     <constraint firstAttribute="height" constant="360" id="sRg-Hh-MIz"/>
-                                                    <constraint firstItem="vFn-g1-Esz" firstAttribute="top" secondItem="Krt-ed-OLG" secondAttribute="top" id="svc-Jz-pTc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="iHl-jY-rBG" secondAttribute="bottom" id="tM2-r1-OMS"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXR-AZ-nmb">
@@ -89,30 +74,6 @@
                                                 <color key="textColor" name="CheffiBlack"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9rD-eo-cOy">
-                                                <rect key="frame" x="337" y="345" width="40" height="24"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nau-2m-2CC">
-                                                        <rect key="frame" x="9.3333333333333162" y="3.6666666666666856" width="21.666666666666671" height="17"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <color key="textColor" name="CheffiWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.32000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="24" id="7wR-iV-H4n"/>
-                                                    <constraint firstItem="Nau-2m-2CC" firstAttribute="centerX" secondItem="9rD-eo-cOy" secondAttribute="centerX" id="BNP-ob-cqS"/>
-                                                    <constraint firstItem="Nau-2m-2CC" firstAttribute="centerY" secondItem="9rD-eo-cOy" secondAttribute="centerY" id="kdC-Na-Oc6"/>
-                                                    <constraint firstAttribute="width" constant="40" id="wCz-9C-ijm"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layerCornerRadius">
-                                                        <real key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKt-Zw-qQr">
                                                 <rect key="frame" x="345" y="427" width="32" height="32"/>
                                                 <constraints>
@@ -134,11 +95,11 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oah-eo-x57">
                                                 <rect key="frame" x="16" y="513.66666666666674" width="361" height="515.66666666666674"/>
-                                                <mutableString key="text"> 문을 열자마자 시간 여행을 한다. 레트로함이 좀 느껴지는 수준을 넘어 진도준 선생님처럼 과거로 회귀한 듯 하다. 두툼한 돈카츠로 포화된 지금 찾기 힌든 근본의 한국 경양식 돈까스는 추억 보정까지 담아 더 맛이 깊어진다. 클래식하다.
+                                                <string key="text"> 문을 열자마자 시간 여행을 한다. 레트로함이 좀 느껴지는 수준을 넘어 진도준 선생님처럼 과거로 회귀한 듯 하다. 두툼한 돈카츠로 포화된 지금 찾기 힌든 근본의 한국 경양식 돈까스는 추억 보정까지 담아 더 맛이 깊어진다. 클래식하다.
  영화 촬영장 수준으로 과거를 표현한 매장은 돈까스가 나오기도 전에 어릴 적 엄마아빠 손을 잡고 돈까스를 썰어 먹던 추억을 불러온다. 배부르게 먹고 단순하게 행복해진 기억이 입혀져 음식이 더 기대되고, 먹고 나선 더 만족스러워진다.
  돈까스가 나오자마자 벌써부터 눈이 배부르다. 확실하게 클래식함이 묻어나는 옛날 돈까스다. 얇고 넓게 펴져 큰 접시가 꽉 차도록 푸짐하게 담겨 있다. 돈까스를 다 썰은 후 먹는 것을 좋아한다면 넓은 돈까스 사이즈에 고생 좀 할 수도 있다. 부드럽지만 한참을 썰어야 해서 팔이 너덜너덜해진다.
 옛날 돈까스이기 때문에 더 기본에 충실한 근본의 맛이 느껴진다. 겉은 소스에 절여졌음에도 바삭함이 유지되었고, 속은 순두부에 수렴하는 부드러운 느낌이었다. 한국 경양식 돈까스 탑티어다. 과일을 많이 사용하는지 소스가 새콤하며 느끼함이 전혀 없다. 밥과 샐러드, 돈까스를 비벼는 맛잘알들에게는 딱 맞을 소스다.
- 엄마가 ‘아들~ 돈까스 먹으러 가자’라고 하는 데에는 이유가 있다. 어릴 때에도 못 참았던 맛이 레트로한 공간과 어울려 깊어진다. 경양식계 클래식을 확실히 영접하고 나니 오므라이스와 매운 돈까스도 기대가 된다. 기회가 되면 꼭 재방문해야겠다.</mutableString>
+ 엄마가 ‘아들~ 돈까스 먹으러 가자’라고 하는 데에는 이유가 있다. 어릴 때에도 못 참았던 맛이 레트로한 공간과 어울려 깊어진다. 경양식계 클래식을 확실히 영접하고 나니 오므라이스와 매운 돈까스도 기대가 된다. 기회가 되면 꼭 재방문해야겠다.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" name="CheffiGray8"/>
                                                 <nil key="highlightedColor"/>
@@ -180,7 +141,6 @@
                                             <constraint firstItem="Krt-ed-OLG" firstAttribute="top" secondItem="aZ0-Mi-QOQ" secondAttribute="top" constant="-16" id="42N-9D-74p"/>
                                             <constraint firstAttribute="trailing" secondItem="EhK-Cr-oe7" secondAttribute="trailing" constant="16" id="4ki-9i-r7c"/>
                                             <constraint firstAttribute="trailing" secondItem="Krt-ed-OLG" secondAttribute="trailing" id="5Eh-Gi-xOR"/>
-                                            <constraint firstItem="9rD-eo-cOy" firstAttribute="bottom" secondItem="Krt-ed-OLG" secondAttribute="bottom" constant="-31" id="9m0-gi-334"/>
                                             <constraint firstItem="R3W-xu-EL2" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="BbZ-lU-fqU"/>
                                             <constraint firstItem="ekk-PW-fxX" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="CAg-cs-6JO"/>
                                             <constraint firstAttribute="trailing" secondItem="oah-eo-x57" secondAttribute="trailing" constant="16" id="CwC-Ug-Uqv"/>
@@ -190,7 +150,6 @@
                                             <constraint firstAttribute="trailing" secondItem="ekk-PW-fxX" secondAttribute="trailing" constant="16" id="MnO-3g-g03"/>
                                             <constraint firstAttribute="bottom" secondItem="R3W-xu-EL2" secondAttribute="bottom" constant="32" id="POA-RV-74c"/>
                                             <constraint firstItem="Awi-Zo-EXa" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="Qgt-Mi-8Ki"/>
-                                            <constraint firstItem="9rD-eo-cOy" firstAttribute="trailing" secondItem="Krt-ed-OLG" secondAttribute="trailing" constant="-16" id="Xgm-ny-16y"/>
                                             <constraint firstItem="bXR-AZ-nmb" firstAttribute="centerX" secondItem="RaS-Ky-D5r" secondAttribute="centerX" id="ZFJ-I5-sab"/>
                                             <constraint firstItem="Awi-Zo-EXa" firstAttribute="top" secondItem="kJs-qk-mYj" secondAttribute="bottom" constant="12" id="cPV-zO-7c6"/>
                                             <constraint firstItem="oah-eo-x57" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="dmk-91-qbj"/>
@@ -230,16 +189,14 @@
                     </view>
                     <size key="freeformSize" width="393" height="1562"/>
                     <connections>
+                        <outlet property="cheffiContensView" destination="iHl-jY-rBG" id="Dfp-oA-9Ql"/>
                         <outlet property="cheffiLocationView" destination="ekk-PW-fxX" id="SBq-Zc-wTd"/>
                         <outlet property="cheffiMenuView" destination="EhK-Cr-oe7" id="VhO-Sv-xba"/>
                         <outlet property="cheffiReviewView" destination="R3W-xu-EL2" id="BeF-0d-MZk"/>
                         <outlet property="closeButton" destination="aZ0-Mi-QOQ" id="g93-uL-Aoj"/>
                         <outlet property="contentView" destination="RaS-Ky-D5r" id="OZw-7w-K4F"/>
                         <outlet property="imageBackgroundView" destination="Krt-ed-OLG" id="fa9-Ei-Tlm"/>
-                        <outlet property="imageContentView" destination="9HH-ZD-72x" id="lJF-Yi-jEP"/>
-                        <outlet property="imageScrollView" destination="vFn-g1-Esz" id="NqY-XC-Frc"/>
                         <outlet property="indicatorView" destination="bXR-AZ-nmb" id="ypn-kV-DAR"/>
-                        <outlet property="pageLabel" destination="Nau-2m-2CC" id="YWk-tx-AX6"/>
                         <outlet property="scrollView" destination="KOS-kC-vou" id="CRn-So-AUy"/>
                         <outlet property="topLayoutConstraint" destination="3gp-di-GkC" id="WxX-3x-B5b"/>
                     </connections>
@@ -264,9 +221,6 @@
         </namedColor>
         <namedColor name="CheffiGray8">
             <color red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="CheffiWhite">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

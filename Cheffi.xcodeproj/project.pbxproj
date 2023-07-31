@@ -89,6 +89,10 @@
 		FF3197832A74E51100F5DD41 /* CheffiLocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3197822A74E51100F5DD41 /* CheffiLocationView.xib */; };
 		FF3197852A74E70900F5DD41 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3197842A74E70900F5DD41 /* Location.swift */; };
 		FF3197872A74E8C700F5DD41 /* CheffiReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3197862A74E8C700F5DD41 /* CheffiReviewView.xib */; };
+		FF338AF22A77E40200FCCE00 /* CheffiContensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF338AF12A77E40200FCCE00 /* CheffiContensView.swift */; };
+		FF338AF42A77E46800FCCE00 /* CheffiContensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF338AF32A77E46800FCCE00 /* CheffiContensView.xib */; };
+		FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */; };
+		FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */; };
 		FF97932C2A72BF9900A921A0 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932B2A72BF9900A921A0 /* AccountManager.swift */; };
 		FF97932E2A73C9D600A921A0 /* UserDefault+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */; };
 		FF9793B22A74C22800A921A0 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = FF9793B12A74C22800A921A0 /* PanModal */; };
@@ -195,6 +199,10 @@
 		FF3197822A74E51100F5DD41 /* CheffiLocationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiLocationView.xib; sourceTree = "<group>"; };
 		FF3197842A74E70900F5DD41 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FF3197862A74E8C700F5DD41 /* CheffiReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiReviewView.xib; sourceTree = "<group>"; };
+		FF338AF12A77E40200FCCE00 /* CheffiContensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiContensView.swift; sourceTree = "<group>"; };
+		FF338AF32A77E46800FCCE00 /* CheffiContensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiContensView.xib; sourceTree = "<group>"; };
+		FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiContensViewImageCell.swift; sourceTree = "<group>"; };
+		FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiContensViewImageCell.xib; sourceTree = "<group>"; };
 		FF97932B2A72BF9900A921A0 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Ext.swift"; sourceTree = "<group>"; };
 		FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiDetailViewController.swift; sourceTree = "<group>"; };
@@ -730,6 +738,10 @@
 				FF3197822A74E51100F5DD41 /* CheffiLocationView.xib */,
 				FF3197762A74C90E00F5DD41 /* CheffiReviewView.swift */,
 				FF3197862A74E8C700F5DD41 /* CheffiReviewView.xib */,
+				FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */,
+				FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */,
+				FF338AF12A77E40200FCCE00 /* CheffiContensView.swift */,
+				FF338AF32A77E46800FCCE00 /* CheffiContensView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -863,7 +875,9 @@
 				CE42BA6F2A6BCAA300EBB80A /* Popup.storyboard in Resources */,
 				CE1A6A762A6286CB00FFE93D /* SimilarChefProfileCell.xib in Resources */,
 				D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */,
+				FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */,
 				CE0D453A2A61AA7700636989 /* MyPage.storyboard in Resources */,
+				FF338AF42A77E46800FCCE00 /* CheffiContensView.xib in Resources */,
 				CEABD7222A6BFF99001BC131 /* SimilarChefList.storyboard in Resources */,
 				CE42BA7D2A6BD94E00EBB80A /* Search.storyboard in Resources */,
 				FF9793B72A74C53200A921A0 /* CheffiDetail.storyboard in Resources */,
@@ -943,6 +957,7 @@
 				CE70F8892A63BFEB003D0ED9 /* User.swift in Sources */,
 				CEABD7242A6BFFC8001BC131 /* SimilarChefListViewModel.swift in Sources */,
 				CE42BA6B2A6BB48100EBB80A /* String+Extensions.swift in Sources */,
+				FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */,
 				CE1A6A6D2A62716C00FFE93D /* SimilarChefViewModel.swift in Sources */,
 				CE70F8912A63C18C003D0ED9 /* FetchSimilarChefUseCase.swift in Sources */,
 				CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */,
@@ -984,6 +999,7 @@
 				D441C0202A66965400063822 /* CheffiRecommendationCatogoryPageView.swift in Sources */,
 				CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */,
 				D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */,
+				FF338AF22A77E40200FCCE00 /* CheffiContensView.swift in Sources */,
 				FF3197812A74D06600F5DD41 /* Int+Extensions.swift in Sources */,
 				FF97932E2A73C9D600A921A0 /* UserDefault+Ext.swift in Sources */,
 				CE0D45322A61967700636989 /* RestaurantRegistViewController.swift in Sources */,

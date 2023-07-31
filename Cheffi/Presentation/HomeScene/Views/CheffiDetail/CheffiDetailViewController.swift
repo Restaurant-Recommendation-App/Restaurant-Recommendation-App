@@ -16,9 +16,7 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
     
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var imageBackgroundView: UIView!
-    @IBOutlet private weak var imageScrollView: UIScrollView!
-    @IBOutlet private weak var imageContentView: UIView!
-    @IBOutlet private weak var pageLabel: UILabel!
+    @IBOutlet private weak var cheffiContensView: CheffiContensView!
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var indicatorView: UIView!
     @IBOutlet private weak var closeButton: UIButton!
@@ -26,9 +24,6 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
     @IBOutlet private weak var cheffiLocationView: CheffiLocationView!
     @IBOutlet private weak var cheffiReviewView: CheffiReviewView!
     @IBOutlet private var topLayoutConstraint: NSLayoutConstraint!
-    
-    // test code
-    var images: [UIImage] = []
     
     enum Constants {
         static let duration: CGFloat = 0.3
@@ -90,14 +85,12 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
         super.viewDidLoad()
         setupViews()
         
-        images = (0..<5).compactMap({ _ in UIImage(systemName: "star.fill") })
-        setupScrollImages(images: images)
-        updatePageLabel(currentPage: 0, totalPages: images.count)
+        let items = (0..<5).map({ index in ImageItem(id: "\(index)", image: UIImage(systemName: "star.fill")!) })
+        cheffiContensView.setImages(items)
     }
     
     // MARK: - Private
     private func setupViews() {
-        imageScrollView.delegate = self
         // TODO: - test code
         let menu1 = Menu(name: "전풍 수제 돈까스", price: 12000)
         let menu2 = Menu(name: "수제 치즈 돈까스", price: 14000)
@@ -113,39 +106,6 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
         }
     }
     
-    func setupScrollImages(images: [UIImage]) {
-        var previousImageView: UIImageView?
-        
-        for i in 0..<images.count {
-            let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFill
-            imageView.image = images[i]
-            
-            imageContentView.addSubview(imageView)
-            
-            imageView.snp.makeConstraints { (make) in
-                make.top.bottom.equalTo(imageContentView)
-                make.width.equalTo(imageScrollView.snp.width)
-                
-                if let previousImageView = previousImageView {
-                    make.leading.equalTo(previousImageView.snp.trailing)
-                } else {
-                    make.leading.equalTo(imageContentView.snp.leading)
-                }
-                
-                if i == images.count - 1 {
-                    make.trailing.equalTo(imageContentView.snp.trailing)
-                }
-            }
-            
-            previousImageView = imageView
-        }
-    }
-    
-    private func updatePageLabel(currentPage: Int, totalPages: Int) {
-        pageLabel.text = "\(currentPage + 1)/\(totalPages)"
-    }
-    
     private func copyToClipboard(text: String) {
         let pasteboard = UIPasteboard.general
         pasteboard.string = text
@@ -158,14 +118,5 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
     
     @IBAction private func didTapLike(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-    }
-}
-
-extension CheffiDetailViewController: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        guard scrollView == self.imageScrollView else { return }
-        let width = scrollView.frame.width
-        let currentPage = Int(scrollView.contentOffset.x / width)
-        updatePageLabel(currentPage: currentPage, totalPages: images.count)
     }
 }
