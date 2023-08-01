@@ -93,6 +93,7 @@
 		FF338AF42A77E46800FCCE00 /* CheffiContensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF338AF32A77E46800FCCE00 /* CheffiContensView.xib */; };
 		FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */; };
 		FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */; };
+		FF5059792A79513300F90D27 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF5059782A79513300F90D27 /* KakaoSDK */; };
 		FF97932C2A72BF9900A921A0 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932B2A72BF9900A921A0 /* AccountManager.swift */; };
 		FF97932E2A73C9D600A921A0 /* UserDefault+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */; };
 		FF9793B22A74C22800A921A0 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = FF9793B12A74C22800A921A0 /* PanModal */; };
@@ -224,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				296236DF1AC0B1A79BC70DC9 /* Pods_Cheffi.framework in Frameworks */,
+				FF5059792A79513300F90D27 /* KakaoSDK in Frameworks */,
 				CE0D45172A61712400636989 /* SwifterSwift in Frameworks */,
 				FF9793B22A74C22800A921A0 /* PanModal in Frameworks */,
 			);
@@ -813,6 +815,7 @@
 			packageProductDependencies = (
 				CE0D45162A61712400636989 /* SwifterSwift */,
 				FF9793B12A74C22800A921A0 /* PanModal */,
+				FF5059782A79513300F90D27 /* KakaoSDK */,
 			);
 			productName = Cheffi;
 			productReference = D4E244B52A60FF5A004E0167 /* Cheffi.app */;
@@ -849,6 +852,7 @@
 			packageReferences = (
 				CE0D45152A61712400636989 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 				FF9793B02A74C22800A921A0 /* XCRemoteSwiftPackageReference "PanModal" */,
+				FF5059772A79513300F90D27 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			productRefGroup = D4E244B62A60FF5A004E0167 /* Products */;
 			projectDirPath = "";
@@ -1218,7 +1222,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cheffi.Cheffi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1250,7 +1254,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cheffi.Cheffi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1303,6 +1307,14 @@
 				version = 5.3.0;
 			};
 		};
+		FF5059772A79513300F90D27 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 2.16.0;
+			};
+		};
 		FF9793B02A74C22800A921A0 /* XCRemoteSwiftPackageReference "PanModal" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/slackhq/PanModal.git";
@@ -1318,6 +1330,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE0D45152A61712400636989 /* XCRemoteSwiftPackageReference "SwifterSwift" */;
 			productName = SwifterSwift;
+		};
+		FF5059782A79513300F90D27 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF5059772A79513300F90D27 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
 		};
 		FF9793B12A74C22800A921A0 /* PanModal */ = {
 			isa = XCSwiftPackageProductDependency;
