@@ -13,4 +13,6 @@ class AccountManager: NSObject {
     var isLogin: Bool {
         return UserDefaultsManager.AuthInfo.user != nil
     }
+    
+    private override init() { }
 }
