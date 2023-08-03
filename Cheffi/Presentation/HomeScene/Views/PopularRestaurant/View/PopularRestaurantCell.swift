@@ -16,18 +16,9 @@ class PopularRestaurantCell: UITableViewCell {
         static let inset: CGFloat = 16.0
     }
     
-    private let viewMoreContentsButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-        button.setTitleColor(.cheffiBlack, for: .normal)
-        button.setTitle("전체 보기", for: .normal)
-        button.titleLabel?.textAlignment = .center
-
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.cheffiGray2.cgColor
-        
-        button.layer.cornerRadius = 10
-        button.layer.masksToBounds = true
+    private let showAllContentsButton: ShowAllContentsButton = {
+        let button = ShowAllContentsButton()
+        button.setTItle("전체보기".localized(), direction: .right)
         return button
     }()
     
@@ -56,12 +47,16 @@ class PopularRestaurantCell: UITableViewCell {
             $0.height.equalTo(270)
         }
         
-        contentView.addSubview(viewMoreContentsButton)
-        viewMoreContentsButton.snp.makeConstraints {
+        contentView.addSubview(showAllContentsButton)
+        showAllContentsButton.snp.makeConstraints {
             $0.top.equalTo(popularRestaurantContentsView.snp.bottom).offset(24)
             $0.centerX.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(Constants.inset)
             $0.height.equalTo(40)
+        }
+        
+        // Action
+        showAllContentsButton.didTapViewAllHandler = { [weak self] in
         }
     }
 }

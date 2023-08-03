@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol FetchSimilarChefUseCase {
-    func execute(category: String) -> AnyPublisher<[User], Error>
+    func execute(categories: [String]) -> AnyPublisher<[User], Error>
 }
 
 final class DefaultFetchSimilarChefUseCase: FetchSimilarChefUseCase {
@@ -19,7 +19,7 @@ final class DefaultFetchSimilarChefUseCase: FetchSimilarChefUseCase {
         self.repository = repository
     }
     
-    func execute(category: String) -> AnyPublisher<[User], Error> {
-        return repository.getProfiles(category: category)
+    func execute(categories: [String]) -> AnyPublisher<[User], Error> {
+        return repository.getProfiles(categories: categories)
     }
 }

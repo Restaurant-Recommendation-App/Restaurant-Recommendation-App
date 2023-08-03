@@ -30,18 +30,9 @@ final class CheffiRecommendationCell: UITableViewCell {
         return label
     }()
     
-    private let viewMoreContentsButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-        button.setTitleColor(.cheffiBlack, for: .normal)
-        button.setTitle("더보기", for: .normal)
-        button.titleLabel?.textAlignment = .center
-
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.cheffiGray2.cgColor
-        
-        button.layer.cornerRadius = 10
-        button.layer.masksToBounds = true
+    private let showAllContentsButton: ShowAllContentsButton = {
+        let button = ShowAllContentsButton()
+        button.setTItle("더보기".localized(), direction: .down)
         return button
     }()
     
@@ -99,11 +90,15 @@ final class CheffiRecommendationCell: UITableViewCell {
             $0.height.equalTo(550)
         }
         
-        contentView.addSubview(viewMoreContentsButton)
-        viewMoreContentsButton.snp.makeConstraints {
+        contentView.addSubview(showAllContentsButton)
+        showAllContentsButton.snp.makeConstraints {
             $0.top.equalTo(cheffiRecommendationCatogoryPageView.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
             $0.height.equalTo(40)
+        }
+        
+        // Action
+        showAllContentsButton.didTapViewAllHandler = { [weak self] in
         }
     }
 }

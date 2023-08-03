@@ -16,6 +16,7 @@ enum StoryboardName: String {
     case popup
     case search
     case similarChefList
+    case cheffiDetail
 }
 
 extension StoryboardName {

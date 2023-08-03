@@ -12,6 +12,7 @@ protocol HomeFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {
     func makeViewController(actions: HomeViewModelActions) -> HomeViewController
     func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
+    func makeCheffiDetail() -> CheffiDetailViewController
 }
 
 final class HomeFlowCoordinator: BaseFlowCoordinator {
@@ -28,7 +29,10 @@ final class HomeFlowCoordinator: BaseFlowCoordinator {
     }
     
     private func showPopup(text: String, keyword: String) {
-        let vc = homeDependencies.makePopupViewController(text: text, keyword: keyword)
+        let vc = homeDependencies.makePopupViewController(text: text, keyword: keyword, findHandler: { [weak self] in
+            guard let detailVC = self?.homeDependencies.makeCheffiDetail() else { return }
+            self?.navigationController?.presentPanModal(detailVC)
+        }, cancelHandler: {})
         navigationController?.present(vc, animated: true)
     }
     

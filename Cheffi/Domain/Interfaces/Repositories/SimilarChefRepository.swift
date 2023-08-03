@@ -10,5 +10,5 @@ import Combine
 
 protocol SimilarChefRepository {
     func getCategories() -> AnyPublisher<[String], Error>
-    func getProfiles(category: String) -> AnyPublisher<[User], Error>
+    func getProfiles(categories: [String]) -> AnyPublisher<[User], Error>
 }

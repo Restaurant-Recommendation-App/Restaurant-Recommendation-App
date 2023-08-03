@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Cheffi Detail View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="CheffiDetailViewController" id="Y6W-OH-hqX" customClass="CheffiDetailViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="1562"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOS-kC-vou">
+                                <rect key="frame" x="0.0" y="59" width="393" height="1469"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RaS-Ky-D5r">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1469"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Krt-ed-OLG">
+                                                <rect key="frame" x="0.0" y="40" width="393" height="360"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHl-jY-rBG" customClass="CheffiContensView" customModule="Cheffi" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="360"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="iHl-jY-rBG" firstAttribute="leading" secondItem="Krt-ed-OLG" secondAttribute="leading" id="Vap-5j-d47"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iHl-jY-rBG" secondAttribute="trailing" id="VcE-j7-epa"/>
+                                                    <constraint firstItem="iHl-jY-rBG" firstAttribute="top" secondItem="Krt-ed-OLG" secondAttribute="top" id="ov1-4R-EgS"/>
+                                                    <constraint firstAttribute="height" constant="360" id="sRg-Hh-MIz"/>
+                                                    <constraint firstAttribute="bottom" secondItem="iHl-jY-rBG" secondAttribute="bottom" id="tM2-r1-OMS"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXR-AZ-nmb">
+                                                <rect key="frame" x="160.66666666666666" y="8" width="72" height="5"/>
+                                                <color key="backgroundColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" id="arP-1r-GYR"/>
+                                                    <constraint firstAttribute="width" constant="72" id="mQQ-7V-Go7"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZ0-Mi-QOQ">
+                                                <rect key="frame" x="16" y="56" width="40" height="40"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="2PI-GA-Hfs"/>
+                                                    <constraint firstAttribute="width" constant="40" id="D6W-sH-cB0"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="xmark" catalog="system"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layerCornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapClose:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="CCF-Il-5sO"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전풍호텔라운지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJs-qk-mYj">
+                                                <rect key="frame" x="16" y="432" width="145.33333333333334" height="27.666666666666686"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                                <color key="textColor" name="CheffiBlack"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKt-Zw-qQr">
+                                                <rect key="frame" x="345" y="427" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="Rv0-kX-nve"/>
+                                                    <constraint firstAttribute="width" constant="32" id="T9s-1S-XcV"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="icDisLike"/>
+                                                <state key="selected" image="icLike"/>
+                                                <connections>
+                                                    <action selector="didTapLike:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Zep-2C-A2A"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="옛날 추억과 곁들여 포만감이 배가 되는 맛" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Awi-Zo-EXa">
+                                                <rect key="frame" x="16" y="471.66666666666663" width="361" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" name="CheffiGray6"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oah-eo-x57">
+                                                <rect key="frame" x="16" y="513.66666666666674" width="361" height="515.66666666666674"/>
+                                                <string key="text"> 문을 열자마자 시간 여행을 한다. 레트로함이 좀 느껴지는 수준을 넘어 진도준 선생님처럼 과거로 회귀한 듯 하다. 두툼한 돈카츠로 포화된 지금 찾기 힌든 근본의 한국 경양식 돈까스는 추억 보정까지 담아 더 맛이 깊어진다. 클래식하다.
+ 영화 촬영장 수준으로 과거를 표현한 매장은 돈까스가 나오기도 전에 어릴 적 엄마아빠 손을 잡고 돈까스를 썰어 먹던 추억을 불러온다. 배부르게 먹고 단순하게 행복해진 기억이 입혀져 음식이 더 기대되고, 먹고 나선 더 만족스러워진다.
+ 돈까스가 나오자마자 벌써부터 눈이 배부르다. 확실하게 클래식함이 묻어나는 옛날 돈까스다. 얇고 넓게 펴져 큰 접시가 꽉 차도록 푸짐하게 담겨 있다. 돈까스를 다 썰은 후 먹는 것을 좋아한다면 넓은 돈까스 사이즈에 고생 좀 할 수도 있다. 부드럽지만 한참을 썰어야 해서 팔이 너덜너덜해진다.
+옛날 돈까스이기 때문에 더 기본에 충실한 근본의 맛이 느껴진다. 겉은 소스에 절여졌음에도 바삭함이 유지되었고, 속은 순두부에 수렴하는 부드러운 느낌이었다. 한국 경양식 돈까스 탑티어다. 과일을 많이 사용하는지 소스가 새콤하며 느끼함이 전혀 없다. 밥과 샐러드, 돈까스를 비벼는 맛잘알들에게는 딱 맞을 소스다.
+ 엄마가 ‘아들~ 돈까스 먹으러 가자’라고 하는 데에는 이유가 있다. 어릴 때에도 못 참았던 맛이 레트로한 공간과 어울려 깊어진다. 경양식계 클래식을 확실히 영접하고 나니 오므라이스와 매운 돈까스도 기대가 된다. 기회가 되면 꼭 재방문해야겠다.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" name="CheffiGray8"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EhK-Cr-oe7" customClass="CheffiMenuView" customModule="Cheffi" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="1053.3333333333333" width="361" height="148.66666666666674"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekk-PW-fxX" customClass="CheffiLocationView" customModule="Cheffi" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="1226" width="361" height="59"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="59" id="DMH-ff-JfG"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R3W-xu-EL2" customClass="CheffiReviewView" customModule="Cheffi" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="1309" width="361" height="128"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="rXd-PW-GgH"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layerBorderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layerCornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layerBorderColor">
+                                                        <color key="value" name="CheffiGray2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="EhK-Cr-oe7" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="0da-jp-gHm"/>
+                                            <constraint firstItem="Krt-ed-OLG" firstAttribute="top" secondItem="RaS-Ky-D5r" secondAttribute="top" constant="40" id="3gp-di-GkC"/>
+                                            <constraint firstItem="Krt-ed-OLG" firstAttribute="top" secondItem="aZ0-Mi-QOQ" secondAttribute="top" constant="-16" id="42N-9D-74p"/>
+                                            <constraint firstAttribute="trailing" secondItem="EhK-Cr-oe7" secondAttribute="trailing" constant="16" id="4ki-9i-r7c"/>
+                                            <constraint firstAttribute="trailing" secondItem="Krt-ed-OLG" secondAttribute="trailing" id="5Eh-Gi-xOR"/>
+                                            <constraint firstItem="R3W-xu-EL2" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="BbZ-lU-fqU"/>
+                                            <constraint firstItem="ekk-PW-fxX" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="CAg-cs-6JO"/>
+                                            <constraint firstAttribute="trailing" secondItem="oah-eo-x57" secondAttribute="trailing" constant="16" id="CwC-Ug-Uqv"/>
+                                            <constraint firstItem="lKt-Zw-qQr" firstAttribute="top" secondItem="Krt-ed-OLG" secondAttribute="bottom" constant="27" id="DuK-x2-Tbn"/>
+                                            <constraint firstAttribute="trailing" secondItem="Awi-Zo-EXa" secondAttribute="trailing" constant="16" id="J6a-p6-9nZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="lKt-Zw-qQr" secondAttribute="trailing" constant="16" id="LD1-b2-ujc"/>
+                                            <constraint firstAttribute="trailing" secondItem="ekk-PW-fxX" secondAttribute="trailing" constant="16" id="MnO-3g-g03"/>
+                                            <constraint firstAttribute="bottom" secondItem="R3W-xu-EL2" secondAttribute="bottom" constant="32" id="POA-RV-74c"/>
+                                            <constraint firstItem="Awi-Zo-EXa" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="Qgt-Mi-8Ki"/>
+                                            <constraint firstItem="bXR-AZ-nmb" firstAttribute="centerX" secondItem="RaS-Ky-D5r" secondAttribute="centerX" id="ZFJ-I5-sab"/>
+                                            <constraint firstItem="Awi-Zo-EXa" firstAttribute="top" secondItem="kJs-qk-mYj" secondAttribute="bottom" constant="12" id="cPV-zO-7c6"/>
+                                            <constraint firstItem="oah-eo-x57" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="dmk-91-qbj"/>
+                                            <constraint firstItem="kJs-qk-mYj" firstAttribute="top" secondItem="Krt-ed-OLG" secondAttribute="bottom" constant="32" id="dz1-pU-428"/>
+                                            <constraint firstAttribute="trailing" secondItem="R3W-xu-EL2" secondAttribute="trailing" constant="16" id="enU-ez-JWB"/>
+                                            <constraint firstItem="kJs-qk-mYj" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="et2-Qp-FKp"/>
+                                            <constraint firstItem="EhK-Cr-oe7" firstAttribute="top" secondItem="oah-eo-x57" secondAttribute="bottom" constant="24" id="g7o-II-6yH"/>
+                                            <constraint firstItem="ekk-PW-fxX" firstAttribute="top" secondItem="EhK-Cr-oe7" secondAttribute="bottom" constant="24" id="hep-kN-8UR"/>
+                                            <constraint firstItem="bXR-AZ-nmb" firstAttribute="top" secondItem="RaS-Ky-D5r" secondAttribute="top" constant="8" id="ksv-vW-tc3"/>
+                                            <constraint firstItem="R3W-xu-EL2" firstAttribute="top" secondItem="ekk-PW-fxX" secondAttribute="bottom" constant="24" id="loj-vK-1DT"/>
+                                            <constraint firstItem="aZ0-Mi-QOQ" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="oen-Sx-ZpT"/>
+                                            <constraint firstItem="Krt-ed-OLG" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" id="tov-Ro-tim"/>
+                                            <constraint firstItem="oah-eo-x57" firstAttribute="top" secondItem="Awi-Zo-EXa" secondAttribute="bottom" constant="24" id="vlA-A4-33u"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="RaS-Ky-D5r" firstAttribute="trailing" secondItem="Zvg-xx-5SJ" secondAttribute="trailing" id="2vH-aq-wPK"/>
+                                    <constraint firstItem="RaS-Ky-D5r" firstAttribute="top" secondItem="Zvg-xx-5SJ" secondAttribute="top" id="8Ob-dc-AXT"/>
+                                    <constraint firstItem="RaS-Ky-D5r" firstAttribute="bottom" secondItem="Zvg-xx-5SJ" secondAttribute="bottom" id="arz-P6-iOb"/>
+                                    <constraint firstItem="RaS-Ky-D5r" firstAttribute="height" secondItem="I3w-4q-5eA" secondAttribute="height" priority="250" id="v5E-ia-blk"/>
+                                    <constraint firstItem="RaS-Ky-D5r" firstAttribute="leading" secondItem="Zvg-xx-5SJ" secondAttribute="leading" id="yAH-wE-dzh"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Zvg-xx-5SJ"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="I3w-4q-5eA"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RaS-Ky-D5r" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="B6w-wd-3QL"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="KOS-kC-vou" secondAttribute="trailing" id="HJf-iy-kxO"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="KOS-kC-vou" secondAttribute="bottom" id="R5y-NX-Y0u"/>
+                            <constraint firstItem="KOS-kC-vou" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="VBm-yr-YpL"/>
+                            <constraint firstItem="KOS-kC-vou" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="d2g-2R-Ydn"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="393" height="1562"/>
+                    <connections>
+                        <outlet property="cheffiContensView" destination="iHl-jY-rBG" id="Dfp-oA-9Ql"/>
+                        <outlet property="cheffiLocationView" destination="ekk-PW-fxX" id="SBq-Zc-wTd"/>
+                        <outlet property="cheffiMenuView" destination="EhK-Cr-oe7" id="VhO-Sv-xba"/>
+                        <outlet property="cheffiReviewView" destination="R3W-xu-EL2" id="BeF-0d-MZk"/>
+                        <outlet property="closeButton" destination="aZ0-Mi-QOQ" id="g93-uL-Aoj"/>
+                        <outlet property="contentView" destination="RaS-Ky-D5r" id="OZw-7w-K4F"/>
+                        <outlet property="imageBackgroundView" destination="Krt-ed-OLG" id="fa9-Ei-Tlm"/>
+                        <outlet property="indicatorView" destination="bXR-AZ-nmb" id="ypn-kV-DAR"/>
+                        <outlet property="scrollView" destination="KOS-kC-vou" id="CRn-So-AUy"/>
+                        <outlet property="topLayoutConstraint" destination="3gp-di-GkC" id="WxX-3x-B5b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-63.358778625954194" y="2.8169014084507045"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icDisLike" width="24" height="24"/>
+        <image name="icLike" width="32" height="32"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="CheffiBlack">
+            <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CheffiGray2">
+            <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CheffiGray6">
+            <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CheffiGray8">
+            <color red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
