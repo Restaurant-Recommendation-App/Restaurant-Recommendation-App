@@ -19,6 +19,7 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
     @IBOutlet private weak var cheffiContensView: CheffiContensView!
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var closeButton: UIButton!
+    @IBOutlet private weak var moreButton: UIButton!
     @IBOutlet private weak var cheffiMenuView: CheffiMenuView!
     @IBOutlet private weak var cheffiLocationView: CheffiLocationView!
     @IBOutlet private weak var cheffiReviewView: CheffiReviewView!
@@ -97,5 +98,11 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
     
     @IBAction private func didTapLike(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+    }
+    
+    @IBAction private func didTapMore(_ sender: UIButton) {
+        // TODO: - Test code 
+        let vc = MoreViewController.instance()
+        self.presentPanModal(vc)
     }
 }
