@@ -8,7 +8,7 @@
 import UIKit
 import PanModal
 
-class CheffiDetailViewController: UIViewController, PanModalPresentable {
+class CheffiDetailViewController: UIViewController {
     static func instance<T: CheffiDetailViewController>() -> T {
         let vc: T = .instance(storyboardName: .cheffiDetail)
         return vc
@@ -29,40 +29,9 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
         static let duration: CGFloat = 0.3
     }
     
-    // MARK: - PanModel
-    var panScrollable: UIScrollView? {
-        return scrollView
-    }
-    var topOffset: CGFloat {
-        return 0.0
-    }
-    var cornerRadius: CGFloat {
-        return 0.0
-    }
-    var shortFormHeight: PanModalHeight {
-        return .maxHeight
-    }
-    var longFormHeight: PanModalHeight {
-        return .maxHeight
-    }
-    var shouldRoundTopCorners: Bool {
-        return true
-    }
-    var showDragIndicator: Bool {
-        return false
-    }
-    var anchorModalToLongForm: Bool {
-        return false
-    }
-    
-    func panModalDidDismiss() {
-        debugPrint("------------------------------------------")
-        debugPrint("panModalDidDismiss")
-        debugPrint("------------------------------------------")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         setupViews()
         
         let items = (0..<5).map({ index in ImageItem(id: "\(index)", image: UIImage(systemName: "star.fill")!) })
@@ -93,7 +62,7 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
     
     // MARK: - Actions
     @IBAction private func didTapClose(_ sender: UIButton) {
-        self.dismissOne()
+        self.dismissOrPop()
     }
     
     @IBAction private func didTapLike(_ sender: UIButton) {
@@ -101,8 +70,14 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
     }
     
     @IBAction private func didTapMore(_ sender: UIButton) {
-        // TODO: - Test code 
+        // TODO: - Test code
         let vc = MoreViewController.instance()
         self.presentPanModal(vc)
+    }
+}
+
+extension CheffiDetailViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
