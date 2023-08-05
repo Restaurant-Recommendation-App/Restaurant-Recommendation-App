@@ -94,6 +94,8 @@
 		FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */; };
 		FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */; };
 		FF5059792A79513300F90D27 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF5059782A79513300F90D27 /* KakaoSDK */; };
+		FF5059B92A7E357C00F90D27 /* CheffiWriterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059B82A7E357C00F90D27 /* CheffiWriterView.swift */; };
+		FF5059BB2A7E35C200F90D27 /* CheffiWriterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5059BA2A7E35C200F90D27 /* CheffiWriterView.xib */; };
 		FF97932C2A72BF9900A921A0 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932B2A72BF9900A921A0 /* AccountManager.swift */; };
 		FF97932E2A73C9D600A921A0 /* UserDefault+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */; };
 		FF9793B22A74C22800A921A0 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = FF9793B12A74C22800A921A0 /* PanModal */; };
@@ -204,6 +206,8 @@
 		FF338AF32A77E46800FCCE00 /* CheffiContensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiContensView.xib; sourceTree = "<group>"; };
 		FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiContensViewImageCell.swift; sourceTree = "<group>"; };
 		FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiContensViewImageCell.xib; sourceTree = "<group>"; };
+		FF5059B82A7E357C00F90D27 /* CheffiWriterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiWriterView.swift; sourceTree = "<group>"; };
+		FF5059BA2A7E35C200F90D27 /* CheffiWriterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiWriterView.xib; sourceTree = "<group>"; };
 		FF97932B2A72BF9900A921A0 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Ext.swift"; sourceTree = "<group>"; };
 		FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiDetailViewController.swift; sourceTree = "<group>"; };
@@ -740,6 +744,8 @@
 				FF3197822A74E51100F5DD41 /* CheffiLocationView.xib */,
 				FF3197762A74C90E00F5DD41 /* CheffiReviewView.swift */,
 				FF3197862A74E8C700F5DD41 /* CheffiReviewView.xib */,
+				FF5059B82A7E357C00F90D27 /* CheffiWriterView.swift */,
+				FF5059BA2A7E35C200F90D27 /* CheffiWriterView.xib */,
 				FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */,
 				FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */,
 				FF338AF12A77E40200FCCE00 /* CheffiContensView.swift */,
@@ -876,6 +882,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF5059BB2A7E35C200F90D27 /* CheffiWriterView.xib in Resources */,
 				CE42BA6F2A6BCAA300EBB80A /* Popup.storyboard in Resources */,
 				CE1A6A762A6286CB00FFE93D /* SimilarChefProfileCell.xib in Resources */,
 				D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */,
@@ -1013,6 +1020,7 @@
 				CEABD7162A6BDEEE001BC131 /* RecommendSearchCell.swift in Sources */,
 				CE0D45282A6195BD00636989 /* RestaurantRegistSceneDIContainer.swift in Sources */,
 				CE42BA652A6BAF4500EBB80A /* PopupView.swift in Sources */,
+				FF5059B92A7E357C00F90D27 /* CheffiWriterView.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
 				CE42BA792A6BD52D00EBB80A /* SearchViewController.swift in Sources */,
 				CE70F8992A63C692003D0ED9 /* DefaultSimilarChefRepository.swift in Sources */,

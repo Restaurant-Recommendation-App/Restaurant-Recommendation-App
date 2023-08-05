@@ -18,16 +18,14 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
     @IBOutlet private weak var imageBackgroundView: UIView!
     @IBOutlet private weak var cheffiContensView: CheffiContensView!
     @IBOutlet private weak var contentView: UIView!
-    @IBOutlet private weak var indicatorView: UIView!
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var cheffiMenuView: CheffiMenuView!
     @IBOutlet private weak var cheffiLocationView: CheffiLocationView!
     @IBOutlet private weak var cheffiReviewView: CheffiReviewView!
-    @IBOutlet private var topLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var cheffiWriterView: CheffiWriterView!
     
     enum Constants {
         static let duration: CGFloat = 0.3
-        static let topContentInset: CGFloat = 185
     }
     
     // MARK: - PanModel
@@ -38,10 +36,10 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
         return 0.0
     }
     var cornerRadius: CGFloat {
-        return 20.0
+        return 0.0
     }
     var shortFormHeight: PanModalHeight {
-        return .contentHeight(view.bounds.height - Constants.topContentInset)
+        return .maxHeight
     }
     var longFormHeight: PanModalHeight {
         return .maxHeight
@@ -60,25 +58,6 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
         debugPrint("------------------------------------------")
         debugPrint("panModalDidDismiss")
         debugPrint("------------------------------------------")
-    }
-    
-    func willTransition(to state: PanModalPresentationController.PresentationState) {
-        switch state {
-        case .longForm:
-            UIView.animate(withDuration: Constants.duration) {
-                self.topLayoutConstraint.constant = 0.0
-                self.indicatorView.alpha = 0.0
-                self.closeButton.alpha = 0.0
-                self.contentView.layoutIfNeeded()
-            }
-        case .shortForm:
-            UIView.animate(withDuration: Constants.duration) {
-                self.topLayoutConstraint.constant = 40.0
-                self.indicatorView.alpha = 1.0
-                self.closeButton.alpha = 1.0
-                self.contentView.layoutIfNeeded()
-            }
-        }
     }
     
     override func viewDidLoad() {

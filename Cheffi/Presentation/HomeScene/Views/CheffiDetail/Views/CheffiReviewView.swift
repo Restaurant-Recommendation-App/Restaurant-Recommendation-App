@@ -26,6 +26,7 @@ class CheffiReviewView: BaseView {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private var reviewButtons: [UIButton]!
     @IBOutlet private var reviewLabels: [UILabel]!
+    @IBOutlet private var reviewCountLabels: [UILabel]!
     
     enum Constants {
         static let defaultColor: UIColor = .cheffiGray5
@@ -53,14 +54,22 @@ class CheffiReviewView: BaseView {
             label.text = reviewState?.title
             label.textColor = Constants.defaultColor
         }
+        
+        for i in 0..<reviewCountLabels.count {
+            let label = reviewCountLabels[i]
+            label.text = "0"
+            label.textColor = Constants.defaultColor
+        }
     }
     
     // MARK: - Actions
     @IBAction private func didTapReview(_ sender: UIButton) {
         reviewButtons.forEach({ $0.isSelected = false })
         reviewLabels.forEach({ $0.textColor = Constants.defaultColor })
+        reviewCountLabels.forEach({ $0.textColor = Constants.defaultColor })
         
         sender.isSelected = !sender.isSelected
         reviewLabels[sender.tag].textColor = Constants.selectedColor
+        reviewCountLabels[sender.tag].textColor = Constants.selectedColor
     }
 }
