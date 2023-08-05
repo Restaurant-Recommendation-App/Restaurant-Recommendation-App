@@ -9,6 +9,6 @@ import Foundation
 import Combine
 
 protocol SimilarChefRepository {
-    func getCategories() -> AnyPublisher<[String], Error>
-    func getProfiles(categories: [String]) -> AnyPublisher<[User], Error>
+    func getCheffiTags() -> AnyPublisher<[CheffiTagResponseDTO], DataTransferError>
+    func getProfiles(tags: [String]) -> AnyPublisher<[UserResponseDTO], DataTransferError>
 }

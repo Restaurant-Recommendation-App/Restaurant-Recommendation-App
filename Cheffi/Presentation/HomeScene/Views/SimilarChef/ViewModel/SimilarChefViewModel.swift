@@ -10,11 +10,11 @@ import Combine
 
 
 protocol SimilarChefViewModelInput {
-    var selectedCategories: PassthroughSubject<[String], Error> { get }
+    func selectTags(_ tags: [String])
 }
 
 protocol SimilarChefViewModelOutput {
-    var combinedData: AnyPublisher<([String], [User]), Error> { get }
+    var combinedData: AnyPublisher<([String], [User]), Never> { get }
 }
 
 final class SimilarChefViewModel: SimilarChefViewModelInput & SimilarChefViewModelOutput {
@@ -22,42 +22,47 @@ final class SimilarChefViewModel: SimilarChefViewModelInput & SimilarChefViewMod
     private var cancellables = Set<AnyCancellable>()
     private let fetchSimilarChefUseCase: FetchSimilarChefUseCase
     private let repository: SimilarChefRepository
-    private var _profiles = PassthroughSubject<[User], Error>()
+    private let _selectedTags = PassthroughSubject<[String], Never>()
+    private let _profiles = PassthroughSubject<[User], Never>()
     
     // MARK: - Input
-    var selectedCategories = PassthroughSubject<[String], Error>()
+    func selectTags(_ tags: [String]) {
+        _selectedTags.send(tags)
+    }
     
     // MARK: - Output
-    var combinedData: AnyPublisher<([String], [User]), Error> {
-        Publishers.Zip(repository.getCategories(), _profiles)
+    var combinedData: AnyPublisher<([String], [User]), Never> {
+        return Publishers.Zip(_selectedTags, _profiles)
             .eraseToAnyPublisher()
     }
     
     // MARK: - Init
-    init(fetchSimilarChefUseCase: FetchSimilarChefUseCase, repository: SimilarChefRepository) {
+    init(
+        fetchSimilarChefUseCase: FetchSimilarChefUseCase,
+        repository: SimilarChefRepository
+    ) {
         self.fetchSimilarChefUseCase = fetchSimilarChefUseCase
         self.repository = repository
         
-        selectedCategories
-            .flatMap({ [weak self] categories in
-                self?.saveCategories(categories)
-                return fetchSimilarChefUseCase.execute(categories: categories)
+        _selectedTags
+            .flatMap({ [weak self] tags in
+                self?.saveTags(tags)
+                return fetchSimilarChefUseCase.execute(tags: tags)
+                    .catch { error -> Empty<[User], Never> in
+                        debugPrint("------------------------------------------")
+                        debugPrint(error)
+                        debugPrint("------------------------------------------")
+                        return .init()
+                    }
             })
-            .sink(receiveCompletion: { completion in
-                if case .failure(let error) = completion {
-                    // TODO: Error 헨들링
-                    debugPrint("------------------------------------------")
-                    debugPrint(error)
-                    debugPrint("------------------------------------------")
-                }
-            }, receiveValue: { [weak self] profiles in
+            .sink(receiveValue: { [weak self] profiles in
                 self?._profiles.send(profiles)
             })
             .store(in: &cancellables)
     }
     
     // MARK: - Private
-    private func saveCategories(_ categories: [String]) {
-        UserDefaultsManager.HomeSimilarChefInfo.categories = categories
+    private func saveTags(_ tags: [String]) {
+        UserDefaultsManager.HomeSimilarChefInfo.cheffiTags = tags
     }
 }

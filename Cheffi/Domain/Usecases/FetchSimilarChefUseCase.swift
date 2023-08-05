@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol FetchSimilarChefUseCase {
-    func execute(categories: [String]) -> AnyPublisher<[User], Error>
+    func execute(tags: [String]) -> AnyPublisher<[User], DataTransferError>
 }
 
 final class DefaultFetchSimilarChefUseCase: FetchSimilarChefUseCase {
@@ -19,7 +19,9 @@ final class DefaultFetchSimilarChefUseCase: FetchSimilarChefUseCase {
         self.repository = repository
     }
     
-    func execute(categories: [String]) -> AnyPublisher<[User], Error> {
-        return repository.getProfiles(categories: categories)
+    func execute(tags: [String]) -> AnyPublisher<[User], DataTransferError> {
+        return repository.getProfiles(tags: tags)
+            .map { $0.map { $0.toDomain() } } // UserResponseDTO를 User로 변환
+            .eraseToAnyPublisher()
     }
 }
