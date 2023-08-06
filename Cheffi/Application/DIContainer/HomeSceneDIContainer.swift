@@ -9,12 +9,12 @@ import UIKit
 
 
 /// 홈화면 의존성 주입 컨테이너
-final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
-    func makeHomeFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> HomeFlowCoordinator {
-        return HomeFlowCoordinator(
-            navigationController: navigationController,
-            parentCoordinator: parentCoordinator,
-            dependencies: self)
+final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
+    func makeHomeFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator, loginDependencies: LoginFlowCoordinatorDependencies) -> HomeFlowCoordinator {
+        return HomeFlowCoordinator(navigationController: navigationController,
+                                   parentCoordinator: parentCoordinator,
+                                   dependencies: self,
+                                   loginDependencies: loginDependencies)
     }
     
     func makeViewController(actions: HomeViewModelActions) -> HomeViewController {

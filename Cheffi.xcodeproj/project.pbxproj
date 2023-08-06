@@ -94,6 +94,11 @@
 		FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */; };
 		FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */; };
 		FF5059792A79513300F90D27 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF5059782A79513300F90D27 /* KakaoSDK */; };
+		FF62A44A2A7FC17F0066073F /* LoginSceneFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A4492A7FC17F0066073F /* LoginSceneFlowCoordinator.swift */; };
+		FF62A44C2A7FC1C10066073F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A44B2A7FC1C10066073F /* LoginViewController.swift */; };
+		FF62A44E2A7FC1CC0066073F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF62A44D2A7FC1CC0066073F /* Login.storyboard */; };
+		FF62A4502A7FC2C60066073F /* LoginSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A44F2A7FC2C60066073F /* LoginSceneDIContainer.swift */; };
+		FF62A4522A7FC3FD0066073F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A4512A7FC3FD0066073F /* LoginViewModel.swift */; };
 		FF97932C2A72BF9900A921A0 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932B2A72BF9900A921A0 /* AccountManager.swift */; };
 		FF97932E2A73C9D600A921A0 /* UserDefault+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */; };
 		FF9793B22A74C22800A921A0 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = FF9793B12A74C22800A921A0 /* PanModal */; };
@@ -204,6 +209,11 @@
 		FF338AF32A77E46800FCCE00 /* CheffiContensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiContensView.xib; sourceTree = "<group>"; };
 		FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiContensViewImageCell.swift; sourceTree = "<group>"; };
 		FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiContensViewImageCell.xib; sourceTree = "<group>"; };
+		FF62A4492A7FC17F0066073F /* LoginSceneFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneFlowCoordinator.swift; sourceTree = "<group>"; };
+		FF62A44B2A7FC1C10066073F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FF62A44D2A7FC1CC0066073F /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		FF62A44F2A7FC2C60066073F /* LoginSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneDIContainer.swift; sourceTree = "<group>"; };
+		FF62A4512A7FC3FD0066073F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FF97932B2A72BF9900A921A0 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Ext.swift"; sourceTree = "<group>"; };
 		FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiDetailViewController.swift; sourceTree = "<group>"; };
@@ -548,6 +558,7 @@
 			isa = PBXGroup;
 			children = (
 				D41B45FE2A61284D003EF1EC /* AppDIContainer.swift */,
+				FF62A44F2A7FC2C60066073F /* LoginSceneDIContainer.swift */,
 				D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */,
 				CE0D45182A617FC500636989 /* NationalTrendSceneDIContainer.swift */,
 				CE0D45272A6195BC00636989 /* RestaurantRegistSceneDIContainer.swift */,
@@ -560,6 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0D453D2A61AEB100636989 /* BaseScene */,
+				FF62A4452A7FC1090066073F /* LoginScene */,
 				D41B45EE2A611936003EF1EC /* HomeScene */,
 				CE0D451E2A6180AD00636989 /* NationalTrendScene */,
 				CE0D452B2A61962C00636989 /* RestaurantRegistScene */,
@@ -748,6 +760,41 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		FF62A4452A7FC1090066073F /* LoginScene */ = {
+			isa = PBXGroup;
+			children = (
+				FF62A4462A7FC1180066073F /* Flow */,
+				FF62A4472A7FC11E0066073F /* ViewModels */,
+				FF62A4482A7FC1250066073F /* Views */,
+			);
+			path = LoginScene;
+			sourceTree = "<group>";
+		};
+		FF62A4462A7FC1180066073F /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				FF62A4492A7FC17F0066073F /* LoginSceneFlowCoordinator.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		FF62A4472A7FC11E0066073F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FF62A4512A7FC3FD0066073F /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FF62A4482A7FC1250066073F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FF62A44B2A7FC1C10066073F /* LoginViewController.swift */,
+				FF62A44D2A7FC1CC0066073F /* Login.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FF97932A2A72BF8C00A921A0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -886,6 +933,7 @@
 				CE42BA7D2A6BD94E00EBB80A /* Search.storyboard in Resources */,
 				FF9793B72A74C53200A921A0 /* CheffiDetail.storyboard in Resources */,
 				CE0D45342A61968200636989 /* RestaurantRegist.storyboard in Resources */,
+				FF62A44E2A7FC1CC0066073F /* Login.storyboard in Resources */,
 				CEABD7132A6BDE94001BC131 /* RecentSearchCell.xib in Resources */,
 				FF3197872A74E8C700F5DD41 /* CheffiReviewView.xib in Resources */,
 				CE0D45432A626C3B00636989 /* SimilarChefCell.xib in Resources */,
@@ -985,10 +1033,12 @@
 				CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */,
 				D49B59282A652330003C108E /* RestaurantContentView.swift in Sources */,
 				D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */,
+				FF62A44C2A7FC1C10066073F /* LoginViewController.swift in Sources */,
 				CE0D453F2A61AECD00636989 /* BaseFlowCoordinator.swift in Sources */,
 				D41E99302A6A65660085F5D0 /* CategoryTabView.swift in Sources */,
 				D4E24EDE2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift in Sources */,
 				FF9793B52A74C47100A921A0 /* CheffiDetailViewController.swift in Sources */,
+				FF62A44A2A7FC17F0066073F /* LoginSceneFlowCoordinator.swift in Sources */,
 				D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */,
 				CE1A6A752A6286CB00FFE93D /* SimilarChefProfileCell.swift in Sources */,
 				D441C0232A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift in Sources */,
@@ -999,12 +1049,14 @@
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
 				CE0D45362A61975100636989 /* RestaurantRegistFlowCoodinator.swift in Sources */,
 				FF3197752A74C90200F5DD41 /* CheffiLocationView.swift in Sources */,
+				FF62A4522A7FC3FD0066073F /* LoginViewModel.swift in Sources */,
 				D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */,
 				D441C0202A66965400063822 /* CheffiRecommendationCatogoryPageView.swift in Sources */,
 				CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */,
 				D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */,
 				FF338AF22A77E40200FCCE00 /* CheffiContensView.swift in Sources */,
 				FF3197812A74D06600F5DD41 /* Int+Extensions.swift in Sources */,
+				FF62A4502A7FC2C60066073F /* LoginSceneDIContainer.swift in Sources */,
 				FF97932E2A73C9D600A921A0 /* UserDefault+Ext.swift in Sources */,
 				CE0D45322A61967700636989 /* RestaurantRegistViewController.swift in Sources */,
 				CE42BA7B2A6BD56000EBB80A /* SearchViewModel.swift in Sources */,

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-protocol HomeFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {
+protocol HomeFlowCoordinatorDependencies: BaseFlowCoordinatorDependencies {
     func makeViewController(actions: HomeViewModelActions) -> HomeViewController
     func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
@@ -16,8 +16,25 @@ protocol HomeFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {
 }
 
 final class HomeFlowCoordinator: BaseFlowCoordinator {
-    private var homeDependencies: HomeFlowCoodinatorDependencies {
-        return self.dependencies as! HomeFlowCoodinatorDependencies
+    private var homeDependencies: HomeFlowCoordinatorDependencies {
+        return self.dependencies as! HomeFlowCoordinatorDependencies
+    }
+    
+    private var loginDependencies: LoginFlowCoordinatorDependencies?
+        
+    required init(navigationController: UINavigationController,
+                  parentCoordinator: AppFlowCoordinator,
+                  dependencies: BaseFlowCoordinatorDependencies) {
+        super.init(navigationController: navigationController, parentCoordinator: parentCoordinator, dependencies: dependencies)
+    }
+    
+    init(navigationController: UINavigationController,
+         parentCoordinator: AppFlowCoordinator,
+         dependencies: HomeFlowCoordinatorDependencies,
+         loginDependencies: LoginFlowCoordinatorDependencies) {
+        
+        self.loginDependencies = loginDependencies
+        super.init(navigationController: navigationController, parentCoordinator: parentCoordinator, dependencies: dependencies)
     }
     
     func start() {
@@ -30,8 +47,8 @@ final class HomeFlowCoordinator: BaseFlowCoordinator {
     
     private func showPopup(text: String, keyword: String) {
         let vc = homeDependencies.makePopupViewController(text: text, keyword: keyword, findHandler: { [weak self] in
-            guard let detailVC = self?.homeDependencies.makeCheffiDetail() else { return }
-            self?.navigationController?.presentPanModal(detailVC)
+            guard let vc = self?.loginDependencies?.makeLoginViewController() else { return }
+            self?.navigationController?.present(vc, animated: true)
         }, cancelHandler: {})
         navigationController?.present(vc, animated: true)
     }

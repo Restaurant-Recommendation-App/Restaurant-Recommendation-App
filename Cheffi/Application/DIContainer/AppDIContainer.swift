@@ -8,19 +8,23 @@
 import UIKit
 
 final class AppDIContainer {
+    func makeLoginSceneDIContainer() -> LoginSceneDIContainer {
+        return LoginSceneDIContainer()
+    }
+    
     func makeHomeSceneDIContainer() -> HomeSceneDIContainer {
-        HomeSceneDIContainer()
+        return HomeSceneDIContainer()
     }
     
     func makeNationalTrendSceneDIContainer() -> NationalTrendSceneDIContainer {
-        NationalTrendSceneDIContainer()
+        return NationalTrendSceneDIContainer()
     }
     
     func makeRestaurantRegistSceneDIContainer() -> RestaurantRegistSceneDIContainer {
-        RestaurantRegistSceneDIContainer()
+        return RestaurantRegistSceneDIContainer()
     }
     
     func makeMyPageFlowCoordinator() -> MyPageSceneDIContainer {
-        MyPageSceneDIContainer()
+        return MyPageSceneDIContainer()
     }
 }
