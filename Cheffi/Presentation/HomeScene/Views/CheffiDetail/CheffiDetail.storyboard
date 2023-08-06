@@ -178,7 +178,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="icClose"/>
+                                <state key="normal" image="icDetailBack"/>
                                 <connections>
                                     <action selector="didTapClose:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="CCF-Il-5sO"/>
                                 </connections>
@@ -190,7 +190,7 @@
                                     <constraint firstAttribute="width" constant="32" id="phe-xu-CuD"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="icMore"/>
+                                <state key="normal" image="icDetailMore"/>
                                 <connections>
                                     <action selector="didTapMore:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="8NK-ED-HIi"/>
                                 </connections>
@@ -230,10 +230,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icClose" width="32" height="32"/>
+        <image name="icDetailBack" width="40" height="40"/>
+        <image name="icDetailMore" width="40" height="40"/>
         <image name="icDisLike" width="24" height="24"/>
         <image name="icLike" width="32" height="32"/>
-        <image name="icMore" width="32" height="32"/>
         <namedColor name="CheffiBlack">
             <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

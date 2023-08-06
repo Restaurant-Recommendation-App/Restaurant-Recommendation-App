@@ -12,16 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheffiReviewView" customModule="Cheffi" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="sQy-v5-zPZ"/>
+                <outlet property="negativeStackView" destination="hkg-rO-bbZ" id="ef7-x3-C2p"/>
+                <outlet property="neutralStackView" destination="Cyw-aE-Siq" id="hqx-rM-9p7"/>
+                <outlet property="positiveStackView" destination="XkJ-UC-scl" id="29n-aY-m2e"/>
                 <outlet property="titleLabel" destination="dq6-V5-ZS9" id="FQV-Ij-eht"/>
-                <outletCollection property="reviewButtons" destination="seI-hI-QuR" collectionClass="NSMutableArray" id="Jba-W6-zLv"/>
-                <outletCollection property="reviewLabels" destination="bKV-8g-TlK" collectionClass="NSMutableArray" id="Gqs-mL-EE6"/>
-                <outletCollection property="reviewLabels" destination="lhh-om-YAp" collectionClass="NSMutableArray" id="zdW-PM-Hnz"/>
-                <outletCollection property="reviewLabels" destination="T6d-ZV-xVa" collectionClass="NSMutableArray" id="HXH-mL-Fe9"/>
-                <outletCollection property="reviewButtons" destination="wqi-xS-RA0" collectionClass="NSMutableArray" id="aok-Th-Asa"/>
-                <outletCollection property="reviewButtons" destination="8bO-ky-LLd" collectionClass="NSMutableArray" id="zti-v8-UMM"/>
-                <outletCollection property="reviewCountLabels" destination="Mbv-5p-A1M" collectionClass="NSMutableArray" id="ABp-rb-8FT"/>
-                <outletCollection property="reviewCountLabels" destination="ta4-Bs-v3y" collectionClass="NSMutableArray" id="UmA-iA-d45"/>
-                <outletCollection property="reviewCountLabels" destination="tTg-AU-Au7" collectionClass="NSMutableArray" id="K2E-K6-UTg"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

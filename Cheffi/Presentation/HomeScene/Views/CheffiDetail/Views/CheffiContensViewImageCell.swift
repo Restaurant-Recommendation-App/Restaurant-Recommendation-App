@@ -10,11 +10,12 @@ import UIKit
 class CheffiContensViewImageCell: UICollectionViewCell {
     
     @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var gradationView: UIImageView!
     @IBOutlet private weak var timeAgoLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tasteLabel: UILabel!
     @IBOutlet private weak var tasteBackgroundView: UIView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupViews()
@@ -26,7 +27,7 @@ class CheffiContensViewImageCell: UICollectionViewCell {
         setupViews()
         setViewsHidden(true)
     }
-
+    
     // MARK: - Private
     private func setupViews() {
         imageView.image = nil
