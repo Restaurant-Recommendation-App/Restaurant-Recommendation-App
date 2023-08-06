@@ -99,13 +99,12 @@
 		FF50599D2A7DFFAF00F90D27 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF50599C2A7DFFAF00F90D27 /* NetworkConfig.swift */; };
 		FF50599F2A7E002800F90D27 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF50599E2A7E002800F90D27 /* Endpoint.swift */; };
 		FF5059A12A7E017400F90D27 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A02A7E017400F90D27 /* DataTransferService.swift */; };
-		FF5059A42A7E058400F90D27 /* CheffiTagResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A32A7E058400F90D27 /* CheffiTagResponseDTO.swift */; };
+		FF5059A42A7E058400F90D27 /* TagResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A32A7E058400F90D27 /* TagResponseDTO.swift */; };
 		FF5059A62A7E08DE00F90D27 /* HomeAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A52A7E08DE00F90D27 /* HomeAPIEndpoints.swift */; };
-		FF5059A92A7E093D00F90D27 /* UserRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A82A7E093D00F90D27 /* UserRequestDTO.swift */; };
-		FF5059AD2A7E096C00F90D27 /* UserResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059AC2A7E096C00F90D27 /* UserResponseDTO.swift */; };
+		FF5059A92A7E093D00F90D27 /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A82A7E093D00F90D27 /* UserInfoDTO.swift */; };
 		FF5059B22A7E0B3100F90D27 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059B12A7E0B3100F90D27 /* Cancellable.swift */; };
 		FF5059B52A7E0B4D00F90D27 /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059B42A7E0B4D00F90D27 /* ConnectionError.swift */; };
-		FF5059B72A7E0CF900F90D27 /* CheffiTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059B62A7E0CF900F90D27 /* CheffiTag.swift */; };
+		FF5059B72A7E0CF900F90D27 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059B62A7E0CF900F90D27 /* Tag.swift */; };
 		FF97932C2A72BF9900A921A0 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932B2A72BF9900A921A0 /* AccountManager.swift */; };
 		FF97932E2A73C9D600A921A0 /* UserDefault+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */; };
 		FF9793B22A74C22800A921A0 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = FF9793B12A74C22800A921A0 /* PanModal */; };
@@ -221,13 +220,12 @@
 		FF50599C2A7DFFAF00F90D27 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		FF50599E2A7E002800F90D27 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		FF5059A02A7E017400F90D27 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
-		FF5059A32A7E058400F90D27 /* CheffiTagResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiTagResponseDTO.swift; sourceTree = "<group>"; };
+		FF5059A32A7E058400F90D27 /* TagResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagResponseDTO.swift; sourceTree = "<group>"; };
 		FF5059A52A7E08DE00F90D27 /* HomeAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIEndpoints.swift; sourceTree = "<group>"; };
-		FF5059A82A7E093D00F90D27 /* UserRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestDTO.swift; sourceTree = "<group>"; };
-		FF5059AC2A7E096C00F90D27 /* UserResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseDTO.swift; sourceTree = "<group>"; };
+		FF5059A82A7E093D00F90D27 /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
 		FF5059B12A7E0B3100F90D27 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 		FF5059B42A7E0B4D00F90D27 /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
-		FF5059B62A7E0CF900F90D27 /* CheffiTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiTag.swift; sourceTree = "<group>"; };
+		FF5059B62A7E0CF900F90D27 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		FF97932B2A72BF9900A921A0 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Ext.swift"; sourceTree = "<group>"; };
 		FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiDetailViewController.swift; sourceTree = "<group>"; };
@@ -502,7 +500,7 @@
 			isa = PBXGroup;
 			children = (
 				CE70F8882A63BFEB003D0ED9 /* User.swift */,
-				FF5059B62A7E0CF900F90D27 /* CheffiTag.swift */,
+				FF5059B62A7E0CF900F90D27 /* Tag.swift */,
 				CEABD71C2A6BDFD5001BC131 /* Search.swift */,
 				FF31977E2A74CEBC00F5DD41 /* Menu.swift */,
 				FF3197842A74E70900F5DD41 /* Location.swift */,
@@ -793,27 +791,10 @@
 		FF5059A72A7E092E00F90D27 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				FF5059AA2A7E094500F90D27 /* Reqeust */,
-				FF5059AB2A7E094D00F90D27 /* Response */,
+				FF5059A82A7E093D00F90D27 /* UserInfoDTO.swift */,
+				FF5059A32A7E058400F90D27 /* TagResponseDTO.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		FF5059AA2A7E094500F90D27 /* Reqeust */ = {
-			isa = PBXGroup;
-			children = (
-				FF5059A82A7E093D00F90D27 /* UserRequestDTO.swift */,
-			);
-			path = Reqeust;
-			sourceTree = "<group>";
-		};
-		FF5059AB2A7E094D00F90D27 /* Response */ = {
-			isa = PBXGroup;
-			children = (
-				FF5059A32A7E058400F90D27 /* CheffiTagResponseDTO.swift */,
-				FF5059AC2A7E096C00F90D27 /* UserResponseDTO.swift */,
-			);
-			path = Response;
 			sourceTree = "<group>";
 		};
 		FF5059B32A7E0B4400F90D27 /* Network */ = {
@@ -1040,7 +1021,6 @@
 				FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */,
 				CE1A6A6D2A62716C00FFE93D /* SimilarChefViewModel.swift in Sources */,
 				CE70F8912A63C18C003D0ED9 /* FetchSimilarChefUseCase.swift in Sources */,
-				FF5059AD2A7E096C00F90D27 /* UserResponseDTO.swift in Sources */,
 				CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */,
 				FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */,
 				FF5059A62A7E08DE00F90D27 /* HomeAPIEndpoints.swift in Sources */,
@@ -1069,8 +1049,8 @@
 				CE0D453F2A61AECD00636989 /* BaseFlowCoordinator.swift in Sources */,
 				D41E99302A6A65660085F5D0 /* CategoryTabView.swift in Sources */,
 				D4E24EDE2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift in Sources */,
-				FF5059A92A7E093D00F90D27 /* UserRequestDTO.swift in Sources */,
-				FF5059B72A7E0CF900F90D27 /* CheffiTag.swift in Sources */,
+				FF5059A92A7E093D00F90D27 /* UserInfoDTO.swift in Sources */,
+				FF5059B72A7E0CF900F90D27 /* Tag.swift in Sources */,
 				FF9793B52A74C47100A921A0 /* CheffiDetailViewController.swift in Sources */,
 				D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */,
 				CE1A6A752A6286CB00FFE93D /* SimilarChefProfileCell.swift in Sources */,
@@ -1080,7 +1060,7 @@
 				D41E99322A6BB9A80085F5D0 /* UIView+Extensions.swift in Sources */,
 				CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */,
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
-				FF5059A42A7E058400F90D27 /* CheffiTagResponseDTO.swift in Sources */,
+				FF5059A42A7E058400F90D27 /* TagResponseDTO.swift in Sources */,
 				CE0D45362A61975100636989 /* RestaurantRegistFlowCoodinator.swift in Sources */,
 				FF3197752A74C90200F5DD41 /* CheffiLocationView.swift in Sources */,
 				D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */,

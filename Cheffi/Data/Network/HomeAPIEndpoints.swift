@@ -8,13 +8,13 @@
 import Foundation
 
 struct HomeAPIEndpoints {
-    static func getCheffiTags() -> Endpoint<[CheffiTagResponseDTO]> {
+    static func getTags() -> Endpoint<[TagResponseDTO]> {
         return Endpoint(path: "tags",
                         method: .get)
     }
     
-    static func getProfiles(tags: [String]) -> Endpoint<[UserResponseDTO]> {
-        return Endpoint(path: "profile",
+    static func getUsers(tags: [String]) -> Endpoint<[UserInfoDTO]> {
+        return Endpoint(path: "users",
                         method: .get,
                         queryParameters: ["tags": tags]
         )

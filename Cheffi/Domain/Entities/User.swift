@@ -7,7 +7,15 @@
 
 import Foundation
 
+enum Provider: String, Codable {
+    case kakao = "KAKAO"
+    case apple = "APPLE"
+}
+
 struct User: Codable {
-    let id: Int
+    let email: String
     let name: String
+    let provider: Provider
+    let adAgreed: Bool
+    let analysisAgreed: Bool
 }

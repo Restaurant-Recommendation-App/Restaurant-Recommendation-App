@@ -20,8 +20,8 @@ final class DefaultFetchSimilarChefUseCase: FetchSimilarChefUseCase {
     }
     
     func execute(tags: [String]) -> AnyPublisher<[User], DataTransferError> {
-        return repository.getProfiles(tags: tags)
-            .map { $0.map { $0.toDomain() } } // UserResponseDTO를 User로 변환
+        return repository.getUsers(tags: tags)
+            .map { $0.map { $0.toDomain() } } // UserInfoDTO를 User로 변환
             .eraseToAnyPublisher()
     }
 }
