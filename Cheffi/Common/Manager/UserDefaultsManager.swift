@@ -9,8 +9,8 @@ import Foundation
 
 enum UserDefaultsManager {
     enum HomeSimilarChefInfo {
-        @UserDefault(key: "cheffiTags", defaultValue: [])
-        static var cheffiTags: [String]
+        @UserDefault(key: "tags", defaultValue: [])
+        static var tags: [String]
     }
     
     enum SearchInfo {
@@ -26,7 +26,7 @@ enum UserDefaultsManager {
 
 extension UserDefaultsManager {
     static func HomeSimilarChefClear() {
-        UserDefaultsManager.HomeSimilarChefInfo.cheffiTags = []
+        UserDefaultsManager.HomeSimilarChefInfo.tags = []
     }
     
     static func SearchClear() {

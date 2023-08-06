@@ -86,7 +86,7 @@ class TagListView: UIView {
         self.tagList = tagList
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
-        let selectedTags = UserDefaultsManager.HomeSimilarChefInfo.cheffiTags
+        let selectedTags = UserDefaultsManager.HomeSimilarChefInfo.tags
         debugPrint("------------------------------------------")
         debugPrint("저장된 Tag 리스트 - ", selectedTags)
         debugPrint("------------------------------------------")

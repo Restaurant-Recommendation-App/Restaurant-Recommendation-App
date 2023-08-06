@@ -63,6 +63,6 @@ final class SimilarChefViewModel: SimilarChefViewModelInput & SimilarChefViewMod
     
     // MARK: - Private
     private func saveTags(_ tags: [String]) {
-        UserDefaultsManager.HomeSimilarChefInfo.cheffiTags = tags
+        UserDefaultsManager.HomeSimilarChefInfo.tags = tags
     }
 }

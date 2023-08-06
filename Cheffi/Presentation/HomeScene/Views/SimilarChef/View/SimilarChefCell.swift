@@ -57,7 +57,7 @@ class SimilarChefCell: UITableViewCell {
                 self?.dataSource?.apply(snapshot, animatingDifferences: true)
             })
             .store(in: &cancellables)
-        viewModel.selectTags(UserDefaultsManager.HomeSimilarChefInfo.cheffiTags)
+        viewModel.selectTags(UserDefaultsManager.HomeSimilarChefInfo.tags)
     }
     
     // MARK: - Private
