@@ -48,6 +48,9 @@ class CheffiContensView: BaseView {
         dataSource = UICollectionViewDiffableDataSource<Int, ImageItem>(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, item: ImageItem) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withClass: CheffiContensViewImageCell.self, for: indexPath)
+            if indexPath.row == 0 {
+                cell.setViewsHidden(false)
+            }
             cell.setImage(item.image)
             return cell
         }
