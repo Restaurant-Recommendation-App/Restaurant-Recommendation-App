@@ -12,7 +12,7 @@
         <!--Login View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="LoginViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SNSLoginViewController" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="SNSLoginViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,10 +43,11 @@
                             <constraint firstItem="k05-nL-dhd" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="zKd-ND-ive"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Rbi-6W-RNJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-44" y="4"/>
+            <point key="canvasLocation" x="329" y="-86"/>
         </scene>
     </scenes>
     <resources>

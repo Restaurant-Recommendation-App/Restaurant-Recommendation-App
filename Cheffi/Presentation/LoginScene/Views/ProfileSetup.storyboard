@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile Setup View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ProfileSetupViewController" id="Y6W-OH-hqX" customClass="ProfileSetupViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvs-2T-8B2">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yq1-hq-NYp">
+                                        <rect key="frame" x="16" y="0.0" width="44" height="44"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="icBack"/>
+                                        <connections>
+                                            <action selector="didTapBack:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gN9-OX-qXN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="yq1-hq-NYp" firstAttribute="leading" secondItem="jvs-2T-8B2" secondAttribute="leading" constant="16" id="cTq-LA-XqO"/>
+                                    <constraint firstItem="yq1-hq-NYp" firstAttribute="centerY" secondItem="jvs-2T-8B2" secondAttribute="centerY" id="dVO-K3-dyP"/>
+                                    <constraint firstAttribute="height" constant="44" id="zVI-D4-0zn"/>
+                                </constraints>
+                            </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="T11-8S-SIR">
+                                <rect key="frame" x="0.0" y="103" width="393" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="SqE-4N-NEh"/>
+                                </constraints>
+                            </progressView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70c-Zs-0Mt">
+                                <rect key="frame" x="0.0" y="104" width="393" height="714"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="CheffiWhite"/>
+                        <constraints>
+                            <constraint firstItem="jvs-2T-8B2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="9XC-BP-ge1"/>
+                            <constraint firstItem="70c-Zs-0Mt" firstAttribute="top" secondItem="T11-8S-SIR" secondAttribute="bottom" id="I6w-9J-k4x"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="T11-8S-SIR" secondAttribute="trailing" id="Lto-92-RUe"/>
+                            <constraint firstItem="T11-8S-SIR" firstAttribute="top" secondItem="jvs-2T-8B2" secondAttribute="bottom" id="OVU-i2-bS1"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="70c-Zs-0Mt" secondAttribute="trailing" id="aIt-an-Ndk"/>
+                            <constraint firstItem="T11-8S-SIR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="c05-au-YEK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="70c-Zs-0Mt" secondAttribute="bottom" id="fRw-es-SMW"/>
+                            <constraint firstItem="70c-Zs-0Mt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="h7o-qT-53Y"/>
+                            <constraint firstItem="jvs-2T-8B2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="vor-Sd-W8L"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="jvs-2T-8B2" secondAttribute="trailing" id="wsc-Sc-FGg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="70c-Zs-0Mt" id="OmL-am-Swa"/>
+                        <outlet property="progressView" destination="T11-8S-SIR" id="gYq-ww-5cB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="96.946564885496173" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icBack" width="44" height="44"/>
+        <namedColor name="CheffiWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -47,8 +47,10 @@ final class HomeFlowCoordinator: BaseFlowCoordinator {
     
     private func showPopup(text: String, keyword: String) {
         let vc = homeDependencies.makePopupViewController(text: text, keyword: keyword, findHandler: { [weak self] in
-            guard let vc = self?.loginDependencies?.makeLoginViewController() else { return }
-            self?.navigationController?.present(vc, animated: true)
+            guard let self = self else { return }
+            let actions = SNSLoginViewModelActions(showProfileSetup: self.showProfileSetup)
+            guard let vc = self.loginDependencies?.makeSNSLoginViewController(actions: actions) else { return }
+            self.navigationController?.present(vc, animated: true)
         }, cancelHandler: {})
         navigationController?.present(vc, animated: true)
     }
@@ -60,6 +62,11 @@ final class HomeFlowCoordinator: BaseFlowCoordinator {
     
     private func showSearch() {
         let vc = homeDependencies.makeSearchViewController()
+        navigationController?.pushViewController(vc)
+    }
+    
+    private func showProfileSetup(navigationController: UINavigationController?) {
+        guard let vc = loginDependencies?.makeProfileSetupViewController() else { return }
         navigationController?.pushViewController(vc)
     }
 }

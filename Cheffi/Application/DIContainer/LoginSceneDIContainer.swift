@@ -15,12 +15,28 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
                                     dependencies: self)
     }
     
-    func makeLoginViewController() -> LoginViewController {
-        return LoginViewController.instance(viewModel: makeLoginViewModel())
+    func makeSNSLoginViewController(actions: SNSLoginViewModelActions) -> UINavigationController {
+        let viewModel = makeSNSLoginViewModel(actions: actions)
+        let vc = SNSLoginViewController.instance(viewModel: viewModel)
+        let navi = UINavigationController(rootViewController: vc)
+        navi.navigationBar.backgroundColor = .clear
+        navi.navigationBar.isTranslucent = false
+        navi.setNavigationBarHidden(true, animated: false)
+        navi.modalPresentationStyle = .fullScreen
+        return navi
     }
     
-    func makeLoginViewModel() -> LoginViewModel {
-        return LoginViewModel()
+    func makeProfileSetupViewController() -> ProfileSetupViewController {
+        let viewModel = ProfileSetupViewModel()
+        return ProfileSetupViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeSNSLoginViewModel(actions: SNSLoginViewModelActions) -> SNSLoginViewModel {
+        return SNSLoginViewModel(actions: actions)
+    }
+    
+    func makeProfileSetupViewModel() -> ProfileSetupViewModel {
+        return ProfileSetupViewModel()
     }
     
     // MAKR: - PopupViewController

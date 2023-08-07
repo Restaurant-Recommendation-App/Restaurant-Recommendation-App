@@ -9,7 +9,8 @@ import UIKit
 import Combine
 
 protocol LoginFlowCoordinatorDependencies: BaseFlowCoordinatorDependencies {
-    func makeLoginViewController() -> LoginViewController
+    func makeSNSLoginViewController(actions: SNSLoginViewModelActions) -> UINavigationController
+    func makeProfileSetupViewController() -> ProfileSetupViewController
 }
 
 final class LoginFlowCoordinator: BaseFlowCoordinator {

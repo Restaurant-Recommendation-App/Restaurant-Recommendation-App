@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile Photo View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ProfilePhotoViewController" id="Y6W-OH-hqX" customClass="ProfilePhotoViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필 사진" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpS-mk-isS">
+                                <rect key="frame" x="157.66666666666666" y="415.66666666666669" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9X-Y3-7lJ" customClass="CustomProfileButton" customModule="Cheffi" customModuleProvider="target">
+                                <rect key="frame" x="16" y="708" width="361" height="48"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="9fa-kl-pDc"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsx-uP-alO">
+                                <rect key="frame" x="58" y="764" width="277" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="dws-P0-lsb"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="나중에 하기"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rsx-uP-alO" firstAttribute="top" secondItem="n9X-Y3-7lJ" secondAttribute="bottom" constant="8" id="Cc2-Zy-1jG"/>
+                            <constraint firstItem="n9X-Y3-7lJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="KXc-Hy-Qq1"/>
+                            <constraint firstItem="qpS-mk-isS" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Pcn-cM-GSW"/>
+                            <constraint firstItem="rsx-uP-alO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="58" id="PeL-P3-8ne"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rsx-uP-alO" secondAttribute="bottom" constant="6" id="QXD-PP-wG4"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rsx-uP-alO" secondAttribute="trailing" constant="58" id="UeY-U4-6Jl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="n9X-Y3-7lJ" secondAttribute="trailing" constant="16" id="lpT-2v-0mB"/>
+                            <constraint firstItem="qpS-mk-isS" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="oJN-vm-WSP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="registerProfileButton" destination="n9X-Y3-7lJ" id="xxl-N7-VeT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="96.946564885496173" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
