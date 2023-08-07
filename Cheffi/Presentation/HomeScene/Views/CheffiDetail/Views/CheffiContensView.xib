@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,7 +32,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfM-8f-0n0">
-                    <rect key="frame" x="513" y="434" width="40" height="24"/>
+                    <rect key="frame" x="513" y="449" width="40" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ras-5e-XfU">
                             <rect key="frame" x="9.333333333333373" y="3.6666666666666856" width="21.666666666666671" height="17"/>
@@ -58,9 +57,9 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="cfM-8f-0n0" secondAttribute="bottom" constant="31" id="Bew-MR-VgX"/>
+                <constraint firstAttribute="bottom" secondItem="cfM-8f-0n0" secondAttribute="bottom" constant="16" id="Bew-MR-VgX"/>
                 <constraint firstAttribute="bottom" secondItem="Scf-hj-w5E" secondAttribute="bottom" id="V6y-fw-b2U"/>
                 <constraint firstItem="Scf-hj-w5E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jts-7Q-hgC"/>
                 <constraint firstItem="Scf-hj-w5E" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="oha-oh-6A6"/>
@@ -77,8 +76,5 @@
         <namedColor name="CheffiWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

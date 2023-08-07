@@ -17,6 +17,7 @@ enum StoryboardName: String {
     case search
     case similarChefList
     case cheffiDetail
+    case more
     case login
 }
 

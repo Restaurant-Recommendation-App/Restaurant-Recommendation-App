@@ -10,6 +10,16 @@ import UIKit
 
 /// 홈화면 의존성 주입 컨테이너
 final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
+    
+    struct Dependencies {
+        let apiDataTransferService: DataTransferService
+    }
+    
+    private let dependencies: Dependencies
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+    }
+    
     func makeHomeFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator, loginDependencies: LoginFlowCoordinatorDependencies) -> HomeFlowCoordinator {
         return HomeFlowCoordinator(navigationController: navigationController,
                                    parentCoordinator: parentCoordinator,
@@ -17,8 +27,19 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
                                    loginDependencies: loginDependencies)
     }
     
+    func makeHomeFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> HomeFlowCoordinator {
+        return HomeFlowCoordinator(
+            navigationController: navigationController,
+            parentCoordinator: parentCoordinator,
+            dependencies: self)
+    }
+    
     func makeViewController(actions: HomeViewModelActions) -> HomeViewController {
         return HomeViewController.instance(viewModel: makeHomeViewModel(actions: actions))
+    }
+    
+    func makePopupViewController(text: String, keyword: String, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController {
+        return PopupViewController.instance(text: text, keyword: keyword, findHandler: findHandler, cancelHandler: cancelHandler)
     }
     
     func makeHomeViewModel(actions: HomeViewModelActions) -> HomeViewModel {
@@ -29,18 +50,6 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
         let repository = makeSimilarChefRepository()
         return SimilarChefViewModel(fetchSimilarChefUseCase: makeFetchSimilarChefUseCase(repository: repository),
                                     repository: repository)
-    }
-    
-    func makeFetchSimilarChefUseCase(repository: SimilarChefRepository) -> FetchSimilarChefUseCase {
-        return DefaultFetchSimilarChefUseCase(repository: repository)
-    }
-    
-    func makeSimilarChefRepository() -> SimilarChefRepository {
-        return DefaultSimilarChefRepository()
-    }
-    
-    func makePopupViewController(text: String, keyword: String, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController {
-        return PopupViewController.instance(text: text, keyword: keyword, findHandler: findHandler, cancelHandler: cancelHandler)
     }
     
     // MARK: - Search
@@ -66,5 +75,19 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
     
     func makeSimilarChefListViewModel() -> SimilarChefListViewModel {
         return SimilarChefListViewModel()
+    }
+}
+
+// MARK: - Use Cases
+extension HomeSceneDIContainer {
+    func makeFetchSimilarChefUseCase(repository: SimilarChefRepository) -> FetchSimilarChefUseCase {
+        return DefaultFetchSimilarChefUseCase(repository: repository)
+    }
+}
+
+// MARK: - Repositories
+extension HomeSceneDIContainer {
+    func makeSimilarChefRepository() -> SimilarChefRepository {
+        return DefaultSimilarChefRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

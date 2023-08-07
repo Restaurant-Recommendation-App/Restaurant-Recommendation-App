@@ -8,7 +8,7 @@
 import UIKit
 import PanModal
 
-class CheffiDetailViewController: UIViewController, PanModalPresentable {
+class CheffiDetailViewController: UIViewController {
     static func instance<T: CheffiDetailViewController>() -> T {
         let vc: T = .instance(storyboardName: .cheffiDetail)
         return vc
@@ -18,71 +18,20 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
     @IBOutlet private weak var imageBackgroundView: UIView!
     @IBOutlet private weak var cheffiContensView: CheffiContensView!
     @IBOutlet private weak var contentView: UIView!
-    @IBOutlet private weak var indicatorView: UIView!
     @IBOutlet private weak var closeButton: UIButton!
+    @IBOutlet private weak var moreButton: UIButton!
     @IBOutlet private weak var cheffiMenuView: CheffiMenuView!
     @IBOutlet private weak var cheffiLocationView: CheffiLocationView!
     @IBOutlet private weak var cheffiReviewView: CheffiReviewView!
-    @IBOutlet private var topLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var cheffiWriterView: CheffiWriterView!
     
     enum Constants {
         static let duration: CGFloat = 0.3
-        static let topContentInset: CGFloat = 185
-    }
-    
-    // MARK: - PanModel
-    var panScrollable: UIScrollView? {
-        return scrollView
-    }
-    var topOffset: CGFloat {
-        return 0.0
-    }
-    var cornerRadius: CGFloat {
-        return 20.0
-    }
-    var shortFormHeight: PanModalHeight {
-        return .contentHeight(view.bounds.height - Constants.topContentInset)
-    }
-    var longFormHeight: PanModalHeight {
-        return .maxHeight
-    }
-    var shouldRoundTopCorners: Bool {
-        return true
-    }
-    var showDragIndicator: Bool {
-        return false
-    }
-    var anchorModalToLongForm: Bool {
-        return false
-    }
-    
-    func panModalDidDismiss() {
-        debugPrint("------------------------------------------")
-        debugPrint("panModalDidDismiss")
-        debugPrint("------------------------------------------")
-    }
-    
-    func willTransition(to state: PanModalPresentationController.PresentationState) {
-        switch state {
-        case .longForm:
-            UIView.animate(withDuration: Constants.duration) {
-                self.topLayoutConstraint.constant = 0.0
-                self.indicatorView.alpha = 0.0
-                self.closeButton.alpha = 0.0
-                self.contentView.layoutIfNeeded()
-            }
-        case .shortForm:
-            UIView.animate(withDuration: Constants.duration) {
-                self.topLayoutConstraint.constant = 40.0
-                self.indicatorView.alpha = 1.0
-                self.closeButton.alpha = 1.0
-                self.contentView.layoutIfNeeded()
-            }
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         setupViews()
         
         let items = (0..<5).map({ index in ImageItem(id: "\(index)", image: UIImage(systemName: "star.fill")!) })
@@ -113,10 +62,22 @@ class CheffiDetailViewController: UIViewController, PanModalPresentable {
     
     // MARK: - Actions
     @IBAction private func didTapClose(_ sender: UIButton) {
-        self.dismissOne()
+        self.dismissOrPop()
     }
     
     @IBAction private func didTapLike(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+    }
+    
+    @IBAction private func didTapMore(_ sender: UIButton) {
+        // TODO: - Test code
+        let vc = MoreViewController.instance()
+        self.presentPanModal(vc)
+    }
+}
+
+extension CheffiDetailViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
