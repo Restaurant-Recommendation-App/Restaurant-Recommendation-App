@@ -43,12 +43,13 @@ class SimilarChefCell: UITableViewCell {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
+                    // TODO: - 에러메시지 처리
                     debugPrint("------------------------------------------")
                     debugPrint(error)
                     debugPrint("------------------------------------------")
                 }
-            }, receiveValue: { [weak self] categories, profiles in
-                self?.tagListView.setupTags(categories)
+            }, receiveValue: { [weak self] tags, profiles in
+                self?.tagListView.setupTags(tags)
                 
                 var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
                 snapshot.appendSections([0])
@@ -56,8 +57,7 @@ class SimilarChefCell: UITableViewCell {
                 self?.dataSource?.apply(snapshot, animatingDifferences: true)
             })
             .store(in: &cancellables)
-        
-        viewModel.selectedCategories.send(UserDefaultsManager.HomeSimilarChefInfo.categories)
+        viewModel.selectTags(UserDefaultsManager.HomeSimilarChefInfo.tags)
     }
     
     // MARK: - Private
@@ -79,8 +79,8 @@ class SimilarChefCell: UITableViewCell {
         }
         
         // TagListView
-        tagListView.didTapTagsHandler = { [weak self] tagList in
-            self?.viewModel?.selectedCategories.send(tagList)
+        tagListView.didTapTagsHandler = { [weak self] tags in
+            self?.viewModel?.selectTags(tags)
         }
         
         // show all contents button

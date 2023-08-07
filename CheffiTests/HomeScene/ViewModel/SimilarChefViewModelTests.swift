@@ -26,14 +26,14 @@ final class SimilarChefViewModelTests: XCTestCase {
     }
 
     func testSelectedCategoryFetchesProfiles() {
-        let testCategory = "test"
-        let testUsers: [User] = (1...12).map({ User(id: "\($0)", name: "김맛집\($0)")})
+        let testTag = "test"
+        let testUsers: [User] = (1...12).map({ User(id: $0, name: "김맛집\($0)")})
         useCase.result = .success(testUsers)
         let expectation = XCTestExpectation(description: "")
         
         viewModel.combinedData
             .sink(receiveCompletion: { _ in },
-                  receiveValue: { categories, users in
+                  receiveValue: { tags, users in
                       XCTAssertTrue(testUsers[0].id == users[0].id)
                       XCTAssertTrue(testUsers[0].name == users[0].name)
                       expectation.fulfill()
@@ -41,16 +41,16 @@ final class SimilarChefViewModelTests: XCTestCase {
             .store(in: &cancellables)
 
         
-        viewModel.selectedCategories.send([testCategory])
+        viewModel.selectTags([testTag])
         
         wait(for: [expectation], timeout: 1.0)
     }
 }
 
 class MockFetchSimilarChefUseCase: FetchSimilarChefUseCase {
-    var result: Result<[User], Error>!
+    var result: Result<[User], Cheffi.DataTransferError>!
 
-    func execute(categories: [String]) -> AnyPublisher<[User], Error> {
+    func execute(tags: [String]) -> AnyPublisher<[Cheffi.User], Cheffi.DataTransferError> {
         return Future { promise in
             promise(self.result)
         }
@@ -59,18 +59,19 @@ class MockFetchSimilarChefUseCase: FetchSimilarChefUseCase {
 }
 
 class MockSimilarChefRepository: SimilarChefRepository {
-    func getCategories() -> AnyPublisher<[String], Error> {
-        let exampleCategories = ["한식", "노포", "아시아음식", "매운맛", "친절함"]
-        return Just(exampleCategories)
-            .setFailureType(to: Error.self)
+    func getCheffiTags() -> AnyPublisher<[Cheffi.CheffiTagResponseDTO], Cheffi.DataTransferError> {
+        let exampleTags = ["한식", "노포", "아시아음식", "매운맛", "친절함"]
+        let exampleTagDTOs = exampleTags.map({ Cheffi.CheffiTagResponseDTO(name: $0) })
+        return Just(exampleTagDTOs)
+            .setFailureType(to: Cheffi.DataTransferError.self)
             .eraseToAnyPublisher()
     }
     
-    func getProfiles(categories: [String]) -> AnyPublisher<[Cheffi.User], Error> {
-        let exampleProfiles = (1...12).map({ User(id: "\($0)", name: "김맛집\($0)")})
-        
-        return Just(exampleProfiles)
-            .setFailureType(to: Error.self)
+    func getProfiles(tags: [String]) -> AnyPublisher<[Cheffi.UserResponseDTO], Cheffi.DataTransferError> {
+        let exampleProfiles = (1...12).map({ User(id: $0, name: "김맛집\($0)")})
+        let exampleProfileDTOs = exampleProfiles.map({ Cheffi.UserResponseDTO(id: $0.id, name: $0.name) })
+        return Just(exampleProfileDTOs)
+            .setFailureType(to: Cheffi.DataTransferError.self)
             .eraseToAnyPublisher()
     }
 }
