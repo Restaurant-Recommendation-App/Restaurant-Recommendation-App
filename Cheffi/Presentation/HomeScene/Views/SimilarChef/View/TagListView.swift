@@ -86,9 +86,9 @@ class TagListView: UIView {
         self.tagList = tagList
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
-        let selectedCategories = UserDefaultsManager.HomeSimilarChefInfo.categories
+        let selectedTags = UserDefaultsManager.HomeSimilarChefInfo.tags
         debugPrint("------------------------------------------")
-        debugPrint("저장된 카테고리 리스트 - ", selectedCategories)
+        debugPrint("저장된 Tag 리스트 - ", selectedTags)
         debugPrint("------------------------------------------")
         
         for (index, tag) in tagList.enumerated() {
@@ -105,7 +105,7 @@ class TagListView: UIView {
         }
         
         // UserDefaults에서 가져온 카테고리 리스트에 따라 selectedTagIndexes를 설정
-        selectedTagIndexes = tagList.indices.filter { selectedCategories.contains(tagList[$0]) }
+        selectedTagIndexes = tagList.indices.filter { selectedTags.contains(tagList[$0]) }
     }
     
     private func updateTagSelection() {
