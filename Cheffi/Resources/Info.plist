@@ -21,5 +21,17 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SUIT-Bold.otf</string>
+		<string>SUIT-ExtraBold.otf</string>
+		<string>SUIT-ExtraLight.otf</string>
+		<string>SUIT-Heavy.otf</string>
+		<string>SUIT-Light.otf</string>
+		<string>SUIT-Medium.otf</string>
+		<string>SUIT-Regular.otf</string>
+		<string>SUIT-SemiBold.otf</string>
+		<string>SUIT-Thin.otf</string>
+	</array>
 </dict>
 </plist>

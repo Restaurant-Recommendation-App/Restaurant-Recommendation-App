@@ -27,7 +27,7 @@ final class CustomProfileButton: BaseView {
         setTitle("다음")
         setBaackgroundColor(.cheffiGray3)
         setLayerCornerRadius(10.0)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        button.titleLabel?.font = Fonts.suit.medium.size(16)
         button.setTitleColor(.white, for: .normal)
     }
     

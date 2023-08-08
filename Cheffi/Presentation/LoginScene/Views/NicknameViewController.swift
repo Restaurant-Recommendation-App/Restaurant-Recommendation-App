@@ -34,6 +34,7 @@ class NicknameViewController: UIViewController {
         }
         
         titleLabel.text = "쉐피에서 사용할\n닉네임을 입력해주세요.".localized()
+        titleLabel.font = Fonts.suit.bold.size(24)
     }
     
     // MARK: - Public

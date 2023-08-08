@@ -134,6 +134,16 @@
 		FFDBC6492A81395D0009189C /* FollowSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6482A81395D0009189C /* FollowSelection.storyboard */; };
 		FFDBC64C2A813CC40009189C /* CustomProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC64B2A813CC40009189C /* CustomProfileButton.swift */; };
 		FFDBC64E2A813DE60009189C /* CustomProfileButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC64D2A813DE60009189C /* CustomProfileButton.xib */; };
+		FFDBC66B2A8277C90009189C /* SUIT-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6622A8277C90009189C /* SUIT-Heavy.otf */; };
+		FFDBC66C2A8277C90009189C /* SUIT-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6632A8277C90009189C /* SUIT-ExtraLight.otf */; };
+		FFDBC66D2A8277C90009189C /* SUIT-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6642A8277C90009189C /* SUIT-Regular.otf */; };
+		FFDBC66E2A8277C90009189C /* SUIT-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6652A8277C90009189C /* SUIT-Light.otf */; };
+		FFDBC66F2A8277C90009189C /* SUIT-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6662A8277C90009189C /* SUIT-ExtraBold.otf */; };
+		FFDBC6702A8277C90009189C /* SUIT-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6672A8277C90009189C /* SUIT-SemiBold.otf */; };
+		FFDBC6712A8277C90009189C /* SUIT-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6682A8277C90009189C /* SUIT-Bold.otf */; };
+		FFDBC6722A8277C90009189C /* SUIT-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6692A8277C90009189C /* SUIT-Medium.otf */; };
+		FFDBC6732A8277C90009189C /* SUIT-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC66A2A8277C90009189C /* SUIT-Thin.otf */; };
+		FFDBC6762A8278B50009189C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6752A8278B50009189C /* Fonts.swift */; };
 		FFEC55282A812F0A00C2C4D9 /* ProfileSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC55272A812F0A00C2C4D9 /* ProfileSetupViewModel.swift */; };
 		FFFD94E72A8122A1001475AF /* ProfileSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD94E62A8122A1001475AF /* ProfileSetupViewController.swift */; };
 		FFFD94E92A812360001475AF /* ProfileSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFFD94E82A812360001475AF /* ProfileSetup.storyboard */; };
@@ -279,6 +289,16 @@
 		FFDBC6482A81395D0009189C /* FollowSelection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FollowSelection.storyboard; sourceTree = "<group>"; };
 		FFDBC64B2A813CC40009189C /* CustomProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProfileButton.swift; sourceTree = "<group>"; };
 		FFDBC64D2A813DE60009189C /* CustomProfileButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomProfileButton.xib; sourceTree = "<group>"; };
+		FFDBC6622A8277C90009189C /* SUIT-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Heavy.otf"; sourceTree = "<group>"; };
+		FFDBC6632A8277C90009189C /* SUIT-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-ExtraLight.otf"; sourceTree = "<group>"; };
+		FFDBC6642A8277C90009189C /* SUIT-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Regular.otf"; sourceTree = "<group>"; };
+		FFDBC6652A8277C90009189C /* SUIT-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Light.otf"; sourceTree = "<group>"; };
+		FFDBC6662A8277C90009189C /* SUIT-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-ExtraBold.otf"; sourceTree = "<group>"; };
+		FFDBC6672A8277C90009189C /* SUIT-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-SemiBold.otf"; sourceTree = "<group>"; };
+		FFDBC6682A8277C90009189C /* SUIT-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Bold.otf"; sourceTree = "<group>"; };
+		FFDBC6692A8277C90009189C /* SUIT-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Medium.otf"; sourceTree = "<group>"; };
+		FFDBC66A2A8277C90009189C /* SUIT-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Thin.otf"; sourceTree = "<group>"; };
+		FFDBC6752A8278B50009189C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		FFEC55272A812F0A00C2C4D9 /* ProfileSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewModel.swift; sourceTree = "<group>"; };
 		FFFD94E62A8122A1001475AF /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
 		FFFD94E82A812360001475AF /* ProfileSetup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileSetup.storyboard; sourceTree = "<group>"; };
@@ -434,6 +454,7 @@
 		CE1A6A792A62960A00FFE93D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FFDBC6742A8278AD0009189C /* Utils */,
 				FF485D9B2A811D4B00E8B765 /* Network */,
 				FF97932A2A72BF8C00A921A0 /* Manager */,
 				FFB50C482A72B5160049B5E1 /* ShowAllContentsButton */,
@@ -585,6 +606,7 @@
 		CE70F8A92A642A6A003D0ED9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FFDBC64F2A8277890009189C /* Fonts */,
 				D4E244C62A60FF5D004E0167 /* Info.plist */,
 				D4E244C12A60FF5D004E0167 /* Assets.xcassets */,
 			);
@@ -956,6 +978,30 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		FFDBC64F2A8277890009189C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FFDBC6682A8277C90009189C /* SUIT-Bold.otf */,
+				FFDBC6662A8277C90009189C /* SUIT-ExtraBold.otf */,
+				FFDBC6632A8277C90009189C /* SUIT-ExtraLight.otf */,
+				FFDBC6622A8277C90009189C /* SUIT-Heavy.otf */,
+				FFDBC6652A8277C90009189C /* SUIT-Light.otf */,
+				FFDBC6692A8277C90009189C /* SUIT-Medium.otf */,
+				FFDBC6642A8277C90009189C /* SUIT-Regular.otf */,
+				FFDBC6672A8277C90009189C /* SUIT-SemiBold.otf */,
+				FFDBC66A2A8277C90009189C /* SUIT-Thin.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FFDBC6742A8278AD0009189C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FFDBC6752A8278B50009189C /* Fonts.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1057,11 +1103,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFDBC6492A81395D0009189C /* FollowSelection.storyboard in Resources */,
+				FFDBC6712A8277C90009189C /* SUIT-Bold.otf in Resources */,
 				FFFD94E92A812360001475AF /* ProfileSetup.storyboard in Resources */,
 				FFDBC6432A8139350009189C /* ProfilePhoto.storyboard in Resources */,
 				FF5059BB2A7E35C200F90D27 /* CheffiWriterView.xib in Resources */,
 				CE42BA6F2A6BCAA300EBB80A /* Popup.storyboard in Resources */,
+				FFDBC6722A8277C90009189C /* SUIT-Medium.otf in Resources */,
 				CE1A6A762A6286CB00FFE93D /* SimilarChefProfileCell.xib in Resources */,
+				FFDBC66E2A8277C90009189C /* SUIT-Light.otf in Resources */,
 				FFDBC6412A8139260009189C /* Nickname.storyboard in Resources */,
 				D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */,
 				FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */,
@@ -1070,22 +1119,28 @@
 				CEABD7222A6BFF99001BC131 /* SimilarChefList.storyboard in Resources */,
 				CE42BA7D2A6BD94E00EBB80A /* Search.storyboard in Resources */,
 				FF9793B72A74C53200A921A0 /* CheffiDetail.storyboard in Resources */,
+				FFDBC6732A8277C90009189C /* SUIT-Thin.otf in Resources */,
 				CE0D45342A61968200636989 /* RestaurantRegist.storyboard in Resources */,
 				FF5059BF2A7E3F2200F90D27 /* More.storyboard in Resources */,
 				FFDBC64E2A813DE60009189C /* CustomProfileButton.xib in Resources */,
 				FF62A44E2A7FC1CC0066073F /* SNSLogin.storyboard in Resources */,
 				CEABD7132A6BDE94001BC131 /* RecentSearchCell.xib in Resources */,
 				FF3197872A74E8C700F5DD41 /* CheffiReviewView.xib in Resources */,
+				FFDBC66B2A8277C90009189C /* SUIT-Heavy.otf in Resources */,
+				FFDBC66D2A8277C90009189C /* SUIT-Regular.otf in Resources */,
 				FFDBC6472A8139500009189C /* Preference.storyboard in Resources */,
 				CE0D45432A626C3B00636989 /* SimilarChefCell.xib in Resources */,
 				FFB50C4C2A72B6750049B5E1 /* ShowAllContentsButton.xib in Resources */,
 				CEABD71B2A6BDF0A001BC131 /* TopPickCell.xib in Resources */,
+				FFDBC6702A8277C90009189C /* SUIT-SemiBold.otf in Resources */,
 				CEABD7172A6BDEEE001BC131 /* RecommendSearchCell.xib in Resources */,
+				FFDBC66F2A8277C90009189C /* SUIT-ExtraBold.otf in Resources */,
 				CE42BA672A6BAF5700EBB80A /* PopupView.xib in Resources */,
 				FF3197792A74CA9E00F5DD41 /* CheffiMenuView.xib in Resources */,
 				CE0D45262A618F8700636989 /* NationalTrend.storyboard in Resources */,
 				FFDBC6452A8139410009189C /* FoodSelection.storyboard in Resources */,
 				FF3197832A74E51100F5DD41 /* CheffiLocationView.xib in Resources */,
+				FFDBC66C2A8277C90009189C /* SUIT-ExtraLight.otf in Resources */,
 				D4E244C02A60FF5A004E0167 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1183,6 +1238,7 @@
 				CE0D45242A618F0C00636989 /* NationalTrendViewController.swift in Sources */,
 				CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */,
 				D49B59282A652330003C108E /* RestaurantContentView.swift in Sources */,
+				FFDBC6762A8278B50009189C /* Fonts.swift in Sources */,
 				D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */,
 				FF62A44C2A7FC1C10066073F /* SNSLoginViewController.swift in Sources */,
 				CE0D453F2A61AECD00636989 /* BaseFlowCoordinator.swift in Sources */,
