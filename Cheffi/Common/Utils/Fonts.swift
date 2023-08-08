@@ -31,35 +31,6 @@ enum Fonts {
     }
 }
 
-extension Fonts.suit {
-    func size(_ size: CGFloat) -> UIFont {
-        if let font = UIFont(name: self.rawValue, size: size) {
-            return font
-        }
-        
-        switch self {
-        case .bold:
-            return UIFont.systemFont(ofSize: size, weight: .semibold)
-        case .extraBold:
-            return UIFont.systemFont(ofSize: size, weight: .bold)
-        case .extraLight:
-            return UIFont.systemFont(ofSize: size, weight: .ultraLight)
-        case .heavy:
-            return UIFont.systemFont(ofSize: size, weight: .heavy)
-        case .ligth:
-            return UIFont.systemFont(ofSize: size, weight: .light)
-        case .medium:
-            return UIFont.systemFont(ofSize: size, weight: .medium)
-        case .regular:
-            return UIFont.systemFont(ofSize: size, weight: .regular)
-        case .semiBold:
-            return UIFont.systemFont(ofSize: size, weight: .semibold)
-        case .thin:
-            return UIFont.systemFont(ofSize: size, weight: .thin)
-        }
-    }
-}
-
 extension Fonts {
     func size(_ size: CGFloat) -> UIFont {
         switch self {

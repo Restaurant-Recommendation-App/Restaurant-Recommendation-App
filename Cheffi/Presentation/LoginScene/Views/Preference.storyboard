@@ -4,10 +4,16 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SUIT-Medium.otf">
+            <string>SUIT-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Preference View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -17,12 +23,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="취향 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNA-fi-zl1">
-                                <rect key="frame" x="164.66666666666666" y="415.66666666666669" width="64" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNY-kZ-2yW" customClass="CustomProfileButton" customModule="Cheffi" customModuleProvider="target">
                                 <rect key="frame" x="16" y="754" width="361" height="48"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -30,19 +30,36 @@
                                     <constraint firstAttribute="height" constant="48" id="ld3-ek-Jne"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTe-3H-dTO">
+                                <rect key="frame" x="16" y="82" width="58" height="30"/>
+                                <fontDescription key="fontDescription" name="SUIT-Medium" family="SUIT" pointSize="24"/>
+                                <color key="textColor" name="CheffiGray9"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCm-7S-XUT">
+                                <rect key="frame" x="16" y="120" width="361" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="sTe-3H-dTO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="LZU-XQ-ZWS"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="iNY-kZ-2yW" secondAttribute="bottom" constant="16" id="g7P-iW-RYH"/>
-                            <constraint firstItem="KNA-fi-zl1" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="iTJ-hN-2Wm"/>
+                            <constraint firstItem="lCm-7S-XUT" firstAttribute="top" secondItem="sTe-3H-dTO" secondAttribute="bottom" constant="8" id="jDi-eX-XWw"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lCm-7S-XUT" secondAttribute="trailing" constant="16" id="lhX-2K-4tY"/>
+                            <constraint firstItem="sTe-3H-dTO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="23" id="poN-7O-qg1"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="iNY-kZ-2yW" secondAttribute="trailing" constant="16" id="sgZ-MV-O75"/>
-                            <constraint firstItem="KNA-fi-zl1" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uu5-Oh-KZZ"/>
                             <constraint firstItem="iNY-kZ-2yW" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="16" id="vEd-9N-bfD"/>
+                            <constraint firstItem="lCm-7S-XUT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="zG8-LW-aaP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="nextButton" destination="iNY-kZ-2yW" id="oeD-MP-Sis"/>
+                        <outlet property="subTitleLabel" destination="lCm-7S-XUT" id="sk4-jx-bFB"/>
+                        <outlet property="titleLabel" destination="sTe-3H-dTO" id="LsS-u4-GeM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -51,6 +68,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="CheffiGray9">
+            <color red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

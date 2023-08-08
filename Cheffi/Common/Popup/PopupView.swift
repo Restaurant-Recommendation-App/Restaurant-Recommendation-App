@@ -25,23 +25,13 @@ class PopupView: BaseView {
         setupViews()
     }
     
-    func setText(text: String, keyword: String) {
-        let attributedString = NSMutableAttributedString(string: text)
-        let fullRange = NSRange(location: 0, length: attributedString.length)
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: fullRange)
-        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16), range: fullRange)
-
-        // 키워드 색상 main color
-        let keywordRange = (text as NSString).range(of: keyword)
-        if keywordRange.location != NSNotFound {
-            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.main, range: keywordRange)
-        }
-
-        textLabel.attributedText = attributedString
-    }
-    
     // MARK: - Private
     private func setupViews() {
+    }
+    
+    // MARK: - Public
+    func highlightKeyword(_ keyword: String, in text: String) {
+        textLabel.highlightKeyword(keyword, in: text, defaultColor: .cheffiGray9, font: Fonts.suit.ligth.size(16))
     }
     
     // MARK: - Actions

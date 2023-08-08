@@ -13,6 +13,9 @@
         <array key="SUIT-Light.otf">
             <string>SUIT-Light</string>
         </array>
+        <array key="SUIT-Medium.otf">
+            <string>SUIT-Medium</string>
+        </array>
         <array key="SUIT-Regular.otf">
             <string>SUIT-Regular</string>
         </array>
@@ -34,13 +37,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bvf-Zz-zWK">
-                                <rect key="frame" x="16.000000000000004" y="82" width="58.333333333333343" height="28.666666666666671"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                <rect key="frame" x="16" y="82" width="58" height="30"/>
+                                <fontDescription key="fontDescription" name="SUIT-Medium" family="SUIT" pointSize="24"/>
                                 <color key="textColor" name="CheffiGray9"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEo-CI-mwe">
-                                <rect key="frame" x="16" y="158.66666666666666" width="361" height="74"/>
+                                <rect key="frame" x="16" y="160" width="361" height="74"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGq-aa-ven">
                                         <rect key="frame" x="0.0" y="0.0" width="37" height="17"/>
