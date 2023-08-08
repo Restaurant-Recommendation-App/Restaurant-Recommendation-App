@@ -15,6 +15,9 @@ class NicknameViewController: UIViewController {
     }
     
     @IBOutlet private weak var nextButton: CustomProfileButton!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var textField: UITextField!
+    @IBOutlet private weak var duplicationCheckButton: UIButton!
     var delegate: ProfileSetupDelegate?
     
     override func viewDidLoad() {
@@ -29,9 +32,14 @@ class NicknameViewController: UIViewController {
         nextButton.didTapButton = { [weak self] in
             self?.delegate?.didTapNext()
         }
+        
+        titleLabel.text = "쉐피에서 사용할\n닉네임을 입력해주세요.".localized()
     }
     
     // MARK: - Public
     
     // MAKR: - Actions
+    @IBAction private func duplicationCheck(_ sender: UIButton) {
+        
+    }
 }
