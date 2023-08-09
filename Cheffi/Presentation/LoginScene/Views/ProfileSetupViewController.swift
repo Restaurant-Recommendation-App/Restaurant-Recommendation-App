@@ -46,7 +46,7 @@ class ProfileSetupViewController: UIViewController {
     }
     
     private func setupPageViewController() {
-        let nicknameVC = NicknameViewController.instance()
+        let nicknameVC = NicknameViewController.instance(viewMode: NicknameViewModel())
         nicknameVC.delegate = self
         let profilePhotoVC = ProfilePhotoViewController.instance()
         profilePhotoVC.delegate = self
@@ -82,13 +82,13 @@ class ProfileSetupViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.output.progress
+        viewModel.progress
             .sink { [weak self] progress in
                 self?.progressView.setProgress(progress, animated: true)
             }
             .store(in: &cancellables)
         
-        viewModel.output.currentPage
+        viewModel.currentPage
             .sink { [weak self] index in
                 guard let self = self, index < self.viewControllersList.count else { return }
                 let viewController = self.viewControllersList[index]
@@ -103,21 +103,21 @@ class ProfileSetupViewController: UIViewController {
     
     // MAKR: - Actions
     @IBAction private func didTapBack(_ sender: UIButton) {
-        let currentPage = viewModel.output.currentPage.value
+        let currentPage = viewModel.currentPage.value
         if currentPage == 0 {
             self.dismissOrPop()
         } else {
-            viewModel.input.previousButtonTapped.send()
+            viewModel.previousButtonTapped.send()
         }
     }
 }
 
 extension ProfileSetupViewController: ProfileSetupDelegate {
     func didTapNext() {
-        if viewModel.output.currentPage.value == viewControllersList.count - 1 {
+        if viewModel.currentPage.value == viewControllersList.count - 1 {
             self.dismissAll()
         } else {
-            viewModel.input.nextButtonTapped.send()
+            viewModel.nextButtonTapped.send()
         }
     }
 }

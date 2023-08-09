@@ -18,10 +18,9 @@ protocol ProfileSetupViewModelOutput {
     var currentPage: CurrentValueSubject<Int, Never> { get }
 }
 
-final class ProfileSetupViewModel: ProfileSetupViewModelInput & ProfileSetupViewModelOutput {
-    var input: ProfileSetupViewModelInput { return self }
-    var output: ProfileSetupViewModelOutput { return self }
-    
+typealias ProfileSetupViewModelType = ProfileSetupViewModelInput & ProfileSetupViewModelOutput
+
+final class ProfileSetupViewModel: ProfileSetupViewModelType {
     private var cancellables = Set<AnyCancellable>()
     private let totalPages = 5
     

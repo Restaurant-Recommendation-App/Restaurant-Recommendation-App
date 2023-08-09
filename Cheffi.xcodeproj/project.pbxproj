@@ -145,6 +145,8 @@
 		FFDBC6732A8277C90009189C /* SUIT-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC66A2A8277C90009189C /* SUIT-Thin.otf */; };
 		FFDBC6762A8278B50009189C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6752A8278B50009189C /* Fonts.swift */; };
 		FFDBC6782A8280E20009189C /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6772A8280E20009189C /* UILabel+Extensions.swift */; };
+		FFDBC67A2A83AD760009189C /* NicknameVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6792A83AD760009189C /* NicknameVIewModel.swift */; };
+		FFDBC67C2A83B2ED0009189C /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC67B2A83B2ED0009189C /* UITextField+Extensions.swift */; };
 		FFEC55282A812F0A00C2C4D9 /* ProfileSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC55272A812F0A00C2C4D9 /* ProfileSetupViewModel.swift */; };
 		FFFD94E72A8122A1001475AF /* ProfileSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD94E62A8122A1001475AF /* ProfileSetupViewController.swift */; };
 		FFFD94E92A812360001475AF /* ProfileSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFFD94E82A812360001475AF /* ProfileSetup.storyboard */; };
@@ -301,6 +303,8 @@
 		FFDBC66A2A8277C90009189C /* SUIT-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Thin.otf"; sourceTree = "<group>"; };
 		FFDBC6752A8278B50009189C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		FFDBC6772A8280E20009189C /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		FFDBC6792A83AD760009189C /* NicknameVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameVIewModel.swift; sourceTree = "<group>"; };
+		FFDBC67B2A83B2ED0009189C /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		FFEC55272A812F0A00C2C4D9 /* ProfileSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewModel.swift; sourceTree = "<group>"; };
 		FFFD94E62A8122A1001475AF /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
 		FFFD94E82A812360001475AF /* ProfileSetup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileSetup.storyboard; sourceTree = "<group>"; };
@@ -503,6 +507,7 @@
 				FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */,
 				FF3197802A74D06600F5DD41 /* Int+Extensions.swift */,
 				FFDBC6772A8280E20009189C /* UILabel+Extensions.swift */,
+				FFDBC67B2A83B2ED0009189C /* UITextField+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -917,6 +922,7 @@
 			children = (
 				FF62A4512A7FC3FD0066073F /* SNSLoginViewModel.swift */,
 				FFEC55272A812F0A00C2C4D9 /* ProfileSetupViewModel.swift */,
+				FFDBC6792A83AD760009189C /* NicknameVIewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1240,6 +1246,7 @@
 				FF485D9D2A811D4B00E8B765 /* ConnectionError.swift in Sources */,
 				FF50599B2A7DFF8300F90D27 /* NetworkService.swift in Sources */,
 				CE0D45242A618F0C00636989 /* NationalTrendViewController.swift in Sources */,
+				FFDBC67C2A83B2ED0009189C /* UITextField+Extensions.swift in Sources */,
 				CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */,
 				D49B59282A652330003C108E /* RestaurantContentView.swift in Sources */,
 				FFDBC6762A8278B50009189C /* Fonts.swift in Sources */,
@@ -1259,6 +1266,7 @@
 				FF3197852A74E70900F5DD41 /* Location.swift in Sources */,
 				D43331A92A6D32AE00E6CB4B /* UICollectionView+Extensions.swift in Sources */,
 				D41E99322A6BB9A80085F5D0 /* UIView+Extensions.swift in Sources */,
+				FFDBC67A2A83AD760009189C /* NicknameVIewModel.swift in Sources */,
 				CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */,
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
 				FF5059A42A7E058400F90D27 /* TagResponseDTO.swift in Sources */,

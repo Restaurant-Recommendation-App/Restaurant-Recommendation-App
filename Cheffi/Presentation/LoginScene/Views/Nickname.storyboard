@@ -93,12 +93,20 @@
                                     <constraint firstAttribute="bottom" secondItem="wZH-D6-Ysx" secondAttribute="bottom" id="xyN-0E-rq3"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjV-ny-q7c">
+                                <rect key="frame" x="16" y="242" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="IjV-ny-q7c" firstAttribute="top" secondItem="MEo-CI-mwe" secondAttribute="bottom" constant="8" id="4oF-Hc-Hsd"/>
                             <constraint firstItem="MEo-CI-mwe" firstAttribute="top" secondItem="Bvf-Zz-zWK" secondAttribute="bottom" constant="48" id="BMP-3Z-Ghl"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="iqV-4e-Ifq" secondAttribute="bottom" constant="16" id="Dby-Mn-HrP"/>
+                            <constraint firstItem="IjV-ny-q7c" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Rhb-UD-tlP"/>
                             <constraint firstItem="Bvf-Zz-zWK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="23" id="c2Q-qe-CHO"/>
                             <constraint firstItem="iqV-4e-Ifq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="gc2-kW-D50"/>
                             <constraint firstItem="MEo-CI-mwe" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="hCB-v8-MIr"/>
@@ -109,6 +117,7 @@
                     </view>
                     <connections>
                         <outlet property="duplicationCheckButton" destination="gGQ-oz-mCr" id="fPi-W9-PYg"/>
+                        <outlet property="messageLabel" destination="IjV-ny-q7c" id="Yr9-Dx-lry"/>
                         <outlet property="nextButton" destination="iqV-4e-Ifq" id="X1r-kP-IGA"/>
                         <outlet property="textField" destination="wZH-D6-Ysx" id="wnf-43-xfw"/>
                         <outlet property="titleLabel" destination="Bvf-Zz-zWK" id="KWQ-Ij-AwK"/>
