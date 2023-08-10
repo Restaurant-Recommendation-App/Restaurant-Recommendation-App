@@ -14,10 +14,11 @@ protocol SimilarChefCellDelegate: AnyObject {
 
 class SimilarChefCell: UITableViewCell {
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
-    @IBOutlet weak var tagListView: TagListView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var tagListView: TagListView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var showAllContentsDirection: ShowAllContentsButton!
     
     enum Constants {
         static let cellInset: CGFloat = 16.0
@@ -42,12 +43,13 @@ class SimilarChefCell: UITableViewCell {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
+                    // TODO: - 에러메시지 처리
                     debugPrint("------------------------------------------")
                     debugPrint(error)
                     debugPrint("------------------------------------------")
                 }
-            }, receiveValue: { [weak self] categories, profiles in
-                self?.tagListView.setupTags(categories)
+            }, receiveValue: { [weak self] tags, profiles in
+                self?.tagListView.setupTags(tags)
                 
                 var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
                 snapshot.appendSections([0])
@@ -55,7 +57,7 @@ class SimilarChefCell: UITableViewCell {
                 self?.dataSource?.apply(snapshot, animatingDifferences: true)
             })
             .store(in: &cancellables)
-        viewModel.selectedCategory.send("")
+        viewModel.selectTags(UserDefaultsManager.HomeSimilarChefInfo.tags)
     }
     
     // MARK: - Private
@@ -75,11 +77,17 @@ class SimilarChefCell: UITableViewCell {
             cell.configure(with: item)
             return cell
         }
-    }
-    
-    // MARK: - Action
-    @IBAction private func showSimilarChefList(_ sender: UIButton) {
-        delegate?.didTapShowSimilarChefList()
+        
+        // TagListView
+        tagListView.didTapTagsHandler = { [weak self] tags in
+            self?.viewModel?.selectTags(tags)
+        }
+        
+        // show all contents button
+        showAllContentsDirection.setTItle("전체보기".localized(), direction: .right)
+        showAllContentsDirection.didTapViewAllHandler = { [weak self] in
+            self?.delegate?.didTapShowSimilarChefList()
+        }
     }
 }
 

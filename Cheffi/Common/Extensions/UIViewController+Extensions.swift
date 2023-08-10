@@ -8,6 +8,13 @@
 import UIKit
 
 extension UIViewController {
+    var topSafeArea: CGFloat {
+        get {
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0.0 }
+            return windowScene.windows.first?.safeAreaInsets.top ?? 0.0
+        }
+    }
+    
     func dismissOne(_ completion: (() -> Swift.Void)? = nil) {
         view.endEditing(true)
         

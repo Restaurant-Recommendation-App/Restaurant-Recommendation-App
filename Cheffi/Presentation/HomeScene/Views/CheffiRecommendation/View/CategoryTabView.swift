@@ -113,13 +113,13 @@ class CategoryTabView: UIView {
         }
         scrollView.sendSubviewToBack(tabsBottomBoder)
     }
-    
-    func setUpCategories(categories: [String]) {
+
+    func setUpTags(tags: [String]) {
         tabStackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
         
-        let buttons = categories.enumerated().map {
+        let buttons = tags.enumerated().map {
             let button = TabButton()
             button.setTitle($0.element, for: .normal)
             button.titleLabel?.textAlignment = .center

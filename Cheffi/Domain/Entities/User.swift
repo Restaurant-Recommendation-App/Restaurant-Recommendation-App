@@ -7,7 +7,15 @@
 
 import Foundation
 
-struct User {
-    let id: String
+enum Provider: String, Codable {
+    case kakao = "KAKAO"
+    case apple = "APPLE"
+}
+
+struct User: Codable {
+    let email: String
     let name: String
+    let provider: Provider
+    let adAgreed: Bool
+    let analysisAgreed: Bool
 }

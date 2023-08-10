@@ -15,11 +15,12 @@ struct HomeViewModelActions {
 }
 
 protocol HomeViewModelInput {
-    var selectedCategory: PassthroughSubject<Void, Never> { get }
 }
 
 protocol HomeViewModelOutput {
     var similarChefViewModel: SimilarChefViewModel { get }
+    var popularRestaurantViewModel: PopularRestaurantViewModel { get }
+    var recommendationViewModel: CheffiRecommendationViewModel { get }
 }
 
 final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
@@ -27,7 +28,6 @@ final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
     private let actions: HomeViewModelActions?
     
     // MARK: - Input
-    var selectedCategory = PassthroughSubject<Void, Never>()
     
     // MARK: - Output
     var similarChefViewModel: SimilarChefViewModel
@@ -57,11 +57,5 @@ final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
         self.popularRestaurantViewModel = popularRestaurantViewModel
         self.similarChefViewModel = similarChefViewModel
         self.recommendationViewModel = recommendationViewModel
-        
-        selectedCategory
-            .sink { [weak self] _ in
-                self?.similarChefViewModel.selectedCategory.send("")
-            }
-            .store(in: &cancellables)
     }
 }

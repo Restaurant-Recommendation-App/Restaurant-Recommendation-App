@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheffiMenuView" customModule="Cheffi" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="JVD-xw-dJk"/>
+                <outlet property="stackView" destination="H3R-cv-0bn" id="gkG-ok-wfG"/>
+                <outlet property="titleLabel" destination="ue4-iS-QXp" id="MZa-P7-GY5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="464" height="597"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ue4-iS-QXp">
+                    <rect key="frame" x="0.0" y="0.0" width="8.3333333333333339" height="22"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="textColor" name="CheffiBlack"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="H3R-cv-0bn">
+                    <rect key="frame" x="0.0" y="30" width="464" height="567"/>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ue4-iS-QXp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="3Eh-Ee-Ugu"/>
+                <constraint firstAttribute="trailing" secondItem="H3R-cv-0bn" secondAttribute="trailing" id="9uN-JQ-hjE"/>
+                <constraint firstItem="ue4-iS-QXp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RPH-U6-dkP"/>
+                <constraint firstItem="H3R-cv-0bn" firstAttribute="top" secondItem="ue4-iS-QXp" secondAttribute="bottom" constant="8" id="cVc-V5-hIp"/>
+                <constraint firstItem="H3R-cv-0bn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cve-6H-7p7"/>
+                <constraint firstAttribute="bottom" secondItem="H3R-cv-0bn" secondAttribute="bottom" id="hKJ-uE-eAs"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="192.36641221374046" y="-70.070422535211264"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="CheffiBlack">
+            <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

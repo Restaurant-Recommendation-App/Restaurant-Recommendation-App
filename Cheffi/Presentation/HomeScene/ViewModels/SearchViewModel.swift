@@ -54,7 +54,7 @@ final class SearchViewModel: SearchViewModelInput & SearchViewModelOutput {
     
     func loadInitialData() {
         DispatchQueue.main.async { [weak self] in
-            self?._recentSearches = UserDefaultsManager.searchKeyword
+            self?._recentSearches = UserDefaultsManager.SearchInfo.keywords
         }
     }
 }

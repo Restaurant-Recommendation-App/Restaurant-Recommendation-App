@@ -41,18 +41,9 @@ final class CheffiRecommendationCell: UITableViewCell {
         return label
     }()
     
-    let viewMoreContentsButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-        button.setTitleColor(.cheffiBlack, for: .normal)
-        button.setTitle("더보기", for: .normal)
-        button.titleLabel?.textAlignment = .center
-
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.cheffiGray2.cgColor
-        
-        button.layer.cornerRadius = 10
-        button.layer.masksToBounds = true
+    private let showAllContentsButton: ShowAllContentsButton = {
+        let button = ShowAllContentsButton()
+        button.setTItle("더보기".localized(), direction: .down)
         return button
     }()
     
@@ -68,6 +59,7 @@ final class CheffiRecommendationCell: UITableViewCell {
         selectionStyle = .none
         
         setUp()
+        categoryTabView.setUpTags(tags: ["한식", "양식", "중식", "일식", "퓨전", "샐러드"])
         cheffiRecommendationCatogoryPageView.categoryPageViewDelegate = categoryTabView
         categoryTabView.delegate = cheffiRecommendationCatogoryPageView
     }
@@ -110,12 +102,16 @@ final class CheffiRecommendationCell: UITableViewCell {
 //            $0.bottom.equalToSuperview()
         }
 
-        contentView.addSubview(viewMoreContentsButton)
-        viewMoreContentsButton.snp.makeConstraints {
+        contentView.addSubview(showAllContentsButton)
+        showAllContentsButton.snp.makeConstraints {
             $0.top.equalTo(cheffiRecommendationCatogoryPageView.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
             $0.bottom.equalToSuperview()
             $0.height.equalTo(40)
+        }
+        
+        // Action
+        showAllContentsButton.didTapViewAllHandler = { [weak self] in
         }
     }
     
@@ -143,7 +139,7 @@ extension CheffiRecommendationCell: Bindable {
         let input = ViewModel.Input(
             initialize: initialize,
             reloadedContents: reloadedContents.eraseToAnyPublisher(),
-            viewMoreButtonTapped: viewMoreContentsButton.controlPublisher(for: .touchUpInside)
+            viewMoreButtonTapped: showAllContentsButton.controlPublisher(for: .touchUpInside)
                 .map { _ -> Void in () }
                 .eraseToAnyPublisher(),
             scrolledToBottom: scrolledToBottom,
@@ -156,7 +152,7 @@ extension CheffiRecommendationCell: Bindable {
         output.categories
             .filter { _ in !viewModel.initialized }
             .sink { categories in
-                self.categoryTabView.setUpCategories(categories: categories)
+                self.categoryTabView.setUpTags(tags: categories)
             }.store(in: &cancellables)
         
         output.restaurantContentsViewModels
@@ -174,7 +170,7 @@ extension CheffiRecommendationCell: Bindable {
         
         output.hideMoreViewButton
             .sink { _ in
-                self.viewMoreContentsButton.isHidden = true
+                self.showAllContentsButton.isHidden = true
             }.store(in: &cancellables)
     }
 }
