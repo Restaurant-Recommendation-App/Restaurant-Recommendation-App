@@ -14,7 +14,6 @@ enum NicknameMessageStatus {
     case none
 }
 
-
 protocol NicknameViewModelInput {
     var nickname: PassthroughSubject<String, Never> { get }
     func checkNicknameDuplication()

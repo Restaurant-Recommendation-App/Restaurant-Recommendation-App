@@ -120,6 +120,7 @@
 		FF9793B22A74C22800A921A0 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = FF9793B12A74C22800A921A0 /* PanModal */; };
 		FF9793B52A74C47100A921A0 /* CheffiDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */; };
 		FF9793B72A74C53200A921A0 /* CheffiDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9793B62A74C53200A921A0 /* CheffiDetail.storyboard */; };
+		FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */; };
 		FFB50C4A2A72B5A80049B5E1 /* ShowAllContentsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB50C492A72B5A80049B5E1 /* ShowAllContentsButton.swift */; };
 		FFB50C4C2A72B6750049B5E1 /* ShowAllContentsButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB50C4B2A72B6750049B5E1 /* ShowAllContentsButton.xib */; };
 		FFDBC6372A81380D0009189C /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6362A81380D0009189C /* NicknameViewController.swift */; };
@@ -147,6 +148,8 @@
 		FFDBC6782A8280E20009189C /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6772A8280E20009189C /* UILabel+Extensions.swift */; };
 		FFDBC67A2A83AD760009189C /* NicknameVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6792A83AD760009189C /* NicknameVIewModel.swift */; };
 		FFDBC67C2A83B2ED0009189C /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC67B2A83B2ED0009189C /* UITextField+Extensions.swift */; };
+		FFDBC6812A83BBF90009189C /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6802A83BBF90009189C /* PhotoAlbumViewController.swift */; };
+		FFDBC6832A83BC4A0009189C /* PhotoAlbum.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6822A83BC4A0009189C /* PhotoAlbum.storyboard */; };
 		FFEC55282A812F0A00C2C4D9 /* ProfileSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEC55272A812F0A00C2C4D9 /* ProfileSetupViewModel.swift */; };
 		FFFD94E72A8122A1001475AF /* ProfileSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD94E62A8122A1001475AF /* ProfileSetupViewController.swift */; };
 		FFFD94E92A812360001475AF /* ProfileSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFFD94E82A812360001475AF /* ProfileSetup.storyboard */; };
@@ -278,6 +281,7 @@
 		FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Ext.swift"; sourceTree = "<group>"; };
 		FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiDetailViewController.swift; sourceTree = "<group>"; };
 		FF9793B62A74C53200A921A0 /* CheffiDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheffiDetail.storyboard; sourceTree = "<group>"; };
+		FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewModel.swift; sourceTree = "<group>"; };
 		FFB50C492A72B5A80049B5E1 /* ShowAllContentsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllContentsButton.swift; sourceTree = "<group>"; };
 		FFB50C4B2A72B6750049B5E1 /* ShowAllContentsButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowAllContentsButton.xib; sourceTree = "<group>"; };
 		FFDBC6362A81380D0009189C /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
@@ -305,6 +309,8 @@
 		FFDBC6772A8280E20009189C /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		FFDBC6792A83AD760009189C /* NicknameVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameVIewModel.swift; sourceTree = "<group>"; };
 		FFDBC67B2A83B2ED0009189C /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		FFDBC6802A83BBF90009189C /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
+		FFDBC6822A83BC4A0009189C /* PhotoAlbum.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoAlbum.storyboard; sourceTree = "<group>"; };
 		FFEC55272A812F0A00C2C4D9 /* ProfileSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewModel.swift; sourceTree = "<group>"; };
 		FFFD94E62A8122A1001475AF /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
 		FFFD94E82A812360001475AF /* ProfileSetup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileSetup.storyboard; sourceTree = "<group>"; };
@@ -923,6 +929,7 @@
 				FF62A4512A7FC3FD0066073F /* SNSLoginViewModel.swift */,
 				FFEC55272A812F0A00C2C4D9 /* ProfileSetupViewModel.swift */,
 				FFDBC6792A83AD760009189C /* NicknameVIewModel.swift */,
+				FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -930,6 +937,7 @@
 		FF62A4482A7FC1250066073F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FFDBC67D2A83BB220009189C /* PhotoAlbum */,
 				FFDBC64A2A813C8D0009189C /* Common */,
 				FF62A44B2A7FC1C10066073F /* SNSLoginViewController.swift */,
 				FF62A44D2A7FC1CC0066073F /* SNSLogin.storyboard */,
@@ -1009,6 +1017,15 @@
 				FFDBC6752A8278B50009189C /* Fonts.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		FFDBC67D2A83BB220009189C /* PhotoAlbum */ = {
+			isa = PBXGroup;
+			children = (
+				FFDBC6802A83BBF90009189C /* PhotoAlbumViewController.swift */,
+				FFDBC6822A83BC4A0009189C /* PhotoAlbum.storyboard */,
+			);
+			path = PhotoAlbum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1120,6 +1137,7 @@
 				FFDBC6722A8277C90009189C /* SUIT-Medium.otf in Resources */,
 				CE1A6A762A6286CB00FFE93D /* SimilarChefProfileCell.xib in Resources */,
 				FFDBC66E2A8277C90009189C /* SUIT-Light.otf in Resources */,
+				FFDBC6832A83BC4A0009189C /* PhotoAlbum.storyboard in Resources */,
 				FFDBC6412A8139260009189C /* Nickname.storyboard in Resources */,
 				D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */,
 				FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */,
@@ -1222,6 +1240,7 @@
 				CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */,
 				FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */,
 				FF5059A62A7E08DE00F90D27 /* HomeAPIEndpoints.swift in Sources */,
+				FFDBC6812A83BBF90009189C /* PhotoAlbumViewController.swift in Sources */,
 				CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */,
 				FFDBC6782A8280E20009189C /* UILabel+Extensions.swift in Sources */,
 				FF50599F2A7E002800F90D27 /* Endpoint.swift in Sources */,
@@ -1267,6 +1286,7 @@
 				D43331A92A6D32AE00E6CB4B /* UICollectionView+Extensions.swift in Sources */,
 				D41E99322A6BB9A80085F5D0 /* UIView+Extensions.swift in Sources */,
 				FFDBC67A2A83AD760009189C /* NicknameVIewModel.swift in Sources */,
+				FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */,
 				CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */,
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
 				FF5059A42A7E058400F90D27 /* TagResponseDTO.swift in Sources */,

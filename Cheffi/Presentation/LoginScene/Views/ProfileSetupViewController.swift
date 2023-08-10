@@ -13,9 +13,19 @@ protocol ProfileSetupDelegate {
 }
 
 class ProfileSetupViewController: UIViewController {
-    static func instance<T: ProfileSetupViewController>(viewModel: ProfileSetupViewModel) -> T {
+    static func instance<T: ProfileSetupViewController>(viewModel: ProfileSetupViewModelType,
+                                                        nicknameViewController: NicknameViewController,
+                                                        profilePhotoViewController: ProfilePhotoViewController,
+                                                        foodSelectionViewController: FoodSelectionViewController,
+                                                        preferenceViewController: PreferenceViewController,
+                                                        followSelectionViewController: FollowSelectionViewController) -> T {
         let vc: T = .instance(storyboardName: .profileSetup)
         vc.viewModel = viewModel
+        vc.nicknameViewController = nicknameViewController
+        vc.profilePhotoViewController = profilePhotoViewController
+        vc.foodSelectionViewController = foodSelectionViewController
+        vc.preferenceViewController = preferenceViewController
+        vc.followSelectionViewController = followSelectionViewController
         return vc
     }
     
@@ -23,7 +33,12 @@ class ProfileSetupViewController: UIViewController {
     @IBOutlet private weak var contentView: UIView!
     private var pageViewController: UIPageViewController!
     private var viewControllersList: [UIViewController] = []
-    private var viewModel: ProfileSetupViewModel!
+    private var viewModel: ProfileSetupViewModelType!
+    private var nicknameViewController: NicknameViewController!
+    private var profilePhotoViewController: ProfilePhotoViewController!
+    private var foodSelectionViewController: FoodSelectionViewController!
+    private var preferenceViewController: PreferenceViewController!
+    private var followSelectionViewController: FollowSelectionViewController!
     private var cancellables = Set<AnyCancellable>()
     
     enum Constants {
@@ -46,22 +61,17 @@ class ProfileSetupViewController: UIViewController {
     }
     
     private func setupPageViewController() {
-        let nicknameVC = NicknameViewController.instance(viewMode: NicknameViewModel())
-        nicknameVC.delegate = self
-        let profilePhotoVC = ProfilePhotoViewController.instance()
-        profilePhotoVC.delegate = self
-        let foodSelectionVC = FoodSelectionViewController.instance()
-        foodSelectionVC.delegate = self
-        let preferenceVC = PreferenceViewController.instance()
-        preferenceVC.delegate = self
-        let followSelectionVC = FollowSelectionViewController.instance()
-        followSelectionVC.delegate = self
+        nicknameViewController.delegate = self
+        profilePhotoViewController.delegate = self
+        foodSelectionViewController.delegate = self
+        preferenceViewController.delegate = self
+        followSelectionViewController.delegate = self
         viewControllersList = [
-            nicknameVC,
-            profilePhotoVC,
-            foodSelectionVC,
-            preferenceVC,
-            followSelectionVC
+            nicknameViewController,
+            profilePhotoViewController,
+            foodSelectionViewController,
+            preferenceViewController,
+            followSelectionViewController
         ]
         
         pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)

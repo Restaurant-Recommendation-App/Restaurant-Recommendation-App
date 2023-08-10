@@ -9,8 +9,9 @@ import UIKit
 import Combine
 
 class ProfilePhotoViewController: UIViewController {
-    static func instance<T: ProfilePhotoViewController>() -> T {
+    static func instance<T: ProfilePhotoViewController>(viewModel: ProfilePhotoViewModelType) -> T {
         let vc: T = .instance(storyboardName: .profilePhoto)
+        vc.viewModel = viewModel
         return vc
     }
     
@@ -18,6 +19,7 @@ class ProfilePhotoViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
     @IBOutlet private weak var laterButton: UIButton!
+    private var viewModel: ProfilePhotoViewModelType!
     var delegate: ProfileSetupDelegate?
     
     override func viewDidLoad() {
@@ -56,9 +58,7 @@ class ProfilePhotoViewController: UIViewController {
     
     // MAKR: - Actions
     @IBAction private func didTapCamera(_ sender: UIButton) {
-        debugPrint("------------------------------------------")
-        debugPrint("앨범 호출")
-        debugPrint("------------------------------------------")
+        viewModel.showPhotoAlbum()
     }
     
     @IBAction private func didTapLater(_ sender: UIButton) {

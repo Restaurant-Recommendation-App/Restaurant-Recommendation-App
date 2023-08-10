@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private let appDIContainer = AppDIContainer()
+    private var appFlowCoordinator: AppFlowCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -21,11 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         window?.rootViewController = tabBarController
-        let appFlowCoordinator = AppFlowCoordinator(
+        appFlowCoordinator = AppFlowCoordinator(
             tabBarController: tabBarController,
             appDIContainer: appDIContainer
         )
-        appFlowCoordinator.start()
+        appFlowCoordinator?.start()
         
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()

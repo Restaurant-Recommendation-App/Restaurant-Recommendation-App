@@ -8,13 +8,13 @@
 import UIKit
 
 class SNSLoginViewController: UIViewController {
-    static func instance<T: SNSLoginViewController>(viewModel: SNSLoginViewModel) -> T {
+    static func instance<T: SNSLoginViewController>(viewModel: SNSLoginViewModelType) -> T {
         let vc: T = .instance(storyboardName: .SNSLogin)
         vc.viewModel = viewModel
         return vc
     }
     
-    private var viewModel: SNSLoginViewModel!
+    private var viewModel: SNSLoginViewModelType!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +22,9 @@ class SNSLoginViewController: UIViewController {
     }
     
     deinit {
-        debugPrint("------------------------------------------")
-        debugPrint("SNSLoginViewController deinit")
-        debugPrint("------------------------------------------")
+#if DEBUG
+        print("SNSLoginViewController deinitialized")
+#endif
     }
     
     // MARK: - Private
@@ -40,6 +40,6 @@ class SNSLoginViewController: UIViewController {
     }
     
     @IBAction private func didTapLogin(_ sender: UIButton) {
-        viewModel.showProfileSetup(self.navigationController)
+        viewModel.showProfileSetup()
     }
 }

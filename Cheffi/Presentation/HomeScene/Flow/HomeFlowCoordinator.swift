@@ -20,23 +20,6 @@ final class HomeFlowCoordinator: BaseFlowCoordinator {
         return self.dependencies as! HomeFlowCoordinatorDependencies
     }
     
-    private var loginDependencies: LoginFlowCoordinatorDependencies?
-        
-    required init(navigationController: UINavigationController,
-                  parentCoordinator: AppFlowCoordinator,
-                  dependencies: BaseFlowCoordinatorDependencies) {
-        super.init(navigationController: navigationController, parentCoordinator: parentCoordinator, dependencies: dependencies)
-    }
-    
-    init(navigationController: UINavigationController,
-         parentCoordinator: AppFlowCoordinator,
-         dependencies: HomeFlowCoordinatorDependencies,
-         loginDependencies: LoginFlowCoordinatorDependencies) {
-        
-        self.loginDependencies = loginDependencies
-        super.init(navigationController: navigationController, parentCoordinator: parentCoordinator, dependencies: dependencies)
-    }
-    
     func start() {
         let actions = HomeViewModelActions(showPopup: showPopup,
                                            showSimilarChefList: showSimilarChefList,
@@ -47,10 +30,7 @@ final class HomeFlowCoordinator: BaseFlowCoordinator {
     
     private func showPopup(text: String, keyword: String) {
         let vc = homeDependencies.makePopupViewController(text: text, keyword: keyword, findHandler: { [weak self] in
-            guard let self = self else { return }
-            let actions = SNSLoginViewModelActions(showProfileSetup: self.showProfileSetup)
-            guard let vc = self.loginDependencies?.makeSNSLoginViewController(actions: actions) else { return }
-            self.navigationController?.present(vc, animated: true)
+            self?.showLogin()
         }, cancelHandler: {})
         navigationController?.present(vc, animated: true)
     }
@@ -65,9 +45,8 @@ final class HomeFlowCoordinator: BaseFlowCoordinator {
         navigationController?.pushViewController(vc)
     }
     
-    private func showProfileSetup(navigationController: UINavigationController?) {
-        guard let vc = loginDependencies?.makeProfileSetupViewController() else { return }
-        navigationController?.pushViewController(vc)
+    private func showLogin() {
+        parentCoordinator?.showLogin()
     }
 }
 

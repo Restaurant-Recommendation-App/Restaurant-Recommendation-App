@@ -32,11 +32,9 @@ final class AppFlowCoordinator {
         homeTabBarItem.setTitleTextAttributes(normalAttributeName, for: .normal)
         homeTabBarItem.setTitleTextAttributes(selectedAttributeName, for: .selected)
         let homeNavigationController = createNavigationController(with: homeTabBarItem)
-        let loginSceneDIContainer = appDIContainer.makeLoginSceneDIContainer()
         let homeCoordinator = homeSceneDIContainer.makeHomeFlowCoordinator(
             navigationController: homeNavigationController,
-            parentCoordinator: self,
-            loginDependencies: loginSceneDIContainer
+            parentCoordinator: self
         )
         homeCoordinator.start()
         
@@ -86,6 +84,28 @@ final class AppFlowCoordinator {
             myPageNavigationController
         ]
     }
+    
+    func showLogin() {
+        let loginCoordinator = createLoginCoordinator()
+        loginCoordinator.start()
+        guard let vc = loginCoordinator.navigationController else { return }
+        tabBarController.present(vc, animated: true)
+    }
+    
+    private func createLoginCoordinator() -> LoginFlowCoordinator {
+        let loginSceneDIContainer = appDIContainer.makeLoginSceneDIContainer()
+        let navigationController = UINavigationController()
+        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.navigationBar.backgroundColor = .clear
+        navigationController.navigationBar.isTranslucent = false
+        navigationController.setNavigationBarHidden(true, animated: false)
+        return LoginFlowCoordinator(
+            navigationController: navigationController,
+            parentCoordinator: self,
+            dependencies: loginSceneDIContainer
+        )
+    }
+
     
     private func createNavigationController(with tabBarItem: UITabBarItem) -> UINavigationController {
         let navigationController = UINavigationController()

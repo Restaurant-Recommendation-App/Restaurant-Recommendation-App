@@ -25,6 +25,7 @@ enum StoryboardName: String {
     case preference
     case foodSelection
     case followSelection
+    case photoAlbum
 }
 
 extension StoryboardName {

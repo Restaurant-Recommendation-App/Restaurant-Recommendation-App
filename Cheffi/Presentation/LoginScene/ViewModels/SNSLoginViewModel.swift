@@ -9,7 +9,7 @@ import Combine
 import UIKit
 
 struct SNSLoginViewModelActions {
-    let showProfileSetup: (_ navigationController: UINavigationController?) -> Void
+    let showProfileSetup: () -> Void
 }
 
 protocol SNSLoginViewModelInput {
@@ -17,18 +17,20 @@ protocol SNSLoginViewModelInput {
 }
 
 protocol SNSLoginViewModelOutput {
-    func showProfileSetup(_ navigationController: UINavigationController?)
+    func showProfileSetup()
 }
 
-final class SNSLoginViewModel: SNSLoginViewModelInput & SNSLoginViewModelOutput {
+typealias SNSLoginViewModelType = SNSLoginViewModelInput & SNSLoginViewModelOutput
+
+final class SNSLoginViewModel: SNSLoginViewModelType {
     private let actions: SNSLoginViewModelActions?
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Input
     
     // MARK: - Output
-    func showProfileSetup(_ navigationController: UINavigationController?) {
-        actions?.showProfileSetup(navigationController)
+    func showProfileSetup() {
+        actions?.showProfileSetup()
     }
     
     // MARK: - Init

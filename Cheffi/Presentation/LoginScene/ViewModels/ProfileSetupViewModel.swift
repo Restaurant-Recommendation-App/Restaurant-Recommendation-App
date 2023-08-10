@@ -39,6 +39,10 @@ final class ProfileSetupViewModel: ProfileSetupViewModelType {
     
     // MARK: - Init
     init() {
+        self.setup()
+    }
+    
+    private func setup() {
         nextButtonTapped
             .sink { [weak self] in
                 if self?.currentPage.value ?? 0 < self?.totalPages ?? 0 {

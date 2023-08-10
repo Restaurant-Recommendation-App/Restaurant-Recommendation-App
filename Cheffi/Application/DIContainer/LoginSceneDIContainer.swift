@@ -15,37 +15,74 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
                                     dependencies: self)
     }
     
-    func makeSNSLoginViewController(actions: SNSLoginViewModelActions) -> UINavigationController {
+    // MARK: - SNS Login
+    func makeSNSLoginViewController(actions: SNSLoginViewModelActions) -> SNSLoginViewController {
         let viewModel = makeSNSLoginViewModel(actions: actions)
         let vc = SNSLoginViewController.instance(viewModel: viewModel)
-        let navi = UINavigationController(rootViewController: vc)
-        navi.navigationBar.backgroundColor = .clear
-        navi.navigationBar.isTranslucent = false
-        navi.setNavigationBarHidden(true, animated: false)
-        navi.modalPresentationStyle = .fullScreen
-        return navi
-    }
-    
-    func makeProfileSetupViewController() -> ProfileSetupViewController {
-        let viewModel = ProfileSetupViewModel()
-        return ProfileSetupViewController.instance(viewModel: viewModel)
+        return vc
     }
     
     func makeSNSLoginViewModel(actions: SNSLoginViewModelActions) -> SNSLoginViewModel {
         return SNSLoginViewModel(actions: actions)
     }
     
+    // MARK: - ProfileSetup
+    func makeProfileSetupViewController(nicknameViewModel: NicknameViewModelType, profilePhotoViewModel: ProfilePhotoViewModelType) -> ProfileSetupViewController {
+        let viewModel = makeProfileSetupViewModel()
+        return ProfileSetupViewController.instance(viewModel: viewModel,
+                                                   nicknameViewController: makeNicknameViewController(),
+                                                   profilePhotoViewController: makeProfilePhotoViewController(viewMoel: profilePhotoViewModel),
+                                                   foodSelectionViewController: makeFoodSelectionViewController(),
+                                                   preferenceViewController: makePreferenceViewController(),
+                                                   followSelectionViewController: makeFollowSelectionViewController())
+    }
+    
+    // MARK: - Nickname
+    func makeNicknameViewController() -> NicknameViewController {
+        let viewModel = makeNicknameViewModel()
+        let vc = NicknameViewController.instance(viewMode: viewModel)
+        return vc
+    }
+    
+    func makeNicknameViewModel() -> NicknameViewModelType {
+        return NicknameViewModel()
+    }
+    
+    // MARK: - ProfilePhoto
+    func makeProfilePhotoViewController(viewMoel: ProfilePhotoViewModelType) -> ProfilePhotoViewController {
+        return ProfilePhotoViewController.instance(viewModel: viewMoel)
+    }
+    
+    func makeProfilePhotoViewModel(actions: ProfilePhotoViewModelActions) -> ProfilePhotoViewModelType {
+        return ProfilePhotoViewModel(actions: actions)
+    }
+    
+    // MARK: - FoodSelection
+    func makeFoodSelectionViewController() -> FoodSelectionViewController {
+        return FoodSelectionViewController.instance()
+    }
+    
+    // MARK: - Preference
+    func makePreferenceViewController() -> PreferenceViewController {
+        return PreferenceViewController.instance()
+    }
+    
+    // MARK: - FollowSelection
+    func makeFollowSelectionViewController() -> FollowSelectionViewController {
+        return FollowSelectionViewController.instance()
+    }
+    
     func makeProfileSetupViewModel() -> ProfileSetupViewModel {
         return ProfileSetupViewModel()
+    }
+    
+    // MARK: - Photo Album
+    func makePhotoAlbumViewController() -> PhotoAlbumViewController {
+        return PhotoAlbumViewController.instance()
     }
     
     // MAKR: - PopupViewController
     func makePopupViewController(text: String, keyword: String, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController {
         return PopupViewController.instance(text: text, keyword: keyword, findHandler: findHandler, cancelHandler: cancelHandler)
-    }
-    
-    // MARK: - Picker
-    func makePickerViewController() -> UIViewController {
-        return UIViewController()
     }
 }

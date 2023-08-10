@@ -20,13 +20,6 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
         self.dependencies = dependencies
     }
     
-    func makeHomeFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator, loginDependencies: LoginFlowCoordinatorDependencies) -> HomeFlowCoordinator {
-        return HomeFlowCoordinator(navigationController: navigationController,
-                                   parentCoordinator: parentCoordinator,
-                                   dependencies: self,
-                                   loginDependencies: loginDependencies)
-    }
-    
     func makeHomeFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> HomeFlowCoordinator {
         return HomeFlowCoordinator(
             navigationController: navigationController,

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SUIT-Medium.otf">
+            <string>SUIT-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Photo Album View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="PhotoAlbumViewController" id="Y6W-OH-hqX" customClass="PhotoAlbumViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcl-mE-B2P">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGz-HT-Bem">
+                                        <rect key="frame" x="16" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="9Uc-XG-i7j"/>
+                                            <constraint firstAttribute="height" constant="44" id="nAM-1F-xgo"/>
+                                        </constraints>
+                                        <color key="tintColor" name="CheffiBlack"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="xmark" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTapColse:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="aAh-tc-2QR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fa5-KI-Sgx">
+                                        <rect key="frame" x="333" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="6Gi-Bw-ugo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SUIT-Medium" family="SUIT" pointSize="14"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="다음">
+                                            <color key="titleColor" name="CheffiBlack"/>
+                                        </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" name="CheffiGray4"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapNext:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="T2G-18-LBd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZM-BG-keT">
+                                        <rect key="frame" x="166.66666666666666" y="6" width="60" height="32"/>
+                                        <fontDescription key="fontDescription" name="SUIT-Medium" family="SUIT" pointSize="16"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="최근 항목">
+                                            <color key="titleColor" name="CheffiBlack"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapLatestItems:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="4zn-wi-hd9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="oZM-BG-keT" firstAttribute="centerX" secondItem="dcl-mE-B2P" secondAttribute="centerX" id="A8P-N2-okZ"/>
+                                    <constraint firstItem="fa5-KI-Sgx" firstAttribute="top" secondItem="dcl-mE-B2P" secondAttribute="top" id="McU-Nf-ekQ"/>
+                                    <constraint firstItem="ZGz-HT-Bem" firstAttribute="centerY" secondItem="dcl-mE-B2P" secondAttribute="centerY" id="RL8-Pg-qTI"/>
+                                    <constraint firstItem="oZM-BG-keT" firstAttribute="centerY" secondItem="dcl-mE-B2P" secondAttribute="centerY" id="dmB-6j-8BK"/>
+                                    <constraint firstAttribute="height" constant="44" id="hlf-IY-F17"/>
+                                    <constraint firstItem="ZGz-HT-Bem" firstAttribute="leading" secondItem="dcl-mE-B2P" secondAttribute="leading" constant="16" id="jb8-i7-Uwv"/>
+                                    <constraint firstAttribute="trailing" secondItem="fa5-KI-Sgx" secondAttribute="trailing" constant="16" id="qla-dk-YFi"/>
+                                    <constraint firstAttribute="bottom" secondItem="fa5-KI-Sgx" secondAttribute="bottom" id="t41-dv-H6g"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dcl-mE-B2P" secondAttribute="trailing" id="KKN-uj-NCT"/>
+                            <constraint firstItem="dcl-mE-B2P" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fNy-MG-FqM"/>
+                            <constraint firstItem="dcl-mE-B2P" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="sou-9C-fvS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="latestItemsButton" destination="oZM-BG-keT" id="ihC-RP-Vw7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="CheffiBlack">
+            <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CheffiGray4">
+            <color red="0.69411764705882351" green="0.69411764705882351" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
