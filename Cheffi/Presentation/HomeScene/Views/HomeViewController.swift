@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class HomeViewController: UIViewController {
     static func instance<T: HomeViewController>(viewModel: HomeViewModel) -> T {
@@ -20,7 +21,10 @@ class HomeViewController: UIViewController {
     enum Constants {
         static let headerHeight: CGFloat = 32.0
     }
-
+    
+    var contentViewSize = CGRect.zero
+    let scrolledToBottom = PassthroughSubject<Void, Never>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,14 +62,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withClass: PopularRestaurantCell.self, for: indexPath)
+            cell.configure(viewModel: viewModel.popularRestaurantViewModel)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withClass: SimilarChefCell.self, for: indexPath)
             cell.configure(with: viewModel.similarChefViewModel)
             cell.delegate = self
             return cell
+            
         case 2:
             let cell = tableView.dequeueReusableCell(withClass: CheffiRecommendationCell.self, for: indexPath)
+            cell.frame = (contentViewSize == CGRect.zero) ? tableView.bounds : contentViewSize
+            cell.layoutIfNeeded()
+            
+            cell.configure(
+                viewModel: self.viewModel.recommendationViewModel,
+                scrolledToBottom: scrolledToBottom.eraseToAnyPublisher()) { contentSize in
+                    self.contentViewSize = CGRect(
+                        x: 0, y: 0,
+                        width: tableView.bounds.width,
+                        height: contentSize.height + 270
+                    )
+                    cell.reload = true
+                    tableView.reloadData()
+                }
+            
             return cell
         default:
             return UITableViewCell()
@@ -75,8 +96,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0: return 800
-        case 1: return 485
-        case 2: return 830
+        case 1: return UITableView.automaticDimension
+        case 2: return (contentViewSize == CGRect.zero) ? UITableView.automaticDimension : contentViewSize.height
         default: return UITableView.automaticDimension
         }
     }
@@ -89,8 +110,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return Constants.headerHeight
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return .leastNonzeroMagnitude
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffsetY = tableView.contentOffset.y
+        let contentHeight = tableView.contentSize.height
+        let height = tableView.frame.height
+        
+        if contentOffsetY > contentHeight - height {
+            scrolledToBottom.send(())
+        }
     }
 }
 

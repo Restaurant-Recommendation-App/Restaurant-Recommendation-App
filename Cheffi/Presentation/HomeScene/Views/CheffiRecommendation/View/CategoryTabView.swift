@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 import SnapKit
 
 class TabButton: UIButton {
@@ -79,7 +80,7 @@ class CategoryTabView: UIView {
     
     var delegate: CategoryTabViewDelegate?
     
-    private var selectedTag = 0
+    let tappedCategory = PassthroughSubject<Int, Never>()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -114,6 +115,10 @@ class CategoryTabView: UIView {
     }
     
     func setUpCategories(categories: [String]) {
+        tabStackView.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+        
         let buttons = categories.enumerated().map {
             let button = TabButton()
             button.setTitle($0.element, for: .normal)
@@ -125,7 +130,8 @@ class CategoryTabView: UIView {
         }
         
         tabStackView.addArrangedSubviews(buttons)
-            
+        
+        layoutIfNeeded()
         tabsBottomBoder.addBorderWithColor(
             layer: CALayer(),
             edge: .bottom,
@@ -138,6 +144,7 @@ class CategoryTabView: UIView {
     @objc func tappedCategory(_ sender: UIButton) {
         changeSelected(with: sender.tag)
         delegate?.didTapCategory(index: sender.tag)
+        tappedCategory.send(sender.tag)
     }
     
     private func changeSelected(with selectedTag: Int) {

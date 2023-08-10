@@ -8,47 +8,52 @@
 import UIKit
 
 class PopularRestaurantContentsView: UICollectionView {
-    
     enum Constants {
         static let cellHeight = 270
-        static let cellLineSpcaing = 13
+        static let cellLineSpcaing = 24
     }
+            
+    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, RestaurantContentsViewModel>?
     
-    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, String>?
-    
-    init(items: [String] = ["Test1", "Test2"]) {
+    init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        setUpCollectionView(items: items)
+        setUpCollectionView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    private func setUpCollectionView(items: [String]) {
+    private func setUpCollectionView() {
         delegate = self
         
         register(cellWithClass: RestaurantContentCell.self)
         allowsSelection = false
-        
-        diffableDataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: self) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: String) -> UICollectionViewCell? in
+                
+        diffableDataSource = UICollectionViewDiffableDataSource<Int, RestaurantContentsViewModel>(collectionView: self) {
+            (collectionView: UICollectionView, indexPath: IndexPath, item: RestaurantContentsViewModel) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withClass: RestaurantContentCell.self, for: indexPath)
             cell.configure(
-                contentImageHeight: 165,
-                title: "그시절낭만의 근본 경양식 돈가스",
-                subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 아물.."
+                contentImageHeight: CGFloat(item.contentImageHeight),
+                title: item.title,
+                subtitle: item.subtitle
             )
             return cell
         }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+    }
+    
+    private func loadItems(items: [RestaurantContentsViewModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, RestaurantContentsViewModel>()
         
         let sections = items.enumerated().map { $0.offset }
         snapshot.appendSections(sections)
         snapshot.appendItems(items)
         
         diffableDataSource?.apply(snapshot, animatingDifferences: true)
+    }
+    
+    func configure(viewModels: [RestaurantContentsViewModel]) {
+        self.loadItems(items: viewModels)
     }
 }
 

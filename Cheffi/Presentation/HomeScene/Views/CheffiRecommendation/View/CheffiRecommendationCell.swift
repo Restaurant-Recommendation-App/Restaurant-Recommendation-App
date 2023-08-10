@@ -6,8 +6,19 @@
 //
 
 import UIKit
+import Combine
 
 final class CheffiRecommendationCell: UITableViewCell {
+    
+    typealias ViewModel = CheffiRecommendationViewModel
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    private let initialize = PassthroughSubject<Void, Never>()
+    private var scrolledToBottom: AnyPublisher<Void, Never> = Empty().eraseToAnyPublisher()
+    private let reloadedContents = PassthroughSubject<Void, Never>()
+    
+    var reload = false
     
     enum Constants {
         static let cellInset: CGFloat = 16.0
@@ -30,7 +41,7 @@ final class CheffiRecommendationCell: UITableViewCell {
         return label
     }()
     
-    private let viewMoreContentsButton: UIButton = {
+    let viewMoreContentsButton: UIButton = {
         let button = UIButton(type: .custom)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
         button.setTitleColor(.cheffiBlack, for: .normal)
@@ -49,13 +60,14 @@ final class CheffiRecommendationCell: UITableViewCell {
     
     private let cheffiRecommendationCatogoryPageView = CheffiRecommendationCategoryPageView()
     
+    private var updateContentHeight: ((CGSize) -> Void)?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
         
         setUp()
-        categoryTabView.setUpCategories(categories: ["한식", "양식", "중식", "일식", "퓨전", "샐러드"])
         cheffiRecommendationCatogoryPageView.categoryPageViewDelegate = categoryTabView
         categoryTabView.delegate = cheffiRecommendationCatogoryPageView
     }
@@ -70,40 +82,99 @@ final class CheffiRecommendationCell: UITableViewCell {
             by: UIEdgeInsets(top: 48, left: 0, bottom: 16, right: 0)
         )
     }
-    
     private func setUp() {
-        
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
         }
-        
+
         contentView.addSubview(subtitleLabel)
         subtitleLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
         }
-        
+
         contentView.addSubview(categoryTabView)
         categoryTabView.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50)
         }
-        
+
         contentView.addSubview(cheffiRecommendationCatogoryPageView)
         cheffiRecommendationCatogoryPageView.snp.makeConstraints {
             $0.top.equalTo(categoryTabView.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(550)
+//            $0.height.equalTo(550)
+//            $0.bottom.equalToSuperview()
         }
-        
+
         contentView.addSubview(viewMoreContentsButton)
         viewMoreContentsButton.snp.makeConstraints {
             $0.top.equalTo(cheffiRecommendationCatogoryPageView.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
+            $0.bottom.equalToSuperview()
             $0.height.equalTo(40)
         }
+    }
+    
+    func configure(viewModel: ViewModel, scrolledToBottom: AnyPublisher<Void, Never>, updateContentHeight: @escaping (CGSize) -> Void) {
+        self.scrolledToBottom = scrolledToBottom
+        self.updateContentHeight = updateContentHeight
+        bind(to: viewModel)
+        initialize.send(())
+        
+        if reload {
+            reloadedContents.send(())
+            reload = false
+        }
+    }
+}
+
+extension CheffiRecommendationCell: Bindable {
+    
+    func bind(to viewModel: ViewModel) {
+        cancellables.forEach {
+            $0.cancel()
+        }
+        cancellables =  Set<AnyCancellable>()
+        
+        let input = ViewModel.Input(
+            initialize: initialize,
+            reloadedContents: reloadedContents.eraseToAnyPublisher(),
+            viewMoreButtonTapped: viewMoreContentsButton.controlPublisher(for: .touchUpInside)
+                .map { _ -> Void in () }
+                .eraseToAnyPublisher(),
+            scrolledToBottom: scrolledToBottom,
+            tappedCategory: categoryTabView.tappedCategory.eraseToAnyPublisher(),
+            scrolledCategory: cheffiRecommendationCatogoryPageView.scrolledCategory.eraseToAnyPublisher()
+            
+        )
+        let output = viewModel.transform(input: input)
+        
+        output.categories
+            .filter { _ in !viewModel.initialized }
+            .sink { categories in
+                self.categoryTabView.setUpCategories(categories: categories)
+            }.store(in: &cancellables)
+        
+        output.restaurantContentsViewModels
+            .sink { (viewModels, updateContentHeight) in
+                if updateContentHeight {
+                    CheffiRecommendationCategoryPageView.updatedContentHeight = false
+                }
+                
+                self.cheffiRecommendationCatogoryPageView.configure(
+                    viewModels: viewModels,
+                    currentCategoryPageIndex: viewModel.currentCategoryIndex,
+                    updateContentHeight: self.updateContentHeight
+                )
+            }.store(in: &cancellables)
+        
+        output.hideMoreViewButton
+            .sink { _ in
+                self.viewMoreContentsButton.isHidden = true
+            }.store(in: &cancellables)
     }
 }

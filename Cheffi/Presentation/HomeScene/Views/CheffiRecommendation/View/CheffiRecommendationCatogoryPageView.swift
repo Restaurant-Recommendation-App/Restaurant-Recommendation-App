@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol CheffiRecommendationCategoryPageViewDelegate {
     func didSwipe(indexPath: IndexPath?)
@@ -13,12 +14,18 @@ protocol CheffiRecommendationCategoryPageViewDelegate {
 
 final class CheffiRecommendationCategoryPageView: UICollectionView {
     
+    static var updatedContentHeight = false
+    
     var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
     
-    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, String>?
+    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, [RestaurantContentsViewModel]>?
     
-    var isScrollingWithTab = false
+    private var isScrollingWithTab = false
     
+    private var updateContentHeight: ((CGSize) -> Void)?
+    
+    let scrolledCategory = PassthroughSubject<Int, Never>()
+        
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         setUp()
@@ -38,23 +45,38 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        
-        
         collectionViewLayout = layout
         
-        diffableDataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: self) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: String) -> UICollectionViewCell? in
+        diffableDataSource = UICollectionViewDiffableDataSource<Int, [RestaurantContentsViewModel]>(collectionView: self) {
+            (collectionView: UICollectionView, indexPath: IndexPath, item: [RestaurantContentsViewModel]) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withClass: CheffiRecommendationCategoryPageCell.self, for: indexPath)
+
+            cell.layoutIfNeeded()
+            cell.configure(viewModels: item)
+            
+            if !CheffiRecommendationCategoryPageView.updatedContentHeight {
+                self.updateContentHeight?(cell.contentSize)
+                CheffiRecommendationCategoryPageView.updatedContentHeight = true
+            }
             
             return cell
         }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
-        
+    }
+    
+    private func loadItems(items: [[RestaurantContentsViewModel]], currentCategoryPageIndex: Int) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, [RestaurantContentsViewModel]>()
         snapshot.appendSections([0])
-        snapshot.appendItems(["한식", "양식", "중식", "일식", "퓨전", "샐러드"])
+        snapshot.appendItems(items)
         
-        diffableDataSource?.apply(snapshot, animatingDifferences: true)
+        diffableDataSource?.apply(snapshot, animatingDifferences: true) {
+            self.safeScrollToItem(at: IndexPath(row: currentCategoryPageIndex, section: 0), at: .centeredHorizontally, animated: false)
+        }
+        reloadData()
+    }
+    
+    func configure(viewModels: [[RestaurantContentsViewModel]], currentCategoryPageIndex: Int, updateContentHeight: ((CGSize) -> Void)?) {
+        self.updateContentHeight = updateContentHeight
+        loadItems(items: viewModels, currentCategoryPageIndex: currentCategoryPageIndex)
     }
 }
 
@@ -74,6 +96,7 @@ extension CheffiRecommendationCategoryPageView: UICollectionViewDelegateFlowLayo
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !isScrollingWithTab {
             categoryPageViewDelegate?.didSwipe(indexPath: visibleIndexPath)
+            scrolledCategory.send(visibleIndexPath?.row ?? 0)
         }
     }
     

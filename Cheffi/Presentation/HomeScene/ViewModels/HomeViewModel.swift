@@ -31,6 +31,8 @@ final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
     
     // MARK: - Output
     var similarChefViewModel: SimilarChefViewModel
+    var popularRestaurantViewModel: PopularRestaurantViewModel
+    var recommendationViewModel: CheffiRecommendationViewModel
     
     func showPopup(text: String, keywrod: String) {
         actions?.showPopup(text, keywrod)
@@ -47,11 +49,15 @@ final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
     // MARK: - Init
     init(
         actions: HomeViewModelActions,
-        similarChefViewModel: SimilarChefViewModel
+        popularRestaurantViewModel: PopularRestaurantViewModel,
+        similarChefViewModel: SimilarChefViewModel,
+        recommendationViewModel: CheffiRecommendationViewModel
     ) {
         self.actions = actions
+        self.popularRestaurantViewModel = popularRestaurantViewModel
         self.similarChefViewModel = similarChefViewModel
-
+        self.recommendationViewModel = recommendationViewModel
+        
         selectedCategory
             .sink { [weak self] _ in
                 self?.similarChefViewModel.selectedCategory.send("")

@@ -13,8 +13,11 @@ final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
         static let cellInset = 16
     }
     
-    private let popularRestaurantContentsView = PopularRestaurantContentsView(
-        items: ["Test1", "Test2", "Test3", "Test4"])
+    let popularRestaurantContentsView = PopularRestaurantContentsView()
+    
+    var contentSize: CGSize {
+        return popularRestaurantContentsView.contentSize
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +42,10 @@ final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
             $0.top.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
         }
+    }
+    
+    func configure(viewModels: [RestaurantContentsViewModel]) {
+        popularRestaurantContentsView.configure(viewModels: viewModels)
     }
 }
 

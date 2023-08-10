@@ -22,13 +22,26 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     }
     
     func makeHomeViewModel(actions: HomeViewModelActions) -> HomeViewModel {
-        return HomeViewModel(actions: actions, similarChefViewModel: makeSimilarChefViewModel())
+        return HomeViewModel(
+            actions: actions,
+            popularRestaurantViewModel: makePopularRestaurantViewModel(numberOfContentsToShow: 2),
+            similarChefViewModel: makeSimilarChefViewModel(),
+            recommendationViewModel: makeRecommedationViewModel()
+        )
+    }
+    
+    func makePopularRestaurantViewModel(numberOfContentsToShow: Int) -> PopularRestaurantViewModel {
+        PopularRestaurantViewModel(numberOfContentsToShow: numberOfContentsToShow)
     }
     
     func makeSimilarChefViewModel() -> SimilarChefViewModel {
         let repository = makeSimilarChefRepository()
         return SimilarChefViewModel(fetchSimilarChefUseCase: makeFetchSimilarChefUseCase(repository: repository),
                                     repository: repository)
+    }
+    
+    func makeRecommedationViewModel() -> CheffiRecommendationViewModel {
+        return CheffiRecommendationViewModel()
     }
     
     func makeFetchSimilarChefUseCase(repository: SimilarChefRepository) -> FetchSimilarChefUseCase {

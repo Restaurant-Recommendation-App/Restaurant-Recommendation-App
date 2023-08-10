@@ -6,11 +6,17 @@
 //
 
 import UIKit
+import Combine
 
 class PopularRestaurantCell: UITableViewCell {
+    typealias ViewModel = PopularRestaurantViewModel
+    
+    var cancellables = Set<AnyCancellable>()
     
     private let mainPopularRestaurantView = MainPopularRestaurantView()
     private let popularRestaurantContentsView = PopularRestaurantContentsView()
+    
+    private let initialize = PassthroughSubject<Void, Never>()
     
     enum Constants {
         static let inset: CGFloat = 16.0
@@ -63,5 +69,23 @@ class PopularRestaurantCell: UITableViewCell {
             $0.leading.trailing.equalToSuperview().inset(Constants.inset)
             $0.height.equalTo(40)
         }
+    }
+    
+    func configure(viewModel: ViewModel) {
+        bind(to: viewModel)
+        initialize.send(())
+    }
+}
+
+extension PopularRestaurantCell: Bindable {
+    
+    func bind(to viewModel: ViewModel) {
+        let input = ViewModel.Input(initialize: initialize)
+        let output = viewModel.transform(input: input)
+        
+        output.models
+            .sink { models in
+                self.popularRestaurantContentsView.configure(viewModels: models)
+            }.store(in: &cancellables)
     }
 }
