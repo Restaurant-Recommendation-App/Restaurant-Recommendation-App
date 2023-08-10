@@ -135,15 +135,12 @@
 		FFDBC6492A81395D0009189C /* FollowSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6482A81395D0009189C /* FollowSelection.storyboard */; };
 		FFDBC64C2A813CC40009189C /* CustomProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC64B2A813CC40009189C /* CustomProfileButton.swift */; };
 		FFDBC64E2A813DE60009189C /* CustomProfileButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC64D2A813DE60009189C /* CustomProfileButton.xib */; };
-		FFDBC66B2A8277C90009189C /* SUIT-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6622A8277C90009189C /* SUIT-Heavy.otf */; };
-		FFDBC66C2A8277C90009189C /* SUIT-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6632A8277C90009189C /* SUIT-ExtraLight.otf */; };
 		FFDBC66D2A8277C90009189C /* SUIT-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6642A8277C90009189C /* SUIT-Regular.otf */; };
 		FFDBC66E2A8277C90009189C /* SUIT-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6652A8277C90009189C /* SUIT-Light.otf */; };
 		FFDBC66F2A8277C90009189C /* SUIT-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6662A8277C90009189C /* SUIT-ExtraBold.otf */; };
 		FFDBC6702A8277C90009189C /* SUIT-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6672A8277C90009189C /* SUIT-SemiBold.otf */; };
 		FFDBC6712A8277C90009189C /* SUIT-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6682A8277C90009189C /* SUIT-Bold.otf */; };
 		FFDBC6722A8277C90009189C /* SUIT-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6692A8277C90009189C /* SUIT-Medium.otf */; };
-		FFDBC6732A8277C90009189C /* SUIT-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC66A2A8277C90009189C /* SUIT-Thin.otf */; };
 		FFDBC6762A8278B50009189C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6752A8278B50009189C /* Fonts.swift */; };
 		FFDBC6782A8280E20009189C /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6772A8280E20009189C /* UILabel+Extensions.swift */; };
 		FFDBC67A2A83AD760009189C /* NicknameVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6792A83AD760009189C /* NicknameVIewModel.swift */; };
@@ -296,15 +293,12 @@
 		FFDBC6482A81395D0009189C /* FollowSelection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FollowSelection.storyboard; sourceTree = "<group>"; };
 		FFDBC64B2A813CC40009189C /* CustomProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProfileButton.swift; sourceTree = "<group>"; };
 		FFDBC64D2A813DE60009189C /* CustomProfileButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomProfileButton.xib; sourceTree = "<group>"; };
-		FFDBC6622A8277C90009189C /* SUIT-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Heavy.otf"; sourceTree = "<group>"; };
-		FFDBC6632A8277C90009189C /* SUIT-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-ExtraLight.otf"; sourceTree = "<group>"; };
 		FFDBC6642A8277C90009189C /* SUIT-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Regular.otf"; sourceTree = "<group>"; };
 		FFDBC6652A8277C90009189C /* SUIT-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Light.otf"; sourceTree = "<group>"; };
 		FFDBC6662A8277C90009189C /* SUIT-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-ExtraBold.otf"; sourceTree = "<group>"; };
 		FFDBC6672A8277C90009189C /* SUIT-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-SemiBold.otf"; sourceTree = "<group>"; };
 		FFDBC6682A8277C90009189C /* SUIT-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Bold.otf"; sourceTree = "<group>"; };
 		FFDBC6692A8277C90009189C /* SUIT-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Medium.otf"; sourceTree = "<group>"; };
-		FFDBC66A2A8277C90009189C /* SUIT-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Thin.otf"; sourceTree = "<group>"; };
 		FFDBC6752A8278B50009189C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		FFDBC6772A8280E20009189C /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		FFDBC6792A83AD760009189C /* NicknameVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameVIewModel.swift; sourceTree = "<group>"; };
@@ -1000,13 +994,10 @@
 			children = (
 				FFDBC6682A8277C90009189C /* SUIT-Bold.otf */,
 				FFDBC6662A8277C90009189C /* SUIT-ExtraBold.otf */,
-				FFDBC6632A8277C90009189C /* SUIT-ExtraLight.otf */,
-				FFDBC6622A8277C90009189C /* SUIT-Heavy.otf */,
 				FFDBC6652A8277C90009189C /* SUIT-Light.otf */,
 				FFDBC6692A8277C90009189C /* SUIT-Medium.otf */,
 				FFDBC6642A8277C90009189C /* SUIT-Regular.otf */,
 				FFDBC6672A8277C90009189C /* SUIT-SemiBold.otf */,
-				FFDBC66A2A8277C90009189C /* SUIT-Thin.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1146,14 +1137,12 @@
 				CEABD7222A6BFF99001BC131 /* SimilarChefList.storyboard in Resources */,
 				CE42BA7D2A6BD94E00EBB80A /* Search.storyboard in Resources */,
 				FF9793B72A74C53200A921A0 /* CheffiDetail.storyboard in Resources */,
-				FFDBC6732A8277C90009189C /* SUIT-Thin.otf in Resources */,
 				CE0D45342A61968200636989 /* RestaurantRegist.storyboard in Resources */,
 				FF5059BF2A7E3F2200F90D27 /* More.storyboard in Resources */,
 				FFDBC64E2A813DE60009189C /* CustomProfileButton.xib in Resources */,
 				FF62A44E2A7FC1CC0066073F /* SNSLogin.storyboard in Resources */,
 				CEABD7132A6BDE94001BC131 /* RecentSearchCell.xib in Resources */,
 				FF3197872A74E8C700F5DD41 /* CheffiReviewView.xib in Resources */,
-				FFDBC66B2A8277C90009189C /* SUIT-Heavy.otf in Resources */,
 				FFDBC66D2A8277C90009189C /* SUIT-Regular.otf in Resources */,
 				FFDBC6472A8139500009189C /* Preference.storyboard in Resources */,
 				CE0D45432A626C3B00636989 /* SimilarChefCell.xib in Resources */,
@@ -1167,7 +1156,6 @@
 				CE0D45262A618F8700636989 /* NationalTrend.storyboard in Resources */,
 				FFDBC6452A8139410009189C /* FoodSelection.storyboard in Resources */,
 				FF3197832A74E51100F5DD41 /* CheffiLocationView.xib in Resources */,
-				FFDBC66C2A8277C90009189C /* SUIT-ExtraLight.otf in Resources */,
 				D4E244C02A60FF5A004E0167 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

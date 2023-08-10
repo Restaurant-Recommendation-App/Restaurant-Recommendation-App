@@ -19,15 +19,12 @@ enum Fonts {
     case medium
     
     enum suit: String, FontType {
-        case bold = "SUIT-Bold"
-        case extraBold = "SUIT-ExtraBold"
-        case extraLight = "SUIT-ExtraLight"
-        case heavy = "SUIT-Heavy"
-        case ligth = "SUIT-Light"
-        case medium = "SUIT-Medium"
-        case regular = "SUIT-Regular"
-        case semiBold = "SUIT-SemiBold"
-        case thin = "SUIT-Thin"
+        case weight300 = "SUIT-Light"
+        case weight400 = "SUIT-Regular"
+        case weight500 = "SUIT-Medium"
+        case weight600 = "SUIT-SemiBold"
+        case weight700 = "SUIT-Bold"
+        case weight800 = "SUIT-ExtraBold"
     }
 }
 

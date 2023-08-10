@@ -47,12 +47,12 @@ class NicknameViewController: UIViewController {
         
         titleLabel.text = "쉐피에서 사용할\n닉네임을 입력해주세요.".localized()
         titleLabel.textColor = .cheffiGray9
-        titleLabel.font = Fonts.suit.medium.size(24)
+        titleLabel.font = Fonts.suit.weight600.size(24)
         textField.delegate = self
         
         // messageLabel
         messageLabel.text = ""
-        messageLabel.font = Fonts.suit.ligth.size(14)
+        messageLabel.font = Fonts.suit.weight400.size(14)
         messageLabel.textColor = Constants.messageSuccessColor
         
         // duplicationCheckButton

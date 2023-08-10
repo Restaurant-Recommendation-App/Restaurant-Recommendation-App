@@ -12,7 +12,8 @@ extension UILabel {
                           in text: String,
                           keywordColor: UIColor = .main,
                           defaultColor: UIColor = .black,
-                          font: UIFont = UIFont.systemFont(ofSize: 16)) {
+                          font: UIFont,
+                          keywordFont: UIFont) {  // keywordFont 파라미터 추가
         let attributedString = NSMutableAttributedString(string: text)
         let fullRange = NSRange(location: 0, length: attributedString.length)
         
@@ -23,9 +24,11 @@ extension UILabel {
         let keywordRange = (text as NSString).range(of: keyword)
         if keywordRange.location != NSNotFound {
             attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: keywordColor, range: keywordRange)
+            attributedString.addAttribute(NSAttributedString.Key.font, value: keywordFont, range: keywordRange)
         }
         
         self.attributedText = attributedString
     }
 }
+
 

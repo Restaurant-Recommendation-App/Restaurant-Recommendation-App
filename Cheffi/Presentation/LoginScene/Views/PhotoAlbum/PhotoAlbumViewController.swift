@@ -18,6 +18,7 @@ class PhotoAlbumViewController: UIViewController {
     }
     
     @IBOutlet private weak var latestItemsButton: UIButton!
+    @IBOutlet private weak var arrowImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,18 +28,7 @@ class PhotoAlbumViewController: UIViewController {
     
     // MARK: - Private
     private func setupViews() {
-        // latestItemsButton
         latestItemsButton.setTitle("최근 항목", for: .normal)
-        latestItemsButton.setImage(UIImage(named: "icArrowDown"), for: .normal)
-        latestItemsButton.setImage(UIImage(named: "icArrowUp"), for: .selected)
-        latestItemsButton.setTitleColor(.cheffiBlack, for: .normal)
-        latestItemsButton.setTitleColor(.cheffiBlack, for: .selected)
-        var config = UIButton.Configuration.filled()
-        config.baseForegroundColor = .white
-        config.baseBackgroundColor = .white
-        config.imagePlacement = .trailing
-        config.imagePadding = Constants.spacing
-        latestItemsButton.configuration = config
     }
     
     private func bindViewModel() {
@@ -58,5 +48,7 @@ class PhotoAlbumViewController: UIViewController {
     
     @IBAction private func didTapLatestItems(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        arrowImageView.image = sender.isSelected ? UIImage(named: "icArrowUp") : UIImage(named: "icArrowDown")
+        // TODO: - 최근 항목 리스트 나오는 View 추가
     }
 }

@@ -31,7 +31,7 @@ class PopupView: BaseView {
     
     // MARK: - Public
     func highlightKeyword(_ keyword: String, in text: String) {
-        textLabel.highlightKeyword(keyword, in: text, defaultColor: .cheffiGray9, font: Fonts.suit.ligth.size(16))
+        textLabel.highlightKeyword(keyword, in: text, font: Fonts.suit.weight400.size(16), keywordFont: Fonts.suit.weight600.size(16))
     }
     
     // MARK: - Actions

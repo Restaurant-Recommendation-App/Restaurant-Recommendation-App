@@ -34,10 +34,11 @@ class FoodSelectionViewController: UIViewController {
         let nickname = "김맛집"
         titleLabel.text = "\(nickname) 쉐피님,\n좋아하는 음식을 선택해주세요.".localized()
         titleLabel.textColor = .cheffiGray9
-        titleLabel.font = Fonts.suit.medium.size(24)
+        titleLabel.font = Fonts.suit.weight600.size(24)
         
+        let subTitleFont = Fonts.suit.weight600.size(15)
         subTitleLabel.highlightKeyword("3가지".localized(), in: "3가지 이상 선택해주세요".localized(),
-                                       defaultColor: .cheffiGray6, font: Fonts.suit.medium.size(15))
+                                       defaultColor: .cheffiGray6, font: subTitleFont, keywordFont: subTitleFont)
     }
     
     // MARK: - Public

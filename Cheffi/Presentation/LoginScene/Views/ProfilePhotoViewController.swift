@@ -32,25 +32,25 @@ class ProfilePhotoViewController: UIViewController {
         registerProfileButton.setTitle("프로필 등록하기".localized())
         registerProfileButton.setBaackgroundColor(.main)
         registerProfileButton.didTapButton = { [weak self] in
-            debugPrint("------------------------------------------")
-            debugPrint("프로필 등록")
-            debugPrint("------------------------------------------")
+#if DEBUG
+            print("프로필 등록")
+#endif
         }
         
         let nickname = "김맛집"
         titleLabel.text = "\(nickname) 쉐피님,\n프로필 사진을 설정해주세요.".localized()
         titleLabel.textColor = .cheffiGray9
-        titleLabel.font = Fonts.suit.medium.size(24)
+        titleLabel.font = Fonts.suit.weight600.size(24)
         
         subTitleLabel.text = "다른 사용자가 나를 알 수 있게 프로필을 만들어보세요".localized()
         subTitleLabel.textColor = .cheffiGray6
-        subTitleLabel.font = Fonts.suit.medium.size(15)
+        subTitleLabel.font = Fonts.suit.weight600.size(15)
         
         let titleString = "나중에 하기".localized()
         let attributedString = NSMutableAttributedString(string: titleString)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: titleString.count))
         laterButton.setAttributedTitle(attributedString, for: .normal)
-        laterButton.titleLabel?.font = Fonts.suit.medium.size(16)
+        laterButton.titleLabel?.font = Fonts.suit.weight600.size(16)
         laterButton.setTitleColor(.cheffiGray4, for: .normal)
     }
     

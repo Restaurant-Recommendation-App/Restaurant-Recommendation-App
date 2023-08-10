@@ -34,11 +34,11 @@ class FollowSelectionViewController: UIViewController {
         
         titleLabel.text = "같은 취향을 가진\n쉐피를 팔로우 해보세요.".localized()
         titleLabel.textColor = .cheffiGray9
-        titleLabel.font = Fonts.suit.medium.size(24)
+        titleLabel.font = Fonts.suit.weight600.size(24)
         
         subTitleLabel.text = "취향이 같은 쉐피들의 PICK을 확인해보세요!".localized()
         subTitleLabel.textColor = .cheffiGray6
-        subTitleLabel.font = Fonts.suit.medium.size(15)
+        subTitleLabel.font = Fonts.suit.weight600.size(15)
     }
     
     // MARK: - Public

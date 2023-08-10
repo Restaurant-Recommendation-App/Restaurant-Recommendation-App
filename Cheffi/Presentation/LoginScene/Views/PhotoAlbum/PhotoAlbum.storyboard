@@ -13,6 +13,9 @@
         <array key="SUIT-Medium.otf">
             <string>SUIT-Medium</string>
         </array>
+        <array key="SUIT-SemiBold.otf">
+            <string>SUIT-SemiBold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Photo Album View Controller-->
@@ -56,28 +59,36 @@
                                             <action selector="didTapNext:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="T2G-18-LBd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZM-BG-keT">
-                                        <rect key="frame" x="166.66666666666666" y="6" width="60" height="32"/>
-                                        <fontDescription key="fontDescription" name="SUIT-Medium" family="SUIT" pointSize="16"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="최근 항목">
-                                            <color key="titleColor" name="CheffiBlack"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapLatestItems:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="4zn-wi-hd9"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xgn-Rq-1B9">
+                                        <rect key="frame" x="162" y="6" width="69" height="32"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBH-z4-qjN">
+                                                <rect key="frame" x="0.0" y="0.0" width="56" height="32"/>
+                                                <fontDescription key="fontDescription" name="SUIT-SemiBold" family="SUIT" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="최근항목">
+                                                    <color key="titleColor" name="CheffiBlack"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapLatestItems:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="0ka-Fp-n2X"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icArrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="Z43-SV-ck7">
+                                                <rect key="frame" x="60" y="0.0" width="9" height="32"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="oZM-BG-keT" firstAttribute="centerX" secondItem="dcl-mE-B2P" secondAttribute="centerX" id="A8P-N2-okZ"/>
                                     <constraint firstItem="fa5-KI-Sgx" firstAttribute="top" secondItem="dcl-mE-B2P" secondAttribute="top" id="McU-Nf-ekQ"/>
                                     <constraint firstItem="ZGz-HT-Bem" firstAttribute="centerY" secondItem="dcl-mE-B2P" secondAttribute="centerY" id="RL8-Pg-qTI"/>
-                                    <constraint firstItem="oZM-BG-keT" firstAttribute="centerY" secondItem="dcl-mE-B2P" secondAttribute="centerY" id="dmB-6j-8BK"/>
                                     <constraint firstAttribute="height" constant="44" id="hlf-IY-F17"/>
                                     <constraint firstItem="ZGz-HT-Bem" firstAttribute="leading" secondItem="dcl-mE-B2P" secondAttribute="leading" constant="16" id="jb8-i7-Uwv"/>
                                     <constraint firstAttribute="trailing" secondItem="fa5-KI-Sgx" secondAttribute="trailing" constant="16" id="qla-dk-YFi"/>
                                     <constraint firstAttribute="bottom" secondItem="fa5-KI-Sgx" secondAttribute="bottom" id="t41-dv-H6g"/>
+                                    <constraint firstItem="xgn-Rq-1B9" firstAttribute="centerX" secondItem="dcl-mE-B2P" secondAttribute="centerX" id="vlW-k9-2Am"/>
+                                    <constraint firstItem="xgn-Rq-1B9" firstAttribute="centerY" secondItem="dcl-mE-B2P" secondAttribute="centerY" id="wGF-kn-uDl"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -90,15 +101,17 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="latestItemsButton" destination="oZM-BG-keT" id="ihC-RP-Vw7"/>
+                        <outlet property="arrowImageView" destination="Z43-SV-ck7" id="f1x-nJ-bJR"/>
+                        <outlet property="latestItemsButton" destination="MBH-z4-qjN" id="cF9-rP-6cd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="4"/>
+            <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
+        <image name="icArrowDown" width="9" height="6"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="CheffiBlack">
             <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
