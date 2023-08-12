@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Photos
 
 class PhotoAlbumViewController: UIViewController {
     static func instance<T: PhotoAlbumViewController>(viewModel: PhotoAlbumViewModelType) -> T {
@@ -36,7 +37,6 @@ class PhotoAlbumViewController: UIViewController {
     
     // MARK: - Private
     private func setupViews() {
-        latestItemsButton.setTitle("최근 항목", for: .normal)
     }
     
     private func setupCollectionView() {
@@ -48,63 +48,98 @@ class PhotoAlbumViewController: UIViewController {
             let isHidden: Bool = !(indexPath.item == 0)
             cell.isHiddenCameraImage(isHidden)
             cell.isHiddenSelectionImage(!isHidden)
-            if let imageData = Data(base64Encoded: identifier, options: .ignoreUnknownCharacters), let image = UIImage(data: imageData) {
-
-                cell.configure(with: image)
+            
+            if indexPath.item > 0, let asset = self.viewModel.asset(at: indexPath.item - 1) {
+                let targetSize = CGSize(width: 100, height: 100)  // 적절한 크기로 조절
+                let currentIdentifier = identifier
+                self.viewModel.requestImage(asset: asset, size: targetSize, contentMode: .aspectFill) { imageData in
+                    if let data = imageData, let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            // 현재 셀의 identifier가 요청 시작 시의 identifier와 동일한지 확인
+                            if currentIdentifier == identifier {
+                                cell.configure(with: image)
+                            }
+                        }
+                    }
+                }
             }
             return cell
         }
     }
+
     
     private func bindViewModel() {
-        viewModel.photoIdentifiersPublisher
-            .sink { [weak self] identifiers in
+        viewModel.photosSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] assets in
+                let identifiers = assets.map { $0.localIdentifier }
                 self?.applySnapshot(identifiers: identifiers)
             }
             .store(in: &cancellables)
         
         viewModel.isLatestItemsButtonSelectedPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] isSelected in
                 self?.arrowImageView.image = isSelected ? UIImage(named: "icArrowUp") : UIImage(named: "icArrowDown")
             }
             .store(in: &cancellables)
         
         viewModel.errorSubject
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] errorMessage in
-                DispatchQueue.main.async {
-                    self?.showErrorAlert(message: errorMessage)
+                self?.showErrorAlert(message: errorMessage)
+            }
+            .store(in: &cancellables)
+        
+        viewModel.capturedImagePublisher
+            .sink { [weak self] capturedImage in
+#if DEBUG
+                print(capturedImage?.imageData)
+#endif
+            }
+            .store(in: &cancellables)
+        
+        viewModel.albumInfosSubject
+            .sink { [weak self] albumInfos in
+                let firstTitle = albumInfos.first?.name
+                self?.latestItemsButton.setTitle(firstTitle, for: .normal)
+            }
+            .store(in: &cancellables)
+        
+        viewModel.photoPermissionDeniedPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isDenied in
+                if isDenied {
+                    self?.showPermissionDeniedAlert()
                 }
             }
             .store(in: &cancellables)
         
-        viewModel.downloadingAssetsPublisher
-            .sink { [weak self] downloadingIdentifiers in
-                self?.updateLoadingIndicators(for: downloadingIdentifiers)
-            }
-            .store(in: &cancellables)
-        
-        viewModel.fetchPhotos()
+        viewModel.getAlbums(mediaType: .image)
     }
     
     private func showErrorAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        
-        let settingsAction = UIAlertAction(title: "OK", style: .default) { _ in
-            // 사용자가 "OK" 버튼을 누르면 앱의 설정 화면으로
-            if let appSettingsURL = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(appSettingsURL, options: [:], completionHandler: nil)
-            }
-        }
-        
-        alert.addAction(settingsAction)
         present(alert, animated: true, completion: nil)
     }
 
+    private func showPermissionDeniedAlert() {
+        let alertController = UIAlertController(title: "권한 필요", message: "사진 앨범 접근 권한이 필요합니다.", preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "설정", style: .default) { _ in
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSettings)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alertController.addAction(settingsAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
     private func applySnapshot(identifiers: [String]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
         snapshot.appendSections([0])
-        snapshot.appendItems([""] + identifiers)
+        snapshot.appendItems([""] + identifiers, toSection: 0)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
@@ -113,18 +148,6 @@ class PhotoAlbumViewController: UIViewController {
             nextButton.isEnabled = true
         } else {
             nextButton.isEnabled = false
-        }
-    }
-    
-    private func updateLoadingIndicators(for downloadingIdentifiers: Set<String>) {
-        for indexPath in collectionView.indexPathsForVisibleItems {
-            if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell, let assetIdentifier = dataSource?.itemIdentifier(for: indexPath) {
-                if downloadingIdentifiers.contains(assetIdentifier) {
-                    cell.showLoadingIndicator()
-                } else {
-                    cell.hideLoadingIndicator()
-                }
-            }
         }
     }
     
@@ -151,15 +174,12 @@ class PhotoAlbumViewController: UIViewController {
 extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.width-6) / 3
-        return CGSize(width: width, height: 123)
+        return CGSize(width: width, height: width)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
-            // TODO: Handle camera button tap
-#if DEBUG
-            print("카메라 오픈")
-#endif
+            viewModel.captureCameraImage()
         } else {
             if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell {
                 // 다른 셀이 이미 선택되어 있는 경우, 그 셀의 선택을 해제

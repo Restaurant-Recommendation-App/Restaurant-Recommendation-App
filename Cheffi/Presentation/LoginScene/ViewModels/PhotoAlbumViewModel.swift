@@ -7,59 +7,121 @@
 
 import Foundation
 import Combine
+import Photos
+
+struct CapturedImage {
+    let imageData: Data
+}
 
 protocol PhotoAlbumViewModelInput {
-    func fetchPhotos()
+    func getAlbums(mediaType: MediaType)
+    func getPhotos(albumInfo: AlbumInfo)
+    func requestImage(asset: PHAsset, size: CGSize, contentMode: PHImageContentMode, completion: @escaping (Data?) -> Void)
     func toggleLatestItemsButton()
+    func captureCameraImage()
 }
 
 protocol PhotoAlbumViewModelOutput {
-    var photoIdentifiersPublisher: Published<[String]>.Publisher { get }
     var isLatestItemsButtonSelectedPublisher: Published<Bool>.Publisher { get }
     var errorSubject: PassthroughSubject<String, Never> { get }
     var downloadingAssetsPublisher: Published<Set<String>>.Publisher { get }
+    var capturedImagePublisher: AnyPublisher<CapturedImage?, Never> { get }
+    var albumInfosSubject: PassthroughSubject<[AlbumInfo], Never> { get }
+    var photosSubject: PassthroughSubject<[PHAsset], Never> { get }
+    func asset(at index: Int) -> PHAsset?
+    var photoPermissionDeniedPublisher: Published<Bool>.Publisher { get }
 }
 
 typealias PhotoAlbumViewModelType = PhotoAlbumViewModelInput & PhotoAlbumViewModelOutput
 
 class PhotoAlbumViewModel: PhotoAlbumViewModelType {
-    private var photoUseCase: FetchPhotoUseCase
+    private let photoUseCase: PhotoUseCase
+    private let cameraService: CameraService
     private var cancellables: Set<AnyCancellable> = []
-    @Published private(set) var photoIdentifiers: [String] = []
+    private var capturedImageSubject = PassthroughSubject<CapturedImage?, Never>()
+    private var currentAssets: [PHAsset] = []
     @Published private(set) var isLatestItemsButtonSelected: Bool = false
     @Published private(set) var errorMessage: String = ""
     @Published private(set) var downloadingAssets: Set<String> = []
+    @Published private(set) var capturedImage: CapturedImage? = nil
+    @Published private(set) var photoPermissionDenied: Bool = false
     
     // MARK: - Input
-    func fetchPhotos() {
-        photoUseCase.fetchPhotoIdentifiers()
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    let errorMessage = "Error fetching photos: \(error)"
-                    self?.errorSubject.send(errorMessage)
+    func getAlbums(mediaType: MediaType) {
+        photoUseCase.getAlbums(for: mediaType) { [weak self] albumInfos in
+            DispatchQueue.main.async {
+                self?.albumInfosSubject.send(albumInfos)
+                if let albumInfo = albumInfos.first {
+                    self?.getPhotos(albumInfo: albumInfo)
                 }
-            }, receiveValue: { [weak self] identifiers, downloadingIdentifiers in
-                self?.photoIdentifiers = identifiers
-                self?.downloadingAssets = downloadingIdentifiers
-            })
-            .store(in: &cancellables)
+            }
+        }
     }
-
+    
+    func getPhotos(albumInfo: AlbumInfo) {
+        photoUseCase.getPhotos(in: albumInfo) { [weak self] assets in
+            self?.currentAssets = assets
+            self?.photosSubject.send(assets)
+        }
+    }
+    
+    func requestImage(asset: PHAsset, size: CGSize, contentMode: PHImageContentMode, completion: @escaping (Data?) -> Void) {
+        photoUseCase.requestImage(for: asset, size: size, contentMode: contentMode, completion: completion)
+    }
+    
     func toggleLatestItemsButton() {
         isLatestItemsButtonSelected.toggle()
     }
     
+    func captureCameraImage() {
+        cameraService.captureImage()
+            .sink { [weak self] capturedImageData in
+                guard let data = capturedImageData?.imageData else { return }
+                let capturedImage = CapturedImage(imageData: data)
+                self?.capturedImage = capturedImage
+                self?.capturedImageSubject.send(capturedImage)
+            }
+            .store(in: &cancellables)
+    }
+    
     // MARK: - Output
-    var photoIdentifiersPublisher: Published<[String]>.Publisher { $photoIdentifiers }
     var isLatestItemsButtonSelectedPublisher: Published<Bool>.Publisher { $isLatestItemsButtonSelected }
     var errorSubject = PassthroughSubject<String, Never>()
     var downloadingAssetsPublisher: Published<Set<String>>.Publisher { $downloadingAssets }
-
-    init(photoUseCase: FetchPhotoUseCase) {
+    var capturedImagePublisher: AnyPublisher<CapturedImage?, Never> { capturedImageSubject.eraseToAnyPublisher() }
+    var albumInfosSubject = PassthroughSubject<[AlbumInfo], Never>()
+    var photosSubject = PassthroughSubject<[PHAsset], Never>()
+    var photoPermissionDeniedPublisher: Published<Bool>.Publisher { $photoPermissionDenied }
+    
+    func asset(at index: Int) -> PHAsset? {
+        guard index < currentAssets.count else { return nil }
+        return currentAssets[index]
+    }
+    
+    func checkPhotoPermission() {
+        let status = PHPhotoLibrary.authorizationStatus()
+        
+        switch status {
+        case .denied, .restricted:
+            photoPermissionDenied = true
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { [weak self] newStatus in
+                if newStatus == .denied || newStatus == .restricted {
+                    DispatchQueue.main.async {
+                        self?.photoPermissionDenied = true
+                    }
+                }
+            }
+        default:
+            break
+        }
+    }
+    
+    init(photoUseCase: PhotoUseCase, cameraService: CameraService) {
         self.photoUseCase = photoUseCase
+        self.cameraService = cameraService
+        
+        checkPhotoPermission()
     }
 }
 

@@ -4,6 +4,15 @@
 <dict>
 	<key>ApiBaseURL</key>
 	<string>$(API_BASE_URL)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SUIT-Bold.otf</string>
+		<string>SUIT-ExtraBold.otf</string>
+		<string>SUIT-Light.otf</string>
+		<string>SUIT-Medium.otf</string>
+		<string>SUIT-Regular.otf</string>
+		<string>SUIT-SemiBold.otf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -21,18 +30,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SUIT-Bold.otf</string>
-		<string>SUIT-ExtraBold.otf</string>
-		<string>SUIT-Light.otf</string>
-		<string>SUIT-Medium.otf</string>
-		<string>SUIT-Regular.otf</string>
-		<string>SUIT-SemiBold.otf</string>
-	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>카메라 필요해요.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>앨범 필요해요.</string>
 </dict>
 </plist>

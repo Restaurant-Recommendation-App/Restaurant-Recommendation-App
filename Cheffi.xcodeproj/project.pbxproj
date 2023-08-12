@@ -21,7 +21,6 @@
 		CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45372A61AA5A00636989 /* MyPageViewController.swift */; };
 		CE0D453A2A61AA7700636989 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0D45392A61AA7700636989 /* MyPage.storyboard */; };
 		CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D453B2A61AAD700636989 /* MyPageFlowCoodinator.swift */; };
-		CE0D453F2A61AECD00636989 /* BaseFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D453E2A61AECD00636989 /* BaseFlowCoordinator.swift */; };
 		CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45402A626C3B00636989 /* SimilarChefCell.swift */; };
 		CE0D45432A626C3B00636989 /* SimilarChefCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0D45412A626C3B00636989 /* SimilarChefCell.xib */; };
 		CE1A6A6D2A62716C00FFE93D /* SimilarChefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6A6C2A62716C00FFE93D /* SimilarChefViewModel.swift */; };
@@ -74,7 +73,6 @@
 		D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244B82A60FF5A004E0167 /* AppDelegate.swift */; };
 		D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */; };
 		D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */; };
-		D4E244C02A60FF5A004E0167 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E244BE2A60FF5A004E0167 /* Home.storyboard */; };
 		D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E244C12A60FF5D004E0167 /* Assets.xcassets */; };
 		D4E24EDC2A64E97A00F9A3B3 /* PopularRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E24EDB2A64E97A00F9A3B3 /* PopularRestaurantCell.swift */; };
 		D4E24EDE2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E24EDD2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift */; };
@@ -93,6 +91,10 @@
 		FF338AF42A77E46800FCCE00 /* CheffiContensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF338AF32A77E46800FCCE00 /* CheffiContensView.xib */; };
 		FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */; };
 		FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */; };
+		FF4659C62A8799B900736AEA /* AlbumInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4659C52A8799B900736AEA /* AlbumInfo.swift */; };
+		FF4659C82A879A8800736AEA /* PhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4659C72A879A8800736AEA /* PhotoRepository.swift */; };
+		FF4659CA2A879B1100736AEA /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4659C92A879B1100736AEA /* PhotoService.swift */; };
+		FF4659CC2A87CC1800736AEA /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4659CD2A87CC1800736AEA /* Home.storyboard */; };
 		FF485D9D2A811D4B00E8B765 /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF485D9C2A811D4B00E8B765 /* ConnectionError.swift */; };
 		FF5059792A79513300F90D27 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF5059782A79513300F90D27 /* KakaoSDK */; };
 		FF5059972A7DFC7200F90D27 /* AppConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059962A7DFC7200F90D27 /* AppConfigurations.swift */; };
@@ -126,7 +128,9 @@
 		FFC58ACB2A8672470095BCF4 /* PhotoAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC58ACA2A8672470095BCF4 /* PhotoAlbumViewModel.swift */; };
 		FFC58ACE2A8675B20095BCF4 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC58ACC2A8675B20095BCF4 /* PhotoCell.swift */; };
 		FFC58ACF2A8675B20095BCF4 /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC58ACD2A8675B20095BCF4 /* PhotoCell.xib */; };
-		FFC58AD12A8689FA0095BCF4 /* FetchPhotoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC58AD02A8689FA0095BCF4 /* FetchPhotoUseCase.swift */; };
+		FFC58AD12A8689FA0095BCF4 /* PhotoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC58AD02A8689FA0095BCF4 /* PhotoUseCase.swift */; };
+		FFC58AD32A87519F0095BCF4 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC58AD22A87519F0095BCF4 /* CameraService.swift */; };
+		FFC58AD52A8756B10095BCF4 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC58AD42A8756B10095BCF4 /* UIApplication+Extensions.swift */; };
 		FFDBC6372A81380D0009189C /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6362A81380D0009189C /* NicknameViewController.swift */; };
 		FFDBC6392A8138150009189C /* ProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6382A8138150009189C /* ProfilePhotoViewController.swift */; };
 		FFDBC63B2A81381E0009189C /* FoodSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC63A2A81381E0009189C /* FoodSelectionViewController.swift */; };
@@ -182,7 +186,6 @@
 		CE0D45372A61AA5A00636989 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		CE0D45392A61AA7700636989 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		CE0D453B2A61AAD700636989 /* MyPageFlowCoodinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFlowCoodinator.swift; sourceTree = "<group>"; };
-		CE0D453E2A61AECD00636989 /* BaseFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFlowCoordinator.swift; sourceTree = "<group>"; };
 		CE0D45402A626C3B00636989 /* SimilarChefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarChefCell.swift; sourceTree = "<group>"; };
 		CE0D45412A626C3B00636989 /* SimilarChefCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarChefCell.xib; sourceTree = "<group>"; };
 		CE1A6A6C2A62716C00FFE93D /* SimilarChefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimilarChefViewModel.swift; path = Cheffi/Presentation/HomeScene/Views/SimilarChef/ViewModel/SimilarChefViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -237,7 +240,6 @@
 		D4E244B82A60FF5A004E0167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		D4E244BF2A60FF5A004E0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		D4E244C12A60FF5D004E0167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4E244C62A60FF5D004E0167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4E24EDB2A64E97A00F9A3B3 /* PopularRestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantCell.swift; sourceTree = "<group>"; };
@@ -257,6 +259,10 @@
 		FF338AF32A77E46800FCCE00 /* CheffiContensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiContensView.xib; sourceTree = "<group>"; };
 		FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiContensViewImageCell.swift; sourceTree = "<group>"; };
 		FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiContensViewImageCell.xib; sourceTree = "<group>"; };
+		FF4659C52A8799B900736AEA /* AlbumInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumInfo.swift; sourceTree = "<group>"; };
+		FF4659C72A879A8800736AEA /* PhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepository.swift; sourceTree = "<group>"; };
+		FF4659C92A879B1100736AEA /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
+		FF4659CD2A87CC1800736AEA /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		FF485D9C2A811D4B00E8B765 /* ConnectionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
 		FF5059962A7DFC7200F90D27 /* AppConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurations.swift; sourceTree = "<group>"; };
 		FF50599A2A7DFF8300F90D27 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -288,7 +294,9 @@
 		FFC58ACA2A8672470095BCF4 /* PhotoAlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewModel.swift; sourceTree = "<group>"; };
 		FFC58ACC2A8675B20095BCF4 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		FFC58ACD2A8675B20095BCF4 /* PhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
-		FFC58AD02A8689FA0095BCF4 /* FetchPhotoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPhotoUseCase.swift; sourceTree = "<group>"; };
+		FFC58AD02A8689FA0095BCF4 /* PhotoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUseCase.swift; sourceTree = "<group>"; };
+		FFC58AD22A87519F0095BCF4 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
+		FFC58AD42A8756B10095BCF4 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		FFDBC6362A81380D0009189C /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		FFDBC6382A8138150009189C /* ProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		FFDBC63A2A81381E0009189C /* FoodSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectionViewController.swift; sourceTree = "<group>"; };
@@ -427,14 +435,6 @@
 			path = Flow;
 			sourceTree = "<group>";
 		};
-		CE0D453D2A61AEB100636989 /* BaseScene */ = {
-			isa = PBXGroup;
-			children = (
-				CE0D453E2A61AECD00636989 /* BaseFlowCoordinator.swift */,
-			);
-			path = BaseScene;
-			sourceTree = "<group>";
-		};
 		CE1A6A6E2A62814C00FFE93D /* SimilarChef */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,6 +516,7 @@
 				FF3197802A74D06600F5DD41 /* Int+Extensions.swift */,
 				FFDBC6772A8280E20009189C /* UILabel+Extensions.swift */,
 				FFDBC67B2A83B2ED0009189C /* UITextField+Extensions.swift */,
+				FFC58AD42A8756B10095BCF4 /* UIApplication+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -559,6 +560,7 @@
 		CE70F89D2A63E7C0003D0ED9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FF4659C42A8799A900736AEA /* Entities */,
 				FF50598D2A7DFA5A00F90D27 /* Network */,
 				CE70F89F2A63E7D4003D0ED9 /* Repositories */,
 			);
@@ -569,6 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				CE70F8982A63C692003D0ED9 /* DefaultSimilarChefRepository.swift */,
+				FF4659C72A879A8800736AEA /* PhotoRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -599,7 +602,7 @@
 			isa = PBXGroup;
 			children = (
 				CE70F8902A63C18C003D0ED9 /* FetchSimilarChefUseCase.swift */,
-				FFC58AD02A8689FA0095BCF4 /* FetchPhotoUseCase.swift */,
+				FFC58AD02A8689FA0095BCF4 /* PhotoUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -668,7 +671,6 @@
 		D41B45EA2A611875003EF1EC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				CE0D453D2A61AEB100636989 /* BaseScene */,
 				FF62A4452A7FC1090066073F /* LoginScene */,
 				D41B45EE2A611936003EF1EC /* HomeScene */,
 				CE0D451E2A6180AD00636989 /* NationalTrendScene */,
@@ -709,7 +711,7 @@
 			isa = PBXGroup;
 			children = (
 				D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */,
-				D4E244BE2A60FF5A004E0167 /* Home.storyboard */,
+				FF4659CD2A87CC1800736AEA /* Home.storyboard */,
 				CE42BA752A6BD50D00EBB80A /* Search */,
 				D4E24EDF2A64EF0E00F9A3B3 /* PopularRestaurant */,
 				CE1A6A6E2A62814C00FFE93D /* SimilarChef */,
@@ -866,6 +868,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		FF4659C42A8799A900736AEA /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				FF4659C52A8799B900736AEA /* AlbumInfo.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		FF485D9B2A811D4B00E8B765 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -966,6 +976,8 @@
 			children = (
 				CE42BA722A6BD1AE00EBB80A /* UserDefaultsManager.swift */,
 				FF97932B2A72BF9900A921A0 /* AccountManager.swift */,
+				FF4659C92A879B1100736AEA /* PhotoService.swift */,
+				FFC58AD22A87519F0095BCF4 /* CameraService.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1097,11 +1109,12 @@
 			};
 			buildConfigurationList = D4E244B02A60FF5A004E0167 /* Build configuration list for PBXProject "Cheffi" */;
 			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = D4E244AC2A60FF5A004E0167;
 			packageReferences = (
@@ -1169,7 +1182,7 @@
 				CE0D45262A618F8700636989 /* NationalTrend.storyboard in Resources */,
 				FFDBC6452A8139410009189C /* FoodSelection.storyboard in Resources */,
 				FF3197832A74E51100F5DD41 /* CheffiLocationView.xib in Resources */,
-				D4E244C02A60FF5A004E0167 /* Home.storyboard in Resources */,
+				FF4659CC2A87CC1800736AEA /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1254,6 +1267,7 @@
 				FF31977B2A74CC5C00F5DD41 /* CheffiMenuItemView.swift in Sources */,
 				FFC58ACE2A8675B20095BCF4 /* PhotoCell.swift in Sources */,
 				CEABD71D2A6BDFD5001BC131 /* Search.swift in Sources */,
+				FF4659C82A879A8800736AEA /* PhotoRepository.swift in Sources */,
 				CE42BA622A6B9D8F00EBB80A /* UIColor+Extensions.swift in Sources */,
 				D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */,
 				FF97932C2A72BF9900A921A0 /* AccountManager.swift in Sources */,
@@ -1262,8 +1276,10 @@
 				D49B592A2A652A35003C108E /* PopularRestaurantContentsView.swift in Sources */,
 				D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */,
 				CEABD7202A6BFF8E001BC131 /* SimilarChefListViewController.swift in Sources */,
+				FFC58AD32A87519F0095BCF4 /* CameraService.swift in Sources */,
 				D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */,
 				CE42BA732A6BD1AE00EBB80A /* UserDefaultsManager.swift in Sources */,
+				FFC58AD52A8756B10095BCF4 /* UIApplication+Extensions.swift in Sources */,
 				FF485D9D2A811D4B00E8B765 /* ConnectionError.swift in Sources */,
 				FF50599B2A7DFF8300F90D27 /* NetworkService.swift in Sources */,
 				CE0D45242A618F0C00636989 /* NationalTrendViewController.swift in Sources */,
@@ -1273,7 +1289,6 @@
 				FFDBC6762A8278B50009189C /* Fonts.swift in Sources */,
 				D41B45FD2A6126FD003EF1EC /* AppFlowCoordinator.swift in Sources */,
 				FF62A44C2A7FC1C10066073F /* SNSLoginViewController.swift in Sources */,
-				CE0D453F2A61AECD00636989 /* BaseFlowCoordinator.swift in Sources */,
 				D41E99302A6A65660085F5D0 /* CategoryTabView.swift in Sources */,
 				D4E24EDE2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift in Sources */,
 				FF5059A92A7E093D00F90D27 /* UserInfoDTO.swift in Sources */,
@@ -1318,15 +1333,17 @@
 				FF5059B92A7E357C00F90D27 /* CheffiWriterView.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
 				CE42BA792A6BD52D00EBB80A /* SearchViewController.swift in Sources */,
+				FF4659C62A8799B900736AEA /* AlbumInfo.swift in Sources */,
 				CE70F8992A63C692003D0ED9 /* DefaultSimilarChefRepository.swift in Sources */,
 				FFDBC63D2A8138330009189C /* PreferenceViewController.swift in Sources */,
 				FF3197732A74C8F800F5DD41 /* CheffiMenuView.swift in Sources */,
+				FF4659CA2A879B1100736AEA /* PhotoService.swift in Sources */,
 				CE1A6A782A6294DC00FFE93D /* TagListView.swift in Sources */,
 				CE1A6A722A6281E200FFE93D /* ProfileView.swift in Sources */,
 				FF31977F2A74CEBC00F5DD41 /* Menu.swift in Sources */,
 				D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */,
 				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,
-				FFC58AD12A8689FA0095BCF4 /* FetchPhotoUseCase.swift in Sources */,
+				FFC58AD12A8689FA0095BCF4 /* PhotoUseCase.swift in Sources */,
 				FF50599D2A7DFFAF00F90D27 /* NetworkConfig.swift in Sources */,
 				CEABD71A2A6BDF0A001BC131 /* TopPickCell.swift in Sources */,
 				FFB50C4A2A72B5A80049B5E1 /* ShowAllContentsButton.swift in Sources */,
@@ -1345,17 +1362,6 @@
 			targetProxy = CE1A6A892A62AE4D00FFE93D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D4E244BE2A60FF5A004E0167 /* Home.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4E244BF2A60FF5A004E0167 /* Base */,
-			);
-			name = Home.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CE1A6A8C2A62AE4D00FFE93D /* Debug */ = {
@@ -1401,6 +1407,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				API_BASE_URL = "http://www.google.com";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1462,6 +1469,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				API_BASE_URL = "http://www.naver.com";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1520,8 +1528,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3D2GFZ7CZT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 필요해요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 필요해요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -1552,8 +1563,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3D2GFZ7CZT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 필요해요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 필요해요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";

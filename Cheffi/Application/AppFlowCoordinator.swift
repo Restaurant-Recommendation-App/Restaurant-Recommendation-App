@@ -12,10 +12,17 @@ import UIKit
 final class AppFlowCoordinator {
     let tabBarController: UITabBarController
     private let appDIContainer: AppDIContainer
+    var loginNavigation: UINavigationController?
     
     init(tabBarController: UITabBarController, appDIContainer: AppDIContainer) {
         self.tabBarController = tabBarController
         self.appDIContainer = appDIContainer
+    }
+    
+    deinit {
+#if DEBUG
+        print("AppFlowCoordinator deinit")
+#endif
     }
     
     func start() {
@@ -86,24 +93,23 @@ final class AppFlowCoordinator {
     }
     
     func showLogin() {
-        let loginCoordinator = createLoginCoordinator()
+        let loginSceneDIContainer = appDIContainer.makeLoginSceneDIContainer()
+        loginNavigation = nil
+        loginNavigation = createLoginNavigation()
+        let loginCoordinator = loginSceneDIContainer.makeLoginFlowCoordinator(navigationController: loginNavigation!,
+                                                                              parentCoordinator: self)
         loginCoordinator.start()
         guard let vc = loginCoordinator.navigationController else { return }
         tabBarController.present(vc, animated: true)
     }
     
-    private func createLoginCoordinator() -> LoginFlowCoordinator {
-        let loginSceneDIContainer = appDIContainer.makeLoginSceneDIContainer()
+    private func createLoginNavigation() -> UINavigationController {
         let navigationController = UINavigationController()
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.navigationBar.backgroundColor = .clear
         navigationController.navigationBar.isTranslucent = false
         navigationController.setNavigationBarHidden(true, animated: false)
-        return LoginFlowCoordinator(
-            navigationController: navigationController,
-            parentCoordinator: self,
-            dependencies: loginSceneDIContainer
-        )
+        return navigationController
     }
 
     

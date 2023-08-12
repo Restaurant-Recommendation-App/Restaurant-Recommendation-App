@@ -83,18 +83,24 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     func makePhotoAlbumViewModel() -> PhotoAlbumViewModel {
-        return PhotoAlbumViewModel(photoUseCase: makeFetchPhotoUseCase())
+        return PhotoAlbumViewModel(photoUseCase: makePhotoUseCase(),
+                                   cameraService: makeCameraService())
+    }
+    
+    func makePhotoRepository() -> DefaultPhotoRepository {
+        return DefaultPhotoRepository()
+    }
+    
+    func makePhotoUseCase() -> DefaultPhotoUseCase {
+        return DefaultPhotoUseCase(repository: makePhotoRepository())
+    }
+    
+    func makeCameraService() -> DefaultCameraService {
+        return DefaultCameraService()
     }
     
     // MAKR: - PopupViewController
     func makePopupViewController(text: String, keyword: String, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController {
         return PopupViewController.instance(text: text, keyword: keyword, findHandler: findHandler, cancelHandler: cancelHandler)
-    }
-}
-
-// MARK: - Use Cases
-extension LoginSceneDIContainer {
-    func makeFetchPhotoUseCase() -> DefaultFetchPhotoUseCase {
-        return DefaultFetchPhotoUseCase()
     }
 }
