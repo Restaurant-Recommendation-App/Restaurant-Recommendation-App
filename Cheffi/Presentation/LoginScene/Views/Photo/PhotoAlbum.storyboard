@@ -91,18 +91,35 @@
                                     <constraint firstItem="xgn-Rq-1B9" firstAttribute="centerY" secondItem="dcl-mE-B2P" secondAttribute="centerY" id="wGF-kn-uDl"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NFq-Rd-Nvc">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="0.0" id="lJw-dD-xJG">
+                                    <size key="itemSize" width="129" height="123"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="NFq-Rd-Nvc" secondAttribute="trailing" id="Bv2-XI-jz5"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dcl-mE-B2P" secondAttribute="trailing" id="KKN-uj-NCT"/>
+                            <constraint firstItem="NFq-Rd-Nvc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Wsx-aj-nfY"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="NFq-Rd-Nvc" secondAttribute="bottom" id="bRN-Li-t4n"/>
                             <constraint firstItem="dcl-mE-B2P" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fNy-MG-FqM"/>
+                            <constraint firstItem="NFq-Rd-Nvc" firstAttribute="top" secondItem="dcl-mE-B2P" secondAttribute="bottom" id="qwy-6N-AYF"/>
                             <constraint firstItem="dcl-mE-B2P" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="sou-9C-fvS"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="arrowImageView" destination="Z43-SV-ck7" id="f1x-nJ-bJR"/>
+                        <outlet property="collectionView" destination="NFq-Rd-Nvc" id="UX4-sI-Xpm"/>
                         <outlet property="latestItemsButton" destination="MBH-z4-qjN" id="cF9-rP-6cd"/>
+                        <outlet property="nextButton" destination="fa5-KI-Sgx" id="D57-K8-DsT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -46,4 +46,8 @@ final class LoginFlowCoordinator: BaseFlowCoordinator {
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.present(vc, animated: true)
     }
+    
+    private func showCameraViewController() {
+        
+    }
 }
