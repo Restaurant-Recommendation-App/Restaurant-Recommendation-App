@@ -115,7 +115,7 @@ class ProfileSetupViewController: UIViewController {
     @IBAction private func didTapBack(_ sender: UIButton) {
         let currentPage = viewModel.currentPage.value
         if currentPage == 0 {
-            self.dismissOrPop()
+            self.dismissOrPop(amimated: true)
         } else {
             viewModel.previousButtonTapped.send()
         }

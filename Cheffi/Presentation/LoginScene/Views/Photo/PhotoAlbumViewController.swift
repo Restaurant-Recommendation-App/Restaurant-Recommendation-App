@@ -8,11 +8,13 @@
 import UIKit
 import Combine
 import Photos
+import SnapKit
 
 class PhotoAlbumViewController: UIViewController {
-    static func instance<T: PhotoAlbumViewController>(viewModel: PhotoAlbumViewModelType) -> T {
+    static func instance<T: PhotoAlbumViewController>(viewModel: PhotoAlbumViewModelType, dismissCompltion: ((Data?) -> Void)?) -> T {
         let vc: T = .instance(storyboardName: .photoAlbum)
         vc.viewModel = viewModel
+        vc.dismissCompltion = dismissCompltion
         return vc
     }
     
@@ -20,13 +22,17 @@ class PhotoAlbumViewController: UIViewController {
         static let spacing: CGFloat = 4.0
     }
     
+    @IBOutlet private weak var navigationBar: UIView!
     @IBOutlet private weak var nextButton: UIButton!
-    @IBOutlet private weak var latestItemsButton: UIButton!
+    @IBOutlet private weak var albumTitleLabel: UILabel!
     @IBOutlet private weak var arrowImageView: UIImageView!
     @IBOutlet private weak var collectionView: UICollectionView!
+    private let photoAlbumListView: PhotoAlbumListView = PhotoAlbumListView()
+    private var hiddenConstraint: Constraint!
     private var viewModel: PhotoAlbumViewModelType!
     private var dataSource: UICollectionViewDiffableDataSource<Int, String>? = nil
     private var cancellables: Set<AnyCancellable> = []
+    var dismissCompltion: ((Data?) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +41,31 @@ class PhotoAlbumViewController: UIViewController {
         bindViewModel()
     }
     
+    deinit {
+#if DEBUG
+        print("PhotoAlbumViewController deinit")
+#endif
+    }
+    
     // MARK: - Private
     private func setupViews() {
+        view.insertSubview(photoAlbumListView, aboveSubview: collectionView)
+        let albumlistViewHeight = view.height + navigationBar.height
+
+        photoAlbumListView.snp.makeConstraints { make in
+            hiddenConstraint = make.top.equalTo(navigationBar.snp.bottom).offset(-albumlistViewHeight).constraint
+            make.top.equalTo(navigationBar.snp.bottom).priority(.low)
+            make.height.equalTo(albumlistViewHeight)
+            make.left.right.equalToSuperview()
+        }
+        
+        hiddenConstraint.activate()
+        
+        photoAlbumListView.didTapSelectedAlbumInfo = { [weak self] albumInfo in
+            self?.updateAlbumTitle(text: albumInfo.name)
+            self?.viewModel.getPhotos(albumInfo: albumInfo)
+            self?.toggleAlbumListView()
+        }
     }
     
     private func setupCollectionView() {
@@ -101,8 +130,7 @@ class PhotoAlbumViewController: UIViewController {
         
         viewModel.albumInfosSubject
             .sink { [weak self] albumInfos in
-                let firstTitle = albumInfos.first?.name
-                self?.latestItemsButton.setTitle(firstTitle, for: .normal)
+                self?.updateAlbumTitle(text: albumInfos.first?.name)
             }
             .store(in: &cancellables)
         
@@ -151,22 +179,40 @@ class PhotoAlbumViewController: UIViewController {
         }
     }
     
+    private func updateAlbumTitle(text: String?) {
+        albumTitleLabel.text = text
+    }
+    
     // MARK: - Public
     
     // MARK: - Actions
     @IBAction private func didTapColse(_ sender: UIButton) {
-        self.dismissOne()
+        self.dismissOne(amimated: true)
     }
     
     @IBAction private func didTapNext(_ sender: UIButton) {
-#if DEBUG
-        print("다음은 크롭 화면")
-#endif
+        viewModel.showPhotoCrop { [weak self] cropImageData in
+            self?.dismiss(animated: false, completion: {
+                self?.dismissCompltion?(cropImageData)
+            })
+        }
     }
     
     @IBAction private func didTapLatestItems(_ sender: UIButton) {
+        toggleAlbumListView()
+    }
+
+    private func toggleAlbumListView() {
         viewModel.toggleLatestItemsButton()
-        // TODO: - 최근 항목 리스트 나오는 View 추가
+        UIView.animate(withDuration: 0.2) { [unowned self] in
+            if self.hiddenConstraint.isActive {
+                self.photoAlbumListView.showAlbumList(albumInfos: self.viewModel.albumInfos)
+                self.hiddenConstraint.deactivate()
+            } else {
+                self.photoAlbumListView.showAlbumList(albumInfos: [])
+                self.hiddenConstraint.activate()
+            }
+        }
     }
 }
 
@@ -193,6 +239,7 @@ extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
                         }
                     }
                 }
+                viewModel.updateSelectedAsset(indexPath.item - 1)
                 cell.updateSelectionImage()
                 updateNextButtonState()
             }

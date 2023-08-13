@@ -62,7 +62,7 @@ class CheffiDetailViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction private func didTapClose(_ sender: UIButton) {
-        self.dismissOrPop()
+        self.dismissOrPop(amimated: true)
     }
     
     @IBAction private func didTapLike(_ sender: UIButton) {

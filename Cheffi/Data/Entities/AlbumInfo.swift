@@ -7,7 +7,7 @@
 
 import Photos
 
-struct AlbumInfo: Identifiable {
+struct AlbumInfo: Identifiable, Hashable {
     let id: String?
     let name: String
     let count: Int

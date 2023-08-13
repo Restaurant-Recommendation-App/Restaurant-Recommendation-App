@@ -77,13 +77,14 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     // MARK: - Photo Album
-    func makePhotoAlbumViewController() -> PhotoAlbumViewController {
-        let viewModel = makePhotoAlbumViewModel()
-        return PhotoAlbumViewController.instance(viewModel: viewModel)
+    func makePhotoAlbumViewController(actions: PhotoAlbumViewModelActions, dismissCompltion: ((Data?) -> Void)?) -> PhotoAlbumViewController {
+        let viewModel = makePhotoAlbumViewModel(actions: actions)
+        return PhotoAlbumViewController.instance(viewModel: viewModel, dismissCompltion: dismissCompltion)
     }
     
-    func makePhotoAlbumViewModel() -> PhotoAlbumViewModel {
-        return PhotoAlbumViewModel(photoUseCase: makePhotoUseCase(),
+    func makePhotoAlbumViewModel(actions: PhotoAlbumViewModelActions) -> PhotoAlbumViewModel {
+        return PhotoAlbumViewModel(actions: actions,
+                                    photoUseCase: makePhotoUseCase(),
                                    cameraService: makeCameraService())
     }
     
@@ -97,6 +98,19 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     
     func makeCameraService() -> DefaultCameraService {
         return DefaultCameraService()
+    }
+    
+    // MARK: - Photo Crop
+    func makePhotoCropViewController(viewModel: PhotoCropViewModel, dismissCompltion: ((Data?) -> Void)?) -> PhotoCropViewController {
+        return PhotoCropViewController.instance(viewModel: viewModel, dismissCompltion: dismissCompltion)
+    }
+    
+    func makePhotoCropViewModel(imageData: Data, service: PhotoCropService) -> PhotoCropViewModel {
+        return PhotoCropViewModel(imageData: imageData, service: service)
+    }
+    
+    func makePhotoCropService() -> PhotoCropService {
+        return PhotoCropService()
     }
     
     // MAKR: - PopupViewController

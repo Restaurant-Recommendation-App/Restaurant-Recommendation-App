@@ -19,6 +19,7 @@ class ProfilePhotoViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
     @IBOutlet private weak var laterButton: UIButton!
+    @IBOutlet private weak var profileImageView: UIImageView!
     private var viewModel: ProfilePhotoViewModelType!
     var delegate: ProfileSetupDelegate?
     
@@ -35,6 +36,7 @@ class ProfilePhotoViewController: UIViewController {
 #if DEBUG
             print("프로필 등록")
 #endif
+            self?.delegate?.didTapNext()
         }
         
         let nickname = "김맛집"
@@ -58,7 +60,15 @@ class ProfilePhotoViewController: UIViewController {
     
     // MAKR: - Actions
     @IBAction private func didTapCamera(_ sender: UIButton) {
-        viewModel.showPhotoAlbum()
+        viewModel.showPhotoAlbum { [weak self] cropImageData in
+#if DEBUG
+            print("여기로")
+#endif
+            guard let data = cropImageData else { return }
+            DispatchQueue.main.async {
+                self?.profileImageView.image = UIImage(data: data)
+            }
+        }
     }
     
     @IBAction private func didTapLater(_ sender: UIButton) {

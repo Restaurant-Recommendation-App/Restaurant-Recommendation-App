@@ -36,7 +36,7 @@ class SNSLoginViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction private func didTapClose(_ sender: UIButton) {
-        self.dismissOne()
+        self.dismissOne(amimated: true)
     }
     
     @IBAction private func didTapLogin(_ sender: UIButton) {

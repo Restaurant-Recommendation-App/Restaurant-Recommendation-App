@@ -9,14 +9,14 @@ import Foundation
 import Combine
 
 struct ProfilePhotoViewModelActions {
-    let showPhotoAlbum: () -> Void
+    let showPhotoAlbum: (_ dismissCompltion: ((Data?) -> Void)?) -> Void
 }
 
 protocol ProfilePhotoViewModelInput {
 }
 
 protocol ProfilePhotoViewModelOutput {
-    func showPhotoAlbum()
+    func showPhotoAlbum(_ dismissCompltion: ((Data?) -> Void)?)
 }
 
 typealias ProfilePhotoViewModelType = ProfilePhotoViewModelInput & ProfilePhotoViewModelOutput
@@ -24,8 +24,8 @@ typealias ProfilePhotoViewModelType = ProfilePhotoViewModelInput & ProfilePhotoV
 final class ProfilePhotoViewModel: ProfilePhotoViewModelType {
     // MARK: - Input
     // MARK: - Output
-    func showPhotoAlbum() {
-        actions.showPhotoAlbum()
+    func showPhotoAlbum(_ dismissCompltion: ((Data?) -> Void)?) {
+        actions.showPhotoAlbum(dismissCompltion)
     }
     
     // MARK: - Init

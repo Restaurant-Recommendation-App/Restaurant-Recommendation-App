@@ -15,21 +15,21 @@ extension UIViewController {
         }
     }
     
-    func dismissOne(_ completion: (() -> Swift.Void)? = nil) {
+    func dismissOne(amimated: Bool, _ completion: (() -> Swift.Void)? = nil) {
         view.endEditing(true)
         
         if let navi = navigationController {
-            navi.dismiss(animated: true, completion: completion)
+            navi.dismiss(animated: amimated, completion: completion)
         } else {
-            dismiss(animated: true, completion: completion)
+            dismiss(animated: amimated, completion: completion)
         }
     }
     
-    func dismissOrPop(_ completion: (() -> Swift.Void)? = nil) {
+    func dismissOrPop(amimated: Bool, _ completion: (() -> Swift.Void)? = nil) {
         if let navi = navigationController, self != navi.viewControllers.first {
-            navi.popViewController(animated: true, completion)
+            navi.popViewController(animated: amimated, completion)
         } else {
-            dismiss(animated: true, completion: completion)
+            dismiss(animated: amimated, completion: completion)
         }
     }
     

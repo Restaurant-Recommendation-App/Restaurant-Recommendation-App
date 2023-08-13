@@ -11,15 +11,19 @@ import Combine
 protocol LoginFlowCoordinatorDependencies {
     func makeSNSLoginViewController(actions: SNSLoginViewModelActions) -> SNSLoginViewController
     func makeProfileSetupViewController(nicknameViewModel: NicknameViewModelType, profilePhotoViewModel: ProfilePhotoViewModelType) -> ProfileSetupViewController
-    func makePhotoAlbumViewController() -> PhotoAlbumViewController
+    func makePhotoAlbumViewController(actions: PhotoAlbumViewModelActions, dismissCompltion: ((Data?) -> Void)?) -> PhotoAlbumViewController
     func makeNicknameViewModel() -> NicknameViewModelType
     func makeProfilePhotoViewModel(actions: ProfilePhotoViewModelActions) -> ProfilePhotoViewModelType
+    func makePhotoCropViewController(viewModel: PhotoCropViewModel, dismissCompltion: ((Data?) -> Void)?) -> PhotoCropViewController
+    func makePhotoCropViewModel(imageData: Data, service: PhotoCropService) -> PhotoCropViewModel
+    func makePhotoCropService() -> PhotoCropService
 }
 
 final class LoginFlowCoordinator {
     weak var navigationController: UINavigationController?
     weak var parentCoordinator: AppFlowCoordinator?
     var dependencies: LoginFlowCoordinatorDependencies
+    weak var profileSetupViewController: ProfileSetupViewController?
     
     init(navigationController: UINavigationController?, parentCoordinator: AppFlowCoordinator?, dependencies: LoginFlowCoordinatorDependencies) {
         self.navigationController = navigationController
@@ -43,14 +47,16 @@ final class LoginFlowCoordinator {
     private func showProfileSetupViewController() {
         let profilePhotoActions = ProfilePhotoViewModelActions(showPhotoAlbum: showPhotoAlbumViewController)
         let vc = dependencies.makeProfileSetupViewController(nicknameViewModel: dependencies.makeNicknameViewModel(),
-                                                                  profilePhotoViewModel: dependencies.makeProfilePhotoViewModel(actions: profilePhotoActions))
+                                                             profilePhotoViewModel: dependencies.makeProfilePhotoViewModel(actions: profilePhotoActions))
+        self.profileSetupViewController = vc
         self.navigationController?.pushViewController(vc)
     }
     
-    private func showPhotoAlbumViewController() {
-        let vc = dependencies.makePhotoAlbumViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.present(vc, animated: true)
+    private func showPhotoAlbumViewController(dismissCompltion: ((Data?) -> Void)?) {
+        let actions = PhotoAlbumViewModelActions(showPhotoCrop: showPhotoCropViewController)
+        let vc = dependencies.makePhotoAlbumViewController(actions: actions, dismissCompltion: dismissCompltion)
+        vc.modalPresentationStyle = .overFullScreen
+        self.profileSetupViewController?.present(vc, animated: true)
     }
     
     private func showCameraViewController() {
@@ -58,5 +64,13 @@ final class LoginFlowCoordinator {
             // 카메라를 사용할 수 없는 경우 처리
             return
         }
+    }
+    
+    private func showPhotoCropViewController(imageData: Data, dismissCompltion: ((Data?) -> Void)?) {
+        let service = dependencies.makePhotoCropService()
+        let viewModel = dependencies.makePhotoCropViewModel(imageData: imageData, service: service)
+        let vc = dependencies.makePhotoCropViewController(viewModel: viewModel, dismissCompltion: dismissCompltion)
+        vc.modalPresentationStyle = .overCurrentContext
+        self.profileSetupViewController?.presentedViewController?.present(vc, animated: true)
     }
 }
