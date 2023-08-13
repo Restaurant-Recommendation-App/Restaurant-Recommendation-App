@@ -48,6 +48,7 @@ class PhotoCropViewController: UIViewController {
         let insetHeight = (scrollFrame.height - hole.height) / 2
         let insetWidth = (scrollFrame.width - hole.width) / 2
         scrollView.contentInset = UIEdgeInsets(top: insetHeight, left: insetWidth, bottom: insetHeight, right: insetWidth)
+        centerImageViewInScrollView()
     }
     
     // MARK: - Private
@@ -70,6 +71,16 @@ class PhotoCropViewController: UIViewController {
                 })
             }
             .store(in: &cancellables)
+    }
+    
+    private func centerImageViewInScrollView() {
+        let imageViewSize = imageView.frame.size
+        let scrollViewSize = scrollView.bounds.size
+        
+        let verticalMargin = max((scrollViewSize.height - imageViewSize.height) / 2, 0)
+        let horizontalMargin = max((scrollViewSize.width - imageViewSize.width) / 2, 0)
+        
+        scrollView.contentInset = UIEdgeInsets(top: verticalMargin, left: horizontalMargin, bottom: verticalMargin, right: horizontalMargin)
     }
     
     // MARK: - Public
