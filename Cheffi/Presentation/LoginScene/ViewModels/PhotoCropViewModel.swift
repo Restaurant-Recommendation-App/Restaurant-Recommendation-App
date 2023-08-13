@@ -9,11 +9,11 @@ import Foundation
 import Combine
 
 protocol PhotoCropViewModelInput {
-    func cropImage(cropRect: CGRect)
+    func setCroppedImageData(_ imageData: Data?)
 }
 
 protocol PhotoCropViewModelOutput {
-    var imageData: AnyPublisher<Data, Never> { get }
+    var imageData: Data { get }
     var croppedImageData: AnyPublisher<Data?, Never> { get }
 }
 
@@ -21,17 +21,15 @@ typealias PhotoCropViewModelType = PhotoCropViewModelInput & PhotoCropViewModelO
 
 final class PhotoCropViewModel: PhotoCropViewModelType {
     private let _imageData: Data
-    private let photoCropService: PhotoCropService
     
     // MARK: - Inputs
-    func cropImage(cropRect: CGRect) {
-        let croppedData = photoCropService.cropImageData(_imageData, in: cropRect)
-        _croppedImageData.send(croppedData)
+    func setCroppedImageData(_ imageData: Data?) {
+        _croppedImageData.send(imageData)
     }
     
     // MARK: - Outputs
-    var imageData: AnyPublisher<Data, Never> {
-        return Just(_imageData).eraseToAnyPublisher()
+    var imageData: Data {
+        return _imageData
     }
     private let _croppedImageData = PassthroughSubject<Data?, Never>()
     var croppedImageData: AnyPublisher<Data?, Never> {
@@ -39,8 +37,7 @@ final class PhotoCropViewModel: PhotoCropViewModelType {
     }
     
     // MARK: - Init
-    init(imageData: Data, service: PhotoCropService) {
+    init(imageData: Data) {
         self._imageData = imageData
-        self.photoCropService = service
     }
 }

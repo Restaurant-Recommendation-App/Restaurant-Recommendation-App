@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22127"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -64,45 +63,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ad8-v0-0oQ">
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
-                                <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCL-fQ-7HU">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jV1-6p-7Zi" userLabel="Content View">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nTq-lh-l8H">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstItem="nTq-lh-l8H" firstAttribute="top" secondItem="jV1-6p-7Zi" secondAttribute="top" id="Mos-FB-OZM"/>
-                                                    <constraint firstAttribute="bottom" secondItem="nTq-lh-l8H" secondAttribute="bottom" id="QlX-Dq-LFl"/>
-                                                    <constraint firstItem="nTq-lh-l8H" firstAttribute="leading" secondItem="jV1-6p-7Zi" secondAttribute="leading" id="ZpZ-tO-Hu4"/>
-                                                    <constraint firstAttribute="trailing" secondItem="nTq-lh-l8H" secondAttribute="trailing" id="zeh-KO-1SI"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="jV1-6p-7Zi" firstAttribute="width" secondItem="nCL-fQ-7HU" secondAttribute="width" id="2hO-74-LLb"/>
-                                            <constraint firstItem="jV1-6p-7Zi" firstAttribute="top" secondItem="nCL-fQ-7HU" secondAttribute="top" id="AH8-sP-UCz"/>
-                                            <constraint firstItem="jV1-6p-7Zi" firstAttribute="leading" secondItem="nCL-fQ-7HU" secondAttribute="leading" id="ZAX-16-W0Z"/>
-                                            <constraint firstAttribute="trailing" secondItem="jV1-6p-7Zi" secondAttribute="trailing" id="iXw-I2-ujm"/>
-                                            <constraint firstItem="jV1-6p-7Zi" firstAttribute="height" secondItem="nCL-fQ-7HU" secondAttribute="height" id="lFs-yv-jI6"/>
-                                            <constraint firstAttribute="bottom" secondItem="jV1-6p-7Zi" secondAttribute="bottom" id="zWU-0q-E6x"/>
-                                        </constraints>
-                                        <viewLayoutGuide key="contentLayoutGuide" id="UKB-eW-duX"/>
-                                        <viewLayoutGuide key="frameLayoutGuide" id="cLR-XC-RoI"/>
-                                    </scrollView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="nCL-fQ-7HU" secondAttribute="trailing" id="lAm-vc-CGs"/>
-                                    <constraint firstAttribute="bottom" secondItem="nCL-fQ-7HU" secondAttribute="bottom" id="q0M-FQ-dqv"/>
-                                    <constraint firstItem="nCL-fQ-7HU" firstAttribute="leading" secondItem="Ad8-v0-0oQ" secondAttribute="leading" id="qhz-nM-mYo"/>
-                                    <constraint firstItem="nCL-fQ-7HU" firstAttribute="top" secondItem="Ad8-v0-0oQ" secondAttribute="top" id="rJg-4F-H4u"/>
-                                </constraints>
+                                <color key="backgroundColor" name="CheffiBlack"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -119,8 +80,6 @@
                     </view>
                     <connections>
                         <outlet property="contentView" destination="Ad8-v0-0oQ" id="a8Z-yg-9x0"/>
-                        <outlet property="imageView" destination="nTq-lh-l8H" id="Lsh-PJ-810"/>
-                        <outlet property="scrollView" destination="nCL-fQ-7HU" id="ZXC-8W-DVc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -132,8 +91,5 @@
         <namedColor name="CheffiBlack">
             <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

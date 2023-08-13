@@ -15,8 +15,7 @@ protocol LoginFlowCoordinatorDependencies {
     func makeNicknameViewModel() -> NicknameViewModelType
     func makeProfilePhotoViewModel(actions: ProfilePhotoViewModelActions) -> ProfilePhotoViewModelType
     func makePhotoCropViewController(viewModel: PhotoCropViewModel, dismissCompltion: ((Data?) -> Void)?) -> PhotoCropViewController
-    func makePhotoCropViewModel(imageData: Data, service: PhotoCropService) -> PhotoCropViewModel
-    func makePhotoCropService() -> PhotoCropService
+    func makePhotoCropViewModel(imageData: Data) -> PhotoCropViewModel
 }
 
 final class LoginFlowCoordinator {
@@ -67,8 +66,7 @@ final class LoginFlowCoordinator {
     }
     
     private func showPhotoCropViewController(imageData: Data, dismissCompltion: ((Data?) -> Void)?) {
-        let service = dependencies.makePhotoCropService()
-        let viewModel = dependencies.makePhotoCropViewModel(imageData: imageData, service: service)
+        let viewModel = dependencies.makePhotoCropViewModel(imageData: imageData)
         let vc = dependencies.makePhotoCropViewController(viewModel: viewModel, dismissCompltion: dismissCompltion)
         vc.modalPresentationStyle = .overCurrentContext
         self.profileSetupViewController?.presentedViewController?.present(vc, animated: true)

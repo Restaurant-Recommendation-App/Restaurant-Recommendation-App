@@ -138,7 +138,8 @@
 		FFC7C6652A888B6900EBE162 /* PhotoCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC7C6642A888B6900EBE162 /* PhotoCropViewController.swift */; };
 		FFC7C6672A888BCB00EBE162 /* PhotoCropViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC7C6662A888BCB00EBE162 /* PhotoCropViewModel.swift */; };
 		FFC7C6692A888C5800EBE162 /* PhotoCrop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC7C6682A888C5800EBE162 /* PhotoCrop.storyboard */; };
-		FFC7C66C2A88908100EBE162 /* PhotoCropService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC7C66B2A88908100EBE162 /* PhotoCropService.swift */; };
+		FFC7C66E2A88F7C000EBE162 /* CircleCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC7C66D2A88F7C000EBE162 /* CircleCropView.swift */; };
+		FFC7C6702A88F87400EBE162 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC7C66F2A88F87400EBE162 /* UIImage+Extensions.swift */; };
 		FFDBC6372A81380D0009189C /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6362A81380D0009189C /* NicknameViewController.swift */; };
 		FFDBC6392A8138150009189C /* ProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6382A8138150009189C /* ProfilePhotoViewController.swift */; };
 		FFDBC63B2A81381E0009189C /* FoodSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC63A2A81381E0009189C /* FoodSelectionViewController.swift */; };
@@ -312,7 +313,8 @@
 		FFC7C6642A888B6900EBE162 /* PhotoCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCropViewController.swift; sourceTree = "<group>"; };
 		FFC7C6662A888BCB00EBE162 /* PhotoCropViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCropViewModel.swift; sourceTree = "<group>"; };
 		FFC7C6682A888C5800EBE162 /* PhotoCrop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoCrop.storyboard; sourceTree = "<group>"; };
-		FFC7C66B2A88908100EBE162 /* PhotoCropService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCropService.swift; sourceTree = "<group>"; };
+		FFC7C66D2A88F7C000EBE162 /* CircleCropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCropView.swift; sourceTree = "<group>"; };
+		FFC7C66F2A88F87400EBE162 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		FFDBC6362A81380D0009189C /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		FFDBC6382A8138150009189C /* ProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		FFDBC63A2A81381E0009189C /* FoodSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectionViewController.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				FFDBC6772A8280E20009189C /* UILabel+Extensions.swift */,
 				FFDBC67B2A83B2ED0009189C /* UITextField+Extensions.swift */,
 				FFC58AD42A8756B10095BCF4 /* UIApplication+Extensions.swift */,
+				FFC7C66F2A88F87400EBE162 /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1023,7 +1026,6 @@
 			children = (
 				FF4659C92A879B1100736AEA /* PhotoService.swift */,
 				FFC58AD22A87519F0095BCF4 /* CameraService.swift */,
-				FFC7C66B2A88908100EBE162 /* PhotoCropService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1071,6 +1073,7 @@
 				FF4659D32A87DF4900736AEA /* PhotoAlbumListCell.xib */,
 				FFC7C6642A888B6900EBE162 /* PhotoCropViewController.swift */,
 				FFC7C6682A888C5800EBE162 /* PhotoCrop.storyboard */,
+				FFC7C66D2A88F7C000EBE162 /* CircleCropView.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -1286,6 +1289,7 @@
 				FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */,
 				CE1A6A6D2A62716C00FFE93D /* SimilarChefViewModel.swift in Sources */,
 				CE70F8912A63C18C003D0ED9 /* FetchSimilarChefUseCase.swift in Sources */,
+				FFC7C66E2A88F7C000EBE162 /* CircleCropView.swift in Sources */,
 				CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */,
 				FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */,
 				FF5059A62A7E08DE00F90D27 /* HomeAPIEndpoints.swift in Sources */,
@@ -1351,7 +1355,6 @@
 				D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */,
 				D441C0202A66965400063822 /* CheffiRecommendationCatogoryPageView.swift in Sources */,
 				CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */,
-				FFC7C66C2A88908100EBE162 /* PhotoCropService.swift in Sources */,
 				FF4659D42A87DF4900736AEA /* PhotoAlbumListCell.swift in Sources */,
 				FFC58ACB2A8672470095BCF4 /* PhotoAlbumViewModel.swift in Sources */,
 				D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */,
@@ -1388,6 +1391,7 @@
 				FFB50C4A2A72B5A80049B5E1 /* ShowAllContentsButton.swift in Sources */,
 				FF5059972A7DFC7200F90D27 /* AppConfigurations.swift in Sources */,
 				FFC7C6672A888BCB00EBE162 /* PhotoCropViewModel.swift in Sources */,
+				FFC7C6702A88F87400EBE162 /* UIImage+Extensions.swift in Sources */,
 				CE42BA6D2A6BB98600EBB80A /* PopupViewController.swift in Sources */,
 				FFFD94E72A8122A1001475AF /* ProfileSetupViewController.swift in Sources */,
 			);

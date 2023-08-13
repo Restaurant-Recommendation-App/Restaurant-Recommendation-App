@@ -62,7 +62,7 @@ class ProfilePhotoViewController: UIViewController {
     @IBAction private func didTapCamera(_ sender: UIButton) {
         viewModel.showPhotoAlbum { [weak self] cropImageData in
 #if DEBUG
-            print("여기로")
+            print("crop image data - \(cropImageData)")
 #endif
             guard let data = cropImageData else { return }
             DispatchQueue.main.async {

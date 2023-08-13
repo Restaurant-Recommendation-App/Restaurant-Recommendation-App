@@ -105,12 +105,8 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
         return PhotoCropViewController.instance(viewModel: viewModel, dismissCompltion: dismissCompltion)
     }
     
-    func makePhotoCropViewModel(imageData: Data, service: PhotoCropService) -> PhotoCropViewModel {
-        return PhotoCropViewModel(imageData: imageData, service: service)
-    }
-    
-    func makePhotoCropService() -> PhotoCropService {
-        return PhotoCropService()
+    func makePhotoCropViewModel(imageData: Data) -> PhotoCropViewModel {
+        return PhotoCropViewModel(imageData: imageData)
     }
     
     // MAKR: - PopupViewController

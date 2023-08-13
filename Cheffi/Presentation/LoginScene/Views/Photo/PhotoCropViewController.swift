@@ -13,39 +13,56 @@ class PhotoCropViewController: UIViewController {
         let vc: T = .instance(storyboardName: .photoCrop)
         vc.viewModel = viewModel
         vc.dismissCompltion = dismissCompltion
+        let image = UIImage(data: viewModel.imageData)
+        vc.imageView = UIImageView(image: image)
         return vc
     }
     
     @IBOutlet private weak var contentView: UIView!
-    @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var imageView: UIImageView!
+    private let scrollView: UIScrollView = UIScrollView()
+    private var imageView: UIImageView!
     private var viewModel: PhotoCropViewModelType!
+    private var circleView: CircleCropView?
     private var cancellables: Set<AnyCancellable> = []
     var dismissCompltion: ((Data?) -> Void)?
     
     enum Constants {
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         bindViewModel()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let scrollFrame = scrollView.frame
+        let imSize = imageView.image?.size ?? .zero
+        guard let hole = circleView?.circleInset, hole.width > 0 else { return }
+        let verticalRatio = hole.height / imSize.height
+        let horizontalRatio = hole.width / imSize.width
+        scrollView.minimumZoomScale = max(horizontalRatio, verticalRatio)
+        scrollView.maximumZoomScale = 1
+        scrollView.zoomScale = scrollView.minimumZoomScale
+        let insetHeight = (scrollFrame.height - hole.height) / 2
+        let insetWidth = (scrollFrame.width - hole.width) / 2
+        scrollView.contentInset = UIEdgeInsets(top: insetHeight, left: insetWidth, bottom: insetHeight, right: insetWidth)
+    }
+    
     // MARK: - Private
     private func setupViews() {
+        circleView = CircleCropView(frame: contentView.bounds)
+        contentView.addSubview(scrollView)
+        contentView.addSubview(circleView!)
+        scrollView.addSubview(imageView)
+        scrollView.contentSize = imageView.image?.size ?? .zero
         scrollView.delegate = self
-        scrollView.maximumZoomScale = 3.0
-        scrollView.minimumZoomScale = 1.0
+        scrollView.frame = self.contentView.bounds
+        circleView?.frame = self.scrollView.bounds
     }
     
     private func bindViewModel() {
-        viewModel.imageData
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] data in
-                self?.imageView.image = UIImage(data: data)
-            }
-            .store(in: &cancellables)
         viewModel.croppedImageData
             .sink { [weak self] imageData in
                 self?.dismiss(animated: false, completion: {
@@ -63,10 +80,11 @@ class PhotoCropViewController: UIViewController {
     }
     
     @IBAction private func didTapDone(_ sender: UIButton) {
-        let centerPoint = CGPoint(x: contentView.bounds.width / 2, y: contentView.bounds.height / 2)
-        let radius = contentView.bounds.width / 2
-        let cropRect = CGRect(x: centerPoint.x - radius, y: centerPoint.y - radius, width: 2 * radius, height: 2 * radius)
-        viewModel.cropImage(cropRect: cropRect)
+        guard let rect = self.circleView?.circleInset else { return }
+        let shift = rect.applying(CGAffineTransform(translationX: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y))
+        let scaled = shift.applying(CGAffineTransform(scaleX: 1.0 / self.scrollView.zoomScale, y: 1.0 / self.scrollView.zoomScale))
+        let croppedImageData = self.imageView.image?.imageCropped(toRect: scaled).pngData()
+        viewModel.setCroppedImageData(croppedImageData)
     }
 }
 
