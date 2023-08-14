@@ -13,16 +13,12 @@ protocol CheffiRecommendationCategoryPageViewDelegate {
 }
 
 final class CheffiRecommendationCategoryPageView: UICollectionView {
-    
-    static var updatedContentHeight = false
-    
+        
     var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
     
     private var diffableDataSource: UICollectionViewDiffableDataSource<Int, [RestaurantContentsViewModel]>?
     
     private var isScrollingWithTab = false
-    
-    private var updateContentHeight: ((CGSize) -> Void)?
     
     let scrolledCategory = PassthroughSubject<Int, Never>()
         
@@ -53,12 +49,7 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
 
             cell.layoutIfNeeded()
             cell.configure(viewModels: item)
-            
-            if !CheffiRecommendationCategoryPageView.updatedContentHeight {
-                self.updateContentHeight?(cell.contentSize)
-                CheffiRecommendationCategoryPageView.updatedContentHeight = true
-            }
-            
+                        
             return cell
         }
     }
@@ -67,15 +58,10 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
         var snapshot = NSDiffableDataSourceSnapshot<Int, [RestaurantContentsViewModel]>()
         snapshot.appendSections([0])
         snapshot.appendItems(items)
-        
-        diffableDataSource?.apply(snapshot, animatingDifferences: true) {
-            self.safeScrollToItem(at: IndexPath(row: currentCategoryPageIndex, section: 0), at: .centeredHorizontally, animated: false)
-        }
-        reloadData()
+        diffableDataSource?.apply(snapshot, animatingDifferences: true)
     }
     
-    func configure(viewModels: [[RestaurantContentsViewModel]], currentCategoryPageIndex: Int, updateContentHeight: ((CGSize) -> Void)?) {
-        self.updateContentHeight = updateContentHeight
+    func configure(viewModels: [[RestaurantContentsViewModel]], currentCategoryPageIndex: Int) {
         loadItems(items: viewModels, currentCategoryPageIndex: currentCategoryPageIndex)
     }
 }

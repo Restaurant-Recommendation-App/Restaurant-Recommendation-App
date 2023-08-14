@@ -16,12 +16,12 @@ final class CheffiRecommendationCell: UITableViewCell {
     
     private let initialize = PassthroughSubject<Void, Never>()
     private var scrolledToBottom: AnyPublisher<Void, Never> = Empty().eraseToAnyPublisher()
-    private let reloadedContents = PassthroughSubject<Void, Never>()
     
     var reload = false
     
     enum Constants {
         static let cellInset: CGFloat = 16.0
+        static let otherContentsSize: CGFloat = 270
     }
     
     private let titleLabel: UILabel = {
@@ -51,7 +51,7 @@ final class CheffiRecommendationCell: UITableViewCell {
     
     private let cheffiRecommendationCatogoryPageView = CheffiRecommendationCategoryPageView()
     
-    private var updateContentHeight: ((CGSize) -> Void)?
+    private var updateContentHeight: ((CGFloat) -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -115,16 +115,11 @@ final class CheffiRecommendationCell: UITableViewCell {
         }
     }
     
-    func configure(viewModel: ViewModel, scrolledToBottom: AnyPublisher<Void, Never>, updateContentHeight: @escaping (CGSize) -> Void) {
+    func configure(viewModel: ViewModel, scrolledToBottom: AnyPublisher<Void, Never>, updateContentHeight: @escaping (CGFloat) -> Void) {
         self.scrolledToBottom = scrolledToBottom
         self.updateContentHeight = updateContentHeight
         bind(to: viewModel)
         initialize.send(())
-        
-        if reload {
-            reloadedContents.send(())
-            reload = false
-        }
     }
 }
 
@@ -138,7 +133,6 @@ extension CheffiRecommendationCell: Bindable {
         
         let input = ViewModel.Input(
             initialize: initialize,
-            reloadedContents: reloadedContents.eraseToAnyPublisher(),
             viewMoreButtonTapped: showAllContentsButton.controlPublisher(for: .touchUpInside)
                 .map { _ -> Void in () }
                 .eraseToAnyPublisher(),
@@ -156,16 +150,20 @@ extension CheffiRecommendationCell: Bindable {
             }.store(in: &cancellables)
         
         output.restaurantContentsViewModels
-            .sink { (viewModels, updateContentHeight) in
-                if updateContentHeight {
-                    CheffiRecommendationCategoryPageView.updatedContentHeight = false
-                }
-                
+            .sink { viewModels in
+                debugPrint("restaurantContentsViewModels")
                 self.cheffiRecommendationCatogoryPageView.configure(
                     viewModels: viewModels,
-                    currentCategoryPageIndex: viewModel.currentCategoryIndex,
-                    updateContentHeight: self.updateContentHeight
+                    currentCategoryPageIndex: viewModel.currentCategoryIndex
                 )
+                
+                viewModel.isLoading = false
+
+            }.store(in: &cancellables)
+        
+        output.updateContentHeight
+            .sink { contentHeight in
+                self.updateContentHeight?(contentHeight)
             }.store(in: &cancellables)
         
         output.hideMoreViewButton

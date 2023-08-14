@@ -12,7 +12,6 @@ final class CheffiRecommendationViewModel: ViewModelType {
     
     struct Input {
         let initialize: PassthroughSubject<Void, Never>
-        let reloadedContents: AnyPublisher<Void, Never>
         let viewMoreButtonTapped: AnyPublisher<Void, Never>
         let scrolledToBottom: AnyPublisher<Void, Never>
         let tappedCategory: AnyPublisher<Int, Never>
@@ -21,8 +20,9 @@ final class CheffiRecommendationViewModel: ViewModelType {
     
     struct Output {
         let categories: AnyPublisher<[String], Never>
-        let restaurantContentsViewModels: AnyPublisher<([[RestaurantContentsViewModel]], Bool), Never>
+        let restaurantContentsViewModels: AnyPublisher<[[RestaurantContentsViewModel]], Never>
         let hideMoreViewButton: AnyPublisher<Void, Never>
+        let updateContentHeight: AnyPublisher<CGFloat, Never>
     }
     
     var cancellables = Set<AnyCancellable>()
@@ -33,9 +33,16 @@ final class CheffiRecommendationViewModel: ViewModelType {
     var currentCategoryIndex = 0
     private var currentCategoriesPages = [Int]()
     private var maxCategoryPage = 1
-    private var isLoading = false
+    var isLoading = false
     
     private var moreViewButtonTapped = false
+    private var contentHeight: CGFloat {
+        let line = (popularRestaurantContentsViewModelMock.max { $0.count < $1.count }?.count ?? 2) / 2
+        
+        return CGFloat((line * PopularRestaurantContentsView.Constants.cellHeight) + ((line - 1) *  PopularRestaurantContentsView.Constants.cellLineSpcaing)) + CheffiRecommendationCell.Constants.otherContentsSize
+    }
+    
+    private var maxContentHeight: CGFloat = 0
     
     func transform(input: Input) -> Output {
         cancellables.forEach {
@@ -43,25 +50,24 @@ final class CheffiRecommendationViewModel: ViewModelType {
         }
         cancellables =  Set<AnyCancellable>()
         
-        let restaurantContentsViewModels = PassthroughSubject<([[RestaurantContentsViewModel]], Bool), Never>()
+        let restaurantContentsViewModels = PassthroughSubject<[[RestaurantContentsViewModel]], Never>()
         
         let categories = PassthroughSubject<[String], Never>()
         
         let hideMoreViewButton = PassthroughSubject<Void, Never>()
-
+        
+        let updateContentHeight = PassthroughSubject<CGFloat, Never>()
+        
         // TODO: Usecase 활용 필요
         input.initialize
             .filter { !self.initialized }
-            .sink { _ in                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, false))
+            .sink { _ in
+                self.updateContentHeightIfNeeded(with: updateContentHeight)
+                
+                restaurantContentsViewModels.send(popularRestaurantContentsViewModelMock)
                 categories.send(categoriesMock)
                 self.currentCategoriesPages = .init(repeating: 1, count: categoriesMock.count)
                 self.initialized = true
-            }.store(in: &cancellables)
-        
-        input.reloadedContents
-            .sink { _ in
-                self.isLoading = false
-                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, false))
             }.store(in: &cancellables)
         
         input.viewMoreButtonTapped
@@ -70,7 +76,8 @@ final class CheffiRecommendationViewModel: ViewModelType {
                 self.maxCategoryPage += 1
                 self.appendContents(index: self.currentCategoryIndex)
                 hideMoreViewButton.send(())
-                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, true))
+                self.updateContentHeightIfNeeded(with: updateContentHeight)
+                restaurantContentsViewModels.send(popularRestaurantContentsViewModelMock)
             }.store(in: &cancellables)
         
         input.scrolledToBottom
@@ -79,7 +86,8 @@ final class CheffiRecommendationViewModel: ViewModelType {
                 self.isLoading = true
                 self.maxCategoryPage += 1
                 self.appendContents(index: self.currentCategoryIndex)
-                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, true))
+                self.updateContentHeightIfNeeded(with: updateContentHeight)
+                restaurantContentsViewModels.send(popularRestaurantContentsViewModelMock)
             }.store(in: &cancellables)
 
         //TODO: 중복 코드 제거
@@ -90,7 +98,8 @@ final class CheffiRecommendationViewModel: ViewModelType {
                 else { return }
                 
                 self.appendContents(index: categoryIndex)
-                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, true))
+                self.updateContentHeightIfNeeded(with: updateContentHeight)
+                restaurantContentsViewModels.send(popularRestaurantContentsViewModelMock)
             }.store(in: &cancellables)
         
         input.scrolledCategory
@@ -101,13 +110,15 @@ final class CheffiRecommendationViewModel: ViewModelType {
                 else { return }
 
                 self.appendContents(index: categoryIndex)
-                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, true))
+                self.updateContentHeightIfNeeded(with: updateContentHeight)
+                restaurantContentsViewModels.send(popularRestaurantContentsViewModelMock)
             }.store(in: &cancellables)
 
         return Output(
             categories: categories.eraseToAnyPublisher(),
             restaurantContentsViewModels: restaurantContentsViewModels.eraseToAnyPublisher(),
-            hideMoreViewButton: hideMoreViewButton.eraseToAnyPublisher()
+            hideMoreViewButton: hideMoreViewButton.eraseToAnyPublisher(),
+            updateContentHeight: updateContentHeight.eraseToAnyPublisher()
         )
     }
     
@@ -132,6 +143,13 @@ final class CheffiRecommendationViewModel: ViewModelType {
             ]
         }
         self.currentCategoriesPages[index] = maxCategoryPage
+    }
+    
+    private func updateContentHeightIfNeeded(with publisher: PassthroughSubject<CGFloat, Never>) {
+        if maxContentHeight < self.contentHeight {
+            publisher.send(self.contentHeight)
+            maxContentHeight = self.contentHeight
+        }
     }
 }
 

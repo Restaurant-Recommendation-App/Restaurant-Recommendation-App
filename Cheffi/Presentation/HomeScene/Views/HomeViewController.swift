@@ -22,7 +22,8 @@ class HomeViewController: UIViewController {
         static let headerHeight: CGFloat = 32.0
     }
     
-    var contentViewSize = CGRect.zero
+    private var contentHeight = UITableView.automaticDimension
+
     let scrolledToBottom = PassthroughSubject<Void, Never>()
     
     override func viewDidLoad() {
@@ -72,19 +73,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
         case 2:
             let cell = tableView.dequeueReusableCell(withClass: CheffiRecommendationCell.self, for: indexPath)
-            cell.frame = (contentViewSize == CGRect.zero) ? tableView.bounds : contentViewSize
-            cell.layoutIfNeeded()
-            
+
             cell.configure(
                 viewModel: self.viewModel.recommendationViewModel,
-                scrolledToBottom: scrolledToBottom.eraseToAnyPublisher()) { contentSize in
-                    self.contentViewSize = CGRect(
-                        x: 0, y: 0,
-                        width: tableView.bounds.width,
-                        height: contentSize.height + 270
-                    )
-                    cell.reload = true
-                    tableView.reloadData()
+                scrolledToBottom: scrolledToBottom.eraseToAnyPublisher()) { contentHeight in
+                    cell.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: contentHeight)
+                    cell.layoutIfNeeded()
+                    
+                    self.contentHeight = contentHeight
+                    tableView.beginUpdates()
+                    tableView.endUpdates()
                 }
             
             return cell
@@ -97,7 +95,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0: return 800
         case 1: return UITableView.automaticDimension
-        case 2: return (contentViewSize == CGRect.zero) ? UITableView.automaticDimension : contentViewSize.height
+        case 2: return contentHeight
         default: return UITableView.automaticDimension
         }
     }
