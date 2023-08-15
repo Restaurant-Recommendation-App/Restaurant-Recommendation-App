@@ -25,7 +25,7 @@ final class CustomProfileButton: BaseView {
     // MARK: - Private
     private func setupViews() {
         setTitle("다음")
-        setBaackgroundColor(.cheffiGray3)
+        setBackgroundColor(.cheffiGray3)
         setLayerCornerRadius(10.0)
         button.titleLabel?.font = Fonts.suit.weight600.size(16)
         button.setTitleColor(.white, for: .normal)
@@ -36,7 +36,7 @@ final class CustomProfileButton: BaseView {
         button.setTitle(text.localized(), for: .normal)
     }
     
-    func setBaackgroundColor(_ color: UIColor?) {
+    func setBackgroundColor(_ color: UIColor?) {
         button.backgroundColor = color
     }
     

@@ -15,6 +15,13 @@ extension UIViewController {
         }
     }
     
+    var bottomSafeArea: CGFloat {
+        get {
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0.0 }
+            return windowScene.windows.first?.safeAreaInsets.bottom ?? 0.0
+        }
+    }
+    
     func dismissOne(amimated: Bool, _ completion: (() -> Swift.Void)? = nil) {
         view.endEditing(true)
         

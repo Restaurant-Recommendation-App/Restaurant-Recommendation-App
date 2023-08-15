@@ -16,6 +16,12 @@ class NicknameViewController: UIViewController {
     }
     
     @IBOutlet private weak var nextButton: CustomProfileButton!
+    private var nextButtonOnKeyboard: CustomProfileButton = {
+        let button = CustomProfileButton()
+        button.setLayerCornerRadius(0.0)
+        button.isHidden = true
+        return button
+    }()
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var textField: UITextField!
     @IBOutlet private weak var messageLabel: UILabel!
@@ -29,18 +35,24 @@ class NicknameViewController: UIViewController {
         static let messageErrorColor = UIColor(hexString: "D82231")
         static let duplicationEnableColor = UIColor(hexString: "FFF2F4")
         static let duplicationDisableColor = UIColor.cheffiGray1
+        static let buttonHeight: CGFloat = 50.0
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         bindViewModel()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - Private
     private func setupViews() {
         nextButton.setTitle("다음")
-        nextButton.setBaackgroundColor(.main)
+        nextButton.setBackgroundColor(Constants.duplicationDisableColor)
         nextButton.didTapButton = { [weak self] in
             self?.delegate?.didTapNext()
         }
@@ -58,6 +70,12 @@ class NicknameViewController: UIViewController {
         // duplicationCheckButton
         duplicationCheckButton.setTitleColor(.main, for: .normal)
         duplicationCheckButton.setTitleColor(.cheffiGray5, for: .disabled)
+        
+        // textField
+        textField.layerBorderColor = .cheffiBlack
+        textField.layerBorderWidth = 1.0
+        textField.layerCornerRadius = 10.0
+        textField.inputAccessoryView = nil
     }
     
     private func bindViewModel() {
@@ -77,8 +95,14 @@ class NicknameViewController: UIViewController {
                 switch status {
                 case .error:
                     self?.messageLabel.textColor = Constants.messageErrorColor
+                    self?.nextButton.setBackgroundColor(.cheffiGray3)
+                    self?.nextButtonOnKeyboard.setBackgroundColor(.cheffiGray3)
+                    self?.textField.layerBorderColor = Constants.messageErrorColor
                 case .success:
                     self?.messageLabel.textColor = Constants.messageSuccessColor
+                    self?.nextButton.setBackgroundColor(.main)
+                    self?.nextButtonOnKeyboard.setBackgroundColor(.main)
+                    self?.textField.layerBorderColor = Constants.messageSuccessColor
                 case .none:
                     break
                 }
@@ -98,6 +122,30 @@ class NicknameViewController: UIViewController {
     @IBAction private func duplicationCheck(_ sender: UIButton) {
         viewModel.checkNicknameDuplication()
     }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.addSubview(nextButtonOnKeyboard)
+            nextButtonOnKeyboard.snp.makeConstraints { make in
+                make.leading.trailing.equalToSuperview()
+                make.height.equalTo(Constants.buttonHeight)
+                make.bottom.equalToSuperview().offset(-keyboardSize.height+self.bottomSafeArea)
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        nextButtonOnKeyboard.removeFromSuperview()
+    }
+    
+    @objc func didTapNextOnKeyboard() {
+        self.delegate?.didTapNext()
+        hideKeyboard()
+    }
+    
+    @objc func hideKeyboard() {
+        self.view.endEditing(true)
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -105,6 +153,7 @@ extension NicknameViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        nextButtonOnKeyboard.isHidden = !(newText.count >= 2)
         return newText.count <= viewModel.maxNicknameCount
     }
 }
