@@ -11,6 +11,7 @@ import Photos
 
 struct PhotoAlbumViewModelActions {
     let showPhotoCrop: (_ imageData: Data, _ completion: ((Data?) -> Void)?) -> Void
+    let showCamera: (_ dismissCompltion: ((Data?) -> Void)?) -> Void
 }
 
 struct CapturedImage {
@@ -22,16 +23,15 @@ protocol PhotoAlbumViewModelInput {
     func getPhotos(albumInfo: AlbumInfo)
     func requestImage(asset: PHAsset, size: CGSize, contentMode: PHImageContentMode, completion: @escaping (Data?) -> Void)
     func toggleLatestItemsButton()
-    func captureCameraImage()
     func updateSelectedAsset(_ index: Int)
-    func showPhotoCrop(_ completion: ((Data?) -> Void)?)
+    func showPhotoCrop(_ captureImageData: Data?, _ completion: ((Data?) -> Void)?)
+    func showCamera(_ completion: ((Data?) -> Void)?)
 }
 
 protocol PhotoAlbumViewModelOutput {
     var isLatestItemsButtonSelectedPublisher: Published<Bool>.Publisher { get }
     var errorSubject: PassthroughSubject<String, Never> { get }
     var downloadingAssetsPublisher: Published<Set<String>>.Publisher { get }
-    var capturedImagePublisher: AnyPublisher<CapturedImage?, Never> { get }
     var albumInfosSubject: PassthroughSubject<[AlbumInfo], Never> { get }
     var photosSubject: PassthroughSubject<[PHAsset], Never> { get }
     func asset(at index: Int) -> PHAsset?
@@ -47,7 +47,6 @@ class PhotoAlbumViewModel: PhotoAlbumViewModelType {
     private let photoUseCase: PhotoUseCase
     private let cameraService: CameraService
     private var cancellables: Set<AnyCancellable> = []
-    private var capturedImageSubject = PassthroughSubject<CapturedImage?, Never>()
     private var currentAssets: [PHAsset] = []
     private var _selectedAsset: PHAsset? = nil
     private(set) var albumInfos: [AlbumInfo] = []
@@ -83,23 +82,21 @@ class PhotoAlbumViewModel: PhotoAlbumViewModelType {
         isLatestItemsButtonSelected.toggle()
     }
     
-    func captureCameraImage() {
-        cameraService.captureImage()
-            .sink { [weak self] capturedImageData in
-                guard let data = capturedImageData?.imageData else { return }
-                let capturedImage = CapturedImage(imageData: data)
-                self?.capturedImage = capturedImage
-                self?.capturedImageSubject.send(capturedImage)
-            }
-            .store(in: &cancellables)
-    }
-    
     func updateSelectedAsset(_ index: Int) {
         guard index < currentAssets.count else { return }
         _selectedAsset = currentAssets[index]
     }
     
-    func showPhotoCrop(_ completion: ((Data?) -> Void)?) {
+    func showCamera(_ completion: ((Data?) -> Void)?) {
+        actions?.showCamera(completion)
+    }
+    
+    func showPhotoCrop(_ captureImageData: Data?, _ completion: ((Data?) -> Void)?) {
+        if let imageData = captureImageData {
+            self.actions?.showPhotoCrop(imageData, completion)
+            return
+        }
+        
         guard let selectedAsset = self._selectedAsset else {
             self.errorSubject.send("선택 된 이미지가 없습니다.")
             return
@@ -118,7 +115,6 @@ class PhotoAlbumViewModel: PhotoAlbumViewModelType {
     var isLatestItemsButtonSelectedPublisher: Published<Bool>.Publisher { $isLatestItemsButtonSelected }
     var errorSubject = PassthroughSubject<String, Never>()
     var downloadingAssetsPublisher: Published<Set<String>>.Publisher { $downloadingAssets }
-    var capturedImagePublisher: AnyPublisher<CapturedImage?, Never> { capturedImageSubject.eraseToAnyPublisher() }
     var albumInfosSubject = PassthroughSubject<[AlbumInfo], Never>()
     var photosSubject = PassthroughSubject<[PHAsset], Never>()
     var photoPermissionDeniedPublisher: Published<Bool>.Publisher { $photoPermissionDenied }

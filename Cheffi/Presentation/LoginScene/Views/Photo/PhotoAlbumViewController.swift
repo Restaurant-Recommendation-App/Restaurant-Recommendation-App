@@ -120,14 +120,6 @@ class PhotoAlbumViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.capturedImagePublisher
-            .sink { [weak self] capturedImage in
-#if DEBUG
-                print(capturedImage?.imageData)
-#endif
-            }
-            .store(in: &cancellables)
-        
         viewModel.albumInfosSubject
             .sink { [weak self] albumInfos in
                 self?.updateAlbumTitle(text: albumInfos.first?.name)
@@ -191,10 +183,16 @@ class PhotoAlbumViewController: UIViewController {
     }
     
     @IBAction private func didTapNext(_ sender: UIButton) {
-        viewModel.showPhotoCrop { [weak self] cropImageData in
+        handlePhotoCropAction(captureImageData: nil) { [weak self] cropImageData in
             self?.dismiss(animated: false, completion: {
                 self?.dismissCompltion?(cropImageData)
             })
+        }
+    }
+    
+    private func handlePhotoCropAction(captureImageData: Data?, completion: @escaping (Data?) -> Void) {
+        viewModel.showPhotoCrop(captureImageData) { cropImageData in
+            completion(cropImageData)
         }
     }
     
@@ -225,7 +223,13 @@ extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
-            viewModel.captureCameraImage()
+            viewModel.showCamera { [weak self] captureImageData in
+                self?.handlePhotoCropAction(captureImageData: captureImageData, completion: { cropImageData in
+                    self?.dismiss(animated: false, completion: {
+                        self?.dismissCompltion?(cropImageData)
+                    })
+                })
+            }
         } else {
             if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell {
                 // 다른 셀이 이미 선택되어 있는 경우, 그 셀의 선택을 해제

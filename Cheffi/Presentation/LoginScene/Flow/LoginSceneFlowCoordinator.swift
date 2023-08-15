@@ -23,6 +23,7 @@ final class LoginFlowCoordinator {
     weak var parentCoordinator: AppFlowCoordinator?
     var dependencies: LoginFlowCoordinatorDependencies
     weak var profileSetupViewController: ProfileSetupViewController?
+    var cameraService: DefaultCameraService?
     
     init(navigationController: UINavigationController?, parentCoordinator: AppFlowCoordinator?, dependencies: LoginFlowCoordinatorDependencies) {
         self.navigationController = navigationController
@@ -52,16 +53,19 @@ final class LoginFlowCoordinator {
     }
     
     private func showPhotoAlbumViewController(dismissCompltion: ((Data?) -> Void)?) {
-        let actions = PhotoAlbumViewModelActions(showPhotoCrop: showPhotoCropViewController)
+        let actions = PhotoAlbumViewModelActions(showPhotoCrop: showPhotoCropViewController,
+                                                 showCamera: showCameraViewController)
         let vc = dependencies.makePhotoAlbumViewController(actions: actions, dismissCompltion: dismissCompltion)
         vc.modalPresentationStyle = .overFullScreen
         self.profileSetupViewController?.present(vc, animated: true)
     }
     
-    private func showCameraViewController() {
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            // 카메라를 사용할 수 없는 경우 처리
-            return
+    private func showCameraViewController(dismissCompltion: ((Data?) -> Void)?) {
+        guard let vc = self.profileSetupViewController?.presentedViewController as? PhotoAlbumViewController else { return }
+        cameraService = nil
+        cameraService = DefaultCameraService()
+        cameraService?.captureImage(from: vc) { captureImage in
+            dismissCompltion?(captureImage?.pngData())
         }
     }
     

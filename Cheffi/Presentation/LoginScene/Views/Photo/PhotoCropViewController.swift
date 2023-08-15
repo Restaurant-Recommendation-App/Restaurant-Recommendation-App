@@ -18,6 +18,7 @@ class PhotoCropViewController: UIViewController {
         return vc
     }
     
+    
     @IBOutlet private weak var contentView: UIView!
     private let scrollView: UIScrollView = UIScrollView()
     private var imageView: UIImageView!
@@ -37,7 +38,7 @@ class PhotoCropViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let scrollFrame = scrollView.frame
+        let scrollFrame = self.contentView.bounds
         let imSize = imageView.image?.size ?? .zero
         guard let hole = circleView?.circleInset, hole.width > 0 else { return }
         let verticalRatio = hole.height / imSize.height
@@ -53,18 +54,30 @@ class PhotoCropViewController: UIViewController {
     
     // MARK: - Private
     private func setupViews() {
-        circleView = CircleCropView(frame: contentView.bounds)
+        circleView = CircleCropView()
         contentView.addSubview(scrollView)
         contentView.addSubview(circleView!)
         scrollView.addSubview(imageView)
         scrollView.contentSize = imageView.image?.size ?? .zero
         scrollView.delegate = self
-        scrollView.frame = self.contentView.bounds
-        circleView?.frame = self.scrollView.bounds
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(contentView)
+        }
+        circleView?.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView)
+        }
+        imageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            if let imageSize = imageView.image?.size {
+                make.width.equalTo(imageSize.width)
+                make.height.equalTo(imageSize.height)
+            }
+        }
     }
     
     private func bindViewModel() {
         viewModel.croppedImageData
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] imageData in
                 self?.dismiss(animated: false, completion: {
                     self?.dismissCompltion?(imageData)
