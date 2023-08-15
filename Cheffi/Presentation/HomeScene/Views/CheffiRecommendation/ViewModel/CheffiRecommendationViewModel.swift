@@ -37,7 +37,9 @@ final class CheffiRecommendationViewModel: ViewModelType {
     
     private var moreViewButtonTapped = false
     private var contentHeight: CGFloat {
-        let line = (popularRestaurantContentsViewModelMock.max { $0.count < $1.count }?.count ?? 2) / 2
+        let count = popularRestaurantContentsViewModelMock.max { $0.count < $1.count }?.count ?? 2
+        
+        let line = count % 2 == 0 ? count / 2 : (count / 2) + 1
         
         return CGFloat((line * PopularRestaurantContentsView.Constants.cellHeight) + ((line - 1) *  PopularRestaurantContentsView.Constants.cellLineSpcaing)) + CheffiRecommendationCell.Constants.otherContentsSize
     }
