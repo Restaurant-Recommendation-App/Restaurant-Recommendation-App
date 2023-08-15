@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum PhotoSection {
+enum PhotoSelectionState {
     case photoSelect
     case photoDeselect
     
@@ -27,16 +27,15 @@ class PhotoCell: UICollectionViewCell {
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var selectionImageView: UIImageView!
     @IBOutlet private weak var checkImageView: UIImageView!
-    private let loadingIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .whiteLarge)
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        return indicator
+    private var dimView: UIView = {
+        let view: UIView = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        return view
     }()
     var isSelectedState: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupLoadingIndicator()
         resetData()
         setupViews()
     }
@@ -49,23 +48,19 @@ class PhotoCell: UICollectionViewCell {
     // MARK: - Private
     private func setupViews() {
         contentView.backgroundColor = .cheffiGray1
-        selectionImageView.image = PhotoSection.photoDeselect.image
+        selectionImageView.image = PhotoSelectionState.photoDeselect.image
         cameraImageView.image = UIImage(named: "icCameraInCell")
-    }
-    
-    private func setupLoadingIndicator() {
-        contentView.addSubview(loadingIndicator)
-        loadingIndicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+        contentView.insertSubview(dimView, belowSubview: selectionImageView)
+        dimView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
     private func resetData() {
         photoImageView.image = nil
-        selectionImageView.image = PhotoSection.photoDeselect.image
         isHiddenCameraImage(true)
         isHiddenSelectionImage(true)
-        checkImageView.isHidden = true
+        resetSelectionState()
     }
     
     // MARK: - Public
@@ -82,14 +77,15 @@ class PhotoCell: UICollectionViewCell {
     }
     
     func updateSelectionImage() {
+        dimView.isHidden = isSelectedState
         if isSelectedState {
-            selectionImageView.image = PhotoSection.photoDeselect.image
+            selectionImageView.image = PhotoSelectionState.photoDeselect.image
             checkImageView.isHidden = true
             contentView.layerBorderColor = .clear
             contentView.layerBorderWidth = 0.0
             isSelectedState = false
         } else {
-            selectionImageView.image = PhotoSection.photoSelect.image
+            selectionImageView.image = PhotoSelectionState.photoSelect.image
             checkImageView.isHidden = false
             contentView.layerBorderColor = .main
             contentView.layerBorderWidth = 2.0
@@ -99,17 +95,10 @@ class PhotoCell: UICollectionViewCell {
     
     func resetSelectionState() {
         isSelectedState = false
-        selectionImageView.image = PhotoSection.photoDeselect.image
+        selectionImageView.image = PhotoSelectionState.photoDeselect.image
         checkImageView.isHidden = true
         contentView.layerBorderColor = .clear
         contentView.layerBorderWidth = 0.0
-    }
-    
-    func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
+        dimView.isHidden = true
     }
 }
