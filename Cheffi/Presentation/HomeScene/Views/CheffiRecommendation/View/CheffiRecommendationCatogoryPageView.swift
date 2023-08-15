@@ -13,11 +13,10 @@ protocol CheffiRecommendationCategoryPageViewDelegate {
 }
 
 final class CheffiRecommendationCategoryPageView: UICollectionView {
-        
+    private var viewModels = [[RestaurantContentsViewModel]]()
+
     var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
-    
-    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, [RestaurantContentsViewModel]>?
-    
+        
     private var isScrollingWithTab = false
     
     let scrolledCategory = PassthroughSubject<Int, Never>()
@@ -33,6 +32,7 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
     
     private func setUp() {
         delegate = self
+        dataSource = self
         
         register(cellWithClass: CheffiRecommendationCategoryPageCell.self)
         allowsSelection = false
@@ -42,27 +42,30 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionViewLayout = layout
-        
-        diffableDataSource = UICollectionViewDiffableDataSource<Int, [RestaurantContentsViewModel]>(collectionView: self) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: [RestaurantContentsViewModel]) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withClass: CheffiRecommendationCategoryPageCell.self, for: indexPath)
-
-            cell.layoutIfNeeded()
-            cell.configure(viewModels: item)
-                        
-            return cell
+    }
+    
+    func configure(viewModels: [[RestaurantContentsViewModel]], currentCategoryPageIndex: Int?) {
+        self.viewModels = viewModels
+        reloadData {
+            // 네번째 카테고리부터 더보기 버튼 누를시 의도치 않게 왼쪽 카테고리로 이동되므로 이를 막기 위함
+            // TODO: 문제 원인 파악후 해결(아래 코듣 제거) 필요
+            if let index = currentCategoryPageIndex {
+                self.safeScrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+            }
         }
     }
-    
-    private func loadItems(items: [[RestaurantContentsViewModel]], currentCategoryPageIndex: Int) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, [RestaurantContentsViewModel]>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(items)
-        diffableDataSource?.apply(snapshot, animatingDifferences: true)
+}
+
+extension CheffiRecommendationCategoryPageView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModels.count
     }
-    
-    func configure(viewModels: [[RestaurantContentsViewModel]], currentCategoryPageIndex: Int) {
-        loadItems(items: viewModels, currentCategoryPageIndex: currentCategoryPageIndex)
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withClass: CheffiRecommendationCategoryPageCell.self, for: indexPath)
+
+        cell.configure(viewModels: viewModels[indexPath.row])
+        return cell
     }
 }
 

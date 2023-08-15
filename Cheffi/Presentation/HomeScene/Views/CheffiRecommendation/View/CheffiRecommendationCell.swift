@@ -150,15 +150,12 @@ extension CheffiRecommendationCell: Bindable {
             }.store(in: &cancellables)
         
         output.restaurantContentsViewModels
-            .sink { viewModels in
-                debugPrint("restaurantContentsViewModels")
+            .sink { (viewModels, categoryIndex) in
                 self.cheffiRecommendationCatogoryPageView.configure(
                     viewModels: viewModels,
-                    currentCategoryPageIndex: viewModel.currentCategoryIndex
+                    currentCategoryPageIndex: categoryIndex
                 )
-                
                 viewModel.isLoading = false
-
             }.store(in: &cancellables)
         
         output.updateContentHeight

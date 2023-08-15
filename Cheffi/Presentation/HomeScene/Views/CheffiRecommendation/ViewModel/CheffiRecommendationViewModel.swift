@@ -20,7 +20,7 @@ final class CheffiRecommendationViewModel: ViewModelType {
     
     struct Output {
         let categories: AnyPublisher<[String], Never>
-        let restaurantContentsViewModels: AnyPublisher<[[RestaurantContentsViewModel]], Never>
+        let restaurantContentsViewModels: AnyPublisher<([[RestaurantContentsViewModel]], Int?), Never>
         let hideMoreViewButton: AnyPublisher<Void, Never>
         let updateContentHeight: AnyPublisher<CGFloat, Never>
     }
@@ -52,7 +52,7 @@ final class CheffiRecommendationViewModel: ViewModelType {
         }
         cancellables =  Set<AnyCancellable>()
         
-        let restaurantContentsViewModels = PassthroughSubject<[[RestaurantContentsViewModel]], Never>()
+        let restaurantContentsViewModels = PassthroughSubject<([[RestaurantContentsViewModel]], Int?), Never>()
         
         let categories = PassthroughSubject<[String], Never>()
         
@@ -66,7 +66,7 @@ final class CheffiRecommendationViewModel: ViewModelType {
             .sink { _ in
                 self.updateContentHeightIfNeeded(with: updateContentHeight)
                 
-                restaurantContentsViewModels.send(popularRestaurantContentsViewModelMock)
+                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, nil))
                 categories.send(categoriesMock)
                 self.currentCategoriesPages = .init(repeating: 1, count: categoriesMock.count)
                 self.initialized = true
@@ -74,12 +74,13 @@ final class CheffiRecommendationViewModel: ViewModelType {
         
         input.viewMoreButtonTapped
             .sink { _ in
+                self.isLoading = true
                 self.moreViewButtonTapped = true
                 self.maxCategoryPage += 1
                 self.appendContents(index: self.currentCategoryIndex)
                 hideMoreViewButton.send(())
                 self.updateContentHeightIfNeeded(with: updateContentHeight)
-                restaurantContentsViewModels.send(popularRestaurantContentsViewModelMock)
+                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, self.currentCategoryIndex))
             }.store(in: &cancellables)
         
         input.scrolledToBottom
@@ -89,7 +90,7 @@ final class CheffiRecommendationViewModel: ViewModelType {
                 self.maxCategoryPage += 1
                 self.appendContents(index: self.currentCategoryIndex)
                 self.updateContentHeightIfNeeded(with: updateContentHeight)
-                restaurantContentsViewModels.send(popularRestaurantContentsViewModelMock)
+                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, nil))
             }.store(in: &cancellables)
 
         //TODO: 중복 코드 제거
@@ -101,7 +102,7 @@ final class CheffiRecommendationViewModel: ViewModelType {
                 
                 self.appendContents(index: categoryIndex)
                 self.updateContentHeightIfNeeded(with: updateContentHeight)
-                restaurantContentsViewModels.send(popularRestaurantContentsViewModelMock)
+                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, nil))
             }.store(in: &cancellables)
         
         input.scrolledCategory
@@ -113,7 +114,7 @@ final class CheffiRecommendationViewModel: ViewModelType {
 
                 self.appendContents(index: categoryIndex)
                 self.updateContentHeightIfNeeded(with: updateContentHeight)
-                restaurantContentsViewModels.send(popularRestaurantContentsViewModelMock)
+                restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, nil))
             }.store(in: &cancellables)
 
         return Output(
@@ -124,6 +125,9 @@ final class CheffiRecommendationViewModel: ViewModelType {
         )
     }
     
+    
+    // 페이지네이션
+    // TODO: 페이지네이션 로직 분리 필요
     private func appendContents(index: Int) {
         for _ in self.currentCategoriesPages[index] ..< self.maxCategoryPage {
             popularRestaurantContentsViewModelMock[index] += [

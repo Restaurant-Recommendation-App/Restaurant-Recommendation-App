@@ -29,6 +29,7 @@ class PopularRestaurantContentsView: UICollectionView {
         
         register(cellWithClass: RestaurantContentCell.self)
         allowsSelection = false
+        isScrollEnabled = false
                 
         diffableDataSource = UICollectionViewDiffableDataSource<Int, RestaurantContentsViewModel>(collectionView: self) {
             (collectionView: UICollectionView, indexPath: IndexPath, item: RestaurantContentsViewModel) -> UICollectionViewCell? in

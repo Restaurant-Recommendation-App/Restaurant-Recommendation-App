@@ -77,9 +77,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(
                 viewModel: self.viewModel.recommendationViewModel,
                 scrolledToBottom: scrolledToBottom.eraseToAnyPublisher()) { contentHeight in
-                    cell.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: contentHeight)
-                    cell.layoutIfNeeded()
-                    
                     self.contentHeight = contentHeight
                     tableView.beginUpdates()
                     tableView.endUpdates()

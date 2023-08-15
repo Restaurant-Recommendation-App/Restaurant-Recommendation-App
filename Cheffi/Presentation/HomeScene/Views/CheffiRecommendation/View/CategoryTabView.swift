@@ -23,7 +23,6 @@ class TabButton: UIButton {
     var isSelectedTab = false {
         didSet {
             self.updateConfiguration()
-            
             removeBorder(with: borderLayer)
             if isSelectedTab {
                 addBorderWithColor(layer: borderLayer, edge: .bottom ,color: .main, width: 2)
