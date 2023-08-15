@@ -24,6 +24,12 @@ class PreferenceViewController: UIViewController {
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let nickname = UserDefaultsManager.AuthInfo.user?.name ?? ""
+        titleLabel.text = "\(nickname) 쉐피님,\n쉐피님의 취향을 선택해주세요.".localized()
+    }
+    
     // MARK: - Private
     private func setupViews() {
         nextButton.setTitle("다음")
@@ -31,8 +37,6 @@ class PreferenceViewController: UIViewController {
             self?.delegate?.didTapNext()
         }
         
-        let nickname = "김맛집"
-        titleLabel.text = "\(nickname) 쉐피님,\n쉐피님의 취향을 선택해주세요.".localized()
         titleLabel.textColor = .cheffiGray9
         titleLabel.font = Fonts.suit.weight600.size(24)
         

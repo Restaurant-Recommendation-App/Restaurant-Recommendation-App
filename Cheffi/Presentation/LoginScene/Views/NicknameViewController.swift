@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SwifterSwift
 
 class NicknameViewController: UIViewController {
     static func instance<T: NicknameViewController>(viewMode: NicknameViewModelType) -> T {
@@ -50,11 +51,11 @@ class NicknameViewController: UIViewController {
         nextButton.setTitle("다음")
         nextButton.setBackgroundColor(Constants.duplicationDisableColor)
         nextButton.didTapButton = { [weak self] in
-            self?.delegate?.didTapNext()
+            self?.nextView()
         }
         
         nextButtonOnKeyboard.didTapButton = { [weak self] in
-            self?.delegate?.didTapNext()
+            self?.nextView()
             self?.hideKeyboard()
         }
         
@@ -122,6 +123,17 @@ class NicknameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    private func saveNicknameToLocalDB(name: String) {
+        UserDefaultsManager.AuthInfo.user = User(email: "", name: name, provider: .apple, adAgreed: true, analysisAgreed: true)
+    }
+    
+    private func nextView() {
+        if let name = textField.text?.trimmed {
+            saveNicknameToLocalDB(name: name)
+        }
+        delegate?.didTapNext()
     }
     
     // MARK: - Public

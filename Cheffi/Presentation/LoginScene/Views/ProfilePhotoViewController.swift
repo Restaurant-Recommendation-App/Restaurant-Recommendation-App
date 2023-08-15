@@ -28,6 +28,12 @@ class ProfilePhotoViewController: UIViewController {
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let nickname = UserDefaultsManager.AuthInfo.user?.name ?? ""
+        titleLabel.text = "\(nickname) 쉐피님,\n프로필 사진을 설정해주세요.".localized()
+    }
+    
     // MARK: - Private
     private func setupViews() {
         registerProfileButton.setTitle("프로필 등록하기".localized())
@@ -39,8 +45,6 @@ class ProfilePhotoViewController: UIViewController {
             self?.delegate?.didTapNext()
         }
         
-        let nickname = "김맛집"
-        titleLabel.text = "\(nickname) 쉐피님,\n프로필 사진을 설정해주세요.".localized()
         titleLabel.textColor = .cheffiGray9
         titleLabel.font = Fonts.suit.weight600.size(24)
         
