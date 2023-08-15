@@ -17,6 +17,13 @@ class FollowSelectionViewController: UIViewController {
     @IBOutlet private weak var startButton: CustomProfileButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var tableView: UITableView!
+    
+    enum Constants {
+        static let cellHeight: CGFloat = 104.0
+    }
+    
+    private var dataSource: UITableViewDiffableDataSource<Int, String>?
     var delegate: ProfileSetupDelegate?
     
     override func viewDidLoad() {
@@ -39,9 +46,37 @@ class FollowSelectionViewController: UIViewController {
         subTitleLabel.text = "취향이 같은 쉐피들의 PICK을 확인해보세요!".localized()
         subTitleLabel.textColor = .cheffiGray6
         subTitleLabel.font = Fonts.suit.weight600.size(15)
+        
+        tableView.delegate = self
+        tableView.register(nibWithCellClass: FollowSelectionCell.self)
+        dataSource = UITableViewDiffableDataSource<Int, String>(tableView: tableView, cellProvider: { tableView, indexPath, item in
+            let cell = tableView.dequeueReusableCell(withClass: FollowSelectionCell.self, for: indexPath)
+            cell.configrue(with: item)
+            return cell
+        })
+        
+        showProfileList(["김독자", "유중혁", "유상아", "이현성"])
+    }
+    
+    private func showProfileList(_ nicknames: [String]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(nicknames, toSection: 0)
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
     // MARK: - Public
     
     // MAKR: - Actions
+}
+
+// MARK: - UITableViewDelegate
+extension FollowSelectionViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.cellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }
