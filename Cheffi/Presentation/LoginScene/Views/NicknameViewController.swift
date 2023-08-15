@@ -42,11 +42,7 @@ class NicknameViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         bindViewModel()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        self.view.addGestureRecognizer(tapGesture)
+        setupKeyboard()
     }
     
     // MARK: - Private
@@ -55,6 +51,11 @@ class NicknameViewController: UIViewController {
         nextButton.setBackgroundColor(Constants.duplicationDisableColor)
         nextButton.didTapButton = { [weak self] in
             self?.delegate?.didTapNext()
+        }
+        
+        nextButtonOnKeyboard.didTapButton = { [weak self] in
+            self?.delegate?.didTapNext()
+            self?.hideKeyboard()
         }
         
         titleLabel.text = "쉐피에서 사용할\n닉네임을 입력해주세요.".localized()
@@ -116,6 +117,13 @@ class NicknameViewController: UIViewController {
             .store(in: &cancellables)
     }
     
+    private func setupKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
     // MARK: - Public
     
     // MAKR: - Actions
@@ -136,11 +144,6 @@ class NicknameViewController: UIViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         nextButtonOnKeyboard.removeFromSuperview()
-    }
-    
-    @objc func didTapNextOnKeyboard() {
-        self.delegate?.didTapNext()
-        hideKeyboard()
     }
     
     @objc func hideKeyboard() {
