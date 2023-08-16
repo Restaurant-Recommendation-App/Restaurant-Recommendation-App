@@ -137,6 +137,9 @@ class CategoryTabView: UIView {
             color: .cheffiWhite05,
             width: 2
         )
+        
+        // 기본 버튼 태그 높이 강제 지정
+        buttons.first?.frame = CGRect(x: 0, y: 0, width: buttons.first?.frame.width ?? 0, height: 50)
         buttons.first?.isSelectedTab = true
     }
     
