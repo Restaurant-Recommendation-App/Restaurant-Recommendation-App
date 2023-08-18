@@ -46,6 +46,12 @@ final class CheffiRecommendationViewModel: ViewModelType {
     
     private var maxContentHeight: CGFloat = 0
     
+    private let cheffiRecommendationUseCase: CheffiRecommendationUseCase
+    
+    init(cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
+        self.cheffiRecommendationUseCase = cheffiRecommendationUseCase
+    }
+    
     func transform(input: Input) -> Output {
         cancellables.forEach {
             $0.cancel()
@@ -63,12 +69,13 @@ final class CheffiRecommendationViewModel: ViewModelType {
         // TODO: Usecase 활용 필요
         input.initialize
             .filter { !self.initialized }
-            .sink { _ in
+            .flatMap { self.cheffiRecommendationUseCase.getTags() }
+            .sink { tags in
                 self.updateContentHeightIfNeeded(with: updateContentHeight)
                 
                 restaurantContentsViewModels.send((popularRestaurantContentsViewModelMock, nil))
-                categories.send(categoriesMock)
-                self.currentCategoriesPages = .init(repeating: 1, count: categoriesMock.count)
+                categories.send(tags)
+                self.currentCategoriesPages = .init(repeating: 1, count: tags.count)
                 self.initialized = true
             }.store(in: &cancellables)
         
@@ -144,7 +151,22 @@ final class CheffiRecommendationViewModel: ViewModelType {
                     title: "그시절낭만의 근본 경양식 돈가스4", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
                 ),
                 RestaurantContentsViewModel(
-                    title: "그시절낭만의 근본 경양식 돈가스4", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
+                    title: "그시절낭만의 근본 경양식 돈가스5", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
+                ),
+                RestaurantContentsViewModel(
+                    title: "그시절낭만의 근본 경양식 돈가스6", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
+                ),
+                RestaurantContentsViewModel(
+                    title: "그시절낭만의 근본 경양식 돈가스7", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
+                ),
+                RestaurantContentsViewModel(
+                    title: "그시절낭만의 근본 경양식 돈가스8", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
+                ),
+                RestaurantContentsViewModel(
+                    title: "그시절낭만의 근본 경양식 돈가스9", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
+                ),
+                RestaurantContentsViewModel(
+                    title: "그시절낭만의 근본 경양식 돈가스10", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
                 )
             ]
         }

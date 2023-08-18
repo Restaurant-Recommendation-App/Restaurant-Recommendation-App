@@ -59,7 +59,6 @@ final class CheffiRecommendationCell: UITableViewCell {
         selectionStyle = .none
         
         setUp()
-        categoryTabView.setUpTags(tags: ["한식", "양식", "중식", "일식", "퓨전", "샐러드"])
         cheffiRecommendationCatogoryPageView.categoryPageViewDelegate = categoryTabView
         categoryTabView.delegate = cheffiRecommendationCatogoryPageView
     }

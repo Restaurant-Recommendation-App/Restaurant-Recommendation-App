@@ -55,7 +55,8 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     }
     
     func makeRecommedationViewModel() -> CheffiRecommendationViewModel {
-        return CheffiRecommendationViewModel()
+        let repository = makeCheffiRecommendationRepository()
+        return CheffiRecommendationViewModel(cheffiRecommendationUseCase: makeCheffiRecommendationUseCase(repository: repository))
     }
     
     // MARK: - Search
@@ -89,11 +90,19 @@ extension HomeSceneDIContainer {
     func makeFetchSimilarChefUseCase(repository: SimilarChefRepository) -> FetchSimilarChefUseCase {
         return DefaultFetchSimilarChefUseCase(repository: repository)
     }
+    
+    func makeCheffiRecommendationUseCase(repository: CheffiRecommendationRepository) -> CheffiRecommendationUseCase {
+        return DefaultCheffiRecommendationUseCase(repository: repository)
+    }
 }
 
 // MARK: - Repositories
 extension HomeSceneDIContainer {
     func makeSimilarChefRepository() -> SimilarChefRepository {
         return DefaultSimilarChefRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeCheffiRecommendationRepository() -> CheffiRecommendationRepository {
+        return DefaultCheffiRecommendationRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

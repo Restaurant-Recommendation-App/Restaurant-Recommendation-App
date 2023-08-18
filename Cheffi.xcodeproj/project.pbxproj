@@ -68,6 +68,9 @@
 		D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */; };
 		D441C0202A66965400063822 /* CheffiRecommendationCatogoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C01F2A66965400063822 /* CheffiRecommendationCatogoryPageView.swift */; };
 		D441C0232A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */; };
+		D47719042A8CC13100381A72 /* CheffiRecommendationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47719032A8CC13100381A72 /* CheffiRecommendationUseCase.swift */; };
+		D47719062A8D367900381A72 /* CheffiRecommendationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47719052A8D367900381A72 /* CheffiRecommendationRepository.swift */; };
+		D4918F0D2A8F48A2001440DD /* DefaultCheffiRecommendationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4918F0C2A8F48A2001440DD /* DefaultCheffiRecommendationRepository.swift */; };
 		D49B59282A652330003C108E /* RestaurantContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B59272A652330003C108E /* RestaurantContentView.swift */; };
 		D49B592A2A652A35003C108E /* PopularRestaurantContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B59292A652A35003C108E /* PopularRestaurantContentsView.swift */; };
 		D49B592C2A653454003C108E /* RestaurantContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B592B2A653454003C108E /* RestaurantContentCell.swift */; };
@@ -199,6 +202,9 @@
 		D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationCell.swift; sourceTree = "<group>"; };
 		D441C01F2A66965400063822 /* CheffiRecommendationCatogoryPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationCatogoryPageView.swift; sourceTree = "<group>"; };
 		D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationCategoryPageCell.swift; sourceTree = "<group>"; };
+		D47719032A8CC13100381A72 /* CheffiRecommendationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationUseCase.swift; sourceTree = "<group>"; };
+		D47719052A8D367900381A72 /* CheffiRecommendationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationRepository.swift; sourceTree = "<group>"; };
+		D4918F0C2A8F48A2001440DD /* DefaultCheffiRecommendationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCheffiRecommendationRepository.swift; sourceTree = "<group>"; };
 		D49B59272A652330003C108E /* RestaurantContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentView.swift; sourceTree = "<group>"; };
 		D49B59292A652A35003C108E /* PopularRestaurantContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantContentsView.swift; sourceTree = "<group>"; };
 		D49B592B2A653454003C108E /* RestaurantContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentCell.swift; sourceTree = "<group>"; };
@@ -506,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				CE70F8982A63C692003D0ED9 /* DefaultSimilarChefRepository.swift */,
+				D4918F0C2A8F48A2001440DD /* DefaultCheffiRecommendationRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -536,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				CE70F8902A63C18C003D0ED9 /* FetchSimilarChefUseCase.swift */,
+				D47719032A8CC13100381A72 /* CheffiRecommendationUseCase.swift */,
 			);
 			path = Usecases;
 			sourceTree = "<group>";
@@ -552,6 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				CE70F88C2A63C0CC003D0ED9 /* SimilarChefRepository.swift */,
+				D47719052A8D367900381A72 /* CheffiRecommendationRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1092,6 +1101,7 @@
 				FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */,
 				FF5059A62A7E08DE00F90D27 /* HomeAPIEndpoints.swift in Sources */,
 				CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */,
+				D47719042A8CC13100381A72 /* CheffiRecommendationUseCase.swift in Sources */,
 				FF50599F2A7E002800F90D27 /* Endpoint.swift in Sources */,
 				CE70F8872A63BFC8003D0ED9 /* HomeViewModel.swift in Sources */,
 				CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */,
@@ -1149,9 +1159,11 @@
 				CE42BA7B2A6BD56000EBB80A /* SearchViewModel.swift in Sources */,
 				D4E24EDC2A64E97A00F9A3B3 /* PopularRestaurantCell.swift in Sources */,
 				FF5059A12A7E017400F90D27 /* DataTransferService.swift in Sources */,
+				D47719062A8D367900381A72 /* CheffiRecommendationRepository.swift in Sources */,
 				D41B45FB2A612600003EF1EC /* Storyboarded.swift in Sources */,
 				CEABD7162A6BDEEE001BC131 /* RecommendSearchCell.swift in Sources */,
 				CE0D45282A6195BD00636989 /* RestaurantRegistSceneDIContainer.swift in Sources */,
+				D4918F0D2A8F48A2001440DD /* DefaultCheffiRecommendationRepository.swift in Sources */,
 				CE42BA652A6BAF4500EBB80A /* PopupView.swift in Sources */,
 				D49D1A9A2A73BB6500CB86FA /* UIControl+Combine.swift in Sources */,
 				FF5059B92A7E357C00F90D27 /* CheffiWriterView.swift in Sources */,
