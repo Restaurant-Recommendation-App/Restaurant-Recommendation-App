@@ -26,7 +26,6 @@ class PhotoCell: UICollectionViewCell {
     @IBOutlet private weak var cameraImageView: UIImageView!
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var selectionImageView: UIImageView!
-    @IBOutlet private weak var checkImageView: UIImageView!
     private var dimView: UIView = {
         let view: UIView = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
@@ -80,13 +79,11 @@ class PhotoCell: UICollectionViewCell {
         dimView.isHidden = isSelectedState
         if isSelectedState {
             selectionImageView.image = PhotoSelectionState.photoDeselect.image
-            checkImageView.isHidden = true
             contentView.layerBorderColor = .clear
             contentView.layerBorderWidth = 0.0
             isSelectedState = false
         } else {
             selectionImageView.image = PhotoSelectionState.photoSelect.image
-            checkImageView.isHidden = false
             contentView.layerBorderColor = .main
             contentView.layerBorderWidth = 2.0
             isSelectedState = true
@@ -96,7 +93,6 @@ class PhotoCell: UICollectionViewCell {
     func resetSelectionState() {
         isSelectedState = false
         selectionImageView.image = PhotoSelectionState.photoDeselect.image
-        checkImageView.isHidden = true
         contentView.layerBorderColor = .clear
         contentView.layerBorderWidth = 0.0
         dimView.isHidden = true
