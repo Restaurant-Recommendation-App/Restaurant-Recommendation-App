@@ -32,13 +32,13 @@ class PopupViewController: UIViewController {
     
     // MARK: - Private
     private func setupViews() {
-        popupView.setText(text: self.text, keyword: self.keyword)
+        popupView.highlightKeyword(self.keyword, in: self.text)
         popupView.didTapFindHandler = { [weak self] in
-            self?.dismissOne()
+            self?.dismissOne(amimated: true)
             self?.didTapFindHandler?()
         }
         popupView.didTapCancelHandler = { [weak self] in
-            self?.dismissOne()
+            self?.dismissOne(amimated: true)
             self?.didTapCancelHandler?()
         }
     }

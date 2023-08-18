@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22127"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SUIT-Medium.otf">
+            <string>SUIT-Medium</string>
+        </array>
+        <array key="SUIT-SemiBold.otf">
+            <string>SUIT-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Photo Album View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="PhotoAlbumViewController" id="Y6W-OH-hqX" customClass="PhotoAlbumViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NFq-Rd-Nvc">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="0.0" id="lJw-dD-xJG">
+                                    <size key="itemSize" width="129" height="123"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcl-mE-B2P">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGz-HT-Bem">
+                                        <rect key="frame" x="16" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="9Uc-XG-i7j"/>
+                                            <constraint firstAttribute="height" constant="44" id="nAM-1F-xgo"/>
+                                        </constraints>
+                                        <color key="tintColor" name="CheffiBlack"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="xmark" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTapColse:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="aAh-tc-2QR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fa5-KI-Sgx">
+                                        <rect key="frame" x="333" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="6Gi-Bw-ugo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SUIT-Medium" family="SUIT" pointSize="14"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="다음">
+                                            <color key="titleColor" name="CheffiBlack"/>
+                                        </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" name="CheffiGray4"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapNext:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="T2G-18-LBd"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xgn-Rq-1B9">
+                                        <rect key="frame" x="181.66666666666666" y="10" width="30" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kM4-Ug-QjV">
+                                                <rect key="frame" x="0.0" y="0.0" width="9.3333333333333339" height="24"/>
+                                                <fontDescription key="fontDescription" name="SUIT-SemiBold" family="SUIT" pointSize="16"/>
+                                                <color key="textColor" name="CheffiBlack"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icArrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="Z43-SV-ck7">
+                                                <rect key="frame" x="21" y="0.0" width="9" height="24"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqx-2T-uFc">
+                                        <rect key="frame" x="181.66666666666666" y="10" width="30" height="24"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="didTapLatestItems:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hl7-ug-vke"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="xgn-Rq-1B9" firstAttribute="top" secondItem="dcl-mE-B2P" secondAttribute="top" constant="10" id="4rb-oD-QRu"/>
+                                    <constraint firstItem="kqx-2T-uFc" firstAttribute="trailing" secondItem="xgn-Rq-1B9" secondAttribute="trailing" id="Hfr-mF-8li"/>
+                                    <constraint firstItem="kqx-2T-uFc" firstAttribute="bottom" secondItem="xgn-Rq-1B9" secondAttribute="bottom" id="Kbb-0u-Mlo"/>
+                                    <constraint firstItem="fa5-KI-Sgx" firstAttribute="top" secondItem="dcl-mE-B2P" secondAttribute="top" id="McU-Nf-ekQ"/>
+                                    <constraint firstItem="ZGz-HT-Bem" firstAttribute="centerY" secondItem="dcl-mE-B2P" secondAttribute="centerY" id="RL8-Pg-qTI"/>
+                                    <constraint firstItem="kqx-2T-uFc" firstAttribute="top" secondItem="xgn-Rq-1B9" secondAttribute="top" id="VLu-OS-gBf"/>
+                                    <constraint firstAttribute="bottom" secondItem="xgn-Rq-1B9" secondAttribute="bottom" constant="10" id="dIR-QU-K0J"/>
+                                    <constraint firstAttribute="height" constant="44" id="hlf-IY-F17"/>
+                                    <constraint firstItem="ZGz-HT-Bem" firstAttribute="leading" secondItem="dcl-mE-B2P" secondAttribute="leading" constant="16" id="jb8-i7-Uwv"/>
+                                    <constraint firstAttribute="trailing" secondItem="fa5-KI-Sgx" secondAttribute="trailing" constant="16" id="qla-dk-YFi"/>
+                                    <constraint firstAttribute="bottom" secondItem="fa5-KI-Sgx" secondAttribute="bottom" id="t41-dv-H6g"/>
+                                    <constraint firstItem="xgn-Rq-1B9" firstAttribute="centerX" secondItem="dcl-mE-B2P" secondAttribute="centerX" id="vlW-k9-2Am"/>
+                                    <constraint firstItem="kqx-2T-uFc" firstAttribute="leading" secondItem="xgn-Rq-1B9" secondAttribute="leading" id="zaf-aq-xzH"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ss4-23-nTd">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="59"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="NFq-Rd-Nvc" secondAttribute="trailing" id="Bv2-XI-jz5"/>
+                            <constraint firstItem="Ss4-23-nTd" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="EHb-al-dkc"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dcl-mE-B2P" secondAttribute="trailing" id="KKN-uj-NCT"/>
+                            <constraint firstItem="NFq-Rd-Nvc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Wsx-aj-nfY"/>
+                            <constraint firstItem="dcl-mE-B2P" firstAttribute="top" secondItem="Ss4-23-nTd" secondAttribute="bottom" id="aBx-r9-ANT"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="NFq-Rd-Nvc" secondAttribute="bottom" id="bRN-Li-t4n"/>
+                            <constraint firstItem="dcl-mE-B2P" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fNy-MG-FqM"/>
+                            <constraint firstItem="Ss4-23-nTd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="kNR-8m-sfo"/>
+                            <constraint firstAttribute="trailing" secondItem="Ss4-23-nTd" secondAttribute="trailing" id="mrm-6e-q9k"/>
+                            <constraint firstItem="NFq-Rd-Nvc" firstAttribute="top" secondItem="dcl-mE-B2P" secondAttribute="bottom" id="qwy-6N-AYF"/>
+                            <constraint firstItem="dcl-mE-B2P" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="sou-9C-fvS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="albumTitleLabel" destination="kM4-Ug-QjV" id="hez-Vr-QH5"/>
+                        <outlet property="arrowImageView" destination="Z43-SV-ck7" id="f1x-nJ-bJR"/>
+                        <outlet property="collectionView" destination="NFq-Rd-Nvc" id="UX4-sI-Xpm"/>
+                        <outlet property="navigationBar" destination="dcl-mE-B2P" id="kAd-Gr-92v"/>
+                        <outlet property="nextButton" destination="fa5-KI-Sgx" id="D57-K8-DsT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icArrowDown" width="9" height="6"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="CheffiBlack">
+            <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CheffiGray4">
+            <color red="0.69411764705882351" green="0.69411764705882351" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

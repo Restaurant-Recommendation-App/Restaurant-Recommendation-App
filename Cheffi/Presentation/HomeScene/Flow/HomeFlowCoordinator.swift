@@ -8,42 +8,52 @@
 import UIKit
 import Combine
 
-protocol HomeFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {
+protocol HomeFlowCoordinatorDependencies {
+    func makePopupViewController(text: String, keyword: String, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController
     func makeViewController(actions: HomeViewModelActions) -> HomeViewController
     func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
     func makeCheffiDetail() -> CheffiDetailViewController
 }
 
-final class HomeFlowCoordinator: BaseFlowCoordinator {
-    private var homeDependencies: HomeFlowCoodinatorDependencies {
-        return self.dependencies as! HomeFlowCoodinatorDependencies
+final class HomeFlowCoordinator {
+    weak var navigationController: UINavigationController?
+    weak var parentCoordinator: AppFlowCoordinator?
+    var dependencies: HomeFlowCoordinatorDependencies
+    
+    init(navigationController: UINavigationController?, parentCoordinator: AppFlowCoordinator?, dependencies: HomeFlowCoordinatorDependencies) {
+        self.navigationController = navigationController
+        self.parentCoordinator = parentCoordinator
+        self.dependencies = dependencies
     }
     
     func start() {
         let actions = HomeViewModelActions(showPopup: showPopup,
                                            showSimilarChefList: showSimilarChefList,
                                            showSearch: showSearch)
-        let vc = homeDependencies.makeViewController(actions: actions)
+        let vc = dependencies.makeViewController(actions: actions)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     private func showPopup(text: String, keyword: String) {
-        let vc = homeDependencies.makePopupViewController(text: text, keyword: keyword, findHandler: { [weak self] in
-            guard let detailVC = self?.homeDependencies.makeCheffiDetail() else { return }
-            self?.navigationController?.pushViewController(detailVC)
+        let vc = dependencies.makePopupViewController(text: text, keyword: keyword, findHandler: { [weak self] in
+            self?.showLogin()
         }, cancelHandler: {})
         navigationController?.present(vc, animated: true)
     }
     
     private func showSimilarChefList() {
-        let vc = homeDependencies.makeSimilarChefList()
+        let vc = dependencies.makeSimilarChefList()
         navigationController?.pushViewController(vc)
     }
     
     private func showSearch() {
-        let vc = homeDependencies.makeSearchViewController()
+        let vc = dependencies.makeSearchViewController()
         navigationController?.pushViewController(vc)
+    }
+    
+    private func showLogin() {
+        parentCoordinator?.showLogin()
     }
 }
 

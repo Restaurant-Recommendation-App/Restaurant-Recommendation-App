@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22127"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SUIT-SemiBold.otf">
+            <string>SUIT-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Photo Crop View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="PhotoCropViewController" id="Y6W-OH-hqX" customClass="PhotoCropViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaN-cx-5j4">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxb-jn-nKt">
+                                        <rect key="frame" x="16" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="oWX-mR-pII"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SUIT-SemiBold" family="SUIT" pointSize="14"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="취소"/>
+                                        <connections>
+                                            <action selector="didTapCancel:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TMu-d2-cMm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSP-U1-pnJ">
+                                        <rect key="frame" x="333" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="JaB-OZ-T3s"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SUIT-SemiBold" family="SUIT" pointSize="14"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="적용"/>
+                                        <connections>
+                                            <action selector="didTapDone:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="33F-gn-elS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="CheffiBlack"/>
+                                <constraints>
+                                    <constraint firstItem="YSP-U1-pnJ" firstAttribute="top" secondItem="qaN-cx-5j4" secondAttribute="top" id="7NF-Yp-Wdk"/>
+                                    <constraint firstAttribute="height" constant="44" id="FC2-IU-fPp"/>
+                                    <constraint firstItem="Gxb-jn-nKt" firstAttribute="leading" secondItem="qaN-cx-5j4" secondAttribute="leading" constant="16" id="Rls-SG-K1r"/>
+                                    <constraint firstAttribute="bottom" secondItem="Gxb-jn-nKt" secondAttribute="bottom" id="bMg-MU-0NS"/>
+                                    <constraint firstAttribute="bottom" secondItem="YSP-U1-pnJ" secondAttribute="bottom" id="btb-3M-vF4"/>
+                                    <constraint firstItem="Gxb-jn-nKt" firstAttribute="top" secondItem="qaN-cx-5j4" secondAttribute="top" id="oig-M1-0MS"/>
+                                    <constraint firstAttribute="trailing" secondItem="YSP-U1-pnJ" secondAttribute="trailing" constant="16" id="yJa-4F-Alt"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ad8-v0-0oQ">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <color key="backgroundColor" name="CheffiBlack"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="CheffiBlack"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="qaN-cx-5j4" secondAttribute="trailing" id="6co-x7-hYe"/>
+                            <constraint firstItem="qaN-cx-5j4" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="HHY-Ei-x2P"/>
+                            <constraint firstItem="Ad8-v0-0oQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="JqM-02-vjp"/>
+                            <constraint firstItem="qaN-cx-5j4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="JzL-CE-6Mc"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Ad8-v0-0oQ" secondAttribute="bottom" id="QT7-W2-Lja"/>
+                            <constraint firstItem="Ad8-v0-0oQ" firstAttribute="top" secondItem="qaN-cx-5j4" secondAttribute="bottom" id="YfA-BM-IJf"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ad8-v0-0oQ" secondAttribute="trailing" id="f3y-Yx-sbe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="Ad8-v0-0oQ" id="a8Z-yg-9x0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135.1145038167939" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="CheffiBlack">
+            <color red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
