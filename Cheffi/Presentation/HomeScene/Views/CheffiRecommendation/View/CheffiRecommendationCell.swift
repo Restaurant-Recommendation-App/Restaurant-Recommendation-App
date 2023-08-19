@@ -97,8 +97,6 @@ final class CheffiRecommendationCell: UITableViewCell {
         cheffiRecommendationCatogoryPageView.snp.makeConstraints {
             $0.top.equalTo(categoryTabView.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(550)
-//            $0.bottom.equalToSuperview()
         }
 
         contentView.addSubview(showAllContentsButton)
@@ -107,10 +105,6 @@ final class CheffiRecommendationCell: UITableViewCell {
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
             $0.bottom.equalToSuperview()
             $0.height.equalTo(40)
-        }
-        
-        // Action
-        showAllContentsButton.didTapViewAllHandler = { [weak self] in
         }
     }
     
