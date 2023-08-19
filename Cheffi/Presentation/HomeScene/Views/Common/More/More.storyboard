@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--More View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MoreViewController" id="Y6W-OH-hqX" customClass="MoreViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lfq-qd-tbi">
+                                <rect key="frame" x="0.0" y="83" width="393" height="735"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJS-D6-3DH">
+                                <rect key="frame" x="160.66666666666666" y="67" width="72" height="5"/>
+                                <color key="backgroundColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="Uzr-80-Si8"/>
+                                    <constraint firstAttribute="width" constant="72" id="f15-cR-ZHq"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layerCornerRadius">
+                                        <real key="value" value="2.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lfq-qd-tbi" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="8jB-F7-3UF"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lfq-qd-tbi" secondAttribute="trailing" id="Djd-05-R5j"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="lfq-qd-tbi" secondAttribute="bottom" id="SrN-VC-vvt"/>
+                            <constraint firstItem="XJS-D6-3DH" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="8" id="UbT-iI-mZE"/>
+                            <constraint firstItem="XJS-D6-3DH" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="thN-NE-5jv"/>
+                            <constraint firstItem="lfq-qd-tbi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="zzp-dj-oXZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dragIndicator" destination="XJS-D6-3DH" id="1pV-bm-lPf"/>
+                        <outlet property="tableView" destination="lfq-qd-tbi" id="EdY-Nz-hic"/>
+                        <outlet property="topContraint" destination="8jB-F7-3UF" id="Vmt-84-NPe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="96.946564885496173" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
