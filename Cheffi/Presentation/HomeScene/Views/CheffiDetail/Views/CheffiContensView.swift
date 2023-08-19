@@ -55,8 +55,21 @@ class CheffiContensView: BaseView {
     }
     
     private func updatePageLabel(currentPage: Int, totalPages: Int) {
-        pageLabel.text = "\(currentPage + 1)/\(totalPages)"
+        let currentPageString = "\(currentPage + 1)"
+        let totalPagesString = "/\(totalPages)"
+        
+        let attributedText = NSMutableAttributedString(string: currentPageString, attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.cheffiGray2,
+            NSAttributedString.Key.font: Fonts.suit.weight500.size(14.0)
+        ])
+        attributedText.append(NSAttributedString(string: totalPagesString, attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.cheffiGray6,
+            NSAttributedString.Key.font: Fonts.suit.weight400.size(14.0)
+        ]))
+        
+        pageLabel.attributedText = attributedText
     }
+
     
     // MARK: - Public
     func setImages(_ items: [ImageItem]) {
