@@ -77,18 +77,22 @@ class CheffiReviewView: BaseView {
     // MARK: - Private
     private func setupViews() {
         titleLabel.text = "이 식당 어떠셨나요?".localized()
+        titleLabel.font = Fonts.suit.weight700.size(18.0)
+        titleLabel.textColor = .cheffiGray9
         
         reviewButtons.forEach({ $0.isSelected = false })
         for i in 0..<reviewLabels.count {
             let reviewState = ReviewState(rawValue: i)
             let label = reviewLabels[i]
             label.text = reviewState?.title
+            label.font = Fonts.suit.weight400.size(12.0)
             label.textColor = Constants.defaultColor
         }
 
         for i in 0..<reviewVotingLabels.count {
             let label = reviewVotingLabels[i]
             label.text = "0"
+            label.font = Fonts.suit.weight400.size(12.0)
             label.textColor = Constants.defaultColor
         }
         

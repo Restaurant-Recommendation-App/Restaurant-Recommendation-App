@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SUIT-Bold.otf">
+            <string>SUIT-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheffiWriterView" customModule="Cheffi" customModuleProvider="target">
             <connections>
@@ -26,12 +31,12 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="RYd-1g-0J6"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <fontDescription key="fontDescription" name="SUIT-Bold" family="SUIT" pointSize="18"/>
                     <color key="textColor" name="CheffiGray9"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjv-2M-cvP">
-                    <rect key="frame" x="0.0" y="39" width="424" height="339"/>
+                    <rect key="frame" x="16" y="39" width="392" height="339"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
@@ -40,11 +45,11 @@
             <constraints>
                 <constraint firstItem="yqB-7k-7FD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="17" id="5jt-PN-i7y"/>
                 <constraint firstAttribute="trailing" secondItem="yqB-7k-7FD" secondAttribute="trailing" constant="17" id="TVB-dN-KBs"/>
-                <constraint firstItem="Pjv-2M-cvP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aLi-fQ-40T"/>
+                <constraint firstItem="Pjv-2M-cvP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="aLi-fQ-40T"/>
                 <constraint firstItem="yqB-7k-7FD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fT7-6b-iE6"/>
                 <constraint firstItem="Pjv-2M-cvP" firstAttribute="top" secondItem="yqB-7k-7FD" secondAttribute="bottom" constant="12" id="iLK-CD-Nzm"/>
                 <constraint firstAttribute="bottom" secondItem="Pjv-2M-cvP" secondAttribute="bottom" id="khg-MU-O9L"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Pjv-2M-cvP" secondAttribute="trailing" id="qcG-Tn-0N4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Pjv-2M-cvP" secondAttribute="trailing" constant="16" id="qcG-Tn-0N4"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

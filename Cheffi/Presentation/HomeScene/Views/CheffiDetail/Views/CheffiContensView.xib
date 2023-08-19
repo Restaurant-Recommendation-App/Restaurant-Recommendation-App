@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SUIT-Regular.otf">
+            <string>SUIT-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheffiContensView" customModule="Cheffi" customModuleProvider="target">
             <connections>
@@ -35,9 +40,9 @@
                     <rect key="frame" x="513" y="449" width="40" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ras-5e-XfU">
-                            <rect key="frame" x="9.333333333333373" y="3.6666666666666856" width="21.666666666666671" height="17"/>
+                            <rect key="frame" x="8.6666666666666288" y="3.6666666666666856" width="23" height="17"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="SUIT-Regular" family="SUIT" pointSize="14"/>
                             <color key="textColor" name="CheffiWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
