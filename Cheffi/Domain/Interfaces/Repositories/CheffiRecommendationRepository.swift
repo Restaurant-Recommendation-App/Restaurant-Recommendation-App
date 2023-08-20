@@ -9,4 +9,5 @@ import Combine
 
 protocol CheffiRecommendationRepository {
     func getTags() -> AnyPublisher<[String], Never>
+    func getContents(page: Int) -> AnyPublisher<[ContentsResponseDTO.contentDTO], Never>
 }

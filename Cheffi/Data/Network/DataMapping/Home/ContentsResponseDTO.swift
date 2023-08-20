@@ -17,7 +17,7 @@ extension ContentsResponseDTO {
         typealias Identifiable = String
         
         // TODO: 서버 데이터 정해진 후 수정 필요
-        let id: Identifiable = UUID().uuidString
+        var id: Identifiable = UUID().uuidString
         let title: String
         let subtitle: String
         let contentImageHeight: Int
