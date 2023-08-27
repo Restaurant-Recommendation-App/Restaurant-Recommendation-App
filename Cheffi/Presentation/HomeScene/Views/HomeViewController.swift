@@ -76,11 +76,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.configure(
                 viewModel: self.viewModel.recommendationViewModel,
-                scrolledToBottom: scrolledToBottom.eraseToAnyPublisher()) { contentHeight in
-                    self.contentHeight = contentHeight
-                    tableView.beginUpdates()
-                    tableView.endUpdates()
-                }
+                scrolledToBottom: scrolledToBottom.eraseToAnyPublisher()
+            )
             
             return cell
         default:
@@ -92,7 +89,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0: return 800
         case 1: return UITableView.automaticDimension
-        case 2: return contentHeight
+        case 2: return 700
         default: return UITableView.automaticDimension
         }
     }

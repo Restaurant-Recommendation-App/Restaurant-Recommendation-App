@@ -13,13 +13,18 @@ protocol CheffiRecommendationCategoryPageViewDelegate {
 }
 
 final class CheffiRecommendationCategoryPageView: UICollectionView {
+    typealias categoryIndex = Int
     private var viewModels = [[RestaurantContentsViewModel]]()
 
     var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
         
     private var isScrollingWithTab = false
     
-    let scrolledCategory = PassthroughSubject<Int, Never>()
+    let scrolledCategory = PassthroughSubject<categoryIndex, Never>()
+    let scrolledToBottom = PassthroughSubject<CGFloat, Never>()
+    var contentsOffsetY = [CGFloat]()
+    
+    var cancellables = Set<AnyCancellable>()
         
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -44,15 +49,18 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
         collectionViewLayout = layout
     }
     
-    func configure(viewModels: [[RestaurantContentsViewModel]], currentCategoryPageIndex: Int?) {
+    func configure(viewModels: [[RestaurantContentsViewModel]], currentCategoryPageIndex: Int?, contentsOffsetY: [CGFloat]?) {
         self.viewModels = viewModels
-        reloadData {
-            // 네번째 카테고리부터 더보기 버튼 누를시 의도치 않게 왼쪽 카테고리로 이동되므로 이를 막기 위함
-            // TODO: 문제 원인 파악후 해결(아래 코듣 제거) 필요
-            if let index = currentCategoryPageIndex {
-                self.safeScrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
-            }
-        }
+        self.contentsOffsetY = contentsOffsetY ?? [CGFloat]()
+        
+        let currentCategoryPageIndex = currentCategoryPageIndex ?? 0
+        let cell = cellForItem(at: IndexPath(row: currentCategoryPageIndex, section: 0)) as? CheffiRecommendationCategoryPageCell
+                
+        cell?.configure(
+            viewModels: viewModels[currentCategoryPageIndex],
+            scrolledToBottom: scrolledToBottom,
+            contentOffsetY: self.contentsOffsetY[currentCategoryPageIndex]
+        )
     }
 }
 
@@ -63,8 +71,12 @@ extension CheffiRecommendationCategoryPageView: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: CheffiRecommendationCategoryPageCell.self, for: indexPath)
-
-        cell.configure(viewModels: viewModels[indexPath.row])
+        
+        cell.configure(
+            viewModels: viewModels[indexPath.row],
+            scrolledToBottom: scrolledToBottom,
+            contentOffsetY: contentsOffsetY[safe: indexPath.row] ?? 0
+        )
         return cell
     }
 }

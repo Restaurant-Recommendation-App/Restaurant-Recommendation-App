@@ -80,7 +80,7 @@ extension PopularRestaurantCell: Bindable {
         
         output.models
             .sink { models in
-                self.popularRestaurantContentsView.configure(viewModels: models)
+                self.popularRestaurantContentsView.configure(viewModels: models, scrolledToBottom: nil, contentOffsetY: nil)
             }.store(in: &cancellables)
     }
 }

@@ -16,9 +16,7 @@ final class CheffiRecommendationCell: UITableViewCell {
     
     private let initialize = PassthroughSubject<Void, Never>()
     private var scrolledToBottom: AnyPublisher<Void, Never> = Empty().eraseToAnyPublisher()
-    
-    var reload = false
-    
+        
     enum Constants {
         static let cellInset: CGFloat = 16.0
         static let otherContentsSize: CGFloat = 270
@@ -40,18 +38,10 @@ final class CheffiRecommendationCell: UITableViewCell {
         label.numberOfLines = 2
         return label
     }()
-    
-    private let showAllContentsButton: ShowAllContentsButton = {
-        let button = ShowAllContentsButton()
-        button.setTItle("더보기".localized(), direction: .down)
-        return button
-    }()
-    
+        
     private let categoryTabView = CategoryTabView()
     
     private let cheffiRecommendationCatogoryPageView = CheffiRecommendationCategoryPageView()
-    
-    private var updateContentHeight: ((CGFloat) -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -70,7 +60,7 @@ final class CheffiRecommendationCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(
-            by: UIEdgeInsets(top: 48, left: 0, bottom: 16, right: 0)
+            by: UIEdgeInsets(top: 48, left: 0, bottom: 0, right: 0)
         )
     }
     private func setUp() {
@@ -97,20 +87,12 @@ final class CheffiRecommendationCell: UITableViewCell {
         cheffiRecommendationCatogoryPageView.snp.makeConstraints {
             $0.top.equalTo(categoryTabView.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
-        }
-
-        contentView.addSubview(showAllContentsButton)
-        showAllContentsButton.snp.makeConstraints {
-            $0.top.equalTo(cheffiRecommendationCatogoryPageView.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
             $0.bottom.equalToSuperview()
-            $0.height.equalTo(40)
         }
     }
     
-    func configure(viewModel: ViewModel, scrolledToBottom: AnyPublisher<Void, Never>, updateContentHeight: @escaping (CGFloat) -> Void) {
+    func configure(viewModel: ViewModel, scrolledToBottom: AnyPublisher<Void, Never>) {
         self.scrolledToBottom = scrolledToBottom
-        self.updateContentHeight = updateContentHeight
         bind(to: viewModel)
         initialize.send(())
     }
@@ -126,10 +108,7 @@ extension CheffiRecommendationCell: Bindable {
         
         let input = ViewModel.Input(
             initialize: initialize,
-            viewMoreButtonTapped: showAllContentsButton.controlPublisher(for: .touchUpInside)
-                .map { _ -> Void in () }
-                .eraseToAnyPublisher(),
-            scrolledToBottom: scrolledToBottom,
+            scrolledToBottom: cheffiRecommendationCatogoryPageView.scrolledToBottom.eraseToAnyPublisher(),
             tappedCategory: categoryTabView.tappedCategory.eraseToAnyPublisher(),
             scrolledCategory: cheffiRecommendationCatogoryPageView.scrolledCategory.eraseToAnyPublisher()
             
@@ -143,22 +122,13 @@ extension CheffiRecommendationCell: Bindable {
             }.store(in: &cancellables)
         
         output.restaurantContentsViewModels
-            .sink { (viewModels, categoryIndex) in
+            .sink { (viewModels, categoryIndex, contentOffsetsY) in
                 self.cheffiRecommendationCatogoryPageView.configure(
                     viewModels: viewModels,
-                    currentCategoryPageIndex: categoryIndex
+                    currentCategoryPageIndex: categoryIndex,
+                    contentsOffsetY: contentOffsetsY
                 )
                 viewModel.isLoading = false
-            }.store(in: &cancellables)
-        
-        output.updateContentHeight
-            .sink { contentHeight in
-                self.updateContentHeight?(contentHeight)
-            }.store(in: &cancellables)
-        
-        output.hideMoreViewButton
-            .sink { _ in
-                self.showAllContentsButton.isHidden = true
             }.store(in: &cancellables)
     }
 }
