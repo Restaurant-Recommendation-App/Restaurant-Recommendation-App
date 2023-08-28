@@ -27,9 +27,14 @@ extension DefaultCheffiRecommendationRepository: CheffiRecommendationRepository 
         Just(["한식", "양식", "중식", "일식", "퓨전", "샐러드"]).eraseToAnyPublisher()
     }
     
-    func getContents(page: Int) -> AnyPublisher<[ContentsResponseDTO.contentDTO], Never> {
+    func getContents(with tag: String, page: Int) -> AnyPublisher<[ContentsResponseDTO.contentDTO], Never> {
         // TODO: 서비스 객체 사용, 서버 데이터 만들어지면 제거 필요, 현재는 가상 데이터 사용
-        Just([
+        Just(moreContents()).eraseToAnyPublisher()
+    }
+    
+    // TODO: 무한 스크롤링을 위하여 임시 생성, 제거 필요
+    private func moreContents() -> [ContentsResponseDTO.contentDTO] {
+        [
             ContentsResponseDTO.contentDTO(
                 title: "그시절낭만의 근본 경양식 돈가스1", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
             ),
@@ -60,6 +65,6 @@ extension DefaultCheffiRecommendationRepository: CheffiRecommendationRepository 
             ContentsResponseDTO.contentDTO(
                 title: "그시절낭만의 근본 경양식 돈가스10", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
             )
-        ]).eraseToAnyPublisher()
+        ]
     }
 }
