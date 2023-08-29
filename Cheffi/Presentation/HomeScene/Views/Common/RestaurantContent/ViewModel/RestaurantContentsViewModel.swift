@@ -25,6 +25,7 @@ final class RestaurantContentsViewModel: ViewModelType {
     var cancellables = Set<AnyCancellable>()
     
     private let cheffiRecommendationUseCase: CheffiRecommendationUseCase
+    private let pagenationGenerator =  DefaultPagenationGenerator<Content>(page: 1)
     
     private var initialized = false
     private let tag: String
@@ -52,8 +53,7 @@ final class RestaurantContentsViewModel: ViewModelType {
         
         initialize
             .filter { !self.initialized }
-            .flatMap { self.cheffiRecommendationUseCase.getContents(with: self.tag, page: 1) }
-            .map { $0.map(RestaurantContentItemViewModel.init) }
+            .flatMap { self.fetchContents() }
             .sink { contents in
                 self.items = contents
                 contentItems.send(self.items)
@@ -71,9 +71,8 @@ final class RestaurantContentsViewModel: ViewModelType {
             .assign(to: &self.$scrollOffsetY)
         
         input.scrolledToBottom
-            .throttle(for: .seconds(1), scheduler: DispatchQueue.main, latest: false)
-            .flatMap { self.cheffiRecommendationUseCase.getContents(with: self.tag, page: 1) }
-            .map { $0.map(RestaurantContentItemViewModel.init) }
+            .filter { self.pagenationGenerator.fetchStatus == .ready }
+            .flatMap { self.fetchContents() }
             .sink { contents in
                 self.items += contents
                 contentItems.send(self.items)
@@ -83,5 +82,29 @@ final class RestaurantContentsViewModel: ViewModelType {
             contentItems: contentItems.eraseToAnyPublisher(),
             scrolleOffsetY: scrollOffsetY.eraseToAnyPublisher()
         )
+    }
+    
+    // TODO: 에러 처리
+    func fetchContents() -> AnyPublisher<[RestaurantContentItemViewModel], Never> {
+        let result = CurrentValueSubject<[Content], Never>([Content]())
+        let contents = result
+            .map { $0.map(RestaurantContentItemViewModel.init) }
+            .eraseToAnyPublisher()
+        
+        pagenationGenerator.next(
+            fetch: { page, onCompletion, onError in
+                self.cheffiRecommendationUseCase.getContents(with: self.tag, page: page)
+                    .sink { onCompletion($0) }
+                    .store(in: &self.cancellables)
+            }, onCompletion: {
+                result.send($0)
+            }, onError: {_ in
+//                result.send(completion: .failure($0))
+            }
+        )
+        
+        return result
+            .map { $0.map(RestaurantContentItemViewModel.init) }
+            .eraseToAnyPublisher()
     }
 }

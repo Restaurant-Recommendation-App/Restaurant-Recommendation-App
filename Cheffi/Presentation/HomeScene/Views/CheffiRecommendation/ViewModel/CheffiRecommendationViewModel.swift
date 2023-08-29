@@ -35,7 +35,6 @@ final class CheffiRecommendationViewModel: ViewModelType {
         
         let categories = PassthroughSubject<([String], [RestaurantContentsViewModel]), Never>()
         
-        // TODO: Usecase 활용 필요
         input.initialize
             .filter { !self.initialized }
             .flatMap { self.cheffiRecommendationUseCase.getTags() }

@@ -5,7 +5,7 @@
 //  Created by RONICK on 2023/08/29.
 //
 
-final class DefautPagenationGenerator<T>: PagenationGenerator {
+final class DefaultPagenationGenerator<T>: PagenationGenerator {
     
     typealias Elements = Array<T>
     
