@@ -13,7 +13,7 @@ final class RestaurantContentsViewModel: ViewModelType {
     
     struct Input {
         let initialize: AnyPublisher<Void, Never>
-        let verticallySrolled: AnyPublisher<ContentOffsetY, Never>
+        let verticallyScrolled: AnyPublisher<ContentOffsetY, Never>
         let scrolledToBottom: AnyPublisher<Void, Never>
     }
     
@@ -67,7 +67,7 @@ final class RestaurantContentsViewModel: ViewModelType {
                 scrollOffsetY.send(self.scrollOffsetY)
             }.store(in: &cancellables)
         
-        input.verticallySrolled
+        input.verticallyScrolled
             .assign(to: &self.$scrollOffsetY)
         
         input.scrolledToBottom

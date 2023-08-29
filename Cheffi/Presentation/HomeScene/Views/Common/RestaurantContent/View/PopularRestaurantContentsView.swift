@@ -23,7 +23,7 @@ class PopularRestaurantContentsView: UICollectionView {
     var items = [RestaurantContentItemViewModel]()
         
     private var initialized = PassthroughSubject<Void, Never>()
-    private var verticallySrolled = PassthroughSubject<ContentOffsetY, Never>()
+    private var verticallyScrolled = PassthroughSubject<ContentOffsetY, Never>()
     private var scrolledToBottom = PassthroughSubject<Void, Never>()
     
     var cancellables = Set<AnyCancellable>()
@@ -49,7 +49,7 @@ class PopularRestaurantContentsView: UICollectionView {
     
     func configure(viewModel: ViewModel) {
         initialized = PassthroughSubject<Void, Never>()
-        verticallySrolled = PassthroughSubject<ContentOffsetY, Never>()
+        verticallyScrolled = PassthroughSubject<ContentOffsetY, Never>()
         scrolledToBottom = PassthroughSubject<Void, Never>()
         
         bind(to: viewModel)
@@ -66,7 +66,7 @@ extension PopularRestaurantContentsView: Bindable {
         
         let input = ViewModel.Input(
             initialize: initialized.eraseToAnyPublisher(),
-            verticallySrolled: verticallySrolled.eraseToAnyPublisher(),
+            verticallyScrolled: verticallyScrolled.eraseToAnyPublisher(),
             scrolledToBottom: scrolledToBottom.eraseToAnyPublisher())
         
         let output = viewModel.transform(input: input)
@@ -128,7 +128,7 @@ extension PopularRestaurantContentsView: UICollectionViewDelegateFlowLayout {
         let height = frame.height
         let actualHeight = (contentHeight - height > 0) ? contentHeight - height : 0
         
-        verticallySrolled.send(contentOffsetY)
+        verticallyScrolled.send(contentOffsetY)
         if contentOffsetY > actualHeight {
             scrolledToBottom.send(())
         }
