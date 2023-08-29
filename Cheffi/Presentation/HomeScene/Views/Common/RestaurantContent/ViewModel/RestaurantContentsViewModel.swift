@@ -85,7 +85,7 @@ final class RestaurantContentsViewModel: ViewModelType {
     }
     
     // TODO: 에러 처리
-    func fetchContents() -> AnyPublisher<[RestaurantContentItemViewModel], Never> {
+    private func fetchContents() -> AnyPublisher<[RestaurantContentItemViewModel], Never> {
         let result = CurrentValueSubject<[Content], Never>([Content]())
         
         pagenationGenerator.next(

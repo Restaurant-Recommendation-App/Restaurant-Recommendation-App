@@ -20,7 +20,7 @@ class PopularRestaurantContentsView: UICollectionView {
             
     private var diffableDataSource: UICollectionViewDiffableDataSource<Int, RestaurantContentItemViewModel>?
         
-    var items = [RestaurantContentItemViewModel]()
+    private var items = [RestaurantContentItemViewModel]()
         
     private var initialized = PassthroughSubject<Void, Never>()
     private var verticallyScrolled = PassthroughSubject<ContentOffsetY, Never>()

@@ -20,9 +20,9 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
         
     private var isScrollingWithTab = false
     
-    let scrolledCategory = PassthroughSubject<categoryIndex, Never>()
-    let scrolledToBottom = PassthroughSubject<CGFloat, Never>()
-    var contentsOffsetY = [CGFloat]()
+    private let scrolledCategory = PassthroughSubject<categoryIndex, Never>()
+    private let scrolledToBottom = PassthroughSubject<CGFloat, Never>()
+    private var contentsOffsetY = [CGFloat]()
         
     private var items = [RestaurantContentsViewModel]()
         

@@ -14,7 +14,7 @@ final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
         static let cellInset = 16
     }
     
-    let popularRestaurantContentsView = PopularRestaurantContentsView()
+    private let popularRestaurantContentsView = PopularRestaurantContentsView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
