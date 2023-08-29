@@ -19,11 +19,7 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
     var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
         
     private var isScrollingWithTab = false
-    
-    private let scrolledCategory = PassthroughSubject<categoryIndex, Never>()
-    private let scrolledToBottom = PassthroughSubject<CGFloat, Never>()
-    private var contentsOffsetY = [CGFloat]()
-        
+            
     private var items = [RestaurantContentsViewModel]()
         
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
@@ -84,7 +80,6 @@ extension CheffiRecommendationCategoryPageView: UICollectionViewDelegateFlowLayo
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !isScrollingWithTab {
             categoryPageViewDelegate?.didSwipe(indexPath: visibleIndexPath)
-            scrolledCategory.send(visibleIndexPath?.row ?? 0)
         }
     }
     
