@@ -8,10 +8,80 @@
 import Foundation
 import Combine
 
-struct RestaurantContentsViewModel: Hashable, Identifiable {
-    let id = UUID()
+final class RestaurantContentsViewModel: ViewModelType {
+    typealias ContentOffsetY = CGFloat
     
-    var title: String
-    var subtitle: String
-    var contentImageHeight: Int
+    struct Input {
+        let initialize: AnyPublisher<Void, Never>
+        let verticallySrolled: AnyPublisher<ContentOffsetY, Never>
+        let scrolledToBottom: AnyPublisher<Void, Never>
+    }
+    
+    struct Output {
+        let contentItems: AnyPublisher<[RestaurantContentItemViewModel], Never>
+        let scrolleOffsetY: AnyPublisher<ContentOffsetY, Never>
+    }
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    private let cheffiRecommendationUseCase: CheffiRecommendationUseCase
+    
+    private var initialized = false
+    private let tag: String
+    
+    @Published private var scrollOffsetY: CGFloat = 0
+    
+    private var items = [RestaurantContentItemViewModel]()
+            
+    init(tag: String, cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
+        self.tag = tag
+        self.cheffiRecommendationUseCase = cheffiRecommendationUseCase
+    }
+    
+    func transform(input: Input) -> Output {
+        
+        cancellables.forEach {
+            $0.cancel()
+        }
+        cancellables = Set<AnyCancellable>()
+        
+        let contentItems = PassthroughSubject<[RestaurantContentItemViewModel], Never>()
+        let scrollOffsetY = PassthroughSubject<ContentOffsetY, Never>()
+        
+        let initialize = input.initialize.share()
+        
+        initialize
+            .filter { !self.initialized }
+            .flatMap { self.cheffiRecommendationUseCase.getContents(with: self.tag, page: 1) }
+            .map { $0.map(RestaurantContentItemViewModel.init) }
+            .sink { contents in
+                self.items = contents
+                contentItems.send(self.items)
+                self.initialized = true
+            }.store(in: &cancellables)
+        
+        initialize
+            .filter { self.initialized }
+            .sink { _ in
+                contentItems.send(self.items)
+                scrollOffsetY.send(self.scrollOffsetY)
+            }.store(in: &cancellables)
+        
+        input.verticallySrolled
+            .assign(to: &self.$scrollOffsetY)
+        
+        input.scrolledToBottom
+            .throttle(for: .seconds(1), scheduler: DispatchQueue.main, latest: false)
+            .flatMap { self.cheffiRecommendationUseCase.getContents(with: self.tag, page: 1) }
+            .map { $0.map(RestaurantContentItemViewModel.init) }
+            .sink { contents in
+                self.items += contents
+                contentItems.send(self.items)
+            }.store(in: &cancellables)
+        
+        return Output(
+            contentItems: contentItems.eraseToAnyPublisher(),
+            scrolleOffsetY: scrollOffsetY.eraseToAnyPublisher()
+        )
+    }
 }

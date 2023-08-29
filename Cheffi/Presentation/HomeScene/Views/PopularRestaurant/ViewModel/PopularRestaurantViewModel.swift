@@ -17,7 +17,7 @@ final class PopularRestaurantViewModel: ViewModelType {
     }
     
     struct Output {
-        let models: AnyPublisher<[RestaurantContentsViewModel], Never>
+        let models: AnyPublisher<[RestaurantContentItemViewModel], Never>
     }
     
     var cancellables = Set<AnyCancellable>()
@@ -27,11 +27,11 @@ final class PopularRestaurantViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        let models = PassthroughSubject<[RestaurantContentsViewModel], Never>()
+        let models = PassthroughSubject<[RestaurantContentItemViewModel], Never>()
         
         input.initialize.sink { _ in
             // TODO: Usecase 활용
-            models.send(Array(popularRestaurantContentsViewModelMock[0][0 ..< self.numberOfContentsToShow]))
+//            models.send(Array(popularRestaurantContentsViewModelMock[0][0 ..< self.numberOfContentsToShow]))
         }.store(in: &cancellables)
 
         return Output(models: models.eraseToAnyPublisher())

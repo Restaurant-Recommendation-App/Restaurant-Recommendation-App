@@ -9,17 +9,24 @@ import UIKit
 import Combine
 
 class PopularRestaurantContentsView: UICollectionView {
+    
+    typealias ViewModel = RestaurantContentsViewModel
+    typealias ContentOffsetY = CGFloat
+    
     enum Constants {
         static let cellHeight = 270
         static let cellLineSpcaing = 24
     }
             
-    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, RestaurantContentsViewModel>?
+    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, RestaurantContentItemViewModel>?
+        
+    var items = [RestaurantContentItemViewModel]()
+        
+    private var initialized = PassthroughSubject<Void, Never>()
+    private var verticallySrolled = PassthroughSubject<ContentOffsetY, Never>()
+    private var scrolledToBottom = PassthroughSubject<Void, Never>()
     
-    private var scrolledToBottom: PassthroughSubject<CGFloat, Never>?
-    var currentCategoryPageIndex = 0
-    
-    var items = [RestaurantContentsViewModel]()
+    var cancellables = Set<AnyCancellable>()
     
     init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -40,13 +47,42 @@ class PopularRestaurantContentsView: UICollectionView {
         showsVerticalScrollIndicator = true
     }
     
-    func configure(viewModels: [RestaurantContentsViewModel], scrolledToBottom: PassthroughSubject<CGFloat, Never>?, contentOffsetY: CGFloat?) {
-        self.items = viewModels
-        self.scrolledToBottom = scrolledToBottom
+    func configure(viewModel: ViewModel) {
+        initialized = PassthroughSubject<Void, Never>()
+        verticallySrolled = PassthroughSubject<ContentOffsetY, Never>()
+        scrolledToBottom = PassthroughSubject<Void, Never>()
         
-        reloadData {
-            self.contentOffset.y = contentOffsetY ?? 0
+        bind(to: viewModel)
+        initialized.send(())
+    }
+}
+
+extension PopularRestaurantContentsView: Bindable {
+    func bind(to viewModel: ViewModel) {
+        cancellables.forEach {
+            $0.cancel()
         }
+        cancellables = Set<AnyCancellable>()
+        
+        let input = ViewModel.Input(
+            initialize: initialized.eraseToAnyPublisher(),
+            verticallySrolled: verticallySrolled.eraseToAnyPublisher(),
+            scrolledToBottom: scrolledToBottom.eraseToAnyPublisher())
+        
+        let output = viewModel.transform(input: input)
+        
+        output.contentItems
+            .receive(on: DispatchQueue.main)
+            .sink {
+                self.items = $0
+                self.reloadData()
+            }.store(in: &cancellables)
+                
+        output.scrolleOffsetY
+            .receive(on: DispatchQueue.main)
+            .sink {
+                self.contentOffset.y = $0
+            }.store(in: &cancellables)
     }
 }
 
@@ -90,11 +126,11 @@ extension PopularRestaurantContentsView: UICollectionViewDelegateFlowLayout {
         let contentOffsetY = contentOffset.y
         let contentHeight = contentSize.height
         let height = frame.height
-        
         let actualHeight = (contentHeight - height > 0) ? contentHeight - height : 0
         
+        verticallySrolled.send(contentOffsetY)
         if contentOffsetY > actualHeight {
-            scrolledToBottom?.send(contentOffsetY)
+            scrolledToBottom.send(())
         }
     }
 }

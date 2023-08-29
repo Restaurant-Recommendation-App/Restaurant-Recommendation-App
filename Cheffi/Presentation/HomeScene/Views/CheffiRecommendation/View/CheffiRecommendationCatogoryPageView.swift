@@ -14,7 +14,7 @@ protocol CheffiRecommendationCategoryPageViewDelegate {
 
 final class CheffiRecommendationCategoryPageView: UICollectionView {
     typealias categoryIndex = Int
-    private var viewModels = [[RestaurantContentsViewModel]]()
+    private var viewModels = [[RestaurantContentItemViewModel]]()
 
     var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
         
@@ -23,8 +23,8 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
     let scrolledCategory = PassthroughSubject<categoryIndex, Never>()
     let scrolledToBottom = PassthroughSubject<CGFloat, Never>()
     var contentsOffsetY = [CGFloat]()
-    
-    var cancellables = Set<AnyCancellable>()
+        
+    private var items = [RestaurantContentsViewModel]()
         
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -49,34 +49,21 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
         collectionViewLayout = layout
     }
     
-    func configure(viewModels: [[RestaurantContentsViewModel]], currentCategoryPageIndex: Int?, contentsOffsetY: [CGFloat]?) {
-        self.viewModels = viewModels
-        self.contentsOffsetY = contentsOffsetY ?? [CGFloat]()
-        
-        let currentCategoryPageIndex = currentCategoryPageIndex ?? 0
-        let cell = cellForItem(at: IndexPath(row: currentCategoryPageIndex, section: 0)) as? CheffiRecommendationCategoryPageCell
-                
-        cell?.configure(
-            viewModels: viewModels[currentCategoryPageIndex],
-            scrolledToBottom: scrolledToBottom,
-            contentOffsetY: self.contentsOffsetY[currentCategoryPageIndex]
-        )
+    func configure(viewModels: [RestaurantContentsViewModel]) {
+        self.items = viewModels
+        reloadData()
     }
 }
 
 extension CheffiRecommendationCategoryPageView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModels.count
+        items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: CheffiRecommendationCategoryPageCell.self, for: indexPath)
         
-        cell.configure(
-            viewModels: viewModels[indexPath.row],
-            scrolledToBottom: scrolledToBottom,
-            contentOffsetY: contentsOffsetY[safe: indexPath.row] ?? 0
-        )
+        cell.configure(viewModel: items[indexPath.row])
         return cell
     }
 }

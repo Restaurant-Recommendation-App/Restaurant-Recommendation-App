@@ -80,6 +80,7 @@
 		D49D1AA22A73C7AE00CB86FA /* RestaurantContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D1AA12A73C7AD00CB86FA /* RestaurantContentsViewModel.swift */; };
 		D4ABC29F2A78D3E900B4152B /* CheffiRecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ABC29E2A78D3E900B4152B /* CheffiRecommendationViewModel.swift */; };
 		D4BA3BB62A78C616009CA7E0 /* PopularRestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA3BB52A78C616009CA7E0 /* PopularRestaurantViewModel.swift */; };
+		D4C0FA6E2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0FA6D2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift */; };
 		D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244B82A60FF5A004E0167 /* AppDelegate.swift */; };
 		D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */; };
 		D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */; };
@@ -216,6 +217,7 @@
 		D49D1AA12A73C7AD00CB86FA /* RestaurantContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentsViewModel.swift; sourceTree = "<group>"; };
 		D4ABC29E2A78D3E900B4152B /* CheffiRecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationViewModel.swift; sourceTree = "<group>"; };
 		D4BA3BB52A78C616009CA7E0 /* PopularRestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantViewModel.swift; sourceTree = "<group>"; };
+		D4C0FA6D2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentItemViewModel.swift; sourceTree = "<group>"; };
 		D4E244B52A60FF5A004E0167 /* Cheffi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheffi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E244B82A60FF5A004E0167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -739,6 +741,7 @@
 			isa = PBXGroup;
 			children = (
 				D49D1AA12A73C7AD00CB86FA /* RestaurantContentsViewModel.swift */,
+				D4C0FA6D2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1148,6 +1151,7 @@
 				FF3197852A74E70900F5DD41 /* Location.swift in Sources */,
 				D43331A92A6D32AE00E6CB4B /* UICollectionView+Extensions.swift in Sources */,
 				D41E99322A6BB9A80085F5D0 /* UIView+Extensions.swift in Sources */,
+				D4C0FA6E2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift in Sources */,
 				CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */,
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
 				FF5059A42A7E058400F90D27 /* TagResponseDTO.swift in Sources */,

@@ -16,10 +16,6 @@ final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
     
     let popularRestaurantContentsView = PopularRestaurantContentsView()
     
-    var contentSize: CGSize {
-        return popularRestaurantContentsView.contentSize
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         popularRestaurantContentsView.isScrollEnabled = true
@@ -45,11 +41,9 @@ final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
         }
     }
     
-    func configure(viewModels: [RestaurantContentsViewModel], scrolledToBottom: PassthroughSubject<CGFloat, Never>, contentOffsetY: CGFloat) {
+    func configure(viewModel: RestaurantContentsViewModel) {
         popularRestaurantContentsView.configure(
-            viewModels: viewModels,
-            scrolledToBottom: scrolledToBottom,
-            contentOffsetY: contentOffsetY
+            viewModel: viewModel
         )
     }
 }

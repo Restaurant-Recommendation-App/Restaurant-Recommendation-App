@@ -15,7 +15,6 @@ final class CheffiRecommendationCell: UITableViewCell {
     var cancellables = Set<AnyCancellable>()
     
     private let initialize = PassthroughSubject<Void, Never>()
-    private var scrolledToBottom: AnyPublisher<Void, Never> = Empty().eraseToAnyPublisher()
         
     enum Constants {
         static let cellInset: CGFloat = 16.0
@@ -91,8 +90,7 @@ final class CheffiRecommendationCell: UITableViewCell {
         }
     }
     
-    func configure(viewModel: ViewModel, scrolledToBottom: AnyPublisher<Void, Never>) {
-        self.scrolledToBottom = scrolledToBottom
+    func configure(viewModel: ViewModel) {
         bind(to: viewModel)
         initialize.send(())
     }
@@ -107,28 +105,15 @@ extension CheffiRecommendationCell: Bindable {
         cancellables =  Set<AnyCancellable>()
         
         let input = ViewModel.Input(
-            initialize: initialize,
-            scrolledToBottom: cheffiRecommendationCatogoryPageView.scrolledToBottom.eraseToAnyPublisher(),
-            tappedCategory: categoryTabView.tappedCategory.eraseToAnyPublisher(),
-            scrolledCategory: cheffiRecommendationCatogoryPageView.scrolledCategory.eraseToAnyPublisher()
-            
+            initialize: initialize
         )
         let output = viewModel.transform(input: input)
         
         output.categories
             .filter { _ in !viewModel.initialized }
-            .sink { categories in
+            .sink { (categories, viewModels) in
                 self.categoryTabView.setUpTags(tags: categories)
-            }.store(in: &cancellables)
-        
-        output.restaurantContentsViewModels
-            .sink { (viewModels, categoryIndex, contentOffsetsY) in
-                self.cheffiRecommendationCatogoryPageView.configure(
-                    viewModels: viewModels,
-                    currentCategoryPageIndex: categoryIndex,
-                    contentsOffsetY: contentOffsetsY
-                )
-                viewModel.isLoading = false
+                self.cheffiRecommendationCatogoryPageView.configure(viewModels: viewModels)
             }.store(in: &cancellables)
     }
 }

@@ -22,10 +22,6 @@ class HomeViewController: UIViewController {
         static let headerHeight: CGFloat = 32.0
     }
     
-    private var contentHeight = UITableView.automaticDimension
-
-    let scrolledToBottom = PassthroughSubject<Void, Never>()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,15 +66,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(with: viewModel.similarChefViewModel)
             cell.delegate = self
             return cell
-            
         case 2:
             let cell = tableView.dequeueReusableCell(withClass: CheffiRecommendationCell.self, for: indexPath)
-
-            cell.configure(
-                viewModel: self.viewModel.recommendationViewModel,
-                scrolledToBottom: scrolledToBottom.eraseToAnyPublisher()
-            )
-            
+            cell.configure(viewModel: self.viewModel.recommendationViewModel)
             return cell
         default:
             return UITableViewCell()
@@ -100,16 +90,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return Constants.headerHeight
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let contentOffsetY = tableView.contentOffset.y
-        let contentHeight = tableView.contentSize.height
-        let height = tableView.frame.height
-        
-        if contentOffsetY > contentHeight - height {
-            scrolledToBottom.send(())
-        }
     }
 }
 
