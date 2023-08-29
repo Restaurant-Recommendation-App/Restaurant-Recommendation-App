@@ -23,20 +23,24 @@ final class AppDIContainer {
         return DefaultDataTransferService(with: apiDataNetwork)
     }()
     
+    func makeLoginSceneDIContainer() -> LoginSceneDIContainer {
+        return LoginSceneDIContainer()
+    }
+    
     func makeHomeSceneDIContainer() -> HomeSceneDIContainer {
         let dependencies = HomeSceneDIContainer.Dependencies(apiDataTransferService: apiDataTransferService)
         return HomeSceneDIContainer(dependencies: dependencies)
     }
     
     func makeNationalTrendSceneDIContainer() -> NationalTrendSceneDIContainer {
-        NationalTrendSceneDIContainer()
+        return NationalTrendSceneDIContainer()
     }
     
     func makeRestaurantRegistSceneDIContainer() -> RestaurantRegistSceneDIContainer {
-        RestaurantRegistSceneDIContainer()
+        return RestaurantRegistSceneDIContainer()
     }
     
     func makeMyPageFlowCoordinator() -> MyPageSceneDIContainer {
-        MyPageSceneDIContainer()
+        return MyPageSceneDIContainer()
     }
 }

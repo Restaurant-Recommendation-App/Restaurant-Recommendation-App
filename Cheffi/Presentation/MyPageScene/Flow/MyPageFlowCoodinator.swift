@@ -7,16 +7,23 @@
 
 import UIKit
 
-protocol MyPageFlowCoodinatorDependencies: BaseFlowCoordinatorDependencies {
+protocol MyPageFlowCoodinatorDependencies {
     func makeViewController() -> UIViewController
 }
 
-final class MyPageFlowCoodinator: BaseFlowCoordinator {
-    private var myPageDependencies: MyPageFlowCoodinatorDependencies {
-        return self.dependencies as! MyPageFlowCoodinatorDependencies
+final class MyPageFlowCoodinator {
+    weak var navigationController: UINavigationController?
+    weak var parentCoordinator: AppFlowCoordinator?
+    var dependencies: MyPageFlowCoodinatorDependencies
+    
+    init(navigationController: UINavigationController?, parentCoordinator: AppFlowCoordinator?, dependencies: MyPageFlowCoodinatorDependencies) {
+        self.navigationController = navigationController
+        self.parentCoordinator = parentCoordinator
+        self.dependencies = dependencies
     }
+    
     func start() {
-        let vc = myPageDependencies.makeViewController()
+        let vc = dependencies.makeViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -20,7 +20,7 @@ protocol SimilarChefViewModelOutput {
 final class SimilarChefViewModel: SimilarChefViewModelInput & SimilarChefViewModelOutput {
     
     private var cancellables = Set<AnyCancellable>()
-    private let fetchSimilarChefUseCase: FetchSimilarChefUseCase
+    private let similarChefUseCase: SimilarChefUseCase
     private let repository: SimilarChefRepository
     private let _selectedTags = PassthroughSubject<[String], Never>()
     private let _profiles = PassthroughSubject<[User], Never>()
@@ -38,16 +38,16 @@ final class SimilarChefViewModel: SimilarChefViewModelInput & SimilarChefViewMod
     
     // MARK: - Init
     init(
-        fetchSimilarChefUseCase: FetchSimilarChefUseCase,
+        similarChefUseCase: SimilarChefUseCase,
         repository: SimilarChefRepository
     ) {
-        self.fetchSimilarChefUseCase = fetchSimilarChefUseCase
+        self.similarChefUseCase = similarChefUseCase
         self.repository = repository
         
         _selectedTags
             .flatMap({ [weak self] tags in
                 self?.saveTags(tags)
-                return fetchSimilarChefUseCase.execute(tags: tags)
+                return similarChefUseCase.execute(tags: tags)
                     .catch { error -> Empty<[User], Never> in
                         debugPrint("------------------------------------------")
                         debugPrint(error)

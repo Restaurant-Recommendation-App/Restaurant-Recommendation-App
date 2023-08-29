@@ -9,7 +9,7 @@ import UIKit
 
 
 /// 홈화면 의존성 주입 컨테이너
-final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
+final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
     
     struct Dependencies {
         let apiDataTransferService: DataTransferService
@@ -50,7 +50,7 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
     
     func makeSimilarChefViewModel() -> SimilarChefViewModel {
         let repository = makeSimilarChefRepository()
-        return SimilarChefViewModel(fetchSimilarChefUseCase: makeFetchSimilarChefUseCase(repository: repository),
+        return SimilarChefViewModel(similarChefUseCase: makeSimilarChefUseCase(repository: repository),
                                     repository: repository)
     }
     
@@ -87,8 +87,8 @@ final class HomeSceneDIContainer: HomeFlowCoodinatorDependencies {
 
 // MARK: - Use Cases
 extension HomeSceneDIContainer {
-    func makeFetchSimilarChefUseCase(repository: SimilarChefRepository) -> FetchSimilarChefUseCase {
-        return DefaultFetchSimilarChefUseCase(repository: repository)
+    func makeSimilarChefUseCase(repository: SimilarChefRepository) -> SimilarChefUseCase {
+        return DefaultSimilarChefUseCase(repository: repository)
     }
     
     func makeCheffiRecommendationUseCase(repository: CheffiRecommendationRepository) -> CheffiRecommendationUseCase {

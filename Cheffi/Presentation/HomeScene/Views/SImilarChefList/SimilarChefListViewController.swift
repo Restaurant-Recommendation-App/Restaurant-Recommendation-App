@@ -32,6 +32,6 @@ class SimilarChefListViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction private func didTapBack(_ sender: UIButton) {
-        self.dismissOrPop()
+        self.dismissOrPop(amimated: true)
     }
 }

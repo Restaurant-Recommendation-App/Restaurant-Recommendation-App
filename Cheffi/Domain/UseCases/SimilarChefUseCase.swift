@@ -1,5 +1,5 @@
 //
-//  FetchSimilarChefUseCase.swift
+//  SimilarChefUseCase.swift
 //  Cheffi
 //
 //  Created by USER on 2023/07/16.
@@ -8,11 +8,11 @@
 import Foundation
 import Combine
 
-protocol FetchSimilarChefUseCase {
+protocol SimilarChefUseCase {
     func execute(tags: [String]) -> AnyPublisher<[User], DataTransferError>
 }
 
-final class DefaultFetchSimilarChefUseCase: FetchSimilarChefUseCase {
+final class DefaultSimilarChefUseCase: SimilarChefUseCase {
     private let repository: SimilarChefRepository
     
     init(repository: SimilarChefRepository) {

@@ -18,6 +18,15 @@ enum StoryboardName: String {
     case similarChefList
     case cheffiDetail
     case more
+    case SNSLogin
+    case profileSetup
+    case nickname
+    case profilePhoto
+    case preference
+    case foodSelection
+    case followSelection
+    case photoAlbum
+    case photoCrop
 }
 
 extension StoryboardName {
