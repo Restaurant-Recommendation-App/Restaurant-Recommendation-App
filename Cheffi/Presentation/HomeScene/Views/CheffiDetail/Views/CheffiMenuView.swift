@@ -24,6 +24,8 @@ class CheffiMenuView: BaseView {
     // MARK: - Private
     private func setupViews() {
         titleLabel.text = "메뉴".localized()
+        titleLabel.font = Fonts.suit.weight700.size(18.0)
+        titleLabel.textColor = .cheffiGray9
     }
     
     func setupMenu(_ menus: [Menu]) {

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 struct HomeViewModelActions {
-    let showPopup: (_ text: String, _ keyword: String) -> Void
+    let showPopup: (_ text: String, _ keyword: String, _ popupState: PopupState) -> Void
     let showSimilarChefList: () -> Void
     let showSearch: () -> Void
 }
@@ -30,8 +30,8 @@ final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
     // MARK: - Output
     var similarChefViewModel: SimilarChefViewModel
     
-    func showPopup(text: String, keywrod: String) {
-        actions?.showPopup(text, keywrod)
+    func showPopup(text: String, keywrod: String, popupState: PopupState) {
+        actions?.showPopup(text, keywrod, popupState)
     }
     
     func showSimilarChefList() {

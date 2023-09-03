@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SUIT-Bold.otf">
+            <string>SUIT-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheffiLocationView" customModule="Cheffi" customModuleProvider="target">
             <connections>
@@ -23,8 +28,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5V-Cu-NDD">
-                    <rect key="frame" x="0.0" y="0.0" width="8.3333333333333339" height="22"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <rect key="frame" x="0.0" y="0.0" width="10.333333333333334" height="22"/>
+                    <fontDescription key="fontDescription" name="SUIT-Bold" family="SUIT" pointSize="18"/>
                     <color key="textColor" name="CheffiBlack"/>
                     <nil key="highlightedColor"/>
                 </label>

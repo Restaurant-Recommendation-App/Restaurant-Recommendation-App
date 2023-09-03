@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol HomeFlowCoordinatorDependencies {
-    func makePopupViewController(text: String, keyword: String, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController
+    func makePopupViewController(text: String, keyword: String, popupState: PopupState, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController
     func makeViewController(actions: HomeViewModelActions) -> HomeViewController
     func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
@@ -35,9 +35,14 @@ final class HomeFlowCoordinator {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func showPopup(text: String, keyword: String) {
-        let vc = dependencies.makePopupViewController(text: text, keyword: keyword, findHandler: { [weak self] in
-            self?.showLogin()
+    private func showPopup(text: String, keyword: String, popupState: PopupState) {
+        let vc = dependencies.makePopupViewController(text: text, keyword: keyword, popupState: popupState, findHandler: { [weak self] in
+            switch popupState {
+            case .member:
+                self?.showCheffiDetail()
+            case .nonMember:
+                self?.showLogin()
+            }
         }, cancelHandler: {})
         navigationController?.present(vc, animated: true)
     }
@@ -54,6 +59,11 @@ final class HomeFlowCoordinator {
     
     private func showLogin() {
         parentCoordinator?.showLogin()
+    }
+    
+    private func showCheffiDetail() {
+        let vc = dependencies.makeCheffiDetail()
+        navigationController?.pushViewController(vc)
     }
 }
 

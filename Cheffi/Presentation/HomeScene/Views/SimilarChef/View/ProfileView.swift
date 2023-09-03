@@ -22,7 +22,7 @@ class ProfileView: UIView {
         let label = UILabel()
         label.text = nil
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.font = Fonts.suit.weight600.size(16.0)
         label.textColor = UIColor(argbHexString: "2F2F2F")
         return label
     }()
@@ -32,7 +32,7 @@ class ProfileView: UIView {
         label.text = "#한식 #노포 #아이사음식 #매운맛 #웨이팅 짧은 #매운맛 #웨이팅"
         label.numberOfLines = 2
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.font = Fonts.suit.weight400.size(12.0)
         label.textColor = UIColor(argbHexString: "5A5A5A")
         return label
     }()
@@ -43,7 +43,7 @@ class ProfileView: UIView {
         button.setTitle("팔로잉".localized(), for: .selected)
         button.setTitleColor(.cheffiWhite, for: .normal)
         button.setTitleColor(.cheffiGray9, for: .selected)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        button.titleLabel?.font = Fonts.suit.weight700.size(12.0)
         button.layerCornerRadius = 8.0
         button.layerBorderWidth = 1.0
         button.addTarget(self, action: #selector(followButtonTapped), for: .touchUpInside)
@@ -86,7 +86,7 @@ class ProfileView: UIView {
         }
         
         followButton.snp.makeConstraints { make in
-            make.width.equalTo(70.0)
+            make.width.equalTo(70)
             make.height.equalTo(28)
             make.right.equalToSuperview()
             make.centerY.equalToSuperview()

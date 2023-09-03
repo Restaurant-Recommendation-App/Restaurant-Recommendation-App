@@ -48,17 +48,28 @@ class CheffiContensView: BaseView {
         dataSource = UICollectionViewDiffableDataSource<Int, ImageItem>(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, item: ImageItem) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withClass: CheffiContensViewImageCell.self, for: indexPath)
-            if indexPath.row == 0 {
-                cell.setViewsHidden(false)
-            }
+            cell.toggleViewVisibility(isHidden: indexPath.row != 0)
             cell.setImage(item.image)
             return cell
         }
     }
     
     private func updatePageLabel(currentPage: Int, totalPages: Int) {
-        pageLabel.text = "\(currentPage + 1)/\(totalPages)"
+        let currentPageString = "\(currentPage + 1)"
+        let totalPagesString = "/\(totalPages)"
+        
+        let attributedText = NSMutableAttributedString(string: currentPageString, attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.cheffiGray2,
+            NSAttributedString.Key.font: Fonts.suit.weight500.size(14.0)
+        ])
+        attributedText.append(NSAttributedString(string: totalPagesString, attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.cheffiGray6,
+            NSAttributedString.Key.font: Fonts.suit.weight400.size(14.0)
+        ]))
+        
+        pageLabel.attributedText = attributedText
     }
+
     
     // MARK: - Public
     func setImages(_ items: [ImageItem]) {

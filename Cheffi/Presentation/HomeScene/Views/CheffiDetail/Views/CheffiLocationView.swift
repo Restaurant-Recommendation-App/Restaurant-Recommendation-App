@@ -32,6 +32,11 @@ class CheffiLocationView: BaseView {
     // MARK: - Private
     private func setupViews() {
         titleLabel.text = "위치".localized()
+        titleLabel.font = Fonts.suit.weight700.size(18.0)
+        titleLabel.textColor = .cheffiGray9
+        
+        addressLabel.font = Fonts.suit.weight400.size(16.0)
+        addressLabel.textColor = .cheffiGray8
         
         let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
         let underlineAttributedString = NSAttributedString(string: "복사".localized(), attributes: underlineAttribute)

@@ -7,13 +7,19 @@
 
 import UIKit
 
+enum PopupState {
+    case member
+    case nonMember
+}
+
 class PopupViewController: UIViewController {
-    static func instance<T: PopupViewController>(text: String, keyword: String, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> T {
+    static func instance<T: PopupViewController>(text: String, keyword: String, popupState: PopupState, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> T {
         let vc: T = .instance(storyboardName: .popup)
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overFullScreen
         vc.text = text
         vc.keyword = keyword
+        vc.popupState = popupState
         vc.didTapFindHandler = findHandler
         vc.didTapCancelHandler = cancelHandler
         return vc
@@ -22,6 +28,7 @@ class PopupViewController: UIViewController {
     @IBOutlet private weak var popupView: PopupView!
     private var text: String = ""
     private var keyword: String = ""
+    private var popupState: PopupState = .nonMember
     private var didTapFindHandler: (() -> Void)?
     private var didTapCancelHandler: (() -> Void)?
 

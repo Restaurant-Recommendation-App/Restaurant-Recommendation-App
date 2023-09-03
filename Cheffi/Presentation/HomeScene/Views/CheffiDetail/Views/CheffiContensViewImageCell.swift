@@ -19,13 +19,13 @@ class CheffiContensViewImageCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupViews()
-        setViewsHidden(true)
+        toggleViewVisibility(isHidden: true)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         setupViews()
-        setViewsHidden(true)
+        toggleViewVisibility(isHidden: true)
     }
     
     // MARK: - Private
@@ -41,10 +41,11 @@ class CheffiContensViewImageCell: UICollectionViewCell {
         self.tasteLabel.text = "취향일치 60%"
     }
     
-    func setViewsHidden(_ isHidden: Bool) {
+    func toggleViewVisibility(isHidden: Bool) {
         timeAgoLabel.isHidden = isHidden
         titleLabel.isHidden = isHidden
         tasteLabel.isHidden = isHidden
         tasteBackgroundView.isHidden = isHidden
+        gradationView.isHidden = isHidden
     }
 }
