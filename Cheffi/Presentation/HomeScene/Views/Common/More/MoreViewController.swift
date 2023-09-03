@@ -141,15 +141,15 @@ final class MoreViewController: UIViewController, PanModalPresentable {
 extension MoreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isMoreMenu {
-            if let moreType = MoreMenu(rawValue: indexPath.row) {
-                switch moreType {
-                case .report:
-                    isMoreMenu = false
-                    updateLongFormHeight(to: Constants.topHeightWhenSubMenu + (CGFloat(self.reportList.count) * Constants.cellHeight) +
-                                         Constants.bottomHeightWhenSubMenu)
-                    panModalTransition(to: .longForm)
-                    applySnapshot(items: self.reportList)
-                }
+            switch MoreMenu(rawValue: indexPath.row) {
+            case .report:
+                isMoreMenu = false
+                updateLongFormHeight(to: Constants.topHeightWhenSubMenu + (CGFloat(self.reportList.count) * Constants.cellHeight) +
+                                     Constants.bottomHeightWhenSubMenu)
+                panModalTransition(to: .longForm)
+                applySnapshot(items: self.reportList)
+            default:
+                break
             }
         } else {
             
