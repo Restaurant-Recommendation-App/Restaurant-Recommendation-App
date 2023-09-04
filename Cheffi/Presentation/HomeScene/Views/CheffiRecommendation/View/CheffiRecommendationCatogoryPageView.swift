@@ -6,19 +6,22 @@
 //
 
 import UIKit
+import Combine
 
-protocol CheffiRecommendationCategoryPageViewDelegate {
+protocol CheffiRecommendationCategoryPageViewDelegate: AnyObject {
     func didSwipe(indexPath: IndexPath?)
 }
 
 final class CheffiRecommendationCategoryPageView: UICollectionView {
-    
-    var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
-    
-    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, String>?
-    
-    var isScrollingWithTab = false
-    
+    typealias categoryIndex = Int
+    private var viewModels = [[RestaurantContentItemViewModel]]()
+
+    weak var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
+        
+    private var isScrollingWithTab = false
+            
+    private var items = [RestaurantContentsViewModel]()
+        
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         setUp()
@@ -30,6 +33,7 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
     
     private func setUp() {
         delegate = self
+        dataSource = self
         
         register(cellWithClass: CheffiRecommendationCategoryPageCell.self)
         allowsSelection = false
@@ -38,23 +42,25 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        
-        
         collectionViewLayout = layout
+    }
+    
+    func configure(viewModels: [RestaurantContentsViewModel]) {
+        self.items = viewModels
+        reloadData()
+    }
+}
+
+extension CheffiRecommendationCategoryPageView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        items.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withClass: CheffiRecommendationCategoryPageCell.self, for: indexPath)
         
-        diffableDataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: self) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: String) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withClass: CheffiRecommendationCategoryPageCell.self, for: indexPath)
-            
-            return cell
-        }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
-        
-        snapshot.appendSections([0])
-        snapshot.appendItems(["한식", "양식", "중식", "일식", "퓨전", "샐러드"])
-        
-        diffableDataSource?.apply(snapshot, animatingDifferences: true)
+        cell.configure(viewModel: items[indexPath.row])
+        return cell
     }
 }
 

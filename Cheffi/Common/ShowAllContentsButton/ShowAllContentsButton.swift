@@ -57,4 +57,8 @@ class ShowAllContentsButton: BaseView {
     @IBAction private func didTapViewAll(_ sender: UIButton) {
         didTapViewAllHandler?()
     }
+    
+    func controlPublisher(for event: UIControl.Event) -> UIControl.EventPublisher {
+        button.controlPublisher(for: event)
+    }
 }

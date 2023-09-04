@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 import SnapKit
 
 class TabButton: UIButton {
@@ -22,7 +23,6 @@ class TabButton: UIButton {
     var isSelectedTab = false {
         didSet {
             self.updateConfiguration()
-            
             removeBorder(with: borderLayer)
             if isSelectedTab {
                 addBorderWithColor(layer: borderLayer, edge: .bottom ,color: .main, width: 2)
@@ -53,7 +53,7 @@ class TabButton: UIButton {
     }
 }
 
-protocol CategoryTabViewDelegate {
+protocol CategoryTabViewDelegate: AnyObject {
     func didTapCategory(index: Int)
 }
 
@@ -77,9 +77,7 @@ class CategoryTabView: UIView {
         return view
     }()
     
-    var delegate: CategoryTabViewDelegate?
-    
-    private var selectedTag = 0
+    weak var delegate: CategoryTabViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -112,8 +110,12 @@ class CategoryTabView: UIView {
         }
         scrollView.sendSubviewToBack(tabsBottomBoder)
     }
-    
+
     func setUpTags(tags: [String]) {
+        tabStackView.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+        
         let buttons = tags.enumerated().map {
             let button = TabButton()
             button.setTitle($0.element, for: .normal)
@@ -125,13 +127,17 @@ class CategoryTabView: UIView {
         }
         
         tabStackView.addArrangedSubviews(buttons)
-            
+        
+        layoutIfNeeded()
         tabsBottomBoder.addBorderWithColor(
             layer: CALayer(),
             edge: .bottom,
             color: .cheffiWhite05,
             width: 2
         )
+        
+        // 기본 버튼 태그 높이 강제 지정
+        buttons.first?.frame = CGRect(x: 0, y: 0, width: buttons.first?.frame.width ?? 0, height: 50)
         buttons.first?.isSelectedTab = true
     }
     

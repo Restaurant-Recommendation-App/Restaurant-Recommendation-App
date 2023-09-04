@@ -6,11 +6,19 @@
 //
 
 import UIKit
+import Combine
 
 final class CheffiRecommendationCell: UITableViewCell {
     
+    typealias ViewModel = CheffiRecommendationViewModel
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    private let initialize = PassthroughSubject<Void, Never>()
+        
     enum Constants {
         static let cellInset: CGFloat = 16.0
+        static let otherContentsSize: CGFloat = 270
     }
     
     private let titleLabel: UILabel = {
@@ -29,13 +37,7 @@ final class CheffiRecommendationCell: UITableViewCell {
         label.numberOfLines = 2
         return label
     }()
-    
-    private let showAllContentsButton: ShowAllContentsButton = {
-        let button = ShowAllContentsButton()
-        button.setTItle("더보기".localized(), direction: .down)
-        return button
-    }()
-    
+        
     private let categoryTabView = CategoryTabView()
     
     private let cheffiRecommendationCatogoryPageView = CheffiRecommendationCategoryPageView()
@@ -46,7 +48,6 @@ final class CheffiRecommendationCell: UITableViewCell {
         selectionStyle = .none
         
         setUp()
-        categoryTabView.setUpTags(tags: ["한식", "양식", "중식", "일식", "퓨전", "샐러드"])
         cheffiRecommendationCatogoryPageView.categoryPageViewDelegate = categoryTabView
         categoryTabView.delegate = cheffiRecommendationCatogoryPageView
     }
@@ -58,47 +59,61 @@ final class CheffiRecommendationCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(
-            by: UIEdgeInsets(top: 48, left: 0, bottom: 16, right: 0)
+            by: UIEdgeInsets(top: 48, left: 0, bottom: 0, right: 0)
         )
     }
-    
     private func setUp() {
-        
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
         }
-        
+
         contentView.addSubview(subtitleLabel)
         subtitleLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
         }
-        
+
         contentView.addSubview(categoryTabView)
         categoryTabView.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50)
         }
-        
+
         contentView.addSubview(cheffiRecommendationCatogoryPageView)
         cheffiRecommendationCatogoryPageView.snp.makeConstraints {
             $0.top.equalTo(categoryTabView.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(550)
+            $0.bottom.equalToSuperview()
         }
+    }
+    
+    func configure(viewModel: ViewModel) {
+        bind(to: viewModel)
+        initialize.send(())
+    }
+}
+
+extension CheffiRecommendationCell: Bindable {
+    
+    func bind(to viewModel: ViewModel) {
+        cancellables.forEach {
+            $0.cancel()
+        }
+        cancellables =  Set<AnyCancellable>()
         
-        contentView.addSubview(showAllContentsButton)
-        showAllContentsButton.snp.makeConstraints {
-            $0.top.equalTo(cheffiRecommendationCatogoryPageView.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
-            $0.height.equalTo(40)
-        }
+        let input = ViewModel.Input(
+            initialize: initialize
+        )
+        let output = viewModel.transform(input: input)
         
-        // Action
-        showAllContentsButton.didTapViewAllHandler = { [weak self] in
-        }
+        output.categories
+            .filter { _ in !viewModel.initialized }
+            .sink { (categories, viewModels) in
+                self.categoryTabView.setUpTags(tags: categories)
+                self.cheffiRecommendationCatogoryPageView.configure(viewModels: viewModels)
+            }.store(in: &cancellables)
     }
 }

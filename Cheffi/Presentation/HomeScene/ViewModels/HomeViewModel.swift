@@ -19,6 +19,8 @@ protocol HomeViewModelInput {
 
 protocol HomeViewModelOutput {
     var similarChefViewModel: SimilarChefViewModel { get }
+    var popularRestaurantViewModel: PopularRestaurantViewModel { get }
+    var recommendationViewModel: CheffiRecommendationViewModel { get }
 }
 
 final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
@@ -29,6 +31,8 @@ final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
     
     // MARK: - Output
     var similarChefViewModel: SimilarChefViewModel
+    var popularRestaurantViewModel: PopularRestaurantViewModel
+    var recommendationViewModel: CheffiRecommendationViewModel
     
     func showPopup(text: String, keywrod: String, popupState: PopupState) {
         actions?.showPopup(text, keywrod, popupState)
@@ -45,9 +49,13 @@ final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
     // MARK: - Init
     init(
         actions: HomeViewModelActions,
-        similarChefViewModel: SimilarChefViewModel
+        popularRestaurantViewModel: PopularRestaurantViewModel,
+        similarChefViewModel: SimilarChefViewModel,
+        recommendationViewModel: CheffiRecommendationViewModel
     ) {
         self.actions = actions
+        self.popularRestaurantViewModel = popularRestaurantViewModel
         self.similarChefViewModel = similarChefViewModel
+        self.recommendationViewModel = recommendationViewModel
     }
 }

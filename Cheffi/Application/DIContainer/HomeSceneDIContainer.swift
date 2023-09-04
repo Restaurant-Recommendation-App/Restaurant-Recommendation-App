@@ -36,13 +36,27 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
     }
     
     func makeHomeViewModel(actions: HomeViewModelActions) -> HomeViewModel {
-        return HomeViewModel(actions: actions, similarChefViewModel: makeSimilarChefViewModel())
+        return HomeViewModel(
+            actions: actions,
+            popularRestaurantViewModel: makePopularRestaurantViewModel(numberOfContentsToShow: 2),
+            similarChefViewModel: makeSimilarChefViewModel(),
+            recommendationViewModel: makeRecommedationViewModel()
+        )
+    }
+    
+    func makePopularRestaurantViewModel(numberOfContentsToShow: Int) -> PopularRestaurantViewModel {
+        PopularRestaurantViewModel(numberOfContentsToShow: numberOfContentsToShow)
     }
     
     func makeSimilarChefViewModel() -> SimilarChefViewModel {
         let repository = makeSimilarChefRepository()
         return SimilarChefViewModel(similarChefUseCase: makeSimilarChefUseCase(repository: repository),
                                     repository: repository)
+    }
+    
+    func makeRecommedationViewModel() -> CheffiRecommendationViewModel {
+        let repository = makeCheffiRecommendationRepository()
+        return CheffiRecommendationViewModel(cheffiRecommendationUseCase: makeCheffiRecommendationUseCase(repository: repository))
     }
     
     // MARK: - Search
@@ -76,11 +90,19 @@ extension HomeSceneDIContainer {
     func makeSimilarChefUseCase(repository: SimilarChefRepository) -> SimilarChefUseCase {
         return DefaultSimilarChefUseCase(repository: repository)
     }
+    
+    func makeCheffiRecommendationUseCase(repository: CheffiRecommendationRepository) -> CheffiRecommendationUseCase {
+        return DefaultCheffiRecommendationUseCase(repository: repository)
+    }
 }
 
 // MARK: - Repositories
 extension HomeSceneDIContainer {
     func makeSimilarChefRepository() -> SimilarChefRepository {
         return DefaultSimilarChefRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeCheffiRecommendationRepository() -> CheffiRecommendationRepository {
+        return DefaultCheffiRecommendationRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

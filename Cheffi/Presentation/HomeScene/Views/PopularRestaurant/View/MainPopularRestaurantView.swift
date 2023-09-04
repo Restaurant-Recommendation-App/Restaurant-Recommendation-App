@@ -49,6 +49,7 @@ class MainPopularRestaurantView: UIView {
     }
     
     private func setUp() {
+        exclamationButton.controlPublisher(for: .touchUpInside)
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()

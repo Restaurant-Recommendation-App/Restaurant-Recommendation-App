@@ -78,12 +78,14 @@ class RestaurantContentView: UIView {
         restaurantTitleLabel.snp.makeConstraints {
             $0.top.equalTo(restaurantImageView.snp.bottom).offset(12)
             $0.leading.equalToSuperview()
+            $0.height.equalTo(40)
         }
         
         addSubview(restaurantSubtitleLabel)
         restaurantSubtitleLabel.snp.makeConstraints {
             $0.top.equalTo(restaurantTitleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         
         addSubview(likeButton)

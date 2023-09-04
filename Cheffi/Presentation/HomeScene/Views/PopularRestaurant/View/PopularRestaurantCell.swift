@@ -6,11 +6,17 @@
 //
 
 import UIKit
+import Combine
 
 class PopularRestaurantCell: UITableViewCell {
+    typealias ViewModel = PopularRestaurantViewModel
+    
+    var cancellables = Set<AnyCancellable>()
     
     private let mainPopularRestaurantView = MainPopularRestaurantView()
     private let popularRestaurantContentsView = PopularRestaurantContentsView()
+    
+    private let initialize = PassthroughSubject<Void, Never>()
     
     enum Constants {
         static let inset: CGFloat = 16.0
@@ -58,5 +64,24 @@ class PopularRestaurantCell: UITableViewCell {
         // Action
         showAllContentsButton.didTapViewAllHandler = { [weak self] in
         }
+    }
+    
+    func configure(viewModel: ViewModel) {
+        bind(to: viewModel)
+        initialize.send(())
+    }
+}
+
+extension PopularRestaurantCell: Bindable {
+    
+    func bind(to viewModel: ViewModel) {
+        let input = ViewModel.Input(initialize: initialize)
+        let output = viewModel.transform(input: input)
+        
+        output.models
+            .sink { models in
+                // TODO: 새로운 뷰 작업 필요
+//                self.popularRestaurantContentsView.configure(viewModels: models, scrolledToBottom: nil, contentOffsetY: nil)
+            }.store(in: &cancellables)
     }
 }

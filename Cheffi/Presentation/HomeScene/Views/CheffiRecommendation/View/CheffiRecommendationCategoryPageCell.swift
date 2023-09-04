@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
     
@@ -13,12 +14,11 @@ final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
         static let cellInset = 16
     }
     
-    private let popularRestaurantContentsView = PopularRestaurantContentsView(
-        items: ["Test1", "Test2", "Test3", "Test4"])
+    private let popularRestaurantContentsView = PopularRestaurantContentsView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        popularRestaurantContentsView.isScrollEnabled = false
+        popularRestaurantContentsView.isScrollEnabled = true
         setUp()
     }
     
@@ -39,6 +39,12 @@ final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
             $0.top.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
         }
+    }
+    
+    func configure(viewModel: RestaurantContentsViewModel) {
+        popularRestaurantContentsView.configure(
+            viewModel: viewModel
+        )
     }
 }
 

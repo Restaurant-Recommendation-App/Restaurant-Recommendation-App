@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class HomeViewController: UIViewController {
     static func instance<T: HomeViewController>(viewModel: HomeViewModel) -> T {
@@ -20,7 +21,7 @@ class HomeViewController: UIViewController {
     enum Constants {
         static let headerHeight: CGFloat = 32.0
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +31,7 @@ class HomeViewController: UIViewController {
         tableView.register(cellWithClass: PopularRestaurantCell.self)
         tableView.register(cellWithClass: CheffiRecommendationCell.self)
         tableView.sectionHeaderTopPadding = 0
+        tableView.showsVerticalScrollIndicator = false
     }
     
     // MARK: - Actions
@@ -58,6 +60,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withClass: PopularRestaurantCell.self, for: indexPath)
+            cell.configure(viewModel: viewModel.popularRestaurantViewModel)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withClass: SimilarChefCell.self, for: indexPath)
@@ -66,6 +69,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withClass: CheffiRecommendationCell.self, for: indexPath)
+            cell.configure(viewModel: self.viewModel.recommendationViewModel)
             return cell
         default:
             return UITableViewCell()
@@ -75,8 +79,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0: return 800
-        case 1: return 485
-        case 2: return 830
+        case 1: return UITableView.automaticDimension
+        case 2: return 700
         default: return UITableView.automaticDimension
         }
     }
@@ -87,10 +91,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return Constants.headerHeight
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return .leastNonzeroMagnitude
     }
 }
 
