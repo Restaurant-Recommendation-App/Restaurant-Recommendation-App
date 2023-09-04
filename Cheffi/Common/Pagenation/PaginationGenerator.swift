@@ -1,5 +1,5 @@
 //
-//  PagenationGenerator.swift
+//  PaginationGenerator.swift
 //  Cheffi
 //
 //  Created by RONICK on 2023/08/29.
@@ -13,7 +13,7 @@ enum FetchStatus {
     case loading
 }
 
-protocol PagenationGenerator {
+protocol PaginationGenerator {
     /// 페이지네이션을 통해 패칭할 데이터 타입
     associatedtype Elements
     /// 페이지네이션 로직을 실행할 클로저 타입

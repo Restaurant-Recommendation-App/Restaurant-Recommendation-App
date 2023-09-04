@@ -25,7 +25,7 @@ final class RestaurantContentsViewModel: ViewModelType {
     var cancellables = Set<AnyCancellable>()
     
     private let cheffiRecommendationUseCase: CheffiRecommendationUseCase
-    private let pagenationGenerator =  DefaultPagenationGenerator<Content>(page: 1)
+    private let paginationGenerator =  DefaultPaginationGenerator<Content>(page: 1)
     
     private var initialized = false
     private let tag: String
@@ -71,7 +71,7 @@ final class RestaurantContentsViewModel: ViewModelType {
             .assign(to: &self.$scrollOffsetY)
         
         input.scrolledToBottom
-            .filter { self.pagenationGenerator.fetchStatus == .ready }
+            .filter { self.paginationGenerator.fetchStatus == .ready }
             .flatMap { self.fetchContents() }
             .sink { contents in
                 self.items += contents
@@ -88,7 +88,7 @@ final class RestaurantContentsViewModel: ViewModelType {
     private func fetchContents() -> AnyPublisher<[RestaurantContentItemViewModel], Never> {
         let result = CurrentValueSubject<[Content], Never>([Content]())
         
-        pagenationGenerator.next(
+        paginationGenerator.next(
             fetch: { page, onCompletion, onError in
                 self.cheffiRecommendationUseCase.getContents(with: self.tag, page: page)
                     .sink { onCompletion($0) }

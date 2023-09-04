@@ -1,11 +1,11 @@
 //
-//  DefaultPagenationGenerator.swift
+//  DefaultPaginationGenerator.swift
 //  Cheffi
 //
 //  Created by RONICK on 2023/08/29.
 //
 
-final class DefaultPagenationGenerator<T>: PagenationGenerator {
+final class DefaultPaginationGenerator<T>: PaginationGenerator {
     
     typealias Elements = Array<T>
     
