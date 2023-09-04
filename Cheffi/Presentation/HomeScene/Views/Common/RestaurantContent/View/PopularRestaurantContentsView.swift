@@ -17,9 +17,7 @@ class PopularRestaurantContentsView: UICollectionView {
         static let cellHeight = 270
         static let cellLineSpcaing = 24
     }
-            
-    private var diffableDataSource: UICollectionViewDiffableDataSource<Int, RestaurantContentItemViewModel>?
-        
+    
     private var items = [RestaurantContentItemViewModel]()
         
     private var initialized = PassthroughSubject<Void, Never>()

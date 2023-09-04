@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
         tableView.register(cellWithClass: PopularRestaurantCell.self)
         tableView.register(cellWithClass: CheffiRecommendationCell.self)
         tableView.sectionHeaderTopPadding = 0
+        tableView.showsVerticalScrollIndicator = false
     }
     
     // MARK: - Actions
