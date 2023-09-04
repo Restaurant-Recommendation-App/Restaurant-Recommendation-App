@@ -53,7 +53,7 @@ class TabButton: UIButton {
     }
 }
 
-protocol CategoryTabViewDelegate {
+protocol CategoryTabViewDelegate: AnyObject {
     func didTapCategory(index: Int)
 }
 
@@ -77,9 +77,7 @@ class CategoryTabView: UIView {
         return view
     }()
     
-    var delegate: CategoryTabViewDelegate?
-    
-    let tappedCategory = PassthroughSubject<Int, Never>()
+    weak var delegate: CategoryTabViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -146,7 +144,6 @@ class CategoryTabView: UIView {
     @objc func tappedCategory(_ sender: UIButton) {
         changeSelected(with: sender.tag)
         delegate?.didTapCategory(index: sender.tag)
-        tappedCategory.send(sender.tag)
     }
     
     private func changeSelected(with selectedTag: Int) {

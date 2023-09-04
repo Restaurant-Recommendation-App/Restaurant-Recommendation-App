@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-protocol CheffiRecommendationCategoryPageViewDelegate {
+protocol CheffiRecommendationCategoryPageViewDelegate: AnyObject {
     func didSwipe(indexPath: IndexPath?)
 }
 
@@ -16,7 +16,7 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
     typealias categoryIndex = Int
     private var viewModels = [[RestaurantContentItemViewModel]]()
 
-    var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
+    weak var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
         
     private var isScrollingWithTab = false
             
