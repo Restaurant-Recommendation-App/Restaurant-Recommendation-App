@@ -837,6 +837,7 @@
 				D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */,
 				D441C01F2A66965400063822 /* CheffiRecommendationCatogoryPageView.swift */,
 				D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */,
+				D49B59292A652A35003C108E /* CheffiRecommendationContensView.swift */,
 				D41E992F2A6A65660085F5D0 /* CategoryTabView.swift */,
 			);
 			path = View;
@@ -863,7 +864,6 @@
 		D49D1A9F2A73C78E00CB86FA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D49B59292A652A35003C108E /* CheffiRecommendationContensView.swift */,
 				D49B592B2A653454003C108E /* RestaurantContentCell.swift */,
 				D49B59272A652330003C108E /* RestaurantContentView.swift */,
 				D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */,
