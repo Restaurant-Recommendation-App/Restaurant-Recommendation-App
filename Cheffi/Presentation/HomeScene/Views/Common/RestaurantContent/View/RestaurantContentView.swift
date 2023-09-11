@@ -70,7 +70,7 @@ class RestaurantContentView: UIView {
         contentTimeLockBubbleView.snp.makeConstraints {
             $0.top.equalTo(restaurantImageView).offset(12)
             $0.trailing.equalTo(restaurantImageView).inset(8)
-            $0.width.equalTo(106)
+            $0.width.equalTo(87)
             $0.height.equalTo(32)
         }
         
