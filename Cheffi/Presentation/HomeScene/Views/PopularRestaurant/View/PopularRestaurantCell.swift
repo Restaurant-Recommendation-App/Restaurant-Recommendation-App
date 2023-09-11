@@ -22,12 +22,6 @@ class PopularRestaurantCell: UITableViewCell {
         static let inset: CGFloat = 16.0
     }
     
-    private let showAllContentsButton: ShowAllContentsButton = {
-        let button = ShowAllContentsButton()
-        button.setTItle("전체보기".localized(), direction: .right)
-        return button
-    }()
-    
     private let pageControlButton: PageControlButton = {
         let button = PageControlButton()
         return button

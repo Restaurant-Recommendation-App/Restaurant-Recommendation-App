@@ -14,14 +14,13 @@ class MainPopularRestaurantView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "인기 급등 맛집"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = Fonts.suit.weight700.size(20)
         label.textColor = .cheffiBlack
         return label
     }()
     
     private let subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .medium)
         label.textColor = .cheffiBlack
         label.numberOfLines = 2
         return label
@@ -40,7 +39,7 @@ class MainPopularRestaurantView: UIView {
         let button = UIButton()
         button.setTitle("전체보기   >", for: .normal)
         button.setTitleColor(UIColor.cheffiGray6, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14)
+        button.titleLabel?.font = Fonts.suit.weight500.size(14)
         return button
     }()
         
@@ -91,11 +90,11 @@ class MainPopularRestaurantView: UIView {
         
         let str1 = "  00 : 13 : 43"
         let color1 = UIColor.main
-        let font1 = UIFont.systemFont(ofSize: 18, weight: .bold)
+        let font1 = Fonts.suit.weight800.size(18)
         
         let str2 = " 초 뒤에\n인기 급등 맛집이 변경돼요."
         let color2 = UIColor.cheffiBlack
-        let font2 = UIFont.systemFont(ofSize: 18, weight: .light)
+        let font2 = Fonts.suit.weight400.size(18)
         
         let combination = NSMutableAttributedString()
         

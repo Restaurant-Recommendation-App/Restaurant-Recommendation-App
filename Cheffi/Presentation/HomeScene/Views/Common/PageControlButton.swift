@@ -121,11 +121,11 @@ final class PageControlButton: UIView {
     private func getSubtitleAttributedString(currentPage: Int, limitPage: Int) -> NSAttributedString {
         let str1 = "\(currentPage)"
         let color1 = UIColor.cheffiBlack
-        let font1 = UIFont.systemFont(ofSize: 16, weight: .regular)
+        let font1 = Fonts.suit.weight500.size(16)
         
         let str2 = " / \(limitPage)"
         let color2 = UIColor.cheffiGray8
-        let font2 = UIFont.systemFont(ofSize: 16, weight: .regular)
+        let font2 = Fonts.suit.weight500.size(16)
         
         let combination = NSMutableAttributedString()
         

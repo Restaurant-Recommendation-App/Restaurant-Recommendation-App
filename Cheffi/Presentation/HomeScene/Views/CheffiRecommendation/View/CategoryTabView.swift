@@ -42,7 +42,7 @@ class TabButton: UIButton {
         config.baseBackgroundColor = .clear
         
         let attributedContainer = AttributeContainer(
-            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: isSelectedTab ? .bold :.regular)]
+            [NSAttributedString.Key.font: isSelectedTab ? Fonts.suit.weight700.size(15) :Fonts.suit.weight400.size(15)]
         )
         
         config.attributedTitle = AttributedString(
@@ -120,6 +120,7 @@ class CategoryTabView: UIView {
             let button = TabButton()
             button.setTitle($0.element, for: .normal)
             button.titleLabel?.textAlignment = .center
+            button.titleLabel?.font = Fonts.suit.weight400.size(15)
             button.addTarget(self, action: #selector(tappedCategory(_:)), for: .touchUpInside)
             button.tag = $0.offset
             button.isSelectedTab = false

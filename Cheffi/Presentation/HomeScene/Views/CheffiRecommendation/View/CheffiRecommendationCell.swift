@@ -24,7 +24,7 @@ final class CheffiRecommendationCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "쉐피들의 인정 맛집"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = Fonts.suit.weight700.size(20)
         label.textColor = .cheffiBlack
         return label
     }()
@@ -32,7 +32,7 @@ final class CheffiRecommendationCell: UITableViewCell {
     private let subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = "‘맛있어요’ 투표율이 높아요!"
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = Fonts.suit.weight500.size(16)
         label.textColor = .cheffiGray7
         label.numberOfLines = 2
         return label
