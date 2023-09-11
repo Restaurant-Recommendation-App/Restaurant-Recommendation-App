@@ -36,8 +36,14 @@ class MainPopularRestaurantView: UIView {
         return button
     }()
     
-    private let restaurantContentView = RestaurantContentView()
-    
+    private let moreContentsButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("전체보기   >", for: .normal)
+        button.setTitleColor(UIColor.cheffiGray6, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 14)
+        return button
+    }()
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         subtitleLabel.attributedText = getSubtitleAttributedString()
@@ -49,7 +55,6 @@ class MainPopularRestaurantView: UIView {
     }
     
     private func setUp() {
-        exclamationButton.controlPublisher(for: .touchUpInside)
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -59,7 +64,7 @@ class MainPopularRestaurantView: UIView {
         addSubview(subtitleLabel)
         subtitleLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(16)
-            $0.leading.equalToSuperview()
+            $0.leading.bottom.equalToSuperview()
         }
         
         addSubview(exclamationButton)
@@ -68,10 +73,11 @@ class MainPopularRestaurantView: UIView {
             $0.bottom.equalTo(subtitleLabel)
         }
         
-        addSubview(restaurantContentView)
-        restaurantContentView.snp.makeConstraints {
-            $0.top.equalTo(subtitleLabel.snp.bottom).offset(20)
-            $0.leading.trailing.bottom.equalToSuperview()
+        addSubview(moreContentsButton)
+        moreContentsButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalTo(subtitleLabel)
+            $0.height.equalTo(20)
         }
     }
     

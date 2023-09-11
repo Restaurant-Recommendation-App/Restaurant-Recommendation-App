@@ -1,5 +1,5 @@
 //
-//  PopularRestaurantContentCell.swift
+//  CheffiRecommendationContensView.swift
 //  Cheffi
 //
 //  Created by RONICK on 2023/07/17.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class PopularRestaurantContentsView: UICollectionView {
+class CheffiRecommendationContensView: UICollectionView {
     
     typealias ViewModel = RestaurantContentsViewModel
     typealias ContentOffsetY = CGFloat
@@ -55,7 +55,7 @@ class PopularRestaurantContentsView: UICollectionView {
     }
 }
 
-extension PopularRestaurantContentsView: Bindable {
+extension CheffiRecommendationContensView: Bindable {
     func bind(to viewModel: ViewModel) {
         cancellables.forEach {
             $0.cancel()
@@ -84,7 +84,7 @@ extension PopularRestaurantContentsView: Bindable {
     }
 }
 
-extension PopularRestaurantContentsView: UICollectionViewDataSource {
+extension CheffiRecommendationContensView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         items.count
     }
@@ -94,7 +94,6 @@ extension PopularRestaurantContentsView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withClass: RestaurantContentCell.self, for: indexPath)
         
         cell.configure(
-            contentImageHeight: CGFloat(items[indexPath.row].contentImageHeight),
             title: items[indexPath.row].title,
             subtitle: items[indexPath.row].subtitle
         )
@@ -103,7 +102,7 @@ extension PopularRestaurantContentsView: UICollectionViewDataSource {
     }
 }
 
-extension PopularRestaurantContentsView: UICollectionViewDelegateFlowLayout {
+extension CheffiRecommendationContensView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(
             width: Double(bounds.width / 2) - Double(Constants.cellLineSpcaing / 2),

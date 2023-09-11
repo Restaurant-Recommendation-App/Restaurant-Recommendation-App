@@ -1,50 +1,45 @@
 //
-//  CheffiRecommendationCategoryPageCell.swift
+//  PopularRestaurantContentsCell.swift
 //  Cheffi
 //
-//  Created by RONICK on 2023/07/18.
+//  Created by RONICK on 2023/09/06.
 //
 
 import UIKit
-import Combine
+import SnapKit
 
-final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
-    
+final class PopularRestaurantContentsCell: UICollectionViewCell {
     enum Constants {
         static let cellInset = 16
     }
     
-    private let popularRestaurantContentsView = CheffiRecommendationContensView()
+    private let contentsItemView = PopularRestaurantContentsItemView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        popularRestaurantContentsView.isScrollEnabled = true
         setUp()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+        
     private func setUp() {
         let insetWrppingView = UIView()
-        
+
         contentView.addSubview(insetWrppingView)
         insetWrppingView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        insetWrppingView.addSubview(popularRestaurantContentsView)
-        popularRestaurantContentsView.snp.makeConstraints {
+
+        insetWrppingView.addSubview(contentsItemView)
+        contentsItemView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
         }
     }
     
-    func configure(viewModel: RestaurantContentsViewModel) {
-        popularRestaurantContentsView.configure(
-            viewModel: viewModel
-        )
+    func configure(viewModel: PopularRestaurantContentsItemView.ViewModel) {
+        contentsItemView.configure(viewModel: viewModel)
     }
 }
-

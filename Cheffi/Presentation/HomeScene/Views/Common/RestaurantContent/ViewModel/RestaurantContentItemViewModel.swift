@@ -13,12 +13,10 @@ struct RestaurantContentItemViewModel: Hashable, Identifiable {
     let id: Identifier
     let title: String
     let subtitle: String
-    let contentImageHeight: Int
     
     init(content: Content) {
         self.id = content.id
         self.title = content.title
         self.subtitle = content.subtitle
-        self.contentImageHeight = content.contentImageHeight
     }
 }

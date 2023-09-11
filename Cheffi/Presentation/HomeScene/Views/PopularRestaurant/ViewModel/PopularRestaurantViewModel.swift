@@ -10,31 +10,46 @@ import Combine
 
 final class PopularRestaurantViewModel: ViewModelType {
     
-    private var numberOfContentsToShow: Int
-    
     struct Input {
         let initialize: PassthroughSubject<Void, Never>
     }
     
     struct Output {
-        let models: AnyPublisher<[RestaurantContentItemViewModel], Never>
+        let contentsViewModel: AnyPublisher<[PopularRestaurantContentsItemViewModel], Never>
     }
     
     var cancellables = Set<AnyCancellable>()
     
-    init(numberOfContentsToShow: Int) {
-        self.numberOfContentsToShow = numberOfContentsToShow
+    private let cheffiRecommendationUseCase: CheffiRecommendationUseCase
+    
+    private var initialized = false
+    
+    init(cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
+        self.cheffiRecommendationUseCase = cheffiRecommendationUseCase
     }
     
-    func transform(input: Input) -> Output {
-        let models = PassthroughSubject<[RestaurantContentItemViewModel], Never>()
+    func transform(input: Input) -> Output {        
+        let contentsViewModel = PassthroughSubject<[PopularRestaurantContentsItemViewModel], Never>()
         
-        input.initialize.sink { _ in
-            // TODO: Usecase 활용
-//            models.send(Array(popularRestaurantContentsViewModelMock[0][0 ..< self.numberOfContentsToShow]))
+        input.initialize
+            .filter { !self.initialized }
+            .flatMap { self.cheffiRecommendationUseCase.getContents(with: "popularity", page: 1) }
+            .map { $0.map(RestaurantContentItemViewModel.init)}
+            .sink {
+                var first = [[RestaurantContentItemViewModel]]([[RestaurantContentItemViewModel]($0[0...2])])
+                let rest = $0[3..<$0.count].group(by: 4)!
+                first += rest
+                
+                var viewModels = [PopularRestaurantContentsItemViewModel]()
+                first.forEach {
+                    viewModels.append(PopularRestaurantContentsItemViewModel(items: $0))
+                }
+                
+                contentsViewModel.send(viewModels)
+                self.initialized = true
         }.store(in: &cancellables)
 
-        return Output(models: models.eraseToAnyPublisher())
+        return Output(contentsViewModel: contentsViewModel.eraseToAnyPublisher())
     }
 }
 
