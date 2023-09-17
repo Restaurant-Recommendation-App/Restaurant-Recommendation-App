@@ -34,37 +34,18 @@ extension DefaultCheffiRecommendationRepository: CheffiRecommendationRepository 
     
     // TODO: 무한 스크롤링을 위하여 임시 생성, 제거 필요
     private func moreContents(tag: String) -> [ContentsResponseDTO.contentDTO] {
-        [
-            ContentsResponseDTO.contentDTO(
-                title: "(\(tag)) 그시절낭만의 근본 경양식 돈가스1", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
-            ),
-            ContentsResponseDTO.contentDTO(
-                title: "(\(tag))그시절낭만의 근본 경양식 돈가스2", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
-            ),
-            ContentsResponseDTO.contentDTO(
-                title: "(\(tag))그시절낭만의 근본 경양식 돈가스3", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
-            ),
-            ContentsResponseDTO.contentDTO(
-                title: "(\(tag))그시절낭만의 근본 경양식 돈가스4", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
-            ),
-            ContentsResponseDTO.contentDTO(
-                title: "(\(tag))그시절낭만의 근본 경양식 돈가스5", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
-            ),
-            ContentsResponseDTO.contentDTO(
-                title: "(\(tag))그시절낭만의 근본 경양식 돈가스6", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
-            ),
-            ContentsResponseDTO.contentDTO(
-                title: "(\(tag))그시절낭만의 근본 경양식 돈가스7", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
-            ),
-            ContentsResponseDTO.contentDTO(
-                title: "(\(tag))그시절낭만의 근본 경양식 돈가스8", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
-            ),
-            ContentsResponseDTO.contentDTO(
-                title: "(\(tag))그시절낭만의 근본 경양식 돈가스9", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
-            ),
-            ContentsResponseDTO.contentDTO(
-                title: "(\(tag))그시절낭만의 근본 경양식 돈가스10", subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...", contentImageHeight: 165
+        var limit = (tag == "popularity") ? 47 : 10
+        
+        var contents = [ContentsResponseDTO.contentDTO]()
+        for index in 0 ..< limit {
+            contents.append(
+                ContentsResponseDTO.contentDTO(
+                    title: "(\(tag)) 그시절낭만의 근본 경양식 돈가스\(index)",
+                    subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ..."
+                )
             )
-        ]
+        }
+        
+        return contents
     }
 }

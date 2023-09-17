@@ -38,14 +38,15 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
     func makeHomeViewModel(actions: HomeViewModelActions) -> HomeViewModel {
         return HomeViewModel(
             actions: actions,
-            popularRestaurantViewModel: makePopularRestaurantViewModel(numberOfContentsToShow: 2),
+            popularRestaurantViewModel: makePopularRestaurantViewModel(),
             similarChefViewModel: makeSimilarChefViewModel(),
             recommendationViewModel: makeRecommedationViewModel()
         )
     }
     
-    func makePopularRestaurantViewModel(numberOfContentsToShow: Int) -> PopularRestaurantViewModel {
-        PopularRestaurantViewModel(numberOfContentsToShow: numberOfContentsToShow)
+    func makePopularRestaurantViewModel() -> PopularRestaurantViewModel {
+        let repository = makeCheffiRecommendationRepository()
+        return PopularRestaurantViewModel(cheffiRecommendationUseCase: makeCheffiRecommendationUseCase(repository: repository))
     }
     
     func makeSimilarChefViewModel() -> SimilarChefViewModel {

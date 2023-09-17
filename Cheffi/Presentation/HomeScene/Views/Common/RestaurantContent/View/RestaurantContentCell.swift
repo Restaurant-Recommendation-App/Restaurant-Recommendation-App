@@ -27,11 +27,11 @@ class RestaurantContentCell: UICollectionViewCell {
         }
     }
     
-    func configure(contentImageHeight: CGFloat, title: String, subtitle: String) {
+    func configure(title: String, subtitle: String, isMainContent: Bool = false) {
         restaurantContentView.configure(
-            contentImageHeight: contentImageHeight,
             title: title,
-            subtitle: subtitle
+            subtitle: subtitle,
+            isMainContent: isMainContent
         )
     }
 }

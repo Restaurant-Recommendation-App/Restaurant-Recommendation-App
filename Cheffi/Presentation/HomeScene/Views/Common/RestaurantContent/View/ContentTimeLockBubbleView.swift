@@ -19,7 +19,7 @@ class ContentTimeLockBubbleView: UIView {
     
     private let timeLockLabel: UILabel = {
         let label = UILabel()
-        label.text = "00:30:25"
+        label.text = "30:25"
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = .cheffiWhite
         return label

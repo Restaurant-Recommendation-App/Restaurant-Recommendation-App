@@ -24,20 +24,19 @@ final class CheffiRecommendationCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "쉐피들의 인정 맛집"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = Fonts.suit.weight700.size(20)
         label.textColor = .cheffiBlack
         return label
     }()
-    
-    private let subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "‘맛있어요’ 투표율이 높아요!"
-        label.font = .systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .cheffiGray7
-        label.numberOfLines = 2
-        return label
-    }()
         
+    private let exclamationButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "icExclamationMark.circle")
+        button.setImage(image, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        return button
+    }()
+
     private let categoryTabView = CategoryTabView()
     
     private let cheffiRecommendationCatogoryPageView = CheffiRecommendationCategoryPageView()
@@ -66,18 +65,18 @@ final class CheffiRecommendationCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
+            $0.leading.equalToSuperview().inset(Constants.cellInset)
         }
-
-        contentView.addSubview(subtitleLabel)
-        subtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
+        
+        contentView.addSubview(exclamationButton)
+        exclamationButton.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel.snp.trailing).offset(8)
+            $0.bottom.equalTo(titleLabel)
         }
 
         contentView.addSubview(categoryTabView)
         categoryTabView.snp.makeConstraints {
-            $0.top.equalTo(subtitleLabel.snp.bottom).offset(16)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50)
         }

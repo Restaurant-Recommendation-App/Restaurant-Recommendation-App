@@ -24,7 +24,7 @@ class RestaurantContentView: UIView {
     private let restaurantTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "그시절낭만의 근본 경양식 돈가스"
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = Fonts.suit.weight700.size(16)
         label.textColor = .cheffiBlack
         label.numberOfLines = 2
         return label
@@ -33,7 +33,7 @@ class RestaurantContentView: UIView {
     private let restaurantSubtitleLabel: UILabel = {
         let label = UILabel()
         label.text = "짬뽕 외길의 근본이 느껴 지는 중식당짬뽕"
-        label.font = .systemFont(ofSize: 15, weight: .regular)
+        label.font = Fonts.suit.weight400.size(15)
         label.textColor = .cheffiGray7
         label.numberOfLines = 2
         return label
@@ -63,14 +63,14 @@ class RestaurantContentView: UIView {
         addSubview(restaurantImageView)
         restaurantImageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(220)
+            $0.height.equalTo(0)
         }
         
         addSubview(contentTimeLockBubbleView)
         contentTimeLockBubbleView.snp.makeConstraints {
             $0.top.equalTo(restaurantImageView).offset(12)
             $0.trailing.equalTo(restaurantImageView).inset(8)
-            $0.width.equalTo(106)
+            $0.width.equalTo(87)
             $0.height.equalTo(32)
         }
         
@@ -78,7 +78,6 @@ class RestaurantContentView: UIView {
         restaurantTitleLabel.snp.makeConstraints {
             $0.top.equalTo(restaurantImageView.snp.bottom).offset(12)
             $0.leading.equalToSuperview()
-            $0.height.equalTo(40)
         }
         
         addSubview(restaurantSubtitleLabel)
@@ -90,23 +89,31 @@ class RestaurantContentView: UIView {
         
         addSubview(likeButton)
         likeButton.snp.makeConstraints {
-            $0.top.equalTo(restaurantImageView.snp.bottom).offset(8)
+            $0.top.equalTo(restaurantTitleLabel).offset(3)
             $0.leading.equalTo(restaurantTitleLabel.snp.trailing)
             $0.trailing.equalToSuperview()
             $0.width.height.equalTo(24)
         }
     }
     
-    func configure(contentImageHeight: CGFloat = 220, title: String, subtitle: String) {
+    func configure(title: String, subtitle: String, isMainContent: Bool) {
         restaurantTitleLabel.text = title
         restaurantSubtitleLabel.text = subtitle
-        setUpContentImageHeight(with: contentImageHeight)
+        
+        if isMainContent {
+            updateContent(titleSize: CGFloat(18), contentHeight: 200, numberOfLines: 1)
+        } else {
+            updateContent(titleSize: CGFloat(16), contentHeight: 165, numberOfLines: 2)
+        }
     }
     
-    private func setUpContentImageHeight(with height: CGFloat) {
+    private func updateContent(titleSize: CGFloat, contentHeight: CGFloat, numberOfLines: Int) {
         restaurantImageView.snp.updateConstraints {
-            $0.height.equalTo(height)
+            $0.height.equalTo(contentHeight)
         }
+        
+        restaurantTitleLabel.font = .systemFont(ofSize: titleSize, weight: .bold)
+        restaurantTitleLabel.numberOfLines = numberOfLines
     }
     
     @objc private func likeButtonTapped() {

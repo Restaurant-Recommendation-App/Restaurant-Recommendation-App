@@ -20,7 +20,6 @@ extension ContentsResponseDTO {
         var id: Identifiable = UUID().uuidString
         let title: String
         let subtitle: String
-        let contentImageHeight: Int
     }
 }
 
@@ -29,7 +28,6 @@ extension ContentsResponseDTO.contentDTO {
         .init(
             id: id,
             title: title,
-            subtitle: subtitle,
-            contentImageHeight: contentImageHeight)
+            subtitle: subtitle)
     }
 }

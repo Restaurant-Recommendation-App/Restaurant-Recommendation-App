@@ -22,9 +22,8 @@ class PopularRestaurantCell: UITableViewCell {
         static let inset: CGFloat = 16.0
     }
     
-    private let showAllContentsButton: ShowAllContentsButton = {
-        let button = ShowAllContentsButton()
-        button.setTItle("전체보기".localized(), direction: .right)
+    private let pageControlButton: PageControlButton = {
+        let button = PageControlButton()
         return button
     }()
     
@@ -43,26 +42,22 @@ class PopularRestaurantCell: UITableViewCell {
         mainPopularRestaurantView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(Constants.inset)
-            $0.height.equalTo(400)
+            $0.height.equalTo(100)
         }
         
         contentView.addSubview(popularRestaurantContentsView)
         popularRestaurantContentsView.snp.makeConstraints {
             $0.top.equalTo(mainPopularRestaurantView.snp.bottom).offset(24)
-            $0.leading.trailing.equalToSuperview().inset(Constants.inset)
-            $0.height.equalTo(270)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(570)
         }
         
-        contentView.addSubview(showAllContentsButton)
-        showAllContentsButton.snp.makeConstraints {
+        contentView.addSubview(pageControlButton)
+        pageControlButton.snp.makeConstraints {
             $0.top.equalTo(popularRestaurantContentsView.snp.bottom).offset(24)
             $0.centerX.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(Constants.inset)
+            $0.width.equalTo(127)
             $0.height.equalTo(40)
-        }
-        
-        // Action
-        showAllContentsButton.didTapViewAllHandler = { [weak self] in
         }
     }
     
@@ -78,10 +73,16 @@ extension PopularRestaurantCell: Bindable {
         let input = ViewModel.Input(initialize: initialize)
         let output = viewModel.transform(input: input)
         
-        output.models
-            .sink { models in
-                // TODO: 새로운 뷰 작업 필요
-//                self.popularRestaurantContentsView.configure(viewModels: models, scrolledToBottom: nil, contentOffsetY: nil)
+        output.contentsViewModel
+            .sink { viewModels in
+                self.popularRestaurantContentsView.configure(
+                    viewModels: viewModels,
+                    didTappedPageButton: self.pageControlButton.tapped)
+                
+                self.pageControlButton.configure(
+                    currentPage: 1,
+                    limitPage: viewModels.count,
+                    swiped: self.popularRestaurantContentsView.didSwiped)
             }.store(in: &cancellables)
     }
 }

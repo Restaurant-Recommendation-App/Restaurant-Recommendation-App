@@ -80,7 +80,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0: return 800
         case 1: return UITableView.automaticDimension
-        case 2: return 700
+        case 2: return 670
         default: return UITableView.automaticDimension
         }
     }
