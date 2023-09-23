@@ -32,7 +32,7 @@ class PreferenceViewController: UIViewController {
     
     // MARK: - Private
     private func setupViews() {
-        nextButton.setTitle("다음")
+        nextButton.setTitle("다음".localized(), for: .normal)
         nextButton.didTapButton = { [weak self] in
             self?.delegate?.didTapNext()
         }

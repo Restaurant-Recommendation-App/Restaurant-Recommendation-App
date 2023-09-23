@@ -9,7 +9,8 @@ import Foundation
 import Combine
 
 enum NicknameMessageStatus {
-    case error
+    case numberOfCharError
+    case duplicateError
     case success
     case none
 }
@@ -24,6 +25,7 @@ protocol NicknameViewModelOutput {
     var message: AnyPublisher<String?, Never> { get }
     var messageStatus: AnyPublisher<NicknameMessageStatus, Never> { get }
     var maxNicknameCount: Int { get }
+    func showMessageForExceedingMaxCount()
 }
 
 typealias NicknameViewModelType = NicknameViewModelInput & NicknameViewModelOutput
@@ -37,7 +39,7 @@ class NicknameViewModel: NicknameViewModelType {
         
         if isDuplicated {
             _message.send("이미 사용중인 닉네임 입니다.")
-            _messageStatus.send(.error)
+            _messageStatus.send(.duplicateError)
         } else {
             _message.send("사용 가능한 닉네임이에요 !")
             _messageStatus.send(.success)
@@ -62,18 +64,19 @@ class NicknameViewModel: NicknameViewModelType {
     }
     
     private var cancellables: Set<AnyCancellable> = []
+    func showMessageForExceedingMaxCount() {
+        _message.send("8글자 이상은 입력되지 않습니다.")
+        _messageStatus.send(.numberOfCharError)
+    }
     
     // MARK: - Init
     init() {
         nickname
-            .sink { [weak self] in
-                if $0.count >= self?.maxNicknameCount ?? 8 {
-                    self?._message.send("8글자 이상은 입력되지 않습니다.")
-                    self?._messageStatus.send(.error)
-                } else {
-                    self?._isDuplicationCheckButtonEnabled.send($0.count >= 2)
-                    self?._message.send("")
-                    self?._messageStatus.send(.none)
+            .sink { [maxNicknameCount, _isDuplicationCheckButtonEnabled, _message, _messageStatus] nickname in
+                if nickname.count != maxNicknameCount {
+                    _isDuplicationCheckButtonEnabled.send(nickname.count >= 2)
+                    _message.send("")
+                    _messageStatus.send(.none)
                 }
             }
             .store(in: &cancellables)

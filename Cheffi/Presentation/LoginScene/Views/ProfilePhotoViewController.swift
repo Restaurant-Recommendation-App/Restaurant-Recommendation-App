@@ -36,7 +36,7 @@ class ProfilePhotoViewController: UIViewController {
     
     // MARK: - Private
     private func setupViews() {
-        registerProfileButton.setTitle("프로필 등록하기".localized())
+        registerProfileButton.setTitle("프로필 등록하기".localized(), for: .normal)
         registerProfileButton.setBackgroundColor(.main)
         registerProfileButton.didTapButton = { [weak self] in
 #if DEBUG

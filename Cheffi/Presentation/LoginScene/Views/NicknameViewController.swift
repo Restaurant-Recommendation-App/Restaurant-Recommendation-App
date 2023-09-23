@@ -16,25 +16,43 @@ class NicknameViewController: UIViewController {
         return vc
     }
     
-    @IBOutlet private weak var nextButton: CustomProfileButton!
     private var nextButtonOnKeyboard: CustomProfileButton = {
         let button = CustomProfileButton()
         button.setLayerCornerRadius(0.0)
-        button.isHidden = true
         return button
     }()
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var nicknameTitleLabel: UILabel!
     @IBOutlet private weak var textField: UITextField!
-    @IBOutlet private weak var messageLabel: UILabel!
+    @IBOutlet private weak var errorMessageLabel: UILabel!
     @IBOutlet private weak var duplicationCheckButton: UIButton!
     private var viewModel: NicknameViewModelType!
     private var cancellables: Set<AnyCancellable> = []
+    private lazy var clearButton: UIView = {
+        let view: UIView = UIView()
+        view.backgroundColor = .clear
+        let clearButton = UIButton(type: .custom)
+        clearButton.setImage(UIImage(named: "icClearButton"), for: .normal)
+        clearButton.addTarget(self, action: #selector(clearTextField), for: .touchUpInside)
+        view.addSubview(clearButton)
+        clearButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-12)
+            make.width.height.equalTo(18)
+        }
+        view.snp.makeConstraints { make in
+            make.width.equalTo(clearButton.snp.width).offset(12 + 18)
+            make.height.equalTo(clearButton.snp.height)
+        }
+        return view
+    }()
     var delegate: ProfileSetupDelegate?
     
     enum Constants {
-        static let messageSuccessColor = UIColor(hexString: "3972E1")
-        static let messageErrorColor = UIColor(hexString: "D82231")
-        static let duplicationEnableColor = UIColor(hexString: "FFF2F4")
+        static let messageSuccessColor = UIColor(hexString: "3972E1")!
+        static let messageErrorColor = UIColor(hexString: "D82231")!
+        static let messageDefaultColor = UIColor.cheffiBlack
+        static let duplicationEnableColor = UIColor(hexString: "FFF2F4")!
         static let duplicationDisableColor = UIColor.cheffiGray1
         static let buttonHeight: CGFloat = 50.0
     }
@@ -44,40 +62,47 @@ class NicknameViewController: UIViewController {
         setupViews()
         bindViewModel()
         setupKeyboard()
+        // show keyboard
+        textField.becomeFirstResponder()
     }
     
     // MARK: - Private
     private func setupViews() {
-        nextButton.setTitle("다음")
-        nextButton.setBackgroundColor(Constants.duplicationDisableColor)
-        nextButton.didTapButton = { [weak self] in
-            self?.nextView()
-        }
-        
         nextButtonOnKeyboard.didTapButton = { [weak self] in
             self?.nextView()
             self?.hideKeyboard()
         }
         
+        // titleLabel
         titleLabel.text = "쉐피에서 사용할\n닉네임을 입력해주세요.".localized()
         titleLabel.textColor = .cheffiGray9
-        titleLabel.font = Fonts.suit.weight600.size(24)
+        titleLabel.font = Fonts.suit.weight600.size(22)
         textField.delegate = self
         
-        // messageLabel
-        messageLabel.text = ""
-        messageLabel.font = Fonts.suit.weight400.size(14)
-        messageLabel.textColor = Constants.messageSuccessColor
+        // nicknameTitleLabel
+        nicknameTitleLabel.text = "닉네임".localized()
+        nicknameTitleLabel.textColor = .cheffiGray8
+        nicknameTitleLabel.font = Fonts.suit.weight400.size(14)
+        
+        // errorMessageLabel
+        errorMessageLabel.text = ""
+        errorMessageLabel.font = Fonts.suit.weight400.size(14)
+        errorMessageLabel.textColor = Constants.messageSuccessColor
         
         // duplicationCheckButton
         duplicationCheckButton.setTitleColor(.main, for: .normal)
         duplicationCheckButton.setTitleColor(.cheffiGray5, for: .disabled)
         
         // textField
+        textField.textColor = .cheffiGray8
+        textField.font = Fonts.suit.weight400.size(14.0)
         textField.layerBorderColor = .cheffiBlack
         textField.layerBorderWidth = 1.0
         textField.layerCornerRadius = 10.0
         textField.inputAccessoryView = nil
+        
+        textField.rightView = clearButton
+        clearTextField()
     }
     
     private func bindViewModel() {
@@ -89,24 +114,25 @@ class NicknameViewController: UIViewController {
             .store(in: &cancellables)
         
         viewModel.message
-            .assign(to: \.text, on: messageLabel)
+            .assign(to: \.text, on: errorMessageLabel)
             .store(in: &cancellables)
         
         viewModel.messageStatus
             .sink { [weak self] status in
-                switch status {
-                case .error:
-                    self?.messageLabel.textColor = Constants.messageErrorColor
-                    self?.nextButton.setBackgroundColor(.cheffiGray3)
-                    self?.nextButtonOnKeyboard.setBackgroundColor(.cheffiGray3)
-                    self?.textField.layerBorderColor = Constants.messageErrorColor
-                case .success:
-                    self?.messageLabel.textColor = Constants.messageSuccessColor
-                    self?.nextButton.setBackgroundColor(.main)
-                    self?.nextButtonOnKeyboard.setBackgroundColor(.main)
-                    self?.textField.layerBorderColor = Constants.messageSuccessColor
-                case .none:
-                    break
+                guard let self = self else { return }
+                        
+                let messageStatusDict: [NicknameMessageStatus: (textColor: UIColor, backgroundColor: UIColor, borderColor: UIColor, isEnable: Bool)] = [
+                    .numberOfCharError: (Constants.messageErrorColor, .cheffiGray3, Constants.messageDefaultColor, false),
+                    .duplicateError: (Constants.messageErrorColor, .cheffiGray3, Constants.messageErrorColor, false),
+                    .success: (Constants.messageSuccessColor, .main, Constants.messageSuccessColor, true),
+                    .none: (Constants.messageDefaultColor, .cheffiGray1, Constants.messageDefaultColor, false)
+                ]
+
+                if let messageStatus = messageStatusDict[status] {
+                    self.errorMessageLabel.textColor = messageStatus.textColor
+                    self.nextButtonOnKeyboard.setBackgroundColor(messageStatus.backgroundColor)
+                    self.textField.layerBorderColor = messageStatus.borderColor
+                    self.nextButtonOnKeyboard.isEnable = messageStatus.isEnable
                 }
             }
             .store(in: &cancellables)
@@ -114,6 +140,7 @@ class NicknameViewController: UIViewController {
         textField.textDidChangePublisher
             .sink { [weak self] newText in
                 self?.viewModel.nickname.send(newText)
+                self?.textField.rightViewMode = (self?.textField.text?.isEmpty == false) ? .always : .never
             }
             .store(in: &cancellables)
     }
@@ -121,8 +148,6 @@ class NicknameViewController: UIViewController {
     private func setupKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        self.view.addGestureRecognizer(tapGesture)
     }
     
     private func saveNicknameToLocalDB(name: String) {
@@ -161,6 +186,12 @@ class NicknameViewController: UIViewController {
     @objc func hideKeyboard() {
         self.view.endEditing(true)
     }
+    
+    @objc func clearTextField() {
+        viewModel.nickname.send("")
+        textField.text = ""
+        textField.rightViewMode = .never
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -168,7 +199,12 @@ extension NicknameViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        nextButtonOnKeyboard.isHidden = !(newText.count >= 2)
-        return newText.count <= viewModel.maxNicknameCount
+        
+        if newText.count > viewModel.maxNicknameCount {
+            viewModel.showMessageForExceedingMaxCount()
+            return false
+        }
+        
+        return true
     }
 }

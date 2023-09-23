@@ -25,7 +25,7 @@ enum ReviewState: Int, CaseIterable {
         switch self {
         case .positive: return UIColor(hexString: "437CEB")!
         case .neutral: return UIColor(hexString: "28DB85")!
-        case .negative: return UIColor(hexString: "EB4351")!
+        case .negative: return UIColor.mainCTA
         }
     }
 }
