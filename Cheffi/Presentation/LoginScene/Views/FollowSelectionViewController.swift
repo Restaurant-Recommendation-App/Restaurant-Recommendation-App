@@ -33,7 +33,7 @@ class FollowSelectionViewController: UIViewController {
     
     // MARK: - Private
     private func setupViews() {
-        startButton.setTitle("시작하기")
+        startButton.setTitle("시작하기".localized(), for: .normal)
         startButton.setBackgroundColor(.main)
         startButton.didTapButton = { [weak self] in
             self?.delegate?.didTapNext()

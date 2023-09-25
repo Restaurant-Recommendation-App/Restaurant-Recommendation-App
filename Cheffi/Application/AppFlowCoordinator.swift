@@ -124,7 +124,7 @@ final class AppFlowCoordinator {
     
     private func addLineView() {
         let lineView: UIView = UIView()
-        lineView.backgroundColor = UIColor(hexString: "ECECEC")
+        lineView.backgroundColor = .cheffiGray1
         tabBarController.tabBar.addSubview(lineView)
 
         lineView.snp.makeConstraints { make in

@@ -10,6 +10,18 @@ import UIKit
 final class CustomProfileButton: BaseView {
     
     @IBOutlet private weak var button: UIButton!
+    var isEnable: Bool = false {
+        didSet {
+            button.isEnabled = isEnable
+            if isEnable {
+                setBackgroundColor(.mainCTA)
+                button.setTitleColor(.white, for: .normal)
+            } else {
+                setBackgroundColor(.cheffiGray1)
+                button.setTitleColor(.cheffiGray5, for: .disabled)
+            }
+        }
+    }
     var didTapButton: (() -> Void)?
     
     override init(frame: CGRect) {
@@ -24,7 +36,7 @@ final class CustomProfileButton: BaseView {
     
     // MARK: - Private
     private func setupViews() {
-        setTitle("다음")
+        setTitle("다음".localized(), for: .normal)
         setBackgroundColor(.cheffiGray3)
         setLayerCornerRadius(10.0)
         button.titleLabel?.font = Fonts.suit.weight600.size(16)
@@ -32,8 +44,8 @@ final class CustomProfileButton: BaseView {
     }
     
     // MARK: - Public
-    func setTitle(_ text: String) {
-        button.setTitle(text.localized(), for: .normal)
+    func setTitle(_ text: String, for state: UIControl.State) {
+        button.setTitle(text.localized(), for: state)
     }
     
     func setBackgroundColor(_ color: UIColor?) {
