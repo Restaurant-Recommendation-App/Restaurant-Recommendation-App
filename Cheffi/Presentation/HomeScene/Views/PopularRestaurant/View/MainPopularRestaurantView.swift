@@ -19,6 +19,28 @@ class MainPopularRestaurantView: UIView {
         return label
     }()
     
+    private let subtitleTimerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .cheffiBlack
+        return label
+    }()
+    
+    private let subtitleLabel01: UILabel = {
+        let label = UILabel()
+        label.textColor = .cheffiBlack
+        label.text = "초 뒤에"
+        label.font = Fonts.suit.weight400.size(18)
+        return label
+    }()
+    
+    private let subtitleLabel02: UILabel = {
+        let label = UILabel()
+        label.textColor = .cheffiBlack
+        label.text = "인기 급등 맛집이 변경돼요."
+        label.font = Fonts.suit.weight400.size(18)
+        return label
+    }()
+    
     private let subtitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .cheffiBlack
@@ -45,8 +67,8 @@ class MainPopularRestaurantView: UIView {
         
     override init(frame: CGRect) {
         super.init(frame: frame)
-        subtitleLabel.attributedText = getSubtitleAttributedString()
         setUp()
+        subtitleTimerLabel.attributedText = getTimerAttributedString(timerString: "00:00:00")
     }
     
     required init?(coder: NSCoder) {
@@ -60,27 +82,44 @@ class MainPopularRestaurantView: UIView {
             $0.leading.trailing.equalToSuperview()
         }
         
-        addSubview(subtitleLabel)
-        subtitleLabel.snp.makeConstraints {
+        addSubview(subtitleTimerLabel)
+        subtitleTimerLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(16)
+            $0.leading.equalToSuperview()
+            $0.width.equalTo(107)
+        }
+        
+        addSubview(subtitleLabel01)
+        subtitleLabel01.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(16)
+            $0.leading.equalTo(subtitleTimerLabel.snp.trailing)
+        }
+        
+        addSubview(subtitleLabel02)
+        subtitleLabel02.snp.makeConstraints {
+            $0.top.equalTo(subtitleLabel01.snp.bottom)
             $0.leading.bottom.equalToSuperview()
         }
         
         addSubview(exclamationButton)
         exclamationButton.snp.makeConstraints {
-            $0.leading.equalTo(subtitleLabel.snp.trailing).offset(4)
-            $0.bottom.equalTo(subtitleLabel)
+            $0.leading.equalTo(subtitleLabel02.snp.trailing).offset(4)
+            $0.bottom.equalTo(subtitleLabel02)
         }
         
         addSubview(moreContentsButton)
         moreContentsButton.snp.makeConstraints {
             $0.trailing.equalToSuperview()
-            $0.bottom.equalTo(subtitleLabel)
+            $0.bottom.equalTo(subtitleLabel02)
             $0.height.equalTo(20)
         }
     }
     
-    private func getSubtitleAttributedString() -> NSAttributedString {
+    func setTimerString(timerString: String) {
+        subtitleTimerLabel.attributedText = getTimerAttributedString(timerString: timerString)
+    }
+    
+    private func getTimerAttributedString(timerString: String) -> NSAttributedString {
         
         let icClockAttachment = NSTextAttachment()
         let icClockImg = UIImage(named: "icClock")
@@ -88,7 +127,30 @@ class MainPopularRestaurantView: UIView {
         icClockAttachment.bounds = CGRect(x: 0, y: -2, width: icClockImg!.size.width, height: icClockImg!.size.height)
         let icClockString = NSAttributedString(attachment: icClockAttachment)
         
-        let str1 = "  00 : 13 : 43"
+        let str1 = "  \(timerString)"
+        let color1 = UIColor.main
+        let font1 = Fonts.suit.weight800.size(18)
+        
+        let combination = NSMutableAttributedString()
+        
+        let attr1 = [NSAttributedString.Key.foregroundColor: color1, NSAttributedString.Key.font: font1]
+        let part1 = NSMutableAttributedString(string: str1, attributes: attr1 as [NSAttributedString.Key : Any])
+        
+        combination.append(icClockString)
+        combination.append(part1)
+        
+        return combination
+    }
+    
+    private func getSubtitleAttributedString(timerString: String) -> NSAttributedString {
+        
+        let icClockAttachment = NSTextAttachment()
+        let icClockImg = UIImage(named: "icClock")
+        icClockAttachment.image = icClockImg
+        icClockAttachment.bounds = CGRect(x: 0, y: -2, width: icClockImg!.size.width, height: icClockImg!.size.height)
+        let icClockString = NSAttributedString(attachment: icClockAttachment)
+        
+        let str1 = "  \(timerString)"
         let color1 = UIColor.main
         let font1 = Fonts.suit.weight800.size(18)
         

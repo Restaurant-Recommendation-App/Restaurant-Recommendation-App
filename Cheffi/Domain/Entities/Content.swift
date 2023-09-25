@@ -13,4 +13,5 @@ struct Content: Decodable, Identifiable {
     let id: Identifier
     let title: String
     let subtitle: String
+    let contentTimeLockSeconds: Int
 }

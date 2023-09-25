@@ -84,5 +84,10 @@ extension PopularRestaurantCell: Bindable {
                     limitPage: viewModels.count,
                     swiped: self.popularRestaurantContentsView.didSwiped)
             }.store(in: &cancellables)
+        
+        output.timeLockType
+            .sink {
+                self.mainPopularRestaurantView.setTimerString(timerString: $0)
+            }.store(in: &cancellables)
     }
 }

@@ -70,7 +70,7 @@ class RestaurantContentView: UIView {
         contentTimeLockBubbleView.snp.makeConstraints {
             $0.top.equalTo(restaurantImageView).offset(12)
             $0.trailing.equalTo(restaurantImageView).inset(8)
-            $0.width.equalTo(87)
+            $0.width.equalTo(90)
             $0.height.equalTo(32)
         }
         
@@ -96,15 +96,30 @@ class RestaurantContentView: UIView {
         }
     }
     
-    func configure(title: String, subtitle: String, isMainContent: Bool) {
+    func configure(title: String, subtitle: String, timeLockType: TimeLockType, isMainContent: Bool) {
         restaurantTitleLabel.text = title
         restaurantSubtitleLabel.text = subtitle
+        updateTimer(timeLockType: timeLockType)
         
         if isMainContent {
             updateContent(titleSize: CGFloat(18), contentHeight: 200, numberOfLines: 1)
         } else {
             updateContent(titleSize: CGFloat(16), contentHeight: 165, numberOfLines: 2)
         }
+    }
+    
+    func updateTimer(timeLockType: TimeLockType) {
+        contentTimeLockBubbleView.snp.updateConstraints {
+            switch timeLockType {
+            case .lock(_):
+                $0.width.equalTo(115)
+            case .unlock(_):
+                $0.width.equalTo(90)
+            case .willLock:
+                $0.width.equalTo(110)
+            }
+        }
+        contentTimeLockBubbleView.updateTimeLock(timeLockType: timeLockType)
     }
     
     private func updateContent(titleSize: CGFloat, contentHeight: CGFloat, numberOfLines: Int) {

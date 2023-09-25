@@ -20,6 +20,7 @@ extension ContentsResponseDTO {
         var id: Identifiable = UUID().uuidString
         let title: String
         let subtitle: String
+        let contentTimeLockSeconds: Int
     }
 }
 
@@ -28,6 +29,8 @@ extension ContentsResponseDTO.contentDTO {
         .init(
             id: id,
             title: title,
-            subtitle: subtitle)
+            subtitle: subtitle,
+            contentTimeLockSeconds: contentTimeLockSeconds
+        )
     }
 }
