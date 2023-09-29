@@ -25,9 +25,9 @@ extension Int {
         let seconds = (self % 3600000) % 60000 / 1000
         //MARK: milliseconds 처리 코드 추가 위치
         
-        let hourString = (hours >= 10) ? "\(hours)" : "0\(hours)"
-        let minuteString = (minutes >= 10) ? "\(minutes)" : "0\(minutes)"
-        let secondsString = (seconds >= 10) ? "\(seconds)" : "0\(seconds)"
+        let hourString =  String(format: "%02d", hours)
+        let minuteString = String(format: "%02d", minutes)
+        let secondsString = String(format: "%02d", seconds)
         
         switch timerDigitType {
         case .hour: return "\(hourString)"
