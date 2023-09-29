@@ -42,7 +42,7 @@ extension DefaultCheffiRecommendationRepository: CheffiRecommendationRepository 
                 ContentsResponseDTO.contentDTO(
                     title: "(\(tag)) 그시절낭만의 근본 경양식 돈가스\(index)",
                     subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...",
-                    contentTimeLockSeconds: Int.random(in: 400000 ..< 86400000)
+                    contentTimeLockMilliSeconds: Int.random(in: 400000 ..< 86400000)
 //                    contentTimeLockSeconds: 303000
                 )
             )

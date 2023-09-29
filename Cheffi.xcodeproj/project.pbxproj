@@ -81,6 +81,7 @@
 		D49D1A932A73986800CB86FA /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D1A922A73986800CB86FA /* Bindable.swift */; };
 		D49D1A9A2A73BB6500CB86FA /* UIControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D1A992A73BB6500CB86FA /* UIControl+Combine.swift */; };
 		D49D1AA22A73C7AE00CB86FA /* CheffiRecommendationContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D1AA12A73C7AD00CB86FA /* CheffiRecommendationContentsViewModel.swift */; };
+		D49F2D382AC6AC0400603CDC /* RestaurantContentItemViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F2D372AC6AC0400603CDC /* RestaurantContentItemViewModelTest.swift */; };
 		D4ABC29F2A78D3E900B4152B /* CheffiRecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ABC29E2A78D3E900B4152B /* CheffiRecommendationViewModel.swift */; };
 		D4BA3BB62A78C616009CA7E0 /* PopularRestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA3BB52A78C616009CA7E0 /* PopularRestaurantViewModel.swift */; };
 		D4C0FA6E2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0FA6D2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift */; };
@@ -282,6 +283,7 @@
 		D49D1A922A73986800CB86FA /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		D49D1A992A73BB6500CB86FA /* UIControl+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Combine.swift"; sourceTree = "<group>"; };
 		D49D1AA12A73C7AD00CB86FA /* CheffiRecommendationContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationContentsViewModel.swift; sourceTree = "<group>"; };
+		D49F2D372AC6AC0400603CDC /* RestaurantContentItemViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentItemViewModelTest.swift; sourceTree = "<group>"; };
 		D4ABC29E2A78D3E900B4152B /* CheffiRecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationViewModel.swift; sourceTree = "<group>"; };
 		D4BA3BB52A78C616009CA7E0 /* PopularRestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantViewModel.swift; sourceTree = "<group>"; };
 		D4C0FA6D2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentItemViewModel.swift; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				CE1A6A902A62AECA00FFE93D /* SimilarChefViewModelTests.swift */,
+				D49F2D372AC6AC0400603CDC /* RestaurantContentItemViewModelTest.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1395,6 +1398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE1A6A912A62AECA00FFE93D /* SimilarChefViewModelTests.swift in Sources */,
+				D49F2D382AC6AC0400603CDC /* RestaurantContentItemViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
