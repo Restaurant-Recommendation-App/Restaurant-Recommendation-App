@@ -19,7 +19,7 @@ final class RestaurantContentItemViewModelTest: XCTestCase {
     
     private var initialize: PassthroughSubject<Void, Never>!
     
-    var contents: [Content] = [
+    private var contents: [Content] = [
         Content(
             id: UUID().uuidString,
             title: "그시절낭만의 근본 경양식 돈가스(1)",
