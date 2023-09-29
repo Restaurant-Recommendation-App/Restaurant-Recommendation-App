@@ -142,39 +142,7 @@ class MainPopularRestaurantView: UIView {
         return combination
     }
     
-    private func getSubtitleAttributedString(timerString: String) -> NSAttributedString {
-        
-        let icClockAttachment = NSTextAttachment()
-        let icClockImg = UIImage(named: "icClock")
-        icClockAttachment.image = icClockImg
-        icClockAttachment.bounds = CGRect(x: 0, y: -2, width: icClockImg!.size.width, height: icClockImg!.size.height)
-        let icClockString = NSAttributedString(attachment: icClockAttachment)
-        
-        let str1 = "  \(timerString)"
-        let color1 = UIColor.main
-        let font1 = Fonts.suit.weight800.size(18)
-        
-        let str2 = " 초 뒤에\n인기 급등 맛집이 변경돼요."
-        let color2 = UIColor.cheffiBlack
-        let font2 = Fonts.suit.weight400.size(18)
-        
-        let combination = NSMutableAttributedString()
-        
-        let attr1 = [NSAttributedString.Key.foregroundColor: color1, NSAttributedString.Key.font: font1]
-        let part1 = NSMutableAttributedString(string: str1, attributes: attr1 as [NSAttributedString.Key : Any])
-        
-        let attr2 = [NSAttributedString.Key.foregroundColor: color2, NSAttributedString.Key.font: font2]
-        let part2 = NSMutableAttributedString(string: str2, attributes: attr2)
-        
-        combination.append(icClockString)
-        combination.append(part1)
-        combination.append(part2)
-        
-        return combination
-    }
-    
     @objc private func tappedExclamation() {
         print("tappedExclamation")
     }
 }
-
