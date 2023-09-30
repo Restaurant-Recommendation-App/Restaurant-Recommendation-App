@@ -63,8 +63,7 @@ final class PopularRestaurantViewModel: ViewModelType {
         let timerString = PassthroughSubject<String, Never>()
         
         initialize
-            .filter { !self.timeLockGenerator.timerStarted }
-            .flatMap { self.timeLockGenerator.generateTimeLock(timerDigitType: .hourMinuteSecond) }
+            .flatMap { self.timeLockGenerator.start(timerDigitType: .hourMinuteSecond) }
             .sink {
                 let timeLockString: String
                 switch $0 {

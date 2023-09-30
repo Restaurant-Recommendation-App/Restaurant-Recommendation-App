@@ -26,20 +26,27 @@ final class TimeLockGenerator {
         static let willLockMilliseconds = 300000
     }
     
-    var timerStarted = false
-    var timeLockMilliseconds: Int
-    let countMilliseconds: Int
+    private var timeLockMilliseconds: Int
+    private let countMilliseconds: Int
+    
+    private var timer: Publishers.Autoconnect<Timer.TimerPublisher>?
     
     init(timeLockSeconds: Int, countMilliseconds: Int) {
         self.timeLockMilliseconds = timeLockSeconds
         self.countMilliseconds = countMilliseconds
     }
-    
-    func generateTimeLock(timerDigitType: TimerDigitType) -> AnyPublisher<TimeLockType, Never> {
-        timerStarted = true
-        return Timer.publish(every: 1, on: RunLoop.main, in: .common).autoconnect()
+        
+    func start(timerDigitType: TimerDigitType) -> AnyPublisher<TimeLockType, Never> {
+        timer?.upstream.connect().cancel()
+        timer = Timer.publish(every: 1, on: RunLoop.main, in: .common).autoconnect()
+
+        return timer!
             .map { _ in self.timerCall(timerDigitType: timerDigitType) }
             .eraseToAnyPublisher()
+    }
+    
+    func stop() {
+        timer?.upstream.connect().cancel()
     }
     
     private func timerCall(timerDigitType: TimerDigitType) -> TimeLockType {

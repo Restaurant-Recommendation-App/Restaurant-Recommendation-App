@@ -64,7 +64,7 @@ extension RestaurantContentItemViewModel: ViewModelType {
         let timeLockType = PassthroughSubject<TimeLockType, Never>()
             
         input.initialize
-            .flatMap { self.timeLockGenerator.generateTimeLock(timerDigitType: .hourMinute) }
+            .flatMap { self.timeLockGenerator.start(timerDigitType: .hourMinute) }
             .sink {
                 timeLockType.send($0)
             }.store(in: &cancellables)
