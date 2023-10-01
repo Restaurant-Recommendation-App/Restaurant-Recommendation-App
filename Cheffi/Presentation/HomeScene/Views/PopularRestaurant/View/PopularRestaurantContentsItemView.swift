@@ -42,8 +42,7 @@ class PopularRestaurantContentsItemView: UICollectionView {
             let cell = collectionView.dequeueReusableCell(withClass: RestaurantContentCell.self, for: indexPath)
             
             cell.configure(
-                title: item.title,
-                subtitle: item.subtitle,
+                viewModel: item,
                 isMainContent: self.validateFirstContents(with: indexPath)
             )
 
