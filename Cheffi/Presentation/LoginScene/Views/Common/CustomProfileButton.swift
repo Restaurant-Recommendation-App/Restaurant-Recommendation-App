@@ -48,12 +48,28 @@ final class CustomProfileButton: BaseView {
         button.setTitle(text.localized(), for: state)
     }
     
+    func setTitleColor(_ color: UIColor?, for state: UIControl.State) {
+        button.setTitleColor(color, for: state)
+    }
+    
+    func setTitleFont(font: UIFont) {
+        button.titleLabel?.font = font
+    }
+    
     func setBackgroundColor(_ color: UIColor?) {
         button.backgroundColor = color
     }
     
     func setLayerCornerRadius(_ value: CGFloat) {
         button.layerCornerRadius = value
+    }
+    
+    func setLayerBorderWidth(_ value: CGFloat) {
+        button.layerBorderWidth = value
+    }
+    
+    func setLayerBorderColor(_ color: UIColor) {
+        button.layerBorderColor = color
     }
     
     // MARK: - Actions

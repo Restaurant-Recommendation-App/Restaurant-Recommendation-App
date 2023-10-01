@@ -9,12 +9,13 @@ import UIKit
 import Combine
 
 class PhotoCropViewController: UIViewController {
-    static func instance<T: PhotoCropViewController>(viewModel: PhotoCropViewModelType, dismissCompltion: ((Data?) -> Void)?) -> T {
+    static func instance<T: PhotoCropViewController>(viewModel: PhotoCropViewModelType, dismissCompletion: ((Data?) -> Void)?) -> T {
         let vc: T = .instance(storyboardName: .photoCrop)
         vc.viewModel = viewModel
-        vc.dismissCompltion = dismissCompltion
+        vc.dismissCompletion = dismissCompletion
         let image = UIImage(data: viewModel.imageData)
         vc.imageView = UIImageView(image: image)
+        vc.modalPresentationStyle = .overCurrentContext
         return vc
     }
     
@@ -25,7 +26,7 @@ class PhotoCropViewController: UIViewController {
     private var viewModel: PhotoCropViewModelType!
     private var circleView: CircleCropView?
     private var cancellables: Set<AnyCancellable> = []
-    var dismissCompltion: ((Data?) -> Void)?
+    var dismissCompletion: ((Data?) -> Void)?
     
     enum Constants {
     }
@@ -79,8 +80,8 @@ class PhotoCropViewController: UIViewController {
         viewModel.croppedImageData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] imageData in
-                self?.dismiss(animated: false, completion: {
-                    self?.dismissCompltion?(imageData)
+                self?.dismissOne(amimated: false, {
+                    self?.dismissCompletion?(imageData)
                 })
             }
             .store(in: &cancellables)

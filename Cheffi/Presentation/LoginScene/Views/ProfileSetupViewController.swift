@@ -43,7 +43,7 @@ class ProfileSetupViewController: UIViewController {
     
     enum Constants {
         static let progressBackgroundColor = UIColor(hexString: "D9D9D9")
-        static let progressTintColor = UIColor(hexString: "D82231")
+        static let progressTintColor = UIColor.cheffiRed
     }
 
     override func viewDidLoad() {

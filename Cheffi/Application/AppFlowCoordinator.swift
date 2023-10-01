@@ -30,7 +30,7 @@ final class AppFlowCoordinator {
         addLineView()
         
         let normalAttributeName: [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor(hexString: "B1B1B1")!, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)]
-        let selectedAttributeName: [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor(hexString: "D82231")!, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)]
+        let selectedAttributeName: [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.cheffiRed, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)]
         
         let homeSceneDIContainer = appDIContainer.makeHomeSceneDIContainer()
         let homeTabBarItem = UITabBarItem(title: "홈".localized(),

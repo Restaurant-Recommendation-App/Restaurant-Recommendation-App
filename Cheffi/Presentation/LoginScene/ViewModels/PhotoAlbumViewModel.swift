@@ -10,8 +10,8 @@ import Combine
 import Photos
 
 struct PhotoAlbumViewModelActions {
-    let showPhotoCrop: (_ imageData: Data, _ completion: ((Data?) -> Void)?) -> Void
-    let showCamera: (_ dismissCompltion: ((Data?) -> Void)?) -> Void
+    let showPhotoCrop: (_ imageData: Data, _ dismissCompletion: ((Data?) -> Void)?) -> Void
+    let showCamera: (_ isPresentPhotoAlbum: Bool, _ dismissCompletion: ((Data?) -> Void)?) -> Void
 }
 
 struct CapturedImage {
@@ -24,8 +24,8 @@ protocol PhotoAlbumViewModelInput {
     func requestImage(asset: PHAsset, size: CGSize, contentMode: PHImageContentMode, completion: @escaping (Data?) -> Void)
     func toggleLatestItemsButton()
     func updateSelectedAsset(_ index: Int)
-    func showPhotoCrop(_ captureImageData: Data?, _ completion: ((Data?) -> Void)?)
-    func showCamera(_ completion: ((Data?) -> Void)?)
+    func showPhotoCrop(_ captureImageData: Data?, _ dismissCompletion: ((Data?) -> Void)?)
+    func showCamera(_ isPresentPhotoAlbum: Bool, _ dismissCompletion: ((Data?) -> Void)?)
 }
 
 protocol PhotoAlbumViewModelOutput {
@@ -43,7 +43,7 @@ protocol PhotoAlbumViewModelOutput {
 typealias PhotoAlbumViewModelType = PhotoAlbumViewModelInput & PhotoAlbumViewModelOutput
 
 class PhotoAlbumViewModel: PhotoAlbumViewModelType {
-    private let actions: PhotoAlbumViewModelActions?
+    private let actions: PhotoAlbumViewModelActions
     private let photoUseCase: PhotoUseCase
     private let cameraService: CameraService
     private var cancellables: Set<AnyCancellable> = []
@@ -87,13 +87,13 @@ class PhotoAlbumViewModel: PhotoAlbumViewModelType {
         _selectedAsset = currentAssets[index]
     }
     
-    func showCamera(_ completion: ((Data?) -> Void)?) {
-        actions?.showCamera(completion)
+    func showCamera(_ isPresentPhotoAlbum: Bool, _ dismissCompletion: ((Data?) -> Void)?) {
+        actions.showCamera(isPresentPhotoAlbum, dismissCompletion)
     }
     
-    func showPhotoCrop(_ captureImageData: Data?, _ completion: ((Data?) -> Void)?) {
+    func showPhotoCrop(_ captureImageData: Data?, _ dismissCompletion: ((Data?) -> Void)?) {
         if let imageData = captureImageData {
-            self.actions?.showPhotoCrop(imageData, completion)
+            self.actions.showPhotoCrop(imageData, dismissCompletion)
             return
         }
         
@@ -104,7 +104,7 @@ class PhotoAlbumViewModel: PhotoAlbumViewModelType {
         
         requestImage(asset: selectedAsset, size: CGSize(width: 1024, height: 1024), contentMode: .default) { [weak self] imageData in
             if let data = imageData {
-                self?.actions?.showPhotoCrop(data, completion)
+                self?.actions.showPhotoCrop(data, dismissCompletion)
             } else {
                 self?.errorSubject.send("이미지를 불러오는 도중 실패 했습니다.")
             }
@@ -125,20 +125,29 @@ class PhotoAlbumViewModel: PhotoAlbumViewModelType {
         return currentAssets[index]
     }
     
-    func checkPhotoPermission() {
+    func checkPhotoPermission(completion: ((Bool) -> Void)?) {
         let status = PHPhotoLibrary.authorizationStatus()
         
         switch status {
         case .denied, .restricted:
             photoPermissionDenied = true
+            completion?(false)
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization { [weak self] newStatus in
-                if newStatus == .denied || newStatus == .restricted {
+                switch newStatus {
+                case .denied, .restricted:
                     self?.photoPermissionDenied = true
+                    completion?(false)
+                case .authorized:
+                    completion?(true)
+                default:
+                    completion?(false)
                 }
             }
+        case .authorized:
+            completion?(true)
         default:
-            break
+            completion?(false)
         }
     }
     
@@ -148,7 +157,7 @@ class PhotoAlbumViewModel: PhotoAlbumViewModelType {
         self.photoUseCase = photoUseCase
         self.cameraService = cameraService
         
-        checkPhotoPermission()
+        checkPhotoPermission(completion: nil)
     }
 }
 

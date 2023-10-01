@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22127"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -24,14 +24,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9X-Y3-7lJ" customClass="CustomProfileButton" customModule="Cheffi" customModuleProvider="target">
-                                <rect key="frame" x="16" y="708" width="361" height="48"/>
+                                <rect key="frame" x="16" y="706" width="361" height="48"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="9fa-kl-pDc"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsx-uP-alO">
-                                <rect key="frame" x="58" y="764" width="277" height="48"/>
+                                <rect key="frame" x="16" y="762" width="361" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="dws-P0-lsb"/>
                                 </constraints>
@@ -65,18 +65,13 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NH-yO-eeJ">
-                                <rect key="frame" x="234.66666666666666" y="464" width="31.999999999999972" height="32"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="m5e-rb-1GN">
+                                <rect key="frame" x="16" y="696" width="361" height="106"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="4NU-aa-OfE"/>
-                                    <constraint firstAttribute="height" constant="32" id="eIR-3n-fzp"/>
+                                    <constraint firstAttribute="height" constant="106" id="QaK-VN-TCb"/>
                                 </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="icCamera"/>
-                                <connections>
-                                    <action selector="didTapCamera:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JhN-QE-DJv"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -87,21 +82,23 @@
                             <constraint firstItem="0eF-PX-XfJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Ebt-hJ-jcA"/>
                             <constraint firstItem="n9X-Y3-7lJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="KXc-Hy-Qq1"/>
                             <constraint firstItem="GBy-TO-BZU" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Oly-Sd-SCb"/>
-                            <constraint firstItem="rsx-uP-alO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="58" id="PeL-P3-8ne"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rsx-uP-alO" secondAttribute="bottom" constant="6" id="QXD-PP-wG4"/>
-                            <constraint firstItem="4NH-yO-eeJ" firstAttribute="bottom" secondItem="GBy-TO-BZU" secondAttribute="bottom" id="R3Q-9N-NIS"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rsx-uP-alO" secondAttribute="trailing" constant="58" id="UeY-U4-6Jl"/>
-                            <constraint firstItem="4NH-yO-eeJ" firstAttribute="trailing" secondItem="GBy-TO-BZU" secondAttribute="trailing" id="fdk-Zk-cRW"/>
+                            <constraint firstItem="rsx-uP-alO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="PeL-P3-8ne"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rsx-uP-alO" secondAttribute="bottom" constant="8" id="QXD-PP-wG4"/>
+                            <constraint firstItem="m5e-rb-1GN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="SyB-hx-m03"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rsx-uP-alO" secondAttribute="trailing" constant="16" id="UeY-U4-6Jl"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0eF-PX-XfJ" secondAttribute="trailing" constant="16" id="iJN-0Y-ZIH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="m5e-rb-1GN" secondAttribute="trailing" constant="16" id="joC-6e-KTq"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="n9X-Y3-7lJ" secondAttribute="trailing" constant="16" id="lpT-2v-0mB"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="m5e-rb-1GN" secondAttribute="bottom" constant="16" id="oCm-uR-vd2"/>
                             <constraint firstItem="L70-nH-DLC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="xJn-Gf-ghO"/>
                             <constraint firstItem="GBy-TO-BZU" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="yJT-Cx-Fbu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="laterButton" destination="rsx-uP-alO" id="kxR-tT-bcB"/>
+                        <outlet property="profileChangeStackView" destination="m5e-rb-1GN" id="v3f-oW-RKt"/>
                         <outlet property="profileImageView" destination="GBy-TO-BZU" id="I3Z-Pw-bDA"/>
-                        <outlet property="registerProfileButton" destination="n9X-Y3-7lJ" id="xxl-N7-VeT"/>
+                        <outlet property="selectProfileImageButton" destination="n9X-Y3-7lJ" id="xxl-N7-VeT"/>
                         <outlet property="subTitleLabel" destination="0eF-PX-XfJ" id="KXc-89-lCN"/>
                         <outlet property="titleLabel" destination="L70-nH-DLC" id="ioq-eO-PbT"/>
                     </connections>
@@ -112,7 +109,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icCamera" width="32" height="32"/>
         <image name="icPlaceholder" width="140" height="140"/>
         <namedColor name="CheffiGray9">
             <color red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

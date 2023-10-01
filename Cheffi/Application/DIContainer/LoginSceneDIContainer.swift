@@ -54,7 +54,9 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     func makeProfilePhotoViewModel(actions: ProfilePhotoViewModelActions) -> ProfilePhotoViewModelType {
-        return ProfilePhotoViewModel(actions: actions)
+        return ProfilePhotoViewModel(actions: actions,
+                                     photoUseCase: makePhotoUseCase(),
+                                     cameraService: makeCameraService())
     }
     
     // MARK: - FoodSelection
@@ -76,10 +78,14 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
         return ProfileSetupViewModel()
     }
     
+    // MARK: - ProfileImageSelectViewController
+    func makeProfileImageSelectViewController(selectTypes: [ProfileImageSelectType], selectCompletion: ((ProfileImageSelectType) -> Void)?) -> ProfileImageSelectViewController {
+        return ProfileImageSelectViewController.instance(selectTypes: selectTypes, selectCompletion: selectCompletion)
+    }
+    
     // MARK: - Photo Album
-    func makePhotoAlbumViewController(actions: PhotoAlbumViewModelActions, dismissCompltion: ((Data?) -> Void)?) -> PhotoAlbumViewController {
-        let viewModel = makePhotoAlbumViewModel(actions: actions)
-        return PhotoAlbumViewController.instance(viewModel: viewModel, dismissCompltion: dismissCompltion)
+    func makePhotoAlbumViewController(viewModel: PhotoAlbumViewModel, dismissCompletion: ((Data?) -> Void)?) -> PhotoAlbumViewController {
+        return PhotoAlbumViewController.instance(viewModel: viewModel, dismissCompletion: dismissCompletion)
     }
     
     func makePhotoAlbumViewModel(actions: PhotoAlbumViewModelActions) -> PhotoAlbumViewModel {
@@ -101,8 +107,8 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     // MARK: - Photo Crop
-    func makePhotoCropViewController(viewModel: PhotoCropViewModel, dismissCompltion: ((Data?) -> Void)?) -> PhotoCropViewController {
-        return PhotoCropViewController.instance(viewModel: viewModel, dismissCompltion: dismissCompltion)
+    func makePhotoCropViewController(viewModel: PhotoCropViewModel, dismissCompletion: ((Data?) -> Void)?) -> PhotoCropViewController {
+        return PhotoCropViewController.instance(viewModel: viewModel, dismissCompletion: dismissCompletion)
     }
     
     func makePhotoCropViewModel(imageData: Data) -> PhotoCropViewModel {
