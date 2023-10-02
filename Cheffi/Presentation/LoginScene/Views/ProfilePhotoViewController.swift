@@ -92,6 +92,7 @@ class ProfilePhotoViewController: UIViewController {
     private func showProfileChangeView() {
         guard profileChangeStackView.arrangedSubviews.isEmpty else { return }
         let profileChangeButton = CustomProfileButton()
+        profileChangeButton.isEnable = true
         profileChangeButton.setTitle("프로필 이미지 변경".localized(), for: .normal)
         profileChangeButton.setTitleColor(.mainCTA, for: .normal)
         profileChangeButton.setBackgroundColor(.white)
@@ -103,6 +104,7 @@ class ProfilePhotoViewController: UIViewController {
             self?.showProfileImageSelect(types: [.camera, .album, .defaultImage])
         }
         let nextButton = CustomProfileButton()
+        nextButton.isEnable = true
         nextButton.setTitle("다음".localized(), for: .normal)
         nextButton.setTitleColor(.white, for: .normal)
         nextButton.setBackgroundColor(.mainCTA)
