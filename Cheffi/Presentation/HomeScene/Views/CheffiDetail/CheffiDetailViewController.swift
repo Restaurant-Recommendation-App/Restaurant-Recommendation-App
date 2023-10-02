@@ -25,7 +25,7 @@ class CheffiDetailViewController: UIViewController {
     @IBOutlet private weak var cheffiReviewView: CheffiReviewView!
     @IBOutlet private weak var cheffiWriterView: CheffiWriterView!
     
-    enum Constants {
+    private enum Constants {
         static let duration: CGFloat = 0.3
     }
     

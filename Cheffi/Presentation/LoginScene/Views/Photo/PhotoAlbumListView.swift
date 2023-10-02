@@ -12,7 +12,7 @@ final class PhotoAlbumListView: BaseView {
     @IBOutlet private weak var tableView: UITableView!
     var didTapSelectedAlbumInfo: ((AlbumInfo) -> Void)?
     
-    enum Constants {
+    private enum Constants {
         static let cellHeight: CGFloat = 86.0
     }
     

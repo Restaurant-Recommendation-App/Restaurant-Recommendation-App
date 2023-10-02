@@ -18,7 +18,7 @@ class PopularRestaurantCell: UITableViewCell {
     
     private let initialize = PassthroughSubject<Void, Never>()
     
-    enum Constants {
+    private enum Constants {
         static let inset: CGFloat = 16.0
     }
     

@@ -22,7 +22,7 @@ final class PhotoService: NSObject {
         super.init()
     }
     
-    enum Constants {
+    private enum Constants {
         static let predicate: (MediaType) -> NSPredicate = { mediaType in
             let format = "mediaType == %d"
             switch mediaType {

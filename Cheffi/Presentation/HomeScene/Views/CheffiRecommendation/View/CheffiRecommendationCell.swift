@@ -16,7 +16,7 @@ final class CheffiRecommendationCell: UITableViewCell {
     
     private let initialize = PassthroughSubject<Void, Never>()
         
-    enum Constants {
+    private enum Constants {
         static let cellInset: CGFloat = 16.0
         static let otherContentsSize: CGFloat = 270
     }

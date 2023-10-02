@@ -59,7 +59,7 @@ class CheffiReviewView: BaseView {
     private var viewModel: CheffiReviewViewModel = CheffiReviewViewModel()
     private var cancellables = Set<AnyCancellable>()
     
-    enum Constants {
+    private enum Constants {
         static let defaultColor: UIColor = .cheffiGray5
         static let selectedColor: UIColor = .cheffiGray8
     }

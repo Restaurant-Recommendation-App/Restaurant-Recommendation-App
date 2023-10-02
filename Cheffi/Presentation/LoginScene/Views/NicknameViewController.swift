@@ -48,7 +48,7 @@ class NicknameViewController: UIViewController {
     }()
     var delegate: ProfileSetupDelegate?
     
-    enum Constants {
+    private enum Constants {
         static let messageSuccessColor = UIColor(hexString: "3972E1")!
         static let messageErrorColor = UIColor.cheffiRed
         static let messageDefaultColor = UIColor.cheffiBlack

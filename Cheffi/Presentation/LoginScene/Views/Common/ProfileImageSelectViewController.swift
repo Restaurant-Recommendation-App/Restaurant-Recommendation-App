@@ -17,7 +17,7 @@ class ProfileImageSelectViewController: UIViewController {
         return vc
     }
     
-    enum Constants {
+    private enum Constants {
         static let selectButtonHeight: CGFloat = 54.0
     }
     

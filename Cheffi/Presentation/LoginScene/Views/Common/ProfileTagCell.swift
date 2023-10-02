@@ -11,7 +11,7 @@ class ProfileTagCell: UICollectionViewCell {
     
     @IBOutlet private weak var titleLabel: UILabel!
     
-    enum Constants {
+    private enum Constants {
         static let defaultTagBorderColor: UIColor = .cheffiGray2
         static let defatultTagTextColor: UIColor = .cheffiGray8
         static let selectedTagColor: UIColor = .mainCTA

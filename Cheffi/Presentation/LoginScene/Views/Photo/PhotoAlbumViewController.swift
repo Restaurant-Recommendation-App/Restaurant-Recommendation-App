@@ -19,7 +19,7 @@ class PhotoAlbumViewController: UIViewController {
         return vc
     }
     
-    enum Constants {
+    private enum Constants {
         static let spacing: CGFloat = 4.0
     }
     

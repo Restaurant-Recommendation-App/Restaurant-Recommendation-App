@@ -28,7 +28,7 @@ class PhotoCropViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
     var dismissCompletion: ((Data?) -> Void)?
     
-    enum Constants {
+    private enum Constants {
     }
     
     override func viewDidLoad() {

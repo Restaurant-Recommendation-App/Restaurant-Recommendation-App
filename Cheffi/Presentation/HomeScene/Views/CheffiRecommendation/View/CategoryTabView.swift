@@ -11,7 +11,7 @@ import SnapKit
 
 class TabButton: UIButton {
     
-    enum Constants {
+    private enum Constants {
         static let verticalInset: CGFloat = 10
         static let horizontalInset: CGFloat = 16
         static let defaultTabColor: UIColor = .cheffiGray5
@@ -59,7 +59,7 @@ protocol CategoryTabViewDelegate: AnyObject {
 
 class CategoryTabView: UIView {
     
-    enum Constants {
+    private enum Constants {
         static let cellInset = 16
     }
     

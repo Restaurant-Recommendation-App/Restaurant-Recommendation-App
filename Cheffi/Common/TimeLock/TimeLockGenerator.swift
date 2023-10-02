@@ -22,7 +22,7 @@ enum TimeLockType {
 
 final class TimeLockGenerator {
     
-    enum Constants {
+    private enum Constants {
         static let willLockMilliseconds = 300000
     }
     
