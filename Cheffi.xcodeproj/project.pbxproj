@@ -1741,8 +1741,8 @@
 				DEVELOPMENT_TEAM = 3D2GFZ7CZT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 필요해요.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 필요해요.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "이미지를 불러오기 위해 사진 권한을 허용합니다. (선택 권한)";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 찍기 위해 카메라 접근을 허용합니다. (선택 권한)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -1776,8 +1776,8 @@
 				DEVELOPMENT_TEAM = 3D2GFZ7CZT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 필요해요.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 필요해요.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "이미지를 불러오기 위해 사진 권한을 허용합니다. (선택 권한)";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 찍기 위해 카메라 접근을 허용합니다. (선택 권한)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
