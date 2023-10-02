@@ -156,8 +156,6 @@ class PhotoAlbumViewModel: PhotoAlbumViewModelType {
         self.actions = actions
         self.photoUseCase = photoUseCase
         self.cameraService = cameraService
-        
-        checkPhotoPermission(completion: nil)
     }
 }
 
