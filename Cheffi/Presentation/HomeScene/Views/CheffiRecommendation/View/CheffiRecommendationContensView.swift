@@ -92,12 +92,8 @@ extension CheffiRecommendationContensView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withClass: RestaurantContentCell.self, for: indexPath)
+        cell.configure(viewModel: items[indexPath.row])
         
-        cell.configure(
-            title: items[indexPath.row].title,
-            subtitle: items[indexPath.row].subtitle
-        )
-            
         return cell
     }
 }

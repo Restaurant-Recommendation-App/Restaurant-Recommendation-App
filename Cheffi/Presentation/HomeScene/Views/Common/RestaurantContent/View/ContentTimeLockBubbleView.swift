@@ -19,8 +19,8 @@ class ContentTimeLockBubbleView: UIView {
     
     private let timeLockLabel: UILabel = {
         let label = UILabel()
-        label.text = "30:25"
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.text = "00:00"
+        label.font = Fonts.suit.weight600.size(14)
         label.textColor = .cheffiWhite
         return label
     }()
@@ -52,7 +52,43 @@ class ContentTimeLockBubbleView: UIView {
         addSubview(timeLockLabel)
         timeLockLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
+            $0.width.equalTo(42)
             $0.trailing.equalToSuperview().inset(12)
         }
+    }
+    
+    private func setTimeLock(timeString: String, color: UIColor) {
+        timeLockLabel.text = timeString
+        timeLockLabel.textColor = color
+        timeLockImageView.image = UIImage(named: "icContentTimeLock")?
+            .withTintColor(color, renderingMode: .alwaysOriginal)
+    }
+    
+    func updateTimeLock(timeLockType: TimeLockType) {
+        let timerString: String
+        let color: UIColor
+        
+        switch timeLockType {
+        case .lock(let lockString):
+            timerString = lockString
+            color = .cheffiWhite
+            timeLockLabel.snp.updateConstraints {
+                $0.width.equalTo(67)
+            }
+        case .unlock(let digits):
+            timerString = digits
+            color = .cheffiWhite
+            timeLockLabel.snp.updateConstraints {
+                $0.width.equalTo(42)
+            }
+        case .willLock(let digits):
+            timerString = digits
+            color = .main
+            timeLockLabel.snp.updateConstraints {
+                $0.width.equalTo(62)
+            }
+        }
+        
+        setTimeLock(timeString: timerString, color: color)
     }
 }

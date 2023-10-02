@@ -34,14 +34,16 @@ extension DefaultCheffiRecommendationRepository: CheffiRecommendationRepository 
     
     // TODO: 무한 스크롤링을 위하여 임시 생성, 제거 필요
     private func moreContents(tag: String) -> [ContentsResponseDTO.contentDTO] {
-        var limit = (tag == "popularity") ? 47 : 10
+        let limit = (tag == "popularity") ? 47 : 10
         
         var contents = [ContentsResponseDTO.contentDTO]()
         for index in 0 ..< limit {
             contents.append(
                 ContentsResponseDTO.contentDTO(
                     title: "(\(tag)) 그시절낭만의 근본 경양식 돈가스\(index)",
-                    subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ..."
+                    subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...",
+                    contentTimeLockMilliSeconds: Int.random(in: 400000 ..< 86400000)
+//                    contentTimeLockSeconds: 303000
                 )
             )
         }
