@@ -47,6 +47,7 @@ class ProfilePhotoViewController: UIViewController {
         subTitleLabel.font = Fonts.suit.weight600.size(15)
         
         // select profile image button
+        selectProfileImageButton.isEnable = true
         selectProfileImageButton.setTitle("프로필 이미지 선택".localized(), for: .normal)
         selectProfileImageButton.setBackgroundColor(.main)
         selectProfileImageButton.didTapButton = { [weak self] in

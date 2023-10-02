@@ -41,6 +41,7 @@ final class CustomProfileButton: BaseView {
         setLayerCornerRadius(10.0)
         button.titleLabel?.font = Fonts.suit.weight600.size(16)
         button.setTitleColor(.white, for: .normal)
+        isEnable = false
     }
     
     // MARK: - Public

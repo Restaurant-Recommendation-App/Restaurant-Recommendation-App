@@ -33,7 +33,7 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
                                                    nicknameViewController: makeNicknameViewController(),
                                                    profilePhotoViewController: makeProfilePhotoViewController(viewMoel: profilePhotoViewModel),
                                                    foodSelectionViewController: makeFoodSelectionViewController(),
-                                                   preferenceViewController: makePreferenceViewController(),
+                                                   tasteSelectionViewController: makeTasteSelectionViewController(),
                                                    followSelectionViewController: makeFollowSelectionViewController())
     }
     
@@ -64,9 +64,9 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
         return FoodSelectionViewController.instance()
     }
     
-    // MARK: - Preference
-    func makePreferenceViewController() -> PreferenceViewController {
-        return PreferenceViewController.instance()
+    // MARK: - Taste
+    func makeTasteSelectionViewController() -> TasteSelectionViewController {
+        return TasteSelectionViewController.instance()
     }
     
     // MARK: - FollowSelection

@@ -112,6 +112,10 @@
 		FF338AF42A77E46800FCCE00 /* CheffiContensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF338AF32A77E46800FCCE00 /* CheffiContensView.xib */; };
 		FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */; };
 		FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */; };
+		FF3E0D522ACB0DA4009B236D /* ProfileTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3E0D512ACB0DA4009B236D /* ProfileTagListView.swift */; };
+		FF3E0D542ACB10AD009B236D /* ProfileTagListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3E0D532ACB10AD009B236D /* ProfileTagListView.xib */; };
+		FF3E0D572ACB1158009B236D /* ProfileTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3E0D552ACB1158009B236D /* ProfileTagCell.swift */; };
+		FF3E0D582ACB1158009B236D /* ProfileTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF3E0D562ACB1158009B236D /* ProfileTagCell.xib */; };
 		FF4659C62A8799B900736AEA /* AlbumInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4659C52A8799B900736AEA /* AlbumInfo.swift */; };
 		FF4659C82A879A8800736AEA /* PhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4659C72A879A8800736AEA /* PhotoRepository.swift */; };
 		FF4659CA2A879B1100736AEA /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4659C92A879B1100736AEA /* PhotoService.swift */; };
@@ -168,12 +172,12 @@
 		FFDBC6372A81380D0009189C /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6362A81380D0009189C /* NicknameViewController.swift */; };
 		FFDBC6392A8138150009189C /* ProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC6382A8138150009189C /* ProfilePhotoViewController.swift */; };
 		FFDBC63B2A81381E0009189C /* FoodSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC63A2A81381E0009189C /* FoodSelectionViewController.swift */; };
-		FFDBC63D2A8138330009189C /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC63C2A8138330009189C /* PreferenceViewController.swift */; };
+		FFDBC63D2A8138330009189C /* TasteSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC63C2A8138330009189C /* TasteSelectionViewController.swift */; };
 		FFDBC63F2A81383A0009189C /* FollowSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC63E2A81383A0009189C /* FollowSelectionViewController.swift */; };
 		FFDBC6412A8139260009189C /* Nickname.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6402A8139260009189C /* Nickname.storyboard */; };
 		FFDBC6432A8139350009189C /* ProfilePhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6422A8139350009189C /* ProfilePhoto.storyboard */; };
 		FFDBC6452A8139410009189C /* FoodSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6442A8139410009189C /* FoodSelection.storyboard */; };
-		FFDBC6472A8139500009189C /* Preference.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6462A8139500009189C /* Preference.storyboard */; };
+		FFDBC6472A8139500009189C /* TasteSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6462A8139500009189C /* TasteSelection.storyboard */; };
 		FFDBC6492A81395D0009189C /* FollowSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC6482A81395D0009189C /* FollowSelection.storyboard */; };
 		FFDBC64C2A813CC40009189C /* CustomProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDBC64B2A813CC40009189C /* CustomProfileButton.swift */; };
 		FFDBC64E2A813DE60009189C /* CustomProfileButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFDBC64D2A813DE60009189C /* CustomProfileButton.xib */; };
@@ -320,6 +324,10 @@
 		FF338AF32A77E46800FCCE00 /* CheffiContensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiContensView.xib; sourceTree = "<group>"; };
 		FF338AF52A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiContensViewImageCell.swift; sourceTree = "<group>"; };
 		FF338AF62A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheffiContensViewImageCell.xib; sourceTree = "<group>"; };
+		FF3E0D512ACB0DA4009B236D /* ProfileTagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTagListView.swift; sourceTree = "<group>"; };
+		FF3E0D532ACB10AD009B236D /* ProfileTagListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTagListView.xib; sourceTree = "<group>"; };
+		FF3E0D552ACB1158009B236D /* ProfileTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTagCell.swift; sourceTree = "<group>"; };
+		FF3E0D562ACB1158009B236D /* ProfileTagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTagCell.xib; sourceTree = "<group>"; };
 		FF4659C52A8799B900736AEA /* AlbumInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumInfo.swift; sourceTree = "<group>"; };
 		FF4659C72A879A8800736AEA /* PhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepository.swift; sourceTree = "<group>"; };
 		FF4659C92A879B1100736AEA /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
@@ -374,12 +382,12 @@
 		FFDBC6362A81380D0009189C /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		FFDBC6382A8138150009189C /* ProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		FFDBC63A2A81381E0009189C /* FoodSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectionViewController.swift; sourceTree = "<group>"; };
-		FFDBC63C2A8138330009189C /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
+		FFDBC63C2A8138330009189C /* TasteSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteSelectionViewController.swift; sourceTree = "<group>"; };
 		FFDBC63E2A81383A0009189C /* FollowSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowSelectionViewController.swift; sourceTree = "<group>"; };
 		FFDBC6402A8139260009189C /* Nickname.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Nickname.storyboard; sourceTree = "<group>"; };
 		FFDBC6422A8139350009189C /* ProfilePhoto.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfilePhoto.storyboard; sourceTree = "<group>"; };
 		FFDBC6442A8139410009189C /* FoodSelection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FoodSelection.storyboard; sourceTree = "<group>"; };
-		FFDBC6462A8139500009189C /* Preference.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preference.storyboard; sourceTree = "<group>"; };
+		FFDBC6462A8139500009189C /* TasteSelection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TasteSelection.storyboard; sourceTree = "<group>"; };
 		FFDBC6482A81395D0009189C /* FollowSelection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FollowSelection.storyboard; sourceTree = "<group>"; };
 		FFDBC64B2A813CC40009189C /* CustomProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProfileButton.swift; sourceTree = "<group>"; };
 		FFDBC64D2A813DE60009189C /* CustomProfileButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomProfileButton.xib; sourceTree = "<group>"; };
@@ -1098,8 +1106,8 @@
 				FFDBC6422A8139350009189C /* ProfilePhoto.storyboard */,
 				FFDBC63A2A81381E0009189C /* FoodSelectionViewController.swift */,
 				FFDBC6442A8139410009189C /* FoodSelection.storyboard */,
-				FFDBC63C2A8138330009189C /* PreferenceViewController.swift */,
-				FFDBC6462A8139500009189C /* Preference.storyboard */,
+				FFDBC63C2A8138330009189C /* TasteSelectionViewController.swift */,
+				FFDBC6462A8139500009189C /* TasteSelection.storyboard */,
 				FFDBC63E2A81383A0009189C /* FollowSelectionViewController.swift */,
 				FFDBC6482A81395D0009189C /* FollowSelection.storyboard */,
 				FFDF65312A8B3CB10078756E /* FollowSelectionCell.swift */,
@@ -1168,6 +1176,10 @@
 				FFF3EC682ABF1F7A00F6B431 /* ProfileImageSelect.storyboard */,
 				FFF3EC6A2ABF247300F6B431 /* ProfileImageSelectButton.swift */,
 				FFF3EC6C2ABF247800F6B431 /* ProfileImageSelectButton.xib */,
+				FF3E0D512ACB0DA4009B236D /* ProfileTagListView.swift */,
+				FF3E0D532ACB10AD009B236D /* ProfileTagListView.xib */,
+				FF3E0D552ACB1158009B236D /* ProfileTagCell.swift */,
+				FF3E0D562ACB1158009B236D /* ProfileTagCell.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1329,6 +1341,7 @@
 				FFDBC6412A8139260009189C /* Nickname.storyboard in Resources */,
 				D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */,
 				FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */,
+				FF3E0D582ACB1158009B236D /* ProfileTagCell.xib in Resources */,
 				CE0D453A2A61AA7700636989 /* MyPage.storyboard in Resources */,
 				FF338AF42A77E46800FCCE00 /* CheffiContensView.xib in Resources */,
 				CEABD7222A6BFF99001BC131 /* SimilarChefList.storyboard in Resources */,
@@ -1343,7 +1356,7 @@
 				CEABD7132A6BDE94001BC131 /* RecentSearchCell.xib in Resources */,
 				FF3197872A74E8C700F5DD41 /* CheffiReviewView.xib in Resources */,
 				FFDBC66D2A8277C90009189C /* SUIT-Regular.otf in Resources */,
-				FFDBC6472A8139500009189C /* Preference.storyboard in Resources */,
+				FFDBC6472A8139500009189C /* TasteSelection.storyboard in Resources */,
 				CE0D45432A626C3B00636989 /* SimilarChefCell.xib in Resources */,
 				FFC58ACF2A8675B20095BCF4 /* PhotoCell.xib in Resources */,
 				FFB50C4C2A72B6750049B5E1 /* ShowAllContentsButton.xib in Resources */,
@@ -1355,6 +1368,7 @@
 				CE42BA672A6BAF5700EBB80A /* PopupView.xib in Resources */,
 				FF3197792A74CA9E00F5DD41 /* CheffiMenuView.xib in Resources */,
 				FFDF65342A8B3CB10078756E /* FollowSelectionCell.xib in Resources */,
+				FF3E0D542ACB10AD009B236D /* ProfileTagListView.xib in Resources */,
 				CE0D45262A618F8700636989 /* NationalTrend.storyboard in Resources */,
 				FFDBC6452A8139410009189C /* FoodSelection.storyboard in Resources */,
 				FF3197832A74E51100F5DD41 /* CheffiLocationView.xib in Resources */,
@@ -1452,8 +1466,10 @@
 				FFC58ACE2A8675B20095BCF4 /* PhotoCell.swift in Sources */,
 				CEABD71D2A6BDFD5001BC131 /* Search.swift in Sources */,
 				FF4659C82A879A8800736AEA /* PhotoRepository.swift in Sources */,
+				FF3E0D572ACB1158009B236D /* ProfileTagCell.swift in Sources */,
 				CE42BA622A6B9D8F00EBB80A /* UIColor+Extensions.swift in Sources */,
 				D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */,
+				FF3E0D522ACB0DA4009B236D /* ProfileTagListView.swift in Sources */,
 				FF97932C2A72BF9900A921A0 /* AccountManager.swift in Sources */,
 				FFDBC6372A81380D0009189C /* NicknameViewController.swift in Sources */,
 				FFC7C6652A888B6900EBE162 /* PhotoCropViewController.swift in Sources */,
@@ -1538,7 +1554,7 @@
 				FF4659C62A8799B900736AEA /* AlbumInfo.swift in Sources */,
 				FFC2F20B2A9094240001C86C /* MoreSubCell.swift in Sources */,
 				CE70F8992A63C692003D0ED9 /* DefaultSimilarChefRepository.swift in Sources */,
-				FFDBC63D2A8138330009189C /* PreferenceViewController.swift in Sources */,
+				FFDBC63D2A8138330009189C /* TasteSelectionViewController.swift in Sources */,
 				FF3197732A74C8F800F5DD41 /* CheffiMenuView.swift in Sources */,
 				FF4659CA2A879B1100736AEA /* PhotoService.swift in Sources */,
 				CE1A6A782A6294DC00FFE93D /* TagListView.swift in Sources */,
