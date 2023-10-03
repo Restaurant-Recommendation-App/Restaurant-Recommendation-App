@@ -19,4 +19,9 @@ struct HomeAPIEndpoints {
                         queryParameters: ["tags": tags]
         )
     }
+    
+    static func getNotifications() -> Endpoint<[NotificationDTO]> {
+        return Endpoint(path: "notification",
+                        method: .get)
+    }
 }

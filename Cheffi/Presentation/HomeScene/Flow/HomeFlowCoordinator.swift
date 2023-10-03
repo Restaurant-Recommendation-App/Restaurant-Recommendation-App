@@ -14,6 +14,7 @@ protocol HomeFlowCoordinatorDependencies {
     func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
     func makeCheffiDetail() -> CheffiDetailViewController
+    func makeNotificationViewController(actions: NotificationViewModelActions) -> NotificationViewController
 }
 
 final class HomeFlowCoordinator {
@@ -30,7 +31,8 @@ final class HomeFlowCoordinator {
     func start() {
         let actions = HomeViewModelActions(showPopup: showPopup,
                                            showSimilarChefList: showSimilarChefList,
-                                           showSearch: showSearch)
+                                           showSearch: showSearch,
+                                           showNotification: showNotification)
         let vc = dependencies.makeViewController(actions: actions)
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -64,6 +66,12 @@ final class HomeFlowCoordinator {
     private func showCheffiDetail() {
         let vc = dependencies.makeCheffiDetail()
         navigationController?.pushViewController(vc)
+    }
+    
+    private func showNotification() {
+        let actions = NotificationViewModelActions()
+        let vc = dependencies.makeNotificationViewController(actions: actions)
+        navigationController?.present(vc, animated: true)
     }
 }
 

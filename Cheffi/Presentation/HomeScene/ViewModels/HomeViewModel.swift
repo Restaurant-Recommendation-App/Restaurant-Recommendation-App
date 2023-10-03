@@ -12,6 +12,7 @@ struct HomeViewModelActions {
     let showPopup: (_ text: String, _ keyword: String, _ popupState: PopupState) -> Void
     let showSimilarChefList: () -> Void
     let showSearch: () -> Void
+    let showNotification: () -> Void
 }
 
 protocol HomeViewModelInput {
@@ -21,9 +22,15 @@ protocol HomeViewModelOutput {
     var similarChefViewModel: SimilarChefViewModel { get }
     var popularRestaurantViewModel: PopularRestaurantViewModel { get }
     var recommendationViewModel: CheffiRecommendationViewModel { get }
+    func showPopup(text: String, keywrod: String, popupState: PopupState)
+    func showSimilarChefList()
+    func showSearch()
+    func showNotification()
 }
 
-final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
+typealias HomeViewModelType = HomeViewModelInput & HomeViewModelOutput
+
+final class HomeViewModel: HomeViewModelType {
     private var cancellables = Set<AnyCancellable>()
     private let actions: HomeViewModelActions?
     
@@ -44,6 +51,10 @@ final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
     
     func showSearch() {
         actions?.showSearch()
+    }
+    
+    func showNotification() {
+        actions?.showNotification()
     }
 
     // MARK: - Init

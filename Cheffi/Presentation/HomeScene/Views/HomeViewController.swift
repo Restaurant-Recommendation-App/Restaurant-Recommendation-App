@@ -9,14 +9,14 @@ import UIKit
 import Combine
 
 class HomeViewController: UIViewController {
-    static func instance<T: HomeViewController>(viewModel: HomeViewModel) -> T {
+    static func instance<T: HomeViewController>(viewModel: HomeViewModelType) -> T {
         let vc: T = .instance(storyboardName: .home)
         vc.viewModel = viewModel
         return vc
     }
     
     @IBOutlet private weak var tableView: UITableView!
-    var viewModel: HomeViewModel!
+    var viewModel: HomeViewModelType!
     
     enum Constants {
         static let headerHeight: CGFloat = 32.0
@@ -45,8 +45,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction private func didTapNotification(_ sender: UIButton) {
-        // TODO: Test 코드
-        viewModel.showPopup(text: "쉐피 코인 1개를 차감하여\n새로운 맛집을 찾아 떠나볼까요?", keywrod: "쉐피 코인 1개를 차감", popupState: .member)
+        viewModel.showNotification()
     }
 }
 
