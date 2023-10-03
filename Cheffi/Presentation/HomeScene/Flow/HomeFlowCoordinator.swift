@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol HomeFlowCoordinatorDependencies {
-    func makePopupViewController(text: String, keyword: String, popupState: PopupState, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController
+    func makePopupViewController(text: String, subText: String, keyword: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) -> PopupViewController
     func makeViewController(actions: HomeViewModelActions) -> HomeViewController
     func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
@@ -37,16 +37,31 @@ final class HomeFlowCoordinator {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func showPopup(text: String, keyword: String, popupState: PopupState) {
-        let vc = dependencies.makePopupViewController(text: text, keyword: keyword, popupState: popupState, findHandler: { [weak self] in
+    private func showPopup(text: String, subText: String, keyword: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) {
+        let vc = dependencies.makePopupViewController(text: text,
+                                                      subText: subText,
+                                                      keyword: keyword,
+                                                      popupState: popupState,
+                                                      leftButtonTitle: leftButtonTitle,
+                                                      rightButtonTitle: rightButtonTitle,
+                                                      leftHandler: { leftHandler?() },
+                                                      rightHandler: { [weak self] in
+            rightHandler?()
             switch popupState {
             case .member:
                 self?.showCheffiDetail()
             case .nonMember:
                 self?.showLogin()
+            case .deleteNotification:
+                break
             }
-        }, cancelHandler: {})
-        navigationController?.present(vc, animated: true)
+        })
+        
+        if let presentVC = navigationController?.presentedViewController {
+            presentVC.present(vc, animated: true)
+        } else {
+            navigationController?.present(vc, animated: true)
+        }
     }
     
     private func showSimilarChefList() {
@@ -69,7 +84,7 @@ final class HomeFlowCoordinator {
     }
     
     private func showNotification() {
-        let actions = NotificationViewModelActions()
+        let actions = NotificationViewModelActions(showPopup: showPopup)
         let vc = dependencies.makeNotificationViewController(actions: actions)
         navigationController?.present(vc, animated: true)
     }

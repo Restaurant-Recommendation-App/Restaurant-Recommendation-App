@@ -47,10 +47,21 @@ class NotificationViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(nibWithCellClass: NotificationCell.self)
         
-        headerView.didTapDeleteHandler = { [weak self] in
+        headerView.didTapDeleteHandler = { [weak self] isSelected in
+            if !isSelected {
+                self?.viewModel.showPopup(text: "모든 알림 삭제",
+                                          subText: "모든 알림이 삭제됩니다.",
+                                          keywrod: "",
+                                          popupState: .deleteNotification,
+                                          leftButtonTitle: "취소하기",
+                                          rightButtonTitle: "삭제하기",
+                                          leftHandler: nil,
+                                          rightHandler: { [weak self] in
 #if DEBUG
-            print("삭제 버튼")
+                    print("전체 삭제 하기")
 #endif
+                })
+            }
         }
         
         viewModel.notificationsPublisher
@@ -109,7 +120,7 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
 #if DEBUG
         print("-----------------------------------------")
         print("선택 된 알림")
-        print(notification)
+        print(notification.content)
         print("-----------------------------------------")
 #endif
     }

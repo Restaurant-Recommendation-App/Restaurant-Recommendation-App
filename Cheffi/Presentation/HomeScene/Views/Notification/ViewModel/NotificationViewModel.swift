@@ -8,6 +8,7 @@
 import Combine
 
 struct NotificationViewModelActions {
+    let showPopup: (_ text: String,_ subText: String, _ keyword: String, _ popupState: PopupState, _ leftButtonTitle: String, _ rightButtonTitle: String, _ leftHandler: (() -> Void)?, _ rightHandler: (() -> Void)?) -> Void
 }
 
 protocol NotificationViewModelInput {
@@ -17,6 +18,7 @@ protocol NotificationViewModelInput {
 protocol NotificationViewModelOutput {
     var notificationsPublisher: AnyPublisher<[Notification], Never> { get }
     var errorPublisher: AnyPublisher<DataTransferError, Never> { get }
+    func showPopup(text: String, subText: String, keywrod: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?)
 }
 
 typealias NotificationViewModelType = NotificationViewModelInput & NotificationViewModelOutput
@@ -84,6 +86,10 @@ final class NotificationViewModel: NotificationViewModelType {
     
     var errorPublisher: AnyPublisher<DataTransferError, Never> {
         _error.eraseToAnyPublisher()
+    }
+    
+    func showPopup(text: String, subText: String, keywrod: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) {
+        actions.showPopup(text, subText, keywrod, popupState, leftButtonTitle, rightButtonTitle, leftHandler, rightHandler)
     }
 }
 

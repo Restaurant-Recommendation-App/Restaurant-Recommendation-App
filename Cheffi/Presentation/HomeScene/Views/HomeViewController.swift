@@ -37,7 +37,12 @@ class HomeViewController: UIViewController {
     // MARK: - Actions
     @IBAction private func didTapLocation(_ sender: UIButton) {
         // TODO: Test 코드
-        viewModel.showPopup(text: "잠긴 게시물은\n회원가입 후 확인할 수 있어요!", keywrod: "회원가입 후 확인", popupState: .nonMember)
+        viewModel.showPopup(text: "잠긴 게시물은\n회원가입 후 확인할 수 있어요!",
+                            subText: "",
+                            keywrod: "회원가입 후 확인",
+                            popupState: .nonMember,
+                            leftButtonTitle: "취소하기",
+                            rightButtonTitle: "찾아보기")
     }
     
     @IBAction private func didTapSearch(_ sender: UIButton) {

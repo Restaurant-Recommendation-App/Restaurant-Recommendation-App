@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,9 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopupView" customModule="Cheffi" customModuleProvider="target">
             <connections>
-                <outlet property="cancelButton" destination="qCv-OI-3LH" id="qE8-fY-deK"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Z3O-0j-ETu"/>
-                <outlet property="findButton" destination="4f0-yi-UQA" id="a6k-Gw-Uxy"/>
+                <outlet property="leftButton" destination="qCv-OI-3LH" id="49K-5E-bDw"/>
+                <outlet property="rightButton" destination="4f0-yi-UQA" id="fdz-mt-lxl"/>
+                <outlet property="subTextLabel" destination="PdB-dT-WOo" id="c02-nc-UyJ"/>
                 <outlet property="textLabel" destination="xtp-15-8x7" id="q9I-ZJ-yHq"/>
             </connections>
         </placeholder>
@@ -31,7 +32,7 @@
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                             <color key="tintColor" name="CheffiGray6"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="취소하기">
+                            <state key="normal" title="-">
                                 <color key="titleColor" name="CheffiGray6"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -40,7 +41,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="didTapCancel:" destination="-1" eventType="touchUpInside" id="3tY-tx-JbS"/>
+                                <action selector="didTapLeftButton:" destination="-1" eventType="touchUpInside" id="Cqb-fN-xUS"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4f0-yi-UQA">
@@ -48,7 +49,7 @@
                             <color key="backgroundColor" name="Main"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="찾아보기">
+                            <state key="normal" title="-">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -57,7 +58,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="didTapFind:" destination="-1" eventType="touchUpInside" id="sZy-Rl-Fkm"/>
+                                <action selector="didTapRightButton:" destination="-1" eventType="touchUpInside" id="yFg-pV-hLY"/>
                             </connections>
                         </button>
                     </subviews>
@@ -65,21 +66,32 @@
                         <constraint firstAttribute="height" constant="40" id="Ghp-YK-HmC"/>
                     </constraints>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtp-15-8x7">
-                    <rect key="frame" x="48" y="44" width="551" height="184"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9qS-48-yZl">
+                    <rect key="frame" x="48" y="44" width="551" height="196"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtp-15-8x7">
+                            <rect key="frame" x="0.0" y="0.0" width="551" height="92"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdB-dT-WOo">
+                            <rect key="frame" x="0.0" y="104" width="551" height="92"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="ojd-eL-Lum" firstAttribute="top" secondItem="xtp-15-8x7" secondAttribute="bottom" constant="24" id="VaB-To-mdY"/>
+                <constraint firstItem="ojd-eL-Lum" firstAttribute="top" secondItem="9qS-48-yZl" secondAttribute="bottom" constant="12" id="3r4-AZ-uwr"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9qS-48-yZl" secondAttribute="trailing" constant="48" id="7jk-HG-G5K"/>
+                <constraint firstItem="9qS-48-yZl" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="24" id="8Bz-F9-BjX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ojd-eL-Lum" secondAttribute="bottom" constant="24" id="ZpO-2a-wLd"/>
-                <constraint firstItem="xtp-15-8x7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="48" id="hI0-c7-Tmd"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xtp-15-8x7" secondAttribute="trailing" constant="48" id="jsU-Bi-dNV"/>
-                <constraint firstItem="xtp-15-8x7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="24" id="wKI-Y4-cDo"/>
+                <constraint firstItem="9qS-48-yZl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="48" id="qbX-de-G3q"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ojd-eL-Lum" secondAttribute="trailing" constant="24" id="x2D-RG-foA"/>
                 <constraint firstItem="ojd-eL-Lum" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="xHq-p4-4xi"/>
             </constraints>
