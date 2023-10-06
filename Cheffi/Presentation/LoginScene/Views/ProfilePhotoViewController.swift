@@ -15,11 +15,12 @@ class ProfilePhotoViewController: UIViewController {
         return vc
     }
     
-    @IBOutlet private weak var registerProfileButton: CustomProfileButton!
+    @IBOutlet private weak var selectProfileImageButton: CustomProfileButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
     @IBOutlet private weak var laterButton: UIButton!
     @IBOutlet private weak var profileImageView: UIImageView!
+    @IBOutlet private weak var profileChangeStackView: UIStackView!
     private var viewModel: ProfilePhotoViewModelType!
     var delegate: ProfileSetupDelegate?
     
@@ -36,21 +37,23 @@ class ProfilePhotoViewController: UIViewController {
     
     // MARK: - Private
     private func setupViews() {
-        registerProfileButton.setTitle("프로필 등록하기".localized(), for: .normal)
-        registerProfileButton.setBackgroundColor(.main)
-        registerProfileButton.didTapButton = { [weak self] in
-#if DEBUG
-            print("프로필 등록")
-#endif
-            self?.delegate?.didTapNext()
-        }
+        // titleLabel
+        titleLabel.textColor = .cheffiBlack
+        titleLabel.font = Fonts.suit.weight600.size(22)
         
-        titleLabel.textColor = .cheffiGray9
-        titleLabel.font = Fonts.suit.weight600.size(24)
-        
+        // subTitleLabel
         subTitleLabel.text = "다른 사용자가 나를 알 수 있게 프로필을 만들어보세요".localized()
         subTitleLabel.textColor = .cheffiGray6
         subTitleLabel.font = Fonts.suit.weight600.size(15)
+        
+        // select profile image button
+        selectProfileImageButton.isEnable = true
+        selectProfileImageButton.setTitle("프로필 이미지 선택".localized(), for: .normal)
+        selectProfileImageButton.setBackgroundColor(.main)
+        selectProfileImageButton.didTapButton = { [weak self] in
+            // show action sheet
+            self?.showProfileImageSelect(types: [.camera, .album])
+        }
         
         let titleString = "나중에 하기".localized()
         let attributedString = NSMutableAttributedString(string: titleString)
@@ -58,19 +61,95 @@ class ProfilePhotoViewController: UIViewController {
         laterButton.setAttributedTitle(attributedString, for: .normal)
         laterButton.titleLabel?.font = Fonts.suit.weight600.size(16)
         laterButton.setTitleColor(.cheffiGray4, for: .normal)
+        
+        // Profile stackview
+        profileChangeStackView.isHidden = true
+    }
+    
+    private func showProfileImageSelect(types: [ProfileImageSelectType]) {
+        viewModel.showProfileImageSelect(types) { [weak self] selectType in
+            self?.presentedViewController?.dismiss(animated: false)
+            switch selectType {
+            case .camera:
+                self?.showCamera()
+            case .album:
+                self?.showPhotoAlbum()
+            case .defaultImage:
+                self?.setProfileImage(imageData: nil)
+            }
+        }
+    }
+    
+    private func setProfileImage(imageData: Data?) {
+        if let data = imageData {
+            profileImageView.image = UIImage(data: data)
+        } else {
+            profileImageView.image = UIImage(named: "icPlaceholder")
+        }
+        
+    }
+    
+    private func showProfileChangeView() {
+        guard profileChangeStackView.arrangedSubviews.isEmpty else { return }
+        let profileChangeButton = CustomProfileButton()
+        profileChangeButton.isEnable = true
+        profileChangeButton.setTitle("프로필 이미지 변경".localized(), for: .normal)
+        profileChangeButton.setTitleColor(.mainCTA, for: .normal)
+        profileChangeButton.setBackgroundColor(.white)
+        profileChangeButton.setLayerCornerRadius(10)
+        profileChangeButton.setTitleFont(font: Fonts.suit.weight600.size(16))
+        profileChangeButton.setLayerBorderColor(.mainCTA)
+        profileChangeButton.setLayerBorderWidth(1)
+        profileChangeButton.didTapButton = { [weak self] in
+            self?.showProfileImageSelect(types: [.camera, .album, .defaultImage])
+        }
+        let nextButton = CustomProfileButton()
+        nextButton.isEnable = true
+        nextButton.setTitle("다음".localized(), for: .normal)
+        nextButton.setTitleColor(.white, for: .normal)
+        nextButton.setBackgroundColor(.mainCTA)
+        nextButton.setLayerCornerRadius(10)
+        nextButton.setTitleFont(font: Fonts.suit.weight600.size(16))
+        nextButton.didTapButton = { [weak self] in
+            self?.delegate?.didTapNext()
+        }
+        
+        profileChangeStackView.isHidden = false
+        profileChangeStackView.addArrangedSubview(profileChangeButton)
+        profileChangeStackView.addArrangedSubview(nextButton)
     }
     
     // MARK: - Public
     
     // MAKR: - Actions
-    @IBAction private func didTapCamera(_ sender: UIButton) {
+    private func showCamera() {
+        viewModel.showCamera(false) { [weak self] captureImageData in
+#if DEBUG
+            print("capture image data- \(captureImageData)")
+#endif
+            self?.handlePhotoCropAction(captureImageData: captureImageData) { [weak self] cropImageData in
+                DispatchQueue.main.async {
+                    self?.setProfileImage(imageData: cropImageData)
+                    self?.showProfileChangeView()
+                }
+            }
+        }
+    }
+    
+    private func handlePhotoCropAction(captureImageData: Data?, completion: @escaping (Data?) -> Void) {
+        viewModel.showPhotoCrop(captureImageData) { cropImageData in
+            completion(cropImageData)
+        }
+    }
+    
+    private func showPhotoAlbum() {
         viewModel.showPhotoAlbum { [weak self] cropImageData in
 #if DEBUG
             print("crop image data - \(cropImageData)")
 #endif
-            guard let data = cropImageData else { return }
             DispatchQueue.main.async {
-                self?.profileImageView.image = UIImage(data: data)
+                self?.setProfileImage(imageData: cropImageData)
+                self?.showProfileChangeView()
             }
         }
     }

@@ -11,14 +11,15 @@ import Photos
 import SnapKit
 
 class PhotoAlbumViewController: UIViewController {
-    static func instance<T: PhotoAlbumViewController>(viewModel: PhotoAlbumViewModelType, dismissCompltion: ((Data?) -> Void)?) -> T {
+    static func instance<T: PhotoAlbumViewController>(viewModel: PhotoAlbumViewModelType, dismissCompletion: ((Data?) -> Void)?) -> T {
         let vc: T = .instance(storyboardName: .photoAlbum)
         vc.viewModel = viewModel
-        vc.dismissCompltion = dismissCompltion
+        vc.dismissCompletion = dismissCompletion
+        vc.modalPresentationStyle = .overFullScreen
         return vc
     }
     
-    enum Constants {
+    private enum Constants {
         static let spacing: CGFloat = 4.0
     }
     
@@ -32,7 +33,7 @@ class PhotoAlbumViewController: UIViewController {
     private var viewModel: PhotoAlbumViewModelType!
     private var dataSource: UICollectionViewDiffableDataSource<Int, String>? = nil
     private var cancellables: Set<AnyCancellable> = []
-    var dismissCompltion: ((Data?) -> Void)?
+    var dismissCompletion: ((Data?) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -185,7 +186,7 @@ class PhotoAlbumViewController: UIViewController {
     @IBAction private func didTapNext(_ sender: UIButton) {
         handlePhotoCropAction(captureImageData: nil) { [weak self] cropImageData in
             self?.dismiss(animated: false, completion: {
-                self?.dismissCompltion?(cropImageData)
+                self?.dismissCompletion?(cropImageData)
             })
         }
     }
@@ -223,10 +224,10 @@ extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
-            viewModel.showCamera { [weak self] captureImageData in
+            viewModel.showCamera(true) { [weak self] captureImageData in
                 self?.handlePhotoCropAction(captureImageData: captureImageData, completion: { cropImageData in
                     self?.dismiss(animated: false, completion: {
-                        self?.dismissCompltion?(cropImageData)
+                        self?.dismissCompletion?(cropImageData)
                     })
                 })
             }

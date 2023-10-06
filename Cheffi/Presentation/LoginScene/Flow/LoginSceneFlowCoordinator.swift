@@ -11,10 +11,13 @@ import Combine
 protocol LoginFlowCoordinatorDependencies {
     func makeSNSLoginViewController(actions: SNSLoginViewModelActions) -> SNSLoginViewController
     func makeProfileSetupViewController(nicknameViewModel: NicknameViewModelType, profilePhotoViewModel: ProfilePhotoViewModelType) -> ProfileSetupViewController
-    func makePhotoAlbumViewController(actions: PhotoAlbumViewModelActions, dismissCompltion: ((Data?) -> Void)?) -> PhotoAlbumViewController
+    func makeProfileImageSelectViewController(selectTypes: [ProfileImageSelectType],
+                                              selectCompletion: ((ProfileImageSelectType) -> Void)?) -> ProfileImageSelectViewController
+    func makePhotoAlbumViewController(viewModel: PhotoAlbumViewModel, dismissCompletion: ((Data?) -> Void)?) -> PhotoAlbumViewController
+    func makePhotoAlbumViewModel(actions: PhotoAlbumViewModelActions) -> PhotoAlbumViewModel
     func makeNicknameViewModel() -> NicknameViewModelType
     func makeProfilePhotoViewModel(actions: ProfilePhotoViewModelActions) -> ProfilePhotoViewModelType
-    func makePhotoCropViewController(viewModel: PhotoCropViewModel, dismissCompltion: ((Data?) -> Void)?) -> PhotoCropViewController
+    func makePhotoCropViewController(viewModel: PhotoCropViewModel, dismissCompletion: ((Data?) -> Void)?) -> PhotoCropViewController
     func makePhotoCropViewModel(imageData: Data) -> PhotoCropViewModel
 }
 
@@ -45,34 +48,61 @@ final class LoginFlowCoordinator {
     
     // MARK: - Actions
     private func showProfileSetupViewController() {
-        let profilePhotoActions = ProfilePhotoViewModelActions(showPhotoAlbum: showPhotoAlbumViewController)
+        let profilePhotoActions = ProfilePhotoViewModelActions(showCamera: showCameraViewController,
+                                                               showPhotoCrop: showPhotoCropViewController,
+                                                               showPhotoAlbum: showPhotoAlbumViewController,
+                                                               showProfileImageSelect: showProfileImageSelectViewController)
         let vc = dependencies.makeProfileSetupViewController(nicknameViewModel: dependencies.makeNicknameViewModel(),
                                                              profilePhotoViewModel: dependencies.makeProfilePhotoViewModel(actions: profilePhotoActions))
         self.profileSetupViewController = vc
         self.navigationController?.pushViewController(vc)
     }
     
-    private func showPhotoAlbumViewController(dismissCompltion: ((Data?) -> Void)?) {
+    private func showPhotoAlbumViewController(dismissCompletion: ((Data?) -> Void)?) {
         let actions = PhotoAlbumViewModelActions(showPhotoCrop: showPhotoCropViewController,
                                                  showCamera: showCameraViewController)
-        let vc = dependencies.makePhotoAlbumViewController(actions: actions, dismissCompltion: dismissCompltion)
-        vc.modalPresentationStyle = .overFullScreen
-        self.profileSetupViewController?.present(vc, animated: true)
-    }
-    
-    private func showCameraViewController(dismissCompltion: ((Data?) -> Void)?) {
-        guard let vc = self.profileSetupViewController?.presentedViewController as? PhotoAlbumViewController else { return }
-        cameraService = nil
-        cameraService = DefaultCameraService()
-        cameraService?.captureImage(from: vc) { captureImage in
-            dismissCompltion?(captureImage?.pngData())
+        let viewModel = dependencies.makePhotoAlbumViewModel(actions: actions)
+        viewModel.checkPhotoPermission { [weak self] isPermission in
+            DispatchQueue.main.async {
+                if isPermission {
+                    let vc = self?.dependencies.makePhotoAlbumViewController(viewModel: viewModel, dismissCompletion: dismissCompletion)
+                    self?.navigationController?.present(vc!, animated: true)
+                }
+            }
         }
     }
     
-    private func showPhotoCropViewController(imageData: Data, dismissCompltion: ((Data?) -> Void)?) {
+    private func showProfileImageSelectViewController(selectTypes: [ProfileImageSelectType], selectTypeCompletion: ((ProfileImageSelectType) -> Void)?) {
+        let vc = dependencies.makeProfileImageSelectViewController(selectTypes: selectTypes, selectCompletion: selectTypeCompletion)
+        self.navigationController?.present(vc, animated: true)
+    }
+    
+    private func showCameraViewController(isPresentPhotoAlbum: Bool, dismissCompletion: ((Data?) -> Void)?) {
+#if DEBUG
+        print("---------->>> show camera")
+#endif
+        cameraService = nil
+        cameraService = DefaultCameraService()
+        if isPresentPhotoAlbum {
+            guard let vc = self.navigationController?.findPresentedViewController(ofType: PhotoAlbumViewController.self) else { return }
+            cameraService?.captureImage(from: vc) { captureImage in
+                dismissCompletion?(captureImage?.pngData())
+            }
+        } else {
+            guard let vc = self.navigationController else { return }
+            cameraService?.captureImage(from: vc) { captureImage in
+                dismissCompletion?(captureImage?.pngData())
+            }
+        }
+    }
+    
+    private func showPhotoCropViewController(imageData: Data, dismissCompletion: ((Data?) -> Void)?) {
         let viewModel = dependencies.makePhotoCropViewModel(imageData: imageData)
-        let vc = dependencies.makePhotoCropViewController(viewModel: viewModel, dismissCompltion: dismissCompltion)
-        vc.modalPresentationStyle = .overCurrentContext
-        self.profileSetupViewController?.presentedViewController?.present(vc, animated: true)
+        let vc = dependencies.makePhotoCropViewController(viewModel: viewModel, dismissCompletion: dismissCompletion)
+        if let photoalbumVC = self.navigationController?.findPresentedViewController(ofType: PhotoAlbumViewController.self) {
+            photoalbumVC.present(vc, animated: true)
+        } else {
+            self.navigationController?.present(vc, animated: true)
+        }
     }
 }

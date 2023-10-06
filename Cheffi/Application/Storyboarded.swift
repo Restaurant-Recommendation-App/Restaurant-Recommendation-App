@@ -22,7 +22,8 @@ enum StoryboardName: String {
     case profileSetup
     case nickname
     case profilePhoto
-    case preference
+    case profileImageSelect
+    case tasteSelection
     case foodSelection
     case followSelection
     case photoAlbum

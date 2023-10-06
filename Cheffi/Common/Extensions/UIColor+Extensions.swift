@@ -15,6 +15,9 @@ extension UIColor {
     /// #EB4351
     static let mainCTA: UIColor = UIColor(named: "Main-CTA")!
     
+    /// #D82231
+    static let cheffiRed: UIColor = UIColor(named: "CheffiRed")!
+    
     /// #0A0A0A
     static let cheffiBlack: UIColor = UIColor(named: "CheffiBlack")!
     

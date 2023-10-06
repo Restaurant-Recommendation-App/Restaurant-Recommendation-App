@@ -20,7 +20,7 @@ class SimilarChefCell: UITableViewCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var showAllContentsDirection: ShowAllContentsButton!
     
-    enum Constants {
+    private enum Constants {
         static let cellInset: CGFloat = 16.0
         static let cellHeight: CGFloat = 64.0
     }

@@ -45,4 +45,15 @@ extension UIViewController {
         let window = windowScene?.windows.first(where: { $0.isKeyWindow })
         window?.rootViewController?.dismiss(animated: true, completion: completion)
     }
+    
+    func findPresentedViewController<T: UIViewController>(ofType type: T.Type) -> T? {
+        var currentVC = self.presentedViewController
+        while currentVC != nil {
+            if let desiredVC = currentVC as? T {
+                return desiredVC
+            }
+            currentVC = currentVC?.presentedViewController
+        }
+        return nil
+    }
 }

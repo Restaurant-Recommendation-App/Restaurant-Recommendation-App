@@ -10,7 +10,7 @@ import Combine
 
 final class PopularRestaurantViewModel: ViewModelType {
     
-    enum Constants {
+    private enum Constants {
         static let dayMilliseconds = 86400000
     }
     

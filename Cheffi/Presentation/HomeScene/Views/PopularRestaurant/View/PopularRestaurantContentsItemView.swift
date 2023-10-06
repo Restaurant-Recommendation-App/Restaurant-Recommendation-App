@@ -10,7 +10,7 @@ import Combine
 
 class PopularRestaurantContentsItemView: UICollectionView {
     
-    enum Constants {
+    private enum Constants {
         static let cellHeight = 270
         static let cellLineSpcaing = 24
     }
