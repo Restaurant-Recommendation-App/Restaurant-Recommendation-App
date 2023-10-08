@@ -20,6 +20,9 @@ protocol NotificationViewModelInput {
     func selectIndexPathsRemoveAll()
     func selectIndexPathAppend(_ indexPath: IndexPath)
     func setDeleting(_ status: Bool)
+    func readNotoficationAppend(at id: String)
+    func readNotificationRemoveAll()
+    func readNotificationRemove(at indexPath: IndexPath)
 }
 
 protocol NotificationViewModelOutput {
@@ -31,6 +34,7 @@ protocol NotificationViewModelOutput {
     var selectIndexPaths: [IndexPath] { get }
     var numberOfNotifications: Int { get }
     func notification(at index: Int) -> Notification?
+    func isReadNotification(at id: String) -> Bool
     func showPopup(text: String, subText: String, keywrod: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?)
 }
 
@@ -45,7 +49,7 @@ final class NotificationViewModel: NotificationViewModelType {
     private var cancellables: Set<AnyCancellable> = []
     private var _isDeleting = CurrentValueSubject<Bool, Never>(false)
     private var _selectIndexPaths = CurrentValueSubject<[IndexPath], Never>([])
-    private var readNotifications: [Notification] = []
+    private var readNotificationIds: [String] = []
     
     
     // MARK: - Init
@@ -76,12 +80,12 @@ final class NotificationViewModel: NotificationViewModelType {
         _viewDidLoad
             .flatMap { _ in
                 let dummyNotifications = [
-                    Notification(notificationType: .post, content: "‘김쉐피'님께서 새로운 게시글을 등록했어요"),
-                    Notification(notificationType: .like, content: "‘그시절낭만의 근본 경양식 돈가스’의 글이 유료전환까지 1시간 남았어요"),
-                    Notification(notificationType: .follow, content: "‘최쉐피'님께서 나를 팔로우 했어요"),
-                    Notification(notificationType: .notice, content: "‘마이크 테스트’ 게시글이 등록 되었어요"),
-                    Notification(notificationType: .post, content: "내가 쓴 ‘경양식 돈가스’의 글이 인기 급등 맛집으로 선정되었어요"),
-                    Notification(notificationType: .notice, content: "‘마이크 테스트’ 게시글이 등록 되었어요")
+                    Notification(id: "1", notificationType: .post, content: "‘김쉐피'님께서 새로운 게시글을 등록했어요"),
+                    Notification(id: "2", notificationType: .like, content: "‘그시절낭만의 근본 경양식 돈가스’의 글이 유료전환까지 1시간 남았어요"),
+                    Notification(id: "3", notificationType: .follow, content: "‘최쉐피'님께서 나를 팔로우 했어요"),
+                    Notification(id: "4", notificationType: .notice, content: "‘마이크 테스트’ 게시글이 등록 되었어요"),
+                    Notification(id: "5", notificationType: .post, content: "내가 쓴 ‘경양식 돈가스’의 글이 인기 급등 맛집으로 선정되었어요"),
+                    Notification(id: "6", notificationType: .notice, content: "‘마이크 테스트’ 게시글이 등록 되었어요")
                 ]
                 return Just(dummyNotifications)
             }
@@ -122,6 +126,24 @@ final class NotificationViewModel: NotificationViewModelType {
         _isDeleting.send(status)
     }
     
+    func readNotoficationAppend(at id: String) {
+        UserDefaultsManager.NotificationInfo.notificationIds.append(id)
+    }
+    
+    func readNotificationRemoveAll() {
+        UserDefaultsManager.NotificationClear()
+    }
+    
+    func readNotificationRemove(at indexPath: IndexPath) {
+        guard let selectIndexPath = _selectIndexPaths.value.first(where: { $0 == indexPath }),
+              let notification = _notifications.value[safe: selectIndexPath.row],
+              let notificationId = UserDefaultsManager.NotificationInfo.notificationIds.first(where: { $0 == notification.id })  else { return }
+        UserDefaultsManager.NotificationInfo.notificationIds.removeAll(notificationId)
+        print("---------------------------------------")
+        print("삭제 한 ID : ", notificationId)
+        print("---------------------------------------")
+    }
+    
     // MARK: - Output
     var notificationsPublisher: AnyPublisher<[Notification], Never> {
         _notifications.eraseToAnyPublisher()
@@ -153,6 +175,10 @@ final class NotificationViewModel: NotificationViewModelType {
     
     func notification(at index: Int) -> Notification? {
         return _notifications.value[safe: index]
+    }
+    
+    func isReadNotification(at id: String) -> Bool {
+        return UserDefaultsManager.NotificationInfo.notificationIds.contains([id])
     }
     
     func showPopup(text: String, subText: String, keywrod: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) {

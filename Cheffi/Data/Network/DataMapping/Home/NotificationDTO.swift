@@ -8,13 +8,15 @@
 import Foundation
 
 struct NotificationDTO: Codable {
+    let id: String
     let notificatioType: NotificationType
     let content: String
 }
 
 extension NotificationDTO {
     func toDomain() -> Notification {
-        return .init(notificationType: notificatioType,
+        return .init(id: id,
+                     notificationType: notificatioType,
                      content: content)
     }
 }

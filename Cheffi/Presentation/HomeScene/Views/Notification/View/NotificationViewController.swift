@@ -143,8 +143,10 @@ class NotificationViewController: UIViewController {
             viewModel.notificationRemoveAll()
             tableView.reloadData()
             viewModel.selectIndexPathsRemoveAll()
+            viewModel.readNotificationRemoveAll()
         } else {
             for indexPath in viewModel.selectIndexPaths.sorted(by: >) {
+                viewModel.readNotificationRemove(at: indexPath)
                 viewModel.notificationRemove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 viewModel.selectIndexPathRemove(at: indexPath)
@@ -188,6 +190,7 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withClass: NotificationCell.self, for: indexPath)
         if let notification = viewModel.notification(at: indexPath.row) {
             cell.configure(with: notification, isDeleting: viewModel.isDeleting)
+            cell.updateContentViewBackgroundColor(viewModel.isReadNotification(at: notification.id))
         }
         return cell
     }
@@ -202,6 +205,19 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
         if isDeleting {
             viewModel.selectIndexPathAppend(indexPath)
             cell.updateSelectionButton()
+        } else {
+            if let notification = viewModel.notification(at: indexPath.row) {
+                if viewModel.isReadNotification(at: notification.id) == false {
+                    viewModel.readNotoficationAppend(at: notification.id)
+                }
+            }
+            
+            cell.updateContentViewBackgroundColor(true)
+            
+            // TODO: - 해당 페이지로 이동
+            print("---------------------------------------")
+            print(viewModel.notification(at: indexPath.row)?.content ?? "-")
+            print("---------------------------------------")
         }
     }
     

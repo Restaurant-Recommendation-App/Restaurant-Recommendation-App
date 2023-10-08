@@ -33,6 +33,7 @@ enum NotificationType: String, Codable {
 }
 
 struct Notification: Codable {
+    let id: String
     let notificationType: NotificationType
     let content: String
 }
