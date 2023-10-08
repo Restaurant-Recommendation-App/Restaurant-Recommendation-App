@@ -18,21 +18,23 @@ class NotificationViewController: UIViewController {
     
     private var viewModel: NotificationViewModelType!
     private var cancellables: Set<AnyCancellable> = []
-    private var notifications: [Notification] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
     @IBOutlet private weak var headerView: NotificationHeaderView!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var cancelButton: UIButton!
+    @IBOutlet private weak var deleteSelectionButton: UIButton!
+    @IBOutlet private weak var deleteViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var emptyView: UIView!
     
     private enum Constants {
         static let cellHeight: CGFloat = 106
+        static let deleteViewHeight: CGFloat = 80.0
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupBindings()
+        viewModel.viewDidLoad()
     }
     
     deinit {
@@ -47,8 +49,27 @@ class NotificationViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(nibWithCellClass: NotificationCell.self)
         
+        cancelButton.setTitle("취소".localized(), for: .normal)
+        cancelButton.titleLabel?.font = Fonts.suit.weight600.size(18)
+        cancelButton.setTitleColor(.cheffiGray6, for: .normal)
+        cancelButton.tintColor = .cheffiGray6
+        cancelButton.layerBorderColor = .cheffiGray1
+        cancelButton.layerCornerRadius = 10
+        cancelButton.layerBorderWidth = 1
+        
+        deleteSelectionButton.isEnabled = false
+        deleteSelectionButton.setTitle("선택항목 삭제".localized(), for: .normal)
+        deleteSelectionButton.titleLabel?.font = Fonts.suit.weight600.size(18)
+        deleteSelectionButton.setTitleColor(.cheffiGray5, for: .disabled)
+        deleteSelectionButton.setTitleColor(.white, for: .normal)
+        deleteSelectionButton.backgroundColor = .cheffiGray1
+        deleteSelectionButton.layerCornerRadius = 10
+        
+        updateDeleteView(false)
+        
         headerView.didTapDeleteHandler = { [weak self] isSelected in
             if !isSelected {
+                // 전체 삭제
                 self?.viewModel.showPopup(text: "모든 알림 삭제",
                                           subText: "모든 알림이 삭제됩니다.",
                                           keywrod: "",
@@ -57,34 +78,84 @@ class NotificationViewController: UIViewController {
                                           rightButtonTitle: "삭제하기",
                                           leftHandler: nil,
                                           rightHandler: { [weak self] in
-#if DEBUG
-                    print("전체 삭제 하기")
-#endif
+                    self?.deleteSelectionCells(isAllDelete: true)
+                    self?.updateDeleteView(false)
                 })
+            } else {
+                // 삭제 모드
+                self?.updateDeleteView(true)
             }
         }
-        
+    }
+    
+    private func setupBindings() {
         viewModel.notificationsPublisher
             .sink { [weak self] notifications in
-                self?.notifications = notifications
+                self?.showEmptyView(notifications.isEmpty)
             }
             .store(in: &cancellables)
         
         viewModel.errorPublisher
             .sink { [weak self] error in
-                self?.showError(error)
+                self?.handleError(error)
             }
             .store(in: &cancellables)
         
-        viewModel.viewDidLoad()
+        viewModel.isDeletingPublisher
+            .sink { [weak self] isDeleting in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.selectIndexPathsPublisher
+            .sink { [weak self] selectIndexPaths in
+                self?.updateDeleteSelectionButton(isEnabled: !selectIndexPaths.isEmpty)
+            }
+            .store(in: &cancellables)
     }
     
-    private func showError(_ error: DataTransferError) {
+    private func handleError(_ error: DataTransferError) {
 #if DEBUG
         print("-------------------- ERROR ")
         print(error)
         print("--------------------")
 #endif
+        showEmptyView(true)
+    }
+    
+    private func updateDeleteView(_ isEnable: Bool) {
+        viewModel.setDeleting(isEnable)
+        deleteViewHeightConstraint.constant = isEnable ? Constants.deleteViewHeight : 0.0
+        if isEnable == false {
+            headerView.disableDeleteButton()
+        }
+    }
+    
+    private func updateDeleteSelectionButton(isEnabled: Bool) {
+        deleteSelectionButton.isEnabled = isEnabled
+        deleteSelectionButton.backgroundColor = isEnabled ? .mainCTA : .cheffiGray1
+        deleteSelectionButton.titleLabel?.textColor = isEnabled ? .white : .cheffiGray5
+    }
+    
+    private func deleteSelectionCells(isAllDelete: Bool = false) {
+        if isAllDelete {
+            // 알림 리스트 초기화
+            viewModel.notificationRemoveAll()
+            tableView.reloadData()
+            viewModel.selectIndexPathsRemoveAll()
+        } else {
+            for indexPath in viewModel.selectIndexPaths.sorted(by: >) {
+                viewModel.notificationRemove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                viewModel.selectIndexPathRemove(at: indexPath)
+            }
+        }
+    }
+    
+    private func showEmptyView(_ isEmpty: Bool) {
+        emptyView.isHidden = !isEmpty
+        tableView.isHidden = isEmpty
+        headerView.setDeleteButtonVisibility(isHidden: isEmpty)
     }
     
     // MARK: - Public
@@ -93,12 +164,20 @@ class NotificationViewController: UIViewController {
     @IBAction func didTapBack(_ sender: UIButton) {
         self.dismissOrPop(amimated: true)
     }
+    
+    @IBAction func didTapDeleteCancel(_ sender: UIButton) {
+        updateDeleteView(false)
+    }
+    
+    @IBAction func didTapDeleteSelection(_ seder: UIButton) {
+        deleteSelectionCells()
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension NotificationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notifications.count
+        return viewModel.numberOfNotifications
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -107,7 +186,9 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: NotificationCell.self, for: indexPath)
-        cell.configure(with: notifications[indexPath.row])
+        if let notification = viewModel.notification(at: indexPath.row) {
+            cell.configure(with: notification, isDeleting: viewModel.isDeleting)
+        }
         return cell
     }
     
@@ -116,12 +197,20 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let notification = notifications[indexPath.row]
-#if DEBUG
-        print("-----------------------------------------")
-        print("선택 된 알림")
-        print(notification.content)
-        print("-----------------------------------------")
-#endif
+        guard let cell = tableView.cellForRow(at: indexPath) as? NotificationCell else { return }
+        let isDeleting: Bool = viewModel.isDeleting
+        if isDeleting {
+            viewModel.selectIndexPathAppend(indexPath)
+            cell.updateSelectionButton()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? NotificationCell else { return }
+        let isDeleting: Bool = viewModel.isDeleting
+        if isDeleting, let _ = viewModel.selectIndexPaths.firstIndex(of: indexPath) {
+            viewModel.selectIndexPathRemove(at: indexPath)
+            cell.updateSelectionButton()
+        }
     }
 }

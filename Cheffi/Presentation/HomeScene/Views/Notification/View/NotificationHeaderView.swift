@@ -37,6 +37,15 @@ final class NotificationHeaderView: BaseView {
         deleteButton.addTarget(self, action: #selector(didTapDelete), for: .touchUpInside)
     }
     
+    // MARK: - Public
+    func disableDeleteButton() {
+        deleteButton.isSelected = false
+    }
+    
+    func setDeleteButtonVisibility(isHidden: Bool) {
+        deleteButton.isHidden = isHidden
+    }
+    
     // MARK: - Actions
     @objc private func didTapDelete(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected

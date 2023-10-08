@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +12,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="101" id="KGk-i7-Jjw" customClass="NotificationCell" customModule="Cheffi" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="418" height="101"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="418" height="101"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -37,22 +36,32 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="contents" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13C-OB-7x4">
-                        <rect key="frame" x="48" y="48" width="322" height="20.333333333333329"/>
+                        <rect key="frame" x="48" y="48" width="292" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f2A-nW-1nM">
+                        <rect key="frame" x="365" y="42" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="IMU-pg-bzH"/>
+                            <constraint firstAttribute="height" constant="24" id="gwM-YC-Acu"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="13C-OB-7x4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="48" id="0Tf-cw-4W2"/>
+                    <constraint firstItem="f2A-nW-1nM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="42" id="2Do-GV-7e3"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="13C-OB-7x4" secondAttribute="bottom" constant="16" id="8Rw-eP-vW4"/>
                     <constraint firstAttribute="trailing" secondItem="iSi-98-rFy" secondAttribute="trailing" constant="17" id="AnN-MM-LA6"/>
                     <constraint firstItem="13C-OB-7x4" firstAttribute="top" secondItem="1YZ-ug-8gm" secondAttribute="bottom" constant="10" id="DkG-GH-aWw"/>
+                    <constraint firstAttribute="trailing" secondItem="f2A-nW-1nM" secondAttribute="trailing" constant="29" id="Nd7-8u-pP4"/>
                     <constraint firstItem="1YZ-ug-8gm" firstAttribute="top" secondItem="yVU-47-Q0o" secondAttribute="top" id="Qlf-qZ-0f1"/>
-                    <constraint firstAttribute="trailing" secondItem="13C-OB-7x4" secondAttribute="trailing" constant="48" id="Z1B-K2-Mfr"/>
                     <constraint firstItem="yVU-47-Q0o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="dJ6-3B-lcf"/>
+                    <constraint firstItem="f2A-nW-1nM" firstAttribute="leading" secondItem="13C-OB-7x4" secondAttribute="trailing" constant="25" id="nNT-X4-Gfq"/>
                     <constraint firstItem="1YZ-ug-8gm" firstAttribute="leading" secondItem="yVU-47-Q0o" secondAttribute="trailing" constant="10" id="oIR-h8-x4F"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="f2A-nW-1nM" secondAttribute="bottom" constant="40" id="rWg-ut-aA1"/>
                     <constraint firstItem="iSi-98-rFy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="ue6-aJ-T2P"/>
                     <constraint firstItem="yVU-47-Q0o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="17" id="xQ5-3B-N5j"/>
                 </constraints>
@@ -62,6 +71,7 @@
             <connections>
                 <outlet property="contentLabel" destination="13C-OB-7x4" id="tpj-TF-VKv"/>
                 <outlet property="iconImageView" destination="yVU-47-Q0o" id="YXF-oY-CjX"/>
+                <outlet property="selectionImageView" destination="f2A-nW-1nM" id="pWJ-GA-v6I"/>
                 <outlet property="timeAgoLabel" destination="iSi-98-rFy" id="kCk-H0-nGO"/>
                 <outlet property="titleLabel" destination="1YZ-ug-8gm" id="Bka-f4-ur4"/>
             </connections>

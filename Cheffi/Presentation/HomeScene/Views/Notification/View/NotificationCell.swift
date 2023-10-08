@@ -13,6 +13,7 @@ class NotificationCell: UITableViewCell {
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var timeAgoLabel: UILabel!
+    @IBOutlet private weak var selectionImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,12 +40,26 @@ class NotificationCell: UITableViewCell {
         contentLabel.textColor = .cheffiGray8
         timeAgoLabel.font = Fonts.suit.weight400.size(12)
         timeAgoLabel.textColor = .cheffiGray5
+        
+        selectionImageView.image = UIImage(named: "icNotificationDeselect")
+        selectionImageView.isHidden = true
     }
     
-    func configure(with item: Notification) {
+    func configure(with item: Notification, isDeleting: Bool) {
         titleLabel.text = item.notificationType.title
         contentLabel.text = item.content
         iconImageView.image = UIImage(named: item.notificationType.imageName)
         timeAgoLabel.text = "2시간 전"
+        timeAgoLabel.isHidden = isDeleting
+        selectionImageView.isHidden = !isDeleting
+    }
+    
+    func updateSelectionButton() {
+        let image = self.isSelected ? UIImage(named: "icNotificationSelect") : UIImage(named: "icNotificationDeselect")
+        selectionImageView.image = image
+    }
+    
+    func updateContentViewBackgroundColor(_ isChecked: Bool) {
+        self.contentView.backgroundColor = isChecked ? .cheffiWhite05 : .white
     }
 }
