@@ -21,7 +21,7 @@ final class DefaultSimilarChefUseCase: SimilarChefUseCase {
     
     func execute(tags: [String]) -> AnyPublisher<[User], DataTransferError> {
         return repository.getUsers(tags: tags)
-            .map { $0.map { $0.toDomain() } } // UserInfoDTO를 User로 변환
+            .map { $0.0.map { $0.toDomain() } } // UserInfoDTO를 User로 변환
             .eraseToAnyPublisher()
     }
 }

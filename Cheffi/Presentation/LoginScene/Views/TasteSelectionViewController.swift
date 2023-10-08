@@ -31,7 +31,7 @@ class TasteSelectionViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let nickname = UserDefaultsManager.AuthInfo.user?.name ?? ""
+        let nickname = UserDefaultsManager.AuthInfo.user?.nickname ?? ""
         titleLabel.text = "\(nickname) 쉐피님,\n쉐피님의 취향을 선택해주세요.".localized()
     }
     

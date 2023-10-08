@@ -151,7 +151,8 @@ class NicknameViewController: UIViewController {
     }
     
     private func saveNicknameToLocalDB(name: String) {
-        UserDefaultsManager.AuthInfo.user = User(email: "", name: name, provider: .apple, adAgreed: true, analysisAgreed: true)
+        let user = User(email: "", expired: false, nickname: name, userType: .apple, adAgreed: true, analysisAgreed: true, photoURL: "")
+        UserDefaultsManager.AuthInfo.user = user
     }
     
     private func nextView() {

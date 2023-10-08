@@ -13,7 +13,7 @@ struct HomeAPIEndpoints {
                         method: .get)
     }
     
-    static func getUsers(tags: [String]) -> Endpoint<[UserInfoDTO]> {
+    static func getUsers(tags: [String]) -> Endpoint<[UserDTO]> {
         return Endpoint(path: "users",
                         method: .get,
                         queryParameters: ["tags": tags]

@@ -53,7 +53,7 @@ class SimilarChefCell: UITableViewCell {
                 
                 var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
                 snapshot.appendSections([0])
-                snapshot.appendItems(profiles.map { $0.name })
+                snapshot.appendItems(profiles.map { $0.nickname })
                 self?.dataSource?.apply(snapshot, animatingDifferences: true)
             })
             .store(in: &cancellables)
