@@ -14,9 +14,14 @@ class FoodSelectionViewController: UIViewController {
         return vc
     }
     
+    private enum Constants {
+        static let maximumNumberOfSelection: Int = 3
+    }
+    
     @IBOutlet private weak var nextButton: CustomProfileButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var foodTagListView: ProfileTagListView!
     var delegate: ProfileSetupDelegate?
     
     override func viewDidLoad() {
@@ -43,7 +48,16 @@ class FoodSelectionViewController: UIViewController {
         let subTitleFont = Fonts.suit.weight600.size(15)
         subTitleLabel.highlightKeyword("3가지".localized(), in: "3가지 이상 선택해주세요".localized(),
                                        defaultColor: .cheffiGray6, font: subTitleFont, keywordFont: subTitleFont)
+        
+        // TEST Code
+        let tags = ["한식", "양식", "일식", "중식", "샐러드", "해산물", "카페", "빵집", "분식", "면/국수", "브런치", "한정식", "구이", "디저트", "회", "백반/가정식", "아시아음식", "비건", "샌드위치", "죽", "돈까스", "피자", "치킨", "족발/보쌈", "고기", "패스트푸드", "초밥", "찜닭", "탕/찌개", "햄버거", "파인다이닝"]
+        
+        foodTagListView.setupTags(tags)
+        foodTagListView.didTapTagsHandler = { [weak self] selectedTags in
+            self?.nextButton.isEnable = selectedTags.count >= Constants.maximumNumberOfSelection
+        }
     }
+    
     
     // MARK: - Public
     

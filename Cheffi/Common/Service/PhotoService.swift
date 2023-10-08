@@ -20,10 +20,9 @@ final class PhotoService: NSObject {
     
     override private init() {
         super.init()
-        PHPhotoLibrary.shared().register(self)
     }
     
-    enum Constants {
+    private enum Constants {
         static let predicate: (MediaType) -> NSPredicate = { mediaType in
             let format = "mediaType == %d"
             switch mediaType {
@@ -52,10 +51,6 @@ final class PhotoService: NSObject {
     }
     
     let imageManager = PHCachingImageManager()
-    
-    deinit {
-        PHPhotoLibrary.shared().unregisterChangeObserver(self)
-    }
     
     func getAlbums(mediaType: MediaType, completion: @escaping ([AlbumInfo]) -> Void) {
         var allAlbums = [AlbumInfo]()

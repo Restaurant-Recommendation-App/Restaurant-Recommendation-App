@@ -19,7 +19,7 @@ class FollowSelectionViewController: UIViewController {
     @IBOutlet private weak var subTitleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     
-    enum Constants {
+    private enum Constants {
         static let cellHeight: CGFloat = 104.0
     }
     
@@ -33,6 +33,7 @@ class FollowSelectionViewController: UIViewController {
     
     // MARK: - Private
     private func setupViews() {
+        startButton.isEnable = true
         startButton.setTitle("시작하기".localized(), for: .normal)
         startButton.setBackgroundColor(.main)
         startButton.didTapButton = { [weak self] in

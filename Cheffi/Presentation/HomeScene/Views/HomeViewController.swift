@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     var viewModel: HomeViewModelType!
     
-    enum Constants {
+    private enum Constants {
         static let headerHeight: CGFloat = 32.0
     }
     

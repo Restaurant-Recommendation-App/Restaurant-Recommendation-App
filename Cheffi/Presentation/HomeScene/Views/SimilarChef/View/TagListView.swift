@@ -33,7 +33,7 @@ class TagButton: UIButton {
 }
 
 class TagListView: UIView {
-    enum Constants {
+    private enum Constants {
         static let spacing: CGFloat = 8.0
         static let leftInset: CGFloat = 16
         static let rightInset: CGFloat = -16

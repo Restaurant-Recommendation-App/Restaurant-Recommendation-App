@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Preference View Controller-->
+        <!--Taste Selection View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="PreferenceViewController" id="Y6W-OH-hqX" customClass="PreferenceViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TasteSelectionViewController" id="Y6W-OH-hqX" customClass="TasteSelectionViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,16 +42,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RlJ-4l-XzQ" customClass="ProfileTagListView" customModule="Cheffi" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="157" width="393" height="581"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="iNY-kZ-2yW" firstAttribute="top" secondItem="RlJ-4l-XzQ" secondAttribute="bottom" constant="16" id="6A9-WE-H2S"/>
                             <constraint firstItem="sTe-3H-dTO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="LZU-XQ-ZWS"/>
+                            <constraint firstItem="RlJ-4l-XzQ" firstAttribute="top" secondItem="lCm-7S-XUT" secondAttribute="bottom" constant="16" id="TWf-Jx-XSo"/>
+                            <constraint firstItem="RlJ-4l-XzQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="WPP-AB-E2e"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="iNY-kZ-2yW" secondAttribute="bottom" constant="16" id="g7P-iW-RYH"/>
                             <constraint firstItem="lCm-7S-XUT" firstAttribute="top" secondItem="sTe-3H-dTO" secondAttribute="bottom" constant="8" id="jDi-eX-XWw"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lCm-7S-XUT" secondAttribute="trailing" constant="16" id="lhX-2K-4tY"/>
                             <constraint firstItem="sTe-3H-dTO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="23" id="poN-7O-qg1"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="iNY-kZ-2yW" secondAttribute="trailing" constant="16" id="sgZ-MV-O75"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="RlJ-4l-XzQ" secondAttribute="trailing" id="ulc-8I-xVk"/>
                             <constraint firstItem="iNY-kZ-2yW" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="16" id="vEd-9N-bfD"/>
                             <constraint firstItem="lCm-7S-XUT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="zG8-LW-aaP"/>
                         </constraints>
@@ -59,6 +67,7 @@
                     <connections>
                         <outlet property="nextButton" destination="iNY-kZ-2yW" id="oeD-MP-Sis"/>
                         <outlet property="subTitleLabel" destination="lCm-7S-XUT" id="sk4-jx-bFB"/>
+                        <outlet property="tasteTagListView" destination="RlJ-4l-XzQ" id="DJ7-hG-cVe"/>
                         <outlet property="titleLabel" destination="sTe-3H-dTO" id="LsS-u4-GeM"/>
                     </connections>
                 </viewController>

@@ -48,9 +48,9 @@ class NicknameViewController: UIViewController {
     }()
     var delegate: ProfileSetupDelegate?
     
-    enum Constants {
+    private enum Constants {
         static let messageSuccessColor = UIColor(hexString: "3972E1")!
-        static let messageErrorColor = UIColor(hexString: "D82231")!
+        static let messageErrorColor = UIColor.cheffiRed
         static let messageDefaultColor = UIColor.cheffiBlack
         static let duplicationEnableColor = UIColor(hexString: "FFF2F4")!
         static let duplicationDisableColor = UIColor.cheffiGray1
@@ -170,6 +170,7 @@ class NicknameViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            nextButtonOnKeyboard.removeFromSuperview()
             self.view.addSubview(nextButtonOnKeyboard)
             nextButtonOnKeyboard.snp.makeConstraints { make in
                 make.leading.trailing.equalToSuperview()

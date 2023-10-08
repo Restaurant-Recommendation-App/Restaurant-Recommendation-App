@@ -17,14 +17,14 @@ class ProfileSetupViewController: UIViewController {
                                                         nicknameViewController: NicknameViewController,
                                                         profilePhotoViewController: ProfilePhotoViewController,
                                                         foodSelectionViewController: FoodSelectionViewController,
-                                                        preferenceViewController: PreferenceViewController,
+                                                        tasteSelectionViewController: TasteSelectionViewController,
                                                         followSelectionViewController: FollowSelectionViewController) -> T {
         let vc: T = .instance(storyboardName: .profileSetup)
         vc.viewModel = viewModel
         vc.nicknameViewController = nicknameViewController
         vc.profilePhotoViewController = profilePhotoViewController
         vc.foodSelectionViewController = foodSelectionViewController
-        vc.preferenceViewController = preferenceViewController
+        vc.tasteSelectionViewController = tasteSelectionViewController
         vc.followSelectionViewController = followSelectionViewController
         return vc
     }
@@ -37,13 +37,13 @@ class ProfileSetupViewController: UIViewController {
     private var nicknameViewController: NicknameViewController!
     private var profilePhotoViewController: ProfilePhotoViewController!
     private var foodSelectionViewController: FoodSelectionViewController!
-    private var preferenceViewController: PreferenceViewController!
+    private var tasteSelectionViewController: TasteSelectionViewController!
     private var followSelectionViewController: FollowSelectionViewController!
     private var cancellables = Set<AnyCancellable>()
     
-    enum Constants {
+    private enum Constants {
         static let progressBackgroundColor = UIColor(hexString: "D9D9D9")
-        static let progressTintColor = UIColor(hexString: "D82231")
+        static let progressTintColor = UIColor.cheffiRed
     }
 
     override func viewDidLoad() {
@@ -64,13 +64,13 @@ class ProfileSetupViewController: UIViewController {
         nicknameViewController.delegate = self
         profilePhotoViewController.delegate = self
         foodSelectionViewController.delegate = self
-        preferenceViewController.delegate = self
+        tasteSelectionViewController.delegate = self
         followSelectionViewController.delegate = self
         viewControllersList = [
             nicknameViewController,
             profilePhotoViewController,
             foodSelectionViewController,
-            preferenceViewController,
+            tasteSelectionViewController,
             followSelectionViewController
         ]
         

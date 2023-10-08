@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class PopularRestaurantContentsCell: UICollectionViewCell {
-    enum Constants {
+    private enum Constants {
         static let cellInset = 16
     }
     

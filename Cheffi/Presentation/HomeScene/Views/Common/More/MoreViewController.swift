@@ -47,7 +47,7 @@ final class MoreViewController: UIViewController, PanModalPresentable {
                                         "광고성 게시물", "사기 또는 거짓", "지적재산권 침해"]
     private var dynamicLongFormHeight: PanModalHeight = .intrinsicHeight
     
-    enum Constants {
+    private enum Constants {
         static let cellHeight: CGFloat = 50.0
         static let topHeightWhenMenu: CGFloat = 24.0
         static let topHeightWhenSubMenu: CGFloat = 40.0

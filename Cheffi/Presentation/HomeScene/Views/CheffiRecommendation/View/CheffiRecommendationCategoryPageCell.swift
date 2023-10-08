@@ -10,7 +10,7 @@ import Combine
 
 final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
     
-    enum Constants {
+    private enum Constants {
         static let cellInset = 16
     }
     

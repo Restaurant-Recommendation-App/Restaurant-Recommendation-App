@@ -13,7 +13,7 @@ class CheffiRecommendationContensView: UICollectionView {
     typealias ViewModel = RestaurantContentsViewModel
     typealias ContentOffsetY = CGFloat
     
-    enum Constants {
+    private enum Constants {
         static let cellHeight = 270
         static let cellLineSpcaing = 24
     }
