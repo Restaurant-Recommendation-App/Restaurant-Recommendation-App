@@ -89,6 +89,7 @@
 		D4C0FA752A9DB9790056B885 /* DefaultPaginationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0FA742A9DB9790056B885 /* DefaultPaginationGenerator.swift */; };
 		D4C1C5A12AC16506007F8C1E /* TimeLockGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C1C5A02AC16506007F8C1E /* TimeLockGenerator.swift */; };
 		D4C563202AAC21FE00DF9801 /* PageControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5631F2AAC21FE00DF9801 /* PageControlButton.swift */; };
+		D4C8713B2AD2B18300A1745B /* CheffiRecommendationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8713A2AD2B18300A1745B /* CheffiRecommendationHeader.swift */; };
 		D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244B82A60FF5A004E0167 /* AppDelegate.swift */; };
 		D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */; };
 		D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */; };
@@ -299,6 +300,7 @@
 		D4C0FA742A9DB9790056B885 /* DefaultPaginationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaginationGenerator.swift; sourceTree = "<group>"; };
 		D4C1C5A02AC16506007F8C1E /* TimeLockGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLockGenerator.swift; sourceTree = "<group>"; };
 		D4C5631F2AAC21FE00DF9801 /* PageControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlButton.swift; sourceTree = "<group>"; };
+		D4C8713A2AD2B18300A1745B /* CheffiRecommendationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationHeader.swift; sourceTree = "<group>"; };
 		D4E244B52A60FF5A004E0167 /* Cheffi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheffi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E244B82A60FF5A004E0167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -856,6 +858,7 @@
 		D441C0212A6696C800063822 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4C8713A2AD2B18300A1745B /* CheffiRecommendationHeader.swift */,
 				D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */,
 				D441C01F2A66965400063822 /* CheffiRecommendationCatogoryPageView.swift */,
 				D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */,
@@ -1439,6 +1442,7 @@
 				CE70F8892A63BFEB003D0ED9 /* User.swift in Sources */,
 				CEABD7242A6BFFC8001BC131 /* SimilarChefListViewModel.swift in Sources */,
 				FFF3EC672ABF1F6E00F6B431 /* ProfileImageSelectViewController.swift in Sources */,
+				D4C8713B2AD2B18300A1745B /* CheffiRecommendationHeader.swift in Sources */,
 				CE42BA6B2A6BB48100EBB80A /* String+Extensions.swift in Sources */,
 				FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */,
 				CE1A6A6D2A62716C00FFE93D /* SimilarChefViewModel.swift in Sources */,

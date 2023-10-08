@@ -49,6 +49,10 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
         self.items = viewModels
         reloadData()
     }
+    
+    func configure(delegate: CheffiRecommendationCategoryPageViewDelegate) {
+        categoryPageViewDelegate = delegate
+    }
 }
 
 extension CheffiRecommendationCategoryPageView: UICollectionViewDataSource {
