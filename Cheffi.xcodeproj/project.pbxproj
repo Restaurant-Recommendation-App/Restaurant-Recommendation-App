@@ -1533,6 +1533,7 @@
 				CEABD71D2A6BDFD5001BC131 /* Search.swift in Sources */,
 				FF4659C82A879A8800736AEA /* PhotoRepository.swift in Sources */,
 				FF3E0D572ACB1158009B236D /* ProfileTagCell.swift in Sources */,
+				FF3E0D522ACB0DA4009B236D /* ProfileTagListView.swift in Sources */,
 				CE42BA622A6B9D8F00EBB80A /* UIColor+Extensions.swift in Sources */,
 				D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */,
 				FFB29BB82ACBD79B000E473E /* NotificationHeaderView.swift in Sources */,
