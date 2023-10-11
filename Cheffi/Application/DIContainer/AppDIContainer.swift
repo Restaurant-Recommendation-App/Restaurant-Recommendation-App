@@ -14,9 +14,8 @@ final class AppDIContainer {
     lazy var apiDataTransferService: DataTransferService = {
         let config = ApiDataNetworkConfig(
             baseURL: URL(string: appConfiguration.apiBaseURL)!,
-            queryParameters: [
-                "language": NSLocale.preferredLanguages.first ?? "ko-KR"
-            ]
+            headers: ["Content-Type": "application/json"],
+            queryParameters: [:]
         )
         
         let apiDataNetwork = DefaultNetworkService(config: config)
@@ -24,7 +23,8 @@ final class AppDIContainer {
     }()
     
     func makeLoginSceneDIContainer() -> LoginSceneDIContainer {
-        return LoginSceneDIContainer()
+        let dependencies = LoginSceneDIContainer.Dependencies(apiDataTransferService: apiDataTransferService)
+        return LoginSceneDIContainer(dependencies: dependencies)
     }
     
     func makeHomeSceneDIContainer() -> HomeSceneDIContainer {

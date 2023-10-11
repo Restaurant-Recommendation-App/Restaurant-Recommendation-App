@@ -14,8 +14,10 @@ enum Provider: String, Codable {
 
 struct User: Codable {
     let email: String
-    let name: String
-    let provider: Provider
+    let expired: Bool
+    let nickname: String
+    let userType: Provider
     let adAgreed: Bool
     let analysisAgreed: Bool
+    let photoURL: String?
 }

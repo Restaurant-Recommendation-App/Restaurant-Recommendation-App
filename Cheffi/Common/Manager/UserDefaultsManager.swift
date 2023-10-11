@@ -19,8 +19,9 @@ enum UserDefaultsManager {
     }
     
     enum AuthInfo {
-        @UserDefault(key: "user", defaultValue: nil)
+        @UserDefault(key: "auth", defaultValue: nil)
         static var user: User?
+        static var sessionToken: String?
     }
     
     enum NotificationInfo {
@@ -40,6 +41,7 @@ extension UserDefaultsManager {
     
     static func AuthClear() {
         UserDefaultsManager.AuthInfo.user = nil
+        UserDefaultsManager.AuthInfo.sessionToken = nil
     }
     
     static func NotificationClear() {

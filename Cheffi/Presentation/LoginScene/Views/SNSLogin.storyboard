@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,40 +17,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K04-0N-VWa">
-                                <rect key="frame" x="161" y="408.66666666666669" width="71" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Kakao"/>
-                                <connections>
-                                    <action selector="didTapLogin:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="uyd-ha-oin"/>
-                                </connections>
-                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="N9H-CL-Kml">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k05-nL-dhd">
-                                <rect key="frame" x="0.0" y="59" width="36" height="35"/>
+                                <rect key="frame" x="20" y="59" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="NrS-2Q-bCX"/>
+                                    <constraint firstAttribute="width" constant="44" id="hK9-RQ-qkb"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="X"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
                                 <connections>
                                     <action selector="didTapClose:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Hcl-kU-VVK"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8kX-8z-DP1">
+                                <rect key="frame" x="16" y="644" width="361" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foL-VS-vC4">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="56"/>
+                                        <color key="backgroundColor" red="1" green="0.89803921568627454" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="icKakaoLogo" title="-"/>
+                                        <connections>
+                                            <action selector="didTapKakaoLogin:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="iaE-FE-HFq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2I-Mo-hVX">
+                                        <rect key="frame" x="0.0" y="64" width="361" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="icAppleLogo" title="-"/>
+                                        <connections>
+                                            <action selector="didTapAppleLogin:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="f4q-jC-MIk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="n5I-eg-HH9"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="K04-0N-VWa" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="8Ac-3q-bp9"/>
-                            <constraint firstItem="K04-0N-VWa" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="RW8-1H-RIV"/>
-                            <constraint firstItem="k05-nL-dhd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="nh7-6x-jB3"/>
+                            <constraint firstAttribute="bottom" secondItem="N9H-CL-Kml" secondAttribute="bottom" id="0g0-Hk-2Mw"/>
+                            <constraint firstItem="N9H-CL-Kml" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3fB-t1-0ok"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8kX-8z-DP1" secondAttribute="trailing" constant="16" id="Fvu-BV-2sq"/>
+                            <constraint firstItem="N9H-CL-Kml" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Nq3-5h-Wn8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="8kX-8z-DP1" secondAttribute="bottom" constant="54" id="RQi-PQ-TSt"/>
+                            <constraint firstItem="8kX-8z-DP1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="c8i-oS-pzX"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="N9H-CL-Kml" secondAttribute="trailing" id="fTC-x7-3bx"/>
+                            <constraint firstItem="k05-nL-dhd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="nh7-6x-jB3"/>
                             <constraint firstItem="k05-nL-dhd" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="zKd-ND-ive"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Rbi-6W-RNJ"/>
+                    <connections>
+                        <outlet property="appleLoginButton" destination="V2I-Mo-hVX" id="jpn-is-Qgw"/>
+                        <outlet property="kakaoLoginButton" destination="foL-VS-vC4" id="XQv-FE-huY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="329" y="-86"/>
+            <point key="canvasLocation" x="327.48091603053433" y="-86.619718309859152"/>
         </scene>
     </scenes>
     <resources>
+        <image name="icAppleLogo" width="16" height="20"/>
+        <image name="icKakaoLogo" width="18" height="18"/>
+        <image name="loginBackgroundImage" width="375" height="812"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

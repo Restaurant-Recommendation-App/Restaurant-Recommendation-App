@@ -17,7 +17,7 @@ enum NetworkError: Error {
 }
 
 protocol NetworkService {
-    func request(endpoint: Requestable) -> AnyPublisher<Data, NetworkError>
+    func request(endpoint: Requestable) -> AnyPublisher<(Data, HTTPURLResponse), NetworkError>
 }
 
 protocol NetworkErrorLogger {
@@ -40,7 +40,7 @@ final class DefaultNetworkService: NetworkService {
         self.logger = logger
     }
     
-    func request(endpoint: Requestable) -> AnyPublisher<Data, NetworkError> {
+    func request(endpoint: Requestable) -> AnyPublisher<(Data, HTTPURLResponse), NetworkError> {
         do {
             let request = try endpoint.urlRequest(with: config)
             return session.dataTaskPublisher(for: request)
@@ -60,7 +60,7 @@ final class DefaultNetworkService: NetworkService {
                     guard 200..<300 ~= httpResponse.statusCode else {
                         throw NetworkError.error(statusCode: httpResponse.statusCode, data: data)
                     }
-                    return data
+                    return (data, httpResponse)
                 }
                 .mapError { error in
                     if let error = error as? NetworkError {

@@ -19,7 +19,7 @@ protocol DataTransferService {
     func request<T: Decodable, E: ResponseRequestable>(
         with endpoint: E,
         on queue: DispatchQueue
-    ) -> AnyPublisher<T, DataTransferError> where E.Response == T
+    ) -> AnyPublisher<(T, HTTPURLResponse), DataTransferError> where E.Response == T
     
     func request<E: ResponseRequestable>(
         with endpoint: E,
@@ -53,14 +53,15 @@ extension DefaultDataTransferService: DataTransferService {
     func request<T: Decodable, E: ResponseRequestable>(
         with endpoint: E,
         on queue: DispatchQueue
-    ) -> AnyPublisher<T, DataTransferError> where E.Response == T {
+    ) -> AnyPublisher<(T, HTTPURLResponse), DataTransferError> where E.Response == T {
         return networkService.request(endpoint: endpoint)
             .mapError { networkError -> DataTransferError in
                 self.errorLogger.log(error: networkError)
                 return DataTransferError.networkFailure(networkError)
             }
-            .tryMap { data in
-                try endpoint.responseDecoder.decode(data)
+            .tryMap { data, response in
+                let decodedData: T = try endpoint.responseDecoder.decode(data)
+                return (decodedData, response)
             }
             .mapError { error in
                 if let error = error as? DataTransferError {
