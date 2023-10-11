@@ -9,14 +9,14 @@ import UIKit
 import Combine
 
 class HomeViewController: UIViewController {
-    static func instance<T: HomeViewController>(viewModel: HomeViewModel) -> T {
+    static func instance<T: HomeViewController>(viewModel: HomeViewModelType) -> T {
         let vc: T = .instance(storyboardName: .home)
         vc.viewModel = viewModel
         return vc
     }
     
     @IBOutlet private weak var tableView: UITableView!
-    var viewModel: HomeViewModel!
+    var viewModel: HomeViewModelType!
     
     private enum Constants {
         static let headerHeight: CGFloat = 32.0
@@ -37,7 +37,12 @@ class HomeViewController: UIViewController {
     // MARK: - Actions
     @IBAction private func didTapLocation(_ sender: UIButton) {
         // TODO: Test 코드
-        viewModel.showPopup(text: "잠긴 게시물은\n회원가입 후 확인할 수 있어요!", keywrod: "회원가입 후 확인", popupState: .nonMember)
+        viewModel.showPopup(text: "잠긴 게시물은\n회원가입 후 확인할 수 있어요!",
+                            subText: "",
+                            keywrod: "회원가입 후 확인",
+                            popupState: .nonMember,
+                            leftButtonTitle: "취소하기",
+                            rightButtonTitle: "찾아보기")
     }
     
     @IBAction private func didTapSearch(_ sender: UIButton) {
@@ -45,8 +50,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction private func didTapNotification(_ sender: UIButton) {
-        // TODO: Test 코드
-        viewModel.showPopup(text: "쉐피 코인 1개를 차감하여\n새로운 맛집을 찾아 떠나볼까요?", keywrod: "쉐피 코인 1개를 차감", popupState: .member)
+        viewModel.showNotification()
     }
 }
 

@@ -31,10 +31,23 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
         return HomeViewController.instance(viewModel: makeHomeViewModel(actions: actions))
     }
     
-    func makePopupViewController(text: String, keyword: String, popupState: PopupState, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController {
-        return PopupViewController.instance(text: text, keyword: keyword, popupState: popupState, findHandler: findHandler, cancelHandler: cancelHandler)
+    func makePopupViewController(text: String, subText: String, keyword: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) -> PopupViewController {
+        return PopupViewController.instance(text: text,
+                                            subText: subText,
+                                            keyword: keyword,
+                                            popupState: popupState,
+                                            leftButtonTitle: leftButtonTitle,
+                                            rightButtonTitle: rightButtonTitle,
+                                            leftHandler: leftHandler,
+                                            rightHandler: rightHandler)
     }
     
+    func makeNotificationViewController(actions: NotificationViewModelActions) -> NotificationViewController {
+        let viewModel = makeNotificationViewModel(actions: actions)
+        return NotificationViewController.instance(viewModel: viewModel)
+    }
+    
+    // MARK: - Home ViewModels
     func makeHomeViewModel(actions: HomeViewModelActions) -> HomeViewModel {
         return HomeViewModel(
             actions: actions,
@@ -58,6 +71,12 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
     func makeRecommedationViewModel() -> CheffiRecommendationViewModel {
         let repository = makeCheffiRecommendationRepository()
         return CheffiRecommendationViewModel(cheffiRecommendationUseCase: makeCheffiRecommendationUseCase(repository: repository))
+    }
+    
+    func makeNotificationViewModel(actions: NotificationViewModelActions) -> NotificationViewModel {
+        let repository = makeNotificationRepository()
+        let useCase = makeNotificationUseCase(repository: repository)
+        return NotificationViewModel(actions: actions, useCase: useCase)
     }
     
     // MARK: - Search
@@ -95,6 +114,10 @@ extension HomeSceneDIContainer {
     func makeCheffiRecommendationUseCase(repository: CheffiRecommendationRepository) -> CheffiRecommendationUseCase {
         return DefaultCheffiRecommendationUseCase(repository: repository)
     }
+    
+    func makeNotificationUseCase(repository: NotificationRepository) -> NotificationUseCase {
+        return DefaultNotificationUseCase(repository: repository)
+    }
 }
 
 // MARK: - Repositories
@@ -105,5 +128,9 @@ extension HomeSceneDIContainer {
     
     func makeCheffiRecommendationRepository() -> CheffiRecommendationRepository {
         return DefaultCheffiRecommendationRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeNotificationRepository() -> NotificationRepository {
+        return DefaultNotificationRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }
