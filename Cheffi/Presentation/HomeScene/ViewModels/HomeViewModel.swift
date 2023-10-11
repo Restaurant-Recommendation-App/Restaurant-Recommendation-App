@@ -12,6 +12,7 @@ struct HomeViewModelActions {
     let showPopup: (_ text: String, _ keyword: String, _ popupState: PopupState) -> Void
     let showSimilarChefList: () -> Void
     let showSearch: () -> Void
+    let showAllCheffiContents: () -> Void
 }
 
 protocol HomeViewModelInput {
@@ -44,6 +45,10 @@ final class HomeViewModel: HomeViewModelInput & HomeViewModelOutput {
     
     func showSearch() {
         actions?.showSearch()
+    }
+    
+    func didTapShowAllContents() {
+        actions?.showAllCheffiContents()
     }
 
     // MARK: - Init

@@ -78,6 +78,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             case 0:
                 let cell = tableView.dequeueReusableCell(withClass: PopularRestaurantCell.self, for: indexPath)
                 cell.configure(viewModel: viewModel.popularRestaurantViewModel)
+                cell.delegate = self
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withClass: SimilarChefCell.self, for: indexPath)
@@ -132,5 +133,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: SimilarChefCellDelegate {
     func didTapShowSimilarChefList() {
         viewModel.showSimilarChefList()
+    }
+}
+
+extension HomeViewController: PopularRestaurantCellDelegate {
+    func didTapShowAllContents() {
+        viewModel.didTapShowAllContents()
     }
 }

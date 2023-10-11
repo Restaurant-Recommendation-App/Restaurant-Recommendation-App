@@ -8,6 +8,12 @@
 import UIKit
 import Combine
 
+/// 리스트 화면 구성 상태
+enum ContentsColumnStyle {
+    case one
+    case two
+}
+
 class CheffiRecommendationContensView: UICollectionView {
     
     typealias ViewModel = RestaurantContentsViewModel
@@ -24,6 +30,7 @@ class CheffiRecommendationContensView: UICollectionView {
     private var verticallyScrolled = PassthroughSubject<ContentOffsetY, Never>()
     private var scrolledToBottom = PassthroughSubject<Void, Never>()
     
+    private var contentItemType = RestaurantContentItemType.twoColumn
     var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -50,8 +57,35 @@ class CheffiRecommendationContensView: UICollectionView {
         verticallyScrolled = PassthroughSubject<ContentOffsetY, Never>()
         scrolledToBottom = PassthroughSubject<Void, Never>()
         
+        setColumnStyle(columnStyle: .two)
         bind(to: viewModel)
         initialized.send(())
+    }
+    
+    func setColumnStyle(columnStyle: ContentsColumnStyle) {
+        let layout = UICollectionViewFlowLayout()
+        
+        switch columnStyle {
+        case .one:
+            layout.itemSize = CGSize(
+                width: Double(bounds.width),
+                height: Double(bounds.width) + 100
+            )
+            layout.minimumLineSpacing = CGFloat(Constants.cellLineSpcaing)
+            layout.minimumInteritemSpacing = 0
+            contentItemType = .oneColumn
+        case .two:
+            layout.itemSize = CGSize(
+                width: Double(bounds.width / 2) - Double(Constants.cellLineSpcaing / 2),
+                height: Double(Constants.cellHeight)
+            )
+            layout.minimumLineSpacing = CGFloat(Constants.cellLineSpcaing)
+            layout.minimumInteritemSpacing = 0
+            contentItemType = .twoColumn
+        }
+        
+        self.collectionViewLayout = layout
+        reloadData()
     }
 }
 
@@ -71,9 +105,9 @@ extension CheffiRecommendationContensView: Bindable {
         
         output.contentItems
             .receive(on: DispatchQueue.main)
-            .sink {
-                self.items = $0
-                self.reloadData()
+            .sink { [weak self] items in
+                self?.setColumnStyle(columnStyle: .two)
+                self?.items = items
             }.store(in: &cancellables)
                 
         output.scrolleOffsetY
@@ -92,35 +126,20 @@ extension CheffiRecommendationContensView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withClass: RestaurantContentCell.self, for: indexPath)
-        cell.configure(viewModel: items[indexPath.row])
+        cell.configure(viewModel: items[indexPath.row], contentItemType: contentItemType)
         
         return cell
     }
 }
 
-extension CheffiRecommendationContensView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(
-            width: Double(bounds.width / 2) - Double(Constants.cellLineSpcaing / 2),
-            height: Double(Constants.cellHeight)
-        )
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        CGFloat(Constants.cellLineSpcaing)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        0
-    }
-    
+extension CheffiRecommendationContensView: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+
         let contentOffsetY = contentOffset.y
         let contentHeight = contentSize.height
         let height = frame.height
         let actualHeight = (contentHeight - height > 0) ? contentHeight - height : 0
-        
+
         verticallyScrolled.send(contentOffsetY)
         if contentOffsetY > actualHeight {
             scrolledToBottom.send(())

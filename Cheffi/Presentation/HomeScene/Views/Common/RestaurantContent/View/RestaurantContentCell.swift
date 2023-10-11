@@ -34,13 +34,13 @@ class RestaurantContentCell: UICollectionViewCell {
         }
     }
         
-    func configure(viewModel: ViewModel, isMainContent: Bool = false) {
+    func configure(viewModel: ViewModel, contentItemType: RestaurantContentItemType = .twoColumn) {
         
         restaurantContentView.configure(
             title: viewModel.title,
             subtitle: viewModel.subtitle,
             timeLockType: viewModel.timeLockType,
-            isMainContent: isMainContent
+            itemType: contentItemType
         )
         initialize = PassthroughSubject<Void, Never>()
         bind(to: viewModel)
