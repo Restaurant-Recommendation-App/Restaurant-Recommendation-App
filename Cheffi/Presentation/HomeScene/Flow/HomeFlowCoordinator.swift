@@ -9,12 +9,13 @@ import UIKit
 import Combine
 
 protocol HomeFlowCoordinatorDependencies {
-    func makePopupViewController(text: String, keyword: String, popupState: PopupState, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController
+    func makePopupViewController(text: String, subText: String, keyword: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) -> PopupViewController
     func makeViewController(actions: HomeViewModelActions) -> HomeViewController
     func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
     func makeCheffiDetail() -> CheffiDetailViewController
     func makeAllCheffiContentsViewController() -> AllCheffiContentsViewController
+    func makeNotificationViewController(actions: NotificationViewModelActions) -> NotificationViewController
 }
 
 final class HomeFlowCoordinator {
@@ -32,21 +33,37 @@ final class HomeFlowCoordinator {
         let actions = HomeViewModelActions(showPopup: showPopup,
                                            showSimilarChefList: showSimilarChefList,
                                            showSearch: showSearch,
-                                           showAllCheffiContents: showAllCheffiContents)
+                                           showAllCheffiContents: showAllCheffiContents,
+                                           showNotification: showNotification)
         let vc = dependencies.makeViewController(actions: actions)
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func showPopup(text: String, keyword: String, popupState: PopupState) {
-        let vc = dependencies.makePopupViewController(text: text, keyword: keyword, popupState: popupState, findHandler: { [weak self] in
+    private func showPopup(text: String, subText: String, keyword: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) {
+        let vc = dependencies.makePopupViewController(text: text,
+                                                      subText: subText,
+                                                      keyword: keyword,
+                                                      popupState: popupState,
+                                                      leftButtonTitle: leftButtonTitle,
+                                                      rightButtonTitle: rightButtonTitle,
+                                                      leftHandler: { leftHandler?() },
+                                                      rightHandler: { [weak self] in
+            rightHandler?()
             switch popupState {
             case .member:
                 self?.showCheffiDetail()
             case .nonMember:
                 self?.showLogin()
+            case .deleteNotification:
+                break
             }
-        }, cancelHandler: {})
-        navigationController?.present(vc, animated: true)
+        })
+        
+        if let presentVC = navigationController?.presentedViewController {
+            presentVC.present(vc, animated: true)
+        } else {
+            navigationController?.present(vc, animated: true)
+        }
     }
     
     private func showSimilarChefList() {
@@ -71,6 +88,12 @@ final class HomeFlowCoordinator {
     private func showAllCheffiContents() {
         let vc = dependencies.makeAllCheffiContentsViewController()
         navigationController?.pushViewController(vc)
+    }
+
+    private func showNotification() {
+        let actions = NotificationViewModelActions(showPopup: showPopup)
+        let vc = dependencies.makeNotificationViewController(actions: actions)
+        navigationController?.present(vc, animated: true)
     }
 }
 

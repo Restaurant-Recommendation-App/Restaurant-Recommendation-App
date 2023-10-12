@@ -23,13 +23,13 @@ final class DefaultSimilarChefRepository {
 
 extension DefaultSimilarChefRepository: SimilarChefRepository {
     
-    func getTags() -> AnyPublisher<[TagResponseDTO], DataTransferError> {
+    func getTags() -> AnyPublisher<([TagResponseDTO], HTTPURLResponse), DataTransferError> {
         let endpoint = HomeAPIEndpoints.getTags()
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
             .eraseToAnyPublisher()
     }
     
-    func getUsers(tags: [String]) -> AnyPublisher<[UserInfoDTO], DataTransferError> {
+    func getUsers(tags: [String]) -> AnyPublisher<([UserDTO], HTTPURLResponse), DataTransferError> {
         let endpoint = HomeAPIEndpoints.getUsers(tags: tags)
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
             .eraseToAnyPublisher()

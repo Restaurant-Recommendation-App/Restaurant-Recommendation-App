@@ -9,6 +9,15 @@ import UIKit
 
 
 final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
+    struct Dependencies {
+        let apiDataTransferService: DataTransferService
+    }
+    
+    private let dependencies: Dependencies
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+    }
+    
     func makeLoginFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> LoginFlowCoordinator {
         return LoginFlowCoordinator(navigationController: navigationController,
                                     parentCoordinator: parentCoordinator,
@@ -23,7 +32,10 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     func makeSNSLoginViewModel(actions: SNSLoginViewModelActions) -> SNSLoginViewModel {
-        return SNSLoginViewModel(actions: actions)
+        let repository = makeLoginRepository()
+        let useCase = makeLoginUseCase(repository: repository)
+        return SNSLoginViewModel(actions: actions,
+                                 useCase: useCase)
     }
     
     // MARK: - ProfileSetup
@@ -94,14 +106,6 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
                                    cameraService: makeCameraService())
     }
     
-    func makePhotoRepository() -> DefaultPhotoRepository {
-        return DefaultPhotoRepository()
-    }
-    
-    func makePhotoUseCase() -> DefaultPhotoUseCase {
-        return DefaultPhotoUseCase(repository: makePhotoRepository())
-    }
-    
     func makeCameraService() -> DefaultCameraService {
         return DefaultCameraService()
     }
@@ -116,7 +120,36 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     // MAKR: - PopupViewController
-    func makePopupViewController(text: String, keyword: String, popupState: PopupState, findHandler: (() -> Void)?, cancelHandler: (() -> Void)?) -> PopupViewController {
-        return PopupViewController.instance(text: text, keyword: keyword, popupState: popupState, findHandler: findHandler, cancelHandler: cancelHandler)
+    func makePopupViewController(text: String, subText: String, keyword: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) -> PopupViewController {
+        return PopupViewController.instance(text: text,
+                                            subText: subText,
+                                            keyword: keyword,
+                                            popupState: popupState,
+                                            leftButtonTitle: leftButtonTitle,
+                                            rightButtonTitle: rightButtonTitle,
+                                            leftHandler: leftHandler,
+                                            rightHandler: rightHandler)
+    }
+}
+
+// MARK: -  UseCase
+extension LoginSceneDIContainer {
+    func makePhotoUseCase() -> DefaultPhotoUseCase {
+        return DefaultPhotoUseCase(repository: makePhotoRepository())
+    }
+    
+    func makeLoginUseCase(repository: LoginRepository) -> LoginUseCase {
+        return DefaultLoginUserCase(repository: repository)
+    }
+}
+
+// MARK: - Repository
+extension LoginSceneDIContainer {
+    func makePhotoRepository() -> DefaultPhotoRepository {
+        return DefaultPhotoRepository()
+    }
+    
+    func makeLoginRepository() -> LoginRepository {
+        return DefaultLoginRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

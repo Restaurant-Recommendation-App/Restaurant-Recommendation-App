@@ -9,6 +9,6 @@ import Foundation
 import Combine
 
 protocol SimilarChefRepository {
-    func getTags() -> AnyPublisher<[TagResponseDTO], DataTransferError>
-    func getUsers(tags: [String]) -> AnyPublisher<[UserInfoDTO], DataTransferError>
+    func getTags() -> AnyPublisher<([TagResponseDTO], HTTPURLResponse), DataTransferError>
+    func getUsers(tags: [String]) -> AnyPublisher<([UserDTO], HTTPURLResponse), DataTransferError>
 }
