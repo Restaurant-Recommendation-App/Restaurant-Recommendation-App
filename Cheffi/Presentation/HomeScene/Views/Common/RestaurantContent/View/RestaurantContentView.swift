@@ -9,13 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-enum RestaurantContentItemType {
-    case main
-    case oneColumn
-    case twoColumn
-}
-
-class RestaurantContentView: UIView {
+final class RestaurantContentView: UIView {
     private let restaurantImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor(hexString: "EAEAEA")
@@ -118,30 +112,12 @@ class RestaurantContentView: UIView {
     }
     
     private func updateContent(itemType: RestaurantContentItemType) {
-        var titleSize: CGFloat
-        var contentHeight: Int
-        var numberOfLines: Int
-        
-        switch itemType {
-        case .main:
-            titleSize = 18
-            contentHeight = 200
-            numberOfLines = 1
-        case .oneColumn:
-            titleSize = 18
-            contentHeight = 361
-            numberOfLines = 1
-        case .twoColumn:
-            titleSize = 16
-            contentHeight = 165
-            numberOfLines = 2
-        }
-        restaurantTitleLabel.font = .systemFont(ofSize: titleSize, weight: .bold)
-        restaurantTitleLabel.numberOfLines = numberOfLines
+        restaurantTitleLabel.font = .systemFont(ofSize: itemType.titleSize, weight: .bold)
+        restaurantTitleLabel.numberOfLines = itemType.numberOfLines
         
         restaurantImageView.snp.remakeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.width.equalTo(contentHeight)
+            $0.height.width.equalTo(itemType.contentHeight)
         }
         
         contentTimeLockBubbleView.snp.remakeConstraints {
@@ -181,7 +157,6 @@ class RestaurantContentView: UIView {
                 $0.leading.equalTo(likeButton.snp.trailing).offset(4)
                 
             }
-            
         } else {
             restaurantTitleLabel.snp.remakeConstraints {
                 $0.top.equalTo(restaurantImageView.snp.bottom).offset(12)
