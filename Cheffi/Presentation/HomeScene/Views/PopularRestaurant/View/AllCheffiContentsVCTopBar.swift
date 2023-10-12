@@ -75,6 +75,7 @@ class AllCheffiContentsVCTopBar: UIView {
         addSubview(searchButton)
         searchButton.snp.makeConstraints {
             $0.trailing.equalTo(notificationButton.snp.leading)
+            $0.top.equalToSuperview()
             $0.width.height.equalTo(44)
         }
     }
