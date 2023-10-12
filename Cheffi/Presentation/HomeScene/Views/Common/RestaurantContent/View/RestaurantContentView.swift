@@ -45,6 +45,15 @@ class RestaurantContentView: UIView {
         return label
     }()
     
+    private var likeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.spacing = 4
+        return stackView
+    }()
+    
     private lazy var likeButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "icDisLike"), for: .normal)
@@ -53,6 +62,15 @@ class RestaurantContentView: UIView {
         button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         button.isUserInteractionEnabled = true
         return button
+    }()
+    
+    private var numberOfLikes: UILabel = {
+        let label = UILabel()
+        label.font = Fonts.suit.weight500.size(15)
+        label.text = "12,456"
+        label.textColor = .cheffiGray6
+        label.isHidden = true
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -70,6 +88,11 @@ class RestaurantContentView: UIView {
         addSubview(restaurantTitleLabel)
         addSubview(restaurantSubtitleLabel)
         addSubview(likeButton)
+        addSubview(numberOfLikes)
+        
+        addSubview(likeStackView)
+        likeStackView.addArrangedSubview(likeButton)
+        likeStackView.addArrangedSubview(numberOfLikes)
         updateContent(itemType: .twoColumn)
     }
     
@@ -121,7 +144,7 @@ class RestaurantContentView: UIView {
             $0.height.width.equalTo(contentHeight)
         }
         
-        contentTimeLockBubbleView.snp.makeConstraints {
+        contentTimeLockBubbleView.snp.remakeConstraints {
             $0.top.equalTo(restaurantImageView).offset(12)
             $0.trailing.equalTo(restaurantImageView).inset(8)
             $0.width.equalTo(90)
@@ -141,11 +164,22 @@ class RestaurantContentView: UIView {
                 $0.height.equalTo(22)
             }
             
-            likeButton.snp.remakeConstraints {
+            likeStackView.snp.remakeConstraints {
                 $0.top.equalTo(restaurantSubtitleLabel.snp.bottom).offset(16)
                 $0.centerX.equalToSuperview()
-                $0.width.height.equalTo(24)
+                $0.height.equalTo(24)
                 $0.bottom.equalToSuperview()
+            }
+            
+            likeButton.snp.remakeConstraints {
+                $0.width.height.equalTo(24)
+            }
+            
+            numberOfLikes.isHidden = false
+            
+            numberOfLikes.snp.makeConstraints {
+                $0.leading.equalTo(likeButton.snp.trailing).offset(4)
+                
             }
             
         } else {
@@ -161,12 +195,17 @@ class RestaurantContentView: UIView {
                 $0.bottom.equalToSuperview()
             }
             
-            likeButton.snp.remakeConstraints {
-                $0.top.equalTo(restaurantTitleLabel).offset(3)
+            likeStackView.snp.remakeConstraints {
+                $0.top.equalTo(restaurantTitleLabel)
                 $0.leading.equalTo(restaurantTitleLabel.snp.trailing)
                 $0.trailing.equalToSuperview()
+            }
+            
+            likeButton.snp.remakeConstraints {
                 $0.width.height.equalTo(24)
             }
+            
+            numberOfLikes.isHidden = true
         }
     }
         
