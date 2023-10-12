@@ -190,7 +190,10 @@ extension AllCheffiContentsViewController: Bindable {
         output.contentsViewModel
             .receive(on: DispatchQueue.main)
             .sink { [weak self] viewModel in
-                self?.contentsView.configure(viewModel: viewModel)
+                self?.contentsView.configure(
+                    viewModel: viewModel,
+                    columnStyle: .one
+                )
             }.store(in: &cancellables)
         
         output.timeLockType

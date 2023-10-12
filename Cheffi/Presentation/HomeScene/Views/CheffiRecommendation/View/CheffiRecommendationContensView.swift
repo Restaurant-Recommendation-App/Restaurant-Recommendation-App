@@ -23,17 +23,18 @@ class CheffiRecommendationContensView: UICollectionView {
         static let cellHeight = 270
         static let cellLineSpcaing = 24
     }
-    
-    private var items = [RestaurantContentItemViewModel]()
-        
+            
     private var initialized = PassthroughSubject<Void, Never>()
     private var verticallyScrolled = PassthroughSubject<ContentOffsetY, Never>()
     private var scrolledToBottom = PassthroughSubject<Void, Never>()
     
     private var contentItemType = RestaurantContentItemType.twoColumn
+    private var contentColumnStyle = ContentsColumnStyle.two
+    
+    var viewModel: ViewModel?
     var cancellables = Set<AnyCancellable>()
     
-    init() {
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         setUpCollectionView()
     }
@@ -52,39 +53,26 @@ class CheffiRecommendationContensView: UICollectionView {
         showsVerticalScrollIndicator = true
     }
     
-    func configure(viewModel: ViewModel) {
+    func configure(viewModel: ViewModel, columnStyle: ContentsColumnStyle = .two) {
+        
+        setColumnStyle(columnStyle: columnStyle)
+        
         initialized = PassthroughSubject<Void, Never>()
         verticallyScrolled = PassthroughSubject<ContentOffsetY, Never>()
         scrolledToBottom = PassthroughSubject<Void, Never>()
         
-        setColumnStyle(columnStyle: .two)
         bind(to: viewModel)
         initialized.send(())
     }
     
     func setColumnStyle(columnStyle: ContentsColumnStyle) {
-        let layout = UICollectionViewFlowLayout()
-        
+        contentColumnStyle = columnStyle
         switch columnStyle {
         case .one:
-            layout.itemSize = CGSize(
-                width: Double(bounds.width),
-                height: Double(bounds.width) + 100
-            )
-            layout.minimumLineSpacing = CGFloat(Constants.cellLineSpcaing)
-            layout.minimumInteritemSpacing = 0
             contentItemType = .oneColumn
         case .two:
-            layout.itemSize = CGSize(
-                width: Double(bounds.width / 2) - Double(Constants.cellLineSpcaing / 2),
-                height: Double(Constants.cellHeight)
-            )
-            layout.minimumLineSpacing = CGFloat(Constants.cellLineSpcaing)
-            layout.minimumInteritemSpacing = 0
             contentItemType = .twoColumn
         }
-        
-        self.collectionViewLayout = layout
         reloadData()
     }
 }
@@ -96,6 +84,8 @@ extension CheffiRecommendationContensView: Bindable {
         }
         cancellables = Set<AnyCancellable>()
         
+        self.viewModel = viewModel
+        
         let input = ViewModel.Input(
             initialize: initialized.eraseToAnyPublisher(),
             verticallyScrolled: verticallyScrolled.eraseToAnyPublisher(),
@@ -105,9 +95,8 @@ extension CheffiRecommendationContensView: Bindable {
         
         output.contentItems
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] items in
-                self?.setColumnStyle(columnStyle: .two)
-                self?.items = items
+            .sink { [weak self] _ in
+                self?.reloadData()
             }.store(in: &cancellables)
                 
         output.scrolleOffsetY
@@ -120,13 +109,13 @@ extension CheffiRecommendationContensView: Bindable {
 
 extension CheffiRecommendationContensView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        items.count
+        viewModel?.items.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withClass: RestaurantContentCell.self, for: indexPath)
-        cell.configure(viewModel: items[indexPath.row], contentItemType: contentItemType)
+        cell.configure(viewModel: viewModel!.items[indexPath.row], contentItemType: contentItemType)
         
         return cell
     }
@@ -144,5 +133,30 @@ extension CheffiRecommendationContensView: UICollectionViewDelegate {
         if contentOffsetY > actualHeight {
             scrolledToBottom.send(())
         }
+    }
+}
+
+extension CheffiRecommendationContensView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch contentColumnStyle {
+        case .one:
+            return CGSize(
+                width: Double(bounds.width),
+                height: Double(bounds.width) + 100
+            )
+        case .two:
+            return CGSize(
+                width: Double(bounds.width / 2) - Double(Constants.cellLineSpcaing / 2),
+                height: Double(Constants.cellHeight)
+            )
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        CGFloat(Constants.cellLineSpcaing)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        0
     }
 }

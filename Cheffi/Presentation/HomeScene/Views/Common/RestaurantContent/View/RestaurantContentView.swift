@@ -106,7 +106,7 @@ class RestaurantContentView: UIView {
             numberOfLines = 1
         case .oneColumn:
             titleSize = 18
-            contentHeight = Int(bounds.width)
+            contentHeight = 361
             numberOfLines = 1
         case .twoColumn:
             titleSize = 16
