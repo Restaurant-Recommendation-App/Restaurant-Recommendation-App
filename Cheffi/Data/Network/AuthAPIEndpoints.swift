@@ -18,6 +18,7 @@ struct AuthAPIEndpoints {
     static func patchTerms(adAgreed: Bool, analysisAgreed: Bool) -> Endpoint<Results<UserDTO>> {
         return Endpoint(path: "api/v1/users/terms",
                         method: .patch,
+                        headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],
                         bodyParameters: ["ad_agreed": adAgreed,
                                          "analysis_agreed": analysisAgreed])
     }
@@ -33,5 +34,19 @@ struct AuthAPIEndpoints {
                         method: .patch,
                         headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],
                         bodyParameters: ["nickname": nickname])
+    }
+    
+    static func postPhosts(imageData: Data) -> Endpoint<Results<String>> {
+        return Endpoint(path: "api/v1/avatars/photos",
+                        method: .post,
+                        headerParameters: [
+                            "Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? "",
+                            "Content-Type": "multipart/form-data"
+                        ],
+                        bodyParameters: [
+                            "file": imageData,
+                            "request": ["default": true]
+                        ],
+                        bodyEncoding: .multipartFormData)
     }
 }

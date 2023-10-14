@@ -156,6 +156,7 @@
 		FF9793B22A74C22800A921A0 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = FF9793B12A74C22800A921A0 /* PanModal */; };
 		FF9793B52A74C47100A921A0 /* CheffiDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */; };
 		FF9793B72A74C53200A921A0 /* CheffiDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9793B62A74C53200A921A0 /* CheffiDetail.storyboard */; };
+		FFA6BA6F2ADA8B670094913E /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA6E2ADA8B670094913E /* Data+Extensions.swift */; };
 		FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */; };
 		FFB29BAD2ACBD400000E473E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BAC2ACBD400000E473E /* NotificationViewController.swift */; };
 		FFB29BAF2ACBD463000E473E /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BAE2ACBD463000E473E /* NotificationViewModel.swift */; };
@@ -383,6 +384,7 @@
 		FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Ext.swift"; sourceTree = "<group>"; };
 		FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiDetailViewController.swift; sourceTree = "<group>"; };
 		FF9793B62A74C53200A921A0 /* CheffiDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheffiDetail.storyboard; sourceTree = "<group>"; };
+		FFA6BA6E2ADA8B670094913E /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewModel.swift; sourceTree = "<group>"; };
 		FFB29BAC2ACBD400000E473E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		FFB29BAE2ACBD463000E473E /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
@@ -646,6 +648,7 @@
 				FFDBC67B2A83B2ED0009189C /* UITextField+Extensions.swift */,
 				FFC58AD42A8756B10095BCF4 /* UIApplication+Extensions.swift */,
 				FFC7C66F2A88F87400EBE162 /* UIImage+Extensions.swift */,
+				FFA6BA6E2ADA8B670094913E /* Data+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1561,6 +1564,7 @@
 				D49B592C2A653454003C108E /* RestaurantContentCell.swift in Sources */,
 				D49B592A2A652A35003C108E /* CheffiRecommendationContensView.swift in Sources */,
 				D4C0FA752A9DB9790056B885 /* DefaultPaginationGenerator.swift in Sources */,
+				FFA6BA6F2ADA8B670094913E /* Data+Extensions.swift in Sources */,
 				D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */,
 				D4ABC29F2A78D3E900B4152B /* CheffiRecommendationViewModel.swift in Sources */,
 				CEABD7202A6BFF8E001BC131 /* SimilarChefListViewController.swift in Sources */,

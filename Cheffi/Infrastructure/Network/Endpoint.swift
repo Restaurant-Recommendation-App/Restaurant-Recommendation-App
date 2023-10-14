@@ -19,6 +19,7 @@ enum HTTPMethodType: String {
 enum BodyEncoding {
     case jsonSerializationData
     case stringEncodingAscii
+    case multipartFormData
 }
 
 class Endpoint<R>: ResponseRequestable {
@@ -134,6 +135,25 @@ extension Requestable {
                 using: String.Encoding.ascii,
                 allowLossyConversion: true
             )
+        case .multipartFormData:
+            let boundary = "Boundary-\(UUID().uuidString)"
+            var body = Data()
+            for (key, value) in bodyParameters {
+                if let fileData = value as? Data {
+                    body.append("--\(boundary)\r\n")
+                    body.append("Content-Disposition: form-data; name=\"\(key)\"; filename=\"\(key).jpeg\"\r\n")
+                    body.append("Content-Type: image/jpeg\r\n\r\n")
+                    body.append(fileData)
+                    body.append("\r\n")
+                } else {
+                    body.append("--\(boundary)\r\n")
+                    body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                    body.append("\(value)\r\n")
+                }
+            }
+            body.append("--\(boundary)--\r\n")
+            
+            return body
         }
     }
 }

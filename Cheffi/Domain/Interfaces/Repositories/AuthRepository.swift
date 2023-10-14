@@ -17,6 +17,4 @@ protocol AuthRepository {
     func getNicknameInuse(nickname: String) -> AnyPublisher<(Results<Bool>, HTTPURLResponse), DataTransferError>
     // 닉네임 변경
     func patchNickname(nickname: String) -> AnyPublisher<(Results<String>, HTTPURLResponse), DataTransferError>
-    // 프로필 사진 변경
-    // 프로필 완료 등록
 }

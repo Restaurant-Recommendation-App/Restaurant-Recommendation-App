@@ -69,7 +69,7 @@ class NicknameViewController: UIViewController {
     // MARK: - Private
     private func setupViews() {
         nextButtonOnKeyboard.didTapButton = { [weak self] in
-            self?.viewModel.input.patchNicknameDidTap()
+            self?.viewModel.input.requestPatchNicknameDidTap()
         }
         
         // titleLabel
@@ -150,7 +150,7 @@ class NicknameViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.output.patchNickname
+        viewModel.output.responsePatchNickname
             .sink { [weak self] completion in
                 switch completion {
                 case .finished: break

@@ -19,7 +19,7 @@ protocol NicknameViewModelInput {
     var nicknameSubject: PassthroughSubject<String, Never> { get }
     func updateMessageAndStatus(isInuse: Bool)
     func checkNicknameDuplicationDidTap()
-    func patchNicknameDidTap()
+    func requestPatchNicknameDidTap()
     func saveToLocalDB(nickname: String)
 }
 
@@ -29,7 +29,7 @@ protocol NicknameViewModelOutput {
     var message: AnyPublisher<String?, Never> { get }
     var messageStatus: AnyPublisher<NicknameMessageStatus, Never> { get }
     var maxNicknameCount: Int { get }
-    var patchNickname: AnyPublisher<String?, DataTransferError> { get }
+    var responsePatchNickname: AnyPublisher<String?, DataTransferError> { get }
     func showMessageForExceedingMaxCount()
 }
 
@@ -117,7 +117,7 @@ extension NicknameViewModel: NicknameViewModelInput {
         _nicknameSubject
     }
     
-    func patchNicknameDidTap() {
+    func requestPatchNicknameDidTap() {
         patchNicknameDidTapSubject.send(())
     }
     
@@ -161,7 +161,7 @@ extension NicknameViewModel: NicknameViewModelOutput {
             .eraseToAnyPublisher()
     }
     
-    var patchNickname: AnyPublisher<String?, DataTransferError> {
+    var responsePatchNickname: AnyPublisher<String?, DataTransferError> {
         return patchNicknameDidTapSubject
             .flatMap { [weak self] _ -> AnyPublisher<String?, DataTransferError> in
                 guard let self = self else {

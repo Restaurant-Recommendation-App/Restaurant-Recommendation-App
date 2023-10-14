@@ -148,7 +148,7 @@ extension LoginSceneDIContainer {
 // MARK: - Repository
 extension LoginSceneDIContainer {
     func makePhotoRepository() -> DefaultPhotoRepository {
-        return DefaultPhotoRepository()
+        return DefaultPhotoRepository(dataTransferService: dependencies.apiDataTransferService)
     }
     
     func makeAuthRepository() -> AuthRepository {

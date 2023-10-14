@@ -22,11 +22,13 @@ class ProfilePhotoViewController: UIViewController {
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var profileChangeStackView: UIStackView!
     private var viewModel: ProfilePhotoViewModelType!
+    private var cancellables: Set<AnyCancellable> = []
     var delegate: ProfileSetupDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,8 +68,29 @@ class ProfilePhotoViewController: UIViewController {
         profileChangeStackView.isHidden = true
     }
     
+    private func bindViewModel() {
+        viewModel.output.responsePostPhotos
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    // TODO: - 로딩 화면 종료 후 에러 화면
+                    print("---------------------------------------")
+                    print("------>>>>>> error")
+                    print("---------------------------------------")
+                }
+            } receiveValue: { [weak self] imageDataString in
+                // TODO: - 로딩 화면 종료
+                print("---------------------------------------")
+                print(imageDataString)
+                print("---------------------------------------")
+//                self?.delegate?.didTapNext()
+            }
+            .store(in: &cancellables)
+    }
+    
     private func showProfileImageSelect(types: [ProfileImageSelectType]) {
-        viewModel.showProfileImageSelect(types) { [weak self] selectType in
+        viewModel.output.showProfileImageSelect(types) { [weak self] selectType in
             self?.presentedViewController?.dismiss(animated: false)
             switch selectType {
             case .camera:
@@ -81,6 +104,8 @@ class ProfilePhotoViewController: UIViewController {
     }
     
     private func setProfileImage(imageData: Data?) {
+        viewModel.input.setImageData(imageData: imageData)
+        
         if let data = imageData {
             profileImageView.image = UIImage(data: data)
         } else {
@@ -111,7 +136,7 @@ class ProfilePhotoViewController: UIViewController {
         nextButton.setLayerCornerRadius(10)
         nextButton.setTitleFont(font: Fonts.suit.weight600.size(16))
         nextButton.didTapButton = { [weak self] in
-            self?.delegate?.didTapNext()
+            self?.viewModel.input.postPhostosDidTap()
         }
         
         profileChangeStackView.isHidden = false
@@ -123,7 +148,7 @@ class ProfilePhotoViewController: UIViewController {
     
     // MAKR: - Actions
     private func showCamera() {
-        viewModel.showCamera(false) { [weak self] captureImageData in
+        viewModel.output.showCamera(false) { [weak self] captureImageData in
 #if DEBUG
             print("capture image data- \(captureImageData)")
 #endif
@@ -137,13 +162,13 @@ class ProfilePhotoViewController: UIViewController {
     }
     
     private func handlePhotoCropAction(captureImageData: Data?, completion: @escaping (Data?) -> Void) {
-        viewModel.showPhotoCrop(captureImageData) { cropImageData in
+        viewModel.output.showPhotoCrop(captureImageData) { cropImageData in
             completion(cropImageData)
         }
     }
     
     private func showPhotoAlbum() {
-        viewModel.showPhotoAlbum { [weak self] cropImageData in
+        viewModel.output.showPhotoAlbum { [weak self] cropImageData in
 #if DEBUG
             print("crop image data - \(cropImageData)")
 #endif
