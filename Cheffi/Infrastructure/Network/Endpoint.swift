@@ -35,6 +35,7 @@ class Endpoint<R>: ResponseRequestable {
     let bodyParametersEncodable: Encodable?
     let bodyParameters: [String: Any]
     let bodyEncoding: BodyEncoding
+    let bodyBoundary: String
     let responseDecoder: ResponseDecoder
     
     init(path: String,
@@ -46,6 +47,7 @@ class Endpoint<R>: ResponseRequestable {
          bodyParametersEncodable: Encodable? = nil,
          bodyParameters: [String: Any] = [:],
          bodyEncoding: BodyEncoding = .jsonSerializationData,
+         bodyBoundary: String = "Boundary-\(UUID().uuidString)",
          responseDecoder: ResponseDecoder = JSONResponseDecoder()) {
         self.path = path
         self.isFullPath = isFullPath
@@ -56,6 +58,7 @@ class Endpoint<R>: ResponseRequestable {
         self.bodyParametersEncodable = bodyParametersEncodable
         self.bodyParameters = bodyParameters
         self.bodyEncoding = bodyEncoding
+        self.bodyBoundary = bodyBoundary
         self.responseDecoder = responseDecoder
     }
 }
@@ -70,6 +73,7 @@ protocol Requestable {
     var bodyParametersEncodable: Encodable? { get }
     var bodyParameters: [String: Any] { get }
     var bodyEncoding: BodyEncoding { get }
+    var bodyBoundary: String { get }
     
     func urlRequest(with networkConfig: NetworkConfigurable) throws -> URLRequest
 }
@@ -136,25 +140,49 @@ extension Requestable {
                 allowLossyConversion: true
             )
         case .multipartFormData:
-            let boundary = "Boundary-\(UUID().uuidString)"
-            var body = Data()
-            for (key, value) in bodyParameters {
-                if let fileData = value as? Data {
-                    body.append("--\(boundary)\r\n")
-                    body.append("Content-Disposition: form-data; name=\"\(key)\"; filename=\"\(key).jpeg\"\r\n")
-                    body.append("Content-Type: image/jpeg\r\n\r\n")
-                    body.append(fileData)
-                    body.append("\r\n")
-                } else {
-                    body.append("--\(boundary)\r\n")
-                    body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
-                    body.append("\(value)\r\n")
-                }
+            let request = bodyParameters["request"] as? [String: Bool]
+            let jsonEncoder = JSONEncoder()
+            guard let jsonData = try? jsonEncoder.encode(request) else { return nil }
+            guard let jsonString = String(data: jsonData, encoding: .utf8) else { return nil }
+            let textData: [String: String] = ["request": jsonString]
+            var httpBody = Data()
+            for (key, value) in textData {
+                httpBody.appendString(convertFormField(named: key, value: value, using: bodyBoundary))
             }
-            body.append("--\(boundary)--\r\n")
-            
-            return body
+            guard let imageData = bodyParameters["file"] as? Data else { return nil }
+            httpBody.append(convertFileData(fieldName: "file", fileName: "profile.jpg", mimeType: "multipart/form-data", fileData: imageData, using: bodyBoundary))
+            httpBody.appendString("--\(bodyBoundary)--")
+            return httpBody as Data
         }
+    }
+    
+    private func convertFormField(named name: String,
+                                  value: String,
+                                  using boundary: String) -> String {
+        let mimeType = "application/json"
+        var fieldString = "--\(boundary)\r\n"
+        fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n"
+        fieldString += "Content-Type: \(mimeType)\r\n\r\n"
+        fieldString += "\r\n"
+        fieldString += "\(value)\r\n"
+        
+        return fieldString
+    }
+    
+    private func convertFileData(fieldName: String,
+                                 fileName: String,
+                                 mimeType: String,
+                                 fileData: Data,
+                                 using boundary: String) -> Data {
+        var data = Data()
+        
+        data.appendString("--\(boundary)\r\n")
+        data.appendString("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n")
+        data.appendString("Content-Type: \(mimeType)\r\n\r\n")
+        data.append(fileData)
+        data.appendString("\r\n")
+        
+        return data
     }
 }
 
@@ -173,4 +201,3 @@ private extension Encodable {
         return jsonData as? [String : Any]
     }
 }
-

@@ -76,15 +76,16 @@ class ProfilePhotoViewController: UIViewController {
                 case .failure(let error):
                     // TODO: - 로딩 화면 종료 후 에러 화면
                     print("---------------------------------------")
-                    print("------>>>>>> error")
+                    print("profile upload error")
                     print("---------------------------------------")
                 }
-            } receiveValue: { [weak self] imageDataString in
+            } receiveValue: { [weak self] profileUrl in
                 // TODO: - 로딩 화면 종료
                 print("---------------------------------------")
-                print(imageDataString)
+                print("profile url")
+                print(profileUrl ?? "")
                 print("---------------------------------------")
-//                self?.delegate?.didTapNext()
+                self?.delegate?.didTapNext()
             }
             .store(in: &cancellables)
     }
@@ -104,14 +105,15 @@ class ProfilePhotoViewController: UIViewController {
     }
     
     private func setProfileImage(imageData: Data?) {
-        viewModel.input.setImageData(imageData: imageData)
-        
-        if let data = imageData {
-            profileImageView.image = UIImage(data: data)
+        var jpegData: Data? = nil
+        if let data = imageData, let image = UIImage(data: data) {
+            jpegData = image.jpegData(compressionQuality: 0.1)
+            profileImageView.image = image
         } else {
             profileImageView.image = UIImage(named: "icPlaceholder")
         }
         
+        viewModel.input.setImageData(imageData: jpegData)
     }
     
     private func showProfileChangeView() {

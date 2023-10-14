@@ -84,7 +84,9 @@ extension ProfilePhotoViewModel: ProfilePhotoViewModelInput {
         if let imageData = self._imageData {
             requestPostPhotosSubject.send(imageData)
         } else {
-            // TODO: - 이미지 데이터가 없는 경우 처리
+            print("---------------------------------------")
+            print("이미지 데이터 없음")
+            print("---------------------------------------")
         }
     }
 }
