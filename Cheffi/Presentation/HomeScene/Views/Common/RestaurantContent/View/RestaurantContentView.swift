@@ -27,6 +27,7 @@ final class RestaurantContentView: UIView {
         label.font = Fonts.suit.weight700.size(16)
         label.textColor = .cheffiBlack
         label.numberOfLines = 2
+        label.setContentHuggingPriority(.defaultHigh + 1, for: .vertical)
         return label
     }()
     
@@ -36,6 +37,7 @@ final class RestaurantContentView: UIView {
         label.font = Fonts.suit.weight400.size(15)
         label.textColor = .cheffiGray7
         label.numberOfLines = 2
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return label
     }()
     
@@ -117,7 +119,7 @@ final class RestaurantContentView: UIView {
         
         restaurantImageView.snp.remakeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.width.equalTo(itemType.contentHeight)
+            $0.height.equalTo(itemType.contentHeight)
         }
         
         contentTimeLockBubbleView.snp.remakeConstraints {
@@ -128,6 +130,10 @@ final class RestaurantContentView: UIView {
         }
         
         if itemType == .oneColumn {
+            restaurantTitleLabel.numberOfLines = 1
+            restaurantSubtitleLabel.numberOfLines = 1
+            numberOfLikes.isHidden = false
+            
             restaurantTitleLabel.snp.remakeConstraints {
                 $0.top.equalTo(restaurantImageView.snp.bottom).offset(12)
                 $0.centerX.equalToSuperview()
@@ -137,13 +143,11 @@ final class RestaurantContentView: UIView {
             restaurantSubtitleLabel.snp.remakeConstraints {
                 $0.top.equalTo(restaurantTitleLabel.snp.bottom).offset(8)
                 $0.centerX.equalToSuperview()
-                $0.height.equalTo(22)
             }
             
             likeStackView.snp.remakeConstraints {
                 $0.top.equalTo(restaurantSubtitleLabel.snp.bottom).offset(16)
                 $0.centerX.equalToSuperview()
-                $0.height.equalTo(24)
                 $0.bottom.equalToSuperview()
             }
             
@@ -151,23 +155,23 @@ final class RestaurantContentView: UIView {
                 $0.width.height.equalTo(24)
             }
             
-            numberOfLikes.isHidden = false
-            
             numberOfLikes.snp.makeConstraints {
                 $0.leading.equalTo(likeButton.snp.trailing).offset(4)
-                
             }
         } else {
+            restaurantTitleLabel.numberOfLines = (itemType == .twoColumn) ? 2 : 1
+            restaurantSubtitleLabel.numberOfLines = 2
+            numberOfLikes.isHidden = true
+            
             restaurantTitleLabel.snp.remakeConstraints {
                 $0.top.equalTo(restaurantImageView.snp.bottom).offset(12)
                 $0.leading.equalToSuperview()
-                $0.height.equalTo(itemType == .twoColumn ? 40 : 26)
             }
             
             restaurantSubtitleLabel.snp.remakeConstraints {
                 $0.top.equalTo(restaurantTitleLabel.snp.bottom).offset(8)
                 $0.leading.trailing.equalToSuperview()
-                $0.bottom.equalToSuperview()
+                $0.bottom.greaterThanOrEqualToSuperview()
             }
             
             likeStackView.snp.remakeConstraints {
@@ -179,8 +183,6 @@ final class RestaurantContentView: UIView {
             likeButton.snp.remakeConstraints {
                 $0.width.height.equalTo(24)
             }
-            
-            numberOfLikes.isHidden = true
         }
     }
         
