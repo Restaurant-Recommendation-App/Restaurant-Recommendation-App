@@ -69,8 +69,7 @@ class NicknameViewController: UIViewController {
     // MARK: - Private
     private func setupViews() {
         nextButtonOnKeyboard.didTapButton = { [weak self] in
-            self?.nextView()
-            self?.hideKeyboard()
+            self?.viewModel.input.patchNicknameDidTap()
         }
         
         // titleLabel
@@ -106,18 +105,32 @@ class NicknameViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.isDuplicationCheckButtonEnabled
+        viewModel.output.isInuseNickname
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    // TODO: - 로딩 화면 종료 후 에러 화면
+                    self?.showErrorMessage(error: error)
+                }
+            } receiveValue: { [weak self] isInuse in
+                // TODO: - 로딩 화면 종료
+                self?.viewModel.input.updateMessageAndStatus(isInuse: isInuse)
+            }
+            .store(in: &cancellables)
+
+        viewModel.output.isDuplicationCheckButtonEnabled
             .sink { [weak self] isEnabled in
                 self?.duplicationCheckButton.isEnabled = isEnabled
                 self?.duplicationCheckButton.backgroundColor = isEnabled ? Constants.duplicationEnableColor : Constants.duplicationDisableColor
             }
             .store(in: &cancellables)
         
-        viewModel.message
+        viewModel.output.message
             .assign(to: \.text, on: errorMessageLabel)
             .store(in: &cancellables)
         
-        viewModel.messageStatus
+        viewModel.output.messageStatus
             .sink { [weak self] status in
                 guard let self = self else { return }
                         
@@ -137,12 +150,35 @@ class NicknameViewController: UIViewController {
             }
             .store(in: &cancellables)
         
+        viewModel.output.patchNickname
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    self?.showErrorMessage(error: error)
+                }
+            } receiveValue: { [weak self] responseData in
+                guard let nickname = responseData else { return }
+                self?.viewModel.input.saveToLocalDB(nickname: nickname)
+                self?.nextView()
+                self?.hideKeyboard()
+            }
+            .store(in: &cancellables)
+
+        
         textField.textDidChangePublisher
             .sink { [weak self] newText in
-                self?.viewModel.nickname.send(newText)
+                self?.viewModel.input.nicknameSubject.send(newText)
                 self?.textField.rightViewMode = (self?.textField.text?.isEmpty == false) ? .always : .never
             }
             .store(in: &cancellables)
+    }
+    
+    private func showErrorMessage(error: DataTransferError) {
+        print("---------------------------------------")
+        print("닉네임 중복 체크 API 에러")
+        print(error)
+        print("---------------------------------------")
     }
     
     private func setupKeyboard() {
@@ -150,15 +186,7 @@ class NicknameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    private func saveNicknameToLocalDB(name: String) {
-        let user = User(email: "", expired: false, nickname: name, userType: .apple, adAgreed: true, analysisAgreed: true, photoURL: "")
-        UserDefaultsManager.AuthInfo.user = user
-    }
-    
     private func nextView() {
-        if let name = textField.text?.trimmed {
-            saveNicknameToLocalDB(name: name)
-        }
         delegate?.didTapNext()
     }
     
@@ -166,7 +194,7 @@ class NicknameViewController: UIViewController {
     
     // MAKR: - Actions
     @IBAction private func duplicationCheck(_ sender: UIButton) {
-        viewModel.checkNicknameDuplication()
+        viewModel.input.checkNicknameDuplicationDidTap()
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -190,7 +218,7 @@ class NicknameViewController: UIViewController {
     }
     
     @objc func clearTextField() {
-        viewModel.nickname.send("")
+        viewModel.input.nicknameSubject.send("")
         textField.text = ""
         textField.rightViewMode = .never
     }
@@ -202,8 +230,8 @@ extension NicknameViewController: UITextFieldDelegate {
         let currentText = textField.text ?? ""
         let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
         
-        if newText.count > viewModel.maxNicknameCount {
-            viewModel.showMessageForExceedingMaxCount()
+        if newText.count > viewModel.output.maxNicknameCount {
+            viewModel.output.showMessageForExceedingMaxCount()
             return false
         }
         

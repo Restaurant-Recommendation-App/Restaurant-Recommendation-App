@@ -147,10 +147,10 @@
 		FF62A4502A7FC2C60066073F /* LoginSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A44F2A7FC2C60066073F /* LoginSceneDIContainer.swift */; };
 		FF62A4522A7FC3FD0066073F /* SNSLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A4512A7FC3FD0066073F /* SNSLoginViewModel.swift */; };
 		FF6801382AD2B068001AB6E8 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6801372AD2B068001AB6E8 /* Results.swift */; };
-		FF68013A2AD2BCC7001AB6E8 /* DefaultLoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6801392AD2BCC7001AB6E8 /* DefaultLoginRepository.swift */; };
-		FF68013C2AD2BCFE001AB6E8 /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68013B2AD2BCFE001AB6E8 /* LoginRepository.swift */; };
-		FF68013E2AD2BD8A001AB6E8 /* LoginAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68013D2AD2BD8A001AB6E8 /* LoginAPIEndpoints.swift */; };
-		FF6801402AD2BF78001AB6E8 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68013F2AD2BF78001AB6E8 /* LoginUseCase.swift */; };
+		FF68013A2AD2BCC7001AB6E8 /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6801392AD2BCC7001AB6E8 /* DefaultAuthRepository.swift */; };
+		FF68013C2AD2BCFE001AB6E8 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68013B2AD2BCFE001AB6E8 /* AuthRepository.swift */; };
+		FF68013E2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68013D2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift */; };
+		FF6801402AD2BF78001AB6E8 /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68013F2AD2BF78001AB6E8 /* AuthUseCase.swift */; };
 		FF97932C2A72BF9900A921A0 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932B2A72BF9900A921A0 /* AccountManager.swift */; };
 		FF97932E2A73C9D600A921A0 /* UserDefault+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */; };
 		FF9793B22A74C22800A921A0 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = FF9793B12A74C22800A921A0 /* PanModal */; };
@@ -375,10 +375,10 @@
 		FF62A44F2A7FC2C60066073F /* LoginSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneDIContainer.swift; sourceTree = "<group>"; };
 		FF62A4512A7FC3FD0066073F /* SNSLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSLoginViewModel.swift; sourceTree = "<group>"; };
 		FF6801372AD2B068001AB6E8 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
-		FF6801392AD2BCC7001AB6E8 /* DefaultLoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginRepository.swift; sourceTree = "<group>"; };
-		FF68013B2AD2BCFE001AB6E8 /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
-		FF68013D2AD2BD8A001AB6E8 /* LoginAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIEndpoints.swift; sourceTree = "<group>"; };
-		FF68013F2AD2BF78001AB6E8 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
+		FF6801392AD2BCC7001AB6E8 /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
+		FF68013B2AD2BCFE001AB6E8 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		FF68013D2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIEndpoints.swift; sourceTree = "<group>"; };
+		FF68013F2AD2BF78001AB6E8 /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
 		FF97932B2A72BF9900A921A0 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		FF97932D2A73C9D600A921A0 /* UserDefault+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Ext.swift"; sourceTree = "<group>"; };
 		FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiDetailViewController.swift; sourceTree = "<group>"; };
@@ -702,7 +702,7 @@
 				D4918F0C2A8F48A2001440DD /* DefaultCheffiRecommendationRepository.swift */,
 				FF4659C72A879A8800736AEA /* PhotoRepository.swift */,
 				FFB29BC22ACBE0C8000E473E /* DefaultNotificationRepository.swift */,
-				FF6801392AD2BCC7001AB6E8 /* DefaultLoginRepository.swift */,
+				FF6801392AD2BCC7001AB6E8 /* DefaultAuthRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -739,7 +739,7 @@
 				CE70F8902A63C18C003D0ED9 /* SimilarChefUseCase.swift */,
 				FFC58AD02A8689FA0095BCF4 /* PhotoUseCase.swift */,
 				FFB29BC42ACBE170000E473E /* NotificationUseCase.swift */,
-				FF68013F2AD2BF78001AB6E8 /* LoginUseCase.swift */,
+				FF68013F2AD2BF78001AB6E8 /* AuthUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -758,7 +758,7 @@
 				CE70F88C2A63C0CC003D0ED9 /* SimilarChefRepository.swift */,
 				D47719052A8D367900381A72 /* CheffiRecommendationRepository.swift */,
 				FFB29BBD2ACBDF50000E473E /* NotificationRepository.swift */,
-				FF68013B2AD2BCFE001AB6E8 /* LoginRepository.swift */,
+				FF68013B2AD2BCFE001AB6E8 /* AuthRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1071,7 +1071,7 @@
 			isa = PBXGroup;
 			children = (
 				FF5059A52A7E08DE00F90D27 /* HomeAPIEndpoints.swift */,
-				FF68013D2AD2BD8A001AB6E8 /* LoginAPIEndpoints.swift */,
+				FF68013D2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift */,
 				FF5059A22A7E055F00F90D27 /* DataMapping */,
 			);
 			path = Network;
@@ -1535,9 +1535,9 @@
 				FF50599F2A7E002800F90D27 /* Endpoint.swift in Sources */,
 				CE70F8872A63BFC8003D0ED9 /* HomeViewModel.swift in Sources */,
 				FFDBC64C2A813CC40009189C /* CustomProfileButton.swift in Sources */,
-				FF68013A2AD2BCC7001AB6E8 /* DefaultLoginRepository.swift in Sources */,
+				FF68013A2AD2BCC7001AB6E8 /* DefaultAuthRepository.swift in Sources */,
 				FFB29BB32ACBD629000E473E /* NotificationCell.swift in Sources */,
-				FF6801402AD2BF78001AB6E8 /* LoginUseCase.swift in Sources */,
+				FF6801402AD2BF78001AB6E8 /* AuthUseCase.swift in Sources */,
 				FF6801382AD2B068001AB6E8 /* Results.swift in Sources */,
 				CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */,
 				FF5059B22A7E0B3100F90D27 /* Cancellable.swift in Sources */,
@@ -1634,7 +1634,7 @@
 				D4918F0D2A8F48A2001440DD /* DefaultCheffiRecommendationRepository.swift in Sources */,
 				D497F9F62AA874730057B7EB /* PopularRestaurantContentsItemView.swift in Sources */,
 				CE42BA652A6BAF4500EBB80A /* PopupView.swift in Sources */,
-				FF68013C2AD2BCFE001AB6E8 /* LoginRepository.swift in Sources */,
+				FF68013C2AD2BCFE001AB6E8 /* AuthRepository.swift in Sources */,
 				FFB29BAF2ACBD463000E473E /* NotificationViewModel.swift in Sources */,
 				D49D1A9A2A73BB6500CB86FA /* UIControl+Combine.swift in Sources */,
 				FF5059B92A7E357C00F90D27 /* CheffiWriterView.swift in Sources */,
@@ -1658,7 +1658,7 @@
 				CEABD71A2A6BDF0A001BC131 /* TopPickCell.swift in Sources */,
 				D4EEF21C2A91BA9D008107DF /* ContentsResponseDTO.swift in Sources */,
 				FFF3EC6B2ABF247300F6B431 /* ProfileImageSelectButton.swift in Sources */,
-				FF68013E2AD2BD8A001AB6E8 /* LoginAPIEndpoints.swift in Sources */,
+				FF68013E2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift in Sources */,
 				D4C1C5A12AC16506007F8C1E /* TimeLockGenerator.swift in Sources */,
 				FFB50C4A2A72B5A80049B5E1 /* ShowAllContentsButton.swift in Sources */,
 				FF5059972A7DFC7200F90D27 /* AppConfigurations.swift in Sources */,

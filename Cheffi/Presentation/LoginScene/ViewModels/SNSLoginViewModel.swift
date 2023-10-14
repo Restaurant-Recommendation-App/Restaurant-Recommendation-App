@@ -36,7 +36,7 @@ final class SNSLoginViewModel: SNSLoginViewModelType {
     var output: SNSLoginViewModelOutput { return self }
     
     private let actions: SNSLoginViewModelActions
-    private let useCase: LoginUseCase
+    private let useCase: AuthUseCase
     private var cancellables = Set<AnyCancellable>()
     private var kakaoLoginDidTapSubject = PassthroughSubject<Void, Never>()
     private var appleLoginDidTapSubject = PassthroughSubject<Void, Never>()
@@ -44,7 +44,7 @@ final class SNSLoginViewModel: SNSLoginViewModelType {
     // MARK: - Init
     init(
         actions: SNSLoginViewModelActions,
-        useCase: LoginUseCase
+        useCase: AuthUseCase
     ) {
         self.actions = actions
         self.useCase = useCase
@@ -88,10 +88,11 @@ final class SNSLoginViewModel: SNSLoginViewModelType {
                 subject.send(nil)
                 subject.send(completion: .failure(.parsing(error)))
             } else {
-                let cancellable = self?.useCase.execute(idToken: idToken)
+                let cancellable = self?.useCase.postOauthKakaoLoing(idToken: idToken)
                     .sink { completion in
                         switch completion {
-                        case .finished: break
+                        case .finished:
+                            subject.send(completion: .finished)
                         case .failure(let error):
                             subject.send(completion: .failure(error))
                         }

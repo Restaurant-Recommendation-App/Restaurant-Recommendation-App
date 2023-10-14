@@ -59,15 +59,13 @@ class SNSLoginViewController: UIViewController {
         viewModel.output.isKakaoLoginSuccess
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
-                case .finished:
-                    print("---------------------------------------")
-                    print("----> 로그인 완료")
-                    print("---------------------------------------")
-                    // TODO: - 로딩 화면 처리
+                case .finished: break
                 case .failure(let error):
+                    // TODO: - 로딩 화면 종료 후 에러 화면
                     self?.showError(error)
                 }
             }, receiveValue: { [weak self] user in
+                // TODO: - 로딩 화면 종료
                 self?.loginSuccess(user)
             })
             .store(in: &cancellables)

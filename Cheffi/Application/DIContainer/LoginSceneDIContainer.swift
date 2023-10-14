@@ -32,8 +32,8 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     func makeSNSLoginViewModel(actions: SNSLoginViewModelActions) -> SNSLoginViewModel {
-        let repository = makeLoginRepository()
-        let useCase = makeLoginUseCase(repository: repository)
+        let repository = makeAuthRepository()
+        let useCase = makeAuthUseCase(repository: repository)
         return SNSLoginViewModel(actions: actions,
                                  useCase: useCase)
     }
@@ -57,7 +57,9 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     func makeNicknameViewModel() -> NicknameViewModelType {
-        return NicknameViewModel()
+        let repository = makeAuthRepository()
+        let useCase = makeAuthUseCase(repository: repository)
+        return NicknameViewModel(useCase: useCase)
     }
     
     // MARK: - ProfilePhoto
@@ -138,8 +140,8 @@ extension LoginSceneDIContainer {
         return DefaultPhotoUseCase(repository: makePhotoRepository())
     }
     
-    func makeLoginUseCase(repository: LoginRepository) -> LoginUseCase {
-        return DefaultLoginUserCase(repository: repository)
+    func makeAuthUseCase(repository: AuthRepository) -> AuthUseCase {
+        return DefaultAuthUserCase(repository: repository)
     }
 }
 
@@ -149,7 +151,7 @@ extension LoginSceneDIContainer {
         return DefaultPhotoRepository()
     }
     
-    func makeLoginRepository() -> LoginRepository {
-        return DefaultLoginRepository(dataTransferService: dependencies.apiDataTransferService)
+    func makeAuthRepository() -> AuthRepository {
+        return DefaultAuthRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }
