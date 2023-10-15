@@ -187,7 +187,8 @@ class NicknameViewController: UIViewController {
     }
     
     private func nextView() {
-        delegate?.didTapNext()
+        guard let nickname = self.textField.text?.trimmed else { return }
+        delegate?.didTapNext(params: [.profileNickname: nickname])
     }
     
     // MARK: - Public

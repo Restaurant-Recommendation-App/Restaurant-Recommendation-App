@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol ProfileSetupDelegate {
-    func didTapNext()
+    func didTapNext(params: [ProfilePageKey: Any])
 }
 
 class ProfileSetupViewController: UIViewController {
@@ -92,16 +92,19 @@ class ProfileSetupViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.progress
+        viewModel.output.progress
             .sink { [weak self] progress in
                 self?.progressView.setProgress(progress, animated: true)
             }
             .store(in: &cancellables)
         
-        viewModel.currentPage
+        viewModel.output.currentPage
             .sink { [weak self] index in
                 guard let self = self, index < self.viewControllersList.count else { return }
                 let viewController = self.viewControllersList[index]
+                if let tasteSelectionVC = viewController as? TasteSelectionViewController {
+                    tasteSelectionVC.setParams(viewModel.output.params)
+                }
                 let currentVCIndex = self.viewControllersList.firstIndex(of: self.pageViewController.viewControllers?.first ?? viewController) ?? 0
                 let direction: UIPageViewController.NavigationDirection = currentVCIndex < index ? .forward : .reverse
                 self.pageViewController.setViewControllers([viewController], direction: direction, animated: true, completion: nil)
@@ -113,21 +116,22 @@ class ProfileSetupViewController: UIViewController {
     
     // MAKR: - Actions
     @IBAction private func didTapBack(_ sender: UIButton) {
-        let currentPage = viewModel.currentPage.value
+        let currentPage = viewModel.output.currentPage.value
         if currentPage == 0 {
             self.dismissOrPop(amimated: true)
         } else {
-            viewModel.previousButtonTapped.send()
+            viewModel.input.previousButtonTapped.send()
         }
     }
 }
 
 extension ProfileSetupViewController: ProfileSetupDelegate {
-    func didTapNext() {
-        if viewModel.currentPage.value == viewControllersList.count - 1 {
+    func didTapNext(params: [ProfilePageKey: Any]) {
+        viewModel.input.setParams(params)
+        if viewModel.output.currentPage.value == viewControllersList.count - 1 {
             self.dismissAll()
         } else {
-            viewModel.nextButtonTapped.send()
+            viewModel.input.nextButtonTapped.send(params)
         }
     }
 }

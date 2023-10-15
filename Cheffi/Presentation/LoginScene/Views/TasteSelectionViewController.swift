@@ -9,8 +9,9 @@ import UIKit
 import Combine
 
 class TasteSelectionViewController: UIViewController {
-    static func instance<T: TasteSelectionViewController>() -> T {
+    static func instance<T: TasteSelectionViewController>(viewModel: TasteSelectionViewModelType) -> T {
         let vc: T = .instance(storyboardName: .tasteSelection)
+        vc.viewModel = viewModel
         return vc
     }
     
@@ -23,10 +24,14 @@ class TasteSelectionViewController: UIViewController {
     @IBOutlet private weak var subTitleLabel: UILabel!
     @IBOutlet private weak var tasteTagListView: ProfileTagListView!
     var delegate: ProfileSetupDelegate?
+    private var cancellables: Set<AnyCancellable> = []
+    private var viewModel: TasteSelectionViewModelType!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        bindViewModel()
+        viewModel.input.requestGetTags(type: .taste)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +44,7 @@ class TasteSelectionViewController: UIViewController {
     private func setupViews() {
         nextButton.setTitle("다음".localized(), for: .normal)
         nextButton.didTapButton = { [weak self] in
-            self?.delegate?.didTapNext()
+            self?.viewModel.input.requestPutTags()
         }
         
         titleLabel.textColor = .cheffiGray9
@@ -50,16 +55,50 @@ class TasteSelectionViewController: UIViewController {
                                        defaultColor: .cheffiGray6,
                                        font: subTitleFont, keywordFont: subTitleFont)
         
-        // TEST Code
-        let tags = ["매콤한", "자극적인", "담백한", "넓은", "달닳나", "얼큰한", "시원한", "깔끔한", "깊은맛", "새콤한", "따뜻한", "조용한", "감성적인", "사진맛집", "혼술", "혼밥", "아늑한", "레트로", "트렌디한", "노포", "데이트", "한정메뉴", "독특한", "모임", "특별한", "가성비", "향신료", "밥도둑"]
-        
-        tasteTagListView.setupTags(tags)
         tasteTagListView.didTapTagsHandler = { [weak self] selectedTags in
+            self?.viewModel.input.setTasteSelectionTags(selectedTags)
             self?.nextButton.isEnable = selectedTags.count >= Constants.maximumNumberOfSelection
         }
     }
     
-    // MARK: - Public
+    private func bindViewModel() {
+        viewModel.output.responseTags
+            .sink { completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    print("---------------------------------------")
+                    print(error)
+                    print("---------------------------------------")
+                }
+            } receiveValue: { [weak self] tags in
+                self?.reload(with: tags)
+            }
+            .store(in: &cancellables)
+
+        viewModel.output.updateCompletionTags
+            .sink { completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    print("---------------------------------------")
+                    print(error)
+                    print("---------------------------------------")
+                }
+            } receiveValue: { [weak self] tagResponse in
+                self?.delegate?.didTapNext(params: [:])
+            }
+            .store(in: &cancellables)
+
+    }
     
-    // MAKR: - Actions
+    private func reload(with tags: [Tag]) {
+        tasteTagListView.setupTags(tags.map { $0 })
+    }
+    
+    // MARK: - Public
+    func setParams(_ params: [ProfilePageKey: Any]) {
+        guard let foodSelectionTags = params[.profileFoodSelection] as? [Tag] else { return }
+        viewModel.input.setFoodSelectionTags(foodSelectionTags)
+    }
 }

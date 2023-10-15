@@ -39,19 +39,23 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     // MARK: - ProfileSetup
-    func makeProfileSetupViewController(nicknameViewModel: NicknameViewModelType, profilePhotoViewModel: ProfilePhotoViewModelType) -> ProfileSetupViewController {
+    func makeProfileSetupViewController(
+        nicknameViewModel: NicknameViewModelType,
+        profilePhotoViewModel: ProfilePhotoViewModelType,
+        foodSelectionViewModel: FoodSelectionViewModelType,
+        tasteSelectionViewModel: TasteSelectionViewModelType
+    ) -> ProfileSetupViewController {
         let viewModel = makeProfileSetupViewModel()
         return ProfileSetupViewController.instance(viewModel: viewModel,
-                                                   nicknameViewController: makeNicknameViewController(),
+                                                   nicknameViewController: makeNicknameViewController(viewModel: nicknameViewModel),
                                                    profilePhotoViewController: makeProfilePhotoViewController(viewMoel: profilePhotoViewModel),
-                                                   foodSelectionViewController: makeFoodSelectionViewController(),
-                                                   tasteSelectionViewController: makeTasteSelectionViewController(),
+                                                   foodSelectionViewController: makeFoodSelectionViewController(viewModel: foodSelectionViewModel),
+                                                   tasteSelectionViewController: makeTasteSelectionViewController(viewModel: tasteSelectionViewModel),
                                                    followSelectionViewController: makeFollowSelectionViewController())
     }
     
     // MARK: - Nickname
-    func makeNicknameViewController() -> NicknameViewController {
-        let viewModel = makeNicknameViewModel()
+    func makeNicknameViewController(viewModel: NicknameViewModelType) -> NicknameViewController {
         let vc = NicknameViewController.instance(viewMode: viewModel)
         return vc
     }
@@ -74,13 +78,23 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     // MARK: - FoodSelection
-    func makeFoodSelectionViewController() -> FoodSelectionViewController {
-        return FoodSelectionViewController.instance()
+    func makeFoodSelectionViewController(viewModel: FoodSelectionViewModelType) -> FoodSelectionViewController {
+        return FoodSelectionViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeFoodSelectionViewModel() -> FoodSelectionViewModelType {
+        let repository = makeTagRepository()
+        return FoodSelectionViewModel(useCase: makeTagUseCase(repository: repository))
     }
     
     // MARK: - Taste
-    func makeTasteSelectionViewController() -> TasteSelectionViewController {
-        return TasteSelectionViewController.instance()
+    func makeTasteSelectionViewController(viewModel: TasteSelectionViewModelType) -> TasteSelectionViewController {
+        return TasteSelectionViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeTasteSelectionViewModel() -> TasteSelectionViewModelType {
+        let repository = makeTagRepository()
+        return TasteSelectionViewModel(useCase: makeTagUseCase(repository: repository))
     }
     
     // MARK: - FollowSelection
@@ -143,6 +157,10 @@ extension LoginSceneDIContainer {
     func makeAuthUseCase(repository: AuthRepository) -> AuthUseCase {
         return DefaultAuthUserCase(repository: repository)
     }
+    
+    func makeTagUseCase(repository: TagRepository) -> TagUseCase {
+        return DefaultTagUseCase(repository: repository)
+    }
 }
 
 // MARK: - Repository
@@ -151,7 +169,11 @@ extension LoginSceneDIContainer {
         return DefaultPhotoRepository(dataTransferService: dependencies.apiDataTransferService)
     }
     
-    func makeAuthRepository() -> AuthRepository {
+    func makeAuthRepository() -> DefaultAuthRepository {
         return DefaultAuthRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeTagRepository() -> DefaultTagRepository {
+        return DefaultTagRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

@@ -131,7 +131,7 @@
 		FF50599D2A7DFFAF00F90D27 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF50599C2A7DFFAF00F90D27 /* NetworkConfig.swift */; };
 		FF50599F2A7E002800F90D27 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF50599E2A7E002800F90D27 /* Endpoint.swift */; };
 		FF5059A12A7E017400F90D27 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A02A7E017400F90D27 /* DataTransferService.swift */; };
-		FF5059A42A7E058400F90D27 /* TagResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A32A7E058400F90D27 /* TagResponseDTO.swift */; };
+		FF5059A42A7E058400F90D27 /* TagDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A32A7E058400F90D27 /* TagDTO.swift */; };
 		FF5059A62A7E08DE00F90D27 /* HomeAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A52A7E08DE00F90D27 /* HomeAPIEndpoints.swift */; };
 		FF5059A92A7E093D00F90D27 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059A82A7E093D00F90D27 /* UserDTO.swift */; };
 		FF5059B22A7E0B3100F90D27 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059B12A7E0B3100F90D27 /* Cancellable.swift */; };
@@ -157,6 +157,15 @@
 		FF9793B52A74C47100A921A0 /* CheffiDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */; };
 		FF9793B72A74C53200A921A0 /* CheffiDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9793B62A74C53200A921A0 /* CheffiDetail.storyboard */; };
 		FFA6BA6F2ADA8B670094913E /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA6E2ADA8B670094913E /* Data+Extensions.swift */; };
+		FFA6BA742ADAD8F80094913E /* FoodSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA732ADAD8F80094913E /* FoodSelectionViewModel.swift */; };
+		FFA6BA762ADAD9080094913E /* TasteSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA752ADAD9080094913E /* TasteSelectionViewModel.swift */; };
+		FFA6BA782ADAE5510094913E /* TagUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA772ADAE5510094913E /* TagUseCase.swift */; };
+		FFA6BA7A2ADAE5A60094913E /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA792ADAE5A60094913E /* TagRepository.swift */; };
+		FFA6BA7C2ADAE5F20094913E /* DefaultTagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA7B2ADAE5F20094913E /* DefaultTagRepository.swift */; };
+		FFA6BA7E2ADAECE70094913E /* TagsChangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA7D2ADAECE70094913E /* TagsChangeResponse.swift */; };
+		FFA6BA802ADAED800094913E /* TagsChangeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA7F2ADAED800094913E /* TagsChangeRequest.swift */; };
+		FFA6BA832ADAEE380094913E /* TagAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA822ADAEE380094913E /* TagAPIEndpoints.swift */; };
+		FFA6BA852ADBA5690094913E /* ProfilePageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA842ADBA5690094913E /* ProfilePageKey.swift */; };
 		FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */; };
 		FFB29BAD2ACBD400000E473E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BAC2ACBD400000E473E /* NotificationViewController.swift */; };
 		FFB29BAF2ACBD463000E473E /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BAE2ACBD463000E473E /* NotificationViewModel.swift */; };
@@ -360,7 +369,7 @@
 		FF50599C2A7DFFAF00F90D27 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		FF50599E2A7E002800F90D27 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		FF5059A02A7E017400F90D27 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
-		FF5059A32A7E058400F90D27 /* TagResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagResponseDTO.swift; sourceTree = "<group>"; };
+		FF5059A32A7E058400F90D27 /* TagDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDTO.swift; sourceTree = "<group>"; };
 		FF5059A52A7E08DE00F90D27 /* HomeAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIEndpoints.swift; sourceTree = "<group>"; };
 		FF5059A82A7E093D00F90D27 /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
 		FF5059B12A7E0B3100F90D27 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
@@ -385,6 +394,15 @@
 		FF9793B42A74C47100A921A0 /* CheffiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiDetailViewController.swift; sourceTree = "<group>"; };
 		FF9793B62A74C53200A921A0 /* CheffiDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheffiDetail.storyboard; sourceTree = "<group>"; };
 		FFA6BA6E2ADA8B670094913E /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
+		FFA6BA732ADAD8F80094913E /* FoodSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectionViewModel.swift; sourceTree = "<group>"; };
+		FFA6BA752ADAD9080094913E /* TasteSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteSelectionViewModel.swift; sourceTree = "<group>"; };
+		FFA6BA772ADAE5510094913E /* TagUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagUseCase.swift; sourceTree = "<group>"; };
+		FFA6BA792ADAE5A60094913E /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
+		FFA6BA7B2ADAE5F20094913E /* DefaultTagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTagRepository.swift; sourceTree = "<group>"; };
+		FFA6BA7D2ADAECE70094913E /* TagsChangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsChangeResponse.swift; sourceTree = "<group>"; };
+		FFA6BA7F2ADAED800094913E /* TagsChangeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsChangeRequest.swift; sourceTree = "<group>"; };
+		FFA6BA822ADAEE380094913E /* TagAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagAPIEndpoints.swift; sourceTree = "<group>"; };
+		FFA6BA842ADBA5690094913E /* ProfilePageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageKey.swift; sourceTree = "<group>"; };
 		FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewModel.swift; sourceTree = "<group>"; };
 		FFB29BAC2ACBD400000E473E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		FFB29BAE2ACBD463000E473E /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
@@ -706,6 +724,7 @@
 				FF4659C72A879A8800736AEA /* PhotoRepository.swift */,
 				FFB29BC22ACBE0C8000E473E /* DefaultNotificationRepository.swift */,
 				FF6801392AD2BCC7001AB6E8 /* DefaultAuthRepository.swift */,
+				FFA6BA7B2ADAE5F20094913E /* DefaultTagRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -743,6 +762,7 @@
 				FFC58AD02A8689FA0095BCF4 /* PhotoUseCase.swift */,
 				FFB29BC42ACBE170000E473E /* NotificationUseCase.swift */,
 				FF68013F2AD2BF78001AB6E8 /* AuthUseCase.swift */,
+				FFA6BA772ADAE5510094913E /* TagUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -762,6 +782,7 @@
 				D47719052A8D367900381A72 /* CheffiRecommendationRepository.swift */,
 				FFB29BBD2ACBDF50000E473E /* NotificationRepository.swift */,
 				FF68013B2AD2BCFE001AB6E8 /* AuthRepository.swift */,
+				FFA6BA792ADAE5A60094913E /* TagRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1075,6 +1096,7 @@
 			children = (
 				FF5059A52A7E08DE00F90D27 /* HomeAPIEndpoints.swift */,
 				FF68013D2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift */,
+				FFA6BA822ADAEE380094913E /* TagAPIEndpoints.swift */,
 				FF5059A22A7E055F00F90D27 /* DataMapping */,
 			);
 			path = Network;
@@ -1085,6 +1107,7 @@
 			children = (
 				FF6801372AD2B068001AB6E8 /* Results.swift */,
 				FF5059A72A7E092E00F90D27 /* Home */,
+				FFA6BA812ADAEDC50094913E /* Tag */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -1093,7 +1116,7 @@
 			isa = PBXGroup;
 			children = (
 				FF5059A82A7E093D00F90D27 /* UserDTO.swift */,
-				FF5059A32A7E058400F90D27 /* TagResponseDTO.swift */,
+				FF5059A32A7E058400F90D27 /* TagDTO.swift */,
 				D4EEF21B2A91BA9D008107DF /* ContentsResponseDTO.swift */,
 				FFB29BC02ACBDFAA000E473E /* NotificationDTO.swift */,
 			);
@@ -1121,6 +1144,7 @@
 		FF62A4462A7FC1180066073F /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				FFA6BA842ADBA5690094913E /* ProfilePageKey.swift */,
 				FF62A4492A7FC17F0066073F /* LoginSceneFlowCoordinator.swift */,
 			);
 			path = Flow;
@@ -1134,6 +1158,8 @@
 				FFDBC6792A83AD760009189C /* NicknameVIewModel.swift */,
 				FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */,
 				FFC58ACA2A8672470095BCF4 /* PhotoAlbumViewModel.swift */,
+				FFA6BA732ADAD8F80094913E /* FoodSelectionViewModel.swift */,
+				FFA6BA752ADAD9080094913E /* TasteSelectionViewModel.swift */,
 				FFC7C6662A888BCB00EBE162 /* PhotoCropViewModel.swift */,
 			);
 			path = ViewModels;
@@ -1182,6 +1208,15 @@
 				FF9793B62A74C53200A921A0 /* CheffiDetail.storyboard */,
 			);
 			path = CheffiDetail;
+			sourceTree = "<group>";
+		};
+		FFA6BA812ADAEDC50094913E /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				FFA6BA7D2ADAECE70094913E /* TagsChangeResponse.swift */,
+				FFA6BA7F2ADAED800094913E /* TagsChangeRequest.swift */,
+			);
+			path = Tag;
 			sourceTree = "<group>";
 		};
 		FFB29BA82ACBD355000E473E /* ViewModel */ = {
@@ -1540,11 +1575,13 @@
 				FFDBC64C2A813CC40009189C /* CustomProfileButton.swift in Sources */,
 				FF68013A2AD2BCC7001AB6E8 /* DefaultAuthRepository.swift in Sources */,
 				FFB29BB32ACBD629000E473E /* NotificationCell.swift in Sources */,
+				FFA6BA742ADAD8F80094913E /* FoodSelectionViewModel.swift in Sources */,
 				FF6801402AD2BF78001AB6E8 /* AuthUseCase.swift in Sources */,
 				FF6801382AD2B068001AB6E8 /* Results.swift in Sources */,
 				CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */,
 				FF5059B22A7E0B3100F90D27 /* Cancellable.swift in Sources */,
 				CE42BA712A6BCF3A00EBB80A /* UIViewController+Extensions.swift in Sources */,
+				FFA6BA832ADAEE380094913E /* TagAPIEndpoints.swift in Sources */,
 				FFB29BC32ACBE0C8000E473E /* DefaultNotificationRepository.swift in Sources */,
 				D4EEF21E2A91CE70008107DF /* Content.swift in Sources */,
 				FF5059BD2A7E3EF000F90D27 /* MoreViewController.swift in Sources */,
@@ -1560,10 +1597,12 @@
 				FFB29BB82ACBD79B000E473E /* NotificationHeaderView.swift in Sources */,
 				FF97932C2A72BF9900A921A0 /* AccountManager.swift in Sources */,
 				FFDBC6372A81380D0009189C /* NicknameViewController.swift in Sources */,
+				FFA6BA782ADAE5510094913E /* TagUseCase.swift in Sources */,
 				FFC7C6652A888B6900EBE162 /* PhotoCropViewController.swift in Sources */,
 				D49B592C2A653454003C108E /* RestaurantContentCell.swift in Sources */,
 				D49B592A2A652A35003C108E /* CheffiRecommendationContensView.swift in Sources */,
 				D4C0FA752A9DB9790056B885 /* DefaultPaginationGenerator.swift in Sources */,
+				FFA6BA7E2ADAECE70094913E /* TagsChangeResponse.swift in Sources */,
 				FFA6BA6F2ADA8B670094913E /* Data+Extensions.swift in Sources */,
 				D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */,
 				D4ABC29F2A78D3E900B4152B /* CheffiRecommendationViewModel.swift in Sources */,
@@ -1603,15 +1642,18 @@
 				FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */,
 				FF4659CF2A87DE6800736AEA /* PhotoAlbumListView.swift in Sources */,
 				CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */,
+				FFA6BA762ADAD9080094913E /* TasteSelectionViewModel.swift in Sources */,
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
-				FF5059A42A7E058400F90D27 /* TagResponseDTO.swift in Sources */,
+				FF5059A42A7E058400F90D27 /* TagDTO.swift in Sources */,
 				CE0D45362A61975100636989 /* RestaurantRegistFlowCoodinator.swift in Sources */,
 				FF3197752A74C90200F5DD41 /* CheffiLocationView.swift in Sources */,
 				FF62A4522A7FC3FD0066073F /* SNSLoginViewModel.swift in Sources */,
 				FFDBC63B2A81381E0009189C /* FoodSelectionViewController.swift in Sources */,
+				FFA6BA7A2ADAE5A60094913E /* TagRepository.swift in Sources */,
 				D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */,
 				D497F9FA2AA87A900057B7EB /* PopularRestaurantContentsItemViewModel.swift in Sources */,
 				D441C0202A66965400063822 /* CheffiRecommendationCatogoryPageView.swift in Sources */,
+				FFA6BA802ADAED800094913E /* TagsChangeRequest.swift in Sources */,
 				FFB29BC12ACBDFAA000E473E /* NotificationDTO.swift in Sources */,
 				CE1A6A7B2A62961D00FFE93D /* BaseView.swift in Sources */,
 				D49D1A932A73986800CB86FA /* Bindable.swift in Sources */,
@@ -1661,11 +1703,13 @@
 				FFB29BBE2ACBDF50000E473E /* NotificationRepository.swift in Sources */,
 				CEABD71A2A6BDF0A001BC131 /* TopPickCell.swift in Sources */,
 				D4EEF21C2A91BA9D008107DF /* ContentsResponseDTO.swift in Sources */,
+				FFA6BA7C2ADAE5F20094913E /* DefaultTagRepository.swift in Sources */,
 				FFF3EC6B2ABF247300F6B431 /* ProfileImageSelectButton.swift in Sources */,
 				FF68013E2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift in Sources */,
 				D4C1C5A12AC16506007F8C1E /* TimeLockGenerator.swift in Sources */,
 				FFB50C4A2A72B5A80049B5E1 /* ShowAllContentsButton.swift in Sources */,
 				FF5059972A7DFC7200F90D27 /* AppConfigurations.swift in Sources */,
+				FFA6BA852ADBA5690094913E /* ProfilePageKey.swift in Sources */,
 				FFC7C6672A888BCB00EBE162 /* PhotoCropViewModel.swift in Sources */,
 				FFC7C6702A88F87400EBE162 /* UIImage+Extensions.swift in Sources */,
 				CE42BA6D2A6BB98600EBB80A /* PopupViewController.swift in Sources */,

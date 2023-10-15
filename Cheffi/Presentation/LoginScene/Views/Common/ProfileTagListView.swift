@@ -11,9 +11,9 @@ final class ProfileTagListView: BaseView {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var layout: LeftAlignedCollectionViewFlowLayout!
-    private var tags: [String] = []
-    private var selectedTags: [String] = []
-    var didTapTagsHandler: (([String]) -> Void)?
+    private var tags: [Tag] = []
+    private var selectedTags: [Tag] = []
+    var didTapTagsHandler: (([Tag]) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +39,7 @@ final class ProfileTagListView: BaseView {
     }
     
     // MARK: - Public
-    func setupTags(_ tags: [String]) {
+    func setupTags(_ tags: [Tag]) {
         guard !tags.isEmpty else { return }
         self.tags = tags
         self.collectionView.reloadData()
@@ -59,7 +59,7 @@ extension ProfileTagListView: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let text = tags[indexPath.item]
+        let text = tags[indexPath.item].name
         let padding: CGFloat = 45
         let width = text.size(withAttributes: [NSAttributedString.Key.font: Fonts.suit.weight500.size(15)]).width + padding
         return CGSize(width: width, height: 36)
@@ -72,8 +72,8 @@ extension ProfileTagListView: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let tag = tags[indexPath.item]
-        if let index = selectedTags.firstIndex(of: tag) {
+        let tagName = tags[indexPath.item].name
+        if let index = selectedTags.map({ $0.name }).firstIndex(of: tagName) {
             selectedTags.remove(at: index)
         }
         didTapTagsHandler?(selectedTags)

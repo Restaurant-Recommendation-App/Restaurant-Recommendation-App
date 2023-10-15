@@ -9,8 +9,9 @@ import UIKit
 import Combine
 
 class FoodSelectionViewController: UIViewController {
-    static func instance<T: FoodSelectionViewController>() -> T {
+    static func instance<T: FoodSelectionViewController>(viewModel: FoodSelectionViewModelType) -> T {
         let vc: T = .instance(storyboardName: .foodSelection)
+        vc.viewModel = viewModel
         return vc
     }
     
@@ -23,10 +24,14 @@ class FoodSelectionViewController: UIViewController {
     @IBOutlet private weak var subTitleLabel: UILabel!
     @IBOutlet private weak var foodTagListView: ProfileTagListView!
     var delegate: ProfileSetupDelegate?
+    private var cancellables: Set<AnyCancellable> = []
+    private var viewModel: FoodSelectionViewModelType!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        bindViewModel()
+        viewModel.input.requestGetTags(type: .food)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +44,8 @@ class FoodSelectionViewController: UIViewController {
     private func setupViews() {
         nextButton.setTitle("다음".localized(), for: .normal)
         nextButton.didTapButton = { [weak self] in
-            self?.delegate?.didTapNext()
+            let selectionTags = self?.viewModel.output.selectionTags ?? []
+            self?.delegate?.didTapNext(params: [.profileFoodSelection: selectionTags])
         }
         
         titleLabel.textColor = .cheffiGray9
@@ -49,15 +55,33 @@ class FoodSelectionViewController: UIViewController {
         subTitleLabel.highlightKeyword("3가지".localized(), in: "3가지 이상 선택해주세요".localized(),
                                        defaultColor: .cheffiGray6, font: subTitleFont, keywordFont: subTitleFont)
         
-        // TEST Code
-        let tags = ["한식", "양식", "일식", "중식", "샐러드", "해산물", "카페", "빵집", "분식", "면/국수", "브런치", "한정식", "구이", "디저트", "회", "백반/가정식", "아시아음식", "비건", "샌드위치", "죽", "돈까스", "피자", "치킨", "족발/보쌈", "고기", "패스트푸드", "초밥", "찜닭", "탕/찌개", "햄버거", "파인다이닝"]
-        
-        foodTagListView.setupTags(tags)
         foodTagListView.didTapTagsHandler = { [weak self] selectedTags in
+            self?.viewModel.input.setSelectionTags(selectedTags)
             self?.nextButton.isEnable = selectedTags.count >= Constants.maximumNumberOfSelection
+            
         }
     }
     
+    private func bindViewModel() {
+        viewModel.output.responseTags
+            .sink { completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    print("---------------------------------------")
+                    print(error)
+                    print("---------------------------------------")
+                }
+            } receiveValue: { [weak self] tags in
+                self?.reload(with: tags)
+            }
+            .store(in: &cancellables)
+
+    }
+    
+    private func reload(with tags: [Tag]) {
+        foodTagListView.setupTags(tags.map { $0 })
+    }
     
     // MARK: - Public
     

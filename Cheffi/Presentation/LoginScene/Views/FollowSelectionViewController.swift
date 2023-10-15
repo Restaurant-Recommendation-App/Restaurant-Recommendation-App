@@ -37,7 +37,7 @@ class FollowSelectionViewController: UIViewController {
         startButton.setTitle("시작하기".localized(), for: .normal)
         startButton.setBackgroundColor(.main)
         startButton.didTapButton = { [weak self] in
-            self?.delegate?.didTapNext()
+            self?.delegate?.didTapNext(params: [:])
         }
         
         titleLabel.text = "같은 취향을 가진\n쉐피를 팔로우 해보세요.".localized()

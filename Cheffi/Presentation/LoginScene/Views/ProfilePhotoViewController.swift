@@ -85,7 +85,7 @@ class ProfilePhotoViewController: UIViewController {
                 print("profile url")
                 print(profileUrl ?? "")
                 print("---------------------------------------")
-                self?.delegate?.didTapNext()
+                self?.delegate?.didTapNext(params: [:])
             }
             .store(in: &cancellables)
     }
@@ -182,6 +182,6 @@ class ProfilePhotoViewController: UIViewController {
     }
     
     @IBAction private func didTapLater(_ sender: UIButton) {
-        delegate?.didTapNext()
+        delegate?.didTapNext(params: [:])
     }
 }

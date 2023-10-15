@@ -10,7 +10,10 @@ import Combine
 
 protocol LoginFlowCoordinatorDependencies {
     func makeSNSLoginViewController(actions: SNSLoginViewModelActions) -> SNSLoginViewController
-    func makeProfileSetupViewController(nicknameViewModel: NicknameViewModelType, profilePhotoViewModel: ProfilePhotoViewModelType) -> ProfileSetupViewController
+    func makeProfileSetupViewController(nicknameViewModel: NicknameViewModelType,
+                                        profilePhotoViewModel: ProfilePhotoViewModelType,
+                                        foodSelectionViewModel: FoodSelectionViewModelType,
+                                        tasteSelectionViewModel: TasteSelectionViewModelType) -> ProfileSetupViewController
     func makeProfileImageSelectViewController(selectTypes: [ProfileImageSelectType],
                                               selectCompletion: ((ProfileImageSelectType) -> Void)?) -> ProfileImageSelectViewController
     func makePhotoAlbumViewController(viewModel: PhotoAlbumViewModel, dismissCompletion: ((Data?) -> Void)?) -> PhotoAlbumViewController
@@ -19,6 +22,8 @@ protocol LoginFlowCoordinatorDependencies {
     func makeProfilePhotoViewModel(actions: ProfilePhotoViewModelActions) -> ProfilePhotoViewModelType
     func makePhotoCropViewController(viewModel: PhotoCropViewModel, dismissCompletion: ((Data?) -> Void)?) -> PhotoCropViewController
     func makePhotoCropViewModel(imageData: Data) -> PhotoCropViewModel
+    func makeFoodSelectionViewModel() -> FoodSelectionViewModelType
+    func makeTasteSelectionViewModel() -> TasteSelectionViewModelType
 }
 
 final class LoginFlowCoordinator {
@@ -53,7 +58,8 @@ final class LoginFlowCoordinator {
                                                                showPhotoAlbum: showPhotoAlbumViewController,
                                                                showProfileImageSelect: showProfileImageSelectViewController)
         let vc = dependencies.makeProfileSetupViewController(nicknameViewModel: dependencies.makeNicknameViewModel(),
-                                                             profilePhotoViewModel: dependencies.makeProfilePhotoViewModel(actions: profilePhotoActions))
+                                                             profilePhotoViewModel: dependencies.makeProfilePhotoViewModel(actions: profilePhotoActions), foodSelectionViewModel: dependencies.makeFoodSelectionViewModel(),
+                                                             tasteSelectionViewModel: dependencies.makeTasteSelectionViewModel())
         self.profileSetupViewController = vc
         self.navigationController?.pushViewController(vc)
     }
