@@ -46,7 +46,7 @@ struct AuthAPIEndpoints {
                         ],
                         bodyParameters: [
                             "file": imageData,
-                            "request": ["default": true]
+                            "request": ["default": false]
                         ],
                         bodyEncoding: .multipartFormData,
                         bodyBoundary: boundary)
