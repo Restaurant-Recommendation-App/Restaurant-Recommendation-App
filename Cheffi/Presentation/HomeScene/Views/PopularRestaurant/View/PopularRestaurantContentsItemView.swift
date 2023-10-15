@@ -43,7 +43,7 @@ class PopularRestaurantContentsItemView: UICollectionView {
             
             cell.configure(
                 viewModel: item,
-                isMainContent: self.validateFirstContents(with: indexPath)
+                contentItemType: self.validateFirstContents(with: indexPath) ? .main : .twoColumn
             )
 
             return cell

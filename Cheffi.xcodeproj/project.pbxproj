@@ -89,6 +89,11 @@
 		D4C0FA752A9DB9790056B885 /* DefaultPaginationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0FA742A9DB9790056B885 /* DefaultPaginationGenerator.swift */; };
 		D4C1C5A12AC16506007F8C1E /* TimeLockGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C1C5A02AC16506007F8C1E /* TimeLockGenerator.swift */; };
 		D4C563202AAC21FE00DF9801 /* PageControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5631F2AAC21FE00DF9801 /* PageControlButton.swift */; };
+		D4C8713B2AD2B18300A1745B /* CheffiRecommendationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8713A2AD2B18300A1745B /* CheffiRecommendationHeader.swift */; };
+		D4C8713E2AD3C26800A1745B /* AllCheffiContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8713D2AD3C26800A1745B /* AllCheffiContentsViewController.swift */; };
+		D4C871412AD3CD6900A1745B /* AllCheffiContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C871402AD3CD6900A1745B /* AllCheffiContentsViewModel.swift */; };
+		D4C871442AD6B1A000A1745B /* AllCheffiContentsVCTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C871432AD6B1A000A1745B /* AllCheffiContentsVCTopBar.swift */; };
+		D4CABD7A2AD84FBD00BAAC5B /* RestaurantContentItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CABD792AD84FBD00BAAC5B /* RestaurantContentItemType.swift */; };
 		D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244B82A60FF5A004E0167 /* AppDelegate.swift */; };
 		D4E244BB2A60FF5A004E0167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */; };
 		D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244BC2A60FF5A004E0167 /* HomeViewController.swift */; };
@@ -316,6 +321,11 @@
 		D4C0FA742A9DB9790056B885 /* DefaultPaginationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaginationGenerator.swift; sourceTree = "<group>"; };
 		D4C1C5A02AC16506007F8C1E /* TimeLockGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLockGenerator.swift; sourceTree = "<group>"; };
 		D4C5631F2AAC21FE00DF9801 /* PageControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlButton.swift; sourceTree = "<group>"; };
+		D4C8713A2AD2B18300A1745B /* CheffiRecommendationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationHeader.swift; sourceTree = "<group>"; };
+		D4C8713D2AD3C26800A1745B /* AllCheffiContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCheffiContentsViewController.swift; sourceTree = "<group>"; };
+		D4C871402AD3CD6900A1745B /* AllCheffiContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCheffiContentsViewModel.swift; sourceTree = "<group>"; };
+		D4C871432AD6B1A000A1745B /* AllCheffiContentsVCTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCheffiContentsVCTopBar.swift; sourceTree = "<group>"; };
+		D4CABD792AD84FBD00BAAC5B /* RestaurantContentItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentItemType.swift; sourceTree = "<group>"; };
 		D4E244B52A60FF5A004E0167 /* Cheffi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheffi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E244B82A60FF5A004E0167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -882,6 +892,8 @@
 				D497F9F12AA848820057B7EB /* PopularRestaurantContentsView.swift */,
 				D497F9F32AA872F90057B7EB /* PopularRestaurantContentsCell.swift */,
 				D497F9F52AA874730057B7EB /* PopularRestaurantContentsItemView.swift */,
+				D4C8713D2AD3C26800A1745B /* AllCheffiContentsViewController.swift */,
+				D4C871432AD6B1A000A1745B /* AllCheffiContentsVCTopBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -898,6 +910,7 @@
 		D441C0212A6696C800063822 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4C8713A2AD2B18300A1745B /* CheffiRecommendationHeader.swift */,
 				D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */,
 				D441C01F2A66965400063822 /* CheffiRecommendationCatogoryPageView.swift */,
 				D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */,
@@ -921,6 +934,7 @@
 			children = (
 				D4BA3BB52A78C616009CA7E0 /* PopularRestaurantViewModel.swift */,
 				D497F9F92AA87A900057B7EB /* PopularRestaurantContentsItemViewModel.swift */,
+				D4C871402AD3CD6900A1745B /* AllCheffiContentsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -931,6 +945,7 @@
 				D49B592B2A653454003C108E /* RestaurantContentCell.swift */,
 				D49B59272A652330003C108E /* RestaurantContentView.swift */,
 				D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */,
+				D4CABD792AD84FBD00BAAC5B /* RestaurantContentItemType.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1517,6 +1532,7 @@
 				CE70F8892A63BFEB003D0ED9 /* User.swift in Sources */,
 				CEABD7242A6BFFC8001BC131 /* SimilarChefListViewModel.swift in Sources */,
 				FFF3EC672ABF1F6E00F6B431 /* ProfileImageSelectViewController.swift in Sources */,
+				D4C8713B2AD2B18300A1745B /* CheffiRecommendationHeader.swift in Sources */,
 				CE42BA6B2A6BB48100EBB80A /* String+Extensions.swift in Sources */,
 				FFB29BBC2ACBDDD6000E473E /* Notification.swift in Sources */,
 				FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */,
@@ -1564,6 +1580,7 @@
 				D4E244B92A60FF5A004E0167 /* AppDelegate.swift in Sources */,
 				D4ABC29F2A78D3E900B4152B /* CheffiRecommendationViewModel.swift in Sources */,
 				CEABD7202A6BFF8E001BC131 /* SimilarChefListViewController.swift in Sources */,
+				D4C871442AD6B1A000A1745B /* AllCheffiContentsVCTopBar.swift in Sources */,
 				FFC58AD32A87519F0095BCF4 /* CameraService.swift in Sources */,
 				D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */,
 				CE42BA732A6BD1AE00EBB80A /* UserDefaultsManager.swift in Sources */,
@@ -1596,12 +1613,14 @@
 				D41E99322A6BB9A80085F5D0 /* UIView+Extensions.swift in Sources */,
 				D4C0FA6E2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift in Sources */,
 				FFDBC67A2A83AD760009189C /* NicknameVIewModel.swift in Sources */,
+				D4C8713E2AD3C26800A1745B /* AllCheffiContentsViewController.swift in Sources */,
 				FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */,
 				FF4659CF2A87DE6800736AEA /* PhotoAlbumListView.swift in Sources */,
 				CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */,
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
 				FF5059A42A7E058400F90D27 /* TagResponseDTO.swift in Sources */,
 				CE0D45362A61975100636989 /* RestaurantRegistFlowCoodinator.swift in Sources */,
+				D4C871412AD3CD6900A1745B /* AllCheffiContentsViewModel.swift in Sources */,
 				FF3197752A74C90200F5DD41 /* CheffiLocationView.swift in Sources */,
 				FF62A4522A7FC3FD0066073F /* SNSLoginViewModel.swift in Sources */,
 				FFDBC63B2A81381E0009189C /* FoodSelectionViewController.swift in Sources */,
@@ -1637,6 +1656,7 @@
 				FF68013C2AD2BCFE001AB6E8 /* LoginRepository.swift in Sources */,
 				FFB29BAF2ACBD463000E473E /* NotificationViewModel.swift in Sources */,
 				D49D1A9A2A73BB6500CB86FA /* UIControl+Combine.swift in Sources */,
+				D4CABD7A2AD84FBD00BAAC5B /* RestaurantContentItemType.swift in Sources */,
 				FF5059B92A7E357C00F90D27 /* CheffiWriterView.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
 				CE42BA792A6BD52D00EBB80A /* SearchViewController.swift in Sources */,

@@ -12,6 +12,7 @@ struct HomeViewModelActions {
     let showPopup: (_ text: String, _ subText: String, _ keyword: String, _ popupState: PopupState,_  leftButtonTitle: String, _ rightButtonTitle: String, _ leftHandler: (() -> Void)?, _ rightHandler: (() -> Void)?) -> Void
     let showSimilarChefList: () -> Void
     let showSearch: () -> Void
+    let showAllCheffiContents: () -> Void
     let showNotification: () -> Void
 }
 
@@ -26,6 +27,7 @@ protocol HomeViewModelOutput {
     func showSimilarChefList()
     func showSearch()
     func showNotification()
+    func showAllContents()
 }
 
 typealias HomeViewModelType = HomeViewModelInput & HomeViewModelOutput
@@ -53,6 +55,10 @@ final class HomeViewModel: HomeViewModelType {
         actions?.showSearch()
     }
     
+    func showAllContents() {
+        actions?.showAllCheffiContents()
+    }
+
     func showNotification() {
         actions?.showNotification()
     }

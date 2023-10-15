@@ -8,7 +8,15 @@
 import UIKit
 import Combine
 
+protocol PopularRestaurantCellDelegate: AnyObject {
+    func didTapShowAllContents()
+}
+
 class PopularRestaurantCell: UITableViewCell {
+    private enum Constants {
+        static let inset: CGFloat = 16.0
+    }
+    
     typealias ViewModel = PopularRestaurantViewModel
     
     var cancellables = Set<AnyCancellable>()
@@ -18,14 +26,12 @@ class PopularRestaurantCell: UITableViewCell {
     
     private let initialize = PassthroughSubject<Void, Never>()
     
-    private enum Constants {
-        static let inset: CGFloat = 16.0
-    }
-    
     private let pageControlButton: PageControlButton = {
         let button = PageControlButton()
         return button
     }()
+    
+    weak var delegate: PopularRestaurantCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,7 +42,7 @@ class PopularRestaurantCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+        
     private func setUp() {
         contentView.addSubview(mainPopularRestaurantView)
         mainPopularRestaurantView.snp.makeConstraints {
@@ -70,6 +76,12 @@ class PopularRestaurantCell: UITableViewCell {
 extension PopularRestaurantCell: Bindable {
     
     func bind(to viewModel: ViewModel) {
+        cancellables.forEach {
+            $0.cancel()
+        }
+        
+        cancellables = Set<AnyCancellable>()
+        
         let input = ViewModel.Input(initialize: initialize)
         let output = viewModel.transform(input: input)
         
@@ -88,6 +100,12 @@ extension PopularRestaurantCell: Bindable {
         output.timeLockType
             .sink {
                 self.mainPopularRestaurantView.setTimerString(timerString: $0)
+            }.store(in: &cancellables)
+        
+        mainPopularRestaurantView.allContentsButtonTapped
+            .map { _ in () }
+            .sink { [weak self] _ in
+                self?.delegate?.didTapShowAllContents()
             }.store(in: &cancellables)
     }
 }

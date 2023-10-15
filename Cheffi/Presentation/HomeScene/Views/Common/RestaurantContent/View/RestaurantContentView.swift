@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-class RestaurantContentView: UIView {
+final class RestaurantContentView: UIView {
     private let restaurantImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor(hexString: "EAEAEA")
@@ -27,6 +27,7 @@ class RestaurantContentView: UIView {
         label.font = Fonts.suit.weight700.size(16)
         label.textColor = .cheffiBlack
         label.numberOfLines = 2
+        label.setContentHuggingPriority(.defaultHigh + 1, for: .vertical)
         return label
     }()
     
@@ -36,7 +37,17 @@ class RestaurantContentView: UIView {
         label.font = Fonts.suit.weight400.size(15)
         label.textColor = .cheffiGray7
         label.numberOfLines = 2
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return label
+    }()
+    
+    private var likeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.spacing = 4
+        return stackView
     }()
     
     private lazy var likeButton: UIButton = {
@@ -49,6 +60,15 @@ class RestaurantContentView: UIView {
         return button
     }()
     
+    private var numberOfLikes: UILabel = {
+        let label = UILabel()
+        label.font = Fonts.suit.weight500.size(15)
+        label.text = "12,456"
+        label.textColor = .cheffiGray6
+        label.isHidden = true
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
@@ -59,55 +79,26 @@ class RestaurantContentView: UIView {
     }
     
     private func setUp() {
-        
         addSubview(restaurantImageView)
-        restaurantImageView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(0)
-        }
-        
         addSubview(contentTimeLockBubbleView)
-        contentTimeLockBubbleView.snp.makeConstraints {
-            $0.top.equalTo(restaurantImageView).offset(12)
-            $0.trailing.equalTo(restaurantImageView).inset(8)
-            $0.width.equalTo(90)
-            $0.height.equalTo(32)
-        }
-        
         addSubview(restaurantTitleLabel)
-        restaurantTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(restaurantImageView.snp.bottom).offset(12)
-            $0.leading.equalToSuperview()
-        }
-        
         addSubview(restaurantSubtitleLabel)
-        restaurantSubtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(restaurantTitleLabel.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
-        
         addSubview(likeButton)
-        likeButton.snp.makeConstraints {
-            $0.top.equalTo(restaurantTitleLabel).offset(3)
-            $0.leading.equalTo(restaurantTitleLabel.snp.trailing)
-            $0.trailing.equalToSuperview()
-            $0.width.height.equalTo(24)
-        }
+        addSubview(numberOfLikes)
+        
+        addSubview(likeStackView)
+        likeStackView.addArrangedSubview(likeButton)
+        likeStackView.addArrangedSubview(numberOfLikes)
+        updateContent(itemType: .twoColumn)
     }
     
-    func configure(title: String, subtitle: String, timeLockType: TimeLockType, isMainContent: Bool) {
+    func configure(title: String, subtitle: String, timeLockType: TimeLockType, itemType: RestaurantContentItemType) {
         restaurantTitleLabel.text = title
         restaurantSubtitleLabel.text = subtitle
         updateTimer(timeLockType: timeLockType)
-        
-        if isMainContent {
-            updateContent(titleSize: CGFloat(18), contentHeight: 200, numberOfLines: 1)
-        } else {
-            updateContent(titleSize: CGFloat(16), contentHeight: 165, numberOfLines: 2)
-        }
+        updateContent(itemType: itemType)
     }
-    
+
     func updateTimer(timeLockType: TimeLockType) {
         contentTimeLockBubbleView.snp.updateConstraints {
             switch timeLockType {
@@ -122,15 +113,79 @@ class RestaurantContentView: UIView {
         contentTimeLockBubbleView.updateTimeLock(timeLockType: timeLockType)
     }
     
-    private func updateContent(titleSize: CGFloat, contentHeight: CGFloat, numberOfLines: Int) {
-        restaurantImageView.snp.updateConstraints {
-            $0.height.equalTo(contentHeight)
+    private func updateContent(itemType: RestaurantContentItemType) {
+        restaurantTitleLabel.font = .systemFont(ofSize: itemType.titleSize, weight: .bold)
+        restaurantTitleLabel.numberOfLines = itemType.numberOfLines
+        
+        restaurantImageView.snp.remakeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(itemType.contentHeight)
         }
         
-        restaurantTitleLabel.font = .systemFont(ofSize: titleSize, weight: .bold)
-        restaurantTitleLabel.numberOfLines = numberOfLines
+        contentTimeLockBubbleView.snp.remakeConstraints {
+            $0.top.equalTo(restaurantImageView).offset(12)
+            $0.trailing.equalTo(restaurantImageView).inset(8)
+            $0.width.equalTo(90)
+            $0.height.equalTo(32)
+        }
+        
+        if itemType == .oneColumn {
+            restaurantTitleLabel.numberOfLines = 1
+            restaurantSubtitleLabel.numberOfLines = 1
+            numberOfLikes.isHidden = false
+            
+            restaurantTitleLabel.snp.remakeConstraints {
+                $0.top.equalTo(restaurantImageView.snp.bottom).offset(12)
+                $0.centerX.equalToSuperview()
+                $0.height.equalTo(26)
+            }
+            
+            restaurantSubtitleLabel.snp.remakeConstraints {
+                $0.top.equalTo(restaurantTitleLabel.snp.bottom).offset(8)
+                $0.centerX.equalToSuperview()
+            }
+            
+            likeStackView.snp.remakeConstraints {
+                $0.top.equalTo(restaurantSubtitleLabel.snp.bottom).offset(16)
+                $0.centerX.equalToSuperview()
+                $0.bottom.equalToSuperview()
+            }
+            
+            likeButton.snp.remakeConstraints {
+                $0.width.height.equalTo(24)
+            }
+            
+            numberOfLikes.snp.makeConstraints {
+                $0.leading.equalTo(likeButton.snp.trailing).offset(4)
+            }
+        } else {
+            restaurantTitleLabel.numberOfLines = (itemType == .twoColumn) ? 2 : 1
+            restaurantSubtitleLabel.numberOfLines = 2
+            numberOfLikes.isHidden = true
+            
+            restaurantTitleLabel.snp.remakeConstraints {
+                $0.top.equalTo(restaurantImageView.snp.bottom).offset(12)
+                $0.leading.equalToSuperview()
+            }
+            
+            restaurantSubtitleLabel.snp.remakeConstraints {
+                $0.top.equalTo(restaurantTitleLabel.snp.bottom).offset(8)
+                $0.leading.trailing.equalToSuperview()
+                $0.bottom.greaterThanOrEqualToSuperview()
+            }
+            
+            likeStackView.snp.remakeConstraints {
+                $0.top.equalTo(restaurantTitleLabel)
+                $0.leading.equalTo(restaurantTitleLabel.snp.trailing)
+                $0.trailing.equalToSuperview()
+            }
+            
+            likeButton.snp.remakeConstraints {
+                $0.width.height.equalTo(24)
+            }
+        }
     }
-    
+        
     @objc private func likeButtonTapped() {
         likeButton.isSelected.toggle()
     }

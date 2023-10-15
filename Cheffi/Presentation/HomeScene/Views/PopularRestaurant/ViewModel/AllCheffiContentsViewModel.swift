@@ -1,25 +1,26 @@
 //
-//  PopularRestaurantViewModel.swift
+//  AllCheffiContentsViewModel.swift
 //  Cheffi
 //
-//  Created by RONICK on 2023/08/01.
+//  Created by RONICK on 2023/10/09.
 //
+
 
 import Foundation
 import Combine
 
-final class PopularRestaurantViewModel: ViewModelType {
+final class AllCheffiContentsViewModel: ViewModelType {
     
     private enum Constants {
         static let dayMilliseconds = 86400000
     }
     
     struct Input {
-        let initialize: PassthroughSubject<Void, Never>
+        let initialize: AnyPublisher<Void, Never>
     }
     
     struct Output {
-        let contentsViewModel: AnyPublisher<[PopularRestaurantContentsItemViewModel], Never>
+        let contentsViewModel: AnyPublisher<RestaurantContentsViewModel, Never>
         let timeLockType: AnyPublisher<String, Never>
     }
     
@@ -28,9 +29,10 @@ final class PopularRestaurantViewModel: ViewModelType {
     private let cheffiRecommendationUseCase: CheffiRecommendationUseCase
     private let timeLockGenerator: TimeLockGenerator
     
-    private var initialized = false
+    private let tag: String
     
-    init(cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
+    init(tag: String, cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
+        self.tag = tag
         self.cheffiRecommendationUseCase = cheffiRecommendationUseCase
         self.timeLockGenerator = TimeLockGenerator(
             timeLockSeconds: Constants.dayMilliseconds,
@@ -39,24 +41,17 @@ final class PopularRestaurantViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        let contentsViewModel = PassthroughSubject<[PopularRestaurantContentsItemViewModel], Never>()
+        let contentsViewModel = PassthroughSubject<RestaurantContentsViewModel, Never>()
         let initialize = input.initialize.share()
         
         initialize
-            .filter { !self.initialized }
-            .flatMap { self.cheffiRecommendationUseCase.getContents(with: "popularity", page: 1) }
-            .map { $0.map(RestaurantContentItemViewModel.init)}
             .sink {
-                var contentsItems = [[RestaurantContentItemViewModel]]([[RestaurantContentItemViewModel]($0[0...2])])
-                let rest = $0[3..<$0.count].group(by: 4)!
-                contentsItems += rest
+                let viewModel = RestaurantContentsViewModel(
+                    tag: self.tag,
+                    cheffiRecommendationUseCase: self.cheffiRecommendationUseCase
+                )
                 
-                let viewModels = contentsItems.map {
-                    PopularRestaurantContentsItemViewModel(items: $0)
-                }
-                
-                contentsViewModel.send(viewModels)
-                self.initialized = true
+                contentsViewModel.send(viewModel)
         }.store(in: &cancellables)
         
         let timerString = PassthroughSubject<String, Never>()
@@ -75,10 +70,12 @@ final class PopularRestaurantViewModel: ViewModelType {
                 }
                 timerString.send(timeLockString)
             }.store(in: &cancellables)
-
+        
         return Output(
             contentsViewModel: contentsViewModel.eraseToAnyPublisher(),
             timeLockType: timerString.eraseToAnyPublisher()
         )
     }
+    
 }
+

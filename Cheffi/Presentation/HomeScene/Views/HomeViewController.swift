@@ -16,6 +16,9 @@ class HomeViewController: UIViewController {
     }
     
     @IBOutlet private weak var tableView: UITableView!
+    
+    private let cheffiRecommendationHeader = CheffiRecommendationHeader()
+    
     var viewModel: HomeViewModelType!
     
     private enum Constants {
@@ -32,6 +35,9 @@ class HomeViewController: UIViewController {
         tableView.register(cellWithClass: CheffiRecommendationCell.self)
         tableView.sectionHeaderTopPadding = 0
         tableView.showsVerticalScrollIndicator = false
+        
+        tableView.register(headerFooterViewClassWith: CheffiRecommendationHeader.self)
+        tableView.backgroundColor = .cheffiWhite
     }
     
     // MARK: - Actions
@@ -56,45 +62,75 @@ class HomeViewController: UIViewController {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        switch section {
+        case 0: return 2
+        case 1: return 1
+        default: return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
+        
+        switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withClass: PopularRestaurantCell.self, for: indexPath)
-            cell.configure(viewModel: viewModel.popularRestaurantViewModel)
-            return cell
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withClass: PopularRestaurantCell.self, for: indexPath)
+                cell.configure(viewModel: viewModel.popularRestaurantViewModel)
+                cell.delegate = self
+                return cell
+            case 1:
+                let cell = tableView.dequeueReusableCell(withClass: SimilarChefCell.self, for: indexPath)
+                cell.configure(with: viewModel.similarChefViewModel)
+                cell.delegate = self
+                return cell
+            default:
+                return UITableViewCell()
+            }
         case 1:
-            let cell = tableView.dequeueReusableCell(withClass: SimilarChefCell.self, for: indexPath)
-            cell.configure(with: viewModel.similarChefViewModel)
-            cell.delegate = self
-            return cell
-        case 2:
             let cell = tableView.dequeueReusableCell(withClass: CheffiRecommendationCell.self, for: indexPath)
+            cell.configure(categoryPageViewDelegate: cheffiRecommendationHeader.categoryTabView)
+            cheffiRecommendationHeader.configure(categoryTabViewDelegate: cell.cheffiRecommendationCatogoryPageView)
+            
+            cell.setUpTabNames = cheffiRecommendationHeader.setUpTabTitles
             cell.configure(viewModel: self.viewModel.recommendationViewModel)
             return cell
+            
         default:
             return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0: return 800
-        case 1: return UITableView.automaticDimension
-        case 2: return 670
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0: return 800
+            default: return UITableView.automaticDimension
+            }
+        case 1: return 522
         default: return UITableView.automaticDimension
         }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
+        switch section {
+        case 1: return cheffiRecommendationHeader
+        default: return UIView()
+        }
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Constants.headerHeight
+        switch section {
+        case 1: return 148
+        default: return Constants.headerHeight
+        }
     }
 }
 
@@ -102,5 +138,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: SimilarChefCellDelegate {
     func didTapShowSimilarChefList() {
         viewModel.showSimilarChefList()
+    }
+}
+
+extension HomeViewController: PopularRestaurantCellDelegate {
+    func didTapShowAllContents() {
+        viewModel.showAllContents()
     }
 }

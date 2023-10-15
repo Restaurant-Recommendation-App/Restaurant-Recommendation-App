@@ -32,7 +32,7 @@ final class RestaurantContentsViewModel: ViewModelType {
     
     @Published private var scrollOffsetY: CGFloat = 0
     
-    private var items = [RestaurantContentItemViewModel]()
+    var items = [RestaurantContentItemViewModel]()
             
     init(tag: String, cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
         self.tag = tag
@@ -52,19 +52,19 @@ final class RestaurantContentsViewModel: ViewModelType {
         let initialize = input.initialize.share()
         
         initialize
+            .filter { self.initialized }
+            .sink { _ in
+                contentItems.send(self.items)
+                scrollOffsetY.send(self.scrollOffsetY)
+            }.store(in: &cancellables)
+        
+        initialize
             .filter { !self.initialized }
             .flatMap { self.fetchContents() }
             .sink { contents in
                 self.items = contents
                 contentItems.send(self.items)
                 self.initialized = true
-            }.store(in: &cancellables)
-        
-        initialize
-            .filter { self.initialized }
-            .sink { _ in
-                contentItems.send(self.items)
-                scrollOffsetY.send(self.scrollOffsetY)
             }.store(in: &cancellables)
         
         input.verticallyScrolled
