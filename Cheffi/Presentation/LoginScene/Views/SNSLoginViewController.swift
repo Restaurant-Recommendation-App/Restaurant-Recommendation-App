@@ -96,8 +96,13 @@ class SNSLoginViewController: UIViewController {
     }
     
     private func loginSuccess(_ user: User?) {
-        if let _ = user {
-            viewModel.output.showProfileSetup()
+        if let userData = user {
+            UserDefaultsManager.AuthInfo.user = userData
+            if userData.isNewUser == false {
+                self.dismissOne(amimated: true)
+            } else {
+                viewModel.output.showProfileSetup()
+            }
         }
     }
     

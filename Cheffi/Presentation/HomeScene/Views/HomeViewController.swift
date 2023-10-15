@@ -32,6 +32,11 @@ class HomeViewController: UIViewController {
         tableView.register(cellWithClass: CheffiRecommendationCell.self)
         tableView.sectionHeaderTopPadding = 0
         tableView.showsVerticalScrollIndicator = false
+        
+        print("--------------------------------------------------")
+        print("user info")
+        print(UserDefaultsManager.AuthInfo.user)
+        print("--------------------------------------------------")
     }
     
     // MARK: - Actions
