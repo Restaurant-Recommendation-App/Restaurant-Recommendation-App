@@ -166,6 +166,14 @@
 		FFA6BA802ADAED800094913E /* TagsChangeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA7F2ADAED800094913E /* TagsChangeRequest.swift */; };
 		FFA6BA832ADAEE380094913E /* TagAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA822ADAEE380094913E /* TagAPIEndpoints.swift */; };
 		FFA6BA852ADBA5690094913E /* ProfilePageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA842ADBA5690094913E /* ProfilePageKey.swift */; };
+		FFA6BA872ADBBB110094913E /* FollowSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA862ADBBB110094913E /* FollowSelectionViewModel.swift */; };
+		FFA6BA892ADBBBDA0094913E /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA882ADBBBDA0094913E /* UserRepository.swift */; };
+		FFA6BA8C2ADBBC550094913E /* AvatarInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA8B2ADBBC550094913E /* AvatarInfoResponse.swift */; };
+		FFA6BA8E2ADBBD230094913E /* DefaultUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA8D2ADBBD230094913E /* DefaultUserRepository.swift */; };
+		FFA6BA902ADBBD540094913E /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA8F2ADBBD540094913E /* UserUseCase.swift */; };
+		FFA6BA922ADBBDF40094913E /* UserEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA912ADBBDF40094913E /* UserEndpoints.swift */; };
+		FFA6BA942ADBC0730094913E /* RecommendFollowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA932ADBC0730094913E /* RecommendFollowResponse.swift */; };
+		FFA6BA962ADBC1BA0094913E /* FollowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA952ADBC1BA0094913E /* FollowResponse.swift */; };
 		FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */; };
 		FFB29BAD2ACBD400000E473E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BAC2ACBD400000E473E /* NotificationViewController.swift */; };
 		FFB29BAF2ACBD463000E473E /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BAE2ACBD463000E473E /* NotificationViewModel.swift */; };
@@ -403,6 +411,14 @@
 		FFA6BA7F2ADAED800094913E /* TagsChangeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsChangeRequest.swift; sourceTree = "<group>"; };
 		FFA6BA822ADAEE380094913E /* TagAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagAPIEndpoints.swift; sourceTree = "<group>"; };
 		FFA6BA842ADBA5690094913E /* ProfilePageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageKey.swift; sourceTree = "<group>"; };
+		FFA6BA862ADBBB110094913E /* FollowSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowSelectionViewModel.swift; sourceTree = "<group>"; };
+		FFA6BA882ADBBBDA0094913E /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		FFA6BA8B2ADBBC550094913E /* AvatarInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarInfoResponse.swift; sourceTree = "<group>"; };
+		FFA6BA8D2ADBBD230094913E /* DefaultUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserRepository.swift; sourceTree = "<group>"; };
+		FFA6BA8F2ADBBD540094913E /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
+		FFA6BA912ADBBDF40094913E /* UserEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpoints.swift; sourceTree = "<group>"; };
+		FFA6BA932ADBC0730094913E /* RecommendFollowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendFollowResponse.swift; sourceTree = "<group>"; };
+		FFA6BA952ADBC1BA0094913E /* FollowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowResponse.swift; sourceTree = "<group>"; };
 		FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewModel.swift; sourceTree = "<group>"; };
 		FFB29BAC2ACBD400000E473E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		FFB29BAE2ACBD463000E473E /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
@@ -725,6 +741,7 @@
 				FFB29BC22ACBE0C8000E473E /* DefaultNotificationRepository.swift */,
 				FF6801392AD2BCC7001AB6E8 /* DefaultAuthRepository.swift */,
 				FFA6BA7B2ADAE5F20094913E /* DefaultTagRepository.swift */,
+				FFA6BA8D2ADBBD230094913E /* DefaultUserRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -763,6 +780,7 @@
 				FFB29BC42ACBE170000E473E /* NotificationUseCase.swift */,
 				FF68013F2AD2BF78001AB6E8 /* AuthUseCase.swift */,
 				FFA6BA772ADAE5510094913E /* TagUseCase.swift */,
+				FFA6BA8F2ADBBD540094913E /* UserUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -783,6 +801,7 @@
 				FFB29BBD2ACBDF50000E473E /* NotificationRepository.swift */,
 				FF68013B2AD2BCFE001AB6E8 /* AuthRepository.swift */,
 				FFA6BA792ADAE5A60094913E /* TagRepository.swift */,
+				FFA6BA882ADBBBDA0094913E /* UserRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1097,6 +1116,7 @@
 				FF5059A52A7E08DE00F90D27 /* HomeAPIEndpoints.swift */,
 				FF68013D2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift */,
 				FFA6BA822ADAEE380094913E /* TagAPIEndpoints.swift */,
+				FFA6BA912ADBBDF40094913E /* UserEndpoints.swift */,
 				FF5059A22A7E055F00F90D27 /* DataMapping */,
 			);
 			path = Network;
@@ -1107,6 +1127,7 @@
 			children = (
 				FF6801372AD2B068001AB6E8 /* Results.swift */,
 				FF5059A72A7E092E00F90D27 /* Home */,
+				FFA6BA8A2ADBBC3E0094913E /* Avatar */,
 				FFA6BA812ADAEDC50094913E /* Tag */,
 			);
 			path = DataMapping;
@@ -1161,6 +1182,7 @@
 				FFA6BA732ADAD8F80094913E /* FoodSelectionViewModel.swift */,
 				FFA6BA752ADAD9080094913E /* TasteSelectionViewModel.swift */,
 				FFC7C6662A888BCB00EBE162 /* PhotoCropViewModel.swift */,
+				FFA6BA862ADBBB110094913E /* FollowSelectionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1217,6 +1239,16 @@
 				FFA6BA7F2ADAED800094913E /* TagsChangeRequest.swift */,
 			);
 			path = Tag;
+			sourceTree = "<group>";
+		};
+		FFA6BA8A2ADBBC3E0094913E /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				FFA6BA8B2ADBBC550094913E /* AvatarInfoResponse.swift */,
+				FFA6BA932ADBC0730094913E /* RecommendFollowResponse.swift */,
+				FFA6BA952ADBC1BA0094913E /* FollowResponse.swift */,
+			);
+			path = Avatar;
 			sourceTree = "<group>";
 		};
 		FFB29BA82ACBD355000E473E /* ViewModel */ = {
@@ -1558,15 +1590,19 @@
 				CE42BA6B2A6BB48100EBB80A /* String+Extensions.swift in Sources */,
 				FFB29BBC2ACBDDD6000E473E /* Notification.swift in Sources */,
 				FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */,
+				FFA6BA892ADBBBDA0094913E /* UserRepository.swift in Sources */,
 				CE1A6A6D2A62716C00FFE93D /* SimilarChefViewModel.swift in Sources */,
 				CE70F8912A63C18C003D0ED9 /* SimilarChefUseCase.swift in Sources */,
 				FFC7C66E2A88F7C000EBE162 /* CircleCropView.swift in Sources */,
+				FFA6BA8E2ADBBD230094913E /* DefaultUserRepository.swift in Sources */,
 				CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */,
 				FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */,
 				FF5059A62A7E08DE00F90D27 /* HomeAPIEndpoints.swift in Sources */,
+				FFA6BA942ADBC0730094913E /* RecommendFollowResponse.swift in Sources */,
 				FFDBC6812A83BBF90009189C /* PhotoAlbumViewController.swift in Sources */,
 				CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */,
 				D47719042A8CC13100381A72 /* CheffiRecommendationUseCase.swift in Sources */,
+				FFA6BA8C2ADBBC550094913E /* AvatarInfoResponse.swift in Sources */,
 				FFDBC6782A8280E20009189C /* UILabel+Extensions.swift in Sources */,
 				D497F9F42AA872F90057B7EB /* PopularRestaurantContentsCell.swift in Sources */,
 				FFC2F2072A9085A10001C86C /* MoreCell.swift in Sources */,
@@ -1626,6 +1662,7 @@
 				D4E24EDE2A64EA7300F9A3B3 /* MainPopularRestaurantView.swift in Sources */,
 				FF5059A92A7E093D00F90D27 /* UserDTO.swift in Sources */,
 				FF5059B72A7E0CF900F90D27 /* Tag.swift in Sources */,
+				FFA6BA902ADBBD540094913E /* UserUseCase.swift in Sources */,
 				FF9793B52A74C47100A921A0 /* CheffiDetailViewController.swift in Sources */,
 				FF62A44A2A7FC17F0066073F /* LoginSceneFlowCoordinator.swift in Sources */,
 				D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */,
@@ -1638,6 +1675,7 @@
 				FFB29BC52ACBE170000E473E /* NotificationUseCase.swift in Sources */,
 				D41E99322A6BB9A80085F5D0 /* UIView+Extensions.swift in Sources */,
 				D4C0FA6E2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift in Sources */,
+				FFA6BA872ADBBB110094913E /* FollowSelectionViewModel.swift in Sources */,
 				FFDBC67A2A83AD760009189C /* NicknameVIewModel.swift in Sources */,
 				FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */,
 				FF4659CF2A87DE6800736AEA /* PhotoAlbumListView.swift in Sources */,
@@ -1696,6 +1734,7 @@
 				CE1A6A782A6294DC00FFE93D /* TagListView.swift in Sources */,
 				CE1A6A722A6281E200FFE93D /* ProfileView.swift in Sources */,
 				FF31977F2A74CEBC00F5DD41 /* Menu.swift in Sources */,
+				FFA6BA922ADBBDF40094913E /* UserEndpoints.swift in Sources */,
 				D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */,
 				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,
 				FFC58AD12A8689FA0095BCF4 /* PhotoUseCase.swift in Sources */,
@@ -1712,6 +1751,7 @@
 				FFA6BA852ADBA5690094913E /* ProfilePageKey.swift in Sources */,
 				FFC7C6672A888BCB00EBE162 /* PhotoCropViewModel.swift in Sources */,
 				FFC7C6702A88F87400EBE162 /* UIImage+Extensions.swift in Sources */,
+				FFA6BA962ADBC1BA0094913E /* FollowResponse.swift in Sources */,
 				CE42BA6D2A6BB98600EBB80A /* PopupViewController.swift in Sources */,
 				FFFD94E72A8122A1001475AF /* ProfileSetupViewController.swift in Sources */,
 			);

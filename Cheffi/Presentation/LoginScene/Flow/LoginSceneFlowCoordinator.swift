@@ -13,7 +13,9 @@ protocol LoginFlowCoordinatorDependencies {
     func makeProfileSetupViewController(nicknameViewModel: NicknameViewModelType,
                                         profilePhotoViewModel: ProfilePhotoViewModelType,
                                         foodSelectionViewModel: FoodSelectionViewModelType,
-                                        tasteSelectionViewModel: TasteSelectionViewModelType) -> ProfileSetupViewController
+                                        tasteSelectionViewModel: TasteSelectionViewModelType,
+                                        followSelectionViewModel: FollowSelectionViewModelType
+    ) -> ProfileSetupViewController
     func makeProfileImageSelectViewController(selectTypes: [ProfileImageSelectType],
                                               selectCompletion: ((ProfileImageSelectType) -> Void)?) -> ProfileImageSelectViewController
     func makePhotoAlbumViewController(viewModel: PhotoAlbumViewModel, dismissCompletion: ((Data?) -> Void)?) -> PhotoAlbumViewController
@@ -24,6 +26,7 @@ protocol LoginFlowCoordinatorDependencies {
     func makePhotoCropViewModel(imageData: Data) -> PhotoCropViewModel
     func makeFoodSelectionViewModel() -> FoodSelectionViewModelType
     func makeTasteSelectionViewModel() -> TasteSelectionViewModelType
+    func makeFollowSelectionViewModel() -> FollowSelectionViewModelType
 }
 
 final class LoginFlowCoordinator {
@@ -59,7 +62,8 @@ final class LoginFlowCoordinator {
                                                                showProfileImageSelect: showProfileImageSelectViewController)
         let vc = dependencies.makeProfileSetupViewController(nicknameViewModel: dependencies.makeNicknameViewModel(),
                                                              profilePhotoViewModel: dependencies.makeProfilePhotoViewModel(actions: profilePhotoActions), foodSelectionViewModel: dependencies.makeFoodSelectionViewModel(),
-                                                             tasteSelectionViewModel: dependencies.makeTasteSelectionViewModel())
+                                                             tasteSelectionViewModel: dependencies.makeTasteSelectionViewModel(),
+                                                             followSelectionViewModel: dependencies.makeFollowSelectionViewModel())
         self.profileSetupViewController = vc
         self.navigationController?.pushViewController(vc)
     }

@@ -43,7 +43,8 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
         nicknameViewModel: NicknameViewModelType,
         profilePhotoViewModel: ProfilePhotoViewModelType,
         foodSelectionViewModel: FoodSelectionViewModelType,
-        tasteSelectionViewModel: TasteSelectionViewModelType
+        tasteSelectionViewModel: TasteSelectionViewModelType,
+        followSelectionViewModel: FollowSelectionViewModelType
     ) -> ProfileSetupViewController {
         let viewModel = makeProfileSetupViewModel()
         return ProfileSetupViewController.instance(viewModel: viewModel,
@@ -51,7 +52,7 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
                                                    profilePhotoViewController: makeProfilePhotoViewController(viewMoel: profilePhotoViewModel),
                                                    foodSelectionViewController: makeFoodSelectionViewController(viewModel: foodSelectionViewModel),
                                                    tasteSelectionViewController: makeTasteSelectionViewController(viewModel: tasteSelectionViewModel),
-                                                   followSelectionViewController: makeFollowSelectionViewController())
+                                                   followSelectionViewController: makeFollowSelectionViewController(viewModel: followSelectionViewModel))
     }
     
     // MARK: - Nickname
@@ -98,8 +99,13 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     // MARK: - FollowSelection
-    func makeFollowSelectionViewController() -> FollowSelectionViewController {
-        return FollowSelectionViewController.instance()
+    func makeFollowSelectionViewController(viewModel: FollowSelectionViewModelType) -> FollowSelectionViewController {
+        return FollowSelectionViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeFollowSelectionViewModel() -> FollowSelectionViewModelType {
+        let repository = makeUserRepository()
+        return FollowSelectionViewModel(useCase: makeUserUseCase(repository: repository))
     }
     
     func makeProfileSetupViewModel() -> ProfileSetupViewModel {
@@ -161,6 +167,10 @@ extension LoginSceneDIContainer {
     func makeTagUseCase(repository: TagRepository) -> TagUseCase {
         return DefaultTagUseCase(repository: repository)
     }
+    
+    func makeUserUseCase(repository: UserRepository) -> UserUseCase {
+        return DefaultUserUseCase(repository: repository)
+    }
 }
 
 // MARK: - Repository
@@ -175,5 +185,9 @@ extension LoginSceneDIContainer {
     
     func makeTagRepository() -> DefaultTagRepository {
         return DefaultTagRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeUserRepository() -> DefaultUserRepository {
+        return DefaultUserRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TagDTO: Codable {
+struct TagDTO: Codable, Hashable {
     let id: Int
     let type: TagType
     let name: String

@@ -33,7 +33,5 @@ class CheffiWriterView: BaseView {
         profileView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        profileView.setNickname("김독자")
     }
 }
