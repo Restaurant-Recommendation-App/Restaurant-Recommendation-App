@@ -140,17 +140,39 @@ extension Requestable {
                 allowLossyConversion: true
             )
         case .multipartFormData:
-            let request = bodyParameters["request"] as? [String: Bool]
+            guard let request = bodyParameters["request"] as? Codable else { return nil }
             let jsonEncoder = JSONEncoder()
             guard let jsonData = try? jsonEncoder.encode(request) else { return nil }
             guard let jsonString = String(data: jsonData, encoding: .utf8) else { return nil }
             let textData: [String: String] = ["request": jsonString]
             var httpBody = Data()
             for (key, value) in textData {
-                httpBody.appendString(convertFormField(named: key, value: value, using: bodyBoundary))
+                httpBody.appendString(
+                    convertFormField(named: key,
+                                     value: value,
+                                     using: bodyBoundary)
+                )
             }
-            guard let imageData = bodyParameters["file"] as? Data else { return nil }
-            httpBody.append(convertFileData(fieldName: "file", fileName: "profile.jpg", mimeType: "multipart/form-data", fileData: imageData, using: bodyBoundary))
+            if let imageData = bodyParameters["file"] as? Data {
+                httpBody.append(
+                    convertFileData(fieldName: "file",
+                                    fileName: "profile.jpg",
+                                    mimeType: "multipart/form-data",
+                                    fileData: imageData,
+                                    using: bodyBoundary)
+                )
+            } else if let images = bodyParameters["images"] as? [Data] {
+                for (index, imageData) in images.enumerated() {
+                    httpBody.append(
+                        convertFileData(fieldName: "file",
+                                        fileName: "\(index)_image.jpg",
+                                        mimeType: "multipart/form-data",
+                                        fileData: imageData,
+                                        using: bodyBoundary)
+                    )
+                }
+            }
+            
             httpBody.appendString("--\(bodyBoundary)--")
             return httpBody as Data
         }

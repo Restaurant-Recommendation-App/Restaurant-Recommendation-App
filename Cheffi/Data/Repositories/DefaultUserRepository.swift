@@ -23,32 +23,32 @@ final class DefaultUserRepository {
 
 extension DefaultUserRepository: UserRepository {
     func getAvatar(id: Int?) -> AnyPublisher<(Results<AvatarInfoResponse>, HTTPURLResponse), DataTransferError> {
-        let endpoint = UserEndpoints.getAvatar(id: id)
+        let endpoint = UserAPIEndpoints.getAvatar(id: id)
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
     }
     
     func getAvatarFollow() -> AnyPublisher<(Results<FollowResponse>, HTTPURLResponse), DataTransferError> {
-        let endpoint = UserEndpoints.getAvatarFollow()
+        let endpoint = UserAPIEndpoints.getAvatarFollow()
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
     }
     
     func postAvatarFollow(avatarId: Int) -> AnyPublisher<(Results<FollowResponse>, HTTPURLResponse), DataTransferError> {
-        let endpoint = UserEndpoints.postAvatarFollow(avatarId: avatarId)
+        let endpoint = UserAPIEndpoints.postAvatarFollow(avatarId: avatarId)
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
     }
     
     func deleteAvatarFollow(avatarId: Int) -> AnyPublisher<(Results<FollowResponse>, HTTPURLResponse), DataTransferError> {
-        let endpoint = UserEndpoints.deleteAvatarFollow(avatarId: avatarId)
+        let endpoint = UserAPIEndpoints.deleteAvatarFollow(avatarId: avatarId)
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
     }
     
     func getRecommendAvatars() -> AnyPublisher<(Results<[RecommendFollowResponse]>, HTTPURLResponse), DataTransferError> {
-        let endpoint = UserEndpoints.getRecommendAvatars()
+        let endpoint = UserAPIEndpoints.getRecommendAvatars()
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
     }
     
     func postRegisterUserProfile() -> AnyPublisher<(Results<[String]>, HTTPURLResponse), DataTransferError> {
-        let endpoint = UserEndpoints.postRegisterUserProfile()
+        let endpoint = UserAPIEndpoints.postRegisterUserProfile()
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
     }
 }
