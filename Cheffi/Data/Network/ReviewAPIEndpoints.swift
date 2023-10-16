@@ -34,7 +34,7 @@ struct ReviewAPIEndpoints {
     }
     
     // 리뷰 구매 API
-    static func postReviewPruchase(purchaseReviewRequest: PurchaseReviewRequest) -> Endpoint<Results<Int>> {
+    static func postReviewPurchase(purchaseReviewRequest: PurchaseReviewRequest) -> Endpoint<Results<Int>> {
         return Endpoint(path: "api/v1/reviews/purchase",
                         method: .post,
                         headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],
