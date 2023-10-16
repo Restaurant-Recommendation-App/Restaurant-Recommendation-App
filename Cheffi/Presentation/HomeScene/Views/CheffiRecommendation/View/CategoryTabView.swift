@@ -107,6 +107,7 @@ class CategoryTabView: UIView {
         scrollView.addSubview(tabsBottomBoder)
         tabsBottomBoder.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(2)
         }
         scrollView.sendSubviewToBack(tabsBottomBoder)
     }
