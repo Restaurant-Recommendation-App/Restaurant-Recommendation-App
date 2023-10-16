@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProfileView: UIView {
-    var followButtonSelectedHandler: ((Bool) -> Void)?
+    var followButtonSelectedHandler: ((RecommendFollowResponse?, Bool) -> Void)?
+    private var avatar: RecommendFollowResponse? = nil
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -29,7 +31,6 @@ class ProfileView: UIView {
     
     private let tagLabel: UILabel = {
         let label = UILabel()
-        label.text = "#한식 #노포 #아이사음식 #매운맛 #웨이팅 짧은 #매운맛 #웨이팅"
         label.numberOfLines = 2
         label.textAlignment = .left
         label.font = Fonts.suit.weight400.size(12.0)
@@ -60,8 +61,12 @@ class ProfileView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setNickname(_ nickname: String) {
-        self.nicknameLabel.text = nickname
+    func updateAvatar(_ avatar: RecommendFollowResponse) {
+        self.avatar = avatar
+        self.nicknameLabel.text = avatar.nickname
+        self.profileImageView.kf.setImage(with: URL(string: avatar.pictureUrl))
+        let tagNames = avatar.tags.map({ $0.name })
+        self.tagLabel.text = "#" + tagNames.joined(separator: " #")
     }
     
     // MARK: - private
@@ -96,7 +101,7 @@ class ProfileView: UIView {
     @objc private func followButtonTapped() {
         followButton.isSelected.toggle()
         updateFollowButtonAppearance()
-        followButtonSelectedHandler?(followButton.isSelected)
+        followButtonSelectedHandler?(avatar, followButton.isSelected)
     }
     
     private func updateFollowButtonAppearance() {

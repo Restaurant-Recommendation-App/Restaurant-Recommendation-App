@@ -26,7 +26,7 @@ class SimilarChefCell: UITableViewCell {
     }
     
     weak var delegate: SimilarChefCellDelegate?
-    private var viewModel: SimilarChefViewModel?
+    private var viewModel: SimilarChefViewModelType?
     private var cancellables = Set<AnyCancellable>()
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, String>?
@@ -36,10 +36,10 @@ class SimilarChefCell: UITableViewCell {
         self.setupViews()
     }
     
-    func configure(with viewModel: SimilarChefViewModel) {
+    func configure(with viewModel: SimilarChefViewModelType) {
         self.viewModel = viewModel
         
-        viewModel.combinedData
+        viewModel.output.combinedData
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
@@ -57,7 +57,8 @@ class SimilarChefCell: UITableViewCell {
                 self?.dataSource?.apply(snapshot, animatingDifferences: true)
             })
             .store(in: &cancellables)
-        viewModel.selectTags(UserDefaultsManager.HomeSimilarChefInfo.tags)
+        viewModel.input.requestGetTags(type: .food)
+//        viewModel.selectTags(UserDefaultsManager.HomeSimilarChefInfo.tags)
     }
     
     // MARK: - Private
@@ -80,7 +81,7 @@ class SimilarChefCell: UITableViewCell {
         
         // TagListView
         tagListView.didTapTagsHandler = { [weak self] tags in
-            self?.viewModel?.selectTags(tags)
+            self?.viewModel?.input.selectTags(tags)
         }
         
         // show all contents button

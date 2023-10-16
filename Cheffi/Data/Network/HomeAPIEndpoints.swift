@@ -8,11 +8,6 @@
 import Foundation
 
 struct HomeAPIEndpoints {
-    static func getTags() -> Endpoint<[TagResponseDTO]> {
-        return Endpoint(path: "tags",
-                        method: .get)
-    }
-    
     static func getUsers(tags: [String]) -> Endpoint<[UserDTO]> {
         return Endpoint(path: "users",
                         method: .get,

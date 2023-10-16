@@ -13,7 +13,7 @@ enum TagType: String, Codable {
 }
 
 struct Tag: Codable {
-    var id: Int64
-    var tagType: TagType
+    var id: Int
+    var type: TagType
     var name: String
 }

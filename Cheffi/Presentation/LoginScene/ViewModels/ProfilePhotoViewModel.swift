@@ -16,20 +16,97 @@ struct ProfilePhotoViewModelActions {
 }
 
 protocol ProfilePhotoViewModelInput {
+    func setImageData(imageData: Data?)
+    func postPhostosDidTap()
 }
 
 protocol ProfilePhotoViewModelOutput {
+    var responsePostPhotos: AnyPublisher<String?, DataTransferError> { get }
     func showCamera(_ isPresentPhotoAlbum: Bool, _ dismissCompletion: ((Data?) -> Void)?)
     func showPhotoCrop(_ captureImageData: Data?, _ dismissCompletion: ((Data?) -> Void)?)
     func showPhotoAlbum(_ dismissCompletion: ((Data?) -> Void)?)
     func showProfileImageSelect(_ selectTypes: [ProfileImageSelectType], _ selectTypeCompletion: ((ProfileImageSelectType) -> Void)?)
 }
 
-typealias ProfilePhotoViewModelType = ProfilePhotoViewModelInput & ProfilePhotoViewModelOutput
+protocol ProfilePhotoViewModelType {
+    var input: ProfilePhotoViewModelInput { get }
+    var output: ProfilePhotoViewModelOutput { get }
+}
 
 final class ProfilePhotoViewModel: ProfilePhotoViewModelType {
-    // MARK: - Input
-    // MARK: - Output
+    var input: ProfilePhotoViewModelInput { return self }
+    var output: ProfilePhotoViewModelOutput { return self }
+    
+    private var _imageData: Data? = nil
+    private var requestPostPhotosSubject = PassthroughSubject<Data, Never>()
+    
+    // MARK: - Init
+    private var cancellables: Set<AnyCancellable> = []
+    private let actions: ProfilePhotoViewModelActions
+    private let useCase: PhotoUseCase
+    private let cameraService: CameraService
+    init(actions: ProfilePhotoViewModelActions,
+         photoUseCase: PhotoUseCase,
+         cameraService: CameraService) {
+        self.actions = actions
+        self.useCase = photoUseCase
+        self.cameraService = cameraService
+    }
+    
+    // MARK: - Private
+    private func requestPostPhotos(imageData: Data) -> AnyPublisher<String?, DataTransferError> {
+        let subject = PassthroughSubject<String?, DataTransferError>()
+        useCase.postPhotos(imageData: imageData)
+            .print()
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    subject.send(completion: .finished)
+                case .failure(let error):
+                    subject.send(completion: .failure(error))
+                }
+            } receiveValue: { imageDataString, _ in
+                subject.send(imageDataString)
+            }
+            .store(in: &cancellables)
+
+        return subject.eraseToAnyPublisher()
+    }
+}
+
+// MARK: - Input
+extension ProfilePhotoViewModel: ProfilePhotoViewModelInput {
+    func setImageData(imageData: Data?) {
+        _imageData = imageData
+    }
+    
+    func postPhostosDidTap() {
+        if let imageData = self._imageData {
+            requestPostPhotosSubject.send(imageData)
+        } else {
+            print("---------------------------------------")
+            print("이미지 데이터 없음")
+            print("---------------------------------------")
+        }
+    }
+}
+
+// MARK: - Output
+extension ProfilePhotoViewModel: ProfilePhotoViewModelOutput {
+    var responsePostPhotos: AnyPublisher<String?, DataTransferError> {
+        return requestPostPhotosSubject
+            .flatMap { [weak self] imageData -> AnyPublisher<String?, DataTransferError> in
+                guard let self = self else {
+                    return Future { promise in
+                        promise(.success(nil))
+                    }.eraseToAnyPublisher()
+                }
+                return self.requestPostPhotos(imageData: imageData)
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
     func showCamera(_ isPresentPhotoAlbum: Bool, _ dismissCompletion: ((Data?) -> Void)?) {
         actions.showCamera(isPresentPhotoAlbum, dismissCompletion)
     }
@@ -46,18 +123,5 @@ final class ProfilePhotoViewModel: ProfilePhotoViewModelType {
     
     func showProfileImageSelect(_ selectTypes: [ProfileImageSelectType], _ selectTypeCompletion: ((ProfileImageSelectType) -> Void)?) {
         actions.showProfileImageSelect(selectTypes, selectTypeCompletion)
-    }
-    
-    // MARK: - Init
-    private var cancellables: Set<AnyCancellable> = []
-    private let actions: ProfilePhotoViewModelActions
-    private let photoUseCase: PhotoUseCase
-    private let cameraService: CameraService
-    init(actions: ProfilePhotoViewModelActions,
-         photoUseCase: PhotoUseCase,
-         cameraService: CameraService) {
-        self.actions = actions
-        self.photoUseCase = photoUseCase
-        self.cameraService = cameraService
     }
 }

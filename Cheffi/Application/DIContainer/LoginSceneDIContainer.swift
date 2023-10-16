@@ -32,32 +32,39 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     func makeSNSLoginViewModel(actions: SNSLoginViewModelActions) -> SNSLoginViewModel {
-        let repository = makeLoginRepository()
-        let useCase = makeLoginUseCase(repository: repository)
+        let repository = makeAuthRepository()
+        let useCase = makeAuthUseCase(repository: repository)
         return SNSLoginViewModel(actions: actions,
                                  useCase: useCase)
     }
     
     // MARK: - ProfileSetup
-    func makeProfileSetupViewController(nicknameViewModel: NicknameViewModelType, profilePhotoViewModel: ProfilePhotoViewModelType) -> ProfileSetupViewController {
+    func makeProfileSetupViewController(
+        nicknameViewModel: NicknameViewModelType,
+        profilePhotoViewModel: ProfilePhotoViewModelType,
+        foodSelectionViewModel: FoodSelectionViewModelType,
+        tasteSelectionViewModel: TasteSelectionViewModelType,
+        followSelectionViewModel: FollowSelectionViewModelType
+    ) -> ProfileSetupViewController {
         let viewModel = makeProfileSetupViewModel()
         return ProfileSetupViewController.instance(viewModel: viewModel,
-                                                   nicknameViewController: makeNicknameViewController(),
+                                                   nicknameViewController: makeNicknameViewController(viewModel: nicknameViewModel),
                                                    profilePhotoViewController: makeProfilePhotoViewController(viewMoel: profilePhotoViewModel),
-                                                   foodSelectionViewController: makeFoodSelectionViewController(),
-                                                   tasteSelectionViewController: makeTasteSelectionViewController(),
-                                                   followSelectionViewController: makeFollowSelectionViewController())
+                                                   foodSelectionViewController: makeFoodSelectionViewController(viewModel: foodSelectionViewModel),
+                                                   tasteSelectionViewController: makeTasteSelectionViewController(viewModel: tasteSelectionViewModel),
+                                                   followSelectionViewController: makeFollowSelectionViewController(viewModel: followSelectionViewModel))
     }
     
     // MARK: - Nickname
-    func makeNicknameViewController() -> NicknameViewController {
-        let viewModel = makeNicknameViewModel()
+    func makeNicknameViewController(viewModel: NicknameViewModelType) -> NicknameViewController {
         let vc = NicknameViewController.instance(viewMode: viewModel)
         return vc
     }
     
     func makeNicknameViewModel() -> NicknameViewModelType {
-        return NicknameViewModel()
+        let repository = makeAuthRepository()
+        let useCase = makeAuthUseCase(repository: repository)
+        return NicknameViewModel(useCase: useCase)
     }
     
     // MARK: - ProfilePhoto
@@ -72,18 +79,33 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     // MARK: - FoodSelection
-    func makeFoodSelectionViewController() -> FoodSelectionViewController {
-        return FoodSelectionViewController.instance()
+    func makeFoodSelectionViewController(viewModel: FoodSelectionViewModelType) -> FoodSelectionViewController {
+        return FoodSelectionViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeFoodSelectionViewModel() -> FoodSelectionViewModelType {
+        let repository = makeTagRepository()
+        return FoodSelectionViewModel(useCase: makeTagUseCase(repository: repository))
     }
     
     // MARK: - Taste
-    func makeTasteSelectionViewController() -> TasteSelectionViewController {
-        return TasteSelectionViewController.instance()
+    func makeTasteSelectionViewController(viewModel: TasteSelectionViewModelType) -> TasteSelectionViewController {
+        return TasteSelectionViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeTasteSelectionViewModel() -> TasteSelectionViewModelType {
+        let repository = makeTagRepository()
+        return TasteSelectionViewModel(useCase: makeTagUseCase(repository: repository))
     }
     
     // MARK: - FollowSelection
-    func makeFollowSelectionViewController() -> FollowSelectionViewController {
-        return FollowSelectionViewController.instance()
+    func makeFollowSelectionViewController(viewModel: FollowSelectionViewModelType) -> FollowSelectionViewController {
+        return FollowSelectionViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeFollowSelectionViewModel() -> FollowSelectionViewModelType {
+        let repository = makeUserRepository()
+        return FollowSelectionViewModel(useCase: makeUserUseCase(repository: repository))
     }
     
     func makeProfileSetupViewModel() -> ProfileSetupViewModel {
@@ -138,18 +160,34 @@ extension LoginSceneDIContainer {
         return DefaultPhotoUseCase(repository: makePhotoRepository())
     }
     
-    func makeLoginUseCase(repository: LoginRepository) -> LoginUseCase {
-        return DefaultLoginUserCase(repository: repository)
+    func makeAuthUseCase(repository: AuthRepository) -> AuthUseCase {
+        return DefaultAuthUserCase(repository: repository)
+    }
+    
+    func makeTagUseCase(repository: TagRepository) -> TagUseCase {
+        return DefaultTagUseCase(repository: repository)
+    }
+    
+    func makeUserUseCase(repository: UserRepository) -> UserUseCase {
+        return DefaultUserUseCase(repository: repository)
     }
 }
 
 // MARK: - Repository
 extension LoginSceneDIContainer {
     func makePhotoRepository() -> DefaultPhotoRepository {
-        return DefaultPhotoRepository()
+        return DefaultPhotoRepository(dataTransferService: dependencies.apiDataTransferService)
     }
     
-    func makeLoginRepository() -> LoginRepository {
-        return DefaultLoginRepository(dataTransferService: dependencies.apiDataTransferService)
+    func makeAuthRepository() -> DefaultAuthRepository {
+        return DefaultAuthRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeTagRepository() -> DefaultTagRepository {
+        return DefaultTagRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeUserRepository() -> DefaultUserRepository {
+        return DefaultUserRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

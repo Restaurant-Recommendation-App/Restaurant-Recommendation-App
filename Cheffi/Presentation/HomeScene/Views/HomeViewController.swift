@@ -35,9 +35,13 @@ class HomeViewController: UIViewController {
         tableView.register(cellWithClass: CheffiRecommendationCell.self)
         tableView.sectionHeaderTopPadding = 0
         tableView.showsVerticalScrollIndicator = false
-        
         tableView.register(headerFooterViewClassWith: CheffiRecommendationHeader.self)
         tableView.backgroundColor = .cheffiWhite
+
+        print("--------------------------------------------------")
+        print("user info")
+        print(UserDefaultsManager.AuthInfo.user)
+        print("--------------------------------------------------")
     }
     
     // MARK: - Actions

@@ -55,7 +55,7 @@ class ProfileTagCell: UICollectionViewCell {
         }
     }
 
-    func setTagName(with text: String) {
-        titleLabel.text = text
+    func setTagName(with tag: Tag) {
+        titleLabel.text = tag.name
     }
 }

@@ -17,7 +17,7 @@ class SimilarChefProfileCell: UICollectionViewCell {
     }
     
     func configure(with nickname: String) {
-        profileView.setNickname(nickname)
+        
     }
     
     // MARK: - private

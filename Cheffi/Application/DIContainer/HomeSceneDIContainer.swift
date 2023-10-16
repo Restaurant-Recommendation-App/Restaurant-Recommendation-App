@@ -64,8 +64,7 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
     
     func makeSimilarChefViewModel() -> SimilarChefViewModel {
         let repository = makeSimilarChefRepository()
-        return SimilarChefViewModel(similarChefUseCase: makeSimilarChefUseCase(repository: repository),
-                                    repository: repository)
+        return SimilarChefViewModel(useCase: makeSimilarChefUseCase(repository: repository))
     }
     
     func makeRecommedationViewModel() -> CheffiRecommendationViewModel {
