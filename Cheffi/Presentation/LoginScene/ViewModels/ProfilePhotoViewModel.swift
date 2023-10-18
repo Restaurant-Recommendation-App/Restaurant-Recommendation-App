@@ -38,7 +38,7 @@ final class ProfilePhotoViewModel: ProfilePhotoViewModelType {
     var output: ProfilePhotoViewModelOutput { return self }
     
     private var _imageData: Data? = nil
-    private var requestPostPhotosSubject = PassthroughSubject<Data, Never>()
+    private var requestPostPhotosSubject = PassthroughSubject<(Data, ChangeProfilePhotoRequest), Never>()
     
     // MARK: - Init
     private var cancellables: Set<AnyCancellable> = []
@@ -54,9 +54,9 @@ final class ProfilePhotoViewModel: ProfilePhotoViewModelType {
     }
     
     // MARK: - Private
-    private func requestPostPhotos(imageData: Data) -> AnyPublisher<String?, DataTransferError> {
+    private func requestPostPhotos(imageData: Data, changeProfilePhotoRequest: ChangeProfilePhotoRequest) -> AnyPublisher<String?, DataTransferError> {
         let subject = PassthroughSubject<String?, DataTransferError>()
-        useCase.postPhotos(imageData: imageData)
+        useCase.postPhotos(imageData: imageData, changeProfilePhotoRequest: changeProfilePhotoRequest)
             .print()
             .sink { completion in
                 switch completion {
@@ -81,8 +81,9 @@ extension ProfilePhotoViewModel: ProfilePhotoViewModelInput {
     }
     
     func postPhostosDidTap() {
+        let changeProfilePhotoRequest = ChangeProfilePhotoRequest(defaults: false)
         if let imageData = self._imageData {
-            requestPostPhotosSubject.send(imageData)
+            requestPostPhotosSubject.send((imageData, changeProfilePhotoRequest))
         } else {
             print("---------------------------------------")
             print("이미지 데이터 없음")
@@ -95,13 +96,13 @@ extension ProfilePhotoViewModel: ProfilePhotoViewModelInput {
 extension ProfilePhotoViewModel: ProfilePhotoViewModelOutput {
     var responsePostPhotos: AnyPublisher<String?, DataTransferError> {
         return requestPostPhotosSubject
-            .flatMap { [weak self] imageData -> AnyPublisher<String?, DataTransferError> in
+            .flatMap { [weak self] imageData, changeProfilePhotoRequest -> AnyPublisher<String?, DataTransferError> in
                 guard let self = self else {
                     return Future { promise in
                         promise(.success(nil))
                     }.eraseToAnyPublisher()
                 }
-                return self.requestPostPhotos(imageData: imageData)
+                return self.requestPostPhotos(imageData: imageData, changeProfilePhotoRequest: changeProfilePhotoRequest)
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()

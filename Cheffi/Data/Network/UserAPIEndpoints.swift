@@ -1,5 +1,5 @@
 //
-//  UserEndpoints.swift
+//  UserAPIEndpoints.swift
 //  Cheffi
 //
 //  Created by Juhyun Seo on 10/15/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserEndpoints {
+struct UserAPIEndpoints {
     static func getAvatar(id: Int? = nil) -> Endpoint<Results<AvatarInfoResponse>> {
         let headerParameters = (id == nil) ? [:] : ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""]
         let queryParameters = (id == nil) ? [:] : ["id": id!]

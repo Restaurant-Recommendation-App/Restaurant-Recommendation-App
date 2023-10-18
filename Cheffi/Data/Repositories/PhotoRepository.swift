@@ -12,7 +12,7 @@ protocol PhotoRepository {
     func getAlbums(mediaType: MediaType, completion: @escaping ([AlbumInfo]) -> Void)
     func getPhotos(in album: PHFetchResult<PHAsset>, completion: @escaping ([PHAsset]) -> Void)
     func requestImage(for asset: PHAsset, size: CGSize, contentMode: PHImageContentMode, completion: @escaping (Data?) -> Void)
-    func postPhotos(imageData: Data) -> AnyPublisher<(Results<String>, HTTPURLResponse), DataTransferError>
+    func postPhotos(imageData: Data, changeProfilePhotoRequest: ChangeProfilePhotoRequest) -> AnyPublisher<(Results<String>, HTTPURLResponse), DataTransferError>
 }
 
 class DefaultPhotoRepository: PhotoRepository {
@@ -44,8 +44,8 @@ class DefaultPhotoRepository: PhotoRepository {
     }
     
     // 프로필 사진 변경
-    func postPhotos(imageData: Data) -> AnyPublisher<(Results<String>, HTTPURLResponse), DataTransferError> {
-        let endpoint = AuthAPIEndpoints.postPhosts(imageData: imageData)
+    func postPhotos(imageData: Data, changeProfilePhotoRequest: ChangeProfilePhotoRequest) -> AnyPublisher<(Results<String>, HTTPURLResponse), DataTransferError> {
+        let endpoint = AuthAPIEndpoints.postPhosts(imageData: imageData, changeProfilePhotoRequest: changeProfilePhotoRequest)
         return dataTransferService.request(with: endpoint, on: backgroundQueue).eraseToAnyPublisher()
     }
 }

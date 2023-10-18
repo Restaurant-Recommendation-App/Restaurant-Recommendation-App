@@ -36,7 +36,8 @@ struct AuthAPIEndpoints {
                         bodyParameters: ["nickname": nickname])
     }
     
-    static func postPhosts(imageData: Data) -> Endpoint<Results<String>> {
+    static func postPhosts(imageData: Data,
+                           changeProfilePhotoRequest: ChangeProfilePhotoRequest) -> Endpoint<Results<String>> {
         let boundary = "Boundary-\(UUID().uuidString)"
         return Endpoint(path: "api/v1/avatars/photos",
                         method: .post,
@@ -46,7 +47,7 @@ struct AuthAPIEndpoints {
                         ],
                         bodyParameters: [
                             "file": imageData,
-                            "request": ["default": false]
+                            "request": changeProfilePhotoRequest
                         ],
                         bodyEncoding: .multipartFormData,
                         bodyBoundary: boundary)
