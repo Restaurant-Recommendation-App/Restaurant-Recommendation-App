@@ -103,6 +103,8 @@
 		D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */; };
 		D4EEF21C2A91BA9D008107DF /* ContentsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEF21B2A91BA9D008107DF /* ContentsResponseDTO.swift */; };
 		D4EEF21E2A91CE70008107DF /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEF21D2A91CE70008107DF /* Content.swift */; };
+		FF14EF592AE2BB88007609FA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF14EF582AE2BB88007609FA /* ToastView.swift */; };
+		FF14EF5B2AE2BBE8007609FA /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF14EF5A2AE2BBE8007609FA /* ToastView.xib */; };
 		FF3197732A74C8F800F5DD41 /* CheffiMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3197722A74C8F800F5DD41 /* CheffiMenuView.swift */; };
 		FF3197752A74C90200F5DD41 /* CheffiLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3197742A74C90200F5DD41 /* CheffiLocationView.swift */; };
 		FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3197762A74C90E00F5DD41 /* CheffiReviewView.swift */; };
@@ -369,6 +371,8 @@
 		D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTimeLockBubbleView.swift; sourceTree = "<group>"; };
 		D4EEF21B2A91BA9D008107DF /* ContentsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsResponseDTO.swift; sourceTree = "<group>"; };
 		D4EEF21D2A91CE70008107DF /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		FF14EF582AE2BB88007609FA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		FF14EF5A2AE2BBE8007609FA /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		FF3197722A74C8F800F5DD41 /* CheffiMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiMenuView.swift; sourceTree = "<group>"; };
 		FF3197742A74C90200F5DD41 /* CheffiLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiLocationView.swift; sourceTree = "<group>"; };
 		FF3197762A74C90E00F5DD41 /* CheffiReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiReviewView.swift; sourceTree = "<group>"; };
@@ -664,6 +668,7 @@
 		CE1A6A792A62960A00FFE93D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FF14EF572AE2BB7F007609FA /* Toast */,
 				D4C1C59F2AC164F4007F8C1E /* TimeLock */,
 				D4C0FA712A9DB7BD0056B885 /* Pagenation */,
 				D49D1A8C2A73941B00CB86FA /* Protocols */,
@@ -1127,6 +1132,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FF14EF572AE2BB7F007609FA /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				FF14EF582AE2BB88007609FA /* ToastView.swift */,
+				FF14EF5A2AE2BBE8007609FA /* ToastView.xib */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		FF3197712A74C8E900F5DD41 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1551,6 +1565,7 @@
 				FFDBC6412A8139260009189C /* Nickname.storyboard in Resources */,
 				D4E244C22A60FF5D004E0167 /* Assets.xcassets in Resources */,
 				FF338AF82A77EB4B00FCCE00 /* CheffiContensViewImageCell.xib in Resources */,
+				FF14EF5B2AE2BBE8007609FA /* ToastView.xib in Resources */,
 				FF3E0D582ACB1158009B236D /* ProfileTagCell.xib in Resources */,
 				CE0D453A2A61AA7700636989 /* MyPage.storyboard in Resources */,
 				FF338AF42A77E46800FCCE00 /* CheffiContensView.xib in Resources */,
@@ -1663,6 +1678,7 @@
 				CE70F8912A63C18C003D0ED9 /* SimilarChefUseCase.swift in Sources */,
 				FFC7C66E2A88F7C000EBE162 /* CircleCropView.swift in Sources */,
 				FFA6BA8E2ADBBD230094913E /* DefaultUserRepository.swift in Sources */,
+				FF14EF592AE2BB88007609FA /* ToastView.swift in Sources */,
 				CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */,
 				FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */,
 				FF5059A62A7E08DE00F90D27 /* HomeAPIEndpoints.swift in Sources */,

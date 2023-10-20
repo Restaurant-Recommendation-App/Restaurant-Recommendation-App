@@ -54,8 +54,10 @@ class CheffiReviewDetailViewController: UIViewController {
         textLabel.font = Fonts.suit.weight400.size(16.0)
         
         cheffiLocationView.didTapCopyButton = { [weak self] text in
-            self?.showAlert(title: "복사완료".localized(), message: text)
-            self?.copyToClipboard(text: text)
+            guard let self else { return }
+            let toastView = ToastView()
+            toastView.show(in: self.view, message: "주소가 클립보드에 복사되었어요.".localized())
+            self.copyToClipboard(text: text)
         }
         
         cheffiReviewView.didTapReviewState = { [weak self] reviewState in
