@@ -22,7 +22,7 @@ final class DefaultReviewRepository {
 }
 
 extension DefaultReviewRepository: ReviewRepository {
-    func getReviews(reviewRequest: ReviewRequest) -> AnyPublisher<(Results<SearchReviewResponse>, HTTPURLResponse), DataTransferError> {
+    func getReviews(reviewRequest: ReviewRequest) -> AnyPublisher<(Results<GetReviewResponse>, HTTPURLResponse), DataTransferError> {
         let endpoint = ReviewAPIEndpoints.getReviews(reviewRequest: reviewRequest)
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
     }

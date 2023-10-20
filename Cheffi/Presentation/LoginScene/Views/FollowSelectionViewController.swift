@@ -58,7 +58,7 @@ class FollowSelectionViewController: UIViewController {
         dataSource = UITableViewDiffableDataSource<Int, RecommendFollowResponse>(tableView: tableView, cellProvider: { tableView, indexPath, item in
             let cell = tableView.dequeueReusableCell(withClass: FollowSelectionCell.self, for: indexPath)
             cell.configrue(with: item) 
-            cell.didTapFollowHandler = { [weak self] avatar, isSelected in
+            cell.didTapfollowButton = { [weak self] avatar, isSelected in
                 self?.updateFollowingStatus(avatar: avatar, isSelected: isSelected)
             }
             return cell

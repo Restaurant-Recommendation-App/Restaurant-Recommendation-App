@@ -70,7 +70,7 @@ class CheffiMenuItemView: UIView {
         setupViews()
     }
     
-    func set(menu: Menu) {
+    func set(menu: MenuDTO) {
         menuNameLabel.text = menu.name
         priceLabel.text = menu.price.commaRepresentation + "원"
     }

@@ -13,7 +13,7 @@ protocol HomeFlowCoordinatorDependencies {
     func makeViewController(actions: HomeViewModelActions) -> HomeViewController
     func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
-    func makeCheffiDetail() -> CheffiDetailViewController
+    func makeCheffiReviewDetail(reviewId: Int) -> CheffiReviewDetailViewController
     func makeAllCheffiContentsViewController() -> AllCheffiContentsViewController
     func makeNotificationViewController(actions: NotificationViewModelActions) -> NotificationViewController
 }
@@ -34,7 +34,8 @@ final class HomeFlowCoordinator {
                                            showSimilarChefList: showSimilarChefList,
                                            showSearch: showSearch,
                                            showAllCheffiContents: showAllCheffiContents,
-                                           showNotification: showNotification)
+                                           showNotification: showNotification,
+                                           showCheffiReviewDetail: showCheffiReviewDetail)
         let vc = dependencies.makeViewController(actions: actions)
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -50,8 +51,8 @@ final class HomeFlowCoordinator {
                                                       rightHandler: { [weak self] in
             rightHandler?()
             switch popupState {
-            case .member:
-                self?.showCheffiDetail()
+            case .member(let id):
+                self?.showCheffiReviewDetail(reviewId: id)
             case .nonMember:
                 self?.showLogin()
             case .deleteNotification:
@@ -80,8 +81,8 @@ final class HomeFlowCoordinator {
         parentCoordinator?.showLogin()
     }
     
-    private func showCheffiDetail() {
-        let vc = dependencies.makeCheffiDetail()
+    private func showCheffiReviewDetail(reviewId: Int) {
+        let vc = dependencies.makeCheffiReviewDetail(reviewId: reviewId)
         navigationController?.pushViewController(vc)
     }
     

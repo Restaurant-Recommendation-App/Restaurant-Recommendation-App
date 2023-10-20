@@ -10,8 +10,8 @@ import UIKit
 class CheffiWriterView: BaseView {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var writerContentView: UIView!
-    
     private let profileView: ProfileView = ProfileView()
+    var didTapFollowWriterInfo: ((ReviewWriterInfoDTO?, Bool) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,5 +33,14 @@ class CheffiWriterView: BaseView {
         profileView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        profileView.didTapFollowWriterInfo = { [weak self] writerInfo, isSelected in
+            self?.didTapFollowWriterInfo?(writerInfo, isSelected)
+        }
+    }
+    
+    // MARK: - Public
+    func updateWriter(_ writerInfo: ReviewWriterInfoDTO) {
+        profileView.updateWriter(writerInfo)
     }
 }

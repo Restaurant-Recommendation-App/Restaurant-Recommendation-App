@@ -10,7 +10,7 @@ import UIKit
 class FollowSelectionCell: UITableViewCell {
     
     private let profileView: ProfileView = ProfileView()
-    var didTapFollowHandler: ((RecommendFollowResponse?, Bool) -> Void)?
+    var didTapfollowButton: ((RecommendFollowResponse?, Bool) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,8 +31,9 @@ class FollowSelectionCell: UITableViewCell {
             make.top.equalToSuperview().offset(20)
             make.bottom.equalToSuperview().offset(-20)
         }
-        profileView.followButtonSelectedHandler = { [weak self] avatar, isSelected in
-            self?.didTapFollowHandler?(avatar, isSelected)
+        
+        profileView.didTapFollowAvatar = { [weak self] avatar, isSelected in
+            self?.didTapfollowButton?(avatar, isSelected)
         }
     }
     

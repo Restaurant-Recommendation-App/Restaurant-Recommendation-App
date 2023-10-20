@@ -95,10 +95,16 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
             cheffiRecommendationUseCase: useCase)
     }
     
-    // MARK: - Detail
-    func makeCheffiDetail() -> CheffiDetailViewController {
-        let vc = CheffiDetailViewController.instance()
+    // MARK: - Review Detail
+    func makeCheffiReviewDetail(reviewId: Int) -> CheffiReviewDetailViewController {
+        let viewModel = makeCheffiReviewViewModel(reviewId: reviewId)
+        let vc = CheffiReviewDetailViewController.instance(viewModel: viewModel)
         return vc
+    }
+    
+    func makeCheffiReviewViewModel(reviewId: Int) -> CheffiReviewDetailViewModelType {
+        let repository = makeReviewRepository()
+        return CheffiReviewDetailViewModel(reviewId: reviewId, useCase: makeReviewUseCase(repository: repository))
     }
     
     func makeSimilarChefList() -> SimilarChefListViewController {
@@ -131,6 +137,10 @@ extension HomeSceneDIContainer {
     func makeNotificationUseCase(repository: NotificationRepository) -> NotificationUseCase {
         return DefaultNotificationUseCase(repository: repository)
     }
+    
+    func makeReviewUseCase(repository: ReviewRepository) -> ReviewUseCase {
+        return DefaultReviewUseCase(repository: repository)
+    }
 }
 
 // MARK: - Repositories
@@ -145,5 +155,9 @@ extension HomeSceneDIContainer {
     
     func makeNotificationRepository() -> NotificationRepository {
         return DefaultNotificationRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeReviewRepository() -> ReviewRepository {
+        return DefaultReviewRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

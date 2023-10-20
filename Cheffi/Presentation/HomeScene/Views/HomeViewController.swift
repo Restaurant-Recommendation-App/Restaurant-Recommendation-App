@@ -39,20 +39,31 @@ class HomeViewController: UIViewController {
         tableView.backgroundColor = .cheffiWhite
 
         print("--------------------------------------------------")
-        print("user info")
-        print(UserDefaultsManager.AuthInfo.user)
+        print("----------- user info")
+        print(UserDefaultsManager.UserInfo.user)
+        print("----------- session token")
+        print(UserDefaultsManager.AuthInfo.sessionToken)
         print("--------------------------------------------------")
     }
     
     // MARK: - Actions
     @IBAction private func didTapLocation(_ sender: UIButton) {
         // TODO: Test 코드
-        viewModel.showPopup(text: "잠긴 게시물은\n회원가입 후 확인할 수 있어요!",
-                            subText: "",
-                            keywrod: "회원가입 후 확인",
-                            popupState: .nonMember,
-                            leftButtonTitle: "취소하기",
-                            rightButtonTitle: "찾아보기")
+        if (AccountManager.shared.isLogin) {
+            viewModel.showPopup(text: "쉐피 코인 1개를 차감하여\n새로운 맛집을 찾아 떠나볼까요?",
+                                subText: "",
+                                keywrod: "쉐피 코인 1개를 차감",
+                                popupState: .member(id: 1),
+                                leftButtonTitle: "취소하기",
+                                rightButtonTitle: "찾아보기")
+        } else {
+            viewModel.showPopup(text: "잠긴 게시물은\n회원가입 후 확인할 수 있어요!",
+                                subText: "",
+                                keywrod: "회원가입 후 확인",
+                                popupState: .nonMember,
+                                leftButtonTitle: "취소하기",
+                                rightButtonTitle: "찾아보기")
+        }
     }
     
     @IBAction private func didTapSearch(_ sender: UIButton) {
