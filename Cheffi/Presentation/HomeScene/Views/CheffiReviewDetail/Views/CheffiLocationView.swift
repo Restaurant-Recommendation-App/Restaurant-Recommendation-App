@@ -13,7 +13,7 @@ class CheffiLocationView: BaseView {
     @IBOutlet private weak var addressLabel: UILabel!
     @IBOutlet private weak var copyButton: UIButton!
     
-    var didTapCopyHandler: ((String) -> Void)?
+    var didTapCopyButton: ((String) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,8 +25,8 @@ class CheffiLocationView: BaseView {
         setupViews()
     }
     
-    func setLocation(_ location: Location) {
-        addressLabel.text = location.address
+    func setLocation(_ address: Address) {
+        addressLabel.text = address.fullRodNameAddress
     }
     
     // MARK: - Private
@@ -46,6 +46,6 @@ class CheffiLocationView: BaseView {
     // MARK: - Action
     @IBAction private func didTapCopy(_ sender: UIButton) {
         guard let text = self.addressLabel.text else { return }
-        didTapCopyHandler?(text)
+        didTapCopyButton?(text)
     }
 }

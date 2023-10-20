@@ -136,7 +136,7 @@ extension NicknameViewModel: NicknameViewModelInput {
     }
     
     func saveToLocalDB(nickname: String) {
-        UserDefaultsManager.AuthInfo.user = UserDefaultsManager.AuthInfo.user?.updateNickname(text: nickname)
+        UserDefaultsManager.UserInfo.user = UserDefaultsManager.UserInfo.user?.updateNickname(text: nickname)
     }
 }
 

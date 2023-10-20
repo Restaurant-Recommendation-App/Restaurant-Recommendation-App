@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CheffiContensViewImageCell: UICollectionViewCell {
     
@@ -34,8 +35,8 @@ class CheffiContensViewImageCell: UICollectionViewCell {
     }
     
     // MARK: - Public
-    func setImage(_ image: UIImage) {
-        self.imageView.image = image
+    func updatePhotoInfo(with photoInfo: ReviewPhotoInfoDTO) {
+        self.imageView.kf.setImage(with: URL(string: photoInfo.photoUrl))
         self.timeAgoLabel.text = "1시간 전"
         self.titleLabel.text = "그시절낭만의 근본 경양식 돈가스"
         self.tasteLabel.text = "취향일치 60%"

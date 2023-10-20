@@ -33,7 +33,7 @@ class ProfilePhotoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let nickname = UserDefaultsManager.AuthInfo.user?.nickname ?? ""
+        let nickname = UserDefaultsManager.UserInfo.user?.nickname ?? ""
         titleLabel.text = "\(nickname) 쉐피님,\n프로필 사진을 설정해주세요.".localized()
     }
     

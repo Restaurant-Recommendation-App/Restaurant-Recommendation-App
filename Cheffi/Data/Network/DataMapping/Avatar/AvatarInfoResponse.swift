@@ -11,7 +11,7 @@ struct AvatarInfoResponse: Codable {
     let id: Int
     let nickname: String
     let pictureUrl: String
-    let introduction: String
+    let introduction: String?
     let follower: Int
     let following: Int
     let post: Int

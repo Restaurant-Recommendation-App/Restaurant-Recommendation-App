@@ -14,6 +14,7 @@ struct HomeViewModelActions {
     let showSearch: () -> Void
     let showAllCheffiContents: () -> Void
     let showNotification: () -> Void
+    let showCheffiReviewDetail: (_ reviewId: Int) -> Void
 }
 
 protocol HomeViewModelInput {

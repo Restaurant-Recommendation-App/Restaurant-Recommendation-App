@@ -16,7 +16,7 @@ enum StoryboardName: String {
     case popup
     case search
     case similarChefList
-    case cheffiDetail
+    case cheffiReviewDetail
     case more
     case SNSLogin
     case profileSetup

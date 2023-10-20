@@ -8,7 +8,7 @@
 import UIKit
 
 enum PopupState {
-    case member
+    case member(id: Int)
     case nonMember
     case deleteNotification
 }

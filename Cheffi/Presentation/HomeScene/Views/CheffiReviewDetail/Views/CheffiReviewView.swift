@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Combine
 
 enum ReviewState: Int, CaseIterable {
     case positive = 0
@@ -31,7 +30,7 @@ enum ReviewState: Int, CaseIterable {
 }
 
 class CheffiReviewView: BaseView {
-    
+    var didTapReviewState: ((ReviewState) -> Void)?
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var positiveStackView: UIStackView!
     @IBOutlet private weak var neutralStackView: UIStackView!
@@ -55,9 +54,6 @@ class CheffiReviewView: BaseView {
         let negativeLabel = negativeStackView.arrangedSubviews[safe: 2] as? UILabel
         return [positiveLabel, neutralLabel, negativeLabel].compactMap { $0 }
     }()
-    
-    private var viewModel: CheffiReviewViewModel = CheffiReviewViewModel()
-    private var cancellables = Set<AnyCancellable>()
     
     private enum Constants {
         static let defaultColor: UIColor = .cheffiGray5
@@ -95,15 +91,10 @@ class CheffiReviewView: BaseView {
             label.font = Fonts.suit.weight400.size(12.0)
             label.textColor = Constants.defaultColor
         }
-        
-        viewModel.selectedReviewState
-            .sink { [weak self] state in
-                self?.updateReviewButtons(for: state)
-            }
-            .store(in: &cancellables)
     }
     
-    private func updateReviewButtons(for state: ReviewState?) {
+    // MARK: - Public
+    func updateReviewButtons(for state: ReviewState?) {
         for i in 0..<reviewButtons.count {
             let reviewButton = reviewButtons[i]
             let reviewLabel = reviewLabels[i]
@@ -116,9 +107,15 @@ class CheffiReviewView: BaseView {
         }
     }
     
+    func updateRatings(_ ratings: [String: Int]) {
+        for (index, value) in [ratings[RatingType.good.rawValue], ratings[RatingType.average.rawValue], ratings[RatingType.bad.rawValue]].enumerated() {
+            reviewVotingLabels[index].text = value?.string ?? "0"
+        }
+    }
+    
     // MARK: - Actions
     @IBAction private func didTapReview(_ sender: UIButton) {
         guard let state = ReviewState(rawValue: sender.tag) else { return }
-        viewModel.selectReviewState(state)
+        didTapReviewState?(state)
     }
 }

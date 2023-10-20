@@ -28,7 +28,7 @@ class CheffiMenuView: BaseView {
         titleLabel.textColor = .cheffiGray9
     }
     
-    func setupMenu(_ menus: [Menu]) {
+    func setupMenu(_ menus: [MenuDTO]) {
         stackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
         
         let menuItemViews = menus.map { menu -> CheffiMenuItemView in

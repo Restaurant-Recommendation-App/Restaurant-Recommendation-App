@@ -18,9 +18,13 @@ enum UserDefaultsManager {
         static var keywords: [String]
     }
     
-    enum AuthInfo {
-        @UserDefault(key: "auth", defaultValue: nil)
+    enum UserInfo {
+        @UserDefault(key: "userInfo", defaultValue: nil)
         static var user: User?
+    }
+    
+    enum AuthInfo {
+        @UserDefault(key: "authInfo", defaultValue: nil)
         static var sessionToken: String?
     }
     
@@ -39,8 +43,11 @@ extension UserDefaultsManager {
         UserDefaultsManager.SearchInfo.keywords = []
     }
     
+    static func UserClear() {
+        UserDefaultsManager.UserInfo.user = nil
+    }
+    
     static func AuthClear() {
-        UserDefaultsManager.AuthInfo.user = nil
         UserDefaultsManager.AuthInfo.sessionToken = nil
     }
     

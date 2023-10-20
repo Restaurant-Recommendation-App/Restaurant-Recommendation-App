@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Cheffi Detail View Controller-->
+        <!--Cheffi Review Detail View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="CheffiDetailViewController" id="Y6W-OH-hqX" customClass="CheffiDetailViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CheffiReviewDetailViewController" id="Y6W-OH-hqX" customClass="CheffiReviewDetailViewController" customModule="Cheffi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="1750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,8 +41,8 @@
                                                     <constraint firstAttribute="bottom" secondItem="iHl-jY-rBG" secondAttribute="bottom" id="tM2-r1-OMS"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전풍호텔라운지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJs-qk-mYj">
-                                                <rect key="frame" x="16" y="392" width="145.33333333333334" height="27.666666666666686"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJs-qk-mYj">
+                                                <rect key="frame" x="16.000000000000004" y="392" width="40.333333333333343" height="27.666666666666686"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                 <color key="textColor" name="CheffiBlack"/>
                                                 <nil key="highlightedColor"/>
@@ -60,25 +60,14 @@
                                                     <action selector="didTapLike:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Zep-2C-A2A"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="옛날 추억과 곁들여 포만감이 배가 되는 맛" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Awi-Zo-EXa">
-                                                <rect key="frame" x="16" y="431.66666666666669" width="361" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" name="CheffiGray6"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oah-eo-x57">
-                                                <rect key="frame" x="16" y="473.66666666666669" width="361" height="515.66666666666652"/>
-                                                <string key="text"> 문을 열자마자 시간 여행을 한다. 레트로함이 좀 느껴지는 수준을 넘어 진도준 선생님처럼 과거로 회귀한 듯 하다. 두툼한 돈카츠로 포화된 지금 찾기 힌든 근본의 한국 경양식 돈까스는 추억 보정까지 담아 더 맛이 깊어진다. 클래식하다.
- 영화 촬영장 수준으로 과거를 표현한 매장은 돈까스가 나오기도 전에 어릴 적 엄마아빠 손을 잡고 돈까스를 썰어 먹던 추억을 불러온다. 배부르게 먹고 단순하게 행복해진 기억이 입혀져 음식이 더 기대되고, 먹고 나선 더 만족스러워진다.
- 돈까스가 나오자마자 벌써부터 눈이 배부르다. 확실하게 클래식함이 묻어나는 옛날 돈까스다. 얇고 넓게 펴져 큰 접시가 꽉 차도록 푸짐하게 담겨 있다. 돈까스를 다 썰은 후 먹는 것을 좋아한다면 넓은 돈까스 사이즈에 고생 좀 할 수도 있다. 부드럽지만 한참을 썰어야 해서 팔이 너덜너덜해진다.
-옛날 돈까스이기 때문에 더 기본에 충실한 근본의 맛이 느껴진다. 겉은 소스에 절여졌음에도 바삭함이 유지되었고, 속은 순두부에 수렴하는 부드러운 느낌이었다. 한국 경양식 돈까스 탑티어다. 과일을 많이 사용하는지 소스가 새콤하며 느끼함이 전혀 없다. 밥과 샐러드, 돈까스를 비벼는 맛잘알들에게는 딱 맞을 소스다.
- 엄마가 ‘아들~ 돈까스 먹으러 가자’라고 하는 데에는 이유가 있다. 어릴 때에도 못 참았던 맛이 레트로한 공간과 어울려 깊어진다. 경양식계 클래식을 확실히 영접하고 나니 오므라이스와 매운 돈까스도 기대가 된다. 기회가 되면 꼭 재방문해야겠다.</string>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oah-eo-x57">
+                                                <rect key="frame" x="16" y="447.66666666666669" width="361" height="19.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" name="CheffiGray8"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EhK-Cr-oe7" customClass="CheffiMenuView" customModule="Cheffi" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="1013.3333333333331" width="361" height="140.66666666666663"/>
+                                                <rect key="frame" x="16" y="491" width="361" height="663"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekk-PW-fxX" customClass="CheffiLocationView" customModule="Cheffi" customModuleProvider="target">
@@ -136,16 +125,13 @@
                                             <constraint firstAttribute="trailing" secondItem="oah-eo-x57" secondAttribute="trailing" constant="16" id="CwC-Ug-Uqv"/>
                                             <constraint firstItem="lKt-Zw-qQr" firstAttribute="top" secondItem="Krt-ed-OLG" secondAttribute="bottom" constant="27" id="DuK-x2-Tbn"/>
                                             <constraint firstAttribute="trailing" secondItem="7TN-1y-Miv" secondAttribute="trailing" constant="16" id="Gu0-Af-eH2"/>
-                                            <constraint firstAttribute="trailing" secondItem="Awi-Zo-EXa" secondAttribute="trailing" constant="16" id="J6a-p6-9nZ"/>
                                             <constraint firstAttribute="trailing" secondItem="lKt-Zw-qQr" secondAttribute="trailing" constant="16" id="LD1-b2-ujc"/>
                                             <constraint firstAttribute="trailing" secondItem="ekk-PW-fxX" secondAttribute="trailing" constant="16" id="MnO-3g-g03"/>
                                             <constraint firstItem="zpf-nT-UBL" firstAttribute="top" secondItem="54g-Cu-qil" secondAttribute="bottom" constant="20" id="OQF-ol-lyY"/>
                                             <constraint firstAttribute="bottom" secondItem="R3W-xu-EL2" secondAttribute="bottom" constant="24" id="POA-RV-74c"/>
-                                            <constraint firstItem="Awi-Zo-EXa" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="Qgt-Mi-8Ki"/>
                                             <constraint firstAttribute="trailing" secondItem="zpf-nT-UBL" secondAttribute="trailing" id="TUP-vv-N5r"/>
                                             <constraint firstItem="54g-Cu-qil" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="anW-nu-fT5"/>
                                             <constraint firstItem="54g-Cu-qil" firstAttribute="top" secondItem="ekk-PW-fxX" secondAttribute="bottom" constant="32" id="bRn-Yw-dJ6"/>
-                                            <constraint firstItem="Awi-Zo-EXa" firstAttribute="top" secondItem="kJs-qk-mYj" secondAttribute="bottom" constant="12" id="cPV-zO-7c6"/>
                                             <constraint firstItem="oah-eo-x57" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" constant="16" id="dmk-91-qbj"/>
                                             <constraint firstItem="kJs-qk-mYj" firstAttribute="top" secondItem="Krt-ed-OLG" secondAttribute="bottom" constant="32" id="dz1-pU-428"/>
                                             <constraint firstAttribute="trailing" secondItem="R3W-xu-EL2" secondAttribute="trailing" constant="17" id="enU-ez-JWB"/>
@@ -153,9 +139,9 @@
                                             <constraint firstItem="EhK-Cr-oe7" firstAttribute="top" secondItem="oah-eo-x57" secondAttribute="bottom" constant="24" id="g7o-II-6yH"/>
                                             <constraint firstItem="ekk-PW-fxX" firstAttribute="top" secondItem="EhK-Cr-oe7" secondAttribute="bottom" constant="24" id="hep-kN-8UR"/>
                                             <constraint firstItem="zpf-nT-UBL" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" id="n3t-7f-IpR"/>
+                                            <constraint firstItem="oah-eo-x57" firstAttribute="top" secondItem="kJs-qk-mYj" secondAttribute="bottom" constant="28" id="pJl-tK-e7n"/>
                                             <constraint firstItem="7TN-1y-Miv" firstAttribute="top" secondItem="zpf-nT-UBL" secondAttribute="bottom" constant="32" id="qeE-Q5-8f2"/>
                                             <constraint firstItem="Krt-ed-OLG" firstAttribute="leading" secondItem="RaS-Ky-D5r" secondAttribute="leading" id="tov-Ro-tim"/>
-                                            <constraint firstItem="oah-eo-x57" firstAttribute="top" secondItem="Awi-Zo-EXa" secondAttribute="bottom" constant="24" id="vlA-A4-33u"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -222,6 +208,8 @@
                         <outlet property="imageBackgroundView" destination="Krt-ed-OLG" id="fa9-Ei-Tlm"/>
                         <outlet property="moreButton" destination="BFG-a3-DSh" id="Td3-jP-fU6"/>
                         <outlet property="scrollView" destination="KOS-kC-vou" id="CRn-So-AUy"/>
+                        <outlet property="textLabel" destination="oah-eo-x57" id="AQw-8R-cgJ"/>
+                        <outlet property="titleLabel" destination="kJs-qk-mYj" id="eFL-yF-mOB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -242,9 +230,6 @@
         </namedColor>
         <namedColor name="CheffiGray2">
             <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="CheffiGray6">
-            <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="CheffiGray8">
             <color red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

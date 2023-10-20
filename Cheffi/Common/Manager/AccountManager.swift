@@ -11,7 +11,7 @@ class AccountManager: NSObject {
     static var shared: AccountManager = AccountManager()
     
     var isLogin: Bool {
-        return UserDefaultsManager.AuthInfo.user != nil
+        return (UserDefaultsManager.UserInfo.user != nil) && (UserDefaultsManager.AuthInfo.sessionToken != nil)
     }
     
     private override init() { }

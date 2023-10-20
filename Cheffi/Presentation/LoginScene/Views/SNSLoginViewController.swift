@@ -97,7 +97,10 @@ class SNSLoginViewController: UIViewController {
     
     private func loginSuccess(_ user: User?) {
         if let userData = user {
-            UserDefaultsManager.AuthInfo.user = userData
+            UserDefaultsManager.UserInfo.user = userData
+            print("---------------------------------------")
+            print("여기 저장")
+            print("---------------------------------------")
             if userData.isNewUser == false {
                 self.dismissOne(amimated: true)
             } else {

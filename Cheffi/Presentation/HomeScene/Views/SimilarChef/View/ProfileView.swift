@@ -9,8 +9,10 @@ import UIKit
 import Kingfisher
 
 class ProfileView: UIView {
-    var followButtonSelectedHandler: ((RecommendFollowResponse?, Bool) -> Void)?
+    var didTapFollowAvatar: ((RecommendFollowResponse?, Bool) -> Void)?
+    var didTapFollowWriterInfo: ((ReviewWriterInfoDTO?, Bool) -> Void)?
     private var avatar: RecommendFollowResponse? = nil
+    private var writerInfo: ReviewWriterInfoDTO? = nil
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -69,6 +71,13 @@ class ProfileView: UIView {
         self.tagLabel.text = "#" + tagNames.joined(separator: " #")
     }
     
+    func updateWriter(_ writerInfo: ReviewWriterInfoDTO) {
+        self.writerInfo = writerInfo
+        self.nicknameLabel.text = writerInfo.name
+        self.profileImageView.kf.setImage(with: URL(string: writerInfo.photoUrl))
+        self.tagLabel.text = writerInfo.introduction
+    }
+    
     // MARK: - private
     private func setupViews() {
         self.addSubviews([profileImageView, nicknameLabel, tagLabel, followButton])
@@ -101,7 +110,8 @@ class ProfileView: UIView {
     @objc private func followButtonTapped() {
         followButton.isSelected.toggle()
         updateFollowButtonAppearance()
-        followButtonSelectedHandler?(avatar, followButton.isSelected)
+        didTapFollowAvatar?(avatar, followButton.isSelected)
+        didTapFollowWriterInfo?(writerInfo, followButton.isSelected)
     }
     
     private func updateFollowButtonAppearance() {
@@ -114,4 +124,3 @@ class ProfileView: UIView {
         }
     }
 }
-
