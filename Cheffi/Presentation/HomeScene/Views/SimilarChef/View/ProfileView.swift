@@ -71,11 +71,11 @@ class ProfileView: UIView {
         self.tagLabel.text = "#" + tagNames.joined(separator: " #")
     }
     
-    func updateWriter(_ writerInfo: ReviewWriterInfoDTO) {
+    func updateWriter(_ writerInfo: ReviewWriterInfoDTO?) {
         self.writerInfo = writerInfo
-        self.nicknameLabel.text = writerInfo.name
-        self.profileImageView.kf.setImage(with: URL(string: writerInfo.photoUrl))
-        self.tagLabel.text = writerInfo.introduction
+        self.nicknameLabel.text = writerInfo?.name
+        self.profileImageView.kf.setImage(with: URL(string: writerInfo?.photoUrl))
+        self.tagLabel.text = writerInfo?.introduction
     }
     
     // MARK: - private

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RatingType: String, Codable {
+enum RatingType: String, Codable, Hashable {
     case good = "GOOD"
     case average = "AVERAGE"
     case bad = "BAD"

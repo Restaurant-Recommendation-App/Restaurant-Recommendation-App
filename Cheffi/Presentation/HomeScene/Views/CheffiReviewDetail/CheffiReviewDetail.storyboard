@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -207,9 +206,9 @@
                         <outlet property="contentView" destination="RaS-Ky-D5r" id="OZw-7w-K4F"/>
                         <outlet property="imageBackgroundView" destination="Krt-ed-OLG" id="fa9-Ei-Tlm"/>
                         <outlet property="moreButton" destination="BFG-a3-DSh" id="Td3-jP-fU6"/>
+                        <outlet property="restaurantNameLabel" destination="kJs-qk-mYj" id="eFL-yF-mOB"/>
                         <outlet property="scrollView" destination="KOS-kC-vou" id="CRn-So-AUy"/>
                         <outlet property="textLabel" destination="oah-eo-x57" id="AQw-8R-cgJ"/>
-                        <outlet property="titleLabel" destination="kJs-qk-mYj" id="eFL-yF-mOB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -8,7 +8,7 @@
 import Foundation
 
 // 리뷰의 맛집 정보
-struct RestaurantDTO: Codable {
+struct RestaurantDTO: Codable, Hashable {
     let id: Int // 식당 ID
     let name: String // 식당 이름
     let address: Address // 맛집 상세 주소

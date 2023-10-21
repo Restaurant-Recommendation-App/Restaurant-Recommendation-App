@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ReviewWriterInfoDTO: Codable {
+struct ReviewWriterInfoDTO: Codable, Hashable {
     let id: Int // 리뷰 작성자 ID
     let name: String // 리뷰 작성자 닉네임
     let photoUrl: String // 리뷰 작성자 프로필 사진 URL

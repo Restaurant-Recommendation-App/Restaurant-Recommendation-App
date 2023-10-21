@@ -11,13 +11,10 @@ class CheffiContensView: BaseView {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageLabel: UILabel!
-    
+    private var reviewInfo: ReviewInfoDTO? = nil
     private var photos: [ReviewPhotoInfoDTO] = [] {
         didSet {
-            var snapshot = NSDiffableDataSourceSnapshot<Int, ReviewPhotoInfoDTO>()
-            snapshot.appendSections([0])
-            snapshot.appendItems(photos)
-            dataSource?.apply(snapshot, animatingDifferences: true)
+            reloadData()
         }
     }
     
@@ -40,12 +37,19 @@ class CheffiContensView: BaseView {
         
         // Initialize data source
         dataSource = UICollectionViewDiffableDataSource<Int, ReviewPhotoInfoDTO>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, photoInof: ReviewPhotoInfoDTO) -> UICollectionViewCell? in
+            (collectionView: UICollectionView, indexPath: IndexPath, photoInfo: ReviewPhotoInfoDTO) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withClass: CheffiContensViewImageCell.self, for: indexPath)
             cell.toggleViewVisibility(isHidden: indexPath.row != 0)
-            cell.updatePhotoInfo(with: photoInof)
+            cell.configure(with: photoInfo, reviewInfo: self.reviewInfo)
             return cell
         }
+    }
+    
+    private func reloadData() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, ReviewPhotoInfoDTO>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(photos)
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
     private func updatePageLabel(currentPage: Int, totalPages: Int) {
@@ -66,8 +70,9 @@ class CheffiContensView: BaseView {
 
     
     // MARK: - Public
-    func setImages(_ photos: [ReviewPhotoInfoDTO]) {
-        self.photos = photos
+    func setReviewInfo(_ reviewInfo: ReviewInfoDTO) {
+        self.reviewInfo = reviewInfo
+        self.photos = reviewInfo.photos ?? []
         self.updatePageLabel(currentPage: 0, totalPages: photos.count)
     }
 }

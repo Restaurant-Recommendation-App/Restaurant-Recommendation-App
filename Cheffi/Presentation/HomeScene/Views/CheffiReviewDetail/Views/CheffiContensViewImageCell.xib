@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -39,17 +39,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDD-sU-IhK">
-                        <rect key="frame" x="16" y="243.33333333333337" width="175" height="80"/>
+                        <rect key="frame" x="16" y="293.33333333333331" width="175" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="175" id="Ivu-0r-vw6"/>
-                            <constraint firstAttribute="height" constant="80" id="dXo-dJ-01g"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="SUIT-Bold" family="SUIT" pointSize="24"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7A2-6H-I5m">
-                        <rect key="frame" x="16" y="209.33333333333334" width="32" height="30"/>
+                        <rect key="frame" x="16" y="259.33333333333331" width="32" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chI-er-8a7">
                                 <rect key="frame" x="12" y="4" width="8" height="22"/>
@@ -96,9 +95,9 @@
             <connections>
                 <outlet property="gradationView" destination="5Hs-ke-RFG" id="Vjk-AL-b2Y"/>
                 <outlet property="imageView" destination="VwH-Pt-qA5" id="0KO-C6-kFk"/>
+                <outlet property="relativeTimLabel" destination="gcw-5P-eMq" id="hjv-DL-j46"/>
                 <outlet property="tasteBackgroundView" destination="7A2-6H-I5m" id="gv3-H7-n1Q"/>
                 <outlet property="tasteLabel" destination="chI-er-8a7" id="u3O-sM-7dc"/>
-                <outlet property="timeAgoLabel" destination="gcw-5P-eMq" id="hjv-DL-j46"/>
                 <outlet property="titleLabel" destination="lDD-sU-IhK" id="ncQ-p0-BcJ"/>
             </connections>
             <point key="canvasLocation" x="382.44274809160305" y="98.591549295774655"/>

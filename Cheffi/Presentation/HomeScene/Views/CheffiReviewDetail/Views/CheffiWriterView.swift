@@ -40,7 +40,7 @@ class CheffiWriterView: BaseView {
     }
     
     // MARK: - Public
-    func updateWriter(_ writerInfo: ReviewWriterInfoDTO) {
+    func updateWriter(_ writerInfo: ReviewWriterInfoDTO?) {
         profileView.updateWriter(writerInfo)
     }
 }
