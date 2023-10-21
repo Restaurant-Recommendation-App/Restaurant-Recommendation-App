@@ -107,7 +107,8 @@ class CheffiReviewView: BaseView {
         }
     }
     
-    func updateRatings(_ ratings: [String: Int]) {
+    func updateRatings(_ ratings: [String: Int]?) {
+        guard let ratings = ratings else { return }
         for (index, value) in [ratings[RatingType.good.rawValue], ratings[RatingType.average.rawValue], ratings[RatingType.bad.rawValue]].enumerated() {
             reviewVotingLabels[index].text = value?.string ?? "0"
         }

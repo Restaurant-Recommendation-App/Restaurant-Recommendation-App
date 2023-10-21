@@ -118,7 +118,7 @@ class CheffiReviewDetailViewController: UIViewController {
         // 작성자
         cheffiWriterView.updateWriter(reviewInfo.writer)
         // 식당 별점
-        cheffiReviewView.updateRatings(reviewInfo.ratings ?? [:])
+        cheffiReviewView.updateRatings(reviewInfo.ratings)
     }
     
     private func copyToClipboard(text: String) {
