@@ -15,14 +15,16 @@ protocol SimilarChefCellDelegate: AnyObject {
 class SimilarChefCell: UITableViewCell {
     
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subTitleLabel: UILabel!
     @IBOutlet private weak var tagListView: TagListView!
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var showAllContentsDirection: ShowAllContentsButton!
+    @IBOutlet private weak var pageNavigatorBackgroundView: UIView!
+    private var pageNavigatorView: PageNavigatorView? = nil
+    private var didSwiped = PassthroughSubject<Int, Never>()
     
     private enum Constants {
         static let cellInset: CGFloat = 16.0
         static let cellHeight: CGFloat = 64.0
+        static let itemsPerPage: Int = 3
     }
     
     weak var delegate: SimilarChefCellDelegate?
@@ -40,25 +42,33 @@ class SimilarChefCell: UITableViewCell {
         self.viewModel = viewModel
         
         viewModel.output.combinedData
-            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
                     // TODO: - 에러메시지 처리
-                    debugPrint("------------------------------------------")
+                    debugPrint("combine data ------------------------------------------")
                     debugPrint(error)
                     debugPrint("------------------------------------------")
                 }
-            }, receiveValue: { [weak self] tags, profiles in
+            }, receiveValue: { [weak self] tags, users in
+                print("-------> combineData 호출")
                 self?.tagListView.setupTags(tags)
-                
-                var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
-                snapshot.appendSections([0])
-                snapshot.appendItems(profiles.map { $0.nickname })
-                self?.dataSource?.apply(snapshot, animatingDifferences: true)
+                self?.reloadData(users: users)
+                self?.makePagenavigatorView(users: users)
             })
             .store(in: &cancellables)
+        
+        viewModel.output.tags
+            .sink { [weak self] tags in
+                let savedTags = UserDefaultsManager.HomeSimilarChefInfo.tags
+                if savedTags.isEmpty, let firstTag = tags.first {
+                    self?.viewModel?.input.setSelectTags([firstTag])
+                } else {
+                    self?.viewModel?.input.setSelectTags(savedTags)
+                }
+            }
+            .store(in: &cancellables)
+        
         viewModel.input.requestGetTags(type: .food)
-//        viewModel.selectTags(UserDefaultsManager.HomeSimilarChefInfo.tags)
     }
     
     // MARK: - Private
@@ -81,13 +91,64 @@ class SimilarChefCell: UITableViewCell {
         
         // TagListView
         tagListView.didTapTagsHandler = { [weak self] tags in
-            self?.viewModel?.input.selectTags(tags)
+            self?.viewModel?.input.setSelectTags(tags)
+        }
+    }
+    
+    private func reloadData(users: [User]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(users.map { $0.nickname })
+        self.dataSource?.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func makePagenavigatorView(users: [User]) {
+        pageNavigatorView?.removeFromSuperview()
+        pageNavigatorView = nil
+        pageNavigatorView = PageNavigatorView()
+        pageNavigatorBackgroundView.addSubview(pageNavigatorView!)
+        pageNavigatorView?.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.equalTo(125)
+            make.height.equalTo(32)
         }
         
-        // show all contents button
-        showAllContentsDirection.setTItle("전체보기".localized(), direction: .right)
-        showAllContentsDirection.didTapViewAllHandler = { [weak self] in
-            self?.delegate?.didTapShowSimilarChefList()
+        let totalPage = (users.count + Constants.itemsPerPage - 1) / Constants.itemsPerPage
+        pageNavigatorView?.configure(currentPage: 1, limitPage: totalPage, swiped: didSwiped)
+        pageNavigatorView?.tapped
+            .sink(receiveValue: { [weak self] pageType in
+                switch pageType {
+                case .prev: self?.toPreviousPage()
+                case .next: self?.toNextPage()
+                default: break
+                }
+            })
+            .store(in: &cancellables)
+    }
+    
+    private func toPreviousPage() {
+        let currentOffset = collectionView.contentOffset.x
+        let pageWidth = collectionView.frame.size.width
+        let currentPageIndex = Int(currentOffset / pageWidth)
+        
+        if currentPageIndex > 0 {
+            let previousPageIndex = currentPageIndex - 1
+            let newOffset = CGFloat(previousPageIndex) * pageWidth
+            collectionView.setContentOffset(CGPoint(x: newOffset, y: 0), animated: true)
+        }
+    }
+    
+    private func toNextPage() {
+        let currentOffset = collectionView.contentOffset.x
+        let pageWidth = collectionView.frame.size.width
+        let currentPageIndex = Int(currentOffset / pageWidth)
+
+        let totalPageCount = collectionView.numberOfItems(inSection: 0)
+        
+        if currentPageIndex < totalPageCount - 1 {
+            let nextPageIndex = currentPageIndex + 1
+            let newOffset = CGFloat(nextPageIndex) * pageWidth
+            collectionView.setContentOffset(CGPoint(x: newOffset, y: 0), animated: true)
         }
     }
 }
@@ -109,5 +170,11 @@ extension SimilarChefCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let offsetX = scrollView.contentOffset.x
+        let pageIndex = Int(offsetX / scrollView.frame.width)
+        self.didSwiped.send(pageIndex)
     }
 }

@@ -30,10 +30,6 @@ struct UserDefault<T: Codable> {
         set {
             do {
                 let json = try JSONEncoder().encode(Wrapper(wrapped: newValue))
-                print("newVlue ---------------------------------------")
-                print(key)
-                print(newValue)
-                print("---------------------------------------")
                 userDefaults.set(json, forKey: key)
                 userDefaults.synchronize()
             } catch {

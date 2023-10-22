@@ -13,7 +13,7 @@ final class PopularRestaurantContentsView: UICollectionView {
     private var diffableDataSource: UICollectionViewDiffableDataSource<Int, PopularRestaurantContentsItemViewModel>?
     
     var didSwiped = PassthroughSubject<Int, Never>()
-    private var didTapPageButton: AnyPublisher<PageControlButton.PageType, Never> = Just(.current).eraseToAnyPublisher()
+    private var didTapPageButton: AnyPublisher<PageNavigatorView.PageType, Never> = Just(.current).eraseToAnyPublisher()
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -52,7 +52,7 @@ final class PopularRestaurantContentsView: UICollectionView {
         diffableDataSource?.apply(snapshot, animatingDifferences: true)
     }
     
-    func configure(viewModels: [PopularRestaurantContentsItemViewModel], didTappedPageButton: AnyPublisher<PageControlButton.PageType, Never>) {
+    func configure(viewModels: [PopularRestaurantContentsItemViewModel], didTappedPageButton: AnyPublisher<PageNavigatorView.PageType, Never>) {
         configureItems(items: viewModels)
         
         self.didTapPageButton = didTappedPageButton.eraseToAnyPublisher()

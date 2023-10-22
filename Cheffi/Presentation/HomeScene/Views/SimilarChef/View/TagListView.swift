@@ -39,7 +39,7 @@ class TagListView: UIView {
         static let rightInset: CGFloat = -16
     }
     
-    private var tagList: [String] = []
+    private var tags: [Tag] = []
     private let stackView = UIStackView()
     private let scrollView = UIScrollView()
     private var selectedTagIndexes: [Int] = [] {
@@ -48,7 +48,7 @@ class TagListView: UIView {
         }
     }
     
-    var didTapTagsHandler: (([String]) -> Void)?
+    var didTapTagsHandler: (([Tag]) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -80,20 +80,20 @@ class TagListView: UIView {
         }
     }
     
-    func setupTags(_ tagList: [String]) {
-        guard !tagList.isEmpty else { return }
+    func setupTags(_ tags: [Tag]) {
+        guard !tags.isEmpty else { return }
 
-        self.tagList = tagList
+        self.tags = tags
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
-        let selectedTags = UserDefaultsManager.HomeSimilarChefInfo.tags
+        let selectedTagNames = UserDefaultsManager.HomeSimilarChefInfo.tags.map({ $0.name })
         debugPrint("------------------------------------------")
-        debugPrint("저장된 Tag 리스트 - ", selectedTags)
+        debugPrint("저장된 Tag 리스트 - ", selectedTagNames)
         debugPrint("------------------------------------------")
         
-        for (index, tag) in tagList.enumerated() {
+        for (index, tag) in tags.enumerated() {
             let button = TagButton()
-            button.setTitle(tag, for: .normal)
+            button.setTitle(tag.name, for: .normal)
             button.titleLabel?.textAlignment = .center
             button.layerCornerRadius = 15
             button.clipsToBounds = true
@@ -105,7 +105,7 @@ class TagListView: UIView {
         }
         
         // UserDefaults에서 가져온 카테고리 리스트에 따라 selectedTagIndexes를 설정
-        selectedTagIndexes = tagList.indices.filter { selectedTags.contains(tagList[$0]) }
+        selectedTagIndexes = tags.indices.filter { selectedTagNames.contains(tags[$0].name) }
     }
     
     private func updateTagSelection() {
@@ -123,6 +123,6 @@ class TagListView: UIView {
             selectedTagIndexes.append(sender.tag)
         }
         
-        didTapTagsHandler?(selectedTagIndexes.map({ self.tagList[$0] }))
+        didTapTagsHandler?(selectedTagIndexes.map({ self.tags[$0] }))
     }
 }

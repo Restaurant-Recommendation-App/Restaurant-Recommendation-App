@@ -11,11 +11,12 @@ import Combine
 
 protocol SimilarChefViewModelInput {
     func requestGetTags(type: TagType)
-    func selectTags(_ tags: [String])
+    func setSelectTags(_ tags: [Tag])
 }
 
 protocol SimilarChefViewModelOutput {
-    var combinedData: AnyPublisher<([String], [User]), Never> { get }
+    var combinedData: AnyPublisher<([Tag], [User]), DataTransferError> { get }
+    var tags: AnyPublisher<[Tag], Never> { get }
 }
 
 protocol SimilarChefViewModelType {
@@ -29,57 +30,24 @@ final class SimilarChefViewModel: SimilarChefViewModelType {
     
     private var cancellables = Set<AnyCancellable>()
     private let useCase: SimilarChefUseCase
-    private let _selectedTags = PassthroughSubject<[String], Never>()
-    private let _profiles = PassthroughSubject<[User], Never>()
+    private let selectedTagSubject = PassthroughSubject<[Tag], Never>()
+    private let _tagsSubject = PassthroughSubject<[Tag], Never>()
+    private let getTagsSubject = PassthroughSubject<TagType, Never>()
+    private let getUsersSubject = PassthroughSubject<[String], Never>()
+    private let _users = PassthroughSubject<[User], Never>()
     
     // MARK: - Init
     init(useCase: SimilarChefUseCase) {
         self.useCase = useCase
-        
-        _selectedTags
-            .flatMap({ [weak self] tags in
-                self?.saveTags(tags)
-                return useCase.getUsers(tags: tags)
-                    .catch { error -> Empty<[User], Never> in
-                        debugPrint("------------------------------------------")
-                        debugPrint(error)
-                        debugPrint("------------------------------------------")
-                        return .init()
-                    }
-            })
-            .sink(receiveValue: { [weak self] profiles in
-                self?._profiles.send(profiles)
-            })
-            .store(in: &cancellables)
     }
     
     // MARK: - Private
-    private func saveTags(_ tags: [String]) {
+    private func saveTags(_ tags: [Tag]) {
         UserDefaultsManager.HomeSimilarChefInfo.tags = tags
     }
     
-    private func requestGetUsers(tags: [String]) -> AnyPublisher<[User], DataTransferError> {
-        let subject = PassthroughSubject<[User], DataTransferError>()
-        useCase.getUsers(tags: tags)
-            .print()
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    subject.send(completion: .finished)
-                case .failure(let error):
-                    subject.send(completion: .failure(error))
-                }
-            } receiveValue: { users in
-                subject.send(users)
-            }
-            .store(in: &cancellables)
-        return subject.eraseToAnyPublisher()
-    }
-}
-
-// MARK: - Input
-extension SimilarChefViewModel: SimilarChefViewModelInput {
-    func requestGetTags(type: TagType) {
+    private func getTags(type: TagType) -> AnyPublisher<[Tag], DataTransferError> {
+        let subject = PassthroughSubject<[Tag], DataTransferError>()
         useCase.getTags(type: type)
             .print()
             .sink { completion in
@@ -87,24 +55,97 @@ extension SimilarChefViewModel: SimilarChefViewModelInput {
                 case .finished: break
                 case .failure(let error):
                     print("---------------------------------------")
-                    print("requestGetTags error : \(error)")
+                    print("getTags error : \(error)")
                     print("---------------------------------------")
                 }
-            } receiveValue: { [weak self] (tags, _) in
-                self?._selectedTags.send(tags.map({ $0.name }))
+            } receiveValue: { [weak self] results in
+                self?._tagsSubject.send(results)
+                subject.send(results)
             }
             .store(in: &cancellables)
+        return subject.eraseToAnyPublisher()
     }
     
-    func selectTags(_ tags: [String]) {
-        _selectedTags.send(tags)
+    private func getUsers(tags: [String]) -> AnyPublisher<[User], DataTransferError> {
+        let mockUsers = [
+            User(email: "", locked: false, expired: false, activated: true, nickname: "nickname1", name: "name1", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true),
+            User(email: "", locked: false, expired: false, activated: true, nickname: "nickname2", name: "name2", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true),
+            User(email: "", locked: false, expired: false, activated: true, nickname: "nickname3", name: "name3", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true),
+            User(email: "", locked: false, expired: false, activated: true, nickname: "nickname4", name: "name4", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true),
+            User(email: "", locked: false, expired: false, activated: true, nickname: "nickname5", name: "name5", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true),
+            User(email: "", locked: false, expired: false, activated: true, nickname: "nickname6", name: "name6", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true),
+            User(email: "", locked: false, expired: false, activated: true, nickname: "nickname7", name: "name7", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true),
+            User(email: "", locked: false, expired: false, activated: true, nickname: "nickname8", name: "name8", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true)
+        ]
+        
+        return Just(mockUsers)
+            .setFailureType(to: DataTransferError.self)
+            .eraseToAnyPublisher()
+        
+        // 서버 API 구현이 되어있지 않아서 mock 데이터로 대체
+//        let subject = PassthroughSubject<[User], DataTransferError>()
+//        useCase.getUsers(tags: tags)
+//            .print()
+//            .sink { completion in
+//                switch completion {
+//                case .finished:
+//                    subject.send(completion: .finished)
+//                case .failure(let error):
+//                    subject.send(completion: .failure(error))
+//                }
+//            } receiveValue: { users in
+//                subject.send(users)
+//            }
+//            .store(in: &cancellables)
+//        return subject.eraseToAnyPublisher()
+    }
+}
+
+// MARK: - Input
+extension SimilarChefViewModel: SimilarChefViewModelInput {
+    func requestGetTags(type: TagType) {
+        getTagsSubject.send(type)
+    }
+    
+    func setSelectTags(_ tags: [Tag]) {
+        selectedTagSubject.send(tags)
     }
 }
 
 // MARK: - Output
 extension SimilarChefViewModel: SimilarChefViewModelOutput {
-    var combinedData: AnyPublisher<([String], [User]), Never> {
-        return Publishers.Zip(_selectedTags, _profiles)
+    var tags: AnyPublisher<[Tag], Never> {
+        return _tagsSubject
+            .prefix(1)
+            .eraseToAnyPublisher()
+    }
+    
+    var combinedData: AnyPublisher<([Tag], [User]), DataTransferError> {
+        let tagsPublisher = getTagsSubject
+            .flatMap { [weak self] type -> AnyPublisher<[Tag], DataTransferError> in
+                guard let self else {
+                    return Future { promise in
+                        promise(.success([]))
+                    }.eraseToAnyPublisher()
+                }
+                return self.getTags(type: type)
+            }
+            .share()
+            .eraseToAnyPublisher()
+        
+        let usersPublisher = selectedTagSubject
+            .flatMap { [weak self] selectedTags -> AnyPublisher<[User], DataTransferError> in
+                guard let self, !selectedTags.isEmpty else {
+                    return Just([]).setFailureType(to: DataTransferError.self).eraseToAnyPublisher()
+                }
+                
+                self.saveTags(selectedTags)
+                return self.getUsers(tags: selectedTags.map({ $0.name }))
+            }
+            .eraseToAnyPublisher()
+        
+        return Publishers.CombineLatest(tagsPublisher, usersPublisher)
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  PageControlButton.swift
+//  PageNavigatorView.swift
 //  Cheffi
 //
 //  Created by RONICK on 2023/09/09.
@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import SnapKit
 
-final class PageControlButton: UIView {
+final class PageNavigatorView: UIView {
     
     enum PageType {
         case prev
