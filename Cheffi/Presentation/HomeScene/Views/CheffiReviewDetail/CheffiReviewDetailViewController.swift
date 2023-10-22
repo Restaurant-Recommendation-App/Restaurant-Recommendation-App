@@ -17,7 +17,7 @@ class CheffiReviewDetailViewController: UIViewController {
     }
     
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var restaurantNameLabel: UILabel!
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var imageBackgroundView: UIView!
     @IBOutlet private weak var cheffiContensView: CheffiContensView!
@@ -45,9 +45,9 @@ class CheffiReviewDetailViewController: UIViewController {
     
     // MARK: - Private
     private func setupViews() {
-        // title
-        titleLabel.textColor = .cheffiGray9
-        titleLabel.font = Fonts.suit.weight700.size(24.0)
+        // restaurant name
+        restaurantNameLabel.textColor = .cheffiGray9
+        restaurantNameLabel.font = Fonts.suit.weight700.size(24.0)
         
         // text
         textLabel.textColor = .cheffiGray8
@@ -104,17 +104,17 @@ class CheffiReviewDetailViewController: UIViewController {
 
     }
     
-    private func updateContents(reviewInfo: GetReviewResponse) {
+    private func updateContents(reviewInfo: ReviewInfoDTO) {
         // 타이틀
-        titleLabel.text = reviewInfo.title
+        restaurantNameLabel.text = reviewInfo.restaurant?.name
         // 텍스트
         textLabel.text = reviewInfo.text
         // 이미지
-        cheffiContensView.setImages(reviewInfo.photos)
+        cheffiContensView.setReviewInfo(reviewInfo)
         // 메뉴
-        cheffiMenuView.setupMenu(reviewInfo.menus)
+        cheffiMenuView.setupMenu(reviewInfo.menus ?? [])
         // 주소
-        cheffiLocationView.setLocation(reviewInfo.restaurant.address)
+        cheffiLocationView.setLocation(reviewInfo.restaurant?.address)
         // 작성자
         cheffiWriterView.updateWriter(reviewInfo.writer)
         // 식당 별점

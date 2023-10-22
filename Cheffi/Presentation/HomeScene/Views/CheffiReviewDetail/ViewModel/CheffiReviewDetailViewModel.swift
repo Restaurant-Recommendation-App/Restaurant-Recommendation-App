@@ -17,7 +17,7 @@ protocol CheffiReviewDetailViewModelInput {
 
 protocol CheffiReviewDetailViewModelOutput {
     var selectedReviewState: AnyPublisher<ReviewState?, Never> { get }
-    var reviewInfo: AnyPublisher<GetReviewResponse?, DataTransferError> { get }
+    var reviewInfo: AnyPublisher<ReviewInfoDTO?, DataTransferError> { get }
 }
 
 protocol CheffiReviewDetailViewModelType {
@@ -56,8 +56,8 @@ class CheffiReviewDetailViewModel: CheffiReviewDetailViewModelType {
             .store(in: &cancellables)
     }
     
-    private func getReview(reviewId: Int) -> AnyPublisher<GetReviewResponse?, DataTransferError> {
-        let subject = PassthroughSubject<GetReviewResponse?, DataTransferError>()
+    private func getReview(reviewId: Int) -> AnyPublisher<ReviewInfoDTO?, DataTransferError> {
+        let subject = PassthroughSubject<ReviewInfoDTO?, DataTransferError>()
         useCase.getReviews(reviewRequest: ReviewRequest(id: reviewId))
             .print()
             .sink { completion in
@@ -105,9 +105,9 @@ extension CheffiReviewDetailViewModel: CheffiReviewDetailViewModelOutput {
         return $_selectedReviewState.eraseToAnyPublisher()
     }
     
-    var reviewInfo: AnyPublisher<GetReviewResponse?, DataTransferError> {
+    var reviewInfo: AnyPublisher<ReviewInfoDTO?, DataTransferError> {
         return getReviewSubject
-            .flatMap { [weak self] reviewId -> AnyPublisher<GetReviewResponse?, DataTransferError> in
+            .flatMap { [weak self] reviewId -> AnyPublisher<ReviewInfoDTO?, DataTransferError> in
                 guard let self else {
                     return Future { promise in
                         promise(.success(nil))

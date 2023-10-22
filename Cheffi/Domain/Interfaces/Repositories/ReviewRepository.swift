@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol ReviewRepository {
-    func getReviews(reviewRequest: ReviewRequest) -> AnyPublisher<(Results<GetReviewResponse>, HTTPURLResponse), DataTransferError>
+    func getReviews(reviewRequest: ReviewRequest) -> AnyPublisher<(Results<ReviewInfoDTO>, HTTPURLResponse), DataTransferError>
     func postReviews(registerReviewRequest: RegisterReviewRequest,
                      images: [Data]) -> AnyPublisher<(Results<Int>, HTTPURLResponse), DataTransferError>
     func postReviewPurchase(purchaseReviewRequest: PurchaseReviewRequest) -> AnyPublisher<(Results<Int>, HTTPURLResponse), DataTransferError>

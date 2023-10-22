@@ -25,8 +25,8 @@ class CheffiLocationView: BaseView {
         setupViews()
     }
     
-    func setLocation(_ address: Address) {
-        addressLabel.text = address.fullRodNameAddress
+    func setLocation(_ address: Address?) {
+        addressLabel.text = address?.fullRodNameAddress
     }
     
     // MARK: - Private

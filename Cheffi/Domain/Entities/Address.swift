@@ -8,7 +8,7 @@
 import Foundation
 
 // 맛집 상세 주소
-struct Address: Codable {
+struct Address: Codable, Hashable {
     let province: String // 식당의 시/도 주소(1차)
     let city: String // 식당의 시/군/구 주소(2차)
     let lotNumber: String // 지번 주소

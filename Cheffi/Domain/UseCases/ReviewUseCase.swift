@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol ReviewUseCase {
-    func getReviews(reviewRequest: ReviewRequest) -> AnyPublisher<GetReviewResponse, DataTransferError>
+    func getReviews(reviewRequest: ReviewRequest) -> AnyPublisher<ReviewInfoDTO, DataTransferError>
     func postReviews(registerReviewRequest: RegisterReviewRequest,
                      images: [Data]) -> AnyPublisher<Int, DataTransferError>
     func postReviewPurchase(purchaseReviewRequest: PurchaseReviewRequest) -> AnyPublisher<Int, DataTransferError>
@@ -22,7 +22,7 @@ final class DefaultReviewUseCase: ReviewUseCase {
         self.repository = repository
     }
     
-    func getReviews(reviewRequest: ReviewRequest) -> AnyPublisher<GetReviewResponse, DataTransferError> {
+    func getReviews(reviewRequest: ReviewRequest) -> AnyPublisher<ReviewInfoDTO, DataTransferError> {
         return repository.getReviews(reviewRequest: reviewRequest)
             .map({ $0.0.data })
             .eraseToAnyPublisher()
