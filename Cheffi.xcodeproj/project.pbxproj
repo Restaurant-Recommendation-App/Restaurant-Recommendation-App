@@ -160,6 +160,10 @@
 		FF5059BD2A7E3EF000F90D27 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059BC2A7E3EF000F90D27 /* MoreViewController.swift */; };
 		FF5059BF2A7E3F2200F90D27 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF5059BE2A7E3F2200F90D27 /* More.storyboard */; };
 		FF5059C22A7E8E4000F90D27 /* CheffiReviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059C12A7E8E4000F90D27 /* CheffiReviewDetailViewModel.swift */; };
+		FF5F48E82AE4DA5300B732BC /* RestaurantInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F48E72AE4DA5300B732BC /* RestaurantInfoDTO.swift */; };
+		FF5F48EA2AE4DB4D00B732BC /* RestaurantUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F48E92AE4DB4D00B732BC /* RestaurantUseCase.swift */; };
+		FF5F48EC2AE4DBA300B732BC /* RestaurantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F48EB2AE4DBA300B732BC /* RestaurantRepository.swift */; };
+		FF5F48EE2AE4DC4500B732BC /* DefaultRestaurantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5F48ED2AE4DC4500B732BC /* DefaultRestaurantRepository.swift */; };
 		FF62A44A2A7FC17F0066073F /* LoginSceneFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A4492A7FC17F0066073F /* LoginSceneFlowCoordinator.swift */; };
 		FF62A44C2A7FC1C10066073F /* SNSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A44B2A7FC1C10066073F /* SNSLoginViewController.swift */; };
 		FF62A44E2A7FC1CC0066073F /* SNSLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF62A44D2A7FC1CC0066073F /* SNSLogin.storyboard */; };
@@ -194,6 +198,7 @@
 		FFA6BA942ADBC0730094913E /* RecommendFollowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA932ADBC0730094913E /* RecommendFollowResponse.swift */; };
 		FFA6BA962ADBC1BA0094913E /* FollowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6BA952ADBC1BA0094913E /* FollowResponse.swift */; };
 		FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */; };
+		FFACCD172AE4D91900CD9A2E /* RestaurantAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFACCD162AE4D91900CD9A2E /* RestaurantAPIEndpoints.swift */; };
 		FFB29BAD2ACBD400000E473E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BAC2ACBD400000E473E /* NotificationViewController.swift */; };
 		FFB29BAF2ACBD463000E473E /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BAE2ACBD463000E473E /* NotificationViewModel.swift */; };
 		FFB29BB32ACBD629000E473E /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BB12ACBD629000E473E /* NotificationCell.swift */; };
@@ -427,6 +432,10 @@
 		FF5059BC2A7E3EF000F90D27 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		FF5059BE2A7E3F2200F90D27 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		FF5059C12A7E8E4000F90D27 /* CheffiReviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiReviewDetailViewModel.swift; sourceTree = "<group>"; };
+		FF5F48E72AE4DA5300B732BC /* RestaurantInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoDTO.swift; sourceTree = "<group>"; };
+		FF5F48E92AE4DB4D00B732BC /* RestaurantUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantUseCase.swift; sourceTree = "<group>"; };
+		FF5F48EB2AE4DBA300B732BC /* RestaurantRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRepository.swift; sourceTree = "<group>"; };
+		FF5F48ED2AE4DC4500B732BC /* DefaultRestaurantRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRestaurantRepository.swift; sourceTree = "<group>"; };
 		FF62A4492A7FC17F0066073F /* LoginSceneFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneFlowCoordinator.swift; sourceTree = "<group>"; };
 		FF62A44B2A7FC1C10066073F /* SNSLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSLoginViewController.swift; sourceTree = "<group>"; };
 		FF62A44D2A7FC1CC0066073F /* SNSLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SNSLogin.storyboard; sourceTree = "<group>"; };
@@ -460,6 +469,7 @@
 		FFA6BA932ADBC0730094913E /* RecommendFollowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendFollowResponse.swift; sourceTree = "<group>"; };
 		FFA6BA952ADBC1BA0094913E /* FollowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowResponse.swift; sourceTree = "<group>"; };
 		FFAA44F92A83C30E0090AA9E /* ProfilePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewModel.swift; sourceTree = "<group>"; };
+		FFACCD162AE4D91900CD9A2E /* RestaurantAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAPIEndpoints.swift; sourceTree = "<group>"; };
 		FFB29BAC2ACBD400000E473E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		FFB29BAE2ACBD463000E473E /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		FFB29BB12ACBD629000E473E /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
@@ -787,6 +797,7 @@
 				FFA6BA7B2ADAE5F20094913E /* DefaultTagRepository.swift */,
 				FFA6BA8D2ADBBD230094913E /* DefaultUserRepository.swift */,
 				FF35FB192ADD80C1002D9E47 /* DefaultReviewRepository.swift */,
+				FF5F48ED2AE4DC4500B732BC /* DefaultRestaurantRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -826,6 +837,7 @@
 				FFA6BA772ADAE5510094913E /* TagUseCase.swift */,
 				FFA6BA8F2ADBBD540094913E /* UserUseCase.swift */,
 				FF35FB1B2ADD815E002D9E47 /* ReviewUseCase.swift */,
+				FF5F48E92AE4DB4D00B732BC /* RestaurantUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -848,6 +860,7 @@
 				FFA6BA792ADAE5A60094913E /* TagRepository.swift */,
 				FFA6BA882ADBBBDA0094913E /* UserRepository.swift */,
 				FF35FB172ADD7FF0002D9E47 /* ReviewRepository.swift */,
+				FF5F48EB2AE4DBA300B732BC /* RestaurantRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1202,6 +1215,7 @@
 				FFA6BA822ADAEE380094913E /* TagAPIEndpoints.swift */,
 				FFA6BA912ADBBDF40094913E /* UserAPIEndpoints.swift */,
 				FF35FAFC2ADD523F002D9E47 /* ReviewAPIEndpoints.swift */,
+				FFACCD162AE4D91900CD9A2E /* RestaurantAPIEndpoints.swift */,
 				FF5059A22A7E055F00F90D27 /* DataMapping */,
 			);
 			path = Network;
@@ -1215,6 +1229,7 @@
 				FFA6BA8A2ADBBC3E0094913E /* Avatar */,
 				FFA6BA812ADAEDC50094913E /* Tag */,
 				FF35FAFE2ADD530A002D9E47 /* Review */,
+				FF5F48E62AE4DA2800B732BC /* Restaurants */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -1237,6 +1252,14 @@
 				FF5059C12A7E8E4000F90D27 /* CheffiReviewDetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FF5F48E62AE4DA2800B732BC /* Restaurants */ = {
+			isa = PBXGroup;
+			children = (
+				FF5F48E72AE4DA5300B732BC /* RestaurantInfoDTO.swift */,
+			);
+			path = Restaurants;
 			sourceTree = "<group>";
 		};
 		FF62A4452A7FC1090066073F /* LoginScene */ = {
@@ -1675,6 +1698,7 @@
 				CEABD7122A6BDE94001BC131 /* RecentSearchCell.swift in Sources */,
 				CE70F8892A63BFEB003D0ED9 /* User.swift in Sources */,
 				CEABD7242A6BFFC8001BC131 /* SimilarChefListViewModel.swift in Sources */,
+				FF5F48EA2AE4DB4D00B732BC /* RestaurantUseCase.swift in Sources */,
 				FFF3EC672ABF1F6E00F6B431 /* ProfileImageSelectViewController.swift in Sources */,
 				D4C8713B2AD2B18300A1745B /* CheffiRecommendationHeader.swift in Sources */,
 				CE42BA6B2A6BB48100EBB80A /* String+Extensions.swift in Sources */,
@@ -1730,6 +1754,7 @@
 				FF35FB102ADD75A8002D9E47 /* PurchaseReviewRequest.swift in Sources */,
 				FFC7C6652A888B6900EBE162 /* PhotoCropViewController.swift in Sources */,
 				D49B592C2A653454003C108E /* RestaurantContentCell.swift in Sources */,
+				FF5F48E82AE4DA5300B732BC /* RestaurantInfoDTO.swift in Sources */,
 				D49B592A2A652A35003C108E /* CheffiRecommendationContensView.swift in Sources */,
 				D4C0FA752A9DB9790056B885 /* DefaultPaginationGenerator.swift in Sources */,
 				FFA6BA7E2ADAECE70094913E /* TagsChangeResponse.swift in Sources */,
@@ -1803,6 +1828,7 @@
 				D4BA3BB62A78C616009CA7E0 /* PopularRestaurantViewModel.swift in Sources */,
 				FF338AF22A77E40200FCCE00 /* CheffiContensView.swift in Sources */,
 				FF3197812A74D06600F5DD41 /* Int+Extensions.swift in Sources */,
+				FF5F48EE2AE4DC4500B732BC /* DefaultRestaurantRepository.swift in Sources */,
 				FFC735072AE164F600EF9024 /* ReviewWriterInfoDTO.swift in Sources */,
 				FF35FB142ADD76E6002D9E47 /* MenuDTO.swift in Sources */,
 				FF62A4502A7FC2C60066073F /* LoginSceneDIContainer.swift in Sources */,
@@ -1845,11 +1871,13 @@
 				FFC58AD12A8689FA0095BCF4 /* PhotoUseCase.swift in Sources */,
 				FF50599D2A7DFFAF00F90D27 /* NetworkConfig.swift in Sources */,
 				FFB29BBE2ACBDF50000E473E /* NotificationRepository.swift in Sources */,
+				FFACCD172AE4D91900CD9A2E /* RestaurantAPIEndpoints.swift in Sources */,
 				CEABD71A2A6BDF0A001BC131 /* TopPickCell.swift in Sources */,
 				D4EEF21C2A91BA9D008107DF /* ContentsResponseDTO.swift in Sources */,
 				FFA6BA7C2ADAE5F20094913E /* DefaultTagRepository.swift in Sources */,
 				FFF3EC6B2ABF247300F6B431 /* ProfileImageSelectButton.swift in Sources */,
 				FF68013E2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift in Sources */,
+				FF5F48EC2AE4DBA300B732BC /* RestaurantRepository.swift in Sources */,
 				D4C1C5A12AC16506007F8C1E /* TimeLockGenerator.swift in Sources */,
 				FFB50C4A2A72B5A80049B5E1 /* ShowAllContentsButton.swift in Sources */,
 				FF5059972A7DFC7200F90D27 /* AppConfigurations.swift in Sources */,
