@@ -17,14 +17,16 @@ class SimilarChefProfileCell: UICollectionViewCell {
     }
     
     func configure(with nickname: String) {
-        
+        profileView.updateNickname(nickname)
     }
     
     // MARK: - private
     private func setupViews() {
         self.contentView.addSubview(profileView)
         profileView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.bottom.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
     }
 }

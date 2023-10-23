@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimilarChefEmptyView" customModule="Cheffi" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="JWe-O5-U1Y"/>
+                <outlet property="selectButton" destination="Mb1-bc-0qi" id="89S-4d-ZiL"/>
+                <outlet property="titleLabel" destination="CqY-mN-w8k" id="ewd-nh-QsQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="489" height="414"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="XTj-1D-zaG">
+                    <rect key="frame" x="174.66666666666666" y="118.00000000000001" width="139.99999999999997" height="178.33333333333337"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSiliarChefEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="SBX-9q-DP4">
+                            <rect key="frame" x="24" y="0.0" width="92" height="82"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="82" id="EHX-EY-fbG"/>
+                                <constraint firstAttribute="width" constant="92" id="taQ-wK-5Lg"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqY-mN-w8k">
+                            <rect key="frame" x="66" y="100" width="7.6666666666666714" height="20.333333333333329"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mb1-bc-0qi">
+                            <rect key="frame" x="0.0" y="138.33333333333331" width="140" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="140" id="0EH-3M-9fc"/>
+                                <constraint firstAttribute="height" constant="40" id="0IP-Kg-BUy"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            <connections>
+                                <action selector="didTapButtonAction:" destination="-1" eventType="touchUpInside" id="cLz-5J-ige"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="XTj-1D-zaG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4P6-Et-2tZ"/>
+                <constraint firstItem="XTj-1D-zaG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="QbY-Ej-bt2"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="212.97709923664121" y="-134.50704225352112"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icSiliarChefEmpty" width="92.333335876464844" height="82"/>
+    </resources>
+</document>

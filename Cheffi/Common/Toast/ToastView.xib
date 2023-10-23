@@ -22,17 +22,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="PWC-8l-9pZ">
-                    <rect key="frame" x="38" y="52.666666666666657" width="362" height="24"/>
+                    <rect key="frame" x="38" y="54.333333333333336" width="362" height="20.333333333333336"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jul-No-lja">
-                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icToastCheck" translatesAutoresizingMaskIntoConstraints="NO" id="Jul-No-lja">
+                            <rect key="frame" x="0.0" y="0.0" width="24" height="20.333333333333332"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="24" id="ZTd-ni-LIu"/>
                                 <constraint firstAttribute="width" constant="24" id="wWP-6N-vYy"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYc-7R-110">
-                            <rect key="frame" x="40" y="0.0" width="322" height="24"/>
+                            <rect key="frame" x="40" y="0.0" width="322" height="20.333333333333332"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -53,4 +52,7 @@
             <point key="canvasLocation" x="174.04580152671755" y="-234.85915492957747"/>
         </view>
     </objects>
+    <resources>
+        <image name="icToastCheck" width="18.333333969116211" height="18"/>
+    </resources>
 </document>

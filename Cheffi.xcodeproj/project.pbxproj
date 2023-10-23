@@ -88,7 +88,7 @@
 		D4C0FA732A9DB7CF0056B885 /* PaginationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0FA722A9DB7CF0056B885 /* PaginationGenerator.swift */; };
 		D4C0FA752A9DB9790056B885 /* DefaultPaginationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0FA742A9DB9790056B885 /* DefaultPaginationGenerator.swift */; };
 		D4C1C5A12AC16506007F8C1E /* TimeLockGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C1C5A02AC16506007F8C1E /* TimeLockGenerator.swift */; };
-		D4C563202AAC21FE00DF9801 /* PageControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5631F2AAC21FE00DF9801 /* PageControlButton.swift */; };
+		D4C563202AAC21FE00DF9801 /* PageNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5631F2AAC21FE00DF9801 /* PageNavigatorView.swift */; };
 		D4C8713B2AD2B18300A1745B /* CheffiRecommendationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8713A2AD2B18300A1745B /* CheffiRecommendationHeader.swift */; };
 		D4C8713E2AD3C26800A1745B /* AllCheffiContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8713D2AD3C26800A1745B /* AllCheffiContentsViewController.swift */; };
 		D4C871412AD3CD6900A1745B /* AllCheffiContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C871402AD3CD6900A1745B /* AllCheffiContentsViewModel.swift */; };
@@ -106,6 +106,8 @@
 		FF14EF592AE2BB88007609FA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF14EF582AE2BB88007609FA /* ToastView.swift */; };
 		FF14EF5B2AE2BBE8007609FA /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF14EF5A2AE2BBE8007609FA /* ToastView.xib */; };
 		FF23F6722AE3FCA6000972EB /* ReviewInfoRelativeTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF23F6712AE3FCA6000972EB /* ReviewInfoRelativeTimeTests.swift */; };
+		FF2FA1A62AE6A70900AD0F1B /* SimilarChefEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FA1A52AE6A70900AD0F1B /* SimilarChefEmptyView.swift */; };
+		FF2FA1A82AE6A75F00AD0F1B /* SimilarChefEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF2FA1A72AE6A75F00AD0F1B /* SimilarChefEmptyView.xib */; };
 		FF3197732A74C8F800F5DD41 /* CheffiMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3197722A74C8F800F5DD41 /* CheffiMenuView.swift */; };
 		FF3197752A74C90200F5DD41 /* CheffiLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3197742A74C90200F5DD41 /* CheffiLocationView.swift */; };
 		FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3197762A74C90E00F5DD41 /* CheffiReviewView.swift */; };
@@ -211,8 +213,6 @@
 		FFB29BC12ACBDFAA000E473E /* NotificationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BC02ACBDFAA000E473E /* NotificationDTO.swift */; };
 		FFB29BC32ACBE0C8000E473E /* DefaultNotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BC22ACBE0C8000E473E /* DefaultNotificationRepository.swift */; };
 		FFB29BC52ACBE170000E473E /* NotificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB29BC42ACBE170000E473E /* NotificationUseCase.swift */; };
-		FFB50C4A2A72B5A80049B5E1 /* ShowAllContentsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB50C492A72B5A80049B5E1 /* ShowAllContentsButton.swift */; };
-		FFB50C4C2A72B6750049B5E1 /* ShowAllContentsButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB50C4B2A72B6750049B5E1 /* ShowAllContentsButton.xib */; };
 		FFC2F2072A9085A10001C86C /* MoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2F2052A9085A10001C86C /* MoreCell.swift */; };
 		FFC2F2082A9085A10001C86C /* MoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC2F2062A9085A10001C86C /* MoreCell.xib */; };
 		FFC2F20B2A9094240001C86C /* MoreSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2F2092A9094230001C86C /* MoreSubCell.swift */; };
@@ -359,7 +359,7 @@
 		D4C0FA722A9DB7CF0056B885 /* PaginationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationGenerator.swift; sourceTree = "<group>"; };
 		D4C0FA742A9DB9790056B885 /* DefaultPaginationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaginationGenerator.swift; sourceTree = "<group>"; };
 		D4C1C5A02AC16506007F8C1E /* TimeLockGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLockGenerator.swift; sourceTree = "<group>"; };
-		D4C5631F2AAC21FE00DF9801 /* PageControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlButton.swift; sourceTree = "<group>"; };
+		D4C5631F2AAC21FE00DF9801 /* PageNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageNavigatorView.swift; sourceTree = "<group>"; };
 		D4C8713A2AD2B18300A1745B /* CheffiRecommendationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationHeader.swift; sourceTree = "<group>"; };
 		D4C8713D2AD3C26800A1745B /* AllCheffiContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCheffiContentsViewController.swift; sourceTree = "<group>"; };
 		D4C871402AD3CD6900A1745B /* AllCheffiContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCheffiContentsViewModel.swift; sourceTree = "<group>"; };
@@ -379,6 +379,8 @@
 		FF14EF582AE2BB88007609FA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FF14EF5A2AE2BBE8007609FA /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		FF23F6712AE3FCA6000972EB /* ReviewInfoRelativeTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInfoRelativeTimeTests.swift; sourceTree = "<group>"; };
+		FF2FA1A52AE6A70900AD0F1B /* SimilarChefEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarChefEmptyView.swift; sourceTree = "<group>"; };
+		FF2FA1A72AE6A75F00AD0F1B /* SimilarChefEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarChefEmptyView.xib; sourceTree = "<group>"; };
 		FF3197722A74C8F800F5DD41 /* CheffiMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiMenuView.swift; sourceTree = "<group>"; };
 		FF3197742A74C90200F5DD41 /* CheffiLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiLocationView.swift; sourceTree = "<group>"; };
 		FF3197762A74C90E00F5DD41 /* CheffiReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiReviewView.swift; sourceTree = "<group>"; };
@@ -482,8 +484,6 @@
 		FFB29BC02ACBDFAA000E473E /* NotificationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDTO.swift; sourceTree = "<group>"; };
 		FFB29BC22ACBE0C8000E473E /* DefaultNotificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNotificationRepository.swift; sourceTree = "<group>"; };
 		FFB29BC42ACBE170000E473E /* NotificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUseCase.swift; sourceTree = "<group>"; };
-		FFB50C492A72B5A80049B5E1 /* ShowAllContentsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllContentsButton.swift; sourceTree = "<group>"; };
-		FFB50C4B2A72B6750049B5E1 /* ShowAllContentsButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowAllContentsButton.xib; sourceTree = "<group>"; };
 		FFC2F2052A9085A10001C86C /* MoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCell.swift; sourceTree = "<group>"; };
 		FFC2F2062A9085A10001C86C /* MoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreCell.xib; sourceTree = "<group>"; };
 		FFC2F2092A9094230001C86C /* MoreSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreSubCell.swift; sourceTree = "<group>"; };
@@ -663,6 +663,8 @@
 				CE1A6A732A6286CB00FFE93D /* SimilarChefProfileCell.swift */,
 				CE1A6A742A6286CB00FFE93D /* SimilarChefProfileCell.xib */,
 				CE1A6A772A6294DC00FFE93D /* TagListView.swift */,
+				FF2FA1A52AE6A70900AD0F1B /* SimilarChefEmptyView.swift */,
+				FF2FA1A72AE6A75F00AD0F1B /* SimilarChefEmptyView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -686,7 +688,6 @@
 				FFDBC6742A8278AD0009189C /* Utils */,
 				FF485D9B2A811D4B00E8B765 /* Network */,
 				FF97932A2A72BF8C00A921A0 /* Manager */,
-				FFB50C482A72B5160049B5E1 /* ShowAllContentsButton */,
 				CE42BA632A6BAF3900EBB80A /* Popup */,
 				CE42BA602A6B9D8000EBB80A /* Extensions */,
 				CE1A6A7A2A62961D00FFE93D /* BaseView.swift */,
@@ -1124,7 +1125,7 @@
 			children = (
 				D4F3CDAD2A6E423700B52213 /* RestaurantContent */,
 				FFC2F2042A9085800001C86C /* More */,
-				D4C5631F2AAC21FE00DF9801 /* PageControlButton.swift */,
+				D4C5631F2AAC21FE00DF9801 /* PageNavigatorView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1391,15 +1392,6 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
-		FFB50C482A72B5160049B5E1 /* ShowAllContentsButton */ = {
-			isa = PBXGroup;
-			children = (
-				FFB50C492A72B5A80049B5E1 /* ShowAllContentsButton.swift */,
-				FFB50C4B2A72B6750049B5E1 /* ShowAllContentsButton.xib */,
-			);
-			path = ShowAllContentsButton;
-			sourceTree = "<group>";
-		};
 		FFC2F2042A9085800001C86C /* More */ = {
 			isa = PBXGroup;
 			children = (
@@ -1611,6 +1603,7 @@
 				FFDBC64E2A813DE60009189C /* CustomProfileButton.xib in Resources */,
 				FF62A44E2A7FC1CC0066073F /* SNSLogin.storyboard in Resources */,
 				CEABD7132A6BDE94001BC131 /* RecentSearchCell.xib in Resources */,
+				FF2FA1A82AE6A75F00AD0F1B /* SimilarChefEmptyView.xib in Resources */,
 				FF3197872A74E8C700F5DD41 /* CheffiReviewView.xib in Resources */,
 				FFDBC66D2A8277C90009189C /* SUIT-Regular.otf in Resources */,
 				FFDBC6472A8139500009189C /* TasteSelection.storyboard in Resources */,
@@ -1618,7 +1611,6 @@
 				FFB29BB62ACBD69B000E473E /* Notification.storyboard in Resources */,
 				CE0D45432A626C3B00636989 /* SimilarChefCell.xib in Resources */,
 				FFC58ACF2A8675B20095BCF4 /* PhotoCell.xib in Resources */,
-				FFB50C4C2A72B6750049B5E1 /* ShowAllContentsButton.xib in Resources */,
 				FFC7C6692A888C5800EBE162 /* PhotoCrop.storyboard in Resources */,
 				CEABD71B2A6BDF0A001BC131 /* TopPickCell.xib in Resources */,
 				FFDBC6702A8277C90009189C /* SUIT-SemiBold.otf in Resources */,
@@ -1804,6 +1796,7 @@
 				FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */,
 				FF4659CF2A87DE6800736AEA /* PhotoAlbumListView.swift in Sources */,
 				CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */,
+				FF2FA1A62AE6A70900AD0F1B /* SimilarChefEmptyView.swift in Sources */,
 				FF35FB032ADD5357002D9E47 /* RestaurantDTO.swift in Sources */,
 				FFA6BA762ADAD9080094913E /* TasteSelectionViewModel.swift in Sources */,
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
@@ -1856,7 +1849,7 @@
 				FF5059B92A7E357C00F90D27 /* CheffiWriterView.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
 				CE42BA792A6BD52D00EBB80A /* SearchViewController.swift in Sources */,
-				D4C563202AAC21FE00DF9801 /* PageControlButton.swift in Sources */,
+				D4C563202AAC21FE00DF9801 /* PageNavigatorView.swift in Sources */,
 				FF4659C62A8799B900736AEA /* AlbumInfo.swift in Sources */,
 				FFC2F20B2A9094240001C86C /* MoreSubCell.swift in Sources */,
 				CE70F8992A63C692003D0ED9 /* DefaultSimilarChefRepository.swift in Sources */,
@@ -1879,7 +1872,6 @@
 				FF68013E2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift in Sources */,
 				FF5F48EC2AE4DBA300B732BC /* RestaurantRepository.swift in Sources */,
 				D4C1C5A12AC16506007F8C1E /* TimeLockGenerator.swift in Sources */,
-				FFB50C4A2A72B5A80049B5E1 /* ShowAllContentsButton.swift in Sources */,
 				FF5059972A7DFC7200F90D27 /* AppConfigurations.swift in Sources */,
 				FFA6BA852ADBA5690094913E /* ProfilePageKey.swift in Sources */,
 				FFC7C6672A888BCB00EBE162 /* PhotoCropViewModel.swift in Sources */,

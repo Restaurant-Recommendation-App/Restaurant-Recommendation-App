@@ -78,6 +78,10 @@ class ProfileView: UIView {
         self.tagLabel.text = writerInfo?.introduction
     }
     
+    func updateNickname(_ nickname: String) {
+        self.nicknameLabel.text = nickname
+    }
+    
     // MARK: - private
     private func setupViews() {
         self.addSubviews([profileImageView, nicknameLabel, tagLabel, followButton])

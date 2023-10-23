@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SUIT-Medium.otf">
+            <string>SUIT-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,27 +24,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="506" height="485"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나와 비슷한 쉐피들의 이야기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngN-S7-HK3">
-                        <rect key="frame" x="19" y="0.0" width="468" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngN-S7-HK3">
+                        <rect key="frame" x="19" y="0.0" width="221" height="48"/>
+                        <string key="text">음식, 분위기 맛
+나와 비슷한 쉐피들의 이야기</string>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <color key="textColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="음식, 분위기 , 맛 나와 비슷한 사람들을 따라가요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e31-0v-ihG">
-                        <rect key="frame" x="19" y="32" width="468" height="19.333333333333329"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sI-Is-bfz" customClass="TagListView" customModule="Cheffi" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="75.333333333333329" width="506" height="32"/>
+                        <rect key="frame" x="0.0" y="72" width="506" height="32"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="aqY-bj-Pcr"/>
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="IqK-Ut-TZ7">
-                        <rect key="frame" x="0.0" y="115.33333333333334" width="506" height="313.66666666666663"/>
+                        <rect key="frame" x="0.0" y="128" width="506" height="301"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="240" id="EhM-oN-wKd"/>
@@ -50,39 +52,51 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlU-FE-bit" customClass="ShowAllContentsButton" customModule="Cheffi" customModuleProvider="target">
-                        <rect key="frame" x="16" y="437" width="474" height="48"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlU-FE-bit">
+                        <rect key="frame" x="0.0" y="453" width="506" height="32"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="48" id="f7s-yN-YYT"/>
+                            <constraint firstAttribute="height" constant="32" id="f7s-yN-YYT"/>
                         </constraints>
                     </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q0f-ge-fmF">
+                        <rect key="frame" x="417" y="30.333333333333329" width="73" height="17.666666666666671"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCY-kr-3UA">
+                                <rect key="frame" x="0.0" y="0.0" width="49" height="17.666666666666668"/>
+                                <fontDescription key="fontDescription" name="SUIT-Medium" family="SUIT" pointSize="14"/>
+                                <color key="textColor" name="CheffiGray6"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icShowAll" translatesAutoresizingMaskIntoConstraints="NO" id="wB1-YZ-geO">
+                                <rect key="frame" x="57" y="0.0" width="16" height="17.666666666666668"/>
+                            </imageView>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="7sI-Is-bfz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1Vf-1H-ylT"/>
-                    <constraint firstAttribute="trailing" secondItem="ngN-S7-HK3" secondAttribute="trailing" constant="19" id="3lp-Wj-R3S"/>
+                    <constraint firstItem="7sI-Is-bfz" firstAttribute="top" secondItem="Q0f-ge-fmF" secondAttribute="bottom" constant="24" id="1wj-oo-LPE"/>
                     <constraint firstAttribute="trailing" secondItem="7sI-Is-bfz" secondAttribute="trailing" id="B9r-iK-EI3"/>
-                    <constraint firstAttribute="trailing" secondItem="GlU-FE-bit" secondAttribute="trailing" constant="16" id="DIw-UC-C8c"/>
-                    <constraint firstItem="IqK-Ut-TZ7" firstAttribute="top" secondItem="7sI-Is-bfz" secondAttribute="bottom" constant="8" id="L4W-QG-AmA"/>
-                    <constraint firstItem="e31-0v-ihG" firstAttribute="top" secondItem="ngN-S7-HK3" secondAttribute="bottom" constant="8" id="QaZ-Jb-Wzr"/>
-                    <constraint firstItem="7sI-Is-bfz" firstAttribute="top" secondItem="e31-0v-ihG" secondAttribute="bottom" constant="24" id="XcK-vh-iqj"/>
+                    <constraint firstAttribute="trailing" secondItem="GlU-FE-bit" secondAttribute="trailing" id="DIw-UC-C8c"/>
+                    <constraint firstItem="IqK-Ut-TZ7" firstAttribute="top" secondItem="7sI-Is-bfz" secondAttribute="bottom" constant="24" id="L4W-QG-AmA"/>
+                    <constraint firstItem="Q0f-ge-fmF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ngN-S7-HK3" secondAttribute="trailing" constant="20" id="Nnq-QF-qYN"/>
                     <constraint firstItem="ngN-S7-HK3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YHE-fQ-dyC"/>
-                    <constraint firstAttribute="trailing" secondItem="e31-0v-ihG" secondAttribute="trailing" constant="19" id="cHC-XD-4xD"/>
+                    <constraint firstItem="7sI-Is-bfz" firstAttribute="top" secondItem="ngN-S7-HK3" secondAttribute="bottom" constant="24" id="Ynb-AC-3hd"/>
+                    <constraint firstAttribute="trailing" secondItem="Q0f-ge-fmF" secondAttribute="trailing" constant="16" id="cgR-ts-Y1x"/>
                     <constraint firstItem="ngN-S7-HK3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="fMX-bc-u6y"/>
                     <constraint firstAttribute="trailing" secondItem="IqK-Ut-TZ7" secondAttribute="trailing" id="jNU-yi-FUN"/>
-                    <constraint firstItem="GlU-FE-bit" firstAttribute="top" secondItem="IqK-Ut-TZ7" secondAttribute="bottom" constant="8" id="n7M-ko-GPl"/>
+                    <constraint firstItem="GlU-FE-bit" firstAttribute="top" secondItem="IqK-Ut-TZ7" secondAttribute="bottom" constant="24" id="n7M-ko-GPl"/>
                     <constraint firstAttribute="bottom" secondItem="GlU-FE-bit" secondAttribute="bottom" id="srF-jm-uby"/>
-                    <constraint firstItem="e31-0v-ihG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="v1U-S5-dc3"/>
-                    <constraint firstItem="GlU-FE-bit" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="zLA-mR-Dja"/>
+                    <constraint firstItem="GlU-FE-bit" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zLA-mR-Dja"/>
                     <constraint firstItem="IqK-Ut-TZ7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="za0-Db-e6m"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionView" destination="IqK-Ut-TZ7" id="I9F-Vc-tAA"/>
-                <outlet property="showAllContentsDirection" destination="GlU-FE-bit" id="NPH-qn-UNp"/>
-                <outlet property="subTitleLabel" destination="e31-0v-ihG" id="NdV-ZT-3kS"/>
+                <outlet property="pageNavigatorBackgroundView" destination="GlU-FE-bit" id="edg-Ls-gcJ"/>
                 <outlet property="tagListView" destination="7sI-Is-bfz" id="KjT-3f-JK3"/>
                 <outlet property="titleLabel" destination="ngN-S7-HK3" id="t4m-ST-PQ3"/>
             </connections>
@@ -90,6 +104,10 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icShowAll" width="16" height="16"/>
+        <namedColor name="CheffiGray6">
+            <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

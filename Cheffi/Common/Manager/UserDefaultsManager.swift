@@ -10,7 +10,7 @@ import Foundation
 enum UserDefaultsManager {
     enum HomeSimilarChefInfo {
         @UserDefault(key: "tags", defaultValue: [])
-        static var tags: [String]
+        static var tags: [Tag]
     }
     
     enum SearchInfo {

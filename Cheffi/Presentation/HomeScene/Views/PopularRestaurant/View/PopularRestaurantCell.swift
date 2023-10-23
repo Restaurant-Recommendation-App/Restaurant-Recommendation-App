@@ -26,8 +26,8 @@ class PopularRestaurantCell: UITableViewCell {
     
     private let initialize = PassthroughSubject<Void, Never>()
     
-    private let pageControlButton: PageControlButton = {
-        let button = PageControlButton()
+    private let pageNavigatorView: PageNavigatorView = {
+        let button = PageNavigatorView()
         return button
     }()
     
@@ -58,8 +58,8 @@ class PopularRestaurantCell: UITableViewCell {
             $0.height.equalTo(570)
         }
         
-        contentView.addSubview(pageControlButton)
-        pageControlButton.snp.makeConstraints {
+        contentView.addSubview(pageNavigatorView)
+        pageNavigatorView.snp.makeConstraints {
             $0.top.equalTo(popularRestaurantContentsView.snp.bottom).offset(24)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(127)
@@ -89,9 +89,9 @@ extension PopularRestaurantCell: Bindable {
             .sink { viewModels in
                 self.popularRestaurantContentsView.configure(
                     viewModels: viewModels,
-                    didTappedPageButton: self.pageControlButton.tapped)
+                    didTappedPageButton: self.pageNavigatorView.tapped)
                 
-                self.pageControlButton.configure(
+                self.pageNavigatorView.configure(
                     currentPage: 1,
                     limitPage: viewModels.count,
                     swiped: self.popularRestaurantContentsView.didSwiped)
