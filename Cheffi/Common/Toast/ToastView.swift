@@ -28,7 +28,6 @@ final class ToastView: BaseView {
         messageLabel.font = Fonts.suit.weight500.size(18)
         messageLabel.textColor = .white
         
-        imageView.backgroundColor = .white
         imageView.layer.cornerRadius = 12
         contentView.layer.cornerRadius = 10
     }
