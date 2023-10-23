@@ -108,7 +108,7 @@ class SimilarChefCell: UITableViewCell {
         pageNavigatorView = PageNavigatorView()
         pageNavigatorBackgroundView.addSubview(pageNavigatorView!)
         pageNavigatorView?.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.center.equalToSuperview()
             make.width.equalTo(125)
             make.height.equalTo(32)
         }
@@ -117,37 +117,30 @@ class SimilarChefCell: UITableViewCell {
         pageNavigatorView?.configure(currentPage: 1, limitPage: totalPage, swiped: didSwiped)
         pageNavigatorView?.tapped
             .sink(receiveValue: { [weak self] pageType in
-                switch pageType {
-                case .prev: self?.toPreviousPage()
-                case .next: self?.toNextPage()
-                default: break
-                }
+                self?.changePage(to: pageType)
             })
             .store(in: &cancellables)
     }
     
-    private func toPreviousPage() {
+    private func changePage(to pageType: PageNavigatorView.PageType) {
         let currentOffset = collectionView.contentOffset.x
         let pageWidth = collectionView.frame.size.width
         let currentPageIndex = Int(currentOffset / pageWidth)
-        
-        if currentPageIndex > 0 {
-            let previousPageIndex = currentPageIndex - 1
-            let newOffset = CGFloat(previousPageIndex) * pageWidth
-            collectionView.setContentOffset(CGPoint(x: newOffset, y: 0), animated: true)
-        }
-    }
-    
-    private func toNextPage() {
-        let currentOffset = collectionView.contentOffset.x
-        let pageWidth = collectionView.frame.size.width
-        let currentPageIndex = Int(currentOffset / pageWidth)
-
         let totalPageCount = collectionView.numberOfItems(inSection: 0)
         
-        if currentPageIndex < totalPageCount - 1 {
-            let nextPageIndex = currentPageIndex + 1
-            let newOffset = CGFloat(nextPageIndex) * pageWidth
+        var targetPageIndex: Int {
+            switch pageType {
+            case .prev:
+                return max(currentPageIndex - 1, 0)
+            case .next:
+                return min(currentPageIndex + 1, totalPageCount - 1)
+            default:
+                return 0
+            }
+        }
+        
+        if targetPageIndex != currentPageIndex {
+            let newOffset = CGFloat(targetPageIndex) * pageWidth
             collectionView.setContentOffset(CGPoint(x: newOffset, y: 0), animated: true)
         }
     }
