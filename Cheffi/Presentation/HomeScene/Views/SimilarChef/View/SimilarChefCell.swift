@@ -19,6 +19,7 @@ class SimilarChefCell: UITableViewCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageNavigatorBackgroundView: UIView!
     private var pageNavigatorView: PageNavigatorView? = nil
+    private var emptyView: SimilarChefEmptyView = SimilarChefEmptyView()
     private var didSwiped = PassthroughSubject<Int, Never>()
     
     private enum Constants {
@@ -52,6 +53,7 @@ class SimilarChefCell: UITableViewCell {
             }, receiveValue: { [weak self] tags, users in
                 print("-------> combineData 호출")
                 self?.tagListView.setupTags(tags)
+                self?.emptyView.isHidden = !users.isEmpty
                 self?.reloadData(users: users)
                 self?.makePagenavigatorView(users: users)
             })
@@ -73,6 +75,14 @@ class SimilarChefCell: UITableViewCell {
     
     // MARK: - Private
     private func setupViews() {
+        contentView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.centerY.equalTo(collectionView).offset(51)
+            make.centerX.equalToSuperview()
+        }
+        emptyView.isHidden = true
+        emptyView.didTapSelectButton = { }
+        
         collectionView.delegate = self
         collectionView.register(nibWithCellClass: SimilarChefProfileCell.self)
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -105,6 +115,7 @@ class SimilarChefCell: UITableViewCell {
     private func makePagenavigatorView(users: [User]) {
         pageNavigatorView?.removeFromSuperview()
         pageNavigatorView = nil
+        guard users.isEmpty == false else { return }
         pageNavigatorView = PageNavigatorView()
         pageNavigatorBackgroundView.addSubview(pageNavigatorView!)
         pageNavigatorView?.snp.makeConstraints { make in

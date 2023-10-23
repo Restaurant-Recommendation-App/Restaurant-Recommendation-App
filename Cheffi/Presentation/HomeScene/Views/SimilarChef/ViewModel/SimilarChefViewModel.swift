@@ -67,7 +67,7 @@ final class SimilarChefViewModel: SimilarChefViewModelType {
     }
     
     private func getUsers(tags: [String]) -> AnyPublisher<[User], DataTransferError> {
-        let mockUsers = [
+        let mockUsers: [User] = [
             User(email: "", locked: false, expired: false, activated: true, nickname: "nickname1", name: "name1", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true),
             User(email: "", locked: false, expired: false, activated: true, nickname: "nickname2", name: "name2", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true),
             User(email: "", locked: false, expired: false, activated: true, nickname: "nickname3", name: "name3", userType: .kakao, adAgreed: true, analysisAgreed: true, cheffiCoinCount: 100, pointCount: 100, photoURL: nil, isNewUser: false, profileCompleted: true),
