@@ -47,6 +47,41 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
         return NotificationViewController.instance(viewModel: viewModel)
     }
     
+    // MARK: - Search
+    func makeSearchViewController() -> SearchViewController {
+        let viewModel = makeSearchViewModel()
+        return SearchViewController.instance(viewModel: viewModel)
+    }
+    
+    // MARK: - Review Detail
+    func makeCheffiReviewDetail(reviewId: Int) -> CheffiReviewDetailViewController {
+        let viewModel = makeCheffiReviewViewModel(reviewId: reviewId)
+        let vc = CheffiReviewDetailViewController.instance(viewModel: viewModel)
+        return vc
+    }
+
+    func makeSimilarChefList() -> SimilarChefListViewController {
+        let viewModel = makeSimilarChefListViewModel()
+        return SimilarChefListViewController.instance(viewModel: viewModel)
+    }
+    
+    func makeAllCheffiContentsViewController() -> AllCheffiContentsViewController {
+        let vc = AllCheffiContentsViewController()
+        vc.viewModel = makeAllCheffiContentsViewModel()
+        vc.view.backgroundColor = .white
+        return vc
+    }
+    
+    func makeAreaSelectionViewController() -> AreaSelectionViewController {
+        let vc = AreaSelectionViewController()
+        vc.viewModel = makeAreaSelectionViewModel()
+        vc.view.backgroundColor = .white
+        return vc
+    }
+}
+
+// MARK: - ViewModel
+extension HomeSceneDIContainer {
     // MARK: - Home ViewModels
     func makeHomeViewModel(actions: HomeViewModelActions) -> HomeViewModel {
         return HomeViewModel(
@@ -78,12 +113,6 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
         return NotificationViewModel(actions: actions, useCase: useCase)
     }
     
-    // MARK: - Search
-    func makeSearchViewController() -> SearchViewController {
-        let viewModel = makeSearchViewModel()
-        return SearchViewController.instance(viewModel: viewModel)
-    }
-    
     func makeSearchViewModel() -> SearchViewModel {
         return SearchViewModel()
     }
@@ -94,33 +123,19 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
             tag: "popularity",
             cheffiRecommendationUseCase: useCase)
     }
-    
-    // MARK: - Review Detail
-    func makeCheffiReviewDetail(reviewId: Int) -> CheffiReviewDetailViewController {
-        let viewModel = makeCheffiReviewViewModel(reviewId: reviewId)
-        let vc = CheffiReviewDetailViewController.instance(viewModel: viewModel)
-        return vc
-    }
-    
+        
     func makeCheffiReviewViewModel(reviewId: Int) -> CheffiReviewDetailViewModelType {
         let repository = makeReviewRepository()
         return CheffiReviewDetailViewModel(reviewId: reviewId, useCase: makeReviewUseCase(repository: repository))
     }
     
-    func makeSimilarChefList() -> SimilarChefListViewController {
-        let viewModel = makeSimilarChefListViewModel()
-        return SimilarChefListViewController.instance(viewModel: viewModel)
+    func makeAreaSelectionViewModel() -> AreaSelectionViewModel {
+        let useCase = makeAreaUseCase(repository: makeAreaRepository())
+        return AreaSelectionViewModel(useCase: useCase)
     }
     
     func makeSimilarChefListViewModel() -> SimilarChefListViewModel {
         return SimilarChefListViewModel()
-    }
-    
-    func makeAllCheffiContentsViewController() -> AllCheffiContentsViewController {
-        let vc = AllCheffiContentsViewController()
-        vc.viewModel = makeAllCheffiContentsViewModel()
-        vc.view.backgroundColor = .white
-        return vc
     }
 }
 
@@ -141,6 +156,10 @@ extension HomeSceneDIContainer {
     func makeReviewUseCase(repository: ReviewRepository) -> ReviewUseCase {
         return DefaultReviewUseCase(repository: repository)
     }
+    
+    func makeAreaUseCase(repository: AreaRepository) -> AreaUseCase {
+        return DefaultAreaUseCase(repository: repository)
+    }
 }
 
 // MARK: - Repositories
@@ -159,5 +178,9 @@ extension HomeSceneDIContainer {
     
     func makeReviewRepository() -> ReviewRepository {
         return DefaultReviewRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeAreaRepository() -> AreaRepository {
+        return DefaultAreaRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

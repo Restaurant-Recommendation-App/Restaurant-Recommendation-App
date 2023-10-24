@@ -18,7 +18,9 @@ class AllCheffiContentsVCTopBar: UIView {
     
     private let titleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("서울시 성동구", for: .normal)
+        let title = UserDefaultsManager.AreaInfo.area.si + " " + UserDefaultsManager.AreaInfo.area.gu
+        
+        button.setTitle(title, for: .normal)
         button.setTitleColor(.cheffiWhite, for: .normal)
         button.titleLabel?.font = Fonts.suit.weight500.size(16)
         button.backgroundColor = .cheffiBlack
@@ -47,6 +49,7 @@ class AllCheffiContentsVCTopBar: UIView {
         super.init(frame: frame)
         setUp()
         setUpTitleButton()
+        
     }
     
     required init?(coder: NSCoder) {

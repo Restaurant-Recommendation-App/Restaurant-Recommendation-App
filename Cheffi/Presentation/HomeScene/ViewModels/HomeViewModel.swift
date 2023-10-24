@@ -15,6 +15,7 @@ struct HomeViewModelActions {
     let showAllCheffiContents: () -> Void
     let showNotification: () -> Void
     let showCheffiReviewDetail: (_ reviewId: Int) -> Void
+    let showAreaSelection: () -> Void
 }
 
 protocol HomeViewModelInput {
@@ -29,6 +30,7 @@ protocol HomeViewModelOutput {
     func showSearch()
     func showNotification()
     func showAllContents()
+    func showAreaSelection()
 }
 
 typealias HomeViewModelType = HomeViewModelInput & HomeViewModelOutput
@@ -62,6 +64,10 @@ final class HomeViewModel: HomeViewModelType {
 
     func showNotification() {
         actions?.showNotification()
+    }
+
+    func showAreaSelection() {
+        actions?.showAreaSelection()
     }
 
     // MARK: - Init

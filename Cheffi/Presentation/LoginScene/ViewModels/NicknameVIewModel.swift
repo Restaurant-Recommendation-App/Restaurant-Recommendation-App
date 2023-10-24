@@ -38,6 +38,29 @@ protocol NicknameViewModelType {
     var output: NicknameViewModelOutput { get }
 }
 
+//protocol NicknameViewModelTestType: ViewModelType where Input == NicknameViewModelInput, Output == NicknameViewModelOutput { }
+//
+//class testViewModel: NicknameViewModelTestType {
+//    var cancellables = Set<AnyCancellable>()
+//    
+//    func transform(input: NicknameViewModelInput) -> NicknameViewModelOutput {
+//        
+//        return NicknameViewModelOutput
+//    }
+//}
+//
+//extension testViewModel: NicknameViewModelInput {
+//    var nickname: PassthroughSubject<String, Never> {
+//        <#code#>
+//    }
+//    
+//    func checkNicknameDuplication() {
+//        <#code#>
+//    }
+//    
+//    
+//}
+
 class NicknameViewModel: NicknameViewModelType {
     var input: NicknameViewModelInput { return self }
     var output: NicknameViewModelOutput { return self }
@@ -155,7 +178,7 @@ extension NicknameViewModel: NicknameViewModelOutput {
                     }.eraseToAnyPublisher()
                 }
                 
-                return self.getNicknameInuse(nickname: _nickname ?? "")
+                return self.getNicknameInuse(nickname: self._nickname ?? "")
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
@@ -169,7 +192,7 @@ extension NicknameViewModel: NicknameViewModelOutput {
                         promise(.success(nil))
                     }.eraseToAnyPublisher()
                 }
-                return self.patchNickname(nickname: _nickname ?? "")
+                return self.patchNickname(nickname: self._nickname ?? "")
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()

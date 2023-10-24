@@ -16,6 +16,7 @@ protocol HomeFlowCoordinatorDependencies {
     func makeCheffiReviewDetail(reviewId: Int) -> CheffiReviewDetailViewController
     func makeAllCheffiContentsViewController() -> AllCheffiContentsViewController
     func makeNotificationViewController(actions: NotificationViewModelActions) -> NotificationViewController
+    func makeAreaSelectionViewController() -> AreaSelectionViewController
 }
 
 final class HomeFlowCoordinator {
@@ -35,7 +36,8 @@ final class HomeFlowCoordinator {
                                            showSearch: showSearch,
                                            showAllCheffiContents: showAllCheffiContents,
                                            showNotification: showNotification,
-                                           showCheffiReviewDetail: showCheffiReviewDetail)
+                                           showCheffiReviewDetail: showCheffiReviewDetail,
+                                           showAreaSelection: showAreaSelection)
         let vc = dependencies.makeViewController(actions: actions)
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -95,6 +97,11 @@ final class HomeFlowCoordinator {
         let actions = NotificationViewModelActions(showPopup: showPopup)
         let vc = dependencies.makeNotificationViewController(actions: actions)
         navigationController?.present(vc, animated: true)
+    }
+    
+    private func showAreaSelection() {
+        let vc = dependencies.makeAreaSelectionViewController()
+        navigationController?.pushViewController(vc)
     }
 }
 
