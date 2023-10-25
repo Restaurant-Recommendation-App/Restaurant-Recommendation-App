@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 class AllCheffiContentsVCTopBar: UIView {
     private let backButton: UIButton = {
@@ -47,8 +48,16 @@ class AllCheffiContentsVCTopBar: UIView {
         return button
     }()
     
-    var backButtonTapped: UIControl.EventPublisher {
+    var backButtonTapped: AnyPublisher<Void, Never> {
         backButton.controlPublisher(for: .touchUpInside)
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+    
+    var titleButtonTapped: AnyPublisher<Void, Never> {
+        titleButton.controlPublisher(for: .touchUpInside)
+            .map { _ in () }
+            .eraseToAnyPublisher()
     }
     
     override init(frame: CGRect) {
@@ -92,5 +101,8 @@ class AllCheffiContentsVCTopBar: UIView {
         titleButton.layer.cornerRadius = 15
         titleButton.layer.masksToBounds = true
     }
-
+    
+    func setUpTitle(with areaTitle: String) {
+        titleButton.setTitle(areaTitle, for: .normal)
+    }
 }

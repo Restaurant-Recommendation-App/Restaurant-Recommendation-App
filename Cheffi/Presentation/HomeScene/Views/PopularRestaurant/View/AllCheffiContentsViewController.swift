@@ -20,7 +20,6 @@ final class AllCheffiContentsViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     let initialize = PassthroughSubject<Void, Never>()
     
-    
     private let allContentsViewTopBar = AllCheffiContentsVCTopBar()
     
     private let subtitleTimerLabel: UILabel = {
@@ -83,6 +82,12 @@ final class AllCheffiContentsViewController: UIViewController {
         setTimerString(timerString: "00:00:00")
         configure(viewModel: viewModel)
         contentsView.isScrollEnabled = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let title = UserDefaultsManager.AreaInfo.area.si + " " + UserDefaultsManager.AreaInfo.area.gu
+        allContentsViewTopBar.setUpTitle(with: title)
     }
     
     private func setUp() {
@@ -184,7 +189,10 @@ extension AllCheffiContentsViewController: Bindable {
         }
         cancellables = Set<AnyCancellable>()
         
-        let input = ViewModel.Input(initialize: initialize.eraseToAnyPublisher())
+        let input = ViewModel.Input(
+            initialize: initialize.eraseToAnyPublisher(),
+            titleButtonTapped: allContentsViewTopBar.titleButtonTapped.eraseToAnyPublisher()
+        )
         let output = viewModel.transform(input: input)
         
         output.contentsViewModel

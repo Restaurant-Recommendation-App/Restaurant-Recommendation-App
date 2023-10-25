@@ -14,7 +14,7 @@ protocol HomeFlowCoordinatorDependencies {
     func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
     func makeCheffiReviewDetail(reviewId: Int) -> CheffiReviewDetailViewController
-    func makeAllCheffiContentsViewController() -> AllCheffiContentsViewController
+    func makeAllCheffiContentsViewController(actions: AllCheffiContentsViewModelActions) -> AllCheffiContentsViewController
     func makeNotificationViewController(actions: NotificationViewModelActions) -> NotificationViewController
     func makeAreaSelectionViewController() -> AreaSelectionViewController
 }
@@ -89,7 +89,8 @@ final class HomeFlowCoordinator {
     }
     
     private func showAllCheffiContents() {
-        let vc = dependencies.makeAllCheffiContentsViewController()
+        let actions = AllCheffiContentsViewModelActions(showAreaSelection: showAreaSelection)
+        let vc = dependencies.makeAllCheffiContentsViewController(actions: actions)
         navigationController?.pushViewController(vc)
     }
 

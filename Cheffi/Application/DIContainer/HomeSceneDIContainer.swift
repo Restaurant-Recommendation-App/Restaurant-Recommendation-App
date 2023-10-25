@@ -65,9 +65,9 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
         return SimilarChefListViewController.instance(viewModel: viewModel)
     }
     
-    func makeAllCheffiContentsViewController() -> AllCheffiContentsViewController {
+    func makeAllCheffiContentsViewController(actions: AllCheffiContentsViewModelActions) -> AllCheffiContentsViewController {
         let vc = AllCheffiContentsViewController()
-        vc.viewModel = makeAllCheffiContentsViewModel()
+        vc.viewModel = makeAllCheffiContentsViewModel(actions: actions)
         vc.view.backgroundColor = .white
         return vc
     }
@@ -117,10 +117,11 @@ extension HomeSceneDIContainer {
         return SearchViewModel()
     }
     
-    func makeAllCheffiContentsViewModel() -> AllCheffiContentsViewModel {
+    func makeAllCheffiContentsViewModel(actions: AllCheffiContentsViewModelActions) -> AllCheffiContentsViewModel {
         let useCase = makeCheffiRecommendationUseCase(repository: makeCheffiRecommendationRepository())
         return AllCheffiContentsViewModel(
             tag: "popularity",
+            actions: actions,
             cheffiRecommendationUseCase: useCase)
     }
         
