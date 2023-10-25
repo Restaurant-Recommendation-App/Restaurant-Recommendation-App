@@ -9,11 +9,7 @@ import UIKit
 import Combine
 
 final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
-    
-    private enum Constants {
-        static let cellInset = 16
-    }
-    
+        
     private let popularRestaurantContentsView = CheffiRecommendationContensView()
     
     override init(frame: CGRect) {
@@ -37,7 +33,7 @@ final class CheffiRecommendationCategoryPageCell: UICollectionViewCell {
         insetWrppingView.addSubview(popularRestaurantContentsView)
         popularRestaurantContentsView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(Constants.cellInset)
+            $0.leading.trailing.equalToSuperview()
         }
     }
     

@@ -23,7 +23,13 @@ class AllCheffiContentsVCTopBar: UIView {
         button.setTitle(title, for: .normal)
         button.setTitleColor(.cheffiWhite, for: .normal)
         button.titleLabel?.font = Fonts.suit.weight500.size(16)
-        button.backgroundColor = .cheffiBlack
+        button.titleLabel?.textAlignment = .center
+        
+        button.setNeedsUpdateConfiguration()
+        var config = UIButton.Configuration.filled()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12)
+        config.baseBackgroundColor = .cheffiBlack
+        button.configuration = config
         return button
     }()
     
@@ -66,7 +72,6 @@ class AllCheffiContentsVCTopBar: UIView {
         addSubview(titleButton)
         titleButton.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(108)
         }
         
         addSubview(notificationButton)

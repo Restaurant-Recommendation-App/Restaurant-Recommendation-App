@@ -63,15 +63,15 @@ final class AllCheffiContentsViewController: UIViewController {
     
     private var oneColumnButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .cheffiBlack
-        
+        button.setImage(UIImage(named: "icOneColumn"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         return button
     }()
     
     private var twoColumnButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .cheffiRed
-        
+        button.setImage(UIImage(named: "icTwoColumn"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         return button
     }()
     
@@ -135,7 +135,7 @@ final class AllCheffiContentsViewController: UIViewController {
         view.addSubview(contentsView)
         contentsView.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel01.snp.bottom).offset(50)
-            $0.leading.trailing.equalToSuperview().inset(Constants.widthInset)
+            $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
     }
