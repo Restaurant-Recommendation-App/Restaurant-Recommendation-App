@@ -85,7 +85,7 @@ final class AreaSelectionViewModel: ViewModelType {
             }.sink { [weak self] areas in
                 guard let self else { return }
                 self.guAreas = areas
-                currentTappedGuIndex = self.guAreas[selectedGuIndex].firstIndex(where: { $0.areaName == guName }) ?? 0
+                currentTappedGuIndex = self.guAreas[selectedSiIndex].firstIndex(where: { $0.areaName == guName }) ?? 0
                 selectedGuIndex = currentTappedGuIndex
                 guAreas.send(self.guAreas[currentTappedSiIndex])
             }.store(in: &cancellables)
