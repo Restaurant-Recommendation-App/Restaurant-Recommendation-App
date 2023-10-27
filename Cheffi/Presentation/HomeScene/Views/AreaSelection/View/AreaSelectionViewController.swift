@@ -40,16 +40,20 @@ class AreaSelectionViewController: UIViewController {
     
     private let selectButton = CustomProfileButton()
     
-    private let firstSelectionTableView: UITableView = UITableView()
-    private let secondSelectionTableView: UITableView = UITableView()
+    private let siSelectionTableView: UITableView = UITableView()
+    private let guSelectionTableView: UITableView = UITableView()
         
-    private var firstSelectionDiffableDataSource: UITableViewDiffableDataSource<Int, AreaSelection>?
-    private var secondSelectionDiffableDataSource: UITableViewDiffableDataSource<Int, AreaSelection>?
+    private var siSelectionDiffableDataSource: UITableViewDiffableDataSource<Int, AreaSelection>?
+    private var guSelectionDiffableDataSource: UITableViewDiffableDataSource<Int, AreaSelection>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpLayout()
         setUpTableViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpLayout()
         setUpSelectButton()
         setUpSelectButtonShadow()
         configure(viewModel: viewModel)
@@ -79,8 +83,8 @@ class AreaSelectionViewController: UIViewController {
             $0.height.equalTo(1)
         }
         
-        view.addSubview(firstSelectionTableView)
-        view.addSubview(secondSelectionTableView)
+        view.addSubview(siSelectionTableView)
+        view.addSubview(guSelectionTableView)
         view.addSubview(shadowView)
 
                 
@@ -97,47 +101,47 @@ class AreaSelectionViewController: UIViewController {
             $0.height.equalTo(1)
         }
         
-        firstSelectionTableView.snp.makeConstraints {
+        siSelectionTableView.snp.makeConstraints {
             $0.top.equalTo(borderView.snp.bottom)
             $0.leading.equalToSuperview()
             $0.bottom.equalTo(selectButton.snp.top)
             $0.width.equalTo(131)
         }
         
-        secondSelectionTableView.snp.makeConstraints {
+        guSelectionTableView.snp.makeConstraints {
             $0.top.equalTo(borderView.snp.bottom)
-            $0.leading.equalTo(firstSelectionTableView.snp.trailing)
+            $0.leading.equalTo(siSelectionTableView.snp.trailing)
             $0.bottom.equalTo(selectButton.snp.top)
             $0.trailing.equalToSuperview().offset(-24)
         }
     }
 
     private func setUpTableViews() {
-        firstSelectionTableView.delegate = self
-        secondSelectionTableView.delegate = self
+        siSelectionTableView.delegate = self
+        guSelectionTableView.delegate = self
         
-        firstSelectionTableView.register(cellWithClass: SiAreaTableViewCell.self)
-        secondSelectionTableView.register(cellWithClass: GuAreaTableViewCell.self)
+        siSelectionTableView.register(cellWithClass: SiAreaTableViewCell.self)
+        guSelectionTableView.register(cellWithClass: GuAreaTableViewCell.self)
         
-        firstSelectionTableView.separatorStyle = .none
-        secondSelectionTableView.separatorStyle = .none
+        siSelectionTableView.separatorStyle = .none
+        guSelectionTableView.separatorStyle = .none
         
-        firstSelectionTableView.showsVerticalScrollIndicator = false
-        secondSelectionTableView.showsVerticalScrollIndicator = false
+        siSelectionTableView.showsVerticalScrollIndicator = false
+        guSelectionTableView.showsVerticalScrollIndicator = false
         
-        firstSelectionTableView.alwaysBounceVertical = false
-        secondSelectionTableView.alwaysBounceVertical = false
+        siSelectionTableView.alwaysBounceVertical = false
+        guSelectionTableView.alwaysBounceVertical = false
         
-        firstSelectionTableView.backgroundColor = .clear
-        secondSelectionTableView.backgroundColor = .clear
+        siSelectionTableView.backgroundColor = .clear
+        guSelectionTableView.backgroundColor = .clear
             
-        firstSelectionDiffableDataSource = UITableViewDiffableDataSource<Int, AreaSelection>(tableView: firstSelectionTableView) { (tableView, indexPath, item) -> UITableViewCell in
+        siSelectionDiffableDataSource = UITableViewDiffableDataSource<Int, AreaSelection>(tableView: siSelectionTableView) { (tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withClass: SiAreaTableViewCell.self, for: indexPath)
             cell.configure(areaSelection: item)
             return cell
         }
         
-        secondSelectionDiffableDataSource = UITableViewDiffableDataSource<Int, AreaSelection>(tableView: secondSelectionTableView) { (tableView, indexPath, item) -> UITableViewCell in
+        guSelectionDiffableDataSource = UITableViewDiffableDataSource<Int, AreaSelection>(tableView: guSelectionTableView) { (tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withClass: GuAreaTableViewCell.self, for: indexPath)
             cell.configure(areaSelection: item)
             return cell
@@ -162,14 +166,14 @@ class AreaSelectionViewController: UIViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Int, AreaSelection>()
         snapshot.appendSections([0])
         snapshot.appendItems(items)
-        firstSelectionDiffableDataSource?.apply(snapshot, animatingDifferences: false)
+        siSelectionDiffableDataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     private func reloadSecondSelectionItems(items: [AreaSelection]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, AreaSelection>()
         snapshot.appendSections([0])
         snapshot.appendItems(items)
-        secondSelectionDiffableDataSource?.apply(snapshot, animatingDifferences: false)
+        guSelectionDiffableDataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     private func configure(viewModel: ViewModel) {
@@ -226,10 +230,10 @@ extension AreaSelectionViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == firstSelectionTableView {
+        if tableView == siSelectionTableView {
             didSelectSiArea.send(indexPath.row)
             
-        } else if tableView == secondSelectionTableView {
+        } else if tableView == guSelectionTableView {
             didSelectGuArea.send(indexPath.row)
         }
     }
