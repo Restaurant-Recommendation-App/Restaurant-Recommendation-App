@@ -14,8 +14,9 @@ protocol HomeFlowCoordinatorDependencies {
     func makeSimilarChefList() -> SimilarChefListViewController
     func makeSearchViewController() -> SearchViewController
     func makeCheffiReviewDetail(reviewId: Int) -> CheffiReviewDetailViewController
-    func makeAllCheffiContentsViewController() -> AllCheffiContentsViewController
+    func makeAllCheffiContentsViewController(actions: AllCheffiContentsViewModelActions) -> AllCheffiContentsViewController
     func makeNotificationViewController(actions: NotificationViewModelActions) -> NotificationViewController
+    func makeAreaSelectionViewController() -> AreaSelectionViewController
 }
 
 final class HomeFlowCoordinator {
@@ -35,7 +36,8 @@ final class HomeFlowCoordinator {
                                            showSearch: showSearch,
                                            showAllCheffiContents: showAllCheffiContents,
                                            showNotification: showNotification,
-                                           showCheffiReviewDetail: showCheffiReviewDetail)
+                                           showCheffiReviewDetail: showCheffiReviewDetail,
+                                           showAreaSelection: showAreaSelection)
         let vc = dependencies.makeViewController(actions: actions)
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -87,7 +89,8 @@ final class HomeFlowCoordinator {
     }
     
     private func showAllCheffiContents() {
-        let vc = dependencies.makeAllCheffiContentsViewController()
+        let actions = AllCheffiContentsViewModelActions(showAreaSelection: showAreaSelection)
+        let vc = dependencies.makeAllCheffiContentsViewController(actions: actions)
         navigationController?.pushViewController(vc)
     }
 
@@ -95,6 +98,11 @@ final class HomeFlowCoordinator {
         let actions = NotificationViewModelActions(showPopup: showPopup)
         let vc = dependencies.makeNotificationViewController(actions: actions)
         navigationController?.present(vc, animated: true)
+    }
+    
+    private func showAreaSelection() {
+        let vc = dependencies.makeAreaSelectionViewController()
+        navigationController?.pushViewController(vc)
     }
 }
 

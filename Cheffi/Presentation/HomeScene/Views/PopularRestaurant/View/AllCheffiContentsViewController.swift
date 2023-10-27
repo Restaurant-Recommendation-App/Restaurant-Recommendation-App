@@ -20,7 +20,6 @@ final class AllCheffiContentsViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     let initialize = PassthroughSubject<Void, Never>()
     
-    
     private let allContentsViewTopBar = AllCheffiContentsVCTopBar()
     
     private let subtitleTimerLabel: UILabel = {
@@ -63,15 +62,15 @@ final class AllCheffiContentsViewController: UIViewController {
     
     private var oneColumnButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .cheffiBlack
-        
+        button.setImage(UIImage(named: "icOneColumn"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         return button
     }()
     
     private var twoColumnButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .cheffiRed
-        
+        button.setImage(UIImage(named: "icTwoColumn"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         return button
     }()
     
@@ -83,6 +82,12 @@ final class AllCheffiContentsViewController: UIViewController {
         setTimerString(timerString: "00:00:00")
         configure(viewModel: viewModel)
         contentsView.isScrollEnabled = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let title = UserDefaultsManager.AreaInfo.area.si + " " + UserDefaultsManager.AreaInfo.area.gu
+        allContentsViewTopBar.setUpTitle(with: title)
     }
     
     private func setUp() {
@@ -135,7 +140,7 @@ final class AllCheffiContentsViewController: UIViewController {
         view.addSubview(contentsView)
         contentsView.snp.makeConstraints {
             $0.top.equalTo(subtitleLabel01.snp.bottom).offset(50)
-            $0.leading.trailing.equalToSuperview().inset(Constants.widthInset)
+            $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
     }
@@ -184,7 +189,10 @@ extension AllCheffiContentsViewController: Bindable {
         }
         cancellables = Set<AnyCancellable>()
         
-        let input = ViewModel.Input(initialize: initialize.eraseToAnyPublisher())
+        let input = ViewModel.Input(
+            initialize: initialize.eraseToAnyPublisher(),
+            titleButtonTapped: allContentsViewTopBar.titleButtonTapped.eraseToAnyPublisher()
+        )
         let output = viewModel.transform(input: input)
         
         output.contentsViewModel

@@ -21,7 +21,7 @@ class CheffiRecommendationContensView: UICollectionView {
     
     private enum Constants {
         static let cellHeight = 270
-        static let cellLineSpcaing = 24
+        static let cellLineSpcaing = 16
     }
             
     private var initialized = PassthroughSubject<Void, Never>()
@@ -141,22 +141,31 @@ extension CheffiRecommendationContensView: UICollectionViewDelegateFlowLayout {
         switch contentColumnStyle {
         case .one:
             return CGSize(
-                width: Double(bounds.width),
-                height: Double(bounds.width) + 100
+                width: Double(bounds.width) - Double(Constants.cellLineSpcaing * 2),
+                height: Double(bounds.width) + 80
             )
         case .two:
             return CGSize(
-                width: Double(bounds.width / 2) - Double(Constants.cellLineSpcaing / 2),
+                width: Double(bounds.width / 2) - Double(Constants.cellLineSpcaing / 2) - Double(Constants.cellLineSpcaing),
                 height: Double(Constants.cellHeight)
             )
         }
     }
-    
+        
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         CGFloat(Constants.cellLineSpcaing)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(
+            top: 0,
+            left: CGFloat(Constants.cellLineSpcaing),
+            bottom: 0,
+            right: CGFloat(Constants.cellLineSpcaing)
+        )
     }
 }

@@ -148,7 +148,6 @@ final class RestaurantContentView: UIView {
             likeStackView.snp.remakeConstraints {
                 $0.top.equalTo(restaurantSubtitleLabel.snp.bottom).offset(16)
                 $0.centerX.equalToSuperview()
-                $0.bottom.equalToSuperview()
             }
             
             likeButton.snp.remakeConstraints {

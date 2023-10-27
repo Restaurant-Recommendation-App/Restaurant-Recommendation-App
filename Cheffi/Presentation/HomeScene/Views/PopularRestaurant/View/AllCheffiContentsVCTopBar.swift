@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 class AllCheffiContentsVCTopBar: UIView {
     private let backButton: UIButton = {
@@ -18,10 +19,18 @@ class AllCheffiContentsVCTopBar: UIView {
     
     private let titleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("서울시 성동구", for: .normal)
+        let title = UserDefaultsManager.AreaInfo.area.si + " " + UserDefaultsManager.AreaInfo.area.gu
+        
+        button.setTitle(title, for: .normal)
         button.setTitleColor(.cheffiWhite, for: .normal)
         button.titleLabel?.font = Fonts.suit.weight500.size(16)
-        button.backgroundColor = .cheffiBlack
+        button.titleLabel?.textAlignment = .center
+        
+        button.setNeedsUpdateConfiguration()
+        var config = UIButton.Configuration.filled()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12)
+        config.baseBackgroundColor = .cheffiBlack
+        button.configuration = config
         return button
     }()
     
@@ -39,14 +48,23 @@ class AllCheffiContentsVCTopBar: UIView {
         return button
     }()
     
-    var backButtonTapped: UIControl.EventPublisher {
+    var backButtonTapped: AnyPublisher<Void, Never> {
         backButton.controlPublisher(for: .touchUpInside)
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+    
+    var titleButtonTapped: AnyPublisher<Void, Never> {
+        titleButton.controlPublisher(for: .touchUpInside)
+            .map { _ in () }
+            .eraseToAnyPublisher()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
         setUpTitleButton()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -63,7 +81,6 @@ class AllCheffiContentsVCTopBar: UIView {
         addSubview(titleButton)
         titleButton.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.equalTo(108)
         }
         
         addSubview(notificationButton)
@@ -84,5 +101,8 @@ class AllCheffiContentsVCTopBar: UIView {
         titleButton.layer.cornerRadius = 15
         titleButton.layer.masksToBounds = true
     }
-
+    
+    func setUpTitle(with areaTitle: String) {
+        titleButton.setTitle(areaTitle, for: .normal)
+    }
 }

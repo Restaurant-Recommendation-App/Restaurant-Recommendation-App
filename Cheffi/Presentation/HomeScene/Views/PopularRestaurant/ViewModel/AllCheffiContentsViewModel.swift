@@ -9,6 +9,10 @@
 import Foundation
 import Combine
 
+struct AllCheffiContentsViewModelActions {
+    let showAreaSelection: () -> Void
+}
+
 final class AllCheffiContentsViewModel: ViewModelType {
     
     private enum Constants {
@@ -17,6 +21,7 @@ final class AllCheffiContentsViewModel: ViewModelType {
     
     struct Input {
         let initialize: AnyPublisher<Void, Never>
+        let titleButtonTapped: AnyPublisher<Void, Never>
     }
     
     struct Output {
@@ -30,9 +35,11 @@ final class AllCheffiContentsViewModel: ViewModelType {
     private let timeLockGenerator: TimeLockGenerator
     
     private let tag: String
+    private let actions: AllCheffiContentsViewModelActions
     
-    init(tag: String, cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
+    init(tag: String, actions: AllCheffiContentsViewModelActions , cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
         self.tag = tag
+        self.actions = actions
         self.cheffiRecommendationUseCase = cheffiRecommendationUseCase
         self.timeLockGenerator = TimeLockGenerator(
             timeLockSeconds: Constants.dayMilliseconds,
@@ -69,6 +76,11 @@ final class AllCheffiContentsViewModel: ViewModelType {
                     timeLockString = digits
                 }
                 timerString.send(timeLockString)
+            }.store(in: &cancellables)
+        
+        input.titleButtonTapped
+            .sink {
+                self.actions.showAreaSelection()
             }.store(in: &cancellables)
         
         return Output(

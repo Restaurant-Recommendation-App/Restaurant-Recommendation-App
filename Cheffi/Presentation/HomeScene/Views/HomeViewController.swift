@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var selectedAreaButton: UIButton!
     
     private let cheffiRecommendationHeader = CheffiRecommendationHeader()
     
@@ -46,24 +47,31 @@ class HomeViewController: UIViewController {
         print("--------------------------------------------------")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let area = UserDefaultsManager.AreaInfo.area.si + " " + UserDefaultsManager.AreaInfo.area.gu
+        selectedAreaButton.setTitle(area, for: .normal)
+    }
+    
     // MARK: - Actions
     @IBAction private func didTapLocation(_ sender: UIButton) {
         // TODO: Test 코드
-        if (AccountManager.shared.isLogin) {
-            viewModel.showPopup(text: "쉐피 코인 1개를 차감하여\n새로운 맛집을 찾아 떠나볼까요?",
-                                subText: "",
-                                keywrod: "쉐피 코인 1개를 차감",
-                                popupState: .member(id: 1),
-                                leftButtonTitle: "취소하기",
-                                rightButtonTitle: "찾아보기")
-        } else {
-            viewModel.showPopup(text: "잠긴 게시물은\n회원가입 후 확인할 수 있어요!",
-                                subText: "",
-                                keywrod: "회원가입 후 확인",
-                                popupState: .nonMember,
-                                leftButtonTitle: "취소하기",
-                                rightButtonTitle: "찾아보기")
-        }
+//        if (AccountManager.shared.isLogin) {
+//            viewModel.showPopup(text: "쉐피 코인 1개를 차감하여\n새로운 맛집을 찾아 떠나볼까요?",
+//                                subText: "",
+//                                keywrod: "쉐피 코인 1개를 차감",
+//                                popupState: .member(id: 1),
+//                                leftButtonTitle: "취소하기",
+//                                rightButtonTitle: "찾아보기")
+//        } else {
+//            viewModel.showPopup(text: "잠긴 게시물은\n회원가입 후 확인할 수 있어요!",
+//                                subText: "",
+//                                keywrod: "회원가입 후 확인",
+//                                popupState: .nonMember,
+//                                leftButtonTitle: "취소하기",
+//                                rightButtonTitle: "찾아보기")
+//        }
+        viewModel.showAreaSelection()
     }
     
     @IBAction private func didTapSearch(_ sender: UIButton) {

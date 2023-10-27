@@ -77,4 +77,8 @@ final class CustomProfileButton: BaseView {
     @IBAction private func didTapButton(_ sender: UIButton) {
         didTapButton?()
     }
+    
+    func controlPublisher(for event: UIControl.Event) -> UIControl.EventPublisher {
+        button.controlPublisher(for: event)
+    }
 }

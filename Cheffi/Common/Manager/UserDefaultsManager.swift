@@ -32,6 +32,12 @@ enum UserDefaultsManager {
         @UserDefault(key: "notificationIds", defaultValue: [])
         static var notificationIds: [String]
     }
+        
+    enum AreaInfo {
+        //TODO: 아무지역도 선택하지 않았을 시 기본 선택값 설정 필요
+        @UserDefault(key: "area", defaultValue: CityInfo(si: "서울시", gu: "영등포구"))
+        static var area: CityInfo
+    }
 }
 
 extension UserDefaultsManager {
@@ -53,5 +59,10 @@ extension UserDefaultsManager {
     
     static func NotificationClear() {
         UserDefaultsManager.NotificationInfo.notificationIds = []
+    }
+    
+    static func AreaClear() {
+        //TODO: 아무지역도 선택하지 않았을 시 기본 선택값 설정 필요
+        UserDefaultsManager.AreaInfo.area = CityInfo(si: "서울시", gu: "영등포구")
     }
 }

@@ -155,7 +155,7 @@ extension NicknameViewModel: NicknameViewModelOutput {
                     }.eraseToAnyPublisher()
                 }
                 
-                return self.getNicknameInuse(nickname: _nickname ?? "")
+                return self.getNicknameInuse(nickname: self._nickname ?? "")
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
@@ -169,7 +169,7 @@ extension NicknameViewModel: NicknameViewModelOutput {
                         promise(.success(nil))
                     }.eraseToAnyPublisher()
                 }
-                return self.patchNickname(nickname: _nickname ?? "")
+                return self.patchNickname(nickname: self._nickname ?? "")
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()

@@ -103,7 +103,7 @@ class ProfileSetupViewController: UIViewController {
                 guard let self = self, index < self.viewControllersList.count else { return }
                 let viewController = self.viewControllersList[index]
                 if let tasteSelectionVC = viewController as? TasteSelectionViewController {
-                    tasteSelectionVC.setParams(viewModel.output.params)
+                    tasteSelectionVC.setParams(self.viewModel.output.params)
                 }
                 let currentVCIndex = self.viewControllersList.firstIndex(of: self.pageViewController.viewControllers?.first ?? viewController) ?? 0
                 let direction: UIPageViewController.NavigationDirection = currentVCIndex < index ? .forward : .reverse
