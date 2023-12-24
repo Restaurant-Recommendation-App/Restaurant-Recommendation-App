@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		296236DF1AC0B1A79BC70DC9 /* Pods_Cheffi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFE5AB9FA75B3E04B6128B0 /* Pods_Cheffi.framework */; };
+		5D89F9002B2EC693001C9DD6 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5D89F8FF2B2EC693001C9DD6 /* ComposableArchitecture */; };
 		CE0D45172A61712400636989 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE0D45162A61712400636989 /* SwifterSwift */; };
 		CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45182A617FC500636989 /* NationalTrendSceneDIContainer.swift */; };
 		CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45202A618E5700636989 /* NationalTrendFlowCoordinator.swift */; };
@@ -566,6 +567,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D89F9002B2EC693001C9DD6 /* ComposableArchitecture in Frameworks */,
 				296236DF1AC0B1A79BC70DC9 /* Pods_Cheffi.framework in Frameworks */,
 				FF5059792A79513300F90D27 /* KakaoSDK in Frameworks */,
 				CE0D45172A61712400636989 /* SwifterSwift in Frameworks */,
@@ -1561,6 +1563,7 @@
 				CE0D45162A61712400636989 /* SwifterSwift */,
 				FF9793B12A74C22800A921A0 /* PanModal */,
 				FF5059782A79513300F90D27 /* KakaoSDK */,
+				5D89F8FF2B2EC693001C9DD6 /* ComposableArchitecture */,
 			);
 			productName = Cheffi;
 			productReference = D4E244B52A60FF5A004E0167 /* Cheffi.app */;
@@ -1599,6 +1602,7 @@
 				CE0D45152A61712400636989 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 				FF9793B02A74C22800A921A0 /* XCRemoteSwiftPackageReference "PanModal" */,
 				FF5059772A79513300F90D27 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				5D89F8FE2B2EC693001C9DD6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = D4E244B62A60FF5A004E0167 /* Products */;
 			projectDirPath = "";
@@ -2217,6 +2221,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5D89F8FE2B2EC693001C9DD6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.5;
+			};
+		};
 		CE0D45152A61712400636989 /* XCRemoteSwiftPackageReference "SwifterSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwifterSwift/SwifterSwift.git";
@@ -2244,6 +2256,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5D89F8FF2B2EC693001C9DD6 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D89F8FE2B2EC693001C9DD6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		CE0D45162A61712400636989 /* SwifterSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE0D45152A61712400636989 /* XCRemoteSwiftPackageReference "SwifterSwift" */;
