@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		296236DF1AC0B1A79BC70DC9 /* Pods_Cheffi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFE5AB9FA75B3E04B6128B0 /* Pods_Cheffi.framework */; };
+		5D3C82B32B3811070019C6E1 /* MockRestaurantUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3C82B22B3811070019C6E1 /* MockRestaurantUseCase.swift */; };
 		5D89F9002B2EC693001C9DD6 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5D89F8FF2B2EC693001C9DD6 /* ComposableArchitecture */; };
+		5D89F9022B2EE836001C9DD6 /* RestaurantRegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89F9012B2EE836001C9DD6 /* RestaurantRegistView.swift */; };
+		5D89F9052B2EF25D001C9DD6 /* RestaurantRegistFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89F9042B2EF25D001C9DD6 /* RestaurantRegistFeature.swift */; };
 		CE0D45172A61712400636989 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE0D45162A61712400636989 /* SwifterSwift */; };
 		CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45182A617FC500636989 /* NationalTrendSceneDIContainer.swift */; };
 		CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45202A618E5700636989 /* NationalTrendFlowCoordinator.swift */; };
@@ -289,6 +292,9 @@
 		1B24CC8C1560BF374B8A3ED8 /* Pods-Cheffi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheffi.debug.xcconfig"; path = "Target Support Files/Pods-Cheffi/Pods-Cheffi.debug.xcconfig"; sourceTree = "<group>"; };
 		4FFE5AB9FA75B3E04B6128B0 /* Pods_Cheffi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheffi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D148B9BF9EC9E451CCFEBDE /* Pods-Cheffi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheffi.release.xcconfig"; path = "Target Support Files/Pods-Cheffi/Pods-Cheffi.release.xcconfig"; sourceTree = "<group>"; };
+		5D3C82B22B3811070019C6E1 /* MockRestaurantUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRestaurantUseCase.swift; sourceTree = "<group>"; };
+		5D89F9012B2EE836001C9DD6 /* RestaurantRegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantRegistView.swift; path = Cheffi/Presentation/RestaurantRegistScene/RestaurantRegistView.swift; sourceTree = SOURCE_ROOT; };
+		5D89F9042B2EF25D001C9DD6 /* RestaurantRegistFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistFeature.swift; sourceTree = "<group>"; };
 		CE0D45182A617FC500636989 /* NationalTrendSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendSceneDIContainer.swift; sourceTree = "<group>"; };
 		CE0D45202A618E5700636989 /* NationalTrendFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendFlowCoordinator.swift; sourceTree = "<group>"; };
 		CE0D45232A618F0C00636989 /* NationalTrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendViewController.swift; sourceTree = "<group>"; };
@@ -578,6 +584,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D3C82B12B3810C30019C6E1 /* RestaurantRegist */ = {
+			isa = PBXGroup;
+			children = (
+				5D3C82B22B3811070019C6E1 /* MockRestaurantUseCase.swift */,
+			);
+			path = RestaurantRegist;
+			sourceTree = "<group>";
+		};
+		5D89F9032B2EF1E7001C9DD6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5D89F9042B2EF25D001C9DD6 /* RestaurantRegistFeature.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		65BDD68A3ABF29456FF37264 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0D45302A61965900636989 /* Flow */,
+				5D89F9032B2EF1E7001C9DD6 /* ViewModels */,
 				CE0D452F2A61965300636989 /* View */,
 			);
 			path = RestaurantRegistScene;
@@ -653,6 +676,7 @@
 			children = (
 				CE0D45312A61967700636989 /* RestaurantRegistViewController.swift */,
 				CE0D45332A61968200636989 /* RestaurantRegist.storyboard */,
+				5D89F9012B2EE836001C9DD6 /* RestaurantRegistView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -736,6 +760,7 @@
 		CE1A6A862A62AE4D00FFE93D /* CheffiTests */ = {
 			isa = PBXGroup;
 			children = (
+				5D3C82B12B3810C30019C6E1 /* RestaurantRegist */,
 				FF23F6702AE3FC88000972EB /* Review */,
 				CE1A6A7D2A62AD7100FFE93D /* HomeScene */,
 			);
@@ -1733,6 +1758,7 @@
 			files = (
 				FF23F6722AE3FCA6000972EB /* ReviewInfoRelativeTimeTests.swift in Sources */,
 				CE1A6A912A62AECA00FFE93D /* SimilarChefViewModelTests.swift in Sources */,
+				5D3C82B32B3811070019C6E1 /* MockRestaurantUseCase.swift in Sources */,
 				D49F2D382AC6AC0400603CDC /* RestaurantContentItemViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1752,6 +1778,7 @@
 				FFB29BBC2ACBDDD6000E473E /* Notification.swift in Sources */,
 				FF35FB082ADD5447002D9E47 /* ReviewPhotoInfoDTO.swift in Sources */,
 				FF35FB1C2ADD815E002D9E47 /* ReviewUseCase.swift in Sources */,
+				5D89F9022B2EE836001C9DD6 /* RestaurantRegistView.swift in Sources */,
 				FF338AF72A77EB4B00FCCE00 /* CheffiContensViewImageCell.swift in Sources */,
 				FFA6BA892ADBBBDA0094913E /* UserRepository.swift in Sources */,
 				CE1A6A6D2A62716C00FFE93D /* SimilarChefViewModel.swift in Sources */,
@@ -1806,6 +1833,7 @@
 				FFC7C6652A888B6900EBE162 /* PhotoCropViewController.swift in Sources */,
 				D49B592C2A653454003C108E /* RestaurantContentCell.swift in Sources */,
 				FF5F48E82AE4DA5300B732BC /* RestaurantInfoDTO.swift in Sources */,
+				5D89F9052B2EF25D001C9DD6 /* RestaurantRegistFeature.swift in Sources */,
 				D49B592A2A652A35003C108E /* CheffiRecommendationContensView.swift in Sources */,
 				D4C0FA752A9DB9790056B885 /* DefaultPaginationGenerator.swift in Sources */,
 				FFA6BA7E2ADAECE70094913E /* TagsChangeResponse.swift in Sources */,
@@ -2136,7 +2164,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2171,7 +2199,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

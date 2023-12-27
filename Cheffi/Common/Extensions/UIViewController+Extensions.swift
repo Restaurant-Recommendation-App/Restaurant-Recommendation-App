@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 extension UIViewController {
     var topSafeArea: CGFloat {
@@ -55,5 +56,21 @@ extension UIViewController {
             currentVC = currentVC?.presentedViewController
         }
         return nil
+    }
+    
+    /// SwiftUI 뷰 계층을 관리하는 UIKit 뷰컨트롤러를 child로 추가하고 SwiftUI 뷰도 추가합니다.
+    /// - Parameter view: SwiftUI View 프로토콜을 채택한 구조체.
+    func addHostingController(view: some View) {
+        let hostingVC = UIHostingController(rootView: view)
+        let swiftUIView = hostingVC.view!
+        swiftUIView.translatesAutoresizingMaskIntoConstraints = false
+
+        self.addChild(hostingVC)
+
+        self.view.addSubview(swiftUIView)
+
+        swiftUIView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
