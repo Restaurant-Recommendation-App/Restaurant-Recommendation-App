@@ -8,7 +8,8 @@
 import UIKit
 
 protocol RestaurantRegistFlowCoodinatorDependencies {
-    func makeViewController() -> UIViewController
+    func makeRestaurantRegistViewController(feature: RestaurantRegistFeature) -> RestaurantRegistViewController
+    func makeRestaurantRegistFeature() -> RestaurantRegistFeature
 }
 
 final class RestaurantRegistFlowCoodinator {
@@ -23,7 +24,8 @@ final class RestaurantRegistFlowCoodinator {
     }
     
     func start() {
-        let vc = dependencies.makeViewController()
+        let feature = dependencies.makeRestaurantRegistFeature()
+        let vc = dependencies.makeRestaurantRegistViewController(feature: feature)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

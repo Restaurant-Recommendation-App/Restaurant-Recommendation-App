@@ -37,7 +37,8 @@ final class AppDIContainer {
     }
     
     func makeRestaurantRegistSceneDIContainer() -> RestaurantRegistSceneDIContainer {
-        return RestaurantRegistSceneDIContainer()
+        let dependencies = RestaurantRegistSceneDIContainer.Dependencies(apiDataTransferService: apiDataTransferService)
+        return RestaurantRegistSceneDIContainer(dependencies: dependencies)
     }
     
     func makeMyPageFlowCoordinator() -> MyPageSceneDIContainer {
