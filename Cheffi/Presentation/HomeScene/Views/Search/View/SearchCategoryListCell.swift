@@ -76,6 +76,7 @@ extension SearchCategoryListCell: UICollectionViewDataSource {
         switch section {
         case 0:
             return viewModel.count
+        // TODO: 이번 mvp 에서는 추천 검색어는 제외되었으므로 제거 필요
         default:
             return 10
         }
@@ -106,8 +107,5 @@ extension SearchCategoryListCell: UICollectionViewDataSource {
     }
 }
 
-let titleMock = ["노포", "치킨", "피자", "치킨이 먹고싶다", "탕수육", "순대", "떡볶아", "일본 길거리 음식", "한국음식", "중국집"]
-
+// TODO: 제거 필요
 let recommendSearchMock = ["용리단길", "참지말고 참치", "양리단길!!", "오마카세 잘하는 곳", "와인", "피자는 또 못참지", "중국요리 잘하는곳", "설리단길", "생선 찌개", "맛있는거 먹자"]
-
-let searchViewHeaderTitle = ["최근 검색어", "추천 검색어"]

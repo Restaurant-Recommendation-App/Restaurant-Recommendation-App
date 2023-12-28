@@ -9,6 +9,7 @@ import UIKit
 
 enum SearchCellType: Int {
     case recentSearch = 0
+    // TODO: 이번 mvp 에서는 추천 검색어는 제외되었으므로 제거 필요
     case recommendedSearch
 }
 
