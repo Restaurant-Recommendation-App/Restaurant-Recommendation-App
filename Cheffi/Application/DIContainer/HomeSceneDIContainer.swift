@@ -49,8 +49,10 @@ final class HomeSceneDIContainer: HomeFlowCoordinatorDependencies {
     
     // MARK: - Search
     func makeSearchViewController() -> SearchViewController {
-        let viewModel = makeSearchViewModel()
-        return SearchViewController.instance(viewModel: viewModel)
+        let vc = SearchViewController()
+        vc.viewModel = makeSearchViewModel()
+        vc.view.backgroundColor = .white
+        return vc
     }
     
     // MARK: - Review Detail
@@ -114,7 +116,9 @@ extension HomeSceneDIContainer {
     }
     
     func makeSearchViewModel() -> SearchViewModel {
-        return SearchViewModel()
+        let repository = makeSearchRepository()
+        let useCase = makeSearchUseCase(repository: repository)
+        return SearchViewModel(searchUseCase: useCase)
     }
     
     func makeAllCheffiContentsViewModel(actions: AllCheffiContentsViewModelActions) -> AllCheffiContentsViewModel {
@@ -161,6 +165,10 @@ extension HomeSceneDIContainer {
     func makeAreaUseCase(repository: AreaRepository) -> AreaUseCase {
         return DefaultAreaUseCase(repository: repository)
     }
+    
+    func makeSearchUseCase(repository: SearchRepository) -> SearchUseCase {
+        return DefaultSearchUseCase(repository: repository)
+    }
 }
 
 // MARK: - Repositories
@@ -183,5 +191,9 @@ extension HomeSceneDIContainer {
     
     func makeAreaRepository() -> AreaRepository {
         return DefaultAreaRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeSearchRepository() -> SearchRepository {
+        return DefaultSearchRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }
