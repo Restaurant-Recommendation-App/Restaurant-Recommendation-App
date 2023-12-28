@@ -57,6 +57,7 @@ protocol CategoryTabViewDelegate: AnyObject {
     func didTapCategory(index: Int)
 }
 
+// TODO: 제거 필요, CategoryView로 대체
 class CategoryTabView: UIView {
     
     private enum Constants {
