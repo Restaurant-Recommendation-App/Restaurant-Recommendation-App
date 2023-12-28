@@ -40,13 +40,6 @@ final class CheffiRecommendationHeader: UITableViewHeaderFooterView {
         super.init(coder: coder)
     }
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        contentView.frame = contentView.frame.inset(
-//            by: UIEdgeInsets(top: 48, left: 0, bottom: 0, right: 0)
-//        )
-//    }
-    
     private func setUp() {
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -65,7 +58,6 @@ final class CheffiRecommendationHeader: UITableViewHeaderFooterView {
             $0.top.equalTo(titleLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50)
-//            $0.bottom.equalToSuperview().inset(24)
         }
         
     }
