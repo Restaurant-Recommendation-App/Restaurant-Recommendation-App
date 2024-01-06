@@ -99,9 +99,12 @@ extension SearchCategoryListCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withClass: SearchViewHeader.self, for: indexPath)
+        guard let headerTitle = SearchSectionType(rawValue: indexPath.section)?.headerTitle else {
+            return UICollectionReusableView()
+        }
         
-        header.configure(title: searchViewHeaderTitle[indexPath.section])
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withClass: SearchViewHeader.self, for: indexPath)
+        header.configure(title: headerTitle)
         
         return header
     }
