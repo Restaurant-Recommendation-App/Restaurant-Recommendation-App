@@ -2238,7 +2238,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M8Q4DXWNP5;
+				DEVELOPMENT_TEAM = A9F8XLHP2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "이미지를 불러오기 위해 사진 권한을 허용합니다. (선택 권한)";
@@ -2254,7 +2254,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cheffi.Cheffi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheffi.cheffi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2276,7 +2276,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M8Q4DXWNP5;
+				DEVELOPMENT_TEAM = A9F8XLHP2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "이미지를 불러오기 위해 사진 권한을 허용합니다. (선택 권한)";
@@ -2292,7 +2292,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cheffi.Cheffi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheffi.cheffi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
