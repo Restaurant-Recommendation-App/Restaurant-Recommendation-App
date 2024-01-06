@@ -54,6 +54,12 @@ extension UIColor {
     /// #282828
     static let cheffiGray9: UIColor = UIColor(named: "CheffiGray9")!
     
-    /// FFBFC9
+    /// #D9D9D9
+    static let cheffiGray10: UIColor = UIColor(named: "CheffiGray10")!
+    
+    /// #FFBFC9
     static let cheffiPink1: UIColor = UIColor(named: "CheffiPink1")!
+    
+    /// #FFF2F4
+    static let cheffiPink2: UIColor = UIColor(named: "CheffiPink2")!
 }

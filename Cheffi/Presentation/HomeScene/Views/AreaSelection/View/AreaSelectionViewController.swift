@@ -48,12 +48,8 @@ class AreaSelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTableViews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         setUpLayout()
+        setUpTableViews()
         setUpSelectButton()
         setUpSelectButtonShadow()
         configure(viewModel: viewModel)
