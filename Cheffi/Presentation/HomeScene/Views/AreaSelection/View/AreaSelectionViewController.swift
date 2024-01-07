@@ -82,7 +82,6 @@ class AreaSelectionViewController: UIViewController {
         view.addSubview(siSelectionTableView)
         view.addSubview(guSelectionTableView)
         view.addSubview(shadowView)
-
                 
         view.addSubview(selectButton)
         selectButton.snp.makeConstraints {
@@ -228,7 +227,6 @@ extension AreaSelectionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == siSelectionTableView {
             didSelectSiArea.send(indexPath.row)
-            
         } else if tableView == guSelectionTableView {
             didSelectGuArea.send(indexPath.row)
         }

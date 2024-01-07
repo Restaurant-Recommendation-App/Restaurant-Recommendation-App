@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol AreaRepository {
-    func getAreas() -> AnyPublisher<[AreaDTO], Never>
+    func getAreas() -> AnyPublisher<(Results<[AreaDTO]>, HTTPURLResponse), DataTransferError>
 }

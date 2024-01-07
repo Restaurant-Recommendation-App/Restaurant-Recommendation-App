@@ -73,6 +73,7 @@
 		D420F16D2AE64AF500DC10ED /* AreaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F16C2AE64AF500DC10ED /* AreaUseCase.swift */; };
 		D420F16F2AE64BA600DC10ED /* AreaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F16E2AE64BA600DC10ED /* AreaRepository.swift */; };
 		D420F1712AE64BE300DC10ED /* DefaultAreaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1702AE64BE300DC10ED /* DefaultAreaRepository.swift */; };
+		D42F793E2B4AA6A400F571B0 /* AreaAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42F793D2B4AA6A400F571B0 /* AreaAPIEndpoints.swift */; };
 		D43331A92A6D32AE00E6CB4B /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43331A82A6D32AE00E6CB4B /* UICollectionView+Extensions.swift */; };
 		D43761CE2B02555F00F9AE25 /* SearchViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43761CD2B02555F00F9AE25 /* SearchViewLayout.swift */; };
 		D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */; };
@@ -366,6 +367,7 @@
 		D420F16C2AE64AF500DC10ED /* AreaUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaUseCase.swift; sourceTree = "<group>"; };
 		D420F16E2AE64BA600DC10ED /* AreaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaRepository.swift; sourceTree = "<group>"; };
 		D420F1702AE64BE300DC10ED /* DefaultAreaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAreaRepository.swift; sourceTree = "<group>"; };
+		D42F793D2B4AA6A400F571B0 /* AreaAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIEndpoints.swift; sourceTree = "<group>"; };
 		D43331A82A6D32AE00E6CB4B /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		D43761CD2B02555F00F9AE25 /* SearchViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewLayout.swift; sourceTree = "<group>"; };
 		D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationCell.swift; sourceTree = "<group>"; };
@@ -1362,6 +1364,7 @@
 			children = (
 				FF5059A52A7E08DE00F90D27 /* HomeAPIEndpoints.swift */,
 				FF68013D2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift */,
+				D42F793D2B4AA6A400F571B0 /* AreaAPIEndpoints.swift */,
 				FFA6BA822ADAEE380094913E /* TagAPIEndpoints.swift */,
 				FFA6BA912ADBBDF40094913E /* UserAPIEndpoints.swift */,
 				FF35FAFC2ADD523F002D9E47 /* ReviewAPIEndpoints.swift */,
@@ -2025,6 +2028,7 @@
 				FFC2F20B2A9094240001C86C /* MoreSubCell.swift in Sources */,
 				CE70F8992A63C692003D0ED9 /* DefaultSimilarChefRepository.swift in Sources */,
 				FFDBC63D2A8138330009189C /* TasteSelectionViewController.swift in Sources */,
+				D42F793E2B4AA6A400F571B0 /* AreaAPIEndpoints.swift in Sources */,
 				FF3197732A74C8F800F5DD41 /* CheffiMenuView.swift in Sources */,
 				D4D34BE42B3C646F00AC46A5 /* DefaultSearchRepository.swift in Sources */,
 				FF4659CA2A879B1100736AEA /* PhotoService.swift in Sources */,

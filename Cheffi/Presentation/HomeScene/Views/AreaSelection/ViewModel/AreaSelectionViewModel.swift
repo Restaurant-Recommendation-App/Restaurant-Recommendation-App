@@ -43,7 +43,6 @@ final class AreaSelectionViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        
         let siAreas = PassthroughSubject<[AreaSelection], Never>()
         let guAreas = PassthroughSubject<[AreaSelection], Never>()
         let initialize = input.initialize.share()
@@ -60,31 +59,47 @@ final class AreaSelectionViewModel: ViewModelType {
         var selectedGuIndex = 0
         
         initialize
-            .map { areas  -> [AreaSelection] in
-                areas.map { area in
-                    let isSelected = siName == area.si
-                    return AreaSelection(areaName: area.si, isSelected: isSelected)
+            .sink { completion in
+                switch completion {
+                // TODO: 에러 처리
+                case .failure(_):
+                    break
+                case .finished:
+                    break
                 }
-            }.sink { [weak self] areas in
+            } receiveValue: { [weak self] areas in
                 guard let self else { return }
-                self.siAreas = areas
+                
+                self.siAreas = areas.map { area in
+                    let isSelected = siName == area.province
+                    return AreaSelection(areaName: area.province, isSelected: isSelected)
+                }
+                
                 siAreas.send(self.siAreas)
             }.store(in: &cancellables)
-        
+
         initialize
-            .map { areas -> [[AreaSelection]] in
-                currentTappedSiIndex = areas.firstIndex(where: { $0.si == siName }) ?? 0
+            .sink { completion in
+                switch completion {
+                // TODO: 에러 처리
+                case .failure(_):
+                    break
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] areas in
+                guard let self else { return }
+                
+                currentTappedSiIndex = areas.firstIndex(where: { $0.province == siName }) ?? 0
                 prevTappedSiIndex = currentTappedSiIndex
                 selectedSiIndex = currentTappedSiIndex
-                return areas.map { area in
-                    area.gu.map { gu in
-                        let isSelected = gu == guName
-                        return AreaSelection(areaName: gu, isSelected: isSelected)
+                self.guAreas = areas.map { area in
+                    area.cities.map { city in
+                        let isSelected = city == guName
+                        return AreaSelection(areaName: city, isSelected: isSelected)
                     }
                 }
-            }.sink { [weak self] areas in
-                guard let self else { return }
-                self.guAreas = areas
+                
                 currentTappedGuIndex = self.guAreas[selectedSiIndex].firstIndex(where: { $0.areaName == guName }) ?? 0
                 selectedGuIndex = currentTappedGuIndex
                 guAreas.send(self.guAreas[currentTappedSiIndex])
