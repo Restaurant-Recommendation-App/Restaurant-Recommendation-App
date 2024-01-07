@@ -86,7 +86,7 @@ final class AllCheffiContentsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let title = UserDefaultsManager.AreaInfo.area.si + " " + UserDefaultsManager.AreaInfo.area.gu
+        let title = UserDefaultsManager.AreaInfo.area.province + " " + UserDefaultsManager.AreaInfo.area.city
         allContentsViewTopBar.setUpTitle(with: title)
     }
     

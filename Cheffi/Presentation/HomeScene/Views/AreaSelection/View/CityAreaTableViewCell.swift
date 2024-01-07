@@ -7,9 +7,9 @@
 
 import UIKit
 
-class GuAreaTableViewCell: UITableViewCell {
+class CityAreaTableViewCell: UITableViewCell {
     
-    let guAreaName: UILabel = {
+    let cityName: UILabel = {
         let label = UILabel()
         label.font = Fonts.suit.weight500.size(15)
         label.textColor = .cheffiGray8
@@ -37,8 +37,8 @@ class GuAreaTableViewCell: UITableViewCell {
     private func setUp() {
         selectionStyle = .none
         
-        contentView.addSubview(guAreaName)
-        guAreaName.snp.makeConstraints {
+        contentView.addSubview(cityName)
+        cityName.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
         }
@@ -52,7 +52,7 @@ class GuAreaTableViewCell: UITableViewCell {
     }
     
     func configure(areaSelection: AreaSelection) {
-        guAreaName.text = areaSelection.areaName
+        cityName.text = areaSelection.areaName
         updateCheckMark(isSelected: areaSelection.isSelected)
     }
     

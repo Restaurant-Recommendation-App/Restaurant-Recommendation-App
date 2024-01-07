@@ -65,8 +65,8 @@
 		D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */; };
 		D41E99302A6A65660085F5D0 /* CategoryTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E992F2A6A65660085F5D0 /* CategoryTabView.swift */; };
 		D41E99322A6BB9A80085F5D0 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E99312A6BB9A80085F5D0 /* UIView+Extensions.swift */; };
-		D420F1632AE4F56700DC10ED /* SiAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1622AE4F56700DC10ED /* SiAreaTableViewCell.swift */; };
-		D420F1652AE4F57300DC10ED /* GuAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1642AE4F57300DC10ED /* GuAreaTableViewCell.swift */; };
+		D420F1632AE4F56700DC10ED /* ProvinceAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1622AE4F56700DC10ED /* ProvinceAreaTableViewCell.swift */; };
+		D420F1652AE4F57300DC10ED /* CityAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1642AE4F57300DC10ED /* CityAreaTableViewCell.swift */; };
 		D420F1672AE4F6D800DC10ED /* AreaSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1662AE4F6D800DC10ED /* AreaSelectionViewModel.swift */; };
 		D420F1692AE6480500DC10ED /* AreaDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1682AE6480500DC10ED /* AreaDTO.swift */; };
 		D420F16B2AE64A4D00DC10ED /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F16A2AE64A4D00DC10ED /* Area.swift */; };
@@ -359,8 +359,8 @@
 		D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSceneDIContainer.swift; sourceTree = "<group>"; };
 		D41E992F2A6A65660085F5D0 /* CategoryTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTabView.swift; sourceTree = "<group>"; };
 		D41E99312A6BB9A80085F5D0 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		D420F1622AE4F56700DC10ED /* SiAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiAreaTableViewCell.swift; sourceTree = "<group>"; };
-		D420F1642AE4F57300DC10ED /* GuAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuAreaTableViewCell.swift; sourceTree = "<group>"; };
+		D420F1622AE4F56700DC10ED /* ProvinceAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceAreaTableViewCell.swift; sourceTree = "<group>"; };
+		D420F1642AE4F57300DC10ED /* CityAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAreaTableViewCell.swift; sourceTree = "<group>"; };
 		D420F1662AE4F6D800DC10ED /* AreaSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaSelectionViewModel.swift; sourceTree = "<group>"; };
 		D420F1682AE6480500DC10ED /* AreaDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDTO.swift; sourceTree = "<group>"; };
 		D420F16A2AE64A4D00DC10ED /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
@@ -1051,8 +1051,8 @@
 			isa = PBXGroup;
 			children = (
 				D4D6DB042AE2BD3F007FA990 /* AreaSelectionViewController.swift */,
-				D420F1622AE4F56700DC10ED /* SiAreaTableViewCell.swift */,
-				D420F1642AE4F57300DC10ED /* GuAreaTableViewCell.swift */,
+				D420F1622AE4F56700DC10ED /* ProvinceAreaTableViewCell.swift */,
+				D420F1642AE4F57300DC10ED /* CityAreaTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2019,7 +2019,7 @@
 				D4CABD7A2AD84FBD00BAAC5B /* RestaurantContentItemType.swift in Sources */,
 				D4034B762B025B8000D1E68D /* RecentSearchLayoutProvider.swift in Sources */,
 				FF5059B92A7E357C00F90D27 /* CheffiWriterView.swift in Sources */,
-				D420F1632AE4F56700DC10ED /* SiAreaTableViewCell.swift in Sources */,
+				D420F1632AE4F56700DC10ED /* ProvinceAreaTableViewCell.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
 				D4DBE8552B13174100D66800 /* RecentSearchCell.swift in Sources */,
 				CE42BA792A6BD52D00EBB80A /* SearchViewController.swift in Sources */,
@@ -2038,7 +2038,7 @@
 				D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */,
 				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,
 				FFC58AD12A8689FA0095BCF4 /* PhotoUseCase.swift in Sources */,
-				D420F1652AE4F57300DC10ED /* GuAreaTableViewCell.swift in Sources */,
+				D420F1652AE4F57300DC10ED /* CityAreaTableViewCell.swift in Sources */,
 				FF50599D2A7DFFAF00F90D27 /* NetworkConfig.swift in Sources */,
 				FFB29BBE2ACBDF50000E473E /* NotificationRepository.swift in Sources */,
 				D4D34BE62B3C655100AC46A5 /* SearchUseCase.swift in Sources */,

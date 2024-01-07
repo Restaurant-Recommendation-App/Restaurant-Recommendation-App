@@ -19,7 +19,7 @@ class AllCheffiContentsVCTopBar: UIView {
     
     private let titleButton: UIButton = {
         let button = UIButton()
-        let title = UserDefaultsManager.AreaInfo.area.si + " " + UserDefaultsManager.AreaInfo.area.gu
+        let title = UserDefaultsManager.AreaInfo.area.province + " " + UserDefaultsManager.AreaInfo.area.city
         
         button.setTitle(title, for: .normal)
         button.setTitleColor(.cheffiWhite, for: .normal)
