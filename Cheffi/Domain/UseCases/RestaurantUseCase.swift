@@ -20,9 +20,119 @@ final class DefaultRestaurantUseCase: RestaurantUseCase {
     }
     
     func getRestaurants(name: String, province: String, city: String) -> AnyPublisher<[RestaurantInfoDTO], DataTransferError> {
-        return repository.getRestaurants(name: name, province: province, city: city)
-            .map({ $0.0.data })
-            .eraseToAnyPublisher()
+        // TODO: - Eli : 맛집등록 검색화면 API 반영
+//        return repository.getRestaurants(name: name, province: province, city: city)
+//            .map({ $0.0.data })
+//            .eraseToAnyPublisher()
+        Future { promise in
+            promise(.success([
+                RestaurantInfoDTO(
+                    id: 0,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 1,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 2,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 3,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 4,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 5,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 6,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 7,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                )
+            ]))
+        }
+        .eraseToAnyPublisher()
     }
 }
 
@@ -31,7 +141,98 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
         Future { promise in
             promise(.success([
                 RestaurantInfoDTO(
-                    id: 0, 
+                    id: 0,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 1,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 2,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 3,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 4,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 5,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 6,
+                    name: name,
+                    address: Address(
+                        province: "서울",
+                        city: "강북구",
+                        lotNumber: "수유3동",
+                        roadName: "한천로 140길",
+                        fullLotNumberAddress: "111-22",
+                        fullRodNameAddress: "11-22"
+                    ),
+                    registered: false
+                ),
+                RestaurantInfoDTO(
+                    id: 7,
                     name: name,
                     address: Address(
                         province: "서울",

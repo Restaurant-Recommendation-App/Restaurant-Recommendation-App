@@ -8,8 +8,8 @@
 import UIKit
 
 protocol RestaurantRegistFlowCoodinatorDependencies {
-    func makeRestaurantRegistViewController(feature: RestaurantRegistFeature) -> RestaurantRegistViewController
-    func makeRestaurantRegistFeature() -> RestaurantRegistFeature
+    func makeRestaurantRegistViewController(feature: RestaurantRegistReducer) -> RestaurantRegistViewController
+    func makeRestaurantRegistFeature() -> RestaurantRegistReducer
 }
 
 final class RestaurantRegistFlowCoodinator {

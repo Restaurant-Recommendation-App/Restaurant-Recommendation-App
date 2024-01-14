@@ -25,13 +25,13 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoodinatorDepe
     }
     
     // MARK: - Restaurant Regist
-    func makeRestaurantRegistViewController(feature: RestaurantRegistFeature) -> RestaurantRegistViewController {
+    func makeRestaurantRegistViewController(feature: RestaurantRegistReducer) -> RestaurantRegistViewController {
         return RestaurantRegistViewController.instance(feature: feature)
     }
 
-    func makeRestaurantRegistFeature() -> RestaurantRegistFeature {
+    func makeRestaurantRegistFeature() -> RestaurantRegistReducer {
         let repository = makeRestaurantRepository()
-        return RestaurantRegistFeature(useCase: makeRestaurantUseCase(repository: repository))
+        return RestaurantRegistReducer(useCase: makeRestaurantUseCase(repository: repository))
     }
 
     // MARK: - Popup

@@ -8,58 +8,25 @@
 import UIKit
 
 extension UIColor {
+    // 프로젝트 설정에서 Xcode 15의 에셋 이넘화 기능을 사용하고 있으므로 static 컬러들이 이미 선언되어 있음. 헥스코드 검색을 용이하게 하기 위해 주석만 남겨놓음.
     
-    /// #EB4451
-    static let main: UIColor = UIColor(named: "Main")!
-    
-    /// #EB4351
-    static let mainCTA: UIColor = UIColor(named: "Main-CTA")!
-    
-    /// #D82231
-    static let cheffiRed: UIColor = UIColor(named: "CheffiRed")!
-    
-    /// #0A0A0A
-    static let cheffiBlack: UIColor = UIColor(named: "CheffiBlack")!
-    
-    /// #FFFFFF
-    static let cheffiWhite: UIColor = UIColor(named: "CheffiWhite")!
-    
-    /// #F5F5F5
-    static let cheffiWhite05: UIColor = UIColor(named: "CheffiWhite05")!
-    
-    /// #ECECEC
-    static let cheffiGray1: UIColor = UIColor(named: "CheffiGray1")!
-    
-    /// #D8D8D8
-    static let cheffiGray2: UIColor = UIColor(named: "CheffiGray2")!
-    
-    /// #C5C5C5
-    static let cheffiGray3: UIColor = UIColor(named: "CheffiGray3")!
-    
-    /// #B1B1B1
-    static let cheffiGray4: UIColor = UIColor(named: "CheffiGray4")!
-    
-    /// #9E9E9E
-    static let cheffiGray5: UIColor = UIColor(named: "CheffiGray5")!
-    
-    /// #808080
-    static let cheffiGray6: UIColor = UIColor(named: "CheffiGray6")!
-    
-    /// #636363
-    static let cheffiGray7: UIColor = UIColor(named: "CheffiGray7")!
-    
-    /// #454545
-    static let cheffiGray8: UIColor = UIColor(named: "CheffiGray8")!
-    
-    /// #282828
-    static let cheffiGray9: UIColor = UIColor(named: "CheffiGray9")!
-    
-    /// #D9D9D9
-    static let cheffiGray10: UIColor = UIColor(named: "CheffiGray10")!
-    
-    /// #FFBFC9
-    static let cheffiPink1: UIColor = UIColor(named: "CheffiPink1")!
-    
-    /// #FFF2F4
-    static let cheffiPink2: UIColor = UIColor(named: "CheffiPink2")!
+    // Main #EB4451
+    // Main-CTA #EB4351
+    // CheffiRed #D82231
+    // CheffiBlack #0A0A0A
+    // CheffiWhite #FFFFFF
+    // CheffiWhite05 #F5F5F5
+    // CheffiGray1 #ECECEC
+    // CheffiGray2 #D8D8D8
+    // CheffiGray3 #C5C5C5
+    // CheffiGray4 #B1B1B1
+    // CheffiGray5 #9E9E9E
+    // CheffiGray6 #808080
+    // CheffiGray7 #636363
+    // CheffiGray8 #454545
+    // CheffiGray9 #282828
+	// CheffiGray10 #D9D9D9
+    // CheffiPink1 #FFBFC9
+	// CheffiPink2 #FFF2F4
+    // Bg #FFF2F4
 }
