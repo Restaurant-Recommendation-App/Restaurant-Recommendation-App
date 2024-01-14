@@ -226,6 +226,7 @@ extension AreaSelectionViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == provinceSelectionTableView {
+            // TODO: 선택/로컬 저장후 다시 진입했을 시, index out of range 이슈
             didSelectProvinceArea.send(indexPath.row)
         } else if tableView == citySelectionTableView {
             didSelectCityArea.send(indexPath.row)

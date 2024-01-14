@@ -95,7 +95,7 @@ final class AreaSelectionViewModel: ViewModelType {
                 selectedProvinceIndex = currentTappedProvinceIndex
                 self.cities = areas.map { area in
                     area.cities.map { city in
-                        let isSelected = city == cityName
+                        let isSelected = area.province == provinceName && city == cityName
                         return AreaSelection(areaName: city, isSelected: isSelected)
                     }
                 }
@@ -112,6 +112,7 @@ final class AreaSelectionViewModel: ViewModelType {
                 self.provinces[prevTappedProvinceIndex].isSelected = false
                 self.provinces[currentTappedProvinceIndex].isSelected = true
                 provinces.send(self.provinces)
+                // TODO: 선택/로컬 저장후 다시 진입했을 시, index out of range 이슈
                 cities.send(self.cities[currentTappedProvinceIndex])
             }.store(in: &cancellables)
         
