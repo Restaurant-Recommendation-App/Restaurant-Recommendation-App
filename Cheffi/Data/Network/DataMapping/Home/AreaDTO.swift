@@ -7,14 +7,13 @@
 
 import Foundation
 
-struct AreaDTO: Decodable {
-    let si: String
-    let gu: [String]
+struct AreaDTO: Codable {
+    let province: String
+    let cities: [String]
 }
-
 
 extension AreaDTO {
     func toDomain() -> Area {
-        Area(si: self.si, gu: self.gu)
+        Area(province: self.province, cities: self.cities)
     }
 }

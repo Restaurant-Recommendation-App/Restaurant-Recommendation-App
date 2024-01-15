@@ -8,6 +8,6 @@
 import Foundation
 
 struct Area: Decodable {
-    let si: String
-    let gu: [String]
+    let province: String
+    let cities: [String]
 }

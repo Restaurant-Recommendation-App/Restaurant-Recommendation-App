@@ -1,5 +1,5 @@
 //
-//  SiAreaTableViewCell.swift
+//  ProvinceAreaTableViewCell.swift
 //  Cheffi
 //
 //  Created by RONICK on 2023/10/22.
@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-final class SiAreaTableViewCell: UITableViewCell {
+final class ProvinceAreaTableViewCell: UITableViewCell {
     
-    let siAreaTitle: UILabel = {
+    let provinceTitle: UILabel = {
         let label = UILabel()
         label.font = Fonts.suit.weight500.size(15)
         label.textColor = .cheffiGray6
@@ -29,23 +29,23 @@ final class SiAreaTableViewCell: UITableViewCell {
     private func setUp() {
         selectionStyle = .none
         
-        contentView.addSubview(siAreaTitle)
-        siAreaTitle.snp.makeConstraints {
+        contentView.addSubview(provinceTitle)
+        provinceTitle.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
     
     func configure(areaSelection: AreaSelection) {
-        siAreaTitle.text = areaSelection.areaName
+        provinceTitle.text = areaSelection.areaName
         updateAreaTitle(isSelected: areaSelection.isSelected)
     }
     
     func updateAreaTitle(isSelected: Bool) {
         if isSelected {
-            siAreaTitle.textColor = .cheffiGray8
+            provinceTitle.textColor = .cheffiGray8
             contentView.backgroundColor = .cheffiWhite
         } else {
-            siAreaTitle.textColor = .cheffiGray6
+            provinceTitle.textColor = .cheffiGray6
             contentView.backgroundColor = .cheffiWhite05
         }
     }

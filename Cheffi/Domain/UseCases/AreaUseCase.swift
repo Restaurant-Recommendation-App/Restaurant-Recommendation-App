@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol AreaUseCase {
-    func getAreas() -> AnyPublisher<[Area], Never>
+    func getAreas() -> AnyPublisher<[Area], DataTransferError>
 }
 
 final class DefaultAreaUseCase: AreaUseCase {
@@ -19,10 +19,10 @@ final class DefaultAreaUseCase: AreaUseCase {
     init(repository: AreaRepository) {
         self.repository = repository
     }
-    
-    func getAreas() -> AnyPublisher<[Area], Never> {
+
+    func getAreas() -> AnyPublisher<[Area], DataTransferError> {
         return repository.getAreas()
-            .map { $0.map { $0.toDomain() } }
+            .map { $0.0.data.map { $0.toDomain() } }
             .eraseToAnyPublisher()
     }
 }

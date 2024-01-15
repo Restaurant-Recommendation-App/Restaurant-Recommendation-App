@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let area = UserDefaultsManager.AreaInfo.area.si + " " + UserDefaultsManager.AreaInfo.area.gu
+        let area = UserDefaultsManager.AreaInfo.area.province + " " + UserDefaultsManager.AreaInfo.area.city
         selectedAreaButton.setTitle(area, for: .normal)
     }
     

@@ -93,7 +93,7 @@ final class HomeFlowCoordinator {
         let vc = dependencies.makeAllCheffiContentsViewController(actions: actions)
         navigationController?.pushViewController(vc)
     }
-
+    
     private func showNotification() {
         let actions = NotificationViewModelActions(showPopup: showPopup)
         let vc = dependencies.makeNotificationViewController(actions: actions)
@@ -105,4 +105,3 @@ final class HomeFlowCoordinator {
         navigationController?.pushViewController(vc)
     }
 }
-

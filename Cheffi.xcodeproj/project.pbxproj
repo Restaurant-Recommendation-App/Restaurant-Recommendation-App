@@ -78,14 +78,15 @@
 		D41B46032A61295D003EF1EC /* HomeSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */; };
 		D41E99302A6A65660085F5D0 /* CategoryTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E992F2A6A65660085F5D0 /* CategoryTabView.swift */; };
 		D41E99322A6BB9A80085F5D0 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E99312A6BB9A80085F5D0 /* UIView+Extensions.swift */; };
-		D420F1632AE4F56700DC10ED /* SiAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1622AE4F56700DC10ED /* SiAreaTableViewCell.swift */; };
-		D420F1652AE4F57300DC10ED /* GuAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1642AE4F57300DC10ED /* GuAreaTableViewCell.swift */; };
+		D420F1632AE4F56700DC10ED /* ProvinceAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1622AE4F56700DC10ED /* ProvinceAreaTableViewCell.swift */; };
+		D420F1652AE4F57300DC10ED /* CityAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1642AE4F57300DC10ED /* CityAreaTableViewCell.swift */; };
 		D420F1672AE4F6D800DC10ED /* AreaSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1662AE4F6D800DC10ED /* AreaSelectionViewModel.swift */; };
 		D420F1692AE6480500DC10ED /* AreaDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1682AE6480500DC10ED /* AreaDTO.swift */; };
 		D420F16B2AE64A4D00DC10ED /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F16A2AE64A4D00DC10ED /* Area.swift */; };
 		D420F16D2AE64AF500DC10ED /* AreaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F16C2AE64AF500DC10ED /* AreaUseCase.swift */; };
 		D420F16F2AE64BA600DC10ED /* AreaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F16E2AE64BA600DC10ED /* AreaRepository.swift */; };
 		D420F1712AE64BE300DC10ED /* DefaultAreaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D420F1702AE64BE300DC10ED /* DefaultAreaRepository.swift */; };
+		D42F793E2B4AA6A400F571B0 /* AreaAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42F793D2B4AA6A400F571B0 /* AreaAPIEndpoints.swift */; };
 		D43331A92A6D32AE00E6CB4B /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43331A82A6D32AE00E6CB4B /* UICollectionView+Extensions.swift */; };
 		D43761CE2B02555F00F9AE25 /* SearchViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43761CD2B02555F00F9AE25 /* SearchViewLayout.swift */; };
 		D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */; };
@@ -384,14 +385,15 @@
 		D41B46022A61295D003EF1EC /* HomeSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSceneDIContainer.swift; sourceTree = "<group>"; };
 		D41E992F2A6A65660085F5D0 /* CategoryTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTabView.swift; sourceTree = "<group>"; };
 		D41E99312A6BB9A80085F5D0 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		D420F1622AE4F56700DC10ED /* SiAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiAreaTableViewCell.swift; sourceTree = "<group>"; };
-		D420F1642AE4F57300DC10ED /* GuAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuAreaTableViewCell.swift; sourceTree = "<group>"; };
+		D420F1622AE4F56700DC10ED /* ProvinceAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceAreaTableViewCell.swift; sourceTree = "<group>"; };
+		D420F1642AE4F57300DC10ED /* CityAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAreaTableViewCell.swift; sourceTree = "<group>"; };
 		D420F1662AE4F6D800DC10ED /* AreaSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaSelectionViewModel.swift; sourceTree = "<group>"; };
 		D420F1682AE6480500DC10ED /* AreaDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDTO.swift; sourceTree = "<group>"; };
 		D420F16A2AE64A4D00DC10ED /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		D420F16C2AE64AF500DC10ED /* AreaUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaUseCase.swift; sourceTree = "<group>"; };
 		D420F16E2AE64BA600DC10ED /* AreaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaRepository.swift; sourceTree = "<group>"; };
 		D420F1702AE64BE300DC10ED /* DefaultAreaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAreaRepository.swift; sourceTree = "<group>"; };
+		D42F793D2B4AA6A400F571B0 /* AreaAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIEndpoints.swift; sourceTree = "<group>"; };
 		D43331A82A6D32AE00E6CB4B /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		D43761CD2B02555F00F9AE25 /* SearchViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewLayout.swift; sourceTree = "<group>"; };
 		D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationCell.swift; sourceTree = "<group>"; };
@@ -1120,8 +1122,8 @@
 			isa = PBXGroup;
 			children = (
 				D4D6DB042AE2BD3F007FA990 /* AreaSelectionViewController.swift */,
-				D420F1622AE4F56700DC10ED /* SiAreaTableViewCell.swift */,
-				D420F1642AE4F57300DC10ED /* GuAreaTableViewCell.swift */,
+				D420F1622AE4F56700DC10ED /* ProvinceAreaTableViewCell.swift */,
+				D420F1642AE4F57300DC10ED /* CityAreaTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1434,6 +1436,7 @@
 			children = (
 				FF5059A52A7E08DE00F90D27 /* HomeAPIEndpoints.swift */,
 				FF68013D2AD2BD8A001AB6E8 /* AuthAPIEndpoints.swift */,
+				D42F793D2B4AA6A400F571B0 /* AreaAPIEndpoints.swift */,
 				FFA6BA822ADAEE380094913E /* TagAPIEndpoints.swift */,
 				FFA6BA912ADBBDF40094913E /* UserAPIEndpoints.swift */,
 				FF35FAFC2ADD523F002D9E47 /* ReviewAPIEndpoints.swift */,
@@ -2100,7 +2103,7 @@
 				D4CABD7A2AD84FBD00BAAC5B /* RestaurantContentItemType.swift in Sources */,
 				D4034B762B025B8000D1E68D /* RecentSearchLayoutProvider.swift in Sources */,
 				FF5059B92A7E357C00F90D27 /* CheffiWriterView.swift in Sources */,
-				D420F1632AE4F56700DC10ED /* SiAreaTableViewCell.swift in Sources */,
+				D420F1632AE4F56700DC10ED /* ProvinceAreaTableViewCell.swift in Sources */,
 				D41B46012A6128C1003EF1EC /* HomeFlowCoordinator.swift in Sources */,
 				D4DBE8552B13174100D66800 /* RecentSearchCell.swift in Sources */,
 				CE42BA792A6BD52D00EBB80A /* SearchViewController.swift in Sources */,
@@ -2109,6 +2112,7 @@
 				FFC2F20B2A9094240001C86C /* MoreSubCell.swift in Sources */,
 				CE70F8992A63C692003D0ED9 /* DefaultSimilarChefRepository.swift in Sources */,
 				FFDBC63D2A8138330009189C /* TasteSelectionViewController.swift in Sources */,
+				D42F793E2B4AA6A400F571B0 /* AreaAPIEndpoints.swift in Sources */,
 				FF3197732A74C8F800F5DD41 /* CheffiMenuView.swift in Sources */,
 				D4D34BE42B3C646F00AC46A5 /* DefaultSearchRepository.swift in Sources */,
 				FF4659CA2A879B1100736AEA /* PhotoService.swift in Sources */,
@@ -2118,7 +2122,7 @@
 				D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */,
 				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,
 				FFC58AD12A8689FA0095BCF4 /* PhotoUseCase.swift in Sources */,
-				D420F1652AE4F57300DC10ED /* GuAreaTableViewCell.swift in Sources */,
+				D420F1652AE4F57300DC10ED /* CityAreaTableViewCell.swift in Sources */,
 				FF50599D2A7DFFAF00F90D27 /* NetworkConfig.swift in Sources */,
 				FFB29BBE2ACBDF50000E473E /* NotificationRepository.swift in Sources */,
 				D4D34BE62B3C655100AC46A5 /* SearchUseCase.swift in Sources */,

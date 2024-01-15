@@ -8,8 +8,8 @@
 import Combine
 
 struct CityInfo: Codable {
-    var si: String
-    var gu: String
+    var province: String
+    var city: String
 }
 
 struct AreaSelection: Hashable {
@@ -21,106 +21,121 @@ final class AreaSelectionViewModel: ViewModelType {
         
     struct Input {
         let initialize: AnyPublisher<Void, Never>
-        let didSelectSiArea: AnyPublisher<Int, Never>
-        let didSelectGuArea: AnyPublisher<Int, Never>
+        let didSelectProvince: AnyPublisher<Int, Never>
+        let didSelectCity: AnyPublisher<Int, Never>
         let didTappedComplteSelection: AnyPublisher<Void, Never>
     }
     
     struct Output {
-        let siAreas: AnyPublisher<[AreaSelection], Never>
-        let guAreas: AnyPublisher<[AreaSelection], Never>
+        let provinces: AnyPublisher<[AreaSelection], Never>
+        let cities: AnyPublisher<[AreaSelection], Never>
     }
     
     var cancellables = Set<AnyCancellable>()
     
     let useCase: AreaUseCase
     
-    private var siAreas: [AreaSelection] = []
-    private var guAreas: [[AreaSelection]] = [[]]
+    private var provinces: [AreaSelection] = []
+    private var cities: [[AreaSelection]] = [[]]
     
     init(useCase: AreaUseCase) {
         self.useCase = useCase
     }
     
     func transform(input: Input) -> Output {
-        
-        let siAreas = PassthroughSubject<[AreaSelection], Never>()
-        let guAreas = PassthroughSubject<[AreaSelection], Never>()
+        let provinces = PassthroughSubject<[AreaSelection], Never>()
+        let cities = PassthroughSubject<[AreaSelection], Never>()
         let initialize = input.initialize.share()
             .flatMap { self.useCase.getAreas() }
         
-        let siName = UserDefaultsManager.AreaInfo.area.si
-        let guName = UserDefaultsManager.AreaInfo.area.gu
+        let provinceName = UserDefaultsManager.AreaInfo.area.province
+        let cityName = UserDefaultsManager.AreaInfo.area.city
         
-        var prevTappedSiIndex = 0
-        var currentTappedSiIndex = 0
-        var currentTappedGuIndex = 0
+        var prevTappedProvinceIndex = 0
+        var currentTappedProvinceIndex = 0
+        var currentTappedCityIndex = 0
         
-        var selectedSiIndex = 0
-        var selectedGuIndex = 0
+        var selectedProvinceIndex = 0
+        var selectedCityIndex = 0
         
         initialize
-            .map { areas  -> [AreaSelection] in
-                areas.map { area in
-                    let isSelected = siName == area.si
-                    return AreaSelection(areaName: area.si, isSelected: isSelected)
+            .sink { completion in
+                switch completion {
+                // TODO: 에러 처리
+                case .failure(_):
+                    break
+                case .finished:
+                    break
                 }
-            }.sink { [weak self] areas in
+            } receiveValue: { [weak self] areas in
                 guard let self else { return }
-                self.siAreas = areas
-                siAreas.send(self.siAreas)
+                
+                self.provinces = areas.map { area in
+                    let isSelected = provinceName == area.province
+                    return AreaSelection(areaName: area.province, isSelected: isSelected)
+                }
+                
+                provinces.send(self.provinces)
             }.store(in: &cancellables)
-        
+
         initialize
-            .map { areas -> [[AreaSelection]] in
-                currentTappedSiIndex = areas.firstIndex(where: { $0.si == siName }) ?? 0
-                prevTappedSiIndex = currentTappedSiIndex
-                selectedSiIndex = currentTappedSiIndex
-                return areas.map { area in
-                    area.gu.map { gu in
-                        let isSelected = gu == guName
-                        return AreaSelection(areaName: gu, isSelected: isSelected)
+            .sink { completion in
+                switch completion {
+                // TODO: 에러 처리
+                case .failure(_):
+                    break
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] areas in
+                guard let self else { return }
+                
+                currentTappedProvinceIndex = areas.firstIndex(where: { $0.province == provinceName }) ?? 0
+                prevTappedProvinceIndex = currentTappedProvinceIndex
+                selectedProvinceIndex = currentTappedProvinceIndex
+                self.cities = areas.map { area in
+                    area.cities.map { city in
+                        let isSelected = area.province == provinceName && city == cityName
+                        return AreaSelection(areaName: city, isSelected: isSelected)
                     }
                 }
-            }.sink { [weak self] areas in
-                guard let self else { return }
-                self.guAreas = areas
-                currentTappedGuIndex = self.guAreas[selectedSiIndex].firstIndex(where: { $0.areaName == guName }) ?? 0
-                selectedGuIndex = currentTappedGuIndex
-                guAreas.send(self.guAreas[currentTappedSiIndex])
+                
+                currentTappedCityIndex = self.cities[selectedProvinceIndex].firstIndex(where: { $0.areaName == cityName }) ?? 0
+                selectedCityIndex = currentTappedCityIndex
+                cities.send(self.cities[currentTappedProvinceIndex])
             }.store(in: &cancellables)
         
-        input.didSelectSiArea
+        input.didSelectProvince
             .sink {
-                prevTappedSiIndex = currentTappedSiIndex
-                currentTappedSiIndex = $0
-                self.siAreas[prevTappedSiIndex].isSelected = false
-                self.siAreas[currentTappedSiIndex].isSelected = true
-                siAreas.send(self.siAreas)
-                guAreas.send(self.guAreas[currentTappedSiIndex])
+                prevTappedProvinceIndex = currentTappedProvinceIndex
+                currentTappedProvinceIndex = $0
+                self.provinces[prevTappedProvinceIndex].isSelected = false
+                self.provinces[currentTappedProvinceIndex].isSelected = true
+                provinces.send(self.provinces)
+                cities.send(self.cities[currentTappedProvinceIndex])
             }.store(in: &cancellables)
         
-        input.didSelectGuArea
+        input.didSelectCity
             .sink {
-                currentTappedGuIndex = $0
-                self.guAreas[selectedSiIndex][selectedGuIndex].isSelected = false
-                self.guAreas[currentTappedSiIndex][currentTappedGuIndex].isSelected = true
-                selectedSiIndex = currentTappedSiIndex
-                selectedGuIndex = currentTappedGuIndex
-                guAreas.send(self.guAreas[currentTappedSiIndex])
+                currentTappedCityIndex = $0
+                self.cities[selectedProvinceIndex][selectedCityIndex].isSelected = false
+                self.cities[currentTappedProvinceIndex][currentTappedCityIndex].isSelected = true
+                selectedProvinceIndex = currentTappedProvinceIndex
+                selectedCityIndex = currentTappedCityIndex
+                cities.send(self.cities[currentTappedProvinceIndex])
             }.store(in: &cancellables)
         
         input.didTappedComplteSelection
             .sink { _ in
                 UserDefaultsManager.AreaInfo.area = CityInfo(
-                    si: self.siAreas[selectedSiIndex].areaName,
-                    gu: self.guAreas[selectedSiIndex][selectedGuIndex].areaName
+                    province: self.provinces[selectedProvinceIndex].areaName,
+                    city: self.cities[selectedProvinceIndex][selectedCityIndex].areaName
                 )
             }.store(in: &cancellables)
         
         return Output(
-            siAreas: siAreas.eraseToAnyPublisher(),
-            guAreas: guAreas.eraseToAnyPublisher()
+            provinces: provinces.eraseToAnyPublisher(),
+            cities: cities.eraseToAnyPublisher()
         )
     }
 }
