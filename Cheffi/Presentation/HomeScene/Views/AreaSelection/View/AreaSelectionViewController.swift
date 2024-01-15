@@ -43,8 +43,8 @@ class AreaSelectionViewController: UIViewController {
     private let provinceSelectionTableView: UITableView = UITableView()
     private let citySelectionTableView: UITableView = UITableView()
         
-    private var siSelectionDiffableDataSource: UITableViewDiffableDataSource<Int, AreaSelection>?
-    private var guSelectionDiffableDataSource: UITableViewDiffableDataSource<Int, AreaSelection>?
+    private var provinceSelectionDiffableDataSource: UITableViewDiffableDataSource<Int, AreaSelection>?
+    private var citySelectionDiffableDataSource: UITableViewDiffableDataSource<Int, AreaSelection>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,13 +130,13 @@ class AreaSelectionViewController: UIViewController {
         provinceSelectionTableView.backgroundColor = .clear
         citySelectionTableView.backgroundColor = .clear
             
-        siSelectionDiffableDataSource = UITableViewDiffableDataSource<Int, AreaSelection>(tableView: provinceSelectionTableView) { (tableView, indexPath, item) -> UITableViewCell in
+        provinceSelectionDiffableDataSource = UITableViewDiffableDataSource<Int, AreaSelection>(tableView: provinceSelectionTableView) { (tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withClass: ProvinceAreaTableViewCell.self, for: indexPath)
             cell.configure(areaSelection: item)
             return cell
         }
         
-        guSelectionDiffableDataSource = UITableViewDiffableDataSource<Int, AreaSelection>(tableView: citySelectionTableView) { (tableView, indexPath, item) -> UITableViewCell in
+        citySelectionDiffableDataSource = UITableViewDiffableDataSource<Int, AreaSelection>(tableView: citySelectionTableView) { (tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withClass: CityAreaTableViewCell.self, for: indexPath)
             cell.configure(areaSelection: item)
             return cell
@@ -157,19 +157,29 @@ class AreaSelectionViewController: UIViewController {
         shadowView.layer.shadowPath = CGPath(rect: CGRect(x: 0, y: -16, width: shadowView.bounds.width, height: 32), transform: nil)
     }
     
-    private func reloadFirstSelectionItems(items: [AreaSelection]) {
+    private func reloadProvinceSelectionItems(items: [AreaSelection]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, AreaSelection>()
         snapshot.appendSections([0])
         snapshot.appendItems(items)
-        siSelectionDiffableDataSource?.apply(snapshot, animatingDifferences: false)
+        provinceSelectionDiffableDataSource?.apply(snapshot, animatingDifferences: false) {
+            if let selectedIndex = items.firstIndex(where: { $0.isSelected }) {
+                let indexPath = IndexPath(row: selectedIndex, section: 0)
+                self.provinceSelectionTableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+            }
+        }
     }
     
-    private func reloadSecondSelectionItems(items: [AreaSelection]) {
+    private func reloadCitySelectionItems(items: [AreaSelection]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, AreaSelection>()
         snapshot.appendSections([0])
         snapshot.appendItems(items)
-        guSelectionDiffableDataSource?.apply(snapshot, animatingDifferences: false)
-    }
+        citySelectionDiffableDataSource?.apply(snapshot, animatingDifferences: false) {
+            if let selectedIndex = items.firstIndex(where: { $0.isSelected }) {
+                let indexPath = IndexPath(row: selectedIndex, section: 0)
+                self.citySelectionTableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+            }
+        }
+   }
     
     private func configure(viewModel: ViewModel) {
         bind(to: viewModel)
@@ -197,13 +207,13 @@ extension AreaSelectionViewController: Bindable {
         output.provinces
             .receive(on: DispatchQueue.main)
             .sink { [weak self] items in
-                self?.reloadFirstSelectionItems(items: items)
+                self?.reloadProvinceSelectionItems(items: items)
             }.store(in: &cancellables)
         
         output.cities
             .receive(on: DispatchQueue.main)
             .sink { [weak self] items in
-                self?.reloadSecondSelectionItems(items: items)
+                self?.reloadCitySelectionItems(items: items)
             }.store(in: &cancellables)
         
         backButton.controlPublisher(for: .touchUpInside)
@@ -226,7 +236,6 @@ extension AreaSelectionViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == provinceSelectionTableView {
-            // TODO: 선택/로컬 저장후 다시 진입했을 시, index out of range 이슈
             didSelectProvinceArea.send(indexPath.row)
         } else if tableView == citySelectionTableView {
             didSelectCityArea.send(indexPath.row)

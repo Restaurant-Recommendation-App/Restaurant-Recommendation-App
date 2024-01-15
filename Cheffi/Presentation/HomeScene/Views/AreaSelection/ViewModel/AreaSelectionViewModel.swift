@@ -112,7 +112,6 @@ final class AreaSelectionViewModel: ViewModelType {
                 self.provinces[prevTappedProvinceIndex].isSelected = false
                 self.provinces[currentTappedProvinceIndex].isSelected = true
                 provinces.send(self.provinces)
-                // TODO: 선택/로컬 저장후 다시 진입했을 시, index out of range 이슈
                 cities.send(self.cities[currentTappedProvinceIndex])
             }.store(in: &cancellables)
         
