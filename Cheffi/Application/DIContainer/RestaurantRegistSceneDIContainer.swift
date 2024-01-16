@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Combine
 
-final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoodinatorDependencies {
+final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDependencies {
     struct Dependencies {
         let apiDataTransferService: DataTransferService
     }
@@ -17,21 +18,42 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoodinatorDepe
         self.dependencies = dependencies
     }
 
-    func makeRestaurantRegistFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> RestaurantRegistFlowCoodinator {
-        return RestaurantRegistFlowCoodinator(
+    func makeRestaurantRegistFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> RestaurantRegistFlowCoordinator {
+        return RestaurantRegistFlowCoordinator(
             navigationController: navigationController,
             parentCoordinator: parentCoordinator,
             dependencies: self)
     }
     
-    // MARK: - Restaurant Regist
-    func makeRestaurantRegistViewController(feature: RestaurantRegistReducer) -> RestaurantRegistViewController {
-        return RestaurantRegistViewController.instance(feature: feature)
+    // MARK: - Restaurant Regist Search
+    func makeRestaurantRegistViewController(reducer: RestaurantRegistReducer) -> RestaurantRegistViewController {
+        return RestaurantRegistViewController.instance(reducer: reducer)
     }
 
-    func makeRestaurantRegistFeature() -> RestaurantRegistReducer {
+    func makeRestaurantRegistReducer(steps: PassthroughSubject<RouteStep, Never>) -> RestaurantRegistReducer {
         let repository = makeRestaurantRepository()
-        return RestaurantRegistReducer(useCase: makeRestaurantUseCase(repository: repository))
+        return RestaurantRegistReducer(useCase: makeRestaurantUseCase(repository: repository), steps: steps)
+    }
+    
+    // MARK: - Restaurant Regist Compose
+    func makeRestaurantRegistComposeViewController(reducer: RestaurantRegistComposeReducer) -> RestaurantRegistComposeViewController {
+        return RestaurantRegistComposeViewController(reducer: reducer)
+    }
+    
+    func makeRestaurantRegistComposeReducer(steps: PassthroughSubject<RouteStep, Never>) -> RestaurantRegistComposeReducer {
+        return RestaurantRegistComposeReducer(steps: steps)
+    }
+    
+    // MARK: - Restaurant Info Compose
+    func makeRestaurantInfoComposeViewController(
+        reducer: RestaurantInfoComposeReducer,
+        restaurant: RestaurantInfoDTO
+    ) -> RestaurantInfoComposeViewController {
+        return RestaurantInfoComposeViewController(reducer: reducer, restaurant: restaurant)
+    }
+    
+    func makeRestaurantInfoComposeReducer(steps: PassthroughSubject<RouteStep, Never>) -> RestaurantInfoComposeReducer {
+        return RestaurantInfoComposeReducer(steps: steps)
     }
 
     // MARK: - Popup

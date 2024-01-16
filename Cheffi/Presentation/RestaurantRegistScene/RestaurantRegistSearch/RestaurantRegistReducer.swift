@@ -11,9 +11,14 @@ import ComposableArchitecture
 
 struct RestaurantRegistReducer: Reducer {
     let useCase: RestaurantUseCase
+    let steps: PassthroughSubject<RouteStep, Never>
 
-    init(useCase: RestaurantUseCase) {
+    init(
+        useCase: RestaurantUseCase,
+        steps: PassthroughSubject<RouteStep, Never>
+    ) {
         self.useCase = useCase
+        self.steps = steps
     }
 
     struct State: Equatable {
@@ -86,16 +91,24 @@ struct RestaurantRegistReducer: Reducer {
             case .emptyViewButtonAction(let action):
                 switch action {
                 case .tapButton:
-                    // TODO: Eli - 화면이동
+                    steps.send(.restaurantRegistCompose)
                     return .none
                 }
             }
         case .emptyViewButtonAction(let action):
             switch action {
             case .tapButton:
-                // TODO: Eli - 화면이동
+                steps.send(.restaurantRegistCompose)
+                return .none
+            }
+        case .restaurantListAction(let action):
+            switch action {
+            case .tap(let item):
+                steps.send(.restaurantInfoCompose(info: item))
                 return .none
             }
         }
     }
 }
+
+extension RestaurantRegistReducer: Stepper {}

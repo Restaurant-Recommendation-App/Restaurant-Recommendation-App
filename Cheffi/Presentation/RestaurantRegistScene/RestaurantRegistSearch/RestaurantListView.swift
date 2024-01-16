@@ -16,6 +16,12 @@ struct RestaurantListView: View {
             LazyVStack {
                 ForEach(viewStore.restaurantList, id: \.self) { restaurant in
                     RestaurantItemView(restaurant: restaurant, itemWidth: .infinity)
+                        .gesture(
+                            TapGesture()
+                                .onEnded { _ in
+                                    viewStore.send(.tap(item: restaurant))
+                                }
+                        )
                 }
             }
         }

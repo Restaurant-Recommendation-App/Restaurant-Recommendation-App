@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 import ComposableArchitecture
 import ViewStore
 
@@ -106,7 +107,8 @@ struct RestaurantRegistView_Previews: PreviewProvider {
         RestaurantRegistView(
             Store(initialState: RestaurantRegistReducer.State()) {
                 RestaurantRegistReducer(
-                    useCase: PreviewRestaurantRegistUseCase()
+                    useCase: PreviewRestaurantRegistUseCase(),
+                    steps: PassthroughSubject<RouteStep, Never>()
                 )
                     ._printChanges()
             }

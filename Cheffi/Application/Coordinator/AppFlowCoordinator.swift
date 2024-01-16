@@ -7,12 +7,12 @@
 
 import UIKit
 
-
 /// 앱의 화면 전환을 담당하는 코디네이터
 final class AppFlowCoordinator {
     let tabBarController: UITabBarController
     private let appDIContainer: AppDIContainer
     var loginNavigation: UINavigationController?
+    var restaurantRegistFlowCoordinator: RestaurantRegistFlowCoordinator!
     
     init(tabBarController: UITabBarController, appDIContainer: AppDIContainer) {
         self.tabBarController = tabBarController
@@ -69,6 +69,7 @@ final class AppFlowCoordinator {
             navigationController: restaurantRegistNavigationController,
             parentCoordinator: self
         )
+        self.restaurantRegistFlowCoordinator = restaurantRegistCoordinator
         restaurantRegistCoordinator.start()
         
         let myPageSceneDIContainer = appDIContainer.makeMyPageFlowCoordinator()

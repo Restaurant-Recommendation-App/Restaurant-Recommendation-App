@@ -12,8 +12,16 @@
 		5D89F9002B2EC693001C9DD6 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5D89F8FF2B2EC693001C9DD6 /* ComposableArchitecture */; };
 		5D89F9022B2EE836001C9DD6 /* RestaurantRegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89F9012B2EE836001C9DD6 /* RestaurantRegistView.swift */; };
 		5D89F9052B2EF25D001C9DD6 /* RestaurantRegistReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89F9042B2EF25D001C9DD6 /* RestaurantRegistReducer.swift */; };
+		6B08FE992B541D3900BBC74B /* RestaurantRegistComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE982B541D3900BBC74B /* RestaurantRegistComposeViewController.swift */; };
+		6B08FE9B2B541D6500BBC74B /* RestaurantInfoComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE9A2B541D6500BBC74B /* RestaurantInfoComposeViewController.swift */; };
+		6B08FEA02B541E7200BBC74B /* RestaurantRegistComposeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE9F2B541E7200BBC74B /* RestaurantRegistComposeReducer.swift */; };
+		6B08FEA22B541EAD00BBC74B /* RestaurantRegistComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FEA12B541EAD00BBC74B /* RestaurantRegistComposeView.swift */; };
+		6B08FEA42B54216600BBC74B /* RestaurantInfoComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FEA32B54216600BBC74B /* RestaurantInfoComposeView.swift */; };
+		6B08FEA62B54217000BBC74B /* RestaurantInfoComposeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FEA52B54217000BBC74B /* RestaurantInfoComposeReducer.swift */; };
 		6B3E2FA52B49C8F600828648 /* ViewStore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B3E2FA42B49C8F600828648 /* ViewStore */; };
 		6B7174372B42DD82009FEF35 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7174362B42DD82009FEF35 /* NavigationBarView.swift */; };
+		6B7D8AEF2B53FBAF00786ACE /* RouteStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D8AEE2B53FBAF00786ACE /* RouteStep.swift */; };
+		6B7D8AF22B54030900786ACE /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D8AF12B54030900786ACE /* Stepper.swift */; };
 		6BA9B9822B42C4AE0010290C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA9B9812B42C4AD0010290C /* SearchBarView.swift */; };
 		6BA9B9862B42D0C90010290C /* SearchBarReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA9B9852B42D0C90010290C /* SearchBarReducer.swift */; };
 		6BA9F54F2B4A8BE100A96321 /* EmptyDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA9F54E2B4A8BE100A96321 /* EmptyDescriptionView.swift */; };
@@ -34,7 +42,7 @@
 		CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45292A6195CA00636989 /* MyPageSceneDIContainer.swift */; };
 		CE0D45322A61967700636989 /* RestaurantRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45312A61967700636989 /* RestaurantRegistViewController.swift */; };
 		CE0D45342A61968200636989 /* RestaurantRegist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0D45332A61968200636989 /* RestaurantRegist.storyboard */; };
-		CE0D45362A61975100636989 /* RestaurantRegistFlowCoodinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45352A61975100636989 /* RestaurantRegistFlowCoodinator.swift */; };
+		CE0D45362A61975100636989 /* RestaurantRegistFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45352A61975100636989 /* RestaurantRegistFlowCoordinator.swift */; };
 		CE0D45382A61AA5A00636989 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45372A61AA5A00636989 /* MyPageViewController.swift */; };
 		CE0D453A2A61AA7700636989 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0D45392A61AA7700636989 /* MyPage.storyboard */; };
 		CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D453B2A61AAD700636989 /* MyPageFlowCoodinator.swift */; };
@@ -317,10 +325,18 @@
 		4FFE5AB9FA75B3E04B6128B0 /* Pods_Cheffi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheffi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D148B9BF9EC9E451CCFEBDE /* Pods-Cheffi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheffi.release.xcconfig"; path = "Target Support Files/Pods-Cheffi/Pods-Cheffi.release.xcconfig"; sourceTree = "<group>"; };
 		5D3C82B22B3811070019C6E1 /* MockRestaurantUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRestaurantUseCase.swift; sourceTree = "<group>"; };
-		5D89F9012B2EE836001C9DD6 /* RestaurantRegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantRegistView.swift; path = Cheffi/Presentation/RestaurantRegistScene/RestaurantRegistView.swift; sourceTree = SOURCE_ROOT; };
+		5D89F9012B2EE836001C9DD6 /* RestaurantRegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantRegistView.swift; path = Cheffi/Presentation/RestaurantRegistScene/RestaurantRegistSearch/RestaurantRegistView.swift; sourceTree = SOURCE_ROOT; };
 		5D89F9042B2EF25D001C9DD6 /* RestaurantRegistReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistReducer.swift; sourceTree = "<group>"; };
+		6B08FE982B541D3900BBC74B /* RestaurantRegistComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistComposeViewController.swift; sourceTree = "<group>"; };
+		6B08FE9A2B541D6500BBC74B /* RestaurantInfoComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoComposeViewController.swift; sourceTree = "<group>"; };
+		6B08FE9F2B541E7200BBC74B /* RestaurantRegistComposeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistComposeReducer.swift; sourceTree = "<group>"; };
+		6B08FEA12B541EAD00BBC74B /* RestaurantRegistComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistComposeView.swift; sourceTree = "<group>"; };
+		6B08FEA32B54216600BBC74B /* RestaurantInfoComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoComposeView.swift; sourceTree = "<group>"; };
+		6B08FEA52B54217000BBC74B /* RestaurantInfoComposeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoComposeReducer.swift; sourceTree = "<group>"; };
 		6B3E2FA32B49C78C00828648 /* ViewStore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ViewStore; sourceTree = "<group>"; };
 		6B7174362B42DD82009FEF35 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		6B7D8AEE2B53FBAF00786ACE /* RouteStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStep.swift; sourceTree = "<group>"; };
+		6B7D8AF12B54030900786ACE /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
 		6BA9B9812B42C4AD0010290C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		6BA9B9852B42D0C90010290C /* SearchBarReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarReducer.swift; sourceTree = "<group>"; };
 		6BA9F54E2B4A8BE100A96321 /* EmptyDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDescriptionView.swift; sourceTree = "<group>"; };
@@ -340,7 +356,7 @@
 		CE0D45292A6195CA00636989 /* MyPageSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSceneDIContainer.swift; sourceTree = "<group>"; };
 		CE0D45312A61967700636989 /* RestaurantRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistViewController.swift; sourceTree = "<group>"; };
 		CE0D45332A61968200636989 /* RestaurantRegist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RestaurantRegist.storyboard; sourceTree = "<group>"; };
-		CE0D45352A61975100636989 /* RestaurantRegistFlowCoodinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistFlowCoodinator.swift; sourceTree = "<group>"; };
+		CE0D45352A61975100636989 /* RestaurantRegistFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistFlowCoordinator.swift; sourceTree = "<group>"; };
 		CE0D45372A61AA5A00636989 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		CE0D45392A61AA7700636989 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		CE0D453B2A61AAD700636989 /* MyPageFlowCoodinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFlowCoodinator.swift; sourceTree = "<group>"; };
@@ -642,16 +658,6 @@
 			path = RestaurantRegist;
 			sourceTree = "<group>";
 		};
-		5D89F9032B2EF1E7001C9DD6 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				5D89F9042B2EF25D001C9DD6 /* RestaurantRegistReducer.swift */,
-				6BBB2A662B48746E00DFDD35 /* NearRestaurantListReducer.swift */,
-				6BA9F55C2B4C497C00A96321 /* RestaurantListReducer.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		65BDD68A3ABF29456FF37264 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,12 +667,58 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		6B08FE9C2B541D7C00BBC74B /* RestaurantRegistSearch */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D45312A61967700636989 /* RestaurantRegistViewController.swift */,
+				CE0D45332A61968200636989 /* RestaurantRegist.storyboard */,
+				5D89F9012B2EE836001C9DD6 /* RestaurantRegistView.swift */,
+				5D89F9042B2EF25D001C9DD6 /* RestaurantRegistReducer.swift */,
+				6BD628322B48626C00FFA805 /* NearRestaurantListView.swift */,
+				6BBB2A662B48746E00DFDD35 /* NearRestaurantListReducer.swift */,
+				6BA9F55A2B4C430D00A96321 /* RestaurantListView.swift */,
+				6BA9F55C2B4C497C00A96321 /* RestaurantListReducer.swift */,
+				6BD628302B484BC600FFA805 /* RestaurantItemView.swift */,
+			);
+			path = RestaurantRegistSearch;
+			sourceTree = "<group>";
+		};
+		6B08FE9D2B541D8D00BBC74B /* RestaurantRegistCompose */ = {
+			isa = PBXGroup;
+			children = (
+				6B08FE982B541D3900BBC74B /* RestaurantRegistComposeViewController.swift */,
+				6B08FEA12B541EAD00BBC74B /* RestaurantRegistComposeView.swift */,
+				6B08FE9F2B541E7200BBC74B /* RestaurantRegistComposeReducer.swift */,
+			);
+			path = RestaurantRegistCompose;
+			sourceTree = "<group>";
+		};
+		6B08FE9E2B541D9A00BBC74B /* RestaurantInfoCompose */ = {
+			isa = PBXGroup;
+			children = (
+				6B08FE9A2B541D6500BBC74B /* RestaurantInfoComposeViewController.swift */,
+				6B08FEA32B54216600BBC74B /* RestaurantInfoComposeView.swift */,
+				6B08FEA52B54217000BBC74B /* RestaurantInfoComposeReducer.swift */,
+			);
+			path = RestaurantInfoCompose;
+			sourceTree = "<group>";
+		};
 		6B7174352B42DD71009FEF35 /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
 				6B7174362B42DD82009FEF35 /* NavigationBarView.swift */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		6B7D8AF02B5402E300786ACE /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */,
+				6B7D8AEE2B53FBAF00786ACE /* RouteStep.swift */,
+				6B7D8AF12B54030900786ACE /* Stepper.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		6BA9B9802B42C49F0010290C /* SearchBar */ = {
@@ -727,8 +779,9 @@
 			isa = PBXGroup;
 			children = (
 				CE0D45302A61965900636989 /* Flow */,
-				5D89F9032B2EF1E7001C9DD6 /* ViewModels */,
-				CE0D452F2A61965300636989 /* View */,
+				6B08FE9C2B541D7C00BBC74B /* RestaurantRegistSearch */,
+				6B08FE9D2B541D8D00BBC74B /* RestaurantRegistCompose */,
+				6B08FE9E2B541D9A00BBC74B /* RestaurantInfoCompose */,
 			);
 			path = RestaurantRegistScene;
 			sourceTree = "<group>";
@@ -759,23 +812,10 @@
 			path = Flow;
 			sourceTree = "<group>";
 		};
-		CE0D452F2A61965300636989 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CE0D45312A61967700636989 /* RestaurantRegistViewController.swift */,
-				CE0D45332A61968200636989 /* RestaurantRegist.storyboard */,
-				5D89F9012B2EE836001C9DD6 /* RestaurantRegistView.swift */,
-				6BD628302B484BC600FFA805 /* RestaurantItemView.swift */,
-				6BD628322B48626C00FFA805 /* NearRestaurantListView.swift */,
-				6BA9F55A2B4C430D00A96321 /* RestaurantListView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		CE0D45302A61965900636989 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
-				CE0D45352A61975100636989 /* RestaurantRegistFlowCoodinator.swift */,
+				CE0D45352A61975100636989 /* RestaurantRegistFlowCoordinator.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1028,10 +1068,10 @@
 		D41B45E72A611836003EF1EC /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				6B7D8AF02B5402E300786ACE /* Coordinator */,
 				D4E244B82A60FF5A004E0167 /* AppDelegate.swift */,
 				D4E244BA2A60FF5A004E0167 /* SceneDelegate.swift */,
 				FF5059962A7DFC7200F90D27 /* AppConfigurations.swift */,
-				D41B45FC2A6126FD003EF1EC /* AppFlowCoordinator.swift */,
 				D41B45E82A611859003EF1EC /* DIContainer */,
 				D41B45FA2A612600003EF1EC /* Storyboarded.swift */,
 			);
@@ -1932,6 +1972,7 @@
 				FF14EF592AE2BB88007609FA /* ToastView.swift in Sources */,
 				D420F1712AE64BE300DC10ED /* DefaultAreaRepository.swift in Sources */,
 				CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */,
+				6B08FEA22B541EAD00BBC74B /* RestaurantRegistComposeView.swift in Sources */,
 				FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */,
 				FF5059A62A7E08DE00F90D27 /* HomeAPIEndpoints.swift in Sources */,
 				FFA6BA942ADBC0730094913E /* RecommendFollowResponse.swift in Sources */,
@@ -1958,6 +1999,7 @@
 				D4034B7A2B025C7000D1E68D /* GroupLayout.swift in Sources */,
 				FF5059B22A7E0B3100F90D27 /* Cancellable.swift in Sources */,
 				CE42BA712A6BCF3A00EBB80A /* UIViewController+Extensions.swift in Sources */,
+				6B08FEA42B54216600BBC74B /* RestaurantInfoComposeView.swift in Sources */,
 				FFA6BA832ADAEE380094913E /* TagAPIEndpoints.swift in Sources */,
 				FFB29BC32ACBE0C8000E473E /* DefaultNotificationRepository.swift in Sources */,
 				D4EEF21E2A91CE70008107DF /* Content.swift in Sources */,
@@ -1976,7 +2018,9 @@
 				FF3E0D522ACB0DA4009B236D /* ProfileTagListView.swift in Sources */,
 				CE42BA622A6B9D8F00EBB80A /* UIColor+Extensions.swift in Sources */,
 				D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */,
+				6B7D8AEF2B53FBAF00786ACE /* RouteStep.swift in Sources */,
 				D420F1692AE6480500DC10ED /* AreaDTO.swift in Sources */,
+				6B7D8AF22B54030900786ACE /* Stepper.swift in Sources */,
 				FFB29BB82ACBD79B000E473E /* NotificationHeaderView.swift in Sources */,
 				FF97932C2A72BF9900A921A0 /* AccountManager.swift in Sources */,
 				FFDBC6372A81380D0009189C /* NicknameViewController.swift in Sources */,
@@ -2001,6 +2045,7 @@
 				FFC58AD32A87519F0095BCF4 /* CameraService.swift in Sources */,
 				6BA9F55D2B4C497C00A96321 /* RestaurantListReducer.swift in Sources */,
 				6BD628332B48626C00FFA805 /* NearRestaurantListView.swift in Sources */,
+				6B08FEA62B54217000BBC74B /* RestaurantInfoComposeReducer.swift in Sources */,
 				D41B45FF2A61284D003EF1EC /* AppDIContainer.swift in Sources */,
 				CE42BA732A6BD1AE00EBB80A /* UserDefaultsManager.swift in Sources */,
 				6BA9F55B2B4C430D00A96321 /* RestaurantListView.swift in Sources */,
@@ -2008,6 +2053,7 @@
 				FFC58AD52A8756B10095BCF4 /* UIApplication+Extensions.swift in Sources */,
 				FF485D9D2A811D4B00E8B765 /* ConnectionError.swift in Sources */,
 				FF50599B2A7DFF8300F90D27 /* NetworkService.swift in Sources */,
+				6B08FE9B2B541D6500BBC74B /* RestaurantInfoComposeViewController.swift in Sources */,
 				CE0D45242A618F0C00636989 /* NationalTrendViewController.swift in Sources */,
 				FFDBC67C2A83B2ED0009189C /* UITextField+Extensions.swift in Sources */,
 				CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */,
@@ -2035,6 +2081,7 @@
 				D4C0FA732A9DB7CF0056B885 /* PaginationGenerator.swift in Sources */,
 				CE1A6A752A6286CB00FFE93D /* SimilarChefProfileCell.swift in Sources */,
 				FF5059C22A7E8E4000F90D27 /* CheffiReviewDetailViewModel.swift in Sources */,
+				6B08FE992B541D3900BBC74B /* RestaurantRegistComposeViewController.swift in Sources */,
 				D441C0232A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift in Sources */,
 				D43331A92A6D32AE00E6CB4B /* UICollectionView+Extensions.swift in Sources */,
 				6BA9F5512B4A8C9B00A96321 /* EmptyDescriptionViewReducer.swift in Sources */,
@@ -2053,7 +2100,7 @@
 				FFA6BA762ADAD9080094913E /* TasteSelectionViewModel.swift in Sources */,
 				CE0D452A2A6195CA00636989 /* MyPageSceneDIContainer.swift in Sources */,
 				FF5059A42A7E058400F90D27 /* TagDTO.swift in Sources */,
-				CE0D45362A61975100636989 /* RestaurantRegistFlowCoodinator.swift in Sources */,
+				CE0D45362A61975100636989 /* RestaurantRegistFlowCoordinator.swift in Sources */,
 				D4C871412AD3CD6900A1745B /* AllCheffiContentsViewModel.swift in Sources */,
 				6BD628312B484BC600FFA805 /* RestaurantItemView.swift in Sources */,
 				FF3197752A74C90200F5DD41 /* CheffiLocationView.swift in Sources */,
@@ -2120,6 +2167,7 @@
 				CE1A6A722A6281E200FFE93D /* ProfileView.swift in Sources */,
 				FFA6BA922ADBBDF40094913E /* UserAPIEndpoints.swift in Sources */,
 				D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */,
+				6B08FEA02B541E7200BBC74B /* RestaurantRegistComposeReducer.swift in Sources */,
 				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,
 				FFC58AD12A8689FA0095BCF4 /* PhotoUseCase.swift in Sources */,
 				D420F1652AE4F57300DC10ED /* CityAreaTableViewCell.swift in Sources */,

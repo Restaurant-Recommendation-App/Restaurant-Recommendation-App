@@ -6,18 +6,17 @@
 //
 
 import UIKit
-import SwiftUI
 import ComposableArchitecture
 
 class RestaurantRegistViewController: UIViewController {
 
-    static func instance<T: RestaurantRegistViewController>(feature: RestaurantRegistReducer) -> T {
+    static func instance<T: RestaurantRegistViewController>(reducer: RestaurantRegistReducer) -> T {
         let vc: T = .instance(storyboardName: .restaurantRegist)
-        vc.feature = feature
+        vc.reducer = reducer
         return vc
     }
 
-    private var feature: RestaurantRegistReducer!
+    private var reducer: RestaurantRegistReducer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,7 @@ class RestaurantRegistViewController: UIViewController {
         addHostingController(
             view: RestaurantRegistView(
                 Store(initialState: RestaurantRegistReducer.State()) {
-                    feature._printChanges()
+                    reducer._printChanges()
                 }
             )
         )

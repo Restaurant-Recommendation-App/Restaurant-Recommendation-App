@@ -13,7 +13,11 @@ struct RestaurantListReducer: Reducer {
         var restaurantList: [RestaurantInfoDTO] = []
     }
     
-    enum Action {}
+    enum Action {
+        case tap(item: RestaurantInfoDTO)
+    }
     
-    func reduce(into state: inout State, action: Action) -> Effect<Action> {}
+    func reduce(into state: inout State, action: Action) -> Effect<Action> {
+        .none
+    }
 }
