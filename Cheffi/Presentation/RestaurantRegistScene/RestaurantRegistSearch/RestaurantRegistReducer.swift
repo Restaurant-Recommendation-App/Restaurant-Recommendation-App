@@ -26,20 +26,24 @@ struct RestaurantRegistReducer: Reducer {
         var isEmptyNearRestaurant: Bool = false
         var isEmptyRestaurant: Bool = false
         
+        let navigationBarState = NavigationBarReducer.State(
+            title: "내 맛집 등록",
+            buttonKind: .close
+        )
         var searchBarState = SearchBarReducer.State()
         var nearRestaurantListState = NearRestaurantListReducer.State()
-        var nearRestaurantEmptyState = EmptyDescriptionViewReducer.State(
+        let nearRestaurantEmptyState = EmptyDescriptionViewReducer.State(
             imageName: "empty_near_restaurant",
             descriptionText: "성동구 근처 맛집등록 된 곳이 없어요\n첫 맛집을 발굴해볼까요?",
             emptyViewButtonState: EmptyViewButtonReducer.State(title: "맛집 직접 등록하기")
         )
         var restaurantListState = RestaurantListReducer.State()
-        var restaurantEmptyState = EmptyDescriptionViewReducer.State(
+        let restaurantEmptyState = EmptyDescriptionViewReducer.State(
             imageName: "empty_restaurant",
             descriptionText: "찾고있는 맛집이 없나요?",
             emptyViewButtonState: EmptyViewButtonReducer.State(title: "맛집 직접 등록하기")
         )
-        var emptyViewButtonState = EmptyViewButtonReducer.State(title: "등록하기")
+        let emptyViewButtonState = EmptyViewButtonReducer.State(title: "등록하기")
     }
 
     enum Action {
@@ -48,6 +52,7 @@ struct RestaurantRegistReducer: Reducer {
         case getRestaurants([RestaurantInfoDTO])
         case occerError(DataTransferError)
         
+        case navigaionBarAction(NavigationBarReducer.Action)
         case searchBarAction(SearchBarReducer.Action)
         case nearRestaurantListAction(NearRestaurantListReducer.Action)
         case nearRestaurantEmptyAction(EmptyDescriptionViewReducer.Action)
@@ -75,6 +80,12 @@ struct RestaurantRegistReducer: Reducer {
         case .occerError(let error):
             state.error = error.localizedDescription
             return .none
+        case .navigaionBarAction(let action):
+            switch action {
+            case .tap:
+                steps.send(.dismissRestaurantRegist)
+                return .none
+            }
         case .searchBarAction(let action):
             switch action {
             case .input(let text):
@@ -91,20 +102,20 @@ struct RestaurantRegistReducer: Reducer {
             case .emptyViewButtonAction(let action):
                 switch action {
                 case .tapButton:
-                    steps.send(.restaurantRegistCompose)
+                    steps.send(.pushRestaurantRegistCompose)
                     return .none
                 }
             }
         case .emptyViewButtonAction(let action):
             switch action {
             case .tapButton:
-                steps.send(.restaurantRegistCompose)
+                steps.send(.pushRestaurantRegistCompose)
                 return .none
             }
         case .restaurantListAction(let action):
             switch action {
             case .tap(let item):
-                steps.send(.restaurantInfoCompose(info: item))
+                steps.send(.pushRestaurantInfoCompose(info: item))
                 return .none
             }
         }

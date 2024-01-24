@@ -10,10 +10,10 @@ import ComposableArchitecture
 
 struct EmptyDescriptionViewReducer: Reducer {
     struct State: Equatable {
-        var imageName: String
-        var descriptionText: String
+        let imageName: String
+        let descriptionText: String
         
-        var emptyViewButtonState: EmptyViewButtonReducer.State
+        let emptyViewButtonState: EmptyViewButtonReducer.State
     }
     enum Action {
         case emptyViewButtonAction(EmptyViewButtonReducer.Action)

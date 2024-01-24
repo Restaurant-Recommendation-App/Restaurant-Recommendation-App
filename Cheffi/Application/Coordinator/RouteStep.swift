@@ -8,7 +8,8 @@
 import Foundation
 
 enum RouteStep {
-    case restaurantRegistSearch
-    case restaurantRegistCompose
-    case restaurantInfoCompose(info: RestaurantInfoDTO)
+    case dismissRestaurantRegist
+    case pushRestaurantRegistSearch
+    case pushRestaurantRegistCompose
+    case pushRestaurantInfoCompose(info: RestaurantInfoDTO)
 }

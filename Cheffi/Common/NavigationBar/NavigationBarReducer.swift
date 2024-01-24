@@ -1,20 +1,26 @@
 //
-//  EmptyViewButtonReducer.swift
+//  NavigationBarReducer.swift
 //  Cheffi
 //
-//  Created by 김문옥 on 1/7/24.
+//  Created by 김문옥 on 1/21/24.
 //
 
 import Foundation
 import ComposableArchitecture
 
-struct EmptyViewButtonReducer: Reducer {
+struct NavigationBarReducer: Reducer {
+    enum ButtonKind: String {
+        case close = "icClose"
+        case back = "icBack"
+    }
+    
     struct State: Equatable {
         let title: String
+        let buttonKind: ButtonKind
     }
     
     enum Action {
-        case tapButton
+        case tap
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {

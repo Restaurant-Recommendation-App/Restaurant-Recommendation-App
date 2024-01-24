@@ -22,7 +22,10 @@ struct RestaurantRegistView: View {
     
     var body: some View {
         VStack {
-            NavigationBarView(title: "내 맛집 등록")
+            NavigationBarView(store.scope(
+                state: \.navigationBarState,
+                action: RestaurantRegistReducer.Action.navigaionBarAction
+            ))
             
             SearchBarView(store.scope(
                 state: \.searchBarState,

@@ -38,32 +38,42 @@ final class RestaurantRegistFlowCoordinator {
             .sink { [weak self] step in
                 guard let self else { return }
                 switch step {
-                case .restaurantRegistSearch: 
+                case .dismissRestaurantRegist:
+                    return dismissRestaurantRegist()
+                case .pushRestaurantRegistSearch:
                     return pushRestaurantRegistSearch()
-                case .restaurantRegistCompose: 
+                case .pushRestaurantRegistCompose: 
                     return pushRestaurantRegistCompose()
-                case .restaurantInfoCompose(let restaurant):
+                case .pushRestaurantInfoCompose(let restaurant):
                     return pushRestaurantInfoCompose(info: restaurant)
                 }
             }
             .store(in: &cancellables)
         
-        steps.send(.restaurantRegistSearch)
+        steps.send(.pushRestaurantRegistSearch)
     }
     
-    func pushRestaurantRegistSearch() {
+    private func dismissRestaurantRegist() {
+        guard let navigationController else { return }
+        navigationController.dismiss(animated: true) { [weak self] in
+            guard let self else { return }
+            parentCoordinator?.setVCs(kind: .restaurantRegist, root: navigationController)
+        }
+    }
+    
+    private func pushRestaurantRegistSearch() {
         let reducer = dependencies.makeRestaurantRegistReducer(steps: steps)
         let vc = dependencies.makeRestaurantRegistViewController(reducer: reducer)
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func pushRestaurantRegistCompose() {
+    private func pushRestaurantRegistCompose() {
         let reducer = dependencies.makeRestaurantRegistComposeReducer(steps: steps)
         let vc = dependencies.makeRestaurantRegistComposeViewController(reducer: reducer)
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func pushRestaurantInfoCompose(info: RestaurantInfoDTO) {
+    private func pushRestaurantInfoCompose(info: RestaurantInfoDTO) {
         let reducer = dependencies.makeRestaurantInfoComposeReducer(steps: steps)
         let vc = dependencies.makeRestaurantInfoComposeViewController(reducer: reducer, restaurant: info)
         navigationController?.pushViewController(vc, animated: true)
