@@ -37,7 +37,6 @@ struct NavigationBarView: View {
             Spacer(minLength: Metrics.navigationBarViewHeight)
         }
         .frame(height: Metrics.navigationBarViewHeight)
-        .padding(.horizontal, Metrics.navigationHorizontalInset)
     }
 }
 
