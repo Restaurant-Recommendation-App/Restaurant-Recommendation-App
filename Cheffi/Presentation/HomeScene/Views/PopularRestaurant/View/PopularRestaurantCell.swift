@@ -86,6 +86,7 @@ extension PopularRestaurantCell: Bindable {
         let output = viewModel.transform(input: input)
         
         output.contentsViewModel
+            .receive(on: DispatchQueue.main)
             .sink { viewModels in
                 self.popularRestaurantContentsView.configure(
                     viewModels: viewModels,
