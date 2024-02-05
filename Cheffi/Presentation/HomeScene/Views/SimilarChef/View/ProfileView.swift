@@ -73,7 +73,7 @@ class ProfileView: UIView {
     
     func updateWriter(_ writerInfo: ReviewWriterInfoDTO?) {
         self.writerInfo = writerInfo
-        self.nicknameLabel.text = writerInfo?.name
+        self.nicknameLabel.text = writerInfo?.nickname
         self.profileImageView.kf.setImage(with: URL(string: writerInfo?.photoUrl))
         self.tagLabel.text = writerInfo?.introduction
     }

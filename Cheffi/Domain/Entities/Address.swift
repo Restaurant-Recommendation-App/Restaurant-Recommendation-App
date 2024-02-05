@@ -15,12 +15,4 @@ struct Address: Codable, Hashable {
     let roadName: String // 도로명 주소
     let fullLotNumberAddress: String // 식당 전체 지번 주소
     let fullRodNameAddress: String // 식당 전체 도로명 주소
-    
-    enum CodingKeys: String, CodingKey {
-        case province, city
-        case lotNumber = "lot_number"
-        case roadName = "road_name"
-        case fullLotNumberAddress = "full_lot_number_address"
-        case fullRodNameAddress = "full_rod_name_address"
-    }
 }

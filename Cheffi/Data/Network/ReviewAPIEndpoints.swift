@@ -9,7 +9,7 @@ import Foundation
 
 struct ReviewAPIEndpoints {
     // 리뷰 단건 조회 API
-    static func getReviews(reviewRequest: ReviewRequest) -> Endpoint<Results<ReviewInfoDTO>> {
+    static func getReview(reviewRequest: ReviewRequest) -> Endpoint<Results<ReviewInfoDTO>> {
         return Endpoint(path: "api/v1/reviews",
                         method: .get,
                         queryParametersEncodable: reviewRequest)
