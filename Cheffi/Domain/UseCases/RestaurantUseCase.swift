@@ -32,7 +32,6 @@ final class DefaultRestaurantUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -45,7 +44,6 @@ final class DefaultRestaurantUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -58,7 +56,6 @@ final class DefaultRestaurantUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -71,7 +68,6 @@ final class DefaultRestaurantUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -84,7 +80,6 @@ final class DefaultRestaurantUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -97,7 +92,6 @@ final class DefaultRestaurantUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -110,7 +104,6 @@ final class DefaultRestaurantUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -123,7 +116,6 @@ final class DefaultRestaurantUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -146,7 +138,6 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -159,7 +150,6 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -172,7 +162,6 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -185,7 +174,6 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -198,7 +186,6 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -211,7 +198,6 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -224,7 +210,6 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
@@ -237,7 +222,6 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"
