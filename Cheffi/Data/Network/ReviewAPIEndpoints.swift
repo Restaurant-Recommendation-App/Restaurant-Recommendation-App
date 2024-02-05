@@ -8,6 +8,12 @@
 import Foundation
 
 struct ReviewAPIEndpoints {
+    static func getReviewsByArea(reviewsByAreaRequest: ReviewsByAreaRequest) -> Endpoint<PaginationResults<[ContentsResponseDTO]>> {
+        return Endpoint(path: "api/v1/reviews/areas",
+                        method: .get,
+                        queryParametersEncodable: reviewsByAreaRequest)
+    }
+    
     // 리뷰 단건 조회 API
     static func getReview(reviewRequest: ReviewRequest) -> Endpoint<Results<ReviewInfoDTO>> {
         return Endpoint(path: "api/v1/reviews",
