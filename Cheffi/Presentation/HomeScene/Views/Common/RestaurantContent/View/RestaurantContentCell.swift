@@ -38,7 +38,7 @@ class RestaurantContentCell: UICollectionViewCell {
         
         restaurantContentView.configure(
             title: viewModel.title,
-            subtitle: viewModel.subtitle,
+            subtitle: viewModel.text,
             timeLockType: viewModel.timeLockType,
             itemType: contentItemType
         )

@@ -25,7 +25,7 @@ final class RestaurantContentsViewModel: ViewModelType {
     var cancellables = Set<AnyCancellable>()
     
     private let cheffiRecommendationUseCase: CheffiRecommendationUseCase
-    private let paginationGenerator =  DefaultPaginationGenerator<Content>(page: 1)
+    private let paginationGenerator =  DefaultPaginationGenerator<Content>(cursor: 0, size: 10)
     
     private var initialized = false
     private let tag: String
@@ -61,11 +61,19 @@ final class RestaurantContentsViewModel: ViewModelType {
         initialize
             .filter { !self.initialized }
             .flatMap { self.fetchContents() }
-            .sink { contents in
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                // TODO: 에러 처리
+                case .failure(_):
+                    break
+                case .finished:
+                    break
+                }
+            }, receiveValue: { contents in
                 self.items = contents
                 contentItems.send(self.items)
                 self.initialized = true
-            }.store(in: &cancellables)
+            }).store(in: &cancellables)
         
         input.verticallyScrolled
             .assign(to: &self.$scrollOffsetY)
@@ -73,10 +81,18 @@ final class RestaurantContentsViewModel: ViewModelType {
         input.scrolledToBottom
             .filter { self.paginationGenerator.fetchStatus == .ready }
             .flatMap { self.fetchContents() }
-            .sink { contents in
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                // TODO: 에러 처리
+                case .failure(_):
+                    break
+                case .finished:
+                    break
+                }
+            }, receiveValue: { contents in
                 self.items += contents
                 contentItems.send(self.items)
-            }.store(in: &cancellables)
+            }).store(in: &cancellables)
         
         return Output(
             contentItems: contentItems.eraseToAnyPublisher(),
@@ -85,18 +101,30 @@ final class RestaurantContentsViewModel: ViewModelType {
     }
     
     // TODO: 에러 처리
-    private func fetchContents() -> AnyPublisher<[RestaurantContentItemViewModel], Never> {
-        let result = CurrentValueSubject<[Content], Never>([Content]())
+    private func fetchContents() -> AnyPublisher<[RestaurantContentItemViewModel], DataTransferError> {
+        let result = CurrentValueSubject<[Content], DataTransferError>([Content]())
         
         paginationGenerator.next(
-            fetch: { page, onCompletion, onError in
-                self.cheffiRecommendationUseCase.getContents(with: self.tag, page: page)
-                    .sink { onCompletion($0) }
-                    .store(in: &self.cancellables)
+            fetch: { cursor, size, onCompletion, onError in
+                let reviewsByAreaRequest = ReviewsByAreaRequest(province: "서울특별시", city: "양천구", cursor: cursor, size: size)
+                self.cheffiRecommendationUseCase.getContents(reviewsByAreaRequest: reviewsByAreaRequest)
+                    .sink(receiveCompletion: { completion in
+                        switch completion {
+                        // TODO: 에러 처리
+                        case .failure(let error):
+                            onError(error)
+                        case .finished:
+                            break
+                        }
+                    }, receiveValue: { contents in
+                        onCompletion(contents)
+                    }).store(in: &self.cancellables)
             }, onCompletion: {
                 result.send($0)
-            }, onError: {_ in
-//                result.send(completion: .failure($0))
+            }, onError: {
+                if let dataTransferError = $0 as? DataTransferError {
+                    result.send(completion: .failure(dataTransferError))
+                }
             }
         )
         

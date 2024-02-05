@@ -41,11 +41,11 @@ class CheffiContensViewImageCell: UICollectionViewCell {
     }
     
     // MARK: - Public
-    func configure(with photoInfo: ReviewPhotoInfoDTO, reviewInfo: ReviewInfoDTO?) {
+    func configure(with photoInfo: PhotoInfoDTO, reviewInfo: ReviewInfoDTO?) {
         self.imageView.kf.setImage(with: URL(string: photoInfo.photoUrl))
         self.relativeTimLabel.setRelativeTime(from: reviewInfo?.createdDate ?? "")
         self.titleLabel.text = reviewInfo?.title
-        self.tasteLabel.text = "취향 \(reviewInfo?.matchedTagNnumber ?? 0)개 일치"
+        self.tasteLabel.text = "취향 \(reviewInfo?.matchedTagNum ?? 0)개 일치"
     }
     
     func toggleViewVisibility(isHidden: Bool) {

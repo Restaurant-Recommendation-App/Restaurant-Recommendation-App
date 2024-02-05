@@ -8,29 +8,38 @@
 import Foundation
 
 struct ContentsResponseDTO: Decodable {
-    let page: Int
-    let contents: [contentDTO]
+    typealias Identifiable = Int
+    
+    let id: Int
+    let title: String
+    let text: String
+    let photo: PhotoInfoDTO
+    let timeLeftToLock: Int
+    let locked: Bool
+    let viewCount: Int
+    let number: Int
+    let reviewStatus: String
+    let writtenByUser: Bool
+    let bookmarked: Bool
+    let purchased: Bool
+    let active: Bool
 }
 
 extension ContentsResponseDTO {
-    struct contentDTO: Decodable, Identifiable {
-        typealias Identifiable = String
-        
-        // TODO: 서버 데이터 정해진 후 수정 필요
-        var id: Identifiable = UUID().uuidString
-        let title: String
-        let subtitle: String
-        let contentTimeLockMilliSeconds: Int
-    }
-}
-
-extension ContentsResponseDTO.contentDTO {
     func toDomain() -> Content {
         .init(
             id: id,
             title: title,
-            subtitle: subtitle,
-            contentTimeLockSeconds: contentTimeLockMilliSeconds
-        )
+            text: text,
+            photo: photo,
+            timeLeftToLock: timeLeftToLock,
+            locked: locked,
+            viewCount: viewCount,
+            number: number,
+            reviewStatus: reviewStatus,
+            writtenByUser: writtenByUser,
+            bookmarked: bookmarked,
+            purchased: purchased,
+            active: active)
     }
 }

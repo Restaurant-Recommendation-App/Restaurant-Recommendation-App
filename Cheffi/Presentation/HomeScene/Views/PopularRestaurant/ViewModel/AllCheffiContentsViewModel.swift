@@ -16,7 +16,7 @@ struct AllCheffiContentsViewModelActions {
 final class AllCheffiContentsViewModel: ViewModelType {
     
     private enum Constants {
-        static let dayMilliseconds = 86400000
+        static let dayMilliseconds: Int = 86400000
     }
     
     struct Input {

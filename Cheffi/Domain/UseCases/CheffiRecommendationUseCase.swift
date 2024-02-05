@@ -10,7 +10,7 @@ import Combine
 
 protocol CheffiRecommendationUseCase {
     func getTags() -> AnyPublisher<[String], Never>
-    func getContents(with tag: String, page: Int) -> AnyPublisher<[Content], Never>
+    func getContents(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<[Content], DataTransferError>
 }
 
 final class DefaultCheffiRecommendationUseCase: CheffiRecommendationUseCase {
@@ -25,9 +25,9 @@ final class DefaultCheffiRecommendationUseCase: CheffiRecommendationUseCase {
         cheffiRecommendationRepository.getTags()
     }
     
-    func getContents(with tag: String, page: Int) -> AnyPublisher<[Content], Never> {
-        cheffiRecommendationRepository.getContents(with: tag, page: page)
-            .map { $0.map { $0.toDomain() } }
+    func getContents(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<[Content], DataTransferError> {
+        cheffiRecommendationRepository.getContents(reviewsByAreaRequest: reviewsByAreaRequest)
+            .map { $0.0.data.map { $0.toDomain() } }
             .eraseToAnyPublisher()
     }
     
