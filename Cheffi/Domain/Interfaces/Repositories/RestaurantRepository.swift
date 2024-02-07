@@ -10,4 +10,5 @@ import Combine
 
 protocol RestaurantRepository {
     func getRestaurants(name: String, province: String, city: String) -> AnyPublisher<(Results<[RestaurantInfoDTO]>, HTTPURLResponse), DataTransferError>
+    func registRestaurant(restaurant: RestaurantInfoDTO) -> AnyPublisher<(Results<Int>, HTTPURLResponse), DataTransferError>
 }

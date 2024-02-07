@@ -41,7 +41,8 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     }
     
     func makeRestaurantRegistComposeReducer(steps: PassthroughSubject<RouteStep, Never>) -> RestaurantRegistComposeReducer {
-        return RestaurantRegistComposeReducer(steps: steps)
+        let repository = makeRestaurantRepository()
+        return RestaurantRegistComposeReducer(useCase: makeRestaurantUseCase(repository: repository), steps: steps)
     }
     
     // MARK: - Restaurant Info Compose

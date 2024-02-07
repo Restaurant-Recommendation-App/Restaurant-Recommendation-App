@@ -22,84 +22,99 @@ struct RestaurantRegistComposeView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            NavigationBarView(store.scope(
-                state: \.navigationBarState,
-                action: RestaurantRegistComposeReducer.Action.navigaionBarAction
-            ))
-            
-            Text("등록하는 식당의\n정보를 알려주세요.")
-                .font(
-                    Font.custom("SUIT", size: 20)
-                        .weight(.bold)
-                )
-                .foregroundColor(.cheffiGray8)
-                .padding(Metrics.headlineTextPadding)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            Text("주소")
-                .font(
-                    Font.custom("SUIT", size: 14)
-                        .weight(.bold)
-                )
-                .foregroundColor(.cheffiGray8)
-                .padding(.top, Metrics.titleTextTopPadding)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            HStack(spacing: 0) {
-                DropDownPickerView(store.scope(
-                    state: \.provinceDropDownPickerState,
-                    action: RestaurantRegistComposeReducer.Action.provinceDropDownPickerAction
+        ZStack {
+            VStack(spacing: 0) {
+                NavigationBarView(store.scope(
+                    state: \.navigationBarState,
+                    action: RestaurantRegistComposeReducer.Action.navigaionBarAction
+                ))
+                
+                Text("등록하는 식당의\n정보를 알려주세요.")
+                    .font(
+                        Font.custom("SUIT", size: 20)
+                            .weight(.bold)
+                    )
+                    .foregroundColor(.cheffiGray8)
+                    .padding(Metrics.headlineTextPadding)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text("주소")
+                    .font(
+                        Font.custom("SUIT", size: 14)
+                            .weight(.bold)
+                    )
+                    .foregroundColor(.cheffiGray8)
+                    .padding(.top, Metrics.titleTextTopPadding)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                HStack(spacing: 0) {
+                    DropDownPickerView(store.scope(
+                        state: \.provinceDropDownPickerState,
+                        action: RestaurantRegistComposeReducer.Action.provinceDropDownPickerAction
+                    ))
+                    
+                    Spacer()
+                        .frame(width: Metrics.dropDownPickerSpacing)
+                    
+                    DropDownPickerView(store.scope(
+                        state: \.cityDropDownPickerState,
+                        action: RestaurantRegistComposeReducer.Action.cityDropDownPickerAction
+                    ))
+                    
+                }
+                .frame(height: Metrics.dropDownPickerHStackHeight)
+                .padding(.top, Metrics.dropDownPickerPadding)
+                .zIndex(10) // 드롭다운이 다른 모든 뷰들을 바닥에 깔고 그 위에 보일 수 있도록
+                
+                TextFieldBarView(store.scope(
+                    state: \.roadNameAddressTextFieldBarState,
+                    action: RestaurantRegistComposeReducer.Action.roadNameAddressTextFieldBarAction
+                ))
+                
+                Text("식당이름")
+                    .font(
+                        Font.custom("SUIT", size: 14)
+                            .weight(.bold)
+                    )
+                    .foregroundColor(.cheffiGray8)
+                    .padding(.top, Metrics.titleTextTopPadding)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                TextFieldBarView(store.scope(
+                    state: \.restaurantNameTextFieldBarState,
+                    action: RestaurantRegistComposeReducer.Action.restaurantNameTextFieldBarAction
                 ))
                 
                 Spacer()
-                    .frame(width: Metrics.dropDownPickerSpacing)
                 
-                DropDownPickerView(store.scope(
-                    state: \.cityDropDownPickerState,
-                    action: RestaurantRegistComposeReducer.Action.cityDropDownPickerAction
+                ConfirmButtonView(store.scope(
+                    state: \.bottomButtonState,
+                    action: RestaurantRegistComposeReducer.Action.bottomButtonAction
                 ))
-                
             }
-            .frame(height: Metrics.dropDownPickerHStackHeight)
-            .padding(.top, Metrics.dropDownPickerPadding)
-            .zIndex(10) // 드롭다운이 다른 모든 뷰들을 바닥에 깔고 그 위에 보일 수 있도록
+            .padding(.horizontal, Metrics.safeAreaPadding)
             
-            TextFieldBarView(store.scope(
-                state: \.roadNameAddressTextFieldBarState,
-                action: RestaurantRegistComposeReducer.Action.roadNameAddressTextFieldBarAction
-            ))
-            
-            Text("식당이름")
-                .font(
-                    Font.custom("SUIT", size: 14)
-                        .weight(.bold)
-                )
-                .foregroundColor(.cheffiGray8)
-                .padding(.top, Metrics.titleTextTopPadding)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            TextFieldBarView(store.scope(
-                state: \.restaurantNameTextFieldBarState,
-                action: RestaurantRegistComposeReducer.Action.restaurantNameTextFieldBarAction
-            ))
-            
-            Spacer()
-            
-            BottomButtonView(store.scope(
-                state: \.bottomButtonState,
-                action: RestaurantRegistComposeReducer.Action.bottomButtonAction
-            ))
+            if viewStore.isShowConfirmPopup {
+                ConfirmPopupView(store.scope(
+                    state: \.confirmPopupState,
+                    action: RestaurantRegistComposeReducer.Action.confirmPopupAction
+                ))
+            }
         }
-        .safeAreaPadding(.horizontal, Metrics.safeAreaPadding)
+        .animation(.default, value: viewStore.isShowConfirmPopup)
     }
 }
 
 struct RestaurantRegistComposeView_Preview: PreviewProvider {
     static var previews: some View {
         RestaurantRegistComposeView(
-            Store(initialState: RestaurantRegistComposeReducer.State()) {
-                RestaurantRegistComposeReducer(steps: PassthroughSubject<RouteStep, Never>())._printChanges()
+            Store(initialState: RestaurantRegistComposeReducer.State(
+                isShowConfirmPopup: false
+            )) {
+                RestaurantRegistComposeReducer(
+                    useCase: PreviewRestaurantRegistUseCase(),
+                    steps: PassthroughSubject<RouteStep, Never>()
+                )._printChanges()
             }
         )
     }

@@ -8,6 +8,7 @@
 import Foundation
 
 enum RouteStep {
+    case popToNavigationController
     case dismissRestaurantRegist
     case pushRestaurantRegistSearch
     case pushRestaurantRegistCompose

@@ -38,6 +38,11 @@ enum UserDefaultsManager {
         @UserDefault(key: "area", defaultValue: CityInfo(province: "서울특별시", city: "강남구"))
         static var area: CityInfo
     }
+    
+    enum Understanding {
+        @UserDefault(key: "reviewCanBeDeleted", defaultValue: false)
+        static var reviewCanBeDeleted: Bool
+    }
 }
 
 extension UserDefaultsManager {

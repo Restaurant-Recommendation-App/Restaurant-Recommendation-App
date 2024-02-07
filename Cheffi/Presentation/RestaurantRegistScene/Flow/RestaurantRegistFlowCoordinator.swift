@@ -38,11 +38,13 @@ final class RestaurantRegistFlowCoordinator {
             .sink { [weak self] step in
                 guard let self else { return }
                 switch step {
+                case .popToNavigationController:
+                    return popToNavigationController()
                 case .dismissRestaurantRegist:
                     return dismissRestaurantRegist()
                 case .pushRestaurantRegistSearch:
                     return pushRestaurantRegistSearch()
-                case .pushRestaurantRegistCompose: 
+                case .pushRestaurantRegistCompose:
                     return pushRestaurantRegistCompose()
                 case .pushRestaurantInfoCompose(let restaurant):
                     return pushRestaurantInfoCompose(info: restaurant)
@@ -51,6 +53,10 @@ final class RestaurantRegistFlowCoordinator {
             .store(in: &cancellables)
         
         steps.send(.pushRestaurantRegistSearch)
+    }
+    
+    private func popToNavigationController() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func dismissRestaurantRegist() {
