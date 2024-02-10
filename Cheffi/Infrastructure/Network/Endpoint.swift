@@ -141,9 +141,13 @@ extension Requestable {
             )
         case .multipartFormData:
             guard let request = bodyParameters["request"] as? Codable else { return nil }
+            
             let jsonEncoder = JSONEncoder()
+            jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
+            
             guard let jsonData = try? jsonEncoder.encode(request) else { return nil }
             guard let jsonString = String(data: jsonData, encoding: .utf8) else { return nil }
+            
             let textData: [String: String] = ["request": jsonString]
             var httpBody = Data()
             for (key, value) in textData {
@@ -218,8 +222,12 @@ private extension Dictionary {
 
 private extension Encodable {
     func toDictionary() throws -> [String: Any]? {
-        let data = try JSONEncoder().encode(self)
+        let jsonEecoder = JSONEncoder()
+        jsonEecoder.keyEncodingStrategy = .convertToSnakeCase
+        
+        let data = try jsonEecoder.encode(self)
         let jsonData = try JSONSerialization.jsonObject(with: data)
+        
         return jsonData as? [String : Any]
     }
 }
