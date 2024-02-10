@@ -8,10 +8,18 @@
 import Foundation
 
 struct ReviewAPIEndpoints {
+    // 지역맛집 리뷰 조회 API
     static func getReviewsByArea(reviewsByAreaRequest: ReviewsByAreaRequest) -> Endpoint<PaginationResults<[ContentsResponseDTO]>> {
         return Endpoint(path: "api/v1/reviews/areas",
                         method: .get,
                         queryParametersEncodable: reviewsByAreaRequest)
+    }
+    
+    // 태그별 지역맛집 리뷰 조회 API
+    static func getReviewsByTag(reviewsByTagRequest: ReviewsByTagRequest) -> Endpoint<PaginationResults<[ContentsResponseDTO]>> {
+        return Endpoint(path: "api/v1/reviews/areas/tags",
+                        method: .get,
+                        queryParametersEncodable: reviewsByTagRequest)
     }
     
     // 리뷰 단건 조회 API

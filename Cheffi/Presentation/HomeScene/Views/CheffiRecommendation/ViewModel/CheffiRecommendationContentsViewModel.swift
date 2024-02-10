@@ -106,8 +106,12 @@ final class RestaurantContentsViewModel: ViewModelType {
         
         paginationGenerator.next(
             fetch: { cursor, size, onCompletion, onError in
-                let reviewsByAreaRequest = ReviewsByAreaRequest(province: "서울특별시", city: "양천구", cursor: cursor, size: size)
-                self.cheffiRecommendationUseCase.getContents(reviewsByAreaRequest: reviewsByAreaRequest)
+                let reviewsByTagRequest = ReviewsByTagRequest(province: "서울특별시", 
+                                                              city: "강남구",
+                                                              cursor: cursor,
+                                                              size: size,
+                                                              tagId: 15)
+                self.cheffiRecommendationUseCase.getContentsByTag(reviewsByTagRequest: reviewsByTagRequest)
                     .sink(receiveCompletion: { completion in
                         switch completion {
                         // TODO: 에러 처리

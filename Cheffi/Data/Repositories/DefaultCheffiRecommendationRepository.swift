@@ -27,8 +27,13 @@ extension DefaultCheffiRecommendationRepository: CheffiRecommendationRepository 
         Just(["한식", "양식", "중식", "일식", "퓨전", "샐러드"]).eraseToAnyPublisher()
     }
     
-    func getContents(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<(PaginationResults<[ContentsResponseDTO]>, HTTPURLResponse), DataTransferError> {
+    func getContentsByArea(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<(PaginationResults<[ContentsResponseDTO]>, HTTPURLResponse), DataTransferError> {
         let endPoint = ReviewAPIEndpoints.getReviewsByArea(reviewsByAreaRequest: reviewsByAreaRequest)
+        return dataTransferService.request(with: endPoint, on: backgroundQueue).eraseToAnyPublisher()
+    }
+    
+    func getContentsByTag(reviewsByTagRequest: ReviewsByTagRequest) -> AnyPublisher<(PaginationResults<[ContentsResponseDTO]>, HTTPURLResponse), DataTransferError> {
+        let endPoint = ReviewAPIEndpoints.getReviewsByTag(reviewsByTagRequest: reviewsByTagRequest)
         return dataTransferService.request(with: endPoint, on: backgroundQueue).eraseToAnyPublisher()
     }
 }

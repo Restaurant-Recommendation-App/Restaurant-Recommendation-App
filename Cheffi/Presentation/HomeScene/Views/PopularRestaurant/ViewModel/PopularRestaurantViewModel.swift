@@ -48,7 +48,7 @@ final class PopularRestaurantViewModel: ViewModelType {
                                                                 city: "강남구",
                                                                 cursor: 0,
                                                                 size: 16)
-                return self.cheffiRecommendationUseCase.getContents(reviewsByAreaRequest: reviewsByAreaRequest)
+                return self.cheffiRecommendationUseCase.getContentsByArea(reviewsByAreaRequest: reviewsByAreaRequest)
             }
             .map { $0.map(RestaurantContentItemViewModel.init)}
             .sink(receiveCompletion: { completion in

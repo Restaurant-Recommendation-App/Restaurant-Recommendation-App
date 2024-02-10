@@ -76,6 +76,7 @@
 		CEABD7202A6BFF8E001BC131 /* SimilarChefListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD71F2A6BFF8E001BC131 /* SimilarChefListViewController.swift */; };
 		CEABD7222A6BFF99001BC131 /* SimilarChefList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEABD7212A6BFF99001BC131 /* SimilarChefList.storyboard */; };
 		CEABD7242A6BFFC8001BC131 /* SimilarChefListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD7232A6BFFC8001BC131 /* SimilarChefListViewModel.swift */; };
+		D400B6422B77741000834634 /* ReviewsByTagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D400B6412B77741000834634 /* ReviewsByTagRequest.swift */; };
 		D4034B762B025B8000D1E68D /* RecentSearchLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4034B752B025B8000D1E68D /* RecentSearchLayoutProvider.swift */; };
 		D4034B782B025BA900D1E68D /* SectionLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4034B772B025BA900D1E68D /* SectionLayoutProvider.swift */; };
 		D4034B7A2B025C7000D1E68D /* GroupLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4034B792B025C7000D1E68D /* GroupLayout.swift */; };
@@ -395,6 +396,7 @@
 		CEABD71F2A6BFF8E001BC131 /* SimilarChefListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarChefListViewController.swift; sourceTree = "<group>"; };
 		CEABD7212A6BFF99001BC131 /* SimilarChefList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SimilarChefList.storyboard; sourceTree = "<group>"; };
 		CEABD7232A6BFFC8001BC131 /* SimilarChefListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarChefListViewModel.swift; sourceTree = "<group>"; };
+		D400B6412B77741000834634 /* ReviewsByTagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsByTagRequest.swift; sourceTree = "<group>"; };
 		D4034B752B025B8000D1E68D /* RecentSearchLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchLayoutProvider.swift; sourceTree = "<group>"; };
 		D4034B772B025BA900D1E68D /* SectionLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionLayoutProvider.swift; sourceTree = "<group>"; };
 		D4034B792B025C7000D1E68D /* GroupLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupLayout.swift; sourceTree = "<group>"; };
@@ -1470,6 +1472,7 @@
 				FF35FB0D2ADD5730002D9E47 /* ReviewRequest.swift */,
 				FF35FB0F2ADD75A8002D9E47 /* PurchaseReviewRequest.swift */,
 				D445B8F22B69384E002EE677 /* ReviewsByAreaRequest.swift */,
+				D400B6412B77741000834634 /* ReviewsByTagRequest.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -2065,6 +2068,7 @@
 				6BA9F55B2B4C430D00A96321 /* RestaurantListView.swift in Sources */,
 				D49D1A8E2A73942700CB86FA /* ViewModelType.swift in Sources */,
 				FFC58AD52A8756B10095BCF4 /* UIApplication+Extensions.swift in Sources */,
+				D400B6422B77741000834634 /* ReviewsByTagRequest.swift in Sources */,
 				FF485D9D2A811D4B00E8B765 /* ConnectionError.swift in Sources */,
 				FF50599B2A7DFF8300F90D27 /* NetworkService.swift in Sources */,
 				6B08FE9B2B541D6500BBC74B /* RestaurantInfoComposeViewController.swift in Sources */,

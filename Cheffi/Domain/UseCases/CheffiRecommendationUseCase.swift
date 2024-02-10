@@ -10,7 +10,8 @@ import Combine
 
 protocol CheffiRecommendationUseCase {
     func getTags() -> AnyPublisher<[String], Never>
-    func getContents(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<[Content], DataTransferError>
+    func getContentsByArea(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<[Content], DataTransferError>
+    func getContentsByTag(reviewsByTagRequest: ReviewsByTagRequest) -> AnyPublisher<[Content], DataTransferError>
 }
 
 final class DefaultCheffiRecommendationUseCase: CheffiRecommendationUseCase {
@@ -25,10 +26,15 @@ final class DefaultCheffiRecommendationUseCase: CheffiRecommendationUseCase {
         cheffiRecommendationRepository.getTags()
     }
     
-    func getContents(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<[Content], DataTransferError> {
-        cheffiRecommendationRepository.getContents(reviewsByAreaRequest: reviewsByAreaRequest)
+    func getContentsByArea(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<[Content], DataTransferError> {
+        cheffiRecommendationRepository.getContentsByArea(reviewsByAreaRequest: reviewsByAreaRequest)
             .map { $0.0.data.map { $0.toDomain() } }
             .eraseToAnyPublisher()
     }
     
+    func getContentsByTag(reviewsByTagRequest: ReviewsByTagRequest) -> AnyPublisher<[Content], DataTransferError> {
+        cheffiRecommendationRepository.getContentsByTag(reviewsByTagRequest: reviewsByTagRequest)
+            .map { $0.0.data.map { $0.toDomain() } }
+            .eraseToAnyPublisher()
+    }
 }
