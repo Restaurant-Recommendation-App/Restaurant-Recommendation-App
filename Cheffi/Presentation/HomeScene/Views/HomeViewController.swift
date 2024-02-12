@@ -121,7 +121,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(categoryPageViewDelegate: cheffiRecommendationHeader.categoryTabView)
             cheffiRecommendationHeader.configure(categoryTabViewDelegate: cell.cheffiRecommendationCatogoryPageView)
             
-            cell.setUpTabNames = cheffiRecommendationHeader.setUpTabTitles
+            cell.setUpTabNames = cheffiRecommendationHeader.setUpTabCategories
             cell.configure(viewModel: self.viewModel.recommendationViewModel)
             return cell
             

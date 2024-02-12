@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol CheffiRecommendationUseCase {
-    func getTags() -> AnyPublisher<[String], Never>
+    func getTags() -> AnyPublisher<[Tag], DataTransferError>
     func getContentsByArea(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<[Content], DataTransferError>
     func getContentsByTag(reviewsByTagRequest: ReviewsByTagRequest) -> AnyPublisher<[Content], DataTransferError>
 }
@@ -22,8 +22,10 @@ final class DefaultCheffiRecommendationUseCase: CheffiRecommendationUseCase {
         self.cheffiRecommendationRepository = repository
     }
     
-    func getTags() -> AnyPublisher<[String], Never> {
+    func getTags() -> AnyPublisher<[Tag], DataTransferError> {
         cheffiRecommendationRepository.getTags()
+            .map { $0.0.data.map { $0.toDomain() } }
+            .eraseToAnyPublisher()
     }
     
     func getContentsByArea(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<[Content], DataTransferError> {

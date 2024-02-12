@@ -22,9 +22,9 @@ class DefaultCheffiRecommendationRepository {
 }
 
 extension DefaultCheffiRecommendationRepository: CheffiRecommendationRepository {
-    func getTags() -> AnyPublisher<[String], Never> {
-        // TODO: 서비스 객체 사용
-        Just(["한식", "양식", "중식", "일식", "퓨전", "샐러드"]).eraseToAnyPublisher()
+    func getTags() -> AnyPublisher<(Results<[TagDTO]>, HTTPURLResponse), DataTransferError> {
+        let endPoint = TagAPIEndpoints.getTags(type: .food)
+        return dataTransferService.request(with: endPoint, on: backgroundQueue).eraseToAnyPublisher()
     }
     
     func getContentsByArea(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<(PaginationResults<[ContentsResponseDTO]>, HTTPURLResponse), DataTransferError> {

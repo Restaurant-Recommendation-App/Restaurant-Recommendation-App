@@ -38,14 +38,24 @@ final class CheffiRecommendationViewModel: ViewModelType {
         input.initialize
             .filter { !self.initialized }
             .flatMap { self.cheffiRecommendationUseCase.getTags() }
-            .sink { tags in
+            .sink { completion in
+                switch completion {
+                // TODO: 에러 처리
+                case .failure(_):
+                    break
+                case .finished:
+                    break
+                }
+            } receiveValue: { tags in
                 let viewModels = tags.map {
                     RestaurantContentsViewModel(
-                        tag: $0,
+                        tagId: $0.id,
                         cheffiRecommendationUseCase: self.cheffiRecommendationUseCase
                     )
                 }
-                categories.send((tags, viewModels))
+                
+                let tagNames = tags.map { $0.name }
+                categories.send((tagNames, viewModels))
                 self.initialized = true
             }.store(in: &cancellables)
 

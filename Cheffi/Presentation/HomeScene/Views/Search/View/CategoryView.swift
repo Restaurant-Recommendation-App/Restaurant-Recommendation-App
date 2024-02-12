@@ -24,15 +24,7 @@ class CategoryCell: UICollectionViewCell {
         
         return view
     }()
-    
-    var selectedState: Bool = false {
-        didSet { didChangeCategory() }
-    }
-    
-    override var isSelected: Bool {
-        didSet { selectedState = isSelected }
-    }
-        
+            
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -59,7 +51,7 @@ class CategoryCell: UICollectionViewCell {
         self.title.text = title
     }
     
-    private func didChangeCategory() {
+    func didChangeCategory(selectedState: Bool) {
         if selectedState {
             title.font = Fonts.suit.weight700.size(15)
             title.textColor = .cheffiBlack
@@ -80,10 +72,19 @@ class CategoryCell: UICollectionViewCell {
     }
 }
 
+protocol CategoryPageViewDelegate: AnyObject {
+    func categoryPageViewDelegate(_ view: UICollectionView, didSwipe indexPath: IndexPath?)
+}
+
+protocol CategoryTabViewDelegate: AnyObject {
+    func didTapCategory(index: Int)
+}
+
 class CategoryView: UICollectionView {
     weak var categoryDelegate: CategoryTabViewDelegate?
     
-    var categories: [SearchCategory] = []
+    var categories: [String] = []
+    var selectedIndexPath: IndexPath?
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -102,8 +103,22 @@ class CategoryView: UICollectionView {
         register(cellWithClass: CategoryCell.self)
     }
     
-    func configure(categories: [SearchCategory]) {
+    func configure(categories: [String]) {
         self.categories = categories
+        selectInitialCategory()
+        reloadData()
+        
+        collectionViewLayout.invalidateLayout()
+    }
+    
+    func selectInitialCategory() {
+        collectionView(self, didSelectItemAt: IndexPath(item: 0, section: 0))
+    }
+    
+    func selectItem(animated: Bool) {
+        guard let indexPath = selectedIndexPath else { return }
+        
+        scrollToItem(at: indexPath, at: .centeredHorizontally, animated: animated)
         reloadData()
     }
 }
@@ -111,8 +126,10 @@ class CategoryView: UICollectionView {
 // MARK: - UICollectionViewDelegate
 extension CategoryView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withClass: CategoryCell.self, for: indexPath)
-        cell.isSelected.toggle()
+        guard indexPath != selectedIndexPath else { return }
+        
+        selectedIndexPath = indexPath
+        selectItem(animated: true)
         
         categoryDelegate?.didTapCategory(index: indexPath.item)
     }
@@ -126,11 +143,8 @@ extension CategoryView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: CategoryCell.self, for: indexPath)
-        cell.configure(title: categories[indexPath.item].title)
-        
-        if indexPath.item == 0 {
-            selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-        }
+        cell.configure(title: categories[indexPath.item])
+        cell.didChangeCategory(selectedState: selectedIndexPath == indexPath)
         
         return cell
     }
@@ -149,5 +163,18 @@ extension CategoryView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+     }
+}
+
+extension CategoryView: CategoryPageViewDelegate {
+    func categoryPageViewDelegate(_ view: UICollectionView, didSwipe indexPath: IndexPath?) {
+        guard indexPath != selectedIndexPath else { return }
+        
+        selectedIndexPath = indexPath
+        selectItem(animated: true)
     }
 }

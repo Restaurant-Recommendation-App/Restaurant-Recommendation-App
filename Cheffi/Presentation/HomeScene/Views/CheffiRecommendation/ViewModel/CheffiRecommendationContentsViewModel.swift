@@ -28,14 +28,14 @@ final class RestaurantContentsViewModel: ViewModelType {
     private let paginationGenerator =  DefaultPaginationGenerator<Content>(cursor: 0, size: 10)
     
     private var initialized = false
-    private let tag: String
+    private let tagId: Int?
     
     @Published private var scrollOffsetY: CGFloat = 0
     
     var items = [RestaurantContentItemViewModel]()
             
-    init(tag: String, cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
-        self.tag = tag
+    init(tagId: Int?, cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
+        self.tagId = tagId
         self.cheffiRecommendationUseCase = cheffiRecommendationUseCase
     }
     
@@ -106,15 +106,27 @@ final class RestaurantContentsViewModel: ViewModelType {
         
         paginationGenerator.next(
             fetch: { cursor, size, onCompletion, onError in
-                let reviewsByTagRequest = ReviewsByTagRequest(province: "서울특별시", 
-                                                              city: "강남구",
-                                                              cursor: cursor,
-                                                              size: size,
-                                                              tagId: 15)
-                self.cheffiRecommendationUseCase.getContentsByTag(reviewsByTagRequest: reviewsByTagRequest)
+                let contents: AnyPublisher<[Content], DataTransferError>
+                
+                if let tagId = tagId {
+                    let reviewsByTagRequest = ReviewsByTagRequest(province: "서울특별시",
+                                                                  city: "강남구",
+                                                                  cursor: cursor,
+                                                                  size: size,
+                                                                  tagId: tagId)
+                    contents = self.cheffiRecommendationUseCase.getContentsByTag(reviewsByTagRequest: reviewsByTagRequest)
+                } else {
+                    let reviewsByAreaRequest = ReviewsByAreaRequest(province: "서울특별시",
+                                                                    city: "강남구",
+                                                                    cursor: cursor,
+                                                                    size: size)
+                    contents = self.cheffiRecommendationUseCase.getContentsByArea(reviewsByAreaRequest: reviewsByAreaRequest)
+                }
+                
+                contents
                     .sink(receiveCompletion: { completion in
                         switch completion {
-                        // TODO: 에러 처리
+                            // TODO: 에러 처리
                         case .failure(let error):
                             onError(error)
                         case .finished:

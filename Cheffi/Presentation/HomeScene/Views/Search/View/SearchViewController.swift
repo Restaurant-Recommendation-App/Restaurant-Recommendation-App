@@ -122,7 +122,7 @@ class SearchViewController: UIViewController {
     }
     
     private func setUpTableView(recentSearches: [[String]]) {
-        categoryTabView.configure(categories: [SearchCategory.food, SearchCategory.area])
+        categoryTabView.configure(categories: [SearchCategory.food.title, SearchCategory.area.title])
         searchCategoryListView.configure(viewModels: recentSearches)
     }
     

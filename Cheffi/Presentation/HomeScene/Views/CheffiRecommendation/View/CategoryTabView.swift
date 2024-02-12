@@ -53,12 +53,9 @@ class TabButton: UIButton {
     }
 }
 
-protocol CategoryTabViewDelegate: AnyObject {
-    func didTapCategory(index: Int)
-}
-
 // TODO: 제거 필요, CategoryView로 대체
 class CategoryTabView: UIView {
+    weak var categoryDelegate: CategoryTabViewDelegate?
     
     private enum Constants {
         static let cellInset = 16
@@ -77,8 +74,6 @@ class CategoryTabView: UIView {
         let view = UIView()
         return view
     }()
-    
-    weak var delegate: CategoryTabViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -146,7 +141,7 @@ class CategoryTabView: UIView {
     
     @objc func tappedCategory(_ sender: UIButton) {
         changeSelected(with: sender.tag)
-        delegate?.didTapCategory(index: sender.tag)
+        categoryDelegate?.didTapCategory(index: sender.tag)
     }
     
     private func changeSelected(with selectedTag: Int) {
@@ -162,8 +157,8 @@ class CategoryTabView: UIView {
     }
 }
 
-extension CategoryTabView: CheffiRecommendationCategoryPageViewDelegate {
-    func didSwipe(indexPath: IndexPath?) {
+extension CategoryTabView: CategoryPageViewDelegate {
+    func categoryPageViewDelegate(_ view: UICollectionView, didSwipe indexPath: IndexPath?) {
         guard let index = indexPath?.row else { return }
         changeSelected(with: index)
     }
