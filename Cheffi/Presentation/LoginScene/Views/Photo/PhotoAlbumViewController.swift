@@ -11,7 +11,7 @@ import Photos
 import SnapKit
 
 class PhotoAlbumViewController: UIViewController {
-    static func instance<T: PhotoAlbumViewController>(viewModel: PhotoAlbumViewModelType, dismissCompletion: ((Data?) -> Void)?) -> T {
+    static func instance<T: PhotoAlbumViewController>(viewModel: PhotoAlbumViewModelType, dismissCompletion: (([Data?]) -> Void)?) -> T {
         let vc: T = .instance(storyboardName: .photoAlbum)
         vc.viewModel = viewModel
         vc.dismissCompletion = dismissCompletion
@@ -33,7 +33,7 @@ class PhotoAlbumViewController: UIViewController {
     private var viewModel: PhotoAlbumViewModelType!
     private var dataSource: UICollectionViewDiffableDataSource<Int, String>? = nil
     private var cancellables: Set<AnyCancellable> = []
-    var dismissCompletion: ((Data?) -> Void)?
+    var dismissCompletion: (([Data?]) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,16 +184,23 @@ class PhotoAlbumViewController: UIViewController {
     }
     
     @IBAction private func didTapNext(_ sender: UIButton) {
-        handlePhotoCropAction(captureImageData: nil) { [weak self] cropImageData in
+        handlePhotoCropAction(captureImageData: nil) { [weak self] cropImageDatas in
             self?.dismiss(animated: false, completion: {
-                self?.dismissCompletion?(cropImageData)
+                self?.dismissCompletion?(cropImageDatas)
             })
         }
     }
     
-    private func handlePhotoCropAction(captureImageData: Data?, completion: @escaping (Data?) -> Void) {
-        viewModel.showPhotoCrop(captureImageData) { cropImageData in
-            completion(cropImageData)
+    private func handlePhotoCropAction(captureImageData: Data?, completion: @escaping ([Data?]) -> Void) {
+        if viewModel.multiSelectionEnable {
+            Task {
+                let imageDatas = await viewModel.requestImages()
+                completion(imageDatas)
+            }
+        } else {
+            viewModel.showPhotoCrop(captureImageData) { cropImageData in
+                completion([cropImageData])
+            }
         }
     }
     
@@ -233,17 +240,6 @@ extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
             }
         } else {
             if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell {
-                // 다른 셀이 이미 선택되어 있는 경우, 그 셀의 선택을 해제
-                if let selectedIndexPaths = collectionView.indexPathsForSelectedItems {
-                    for selectedIndexPath in selectedIndexPaths {
-                        if selectedIndexPath != indexPath {
-                            collectionView.deselectItem(at: selectedIndexPath, animated: true)
-                            if let selectedCell = collectionView.cellForItem(at: selectedIndexPath) as? PhotoCell {
-                                selectedCell.resetSelectionState()
-                            }
-                        }
-                    }
-                }
                 viewModel.updateSelectedAsset(indexPath.item - 1)
                 cell.updateSelectionImage()
                 updateNextButtonState()

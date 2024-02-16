@@ -28,11 +28,13 @@ final class DefaultCameraService: NSObject, CameraService, UIImagePickerControll
             return
         }
 
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .camera
-        imagePickerController.delegate = self
-
-        viewController.present(imagePickerController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .camera
+            imagePickerController.delegate = self
+            
+            viewController.present(imagePickerController, animated: true, completion: nil)
+        }
     }
 
     // MARK: - UIImagePickerControllerDelegate

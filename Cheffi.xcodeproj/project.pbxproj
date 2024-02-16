@@ -12,8 +12,8 @@
 		5D89F9002B2EC693001C9DD6 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5D89F8FF2B2EC693001C9DD6 /* ComposableArchitecture */; };
 		5D89F9022B2EE836001C9DD6 /* RestaurantRegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89F9012B2EE836001C9DD6 /* RestaurantRegistView.swift */; };
 		5D89F9052B2EF25D001C9DD6 /* RestaurantRegistReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89F9042B2EF25D001C9DD6 /* RestaurantRegistReducer.swift */; };
-		6B007B0D2B64E1CD005BF86C /* ConfirmButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B007B0C2B64E1CD005BF86C /* ConfirmButtonView.swift */; };
-		6B007B0F2B64E37C005BF86C /* ConfirmButtonReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B007B0E2B64E37C005BF86C /* ConfirmButtonReducer.swift */; };
+		6B007B0D2B64E1CD005BF86C /* BottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B007B0C2B64E1CD005BF86C /* BottomButtonView.swift */; };
+		6B007B0F2B64E37C005BF86C /* BottomButtonReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B007B0E2B64E37C005BF86C /* BottomButtonReducer.swift */; };
 		6B08FE992B541D3900BBC74B /* RestaurantRegistComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE982B541D3900BBC74B /* RestaurantRegistComposeViewController.swift */; };
 		6B08FE9B2B541D6500BBC74B /* RestaurantInfoComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE9A2B541D6500BBC74B /* RestaurantInfoComposeViewController.swift */; };
 		6B08FEA02B541E7200BBC74B /* RestaurantRegistComposeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE9F2B541E7200BBC74B /* RestaurantRegistComposeReducer.swift */; };
@@ -337,8 +337,8 @@
 		5D3C82B22B3811070019C6E1 /* MockRestaurantUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRestaurantUseCase.swift; sourceTree = "<group>"; };
 		5D89F9012B2EE836001C9DD6 /* RestaurantRegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RestaurantRegistView.swift; path = Cheffi/Presentation/RestaurantRegistScene/RestaurantRegistSearch/RestaurantRegistView.swift; sourceTree = SOURCE_ROOT; };
 		5D89F9042B2EF25D001C9DD6 /* RestaurantRegistReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistReducer.swift; sourceTree = "<group>"; };
-		6B007B0C2B64E1CD005BF86C /* ConfirmButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButtonView.swift; sourceTree = "<group>"; };
-		6B007B0E2B64E37C005BF86C /* ConfirmButtonReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButtonReducer.swift; sourceTree = "<group>"; };
+		6B007B0C2B64E1CD005BF86C /* BottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonView.swift; sourceTree = "<group>"; };
+		6B007B0E2B64E37C005BF86C /* BottomButtonReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonReducer.swift; sourceTree = "<group>"; };
 		6B08FE982B541D3900BBC74B /* RestaurantRegistComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistComposeViewController.swift; sourceTree = "<group>"; };
 		6B08FE9A2B541D6500BBC74B /* RestaurantInfoComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoComposeViewController.swift; sourceTree = "<group>"; };
 		6B08FE9F2B541E7200BBC74B /* RestaurantRegistComposeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistComposeReducer.swift; sourceTree = "<group>"; };
@@ -687,13 +687,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		6B007B0B2B64E1A7005BF86C /* ConfirmButtonView */ = {
+		6B007B0B2B64E1A7005BF86C /* BottomButtonView */ = {
 			isa = PBXGroup;
 			children = (
-				6B007B0C2B64E1CD005BF86C /* ConfirmButtonView.swift */,
-				6B007B0E2B64E37C005BF86C /* ConfirmButtonReducer.swift */,
+				6B007B0C2B64E1CD005BF86C /* BottomButtonView.swift */,
+				6B007B0E2B64E37C005BF86C /* BottomButtonReducer.swift */,
 			);
-			path = ConfirmButtonView;
+			path = BottomButtonView;
 			sourceTree = "<group>";
 		};
 		6B08FE9C2B541D7C00BBC74B /* RestaurantRegistSearch */ = {
@@ -906,7 +906,7 @@
 			children = (
 				6B40B2FE2B66640F00945946 /* DropDownPickerView */,
 				6B40B2F92B6641C500945946 /* TextFieldBarView */,
-				6B007B0B2B64E1A7005BF86C /* ConfirmButtonView */,
+				6B007B0B2B64E1A7005BF86C /* BottomButtonView */,
 				6BA9F55E2B4C4AD000A96321 /* EmptyView */,
 				6B7174352B42DD71009FEF35 /* NavigationBar */,
 				6BA9B9802B42C49F0010290C /* SearchBar */,
@@ -2167,7 +2167,7 @@
 				FF62A4522A7FC3FD0066073F /* SNSLoginViewModel.swift in Sources */,
 				FFDBC63B2A81381E0009189C /* FoodSelectionViewController.swift in Sources */,
 				FFA6BA7A2ADAE5A60094913E /* TagRepository.swift in Sources */,
-				6B007B0F2B64E37C005BF86C /* ConfirmButtonReducer.swift in Sources */,
+				6B007B0F2B64E37C005BF86C /* BottomButtonReducer.swift in Sources */,
 				D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */,
 				D497F9FA2AA87A900057B7EB /* PopularRestaurantContentsItemViewModel.swift in Sources */,
 				D441C0202A66965400063822 /* CheffiRecommendationCatogoryPageView.swift in Sources */,
@@ -2187,7 +2187,7 @@
 				FF35FB142ADD76E6002D9E47 /* MenuDTO.swift in Sources */,
 				FF62A4502A7FC2C60066073F /* LoginSceneDIContainer.swift in Sources */,
 				FF97932E2A73C9D600A921A0 /* UserDefault+Ext.swift in Sources */,
-				6B007B0D2B64E1CD005BF86C /* ConfirmButtonView.swift in Sources */,
+				6B007B0D2B64E1CD005BF86C /* BottomButtonView.swift in Sources */,
 				6BA9F54F2B4A8BE100A96321 /* EmptyDescriptionView.swift in Sources */,
 				FFDBC63F2A81383A0009189C /* FollowSelectionViewController.swift in Sources */,
 				CE0D45322A61967700636989 /* RestaurantRegistViewController.swift in Sources */,

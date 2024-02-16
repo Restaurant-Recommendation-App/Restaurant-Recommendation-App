@@ -118,7 +118,7 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     // MARK: - Photo Album
-    func makePhotoAlbumViewController(viewModel: PhotoAlbumViewModel, dismissCompletion: ((Data?) -> Void)?) -> PhotoAlbumViewController {
+    func makePhotoAlbumViewController(viewModel: PhotoAlbumViewModel, dismissCompletion: (([Data?]) -> Void)?) -> PhotoAlbumViewController {
         return PhotoAlbumViewController.instance(viewModel: viewModel, dismissCompletion: dismissCompletion)
     }
     

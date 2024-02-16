@@ -12,6 +12,7 @@ protocol PhotoRepository {
     func getAlbums(mediaType: MediaType, completion: @escaping ([AlbumInfo]) -> Void)
     func getPhotos(in album: PHFetchResult<PHAsset>, completion: @escaping ([PHAsset]) -> Void)
     func requestImage(for asset: PHAsset, size: CGSize, contentMode: PHImageContentMode, completion: @escaping (Data?) -> Void)
+    func requestImages(for assets: [PHAsset], size: CGSize, contentMode: PHImageContentMode) async -> [Data?]
     func postPhotos(imageData: Data, changeProfilePhotoRequest: ChangeProfilePhotoRequest) -> AnyPublisher<(Results<String>, HTTPURLResponse), DataTransferError>
 }
 
@@ -41,6 +42,23 @@ class DefaultPhotoRepository: PhotoRepository {
             let data = image?.pngData()
             completion(data)
         }
+    }
+    
+    func requestImages(for assets: [PHAsset], size: CGSize, contentMode: PHImageContentMode) async -> [Data?] {
+        var imageDataArray: [Data] = []
+        
+        for asset in assets {
+            let imageData = await withCheckedContinuation { continuation in
+                service.requestImage(for: asset, targetSize: size, contentMode: contentMode) { image in
+                    continuation.resume(returning: image?.pngData())
+                }
+            }
+            if let imageData {
+                imageDataArray.append(imageData)
+            }
+        }
+        
+        return imageDataArray
     }
     
     // 프로필 사진 변경

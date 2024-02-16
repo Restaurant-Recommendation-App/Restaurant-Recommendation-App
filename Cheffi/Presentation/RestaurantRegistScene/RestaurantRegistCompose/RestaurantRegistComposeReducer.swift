@@ -52,7 +52,7 @@ struct RestaurantRegistComposeReducer: Reducer {
         )
         var roadNameAddressTextFieldBarState = TextFieldBarReducer.State(placeHolder: "도로명 주소 입력")
         var restaurantNameTextFieldBarState = TextFieldBarReducer.State(placeHolder: "식당 이름")
-        var bottomButtonState = ConfirmButtonReducer.State(
+        var bottomButtonState = BottomButtonReducer.State(
             title: "다음",
             able: false
         )
@@ -73,7 +73,7 @@ struct RestaurantRegistComposeReducer: Reducer {
         case cityDropDownPickerAction(DropDownPickerReducer.Action)
         case roadNameAddressTextFieldBarAction(TextFieldBarReducer.Action)
         case restaurantNameTextFieldBarAction(TextFieldBarReducer.Action)
-        case bottomButtonAction(ConfirmButtonReducer.Action)
+        case bottomButtonAction(BottomButtonReducer.Action)
         case setEnableNext
         case confirmPopupAction(ConfirmPopupReducer.Action)
         case registRestaurant

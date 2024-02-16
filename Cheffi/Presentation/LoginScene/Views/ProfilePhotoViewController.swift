@@ -170,7 +170,8 @@ class ProfilePhotoViewController: UIViewController {
     }
     
     private func showPhotoAlbum() {
-        viewModel.output.showPhotoAlbum { [weak self] cropImageData in
+        viewModel.output.showPhotoAlbum { [weak self] cropImageDatas in
+            guard let cropImageData = cropImageDatas[safe: 0] else { return }
 #if DEBUG
             print("crop image data - \(cropImageData)")
 #endif

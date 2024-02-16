@@ -11,7 +11,7 @@ import Combine
 struct ProfilePhotoViewModelActions {
     let showCamera: (_ isPresentPhotoAlbum: Bool, _ dismissCompletion: ((Data?) -> Void)?) -> Void
     let showPhotoCrop: (_ imageData: Data, _ dismissCompletion: ((Data?) -> Void)?) -> Void
-    let showPhotoAlbum: (_ dismissCompletion: ((Data?) -> Void)?) -> Void
+    let showPhotoAlbum: (_ dismissCompletion: (([Data?]) -> Void)?) -> Void
     let showProfileImageSelect: (_ selectTypes: [ProfileImageSelectType], _ selectTypeCompletion: ((ProfileImageSelectType) -> Void)?) -> Void
 }
 
@@ -24,7 +24,7 @@ protocol ProfilePhotoViewModelOutput {
     var responsePostPhotos: AnyPublisher<String?, DataTransferError> { get }
     func showCamera(_ isPresentPhotoAlbum: Bool, _ dismissCompletion: ((Data?) -> Void)?)
     func showPhotoCrop(_ captureImageData: Data?, _ dismissCompletion: ((Data?) -> Void)?)
-    func showPhotoAlbum(_ dismissCompletion: ((Data?) -> Void)?)
+    func showPhotoAlbum(_ dismissCompletion: (([Data?]) -> Void)?)
     func showProfileImageSelect(_ selectTypes: [ProfileImageSelectType], _ selectTypeCompletion: ((ProfileImageSelectType) -> Void)?)
 }
 
@@ -118,7 +118,7 @@ extension ProfilePhotoViewModel: ProfilePhotoViewModelOutput {
         }
     }
     
-    func showPhotoAlbum(_ dismissCompletion: ((Data?) -> Void)?) {
+    func showPhotoAlbum(_ dismissCompletion: (([Data?]) -> Void)?) {
         actions.showPhotoAlbum(dismissCompletion)
     }
     

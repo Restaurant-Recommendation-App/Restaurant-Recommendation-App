@@ -1,5 +1,5 @@
 //
-//  ConfirmButtonReducer.swift
+//  BottomButtonReducer.swift
 //  Cheffi
 //
 //  Created by 김문옥 on 1/27/24.
@@ -8,7 +8,7 @@
 import Foundation
 import ComposableArchitecture
 
-struct ConfirmButtonReducer: Reducer {
+struct BottomButtonReducer: Reducer {
     struct State: Equatable {
         let title: String
         var able: Bool

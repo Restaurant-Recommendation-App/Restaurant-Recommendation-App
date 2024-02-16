@@ -11,8 +11,9 @@ import UIKit
 final class AppFlowCoordinator: NSObject {
     let tabBarController: UITabBarController
     private let appDIContainer: AppDIContainer
-    var loginNavigation: UINavigationController?
     var restaurantRegistFlowCoordinator: RestaurantRegistFlowCoordinator!
+    var loginNavigation: UINavigationController?
+    var loginFlowCoordinator: LoginFlowCoordinator?
     
     init(tabBarController: UITabBarController, appDIContainer: AppDIContainer) {
         self.tabBarController = tabBarController
@@ -100,6 +101,8 @@ final class AppFlowCoordinator: NSObject {
         loginNavigation = createLoginNavigation()
         let loginCoordinator = loginSceneDIContainer.makeLoginFlowCoordinator(navigationController: loginNavigation!,
                                                                               parentCoordinator: self)
+        loginFlowCoordinator = nil
+        loginFlowCoordinator = loginCoordinator
         loginCoordinator.start()
         guard let vc = loginCoordinator.navigationController else { return }
         tabBarController.present(vc, animated: true)
@@ -110,6 +113,37 @@ final class AppFlowCoordinator: NSObject {
         guard !vcs.contains(where: { $0 === root }) else { return }
         vcs.insert(root, at: kind.tabBarNo)
         tabBarController.setViewControllers(vcs, animated: false)
+    }
+    
+    func showCamera(
+        isPresentPhotoAlbum: Bool,
+        dismissCompletion: ((Data?) -> Void)?
+    ) {
+        if loginFlowCoordinator == nil {
+            guard let navigationController = restaurantRegistFlowCoordinator.navigationController
+            else { return }
+            let loginSceneDIContainer = appDIContainer.makeLoginSceneDIContainer()
+            let loginCoordinator = loginSceneDIContainer.makeLoginFlowCoordinator(
+                navigationController: navigationController,
+                parentCoordinator: self
+            )
+            self.loginFlowCoordinator = loginCoordinator
+        }
+        self.loginFlowCoordinator?.showCameraViewController(isPresentPhotoAlbum: isPresentPhotoAlbum, dismissCompletion: dismissCompletion)
+    }
+    
+    func showPhotoAlbum(dismissCompletion: (([Data?]) -> Void)?) {
+        if loginFlowCoordinator == nil {
+            guard let navigationController = restaurantRegistFlowCoordinator.navigationController
+            else { return }
+            let loginSceneDIContainer = appDIContainer.makeLoginSceneDIContainer()
+            let loginCoordinator = loginSceneDIContainer.makeLoginFlowCoordinator(
+                navigationController: navigationController,
+                parentCoordinator: self
+            )
+            self.loginFlowCoordinator = loginCoordinator
+        }
+        self.loginFlowCoordinator?.showPhotoAlbumWithoutPhotoCrop(dismissCompletion: dismissCompletion)
     }
     
     private func createLoginNavigation() -> UINavigationController {

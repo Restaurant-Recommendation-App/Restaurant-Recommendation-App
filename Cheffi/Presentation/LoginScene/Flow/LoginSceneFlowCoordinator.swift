@@ -18,7 +18,7 @@ protocol LoginFlowCoordinatorDependencies {
     ) -> ProfileSetupViewController
     func makeProfileImageSelectViewController(selectTypes: [ProfileImageSelectType],
                                               selectCompletion: ((ProfileImageSelectType) -> Void)?) -> ProfileImageSelectViewController
-    func makePhotoAlbumViewController(viewModel: PhotoAlbumViewModel, dismissCompletion: ((Data?) -> Void)?) -> PhotoAlbumViewController
+    func makePhotoAlbumViewController(viewModel: PhotoAlbumViewModel, dismissCompletion: (([Data?]) -> Void)?) -> PhotoAlbumViewController
     func makePhotoAlbumViewModel(actions: PhotoAlbumViewModelActions) -> PhotoAlbumViewModel
     func makeNicknameViewModel() -> NicknameViewModelType
     func makeProfilePhotoViewModel(actions: ProfilePhotoViewModelActions) -> ProfilePhotoViewModelType
@@ -68,10 +68,26 @@ final class LoginFlowCoordinator {
         self.navigationController?.pushViewController(vc)
     }
     
-    private func showPhotoAlbumViewController(dismissCompletion: ((Data?) -> Void)?) {
+    private func showPhotoAlbumViewController(dismissCompletion: (([Data?]) -> Void)?) {
         let actions = PhotoAlbumViewModelActions(showPhotoCrop: showPhotoCropViewController,
                                                  showCamera: showCameraViewController)
         let viewModel = dependencies.makePhotoAlbumViewModel(actions: actions)
+        viewModel.multiSelectionEnable = false
+        viewModel.checkPhotoPermission { [weak self] isPermission in
+            DispatchQueue.main.async {
+                if isPermission {
+                    let vc = self?.dependencies.makePhotoAlbumViewController(viewModel: viewModel, dismissCompletion: dismissCompletion)
+                    self?.navigationController?.present(vc!, animated: true)
+                }
+            }
+        }
+    }
+    
+    func showPhotoAlbumWithoutPhotoCrop(dismissCompletion: (([Data?]) -> Void)?) {
+        let actions = PhotoAlbumViewModelActions(showPhotoCrop: nil,
+                                                 showCamera: showCameraViewController)
+        let viewModel = dependencies.makePhotoAlbumViewModel(actions: actions)
+        viewModel.multiSelectionEnable = true
         viewModel.checkPhotoPermission { [weak self] isPermission in
             DispatchQueue.main.async {
                 if isPermission {
@@ -87,7 +103,7 @@ final class LoginFlowCoordinator {
         self.navigationController?.present(vc, animated: true)
     }
     
-    private func showCameraViewController(isPresentPhotoAlbum: Bool, dismissCompletion: ((Data?) -> Void)?) {
+    func showCameraViewController(isPresentPhotoAlbum: Bool, dismissCompletion: ((Data?) -> Void)?) {
 #if DEBUG
         print("---------->>> show camera")
 #endif

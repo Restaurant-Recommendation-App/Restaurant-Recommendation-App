@@ -30,19 +30,13 @@ struct RestaurantRegistComposeView: View {
                 ))
                 
                 Text("등록하는 식당의\n정보를 알려주세요.")
-                    .font(
-                        Font.custom("SUIT", size: 20)
-                            .weight(.bold)
-                    )
+                    .font(.custom("SUIT", size: 20).weight(.bold))
                     .foregroundColor(.cheffiGray8)
                     .padding(Metrics.headlineTextPadding)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("주소")
-                    .font(
-                        Font.custom("SUIT", size: 14)
-                            .weight(.bold)
-                    )
+                    .font(.custom("SUIT", size: 14).weight(.bold))
                     .foregroundColor(.cheffiGray8)
                     .padding(.top, Metrics.titleTextTopPadding)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -72,10 +66,7 @@ struct RestaurantRegistComposeView: View {
                 ))
                 
                 Text("식당이름")
-                    .font(
-                        Font.custom("SUIT", size: 14)
-                            .weight(.bold)
-                    )
+                    .font(.custom("SUIT", size: 14).weight(.bold))
                     .foregroundColor(.cheffiGray8)
                     .padding(.top, Metrics.titleTextTopPadding)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -87,7 +78,7 @@ struct RestaurantRegistComposeView: View {
                 
                 Spacer()
                 
-                ConfirmButtonView(store.scope(
+                BottomButtonView(store.scope(
                     state: \.bottomButtonState,
                     action: RestaurantRegistComposeReducer.Action.bottomButtonAction
                 ))

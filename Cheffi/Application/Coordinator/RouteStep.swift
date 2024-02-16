@@ -13,4 +13,11 @@ enum RouteStep {
     case pushRestaurantRegistSearch
     case pushRestaurantRegistCompose
     case pushRestaurantInfoCompose(info: RestaurantInfoDTO)
+    case presentCamera(
+        isPresentPhotoAlbum: Bool,
+        dismissCompletion: ((Data?) -> Void)?
+    )
+    case presentPhotoAlbum(
+        dismissCompletion: (([Data?]) -> Void)?
+    )
 }

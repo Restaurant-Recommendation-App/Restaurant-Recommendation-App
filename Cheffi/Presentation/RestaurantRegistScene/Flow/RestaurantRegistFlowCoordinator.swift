@@ -39,15 +39,19 @@ final class RestaurantRegistFlowCoordinator {
                 guard let self else { return }
                 switch step {
                 case .popToNavigationController:
-                    return popToNavigationController()
+                    popToNavigationController()
                 case .dismissRestaurantRegist:
-                    return dismissRestaurantRegist()
+                    dismissRestaurantRegist()
                 case .pushRestaurantRegistSearch:
-                    return pushRestaurantRegistSearch()
+                    pushRestaurantRegistSearch()
                 case .pushRestaurantRegistCompose:
-                    return pushRestaurantRegistCompose()
+                    pushRestaurantRegistCompose()
                 case .pushRestaurantInfoCompose(let restaurant):
-                    return pushRestaurantInfoCompose(info: restaurant)
+                    pushRestaurantInfoCompose(info: restaurant)
+                case .presentCamera(let isPresentPhotoAlbum, let dismissCompletion):
+                    presentCamera(isPresentPhotoAlbum: isPresentPhotoAlbum, dismissCompletion: dismissCompletion)
+                case .presentPhotoAlbum(let dismissCompletion):
+                    presentPhotoAlbum(dismissCompletion: dismissCompletion)
                 }
             }
             .store(in: &cancellables)
@@ -83,5 +87,16 @@ final class RestaurantRegistFlowCoordinator {
         let reducer = dependencies.makeRestaurantInfoComposeReducer(steps: steps)
         let vc = dependencies.makeRestaurantInfoComposeViewController(reducer: reducer, restaurant: info)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func presentCamera(
+        isPresentPhotoAlbum: Bool,
+        dismissCompletion: ((Data?) -> Void)?
+    ) {
+        parentCoordinator?.showCamera(isPresentPhotoAlbum: isPresentPhotoAlbum, dismissCompletion: dismissCompletion)
+    }
+    
+    private func presentPhotoAlbum(dismissCompletion: (([Data?]) -> Void)?) {
+        parentCoordinator?.showPhotoAlbum(dismissCompletion: dismissCompletion)
     }
 }
