@@ -38,7 +38,6 @@ final class CheffiRecommendationCell: UITableViewCell {
     }
     
     private func setUp() {
-
         contentView.addSubview(cheffiRecommendationCatogoryPageView)
         cheffiRecommendationCatogoryPageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(24)
@@ -51,7 +50,7 @@ final class CheffiRecommendationCell: UITableViewCell {
         initialize.send(())
     }
     
-    func configure(categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate) {
+    func configure(categoryPageViewDelegate: CategoryPageViewDelegate) {
         cheffiRecommendationCatogoryPageView.configure(delegate: categoryPageViewDelegate)
     }
 }
@@ -71,6 +70,7 @@ extension CheffiRecommendationCell: Bindable {
         
         output.categories
             .filter { _ in !viewModel.initialized }
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] (categories, viewModels) in
                 self?.setUpTabNames?(categories)
                 self?.cheffiRecommendationCatogoryPageView.configure(viewModels: viewModels)

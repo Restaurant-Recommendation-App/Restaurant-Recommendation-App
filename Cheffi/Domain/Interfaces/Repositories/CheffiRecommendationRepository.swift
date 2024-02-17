@@ -6,8 +6,10 @@
 //
 
 import Combine
+import Foundation
 
 protocol CheffiRecommendationRepository {
-    func getTags() -> AnyPublisher<[String], Never>
-    func getContents(with tag: String, page: Int) -> AnyPublisher<[ContentsResponseDTO.contentDTO], Never>
+    func getTags() -> AnyPublisher<(Results<[TagDTO]>, HTTPURLResponse), DataTransferError>
+    func getContentsByArea(reviewsByAreaRequest: ReviewsByAreaRequest) -> AnyPublisher<(PaginationResults<[ContentsResponseDTO]>, HTTPURLResponse), DataTransferError>
+    func getContentsByTag(reviewsByTagRequest: ReviewsByTagRequest) -> AnyPublisher<(PaginationResults<[ContentsResponseDTO]>, HTTPURLResponse), DataTransferError>
 }

@@ -16,7 +16,7 @@ struct AllCheffiContentsViewModelActions {
 final class AllCheffiContentsViewModel: ViewModelType {
     
     private enum Constants {
-        static let dayMilliseconds = 86400000
+        static let dayMilliseconds: Int = 86400000
     }
     
     struct Input {
@@ -33,12 +33,10 @@ final class AllCheffiContentsViewModel: ViewModelType {
     
     private let cheffiRecommendationUseCase: CheffiRecommendationUseCase
     private let timeLockGenerator: TimeLockGenerator
-    
-    private let tag: String
+
     private let actions: AllCheffiContentsViewModelActions
     
-    init(tag: String, actions: AllCheffiContentsViewModelActions , cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
-        self.tag = tag
+    init(actions: AllCheffiContentsViewModelActions , cheffiRecommendationUseCase: CheffiRecommendationUseCase) {
         self.actions = actions
         self.cheffiRecommendationUseCase = cheffiRecommendationUseCase
         self.timeLockGenerator = TimeLockGenerator(
@@ -54,7 +52,7 @@ final class AllCheffiContentsViewModel: ViewModelType {
         initialize
             .sink {
                 let viewModel = RestaurantContentsViewModel(
-                    tag: self.tag,
+                    tagId: nil,
                     cheffiRecommendationUseCase: self.cheffiRecommendationUseCase
                 )
                 

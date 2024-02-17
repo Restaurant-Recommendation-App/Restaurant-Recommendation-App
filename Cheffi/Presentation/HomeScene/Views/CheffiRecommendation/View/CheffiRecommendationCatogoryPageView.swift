@@ -8,15 +8,12 @@
 import UIKit
 import Combine
 
-protocol CheffiRecommendationCategoryPageViewDelegate: AnyObject {
-    func didSwipe(indexPath: IndexPath?)
-}
-
 final class CheffiRecommendationCategoryPageView: UICollectionView {
     typealias categoryIndex = Int
+    
     private var viewModels = [[RestaurantContentItemViewModel]]()
 
-    weak var categoryPageViewDelegate: CheffiRecommendationCategoryPageViewDelegate?
+    weak var categoryPageViewDelegate: CategoryPageViewDelegate?
         
     private var isScrollingWithTab = false
             
@@ -50,7 +47,7 @@ final class CheffiRecommendationCategoryPageView: UICollectionView {
         reloadData()
     }
     
-    func configure(delegate: CheffiRecommendationCategoryPageViewDelegate) {
+    func configure(delegate: CategoryPageViewDelegate) {
         categoryPageViewDelegate = delegate
     }
 }
@@ -83,7 +80,7 @@ extension CheffiRecommendationCategoryPageView: UICollectionViewDelegateFlowLayo
             
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !isScrollingWithTab {
-            categoryPageViewDelegate?.didSwipe(indexPath: visibleIndexPath)
+            categoryPageViewDelegate?.categoryPageViewDelegate(self, didSwipe: visibleIndexPath)
         }
     }
     

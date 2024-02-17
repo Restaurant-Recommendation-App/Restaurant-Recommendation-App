@@ -162,7 +162,6 @@ struct RestaurantInfoComposeView_Preview: PreviewProvider {
                     address: Address(
                         province: "서울",
                         city: "강북구",
-                        lotNumber: "수유3동",
                         roadName: "한천로 140길",
                         fullLotNumberAddress: "111-22",
                         fullRodNameAddress: "11-22"

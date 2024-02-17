@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 final class PopularRestaurantViewModel: ViewModelType {
-    
     private enum Constants {
         static let dayMilliseconds = 86400000
     }
@@ -44,9 +43,23 @@ final class PopularRestaurantViewModel: ViewModelType {
         
         initialize
             .filter { !self.initialized }
-            .flatMap { self.cheffiRecommendationUseCase.getContents(with: "popularity", page: 1) }
+            .flatMap { _ -> AnyPublisher<[Content], DataTransferError> in
+                let reviewsByAreaRequest = ReviewsByAreaRequest(province: "서울특별시",
+                                                                city: "강남구",
+                                                                cursor: 0,
+                                                                size: 16)
+                return self.cheffiRecommendationUseCase.getContentsByArea(reviewsByAreaRequest: reviewsByAreaRequest)
+            }
             .map { $0.map(RestaurantContentItemViewModel.init)}
-            .sink {
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                    // TODO: 에러 처리
+                case .failure(_):
+                    break
+                case .finished:
+                    break
+                }
+            }, receiveValue: {
                 var contentsItems = [[RestaurantContentItemViewModel]]([[RestaurantContentItemViewModel]($0[0...2])])
                 let rest = $0[3..<$0.count].group(by: 4)!
                 contentsItems += rest
@@ -57,7 +70,7 @@ final class PopularRestaurantViewModel: ViewModelType {
                 
                 contentsViewModel.send(viewModels)
                 self.initialized = true
-        }.store(in: &cancellables)
+            }).store(in: &cancellables)
         
         let timerString = PassthroughSubject<String, Never>()
         
@@ -75,7 +88,7 @@ final class PopularRestaurantViewModel: ViewModelType {
                 }
                 timerString.send(timeLockString)
             }.store(in: &cancellables)
-
+        
         return Output(
             contentsViewModel: contentsViewModel.eraseToAnyPublisher(),
             timeLockType: timerString.eraseToAnyPublisher()

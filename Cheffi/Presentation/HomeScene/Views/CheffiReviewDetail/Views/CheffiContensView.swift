@@ -12,13 +12,13 @@ class CheffiContensView: BaseView {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageLabel: UILabel!
     private var reviewInfo: ReviewInfoDTO? = nil
-    private var photos: [ReviewPhotoInfoDTO] = [] {
+    private var photos: [PhotoInfoDTO] = [] {
         didSet {
             reloadData()
         }
     }
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, ReviewPhotoInfoDTO>?
+    private var dataSource: UICollectionViewDiffableDataSource<Int, PhotoInfoDTO>?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,8 +36,8 @@ class CheffiContensView: BaseView {
         collectionView.register(nibWithCellClass: CheffiContensViewImageCell.self)
         
         // Initialize data source
-        dataSource = UICollectionViewDiffableDataSource<Int, ReviewPhotoInfoDTO>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, photoInfo: ReviewPhotoInfoDTO) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Int, PhotoInfoDTO>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, photoInfo: PhotoInfoDTO) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withClass: CheffiContensViewImageCell.self, for: indexPath)
             cell.toggleViewVisibility(isHidden: indexPath.row != 0)
             cell.configure(with: photoInfo, reviewInfo: self.reviewInfo)
@@ -46,7 +46,7 @@ class CheffiContensView: BaseView {
     }
     
     private func reloadData() {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, ReviewPhotoInfoDTO>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, PhotoInfoDTO>()
         snapshot.appendSections([0])
         snapshot.appendItems(photos)
         dataSource?.apply(snapshot, animatingDifferences: true)

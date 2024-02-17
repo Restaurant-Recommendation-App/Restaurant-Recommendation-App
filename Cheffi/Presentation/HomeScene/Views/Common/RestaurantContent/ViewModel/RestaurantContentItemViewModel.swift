@@ -9,29 +9,48 @@ import Foundation
 import Combine
 
 class RestaurantContentItemViewModel: Hashable, Identifiable {
-    typealias Identifier = String
-    
-    let id: Identifier
-    let title: String
-    let subtitle: String
-    var timeLockType: TimeLockType
+    typealias Identifier = Int
     
     private let timeLockGenerator: TimeLockGenerator
-    
+
+    let id: Identifier
+    let title: String
+    let text: String
+    var timeLockType: TimeLockType
+    let photo: PhotoInfoDTO
+    let locked: Bool
+    let viewCount: Int
+    let number: Int
+    let reviewStatus: String
+    let writtenByUser: Bool
+    let bookmarked: Bool
+    let purchased: Bool
+    let active: Bool
+
     var cancellables = Set<AnyCancellable>()
     
     init(content: Content) {
         self.id = content.id
         self.title = content.title
-        self.subtitle = content.subtitle
-        self.timeLockType = (content.contentTimeLockSeconds <= 0)
+        self.text = content.text
+        self.photo = content.photo
+        self.locked = content.locked
+        self.viewCount = content.viewCount
+        self.number = content.number
+        self.reviewStatus = content.reviewStatus
+        self.writtenByUser = content.writtenByUser
+        self.bookmarked = content.bookmarked
+        self.purchased = content.purchased
+        self.active = content.active
+        
+        self.timeLockType = (content.timeLeftToLock <= 0)
         ? .lock(lockString: "게시물 잠금")
         : .unlock(
-            digits: content.contentTimeLockSeconds.getDayTimerStringByMilliseconds(timerDigitType: .hourMinute)
+            digits: content.timeLeftToLock.getDayTimerStringByMilliseconds(timerDigitType: .hourMinute)
         )
         
         self.timeLockGenerator = TimeLockGenerator(
-            timeLockSeconds: content.contentTimeLockSeconds,
+            timeLockSeconds: content.timeLeftToLock,
             countMilliseconds: 1000
         )
     }

@@ -39,7 +39,12 @@ extension UIControl {
             self.subscriber = subscrier
             self.event = event
             
-            control.addTarget(self, action: #selector(eventDidOccur), for: event)
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                
+                control.addTarget(self, action: #selector(self.eventDidOccur), for: event)
+            }
+            
         }
         
         func request(_ demand: Subscribers.Demand) {}

@@ -124,7 +124,6 @@ extension HomeSceneDIContainer {
     func makeAllCheffiContentsViewModel(actions: AllCheffiContentsViewModelActions) -> AllCheffiContentsViewModel {
         let useCase = makeCheffiRecommendationUseCase(repository: makeCheffiRecommendationRepository())
         return AllCheffiContentsViewModel(
-            tag: "popularity",
             actions: actions,
             cheffiRecommendationUseCase: useCase)
     }

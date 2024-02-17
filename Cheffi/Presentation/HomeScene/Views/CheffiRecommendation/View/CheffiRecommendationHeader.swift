@@ -59,14 +59,13 @@ final class CheffiRecommendationHeader: UITableViewHeaderFooterView {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50)
         }
-        
     }
     
     func configure(categoryTabViewDelegate: CategoryTabViewDelegate) {
-        categoryTabView.delegate = categoryTabViewDelegate
+        categoryTabView.categoryDelegate = categoryTabViewDelegate
     }
     
-    func setUpTabTitles(titles: [String]) {
-        categoryTabView.setUpTags(tags: titles)
+    func setUpTabCategories(categories: [String]) {
+        categoryTabView.setUpTags(tags: categories)
     }
 }
