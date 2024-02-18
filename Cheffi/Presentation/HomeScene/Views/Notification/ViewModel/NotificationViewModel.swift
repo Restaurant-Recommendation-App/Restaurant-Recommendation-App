@@ -64,7 +64,7 @@ final class NotificationViewModel: NotificationViewModelType {
     private func bind() {
         _viewDidLoad
             .flatMap { [unowned self] _ in
-                self.useCase.execute()
+                self.useCase.getNotifications(cursor: 0, size: 10)
                     .catch { error -> Empty<[Notification], Never> in
                         self._error.send(error)
                         return .init()
@@ -80,12 +80,12 @@ final class NotificationViewModel: NotificationViewModelType {
         _viewDidLoad
             .flatMap { _ in
                 let dummyNotifications = [
-                    Notification(id: "1", notificationType: .review, content: "‘김쉐피'님께서 새로운 게시글을 등록했어요"),
-                    Notification(id: "2", notificationType: .bookmark, content: "‘그시절낭만의 근본 경양식 돈가스’의 글이 유료전환까지 1시간 남았어요"),
-                    Notification(id: "3", notificationType: .follow, content: "‘최쉐피'님께서 나를 팔로우 했어요"),
-                    Notification(id: "4", notificationType: .official, content: "‘마이크 테스트’ 게시글이 등록 되었어요"),
-                    Notification(id: "5", notificationType: .review, content: "내가 쓴 ‘경양식 돈가스’의 글이 인기 급등 맛집으로 선정되었어요"),
-                    Notification(id: "6", notificationType: .official, content: "‘마이크 테스트’ 게시글이 등록 되었어요")
+                    Notification(id: "1", category: .review, content: "‘김쉐피'님께서 새로운 게시글을 등록했어요", checked: true, notifiedDate: ""),
+                    Notification(id: "2", category: .bookmark, content: "‘그시절낭만의 근본 경양식 돈가스’의 글이 유료전환까지 1시간 남았어요", checked: true, notifiedDate: ""),
+                    Notification(id: "3", category: .follow, content: "‘최쉐피'님께서 나를 팔로우 했어요", checked: true, notifiedDate: ""),
+                    Notification(id: "4", category: .official, content: "‘마이크 테스트’ 게시글이 등록 되었어요", checked: true, notifiedDate: ""),
+                    Notification(id: "5", category: .review, content: "내가 쓴 ‘경양식 돈가스’의 글이 인기 급등 맛집으로 선정되었어요", checked: true, notifiedDate: ""),
+                    Notification(id: "6", category: .official, content: "‘마이크 테스트’ 게시글이 등록 되었어요", checked: true, notifiedDate: "")
                 ]
                 return Just(dummyNotifications)
             }

@@ -20,7 +20,7 @@ final class DefaultNotificationRepository {
 }
 
 extension DefaultNotificationRepository: NotificationRepository {
-    func getNotifications() -> AnyPublisher<([NotificationDTO], HTTPURLResponse), DataTransferError> {
+    func getNotifications(cursor: Int, size: Int) -> AnyPublisher<([NotificationDTO], HTTPURLResponse), DataTransferError> {
         let endpoint = HomeAPIEndpoints.getNotifications()
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
             .eraseToAnyPublisher()

@@ -46,9 +46,9 @@ class NotificationCell: UITableViewCell {
     }
     
     func configure(with item: Notification, isDeleting: Bool) {
-        titleLabel.text = item.notificationType.title
+        titleLabel.text = item.category.title
         contentLabel.text = item.content
-        iconImageView.image = UIImage(named: item.notificationType.imageName)
+        iconImageView.image = UIImage(named: item.category.imageName)
         timeAgoLabel.text = "2시간 전"
         timeAgoLabel.isHidden = isDeleting
         selectionImageView.isHidden = !isDeleting
