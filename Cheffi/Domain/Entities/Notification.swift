@@ -8,26 +8,26 @@
 import Foundation
 
 enum NotificationType: String, Codable {
+    case review = "REVIEW"
+    case bookmark = "BOOKMARK"
     case follow = "FOLLOW"
-    case like = "LIKE"
-    case notice = "NOTICE"
-    case post = "POST"
+    case official = "OFFICIAL"
     
     var title: String {
         switch self {
+        case .review: return "게시글"
+        case .bookmark: return "찜"
         case .follow: return "팔로우"
-        case .like: return "찜"
-        case .notice: return "공식 게시글"
-        case .post: return "게시글"
+        case .official: return "공식 게시글"
         }
     }
     
     var imageName: String {
         switch self {
+        case .review: return "icNotificationPost"
+        case .bookmark: return "icNotificationLike"
         case .follow: return "icNotificationFollow"
-        case .like: return "icNotificationLike"
-        case .notice: return "icNotificationNotice"
-        case .post: return "icNotificationPost"
+        case .official: return "icNotificationNotice"
         }
     }
 }
