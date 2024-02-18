@@ -90,24 +90,28 @@ class NotificationViewController: UIViewController {
     
     private func setupBindings() {
         viewModel.notificationsPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] notifications in
                 self?.showEmptyView(notifications.isEmpty)
             }
             .store(in: &cancellables)
         
         viewModel.errorPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 self?.handleError(error)
             }
             .store(in: &cancellables)
         
         viewModel.isDeletingPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] isDeleting in
                 self?.tableView.reloadData()
             }
             .store(in: &cancellables)
         
         viewModel.selectIndexPathsPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] selectIndexPaths in
                 self?.updateDeleteSelectionButton(isEnabled: !selectIndexPaths.isEmpty)
             }
