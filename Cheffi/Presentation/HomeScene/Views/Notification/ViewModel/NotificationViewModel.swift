@@ -57,42 +57,21 @@ final class NotificationViewModel: NotificationViewModelType {
          useCase: NotificationUseCase) {
         self.actions = actions
         self.useCase = useCase
-        //        bind()
-        testBind()
+        bind()
     }
     
     private func bind() {
         _viewDidLoad
             .flatMap { [unowned self] _ in
-                self.useCase.getNotifications(cursor: 0, size: 10)
+                let notificationRequest: NotificationRequest = NotificationRequest(cursor: 0, size: 10)
+                return self.useCase.getNotifications(notificationRequest: notificationRequest)
                     .catch { error -> Empty<[Notification], Never> in
                         self._error.send(error)
                         return .init()
                     }
-            }
-            .sink { [weak self] notifications in
+            }.sink { [weak self] notifications in
                 self?._notifications.send(notifications)
-            }
-            .store(in: &cancellables)
-    }
-    
-    private func testBind() {
-        _viewDidLoad
-            .flatMap { _ in
-                let dummyNotifications = [
-                    Notification(id: "1", category: .review, content: "‘김쉐피'님께서 새로운 게시글을 등록했어요", checked: true, notifiedDate: ""),
-                    Notification(id: "2", category: .bookmark, content: "‘그시절낭만의 근본 경양식 돈가스’의 글이 유료전환까지 1시간 남았어요", checked: true, notifiedDate: ""),
-                    Notification(id: "3", category: .follow, content: "‘최쉐피'님께서 나를 팔로우 했어요", checked: true, notifiedDate: ""),
-                    Notification(id: "4", category: .official, content: "‘마이크 테스트’ 게시글이 등록 되었어요", checked: true, notifiedDate: ""),
-                    Notification(id: "5", category: .review, content: "내가 쓴 ‘경양식 돈가스’의 글이 인기 급등 맛집으로 선정되었어요", checked: true, notifiedDate: ""),
-                    Notification(id: "6", category: .official, content: "‘마이크 테스트’ 게시글이 등록 되었어요", checked: true, notifiedDate: "")
-                ]
-                return Just(dummyNotifications)
-            }
-            .sink { [weak self] notifications in
-                self?._notifications.send(notifications)
-            }
-            .store(in: &cancellables)
+            }.store(in: &cancellables)
     }
     
     // MARK: - Input
@@ -185,4 +164,3 @@ final class NotificationViewModel: NotificationViewModelType {
         actions.showPopup(text, subText, keywrod, popupState, leftButtonTitle, rightButtonTitle, leftHandler, rightHandler)
     }
 }
-

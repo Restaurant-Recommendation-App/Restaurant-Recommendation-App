@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol NotificationRepository {
-    func getNotifications(cursor: Int, size: Int) -> AnyPublisher<([NotificationDTO], HTTPURLResponse), DataTransferError>
+    func getNotifications(notificationRequest: NotificationRequest) -> AnyPublisher<([NotificationDTO], HTTPURLResponse), DataTransferError>
 }

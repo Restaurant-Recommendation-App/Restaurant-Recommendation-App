@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol NotificationUseCase {
-    func getNotifications(cursor: Int, size: Int) -> AnyPublisher<[Notification], DataTransferError>
+    func getNotifications(notificationRequest: NotificationRequest) -> AnyPublisher<[Notification], DataTransferError>
 }
 
 final class DefaultNotificationUseCase: NotificationUseCase {
@@ -19,8 +19,8 @@ final class DefaultNotificationUseCase: NotificationUseCase {
         self.repository = repository
     }
     
-    func getNotifications(cursor: Int, size: Int) -> AnyPublisher<[Notification], DataTransferError> {
-        repository.getNotifications(cursor: cursor, size: size)
+    func getNotifications(notificationRequest: NotificationRequest) -> AnyPublisher<[Notification], DataTransferError> {
+        repository.getNotifications(notificationRequest: notificationRequest)
             .map { $0.0.map { $0.toDomain() } }
             .eraseToAnyPublisher()
     }
