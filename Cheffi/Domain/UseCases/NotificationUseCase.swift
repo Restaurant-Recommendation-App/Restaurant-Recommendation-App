@@ -22,7 +22,7 @@ final class DefaultNotificationUseCase: NotificationUseCase {
     
     func getNotifications(notificationRequest: NotificationRequest) -> AnyPublisher<[Notification], DataTransferError> {
         repository.getNotifications(notificationRequest: notificationRequest)
-            .map { $0.0.map { $0.toDomain() } }
+            .map { $0.0.data.map { $0.toDomain() } }
             .eraseToAnyPublisher()
     }
     

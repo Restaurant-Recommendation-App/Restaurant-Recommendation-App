@@ -15,7 +15,7 @@ struct HomeAPIEndpoints {
         )
     }
     
-    static func getNotifications(notificationRequest: NotificationRequest) -> Endpoint<[NotificationDTO]> {
+    static func getNotifications(notificationRequest: NotificationRequest) -> Endpoint<PaginationResults<[NotificationDTO]>> {
         return Endpoint(path: "api/v1/notifications",
                         method: .get,
                         queryParametersEncodable: notificationRequest)
