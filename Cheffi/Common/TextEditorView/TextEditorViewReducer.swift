@@ -1,27 +1,27 @@
 //
-//  TextFieldBarReducer.swift
+//  TextEditorViewReducer.swift
 //  Cheffi
 //
-//  Created by 김문옥 on 1/28/24.
+//  Created by 김문옥 on 2/19/24.
 //
 
 import Foundation
 import ComposableArchitecture
 
-struct TextFieldBarReducer: Reducer {
+struct TextEditorViewReducer: Reducer {
     struct State: Equatable {
         var txt: String
         let placeHolder: String
-        let maxCount: Int?
+        let minCount: Int?
         
         init(
             txt: String = "",
             placeHolder: String,
-            maxCount: Int? = nil
+            minCount: Int? = nil
         ) {
             self.txt = txt
             self.placeHolder = placeHolder
-            self.maxCount = maxCount
+            self.minCount = minCount
         }
     }
 

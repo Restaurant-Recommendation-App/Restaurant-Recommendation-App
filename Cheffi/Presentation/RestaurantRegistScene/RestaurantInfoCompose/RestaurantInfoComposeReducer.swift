@@ -30,6 +30,11 @@ struct RestaurantInfoComposeReducer: Reducer {
             title: "내 맛집 등록",
             buttonKind: .back
         )
+        var titleTextFieldBarState: TextFieldBarReducer.State
+        var mainTextEditorViewState = TextEditorViewReducer.State(
+            placeHolder: "음식의 맛, 양, 포장 상태 등 음식에 대한 솔직한 리뷰를 남겨주세요.",
+            minCount: 100
+        )
         var bottomButtonState = BottomButtonReducer.State(
             title: "다음",
             able: false
@@ -37,22 +42,19 @@ struct RestaurantInfoComposeReducer: Reducer {
     }
     
     enum Action {
-        case navigaionBarAction(NavigationBarReducer.Action)
         case startCamera
         case startAlbumSelection
         case appendImageDatas([Data?])
-        case bottomButtonAction(BottomButtonReducer.Action)
         case deselectPhoto(Data)
+        case setEnableNext
+        case navigaionBarAction(NavigationBarReducer.Action)
+        case titleTextFieldBarAction(TextFieldBarReducer.Action)
+        case mainTextEditorViewAction(TextEditorViewReducer.Action)
+        case bottomButtonAction(BottomButtonReducer.Action)
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
-        case .navigaionBarAction(let action):
-            switch action {
-            case .tap:
-                steps.send(.popToNavigationController)
-                return .none
-            }
         case .startCamera:
             let stepAsync: () async -> Data? = {
                 await withCheckedContinuation { continuation in
@@ -80,10 +82,37 @@ struct RestaurantInfoComposeReducer: Reducer {
         case .appendImageDatas(let datas):
             let flatDatas = datas.compactMap { $0 }
             state.selectedImageDatas.append(contentsOf: flatDatas)
-            return .none
+            return .send(.setEnableNext)
         case .deselectPhoto(let data):
             state.selectedImageDatas = state.selectedImageDatas.filter { $0 != data }
+            return .send(.setEnableNext)
+        case .setEnableNext:
+            let isValidMainTextMinCount = state.mainTextEditorViewState.minCount != nil
+            ? state.mainTextEditorViewState.txt.count >= state.mainTextEditorViewState.minCount!
+            : true
+            let enable = state.selectedImageDatas.count >= 3 &&
+            state.titleTextFieldBarState.txt.isEmpty == false &&
+            isValidMainTextMinCount
+            state.bottomButtonState.able = enable
             return .none
+        case .navigaionBarAction(let action):
+            switch action {
+            case .tap:
+                steps.send(.popToNavigationController)
+                return .none
+            }
+        case .titleTextFieldBarAction(let action):
+            switch action {
+            case .input(let txt):
+                state.titleTextFieldBarState.txt = txt
+                return .send(.setEnableNext)
+            }
+        case .mainTextEditorViewAction(let action):
+            switch action {
+            case .input(let txt):
+                state.mainTextEditorViewState.txt = txt
+                return .send(.setEnableNext)
+            }
         case .bottomButtonAction(let action):
             switch action {
             case .tap:

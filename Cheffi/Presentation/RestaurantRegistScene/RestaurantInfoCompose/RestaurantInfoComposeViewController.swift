@@ -31,7 +31,11 @@ class RestaurantInfoComposeViewController: UIViewController {
         addHostingController(
             view: RestaurantInfoComposeView(
                 Store(initialState: RestaurantInfoComposeReducer.State(
-                    restaurant: restaurant
+                    restaurant: restaurant, 
+                    titleTextFieldBarState: TextFieldBarReducer.State(
+                        placeHolder: "\(restaurant.name) 맛있어요",
+                        maxCount: 30
+                    )
                 )) {
                     reducer._printChanges()
                 }

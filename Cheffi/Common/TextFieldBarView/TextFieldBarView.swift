@@ -30,12 +30,22 @@ struct TextFieldBarView: View {
                     text: viewStore.binding(get: \.txt, send: { .input($0) }),
                     prompt: Text(viewStore.placeHolder)
                 )
-                .font(Font.custom("SUIT", size: 14))
+                .font(.custom("SUIT", size: 14))
                 .foregroundColor(.cheffiGray9)
                 .focused($isFocused)
+                .onChange(of: viewStore.txt) {
+                    if let maxCount = viewStore.maxCount {
+                        viewStore.send(.input(String(viewStore.txt.prefix(maxCount))))
+                    }
+                }
+                
+                if let maxCount = viewStore.maxCount {
+                    Text("\(viewStore.txt.count)/\(maxCount)")
+                        .font(.custom("SUIT", size: 14))
+                        .foregroundColor(.cheffiGray5)
+                }
             }
             .padding(Metrics.barPadding)
-            .frame(height: Metrics.barHeight)
             .background(.cheffiWhite)
             .overlay(
                 RoundedRectangle(cornerRadius: Metrics.barCornerRadius)
@@ -45,6 +55,7 @@ struct TextFieldBarView: View {
                         lineWidth: Metrics.barBorderWidth
                     )
             )
+            .frame(height: Metrics.barHeight)
         }
         .padding(.top, Metrics.outerHStackPadding)
     }
@@ -55,7 +66,8 @@ struct TextFieldBarView_Preview: PreviewProvider {
         TextFieldBarView(
             Store(initialState: TextFieldBarReducer.State(
                 txt: "",
-                placeHolder: "도로명 주소 입력"
+                placeHolder: "도로명 주소 입력",
+                maxCount: 30
             )) {
                 TextFieldBarReducer()._printChanges()
             }

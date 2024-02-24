@@ -34,7 +34,7 @@ struct ConfirmPopupView: View {
                             .foregroundColor(.cheffiGray8)
                         
                         Text(viewStore.description)
-                            .font(Font.custom("SUIT", size: 15))
+                            .font(.custom("SUIT", size: 15))
                             .multilineTextAlignment(.center)
                             .foregroundColor(.cheffiGray6)
                         

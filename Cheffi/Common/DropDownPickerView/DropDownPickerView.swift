@@ -32,7 +32,7 @@ struct DropDownPickerView: View {
                 
                 HStack {
                     Text(viewStore.selection == nil ? viewStore.placeHolder : viewStore.selection!)
-                        .font(Font.custom("SUIT", size: 14))
+                        .font(.custom("SUIT", size: 14))
                         .foregroundColor(viewStore.selection != nil ? .cheffiGray9 : .cheffiGray5)
                     
                     
@@ -76,7 +76,7 @@ struct DropDownPickerView: View {
                 ForEach(viewStore.options, id: \.self) { option in
                     HStack {
                         Text(option)
-                            .font(Font.custom("SUIT", size: 14))
+                            .font(.custom("SUIT", size: 14))
                         Spacer()
                     }
                     .foregroundStyle(.cheffiGray8)

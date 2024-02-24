@@ -159,7 +159,6 @@ struct RestaurantRegistComposeReducer: Reducer {
             let address = Address(
                 province: province,
                 city: city,
-                lotNumber: state.roadNameAddressTextFieldBarState.txt,
                 roadName: state.roadNameAddressTextFieldBarState.txt,
                 fullLotNumberAddress: state.roadNameAddressTextFieldBarState.txt,
                 fullRodNameAddress: state.roadNameAddressTextFieldBarState.txt
