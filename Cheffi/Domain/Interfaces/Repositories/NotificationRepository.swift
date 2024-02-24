@@ -10,4 +10,5 @@ import Combine
 
 protocol NotificationRepository {
     func getNotifications(notificationRequest: NotificationRequest) -> AnyPublisher<([NotificationDTO], HTTPURLResponse), DataTransferError>
+    func deleteNotifications(ids: [String], deleteAll: Bool) -> AnyPublisher<(Results<[String]>, HTTPURLResponse), DataTransferError>
 }

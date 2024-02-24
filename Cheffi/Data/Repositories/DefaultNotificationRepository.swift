@@ -25,4 +25,10 @@ extension DefaultNotificationRepository: NotificationRepository {
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
             .eraseToAnyPublisher()
     }
+    
+    func deleteNotifications(ids: [String], deleteAll: Bool) -> AnyPublisher<(Results<[String]>, HTTPURLResponse), DataTransferError> {
+        let endpoint = HomeAPIEndpoints.deleteNotifications(ids: ids, deleteAll: deleteAll)
+        return dataTransferService.request(with: endpoint, on: backgroundQueue)
+            .eraseToAnyPublisher()
+    }
 }

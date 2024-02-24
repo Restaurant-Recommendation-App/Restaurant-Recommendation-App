@@ -20,4 +20,12 @@ struct HomeAPIEndpoints {
                         method: .get,
                         queryParametersEncodable: notificationRequest)
     }
+    
+    static func deleteNotifications(ids: [String], deleteAll: Bool) -> Endpoint<Results<[String]>> {
+        let params: [String: Any] = ["notifications": ids,
+                                     "delete_all": deleteAll]
+        return Endpoint(path: "api/v1/notifications",
+                        method: .delete,
+                        queryParameters: params)
+    }
 }
