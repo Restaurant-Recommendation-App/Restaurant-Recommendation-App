@@ -10,7 +10,7 @@ import Combine
 
 protocol NotificationUseCase {
     func getNotifications(notificationRequest: NotificationRequest) -> AnyPublisher<[Notification], DataTransferError>
-    func getNotifications(ids: [String], deleteAll: Bool) -> AnyPublisher<[String], DataTransferError>
+    func deleteNotifications(ids: [String], deleteAll: Bool) -> AnyPublisher<[String], DataTransferError>
 }
 
 final class DefaultNotificationUseCase: NotificationUseCase {
@@ -26,7 +26,7 @@ final class DefaultNotificationUseCase: NotificationUseCase {
             .eraseToAnyPublisher()
     }
     
-    func getNotifications(ids: [String], deleteAll: Bool) -> AnyPublisher<[String], DataTransferError> {
+    func deleteNotifications(ids: [String], deleteAll: Bool) -> AnyPublisher<[String], DataTransferError> {
         repository.deleteNotifications(ids: ids, deleteAll: deleteAll)
             .map { $0.0.data }
             .eraseToAnyPublisher()
