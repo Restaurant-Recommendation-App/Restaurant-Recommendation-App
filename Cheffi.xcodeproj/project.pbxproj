@@ -26,6 +26,8 @@
 		6B40B3002B66642900945946 /* DropDownPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40B2FF2B66642900945946 /* DropDownPickerView.swift */; };
 		6B40B3022B66654D00945946 /* DropDownPickerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40B3012B66654D00945946 /* DropDownPickerReducer.swift */; };
 		6B7174372B42DD82009FEF35 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7174362B42DD82009FEF35 /* NavigationBarView.swift */; };
+		6B795CFE2B8B16500000FB43 /* RestaurantMenuComposePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B795CFD2B8B16500000FB43 /* RestaurantMenuComposePopupView.swift */; };
+		6B795D002B8B1E2F0000FB43 /* RestaurantMenuComposePopupReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B795CFF2B8B1E2F0000FB43 /* RestaurantMenuComposePopupReducer.swift */; };
 		6B7D8AEF2B53FBAF00786ACE /* RouteStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D8AEE2B53FBAF00786ACE /* RouteStep.swift */; };
 		6B7D8AF22B54030900786ACE /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D8AF12B54030900786ACE /* Stepper.swift */; };
 		6BA9B9822B42C4AE0010290C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA9B9812B42C4AD0010290C /* SearchBarView.swift */; };
@@ -356,6 +358,8 @@
 		6B40B2FF2B66642900945946 /* DropDownPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPickerView.swift; sourceTree = "<group>"; };
 		6B40B3012B66654D00945946 /* DropDownPickerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPickerReducer.swift; sourceTree = "<group>"; };
 		6B7174362B42DD82009FEF35 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		6B795CFD2B8B16500000FB43 /* RestaurantMenuComposePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMenuComposePopupView.swift; sourceTree = "<group>"; };
+		6B795CFF2B8B1E2F0000FB43 /* RestaurantMenuComposePopupReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMenuComposePopupReducer.swift; sourceTree = "<group>"; };
 		6B7D8AEE2B53FBAF00786ACE /* RouteStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStep.swift; sourceTree = "<group>"; };
 		6B7D8AF12B54030900786ACE /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
 		6BA9B9812B42C4AD0010290C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
@@ -738,6 +742,8 @@
 				6B08FE9A2B541D6500BBC74B /* RestaurantInfoComposeViewController.swift */,
 				6B08FEA32B54216600BBC74B /* RestaurantInfoComposeView.swift */,
 				6B08FEA52B54217000BBC74B /* RestaurantInfoComposeReducer.swift */,
+				6B795CFD2B8B16500000FB43 /* RestaurantMenuComposePopupView.swift */,
+				6B795CFF2B8B1E2F0000FB43 /* RestaurantMenuComposePopupReducer.swift */,
 			);
 			path = RestaurantInfoCompose;
 			sourceTree = "<group>";
@@ -2059,6 +2065,7 @@
 				CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */,
 				D47719042A8CC13100381A72 /* CheffiRecommendationUseCase.swift in Sources */,
 				FFA6BA8C2ADBBC550094913E /* AvatarInfoResponse.swift in Sources */,
+				6B795D002B8B1E2F0000FB43 /* RestaurantMenuComposePopupReducer.swift in Sources */,
 				FFDBC6782A8280E20009189C /* UILabel+Extensions.swift in Sources */,
 				D497F9F42AA872F90057B7EB /* PopularRestaurantContentsCell.swift in Sources */,
 				FFC2F2072A9085A10001C86C /* MoreCell.swift in Sources */,
@@ -2143,6 +2150,7 @@
 				CE0D45242A618F0C00636989 /* NationalTrendViewController.swift in Sources */,
 				FFDBC67C2A83B2ED0009189C /* UITextField+Extensions.swift in Sources */,
 				CE70F88D2A63C0CC003D0ED9 /* SimilarChefRepository.swift in Sources */,
+				6B795CFE2B8B16500000FB43 /* RestaurantMenuComposePopupView.swift in Sources */,
 				D4D6DB052AE2BD3F007FA990 /* AreaSelectionViewController.swift in Sources */,
 				D49B59282A652330003C108E /* RestaurantContentView.swift in Sources */,
 				FFDBC6762A8278B50009189C /* Fonts.swift in Sources */,

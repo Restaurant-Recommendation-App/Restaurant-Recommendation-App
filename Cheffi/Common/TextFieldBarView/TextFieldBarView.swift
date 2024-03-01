@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 import ComposableArchitecture
 import ViewStore
 
@@ -24,40 +25,54 @@ struct TextFieldBarView: View {
     
     var body: some View {
         HStack {
-            HStack {
-                TextField(
-                    "",
-                    text: viewStore.binding(get: \.txt, send: { .input($0) }),
-                    prompt: Text(viewStore.placeHolder)
-                )
-                .font(.custom("SUIT", size: 14))
-                .foregroundColor(.cheffiGray9)
-                .focused($isFocused)
-                .onChange(of: viewStore.txt) {
-                    if let maxCount = viewStore.maxCount {
-                        viewStore.send(.input(String(viewStore.txt.prefix(maxCount))))
-                    }
-                }
-                
-                if let maxCount = viewStore.maxCount {
-                    Text("\(viewStore.txt.count)/\(maxCount)")
-                        .font(.custom("SUIT", size: 14))
-                        .foregroundColor(.cheffiGray5)
+            TextField(
+                "",
+                text: viewStore.binding(get: \.txt, send: { .input($0) }),
+                prompt: Text(viewStore.placeHolder)
+            )
+            .keyboardType(viewStore.isNumberOnly ? .numberPad : .default)
+            
+            .font(.custom("SUIT", size: 14))
+            .foregroundColor(.cheffiGray9)
+            .focused($isFocused)
+            .onReceive(Just(viewStore.txt)) { newValue in
+                guard viewStore.isNumberOnly else { return }
+                let filteredText = newValue.filter { "0123456789".contains($0) }
+                let numberFormatter: NumberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+                if let formattedText = numberFormatter.string(for: Int(filteredText)) {
+                    viewStore.send(.input(formattedText))
                 }
             }
-            .padding(Metrics.barPadding)
-            .background(.cheffiWhite)
-            .overlay(
-                RoundedRectangle(cornerRadius: Metrics.barCornerRadius)
-                    .inset(by: Metrics.barBorderInset)
-                    .stroke(
-                        isFocused ? .cheffiGray9 : .cheffiGray3,
-                        lineWidth: Metrics.barBorderWidth
-                    )
-            )
-            .frame(height: Metrics.barHeight)
+            .onChange(of: viewStore.txt) {
+                if let maxCount = viewStore.maxCount {
+                    viewStore.send(.input(String(viewStore.txt.prefix(maxCount))))
+                }
+            }
+            
+            if let rightText = viewStore.rightText {
+                Text(rightText)
+                    .font(.custom("SUIT", size: 14).weight(.medium))
+                    .foregroundColor(.cheffiGray9)
+            }
+            
+            if let maxCount = viewStore.maxCount {
+                Text("\(viewStore.txt.count)/\(maxCount)")
+                    .font(.custom("SUIT", size: 14))
+                    .foregroundColor(.cheffiGray5)
+            }
         }
-        .padding(.top, Metrics.outerHStackPadding)
+        .padding(Metrics.barPadding)
+        .background(.cheffiWhite)
+        .overlay(
+            RoundedRectangle(cornerRadius: Metrics.barCornerRadius)
+                .inset(by: Metrics.barBorderInset)
+                .stroke(
+                    isFocused ? .cheffiGray9 : .cheffiGray3,
+                    lineWidth: Metrics.barBorderWidth
+                )
+        )
+        .frame(height: Metrics.barHeight)
     }
 }
 
@@ -67,7 +82,9 @@ struct TextFieldBarView_Preview: PreviewProvider {
             Store(initialState: TextFieldBarReducer.State(
                 txt: "",
                 placeHolder: "도로명 주소 입력",
-                maxCount: 30
+                rightText: "원",
+                maxCount: 30,
+                isNumberOnly: true
             )) {
                 TextFieldBarReducer()._printChanges()
             }

@@ -15,6 +15,20 @@ struct ConfirmPopupReducer: Reducer {
         let primaryButtonTitle: String
         let secondaryButtonTitle: String?
         let optionButtonTitle: String?
+        
+        init(
+            title: String, 
+            description: String,
+            primaryButtonTitle: String,
+            secondaryButtonTitle: String? = nil,
+            optionButtonTitle: String? = nil
+        ) {
+            self.title = title
+            self.description = description
+            self.primaryButtonTitle = primaryButtonTitle
+            self.secondaryButtonTitle = secondaryButtonTitle
+            self.optionButtonTitle = optionButtonTitle
+        }
     }
     
     enum Action {

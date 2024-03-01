@@ -12,7 +12,7 @@ import ViewStore
 @ViewStore(ConfirmPopupReducer.self)
 struct ConfirmPopupView: View {
     private enum Metrics {
-        static let safeAreaPadding = 24.0
+        static let outsidePadding = 24.0
         static let popupViewPadding = EdgeInsets(top: 24, leading: 16, bottom: 24, trailing: 16)
         static let popupVStackSpacing = 12.0
         static let buttonsHStackTopPadding = 12.0
@@ -24,6 +24,7 @@ struct ConfirmPopupView: View {
     var body: some View {
         ZStack {
             Color.cheffiDimmed
+                .ignoresSafeArea()
             
             GeometryReader {
                 VStack(spacing: Metrics.popupVStackSpacing) {
@@ -84,11 +85,10 @@ struct ConfirmPopupView: View {
                         }
                     }
                 }
-                .padding(.horizontal, Metrics.safeAreaPadding)
+                .padding(.horizontal, Metrics.outsidePadding)
                 .frame(width: $0.size.width, height: $0.size.height)
             }
         }
-        .ignoresSafeArea()
     }
 }
 

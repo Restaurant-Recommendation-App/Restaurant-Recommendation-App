@@ -60,7 +60,6 @@ struct RestaurantRegistComposeReducer: Reducer {
             title: "쉐피에서 식당 정보를 확인하고 있어요",
             description: "등록한 정보가 정확한 정보가 아닐경우\n리뷰가 삭제될 수 있습니다.",
             primaryButtonTitle: "이해했어요",
-            secondaryButtonTitle: nil,
             optionButtonTitle: "다시 보지 않기"
         )
         var isShowConfirmPopup: Bool = false
