@@ -14,15 +14,12 @@ struct NotificationViewModelActions {
 
 protocol NotificationViewModelInput {
     func viewDidLoad()
-    func notificationRemove(at index: Int)
+    func notificationRemove(at indexPaths: [IndexPath])
     func notificationRemoveAll()
-    func selectIndexPathRemove(at indexPath: IndexPath)
-    func selectIndexPathsRemoveAll()
+    func selectIndexPathRemove(at indexPaths: [IndexPath])
     func selectIndexPathAppend(_ indexPath: IndexPath)
     func setDeleting(_ status: Bool)
     func readNotoficationAppend(at id: String)
-    func readNotificationRemoveAll()
-    func readNotificationRemove(at indexPath: IndexPath)
 }
 
 protocol NotificationViewModelOutput {
@@ -70,8 +67,38 @@ final class NotificationViewModel: NotificationViewModelType {
                         return .init()
                     }
             }.sink { [weak self] notifications in
-                self?._notifications.send(notifications)
+                let dummyNotifications = [
+                    Notification(id: "1", category: .review, content: "‘김쉐피'님께서 새로운 게시글을 등록했어요", checked: true, notifiedDate: ""),
+                    Notification(id: "2", category: .bookmark, content: "‘그시절낭만의 근본 경양식 돈가스’의 글이 유료전환까지 1시간 남았어요", checked: true, notifiedDate: ""),
+                    Notification(id: "3", category: .follow, content: "‘최쉐피'님께서 나를 팔로우 했어요", checked: true, notifiedDate: ""),
+                    Notification(id: "4", category: .official, content: "‘마이크 테스트’ 게시글이 등록 되었어요", checked: true, notifiedDate: ""),
+                    Notification(id: "5", category: .review, content: "내가 쓴 ‘경양식 돈가스’의 글이 인기 급등 맛집으로 선정되었어요", checked: true, notifiedDate: ""),
+                    Notification(id: "6", category: .official, content: "‘마이크 테스트’ 게시글이 등록 되었어요", checked: true, notifiedDate: "")
+                ]
+                self?._notifications.send(dummyNotifications)
+//                self?._notifications.send(notifications)
             }.store(in: &cancellables)
+    }
+        
+    private func readNotificationRemove(at indexPaths: [IndexPath]) {
+        indexPaths.forEach { indexPath in
+            guard let selectIndexPath = _selectIndexPaths.value.first(where: { $0 == indexPath }),
+                  let notification = _notifications.value[safe: selectIndexPath.row],
+                  let notificationId = UserDefaultsManager.NotificationInfo.notificationIds.first(where: { $0 == notification.id }) else { return }
+            
+            UserDefaultsManager.NotificationInfo.notificationIds.removeAll(notificationId)
+            print("---------------------------------------")
+            print("삭제 한 ID : ", notificationId)
+            print("---------------------------------------")
+        }
+    }
+    
+    private func selectIndexPathsRemoveAll() {
+        _selectIndexPaths.value.removeAll()
+    }
+    
+    private func readNotificationRemoveAll() {
+        UserDefaultsManager.NotificationClear()
     }
     
     // MARK: - Input
@@ -79,24 +106,59 @@ final class NotificationViewModel: NotificationViewModelType {
         _viewDidLoad.send()
     }
     
-    func notificationRemove(at index: Int) {
+    /// 현재 토큰인증 작업이 안되었으므로 해당 메서드 정상 작동 X ---> 크래시 발생
+    func notificationRemove(at indexPaths: [IndexPath]) {
+        let indexes = indexPaths.map { $0.item }
         var currentNotifications = _notifications.value
-        currentNotifications.remove(at: index)
-        _notifications.send(currentNotifications)
+        
+        var ids: [String] = []
+        indexes.forEach {
+            if let id = currentNotifications[safe: $0]?.id {
+                ids.append(id)
+            }
+
+            currentNotifications.remove(at: $0)
+        }
+        
+        useCase.deleteNotifications(ids: ids, deleteAll: false)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(_):
+                    // TODO: 에러 처리
+                    break
+                }
+            } receiveValue: { [weak self] _ in
+                self?.readNotificationRemove(at: indexPaths)
+                self?.selectIndexPathRemove(at: indexPaths)
+                self?._notifications.send(currentNotifications)
+            }.store(in: &cancellables)
     }
     
     func notificationRemoveAll() {
-        _notifications.send([])
+        useCase.deleteNotifications(ids: [], deleteAll: true)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(_):
+                    // TODO: 에러 처리
+                    break
+                }
+            } receiveValue: { [weak self] _ in
+                self?.selectIndexPathsRemoveAll()
+                self?.readNotificationRemoveAll()
+                self?._notifications.send([])
+            }.store(in: &cancellables)
     }
     
-    func selectIndexPathRemove(at indexPath: IndexPath) {
-        _selectIndexPaths.value.removeAll(indexPath)
+    func selectIndexPathRemove(at indexPaths: [IndexPath]) {
+        indexPaths.forEach {
+            _selectIndexPaths.value.removeAll($0)
+        }
     }
-    
-    func selectIndexPathsRemoveAll() {
-        _selectIndexPaths.value.removeAll()
-    }
-    
+        
     func selectIndexPathAppend(_ indexPath: IndexPath) {
         _selectIndexPaths.value.append(indexPath)
     }
@@ -108,21 +170,7 @@ final class NotificationViewModel: NotificationViewModelType {
     func readNotoficationAppend(at id: String) {
         UserDefaultsManager.NotificationInfo.notificationIds.append(id)
     }
-    
-    func readNotificationRemoveAll() {
-        UserDefaultsManager.NotificationClear()
-    }
-    
-    func readNotificationRemove(at indexPath: IndexPath) {
-        guard let selectIndexPath = _selectIndexPaths.value.first(where: { $0 == indexPath }),
-              let notification = _notifications.value[safe: selectIndexPath.row],
-              let notificationId = UserDefaultsManager.NotificationInfo.notificationIds.first(where: { $0 == notification.id })  else { return }
-        UserDefaultsManager.NotificationInfo.notificationIds.removeAll(notificationId)
-        print("---------------------------------------")
-        print("삭제 한 ID : ", notificationId)
-        print("---------------------------------------")
-    }
-    
+        
     // MARK: - Output
     var notificationsPublisher: AnyPublisher<[Notification], Never> {
         _notifications.eraseToAnyPublisher()

@@ -93,6 +93,7 @@ class NotificationViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] notifications in
                 self?.showEmptyView(notifications.isEmpty)
+                self?.tableView.reloadData()
             }
             .store(in: &cancellables)
         
@@ -145,16 +146,9 @@ class NotificationViewController: UIViewController {
         if isAllDelete {
             // 알림 리스트 초기화
             viewModel.notificationRemoveAll()
-            tableView.reloadData()
-            viewModel.selectIndexPathsRemoveAll()
-            viewModel.readNotificationRemoveAll()
         } else {
-            for indexPath in viewModel.selectIndexPaths.sorted(by: >) {
-                viewModel.readNotificationRemove(at: indexPath)
-                viewModel.notificationRemove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                viewModel.selectIndexPathRemove(at: indexPath)
-            }
+            let indexPaths = viewModel.selectIndexPaths.sorted(by: >)
+            viewModel.notificationRemove(at: indexPaths)
         }
     }
     
@@ -229,7 +223,7 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
         guard let cell = tableView.cellForRow(at: indexPath) as? NotificationCell else { return }
         let isDeleting: Bool = viewModel.isDeleting
         if isDeleting, let _ = viewModel.selectIndexPaths.firstIndex(of: indexPath) {
-            viewModel.selectIndexPathRemove(at: indexPath)
+            viewModel.selectIndexPathRemove(at: [indexPath])
             cell.updateSelectionButton()
         }
     }

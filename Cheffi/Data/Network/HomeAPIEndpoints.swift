@@ -18,6 +18,7 @@ struct HomeAPIEndpoints {
     static func getNotifications(notificationRequest: NotificationRequest) -> Endpoint<PaginationResults<[NotificationDTO]>> {
         return Endpoint(path: "api/v1/notifications",
                         method: .get,
+                        headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],
                         queryParametersEncodable: notificationRequest)
     }
     
@@ -26,6 +27,7 @@ struct HomeAPIEndpoints {
                                      "delete_all": deleteAll]
         return Endpoint(path: "api/v1/notifications",
                         method: .delete,
+                        headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],
                         queryParameters: params)
     }
 }
