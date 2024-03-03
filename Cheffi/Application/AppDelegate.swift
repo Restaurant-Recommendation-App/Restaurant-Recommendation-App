@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         KakaoSDK.initSDK(appKey: "c687c207117651ad9744db70c36d86b8")
+        
+        // TODO: 토큰이 필요한 api 테스트를 위해 임시로 넣어둠, 추후 제거 필요
+        UserDefaultsManager.AuthInfo.sessionToken = "c9c08656-3a46-4167-8f5f-785f9c3aeb6f"
         return true
     }
 
