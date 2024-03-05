@@ -1,5 +1,5 @@
 //
-//  RestaurantInfoComposeView.swift
+//  ReviewComposeView.swift
 //  Cheffi
 //
 //  Created by 김문옥 on 1/14/24.
@@ -10,8 +10,8 @@ import Combine
 import ComposableArchitecture
 import ViewStore
 
-@ViewStore(RestaurantInfoComposeReducer.self)
-struct RestaurantInfoComposeView: View {
+@ViewStore(ReviewComposeReducer.self)
+struct ReviewComposeView: View {
     private enum Metrics {
         static let outsidePadding = 16.0
         static let headlineTextPadding = EdgeInsets(top: 32, leading: 0, bottom: 4, trailing: 0)
@@ -39,7 +39,7 @@ struct RestaurantInfoComposeView: View {
             VStack(spacing: 0) {
                 NavigationBarView(store.scope(
                     state: \.navigationBarState,
-                    action: RestaurantInfoComposeReducer.Action.navigaionBarAction
+                    action: ReviewComposeReducer.Action.navigationBarAction
                 ))
                 
                 ScrollView(.vertical) {
@@ -143,13 +143,13 @@ struct RestaurantInfoComposeView: View {
                         
                         TextFieldBarView(store.scope(
                             state: \.titleTextFieldBarState,
-                            action: RestaurantInfoComposeReducer.Action.titleTextFieldBarAction
+                            action: ReviewComposeReducer.Action.titleTextFieldBarAction
                         ))
                         .padding(.top, Metrics.textFieldTopPadding)
                         
                         TextEditorView(store.scope(
                             state: \.mainTextEditorViewState,
-                            action: RestaurantInfoComposeReducer.Action.mainTextEditorViewAction
+                            action: ReviewComposeReducer.Action.mainTextEditorViewAction
                         ))
                         .frame(height: Metrics.mainTextEditorHeight)
                     } // 리뷰작성 영역 끝
@@ -237,7 +237,7 @@ struct RestaurantInfoComposeView: View {
                 
                 BottomButtonView(store.scope(
                     state: \.bottomButtonState,
-                    action: RestaurantInfoComposeReducer.Action.bottomButtonAction
+                    action: ReviewComposeReducer.Action.bottomButtonAction
                 ))
                 .padding(.horizontal, Metrics.outsidePadding)
             }
@@ -246,7 +246,7 @@ struct RestaurantInfoComposeView: View {
             if viewStore.isShowMenuComposePopup {
                 RestaurantMenuComposePopupView(store.scope(
                     state: \.menuComposePopupState,
-                    action: RestaurantInfoComposeReducer.Action.menuComposePopupAction
+                    action: ReviewComposeReducer.Action.menuComposePopupAction
                 ))
             }
             
@@ -254,7 +254,7 @@ struct RestaurantInfoComposeView: View {
             if viewStore.isShowMaxMenuConfirmPopup {
                 ConfirmPopupView(store.scope(
                     state: \.maxMenuConfirmPopupState,
-                    action: RestaurantInfoComposeReducer.Action.maxMenuConfirmPopupAction
+                    action: ReviewComposeReducer.Action.maxMenuConfirmPopupAction
                 ))
             }
         }
@@ -263,10 +263,10 @@ struct RestaurantInfoComposeView: View {
     }
 }
 
-struct RestaurantInfoComposeView_Preview: PreviewProvider {
+struct ReviewComposeView_Preview: PreviewProvider {
     static var previews: some View {
-        RestaurantInfoComposeView(
-            Store(initialState: RestaurantInfoComposeReducer.State(
+        ReviewComposeView(
+            Store(initialState: ReviewComposeReducer.State(
                 restaurant: RestaurantInfoDTO(
                     id: 0,
                     name: "기사식당",
@@ -286,13 +286,13 @@ struct RestaurantInfoComposeView_Preview: PreviewProvider {
                     UIImage(resource: .loginBackground).pngData()!,
                     UIImage(resource: .icSearch).pngData()!
                 ], 
+                isShowMenuComposePopup: false, 
                 titleTextFieldBarState: TextFieldBarReducer.State(
                     placeHolder: "기사식당 맛있어요",
                     maxCount: 30
-                ),
-                isShowMenuComposePopup: false
+                )
             )) {
-                RestaurantInfoComposeReducer(
+                ReviewComposeReducer(
                     useCase: PreviewRestaurantRegistUseCase(),
                     steps: PassthroughSubject<RouteStep, Never>()
                 )._printChanges()

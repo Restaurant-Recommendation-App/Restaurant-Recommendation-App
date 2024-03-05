@@ -1,5 +1,5 @@
 //
-//  RestaurantRegistView.swift
+//  RestaurantRegistSearchView.swift
 //  Cheffi
 //
 //  Created by Eli_01 on 12/17/23.
@@ -10,8 +10,8 @@ import Combine
 import ComposableArchitecture
 import ViewStore
 
-@ViewStore(RestaurantRegistReducer.self)
-struct RestaurantRegistView: View {
+@ViewStore(RestaurantRegistSearchReducer.self)
+struct RestaurantRegistSearchView: View {
     private enum Metrics {
         static let descriptionTextEdgeInsets = EdgeInsets(top: 8.0, leading: 16.0, bottom: 12.0, trailing: 0.0)
         static let suggestRegistHStackHeight = 48.0
@@ -24,19 +24,19 @@ struct RestaurantRegistView: View {
         VStack {
             NavigationBarView(store.scope(
                 state: \.navigationBarState,
-                action: RestaurantRegistReducer.Action.navigaionBarAction
+                action: RestaurantRegistSearchReducer.Action.navigationBarAction
             ))
             
             SearchBarView(store.scope(
                 state: \.searchBarState,
-                action: RestaurantRegistReducer.Action.searchBarAction
+                action: RestaurantRegistSearchReducer.Action.searchBarAction
             ))
             
             if viewStore.searchBarState.searchQuery.isEmpty {
                 if viewStore.isEmptyNearRestaurant {
                     EmptyDescriptionView(store.scope(
                         state: \.nearRestaurantEmptyState,
-                        action: RestaurantRegistReducer.Action.nearRestaurantEmptyAction
+                        action: RestaurantRegistSearchReducer.Action.nearRestaurantEmptyAction
                     ))
                     
                     Spacer()
@@ -56,7 +56,7 @@ struct RestaurantRegistView: View {
                     
                     NearRestaurantListView(store.scope(
                         state: \.nearRestaurantListState,
-                        action: RestaurantRegistReducer.Action.nearRestaurantListAction
+                        action: RestaurantRegistSearchReducer.Action.nearRestaurantListAction
                     ))
                     
                     Spacer()
@@ -65,7 +65,7 @@ struct RestaurantRegistView: View {
                 if viewStore.isEmptyRestaurant {
                     EmptyDescriptionView(store.scope(
                         state: \.restaurantEmptyState,
-                        action: RestaurantRegistReducer.Action.restaurantEmptyAction
+                        action: RestaurantRegistSearchReducer.Action.restaurantEmptyAction
                     ))
                     
                     Spacer()
@@ -82,7 +82,7 @@ struct RestaurantRegistView: View {
                         
                         EmptyViewButton(store.scope(
                             state: \.emptyViewButtonState,
-                            action: RestaurantRegistReducer.Action.emptyViewButtonAction
+                            action: RestaurantRegistSearchReducer.Action.emptyViewButtonAction
                         ))
                     }
                     .padding(Metrics.suggestRegistHStackEdgeInsets)
@@ -94,7 +94,7 @@ struct RestaurantRegistView: View {
 
                     RestaurantListView(store.scope(
                         state: \.restaurantListState,
-                        action: RestaurantRegistReducer.Action.restaurantListAction
+                        action: RestaurantRegistSearchReducer.Action.restaurantListAction
                     ))
                 }
             }
@@ -105,11 +105,11 @@ struct RestaurantRegistView: View {
     }
 }
 
-struct RestaurantRegistView_Previews: PreviewProvider {
+struct RestaurantRegistSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantRegistView(
-            Store(initialState: RestaurantRegistReducer.State()) {
-                RestaurantRegistReducer(
+        RestaurantRegistSearchView(
+            Store(initialState: RestaurantRegistSearchReducer.State()) {
+                RestaurantRegistSearchReducer(
                     useCase: PreviewRestaurantRegistUseCase(),
                     steps: PassthroughSubject<RouteStep, Never>()
                 )

@@ -27,7 +27,7 @@ struct RestaurantRegistComposeView: View {
             VStack(spacing: 0) {
                 NavigationBarView(store.scope(
                     state: \.navigationBarState,
-                    action: RestaurantRegistComposeReducer.Action.navigaionBarAction
+                    action: RestaurantRegistComposeReducer.Action.navigationBarAction
                 ))
                 
                 Text("등록하는 식당의\n정보를 알려주세요.")

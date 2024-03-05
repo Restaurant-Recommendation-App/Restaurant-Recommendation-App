@@ -1,5 +1,5 @@
 //
-//  RestaurantRegistReducer.swift
+//  RestaurantRegistSearchReducer.swift
 //  Cheffi
 //
 //  Created by Eli_01 on 12/17/23.
@@ -9,8 +9,8 @@ import Foundation
 import Combine
 import ComposableArchitecture
 
-struct RestaurantRegistReducer: Reducer {
-    let useCase: RestaurantUseCase
+struct RestaurantRegistSearchReducer: Reducer {
+    private let useCase: RestaurantUseCase
     let steps: PassthroughSubject<RouteStep, Never>
 
     init(
@@ -28,7 +28,7 @@ struct RestaurantRegistReducer: Reducer {
         
         let navigationBarState = NavigationBarReducer.State(
             title: "내 맛집 등록",
-            buttonKind: .close
+            leftButtonKind: .close
         )
         var searchBarState = SearchBarReducer.State()
         var nearRestaurantListState = NearRestaurantListReducer.State()
@@ -52,7 +52,7 @@ struct RestaurantRegistReducer: Reducer {
         case getRestaurants([RestaurantInfoDTO])
         case occerError(DataTransferError)
         
-        case navigaionBarAction(NavigationBarReducer.Action)
+        case navigationBarAction(NavigationBarReducer.Action)
         case searchBarAction(SearchBarReducer.Action)
         case nearRestaurantListAction(NearRestaurantListReducer.Action)
         case nearRestaurantEmptyAction(EmptyDescriptionViewReducer.Action)
@@ -80,11 +80,12 @@ struct RestaurantRegistReducer: Reducer {
         case .occerError(let error):
             state.error = error.localizedDescription
             return .none
-        case .navigaionBarAction(let action):
+        case .navigationBarAction(let action):
             switch action {
-            case .tap:
+            case .leftButtonTapped:
                 steps.send(.dismissRestaurantRegist)
-                return .none
+                fallthrough
+            default: return .none
             }
         case .searchBarAction(let action):
             switch action {
@@ -115,11 +116,11 @@ struct RestaurantRegistReducer: Reducer {
         case .restaurantListAction(let action):
             switch action {
             case .tap(let item):
-                steps.send(.pushRestaurantInfoCompose(info: item))
+                steps.send(.pushReviewCompose(info: item))
                 return .none
             }
         }
     }
 }
 
-extension RestaurantRegistReducer: Stepper {}
+extension RestaurantRegistSearchReducer: Stepper {}

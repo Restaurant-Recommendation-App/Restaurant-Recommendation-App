@@ -10,7 +10,7 @@ import Combine
 import ComposableArchitecture
 
 struct RestaurantRegistComposeReducer: Reducer {
-    let useCase: RestaurantUseCase
+    private let useCase: RestaurantUseCase
     let steps: PassthroughSubject<RouteStep, Never>
 
     init(
@@ -24,7 +24,7 @@ struct RestaurantRegistComposeReducer: Reducer {
     struct State: Equatable {
         let navigationBarState = NavigationBarReducer.State(
             title: "내 맛집 등록",
-            buttonKind: .back
+            leftButtonKind: .back
         )
         var provinceDropDownPickerState = DropDownPickerReducer.State(
             placeHolder: "광역시 / 도",
@@ -67,7 +67,7 @@ struct RestaurantRegistComposeReducer: Reducer {
     }
     
     enum Action {
-        case navigaionBarAction(NavigationBarReducer.Action)
+        case navigationBarAction(NavigationBarReducer.Action)
         case provinceDropDownPickerAction(DropDownPickerReducer.Action)
         case cityDropDownPickerAction(DropDownPickerReducer.Action)
         case roadNameAddressTextFieldBarAction(TextFieldBarReducer.Action)
@@ -82,11 +82,12 @@ struct RestaurantRegistComposeReducer: Reducer {
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
-        case .navigaionBarAction(let action):
+        case .navigationBarAction(let action):
             switch action {
-            case .tap:
+            case .leftButtonTapped:
                 steps.send(.popToNavigationController)
-                return .none
+                fallthrough
+            default: return .none
             }
         case .provinceDropDownPickerAction(let action):
             switch action {
@@ -175,7 +176,7 @@ struct RestaurantRegistComposeReducer: Reducer {
                     .catch { Just(Action.occerError($0)) }
             }
         case .successRegist(let restaurant):
-            steps.send(.pushRestaurantInfoCompose(info: restaurant))
+            steps.send(.pushReviewCompose(info: restaurant))
             return .none
         case .occerError(let error):
             state.error = error.localizedDescription

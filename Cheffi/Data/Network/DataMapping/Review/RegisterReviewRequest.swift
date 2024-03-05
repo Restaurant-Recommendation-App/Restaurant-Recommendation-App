@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RegisterReviewRequest: Codable {
+struct RegisterReviewRequest: Codable, Equatable {
     let restaurantId: Int
     let registered: Bool
     let title: String

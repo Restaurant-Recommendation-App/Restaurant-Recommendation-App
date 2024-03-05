@@ -9,18 +9,20 @@ import Foundation
 import ComposableArchitecture
 
 struct NavigationBarReducer: Reducer {
-    enum ButtonKind: String {
+    enum LeftButtonKind: String {
         case close = "icClose"
         case back = "icBack"
     }
     
     struct State: Equatable {
         let title: String
-        let buttonKind: ButtonKind
+        let leftButtonKind: LeftButtonKind
+        var rightButtonTitle: String?
     }
     
     enum Action {
-        case tap
+        case leftButtonTapped
+        case rightButtonTapped
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TagsChangeRequest: Codable {
+struct TagsChangeRequest: Codable, Equatable {
     let foodTags: [Int]
     let tasteTags: [Int]
     
