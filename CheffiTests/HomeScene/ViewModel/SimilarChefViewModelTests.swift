@@ -25,10 +25,10 @@ final class SimilarChefViewModelTests: XCTestCase {
 }
 
 class MockSimilarChefUseCase: SimilarChefUseCase {
-    var tags: Result<([Cheffi.Tag], HTTPURLResponse), Cheffi.DataTransferError>!
+    var tags: Result<([Cheffi.Tag]), Cheffi.DataTransferError>!
     var users: Result<[Cheffi.User], Cheffi.DataTransferError>!
     
-    func getTags(type: Cheffi.TagType) -> AnyPublisher<([Cheffi.Tag], HTTPURLResponse), Cheffi.DataTransferError> {
+    func getTags(type: Cheffi.TagType) -> AnyPublisher<([Cheffi.Tag]), Cheffi.DataTransferError> {
         return Future { promise in
             promise(self.tags)
         }
