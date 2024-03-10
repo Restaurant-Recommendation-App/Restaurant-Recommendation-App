@@ -16,6 +16,11 @@ class NotificationViewController: UIViewController {
         return vc
     }
     
+    private enum Constants {
+        static let cellHeight: CGFloat = 106
+        static let deleteViewHeight: CGFloat = 80.0
+    }
+    
     private var viewModel: NotificationViewModelType!
     private var cancellables: Set<AnyCancellable> = []
     @IBOutlet private weak var headerView: NotificationHeaderView!
@@ -24,11 +29,6 @@ class NotificationViewController: UIViewController {
     @IBOutlet private weak var deleteSelectionButton: UIButton!
     @IBOutlet private weak var deleteViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var emptyView: UIView!
-    
-    private enum Constants {
-        static let cellHeight: CGFloat = 106
-        static let deleteViewHeight: CGFloat = 80.0
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -225,6 +225,21 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
         if isDeleting, let _ = viewModel.selectIndexPaths.firstIndex(of: indexPath) {
             viewModel.selectIndexPathRemove(at: [indexPath])
             cell.updateSelectionButton()
+        }
+    }
+}
+
+
+extension NotificationViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let contentOffsetY = tableView.contentOffset.y
+        let contentHeight = tableView.contentSize.height
+        let height = tableView.frame.height
+        let actualHeight = (contentHeight - height > 0) ? contentHeight - height : 0
+
+        if contentOffsetY > actualHeight {
+            viewModel.scrolledToBottom()
         }
     }
 }

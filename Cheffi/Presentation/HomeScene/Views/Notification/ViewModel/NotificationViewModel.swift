@@ -19,7 +19,8 @@ protocol NotificationViewModelInput {
     func selectIndexPathRemove(at indexPaths: [IndexPath])
     func selectIndexPathAppend(_ indexPath: IndexPath)
     func setDeleting(_ status: Bool)
-    func readNotoficationAppend(at id: String)
+    func readNotoficationAppend(at id: Int)
+    func scrolledToBottom()
 }
 
 protocol NotificationViewModelOutput {
@@ -31,7 +32,7 @@ protocol NotificationViewModelOutput {
     var selectIndexPaths: [IndexPath] { get }
     var numberOfNotifications: Int { get }
     func notification(at index: Int) -> Notification?
-    func isReadNotification(at id: String) -> Bool
+    func isReadNotification(at id: Int) -> Bool
     func showPopup(text: String, subText: String, keywrod: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?)
 }
 
@@ -46,9 +47,11 @@ final class NotificationViewModel: NotificationViewModelType {
     private var cancellables: Set<AnyCancellable> = []
     private var _isDeleting = CurrentValueSubject<Bool, Never>(false)
     private var _selectIndexPaths = CurrentValueSubject<[IndexPath], Never>([])
+    private var _scrolledToBottom = PassthroughSubject<Void, Never>()
     private var readNotificationIds: [String] = []
     
-    
+    private let paginationGenerator =  DefaultPaginationGenerator<Notification>(cursor: 0, size: 10)
+
     // MARK: - Init
     init(actions: NotificationViewModelActions,
          useCase: NotificationUseCase) {
@@ -60,23 +63,26 @@ final class NotificationViewModel: NotificationViewModelType {
     private func bind() {
         _viewDidLoad
             .flatMap { [unowned self] _ in
-                let notificationRequest: NotificationRequest = NotificationRequest(cursor: 0, size: 10)
-                return self.useCase.getNotifications(notificationRequest: notificationRequest)
+                return self.fetchContents()
                     .catch { error -> Empty<[Notification], Never> in
                         self._error.send(error)
                         return .init()
                     }
             }.sink { [weak self] notifications in
-                let dummyNotifications = [
-                    Notification(id: "1", category: .review, content: "‘김쉐피'님께서 새로운 게시글을 등록했어요", checked: true, notifiedDate: ""),
-                    Notification(id: "2", category: .bookmark, content: "‘그시절낭만의 근본 경양식 돈가스’의 글이 유료전환까지 1시간 남았어요", checked: true, notifiedDate: ""),
-                    Notification(id: "3", category: .follow, content: "‘최쉐피'님께서 나를 팔로우 했어요", checked: true, notifiedDate: ""),
-                    Notification(id: "4", category: .official, content: "‘마이크 테스트’ 게시글이 등록 되었어요", checked: true, notifiedDate: ""),
-                    Notification(id: "5", category: .review, content: "내가 쓴 ‘경양식 돈가스’의 글이 인기 급등 맛집으로 선정되었어요", checked: true, notifiedDate: ""),
-                    Notification(id: "6", category: .official, content: "‘마이크 테스트’ 게시글이 등록 되었어요", checked: true, notifiedDate: "")
-                ]
-                self?._notifications.send(dummyNotifications)
-//                self?._notifications.send(notifications)
+                self?._notifications.send(notifications)
+            }.store(in: &cancellables)
+        
+        _scrolledToBottom
+            .filter { self.paginationGenerator.fetchStatus == .ready }
+            .flatMap { [unowned self] _ in
+                return self.fetchContents()
+                    .catch { error -> Empty<[Notification], Never> in
+                        self._error.send(error)
+                        return .init()
+                    }
+            }.sink { [weak self] notifications in
+                guard let self else { return }
+                self._notifications.send(self._notifications.value + notifications)
             }.store(in: &cancellables)
     }
         
@@ -101,6 +107,39 @@ final class NotificationViewModel: NotificationViewModelType {
         UserDefaultsManager.NotificationClear()
     }
     
+    private func fetchContents() -> AnyPublisher<[Notification], DataTransferError> {
+        let result = CurrentValueSubject<[Notification], DataTransferError>([Notification]())
+        
+        paginationGenerator.next(
+            fetch: { cursor, size, onCompletion, onError in
+                let notificationRequest: NotificationRequest = NotificationRequest(cursor: cursor, size: size)
+                let notifications: AnyPublisher<[Notification], DataTransferError> = useCase.getNotifications(notificationRequest: notificationRequest)
+                
+                notifications
+                    .sink(receiveCompletion: { completion in
+                        switch completion {
+                            // TODO: 에러 처리
+                        case .failure(let error):
+                            onError(error)
+                        case .finished:
+                            break
+                        }
+                    }, receiveValue: { contents in
+                        onCompletion(contents)
+                    }).store(in: &self.cancellables)
+            }, onCompletion: {
+                result.send($0)
+            }, onError: {
+                if let dataTransferError = $0 as? DataTransferError {
+                    result.send(completion: .failure(dataTransferError))
+                }
+            }
+        )
+        
+        return result
+            .eraseToAnyPublisher()
+    }
+    
     // MARK: - Input
     func viewDidLoad() {
         _viewDidLoad.send()
@@ -114,7 +153,7 @@ final class NotificationViewModel: NotificationViewModelType {
         var ids: [String] = []
         indexes.forEach {
             if let id = currentNotifications[safe: $0]?.id {
-                ids.append(id)
+                ids.append(String(id))
             }
 
             currentNotifications.remove(at: $0)
@@ -167,8 +206,12 @@ final class NotificationViewModel: NotificationViewModelType {
         _isDeleting.send(status)
     }
     
-    func readNotoficationAppend(at id: String) {
+    func readNotoficationAppend(at id: Int) {
         UserDefaultsManager.NotificationInfo.notificationIds.append(id)
+    }
+    
+    func scrolledToBottom() {
+        _scrolledToBottom.send(())
     }
         
     // MARK: - Output
@@ -204,7 +247,7 @@ final class NotificationViewModel: NotificationViewModelType {
         return _notifications.value[safe: index]
     }
     
-    func isReadNotification(at id: String) -> Bool {
+    func isReadNotification(at id: Int) -> Bool {
         return UserDefaultsManager.NotificationInfo.notificationIds.contains([id])
     }
     
