@@ -11,24 +11,36 @@ import Combine
 protocol RestaurantUseCase {
     func getRestaurants(name: String, province: String, city: String) -> AnyPublisher<[RestaurantInfoDTO], DataTransferError>
     func registRestaurant(restaurant: RestaurantRegistRequest) -> AnyPublisher<Int, DataTransferError>
+    func getAreas() -> AnyPublisher<[Area], DataTransferError>
 }
 
 
 final class DefaultRestaurantUseCase: RestaurantUseCase {
-    private let repository: RestaurantRepository
-    init(repository: RestaurantRepository) {
-        self.repository = repository
+    private let restaurantRepository: RestaurantRepository
+    private let areaRepository: AreaRepository
+    init(
+        restaurantRepository: RestaurantRepository,
+        areaRepository: AreaRepository
+    ) {
+        self.restaurantRepository = restaurantRepository
+        self.areaRepository = areaRepository
     }
     
     func getRestaurants(name: String, province: String, city: String) -> AnyPublisher<[RestaurantInfoDTO], DataTransferError> {
-        repository.getRestaurants(name: name, province: province, city: city)
+        restaurantRepository.getRestaurants(name: name, province: province, city: city)
             .map({ $0.0.data })
             .eraseToAnyPublisher()
     }
     
     func registRestaurant(restaurant: RestaurantRegistRequest) -> AnyPublisher<Int, DataTransferError> {
-        repository.registRestaurant(restaurant: restaurant)
+        restaurantRepository.registRestaurant(restaurant: restaurant)
             .map(\.0.data)
+            .eraseToAnyPublisher()
+    }
+    
+    func getAreas() -> AnyPublisher<[Area], DataTransferError> {
+        return areaRepository.getAreas()
+            .map { $0.0.data.map { $0.toDomain() } }
             .eraseToAnyPublisher()
     }
 }
@@ -141,6 +153,23 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
     func registRestaurant(restaurant: RestaurantRegistRequest) -> AnyPublisher<Int, DataTransferError> {
         Future { promise in
             promise(.success(1))
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func getAreas() -> AnyPublisher<[Area], DataTransferError> {
+        Future { promise in
+            promise(.success([
+                Area(province: "서울특별시", cities: ["강남구", "강동구", "강북구"]),
+                Area(province: "인천광역시", cities: ["강남구", "강동구", "강북구"]),
+                Area(province: "부산광역시", cities: ["강남구", "강동구", "강북구"]),
+                Area(province: "서울특별시2", cities: ["강남구", "강동구", "강북구"]),
+                Area(province: "인천광역시2", cities: ["강남구", "강동구", "강북구"]),
+                Area(province: "부산광역시2", cities: ["강남구", "강동구", "강북구"]),
+                Area(province: "서울특별시3", cities: ["강남구", "강동구", "강북구"]),
+                Area(province: "인천광역시3", cities: ["강남구", "강동구", "강북구"]),
+                Area(province: "부산광역시3", cities: ["강남구", "강동구", "강북구"])
+            ]))
         }
         .eraseToAnyPublisher()
     }
