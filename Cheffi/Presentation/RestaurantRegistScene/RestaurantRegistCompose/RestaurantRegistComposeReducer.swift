@@ -172,6 +172,7 @@ struct RestaurantRegistComposeReducer: Reducer {
             state.isShowConfirmPopup = false
             return .publisher {
                 useCase.registRestaurant(restaurant: restaurant)
+                    .receive(on: UIScheduler.shared)
                     .map { _ in Action.successRegist(restaurant) }
                     .catch { Just(Action.occerError($0)) }
             }
