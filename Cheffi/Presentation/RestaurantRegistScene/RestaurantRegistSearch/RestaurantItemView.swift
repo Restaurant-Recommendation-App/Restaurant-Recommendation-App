@@ -15,17 +15,19 @@ struct RestaurantItemView: View {
     }
     
     let restaurant: RestaurantInfoDTO
+    let highlightKeyword: String?
     let itemWidth: CGFloat
     
     var body: some View {
         VStack {
             VStack {
                 HStack {
-                    Text(restaurant.name)
-                        .font(
-                            Font.custom("SUIT", size: 16)
-                                .weight(.medium)
-                        )
+                    let text = highlightKeyword == nil 
+                    ? Text(restaurant.name)
+                    : restaurant.name.highlightedText(keyword: highlightKeyword ?? "")
+                    
+                    text
+                        .font(.custom("SUIT", size: 16).weight(.medium))
                         .foregroundColor(.cheffiGray8)
                     
                     Spacer()
@@ -65,6 +67,7 @@ struct RestaurantItemView: View {
             ),
             registered: false
         ),
+        highlightKeyword: "사식",
         itemWidth: .infinity
     )
 }

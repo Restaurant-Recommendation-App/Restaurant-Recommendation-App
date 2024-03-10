@@ -92,6 +92,7 @@ struct RestaurantRegistSearchReducer: Reducer {
             switch action {
             case .input(let text):
                 state.searchBarState.searchQuery = text
+                state.restaurantListState.highlightKeyword = text
                 return .publisher {
                     useCase.getRestaurants(name: text, province: "", city: "")
                         .receive(on: UIScheduler.shared)
