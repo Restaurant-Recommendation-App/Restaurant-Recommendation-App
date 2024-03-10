@@ -18,9 +18,9 @@ struct RestaurantAPIEndpoints {
     }
     
     /// 맛집 등록 API (식당 신규 등록)
-    static func registRestaurant(restaurant: RestaurantInfoDTO) -> Endpoint<Results<Int>> {
+    static func registRestaurant(restaurant: RestaurantRegistRequest) -> Endpoint<Results<Int>> {
         return Endpoint(
-            path: "/api/v1/restaurants",
+            path: "api/v1/restaurants",
             method: .post,
             headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],
             bodyParametersEncodable: restaurant

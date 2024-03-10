@@ -27,7 +27,7 @@ extension DefaultRestaurantRepository: RestaurantRepository {
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
     }
     
-    func registRestaurant(restaurant: RestaurantInfoDTO) -> AnyPublisher<(Results<Int>, HTTPURLResponse), DataTransferError> {
+    func registRestaurant(restaurant: RestaurantRegistRequest) -> AnyPublisher<(Results<Int>, HTTPURLResponse), DataTransferError> {
         let endpoint = RestaurantAPIEndpoints.registRestaurant(restaurant: restaurant)
         return dataTransferService.request(with: endpoint, on: backgroundQueue)
     }

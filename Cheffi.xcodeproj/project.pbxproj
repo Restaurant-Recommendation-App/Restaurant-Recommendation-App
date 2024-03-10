@@ -56,6 +56,7 @@
 		6BDABB722B82614A001E2A67 /* TextEditorViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDABB712B82614A001E2A67 /* TextEditorViewReducer.swift */; };
 		6BE9EF882B6F8C3E00252048 /* ConfirmPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE9EF872B6F8C3E00252048 /* ConfirmPopupView.swift */; };
 		6BE9EF8A2B6F8C6100252048 /* ConfirmPopupReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE9EF892B6F8C6100252048 /* ConfirmPopupReducer.swift */; };
+		6BFD0CD22B9DB7F900417F1C /* RestaurantRegistRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD0CD12B9DB7F900417F1C /* RestaurantRegistRequest.swift */; };
 		CE0D45172A61712400636989 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE0D45162A61712400636989 /* SwifterSwift */; };
 		CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45182A617FC500636989 /* NationalTrendSceneDIContainer.swift */; };
 		CE0D45212A618E5700636989 /* NationalTrendFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0D45202A618E5700636989 /* NationalTrendFlowCoordinator.swift */; };
@@ -397,6 +398,7 @@
 		6BDABB712B82614A001E2A67 /* TextEditorViewReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewReducer.swift; sourceTree = "<group>"; };
 		6BE9EF872B6F8C3E00252048 /* ConfirmPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupView.swift; sourceTree = "<group>"; };
 		6BE9EF892B6F8C6100252048 /* ConfirmPopupReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupReducer.swift; sourceTree = "<group>"; };
+		6BFD0CD12B9DB7F900417F1C /* RestaurantRegistRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistRequest.swift; sourceTree = "<group>"; };
 		A5A5049924D68E85F7C5AD84 /* Pods-Cheffi.stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheffi.stage.xcconfig"; path = "Target Support Files/Pods-Cheffi/Pods-Cheffi.stage.xcconfig"; sourceTree = "<group>"; };
 		CE0D45182A617FC500636989 /* NationalTrendSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendSceneDIContainer.swift; sourceTree = "<group>"; };
 		CE0D45202A618E5700636989 /* NationalTrendFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -1662,6 +1664,7 @@
 			isa = PBXGroup;
 			children = (
 				FF5F48E72AE4DA5300B732BC /* RestaurantInfoDTO.swift */,
+				6BFD0CD12B9DB7F900417F1C /* RestaurantRegistRequest.swift */,
 			);
 			path = Restaurants;
 			sourceTree = "<group>";
@@ -2305,6 +2308,7 @@
 				D4918F0D2A8F48A2001440DD /* DefaultCheffiRecommendationRepository.swift in Sources */,
 				D497F9F62AA874730057B7EB /* PopularRestaurantContentsItemView.swift in Sources */,
 				CE42BA652A6BAF4500EBB80A /* PopupView.swift in Sources */,
+				6BFD0CD22B9DB7F900417F1C /* RestaurantRegistRequest.swift in Sources */,
 				FF68013C2AD2BCFE001AB6E8 /* AuthRepository.swift in Sources */,
 				D420F16B2AE64A4D00DC10ED /* Area.swift in Sources */,
 				6B795D132B93A1EE0000FB43 /* TagItemButton.swift in Sources */,

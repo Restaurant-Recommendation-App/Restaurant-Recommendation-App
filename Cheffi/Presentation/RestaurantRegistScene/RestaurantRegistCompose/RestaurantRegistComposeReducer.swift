@@ -156,6 +156,7 @@ struct RestaurantRegistComposeReducer: Reducer {
             else {
                 return .send(.occerError(RequestGenerationError.components))
             }
+            let name = state.restaurantNameTextFieldBarState.txt
             let address = Address(
                 province: province,
                 city: city,
@@ -163,17 +164,21 @@ struct RestaurantRegistComposeReducer: Reducer {
                 fullLotNumberAddress: state.roadNameAddressTextFieldBarState.txt,
                 fullRodNameAddress: state.roadNameAddressTextFieldBarState.txt
             )
-            let restaurant = RestaurantInfoDTO(
-                id: 0,
-                name: state.restaurantNameTextFieldBarState.txt,
-                address: address,
-                registered: false
-            )
+            let restaurant = RestaurantRegistRequest(name: name, detailedAddress: address)
             state.isShowConfirmPopup = false
             return .publisher {
                 useCase.registRestaurant(restaurant: restaurant)
                     .receive(on: UIScheduler.shared)
-                    .map { _ in Action.successRegist(restaurant) }
+                    .map { 
+                        Action.successRegist(
+                            RestaurantInfoDTO(
+                                id: $0,
+                                name: name,
+                                address: address,
+                                registered: true
+                            )
+                        )
+                    }
                     .catch { Just(Action.occerError($0)) }
             }
         case .successRegist(let restaurant):

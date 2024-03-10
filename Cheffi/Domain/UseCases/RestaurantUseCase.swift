@@ -10,7 +10,7 @@ import Combine
 
 protocol RestaurantUseCase {
     func getRestaurants(name: String, province: String, city: String) -> AnyPublisher<[RestaurantInfoDTO], DataTransferError>
-    func registRestaurant(restaurant: RestaurantInfoDTO) -> AnyPublisher<Int, DataTransferError>
+    func registRestaurant(restaurant: RestaurantRegistRequest) -> AnyPublisher<Int, DataTransferError>
 }
 
 
@@ -26,15 +26,10 @@ final class DefaultRestaurantUseCase: RestaurantUseCase {
             .eraseToAnyPublisher()
     }
     
-    func registRestaurant(restaurant: RestaurantInfoDTO) -> AnyPublisher<Int, DataTransferError> {
-        // TODO: - Eli : 맛집등록 API 반영
-//        repository.registRestaurant(restaurant: restaurant)
-//            .map(\.0.data)
-//            .eraseToAnyPublisher()
-        Future { promise in
-            promise(.success(1))
-        }
-        .eraseToAnyPublisher()
+    func registRestaurant(restaurant: RestaurantRegistRequest) -> AnyPublisher<Int, DataTransferError> {
+        repository.registRestaurant(restaurant: restaurant)
+            .map(\.0.data)
+            .eraseToAnyPublisher()
     }
 }
 
@@ -143,7 +138,7 @@ final class PreviewRestaurantRegistUseCase: RestaurantUseCase {
         .eraseToAnyPublisher()
     }
     
-    func registRestaurant(restaurant: RestaurantInfoDTO) -> AnyPublisher<Int, DataTransferError> {
+    func registRestaurant(restaurant: RestaurantRegistRequest) -> AnyPublisher<Int, DataTransferError> {
         Future { promise in
             promise(.success(1))
         }
