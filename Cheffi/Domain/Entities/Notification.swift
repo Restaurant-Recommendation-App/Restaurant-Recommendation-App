@@ -33,7 +33,7 @@ enum NotificationType: String, Codable {
 }
 
 struct Notification: Codable {
-    let id: String
+    let id: Int
     let category: NotificationType
     let content: String
     let checked: Bool
