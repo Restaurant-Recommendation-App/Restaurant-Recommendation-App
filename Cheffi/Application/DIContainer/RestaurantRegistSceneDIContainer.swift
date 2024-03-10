@@ -31,8 +31,15 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     }
 
     func makeRestaurantRegistSearchReducer(steps: PassthroughSubject<RouteStep, Never>) -> RestaurantRegistSearchReducer {
-        let repository = makeRestaurantRepository()
-        return RestaurantRegistSearchReducer(useCase: makeRestaurantUseCase(repository: repository), steps: steps)
+        let restaurantRepository = makeRestaurantRepository()
+        let areaRepository = makeAreaRepository()
+        return RestaurantRegistSearchReducer(
+            useCase: makeRestaurantUseCase(
+                restaurantRepository: restaurantRepository,
+                areaRepository: areaRepository
+            ),
+            steps: steps
+        )
     }
     
     // MARK: - Restaurant Regist Compose
@@ -41,9 +48,13 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     }
     
     func makeRestaurantRegistComposeReducer(steps: PassthroughSubject<RouteStep, Never>) -> RestaurantRegistComposeReducer {
-        let repository = makeRestaurantRepository()
+        let restaurantRepository = makeRestaurantRepository()
+        let areaRepository = makeAreaRepository()
         return RestaurantRegistComposeReducer(
-            useCase: makeRestaurantUseCase(repository: repository), 
+            useCase: makeRestaurantUseCase(
+                restaurantRepository: restaurantRepository,
+                areaRepository: areaRepository
+            ),
             steps: steps
         )
     }
@@ -57,9 +68,13 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     }
     
     func makeReviewComposeReducer(steps: PassthroughSubject<RouteStep, Never>) -> ReviewComposeReducer {
-        let repository = makeRestaurantRepository()
+        let restaurantRepository = makeRestaurantRepository()
+        let areaRepository = makeAreaRepository()
         return ReviewComposeReducer(
-            useCase: makeRestaurantUseCase(repository: repository),
+            useCase: makeRestaurantUseCase(
+                restaurantRepository: restaurantRepository,
+                areaRepository: areaRepository
+            ),
             steps: steps
         )
     }
@@ -73,9 +88,9 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     }
     
     func makeReviewHashtagsReducer(steps: PassthroughSubject<RouteStep, Never>) -> ReviewHashtagsReducer {
-        let repository = makeRestaurantRepository()
+        let repository = makeReviewRepository()
         return ReviewHashtagsReducer(
-            useCase: makeRestaurantUseCase(repository: repository),
+            useCase: makeReviewUseCase(repository: repository),
             steps: steps
         )
     }
@@ -83,14 +98,32 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
 
 // MARK: - Use Cases
 extension RestaurantRegistSceneDIContainer {
-    func makeRestaurantUseCase(repository: RestaurantRepository) -> RestaurantUseCase {
-        return DefaultRestaurantUseCase(repository: repository)
+    func makeRestaurantUseCase(
+        restaurantRepository: RestaurantRepository,
+        areaRepository: AreaRepository
+    ) -> RestaurantUseCase {
+        return DefaultRestaurantUseCase(
+            restaurantRepository: restaurantRepository,
+            areaRepository: areaRepository
+        )
+    }
+    
+    func makeReviewUseCase(repository: ReviewRepository) -> ReviewUseCase {
+        DefaultReviewUseCase(repository: repository)
     }
 }
 
 // MARK: - Repositories
 extension RestaurantRegistSceneDIContainer {
     func makeRestaurantRepository() -> DefaultRestaurantRepository {
-        return DefaultRestaurantRepository(dataTransferService: dependencies.apiDataTransferService)
+        DefaultRestaurantRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeAreaRepository() -> DefaultAreaRepository {
+        DefaultAreaRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeReviewRepository() -> DefaultReviewRepository {
+        DefaultReviewRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

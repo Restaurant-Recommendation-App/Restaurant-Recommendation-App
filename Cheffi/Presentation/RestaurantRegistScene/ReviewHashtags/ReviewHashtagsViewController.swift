@@ -9,7 +9,7 @@ import UIKit
 import ComposableArchitecture
 
 enum ReviewHashtagsActionType: Equatable {
-    case posting(RegisterReviewRequest)
+    case posting(review: RegisterReviewRequest, imageDatas: [Data])
     case modification(TagsChangeRequest)
     
     var naviRightButtonTitle: String {

@@ -10,11 +10,11 @@ import Combine
 import ComposableArchitecture
 
 struct ReviewHashtagsReducer: Reducer {
-    private let useCase: RestaurantUseCase
+    private let useCase: ReviewUseCase
     let steps: PassthroughSubject<RouteStep, Never>
     
     init(
-        useCase: RestaurantUseCase,
+        useCase: ReviewUseCase,
         steps: PassthroughSubject<RouteStep, Never>
     ) {
         self.useCase = useCase
@@ -34,6 +34,9 @@ struct ReviewHashtagsReducer: Reducer {
         case tagButtonTapped(TagDTO)
         
         case navigationBarAction(NavigationBarReducer.Action)
+        
+        case successPost(Int)
+        case occerError(Error)
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
@@ -67,7 +70,7 @@ struct ReviewHashtagsReducer: Reducer {
             return .none
         case .tagButtonTapped(let tag):
             switch state.reviewRequestInfo {
-            case .posting(let reviewRequest):
+            case .posting(let reviewRequest, let imageDatas):
                 var foodTags = reviewRequest.tag.foodTags
                 var tasteTags = reviewRequest.tag.tasteTags
                 switch tag.type {
@@ -92,7 +95,7 @@ struct ReviewHashtagsReducer: Reducer {
                     menus: reviewRequest.menus,
                     tag: TagsChangeRequest(foodTags: foodTags, tasteTags: tasteTags)
                 )
-                state.reviewRequestInfo = .posting(review)
+                state.reviewRequestInfo = .posting(review: review, imageDatas: imageDatas)
             case .modification(let tagsRequest):
                 var foodTags = tagsRequest.foodTags
                 var tasteTags = tagsRequest.tasteTags
@@ -118,9 +121,29 @@ struct ReviewHashtagsReducer: Reducer {
             switch action {
             case .leftButtonTapped:
                 steps.send(.popToNavigationController)
-                fallthrough
-            default: return .none
+                return .none
+            case .rightButtonTapped:
+                switch state.reviewRequestInfo {
+                case .posting(let reviewRequest, let imageDatas):
+                    return .publisher {
+                        useCase.postReviews(registerReviewRequest: reviewRequest, images: imageDatas)
+                            .receive(on: UIScheduler.shared)
+                            .map(Action.successPost)
+                            .catch { Just(Action.occerError($0)) }
+                    }
+                default:
+                    // TODO: Eli - API 호출이 아닌 변경된 태그 저장만 하기
+                    return .none
+                }
             }
+        case .successPost(let id):
+            // TODO: Eli - 리뷰상세 화면으로 이동
+//            steps.send(.......)
+            return .none
+        case .occerError(let error):
+            // TODO: Eli - 에러 핸들링
+//            state.error = error.localizedDescription
+            return .none
         }
     }
 }

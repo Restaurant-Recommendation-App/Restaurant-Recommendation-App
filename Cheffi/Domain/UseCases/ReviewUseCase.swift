@@ -46,3 +46,75 @@ final class DefaultReviewUseCase: ReviewUseCase {
             .eraseToAnyPublisher()
     }
 }
+
+final class PreviewReviewUseCase: ReviewUseCase {
+    func getReviews(reviewRequest: ReviewRequest) -> AnyPublisher<ReviewInfoDTO, DataTransferError> {
+        Future { promise in
+            promise(.success(
+                ReviewInfoDTO(
+                    id: 0,
+                    title: "맛집 찾았다", 
+                    text: "맛집 찾았다 맛집 찾았다 맛집 찾았다 맛집 찾았다 맛집 찾았다 맛집 찾았다 맛집 찾았다",
+                    bookmarked: false,
+                    ratedByUser: true,
+                    ratingType: .good,
+                    createdDate: nil,
+                    timeLeftToLock: 300000,
+                    matchedTagNum: nil, 
+                    restaurant: nil,
+                    writer: nil,
+                    ratings: nil,
+                    photos: nil,
+                    menus: [
+                        MenuDTO(name: "김밥", price: 3500, description: nil),
+                        MenuDTO(name: "참치김밥", price: 4500, description: nil)
+                    ]
+                )
+            ))
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func postReviews(registerReviewRequest: RegisterReviewRequest, images: [Data]) -> AnyPublisher<Int, DataTransferError> {
+        Future { promise in
+            promise(.success(1))
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func postReviewPurchase(purchaseReviewRequest: PurchaseReviewRequest) -> AnyPublisher<Int, DataTransferError> {
+        Future { promise in
+            promise(.success(1))
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func getAreas(area: String) -> AnyPublisher<ReviewInfoDTO, DataTransferError> {
+        Future { promise in
+            promise(.success(
+                ReviewInfoDTO(
+                    id: 0,
+                    title: "맛집 찾았다",
+                    text: "맛집 찾았다 맛집 찾았다 맛집 찾았다 맛집 찾았다 맛집 찾았다 맛집 찾았다 맛집 찾았다",
+                    bookmarked: false,
+                    ratedByUser: true,
+                    ratingType: .good,
+                    createdDate: nil,
+                    timeLeftToLock: 300000,
+                    matchedTagNum: nil,
+                    restaurant: nil,
+                    writer: nil,
+                    ratings: nil,
+                    photos: nil,
+                    menus: [
+                        MenuDTO(name: "김밥", price: 3500, description: nil),
+                        MenuDTO(name: "참치김밥", price: 4500, description: nil)
+                    ]
+                )
+            ))
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    
+}

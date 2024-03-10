@@ -186,6 +186,7 @@ struct ReviewComposeReducer: Reducer {
             state.isShowMaxMenuConfirmPopup = false
             return .none
         case .bottomButtonAction(let action):
+            guard state.menuComposePopupState.tappable else { return .none }
             switch action {
             case .tap:
                 let composedReviewInfo = RegisterReviewRequest(
@@ -196,7 +197,11 @@ struct ReviewComposeReducer: Reducer {
                     menus: state.composedMenus,
                     tag: TagsChangeRequest(foodTags: [], tasteTags: [])
                 )
-                steps.send(.pushReviewHashtags(.posting(composedReviewInfo)))
+                steps.send(
+                    .pushReviewHashtags(
+                        .posting(review: composedReviewInfo, imageDatas: state.selectedImageDatas)
+                    )
+                )
                 return .none
             }
         }
