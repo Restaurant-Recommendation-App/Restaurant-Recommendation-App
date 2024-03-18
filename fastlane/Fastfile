@@ -49,8 +49,7 @@ platform :ios do
         type: "appstore",
         app_identifier: "com.cheffi.cheffi",
         keychain_name: "match_keychain",
-        keychain_password: "",
-        git_basic_authorization: Base64.strict_encode64(ENV["MATCH_GIT_BASIC_AUTHORIZATION"])
+        keychain_password: ""
       )
 
     else
