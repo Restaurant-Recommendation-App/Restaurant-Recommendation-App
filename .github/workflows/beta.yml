@@ -25,8 +25,11 @@ jobs:
       - name: Install Fastlane
         run: gem install fastlane -NV
         
-      - name: Configure SSH
-        run: echo "$SSH_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
           
       - name: Run Fastlane beta lane
         env:
