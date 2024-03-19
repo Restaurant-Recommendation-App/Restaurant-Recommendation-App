@@ -72,7 +72,7 @@ platform :ios do
       workspace: "Cheffi.xcworkspace",
       configuration: "Release",
       scheme: "Cheffi",
-      silent: true,
+      silent: false,
       clean: true,
       include_bitcode: false,
       export_method: "app-store",
@@ -80,7 +80,8 @@ platform :ios do
         provisioningProfiles: {
           "com.cheffi.cheffi" => "match AppStore com.cheffi.cheffi"
         },
-        teamID: "A9F8XLHP2Y"
+        teamID: "A9F8XLHP2Y",
+        signingStyle: "manual"
       }
     )
 
