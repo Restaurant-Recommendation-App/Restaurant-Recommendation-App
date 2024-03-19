@@ -2660,8 +2660,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
 			requirement = {
-				kind = exactVersion;
-				version = 2.16.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.16.0;
 			};
 		};
 		FF9793B02A74C22800A921A0 /* XCRemoteSwiftPackageReference "PanModal" */ = {
