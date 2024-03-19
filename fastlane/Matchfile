@@ -1,4 +1,4 @@
-git_url("https://github.com/Cheffi-Git/iOS-Certificates.git")
+git_url("git@github.com:Cheffi-Git/iOS-Certificates.git")
 
 storage_mode("git")
 
