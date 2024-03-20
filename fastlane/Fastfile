@@ -24,7 +24,7 @@ platform :ios do
   desc "Distribute App to TestFlight"
   lane :beta do
 
-    ENV["BUILD_NUMBER"] = Time.new.strftime("%Y%m%d%H%M%S")
+    ENV["BUILD_NUMBER"] = Time.new.strftime("%Y.%m%d.%H%M%S")
 
     increment_build_number(
       build_number: ENV["BUILD_NUMBER"],
