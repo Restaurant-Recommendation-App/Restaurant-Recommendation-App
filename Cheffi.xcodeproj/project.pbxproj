@@ -21,6 +21,7 @@
 		6B08FEA42B54216600BBC74B /* ReviewComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FEA32B54216600BBC74B /* ReviewComposeView.swift */; };
 		6B08FEA62B54217000BBC74B /* ReviewComposeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FEA52B54217000BBC74B /* ReviewComposeReducer.swift */; };
 		6B3E2FA52B49C8F600828648 /* ViewStore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B3E2FA42B49C8F600828648 /* ViewStore */; };
+		6B4053772BAB1A28007E2088 /* netfox in Frameworks */ = {isa = PBXBuildFile; productRef = 6B4053762BAB1A28007E2088 /* netfox */; };
 		6B40B2FB2B6641F200945946 /* TextFieldBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40B2FA2B6641F200945946 /* TextFieldBarView.swift */; };
 		6B40B2FD2B66454200945946 /* TextFieldBarReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40B2FC2B66454200945946 /* TextFieldBarReducer.swift */; };
 		6B40B3002B66642900945946 /* DropDownPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40B2FF2B66642900945946 /* DropDownPickerView.swift */; };
@@ -396,6 +397,7 @@
 		6BDABB712B82614A001E2A67 /* TextEditorViewReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewReducer.swift; sourceTree = "<group>"; };
 		6BE9EF872B6F8C3E00252048 /* ConfirmPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupView.swift; sourceTree = "<group>"; };
 		6BE9EF892B6F8C6100252048 /* ConfirmPopupReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupReducer.swift; sourceTree = "<group>"; };
+		A5A5049924D68E85F7C5AD84 /* Pods-Cheffi.stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheffi.stage.xcconfig"; path = "Target Support Files/Pods-Cheffi/Pods-Cheffi.stage.xcconfig"; sourceTree = "<group>"; };
 		CE0D45182A617FC500636989 /* NationalTrendSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendSceneDIContainer.swift; sourceTree = "<group>"; };
 		CE0D45202A618E5700636989 /* NationalTrendFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendFlowCoordinator.swift; sourceTree = "<group>"; };
 		CE0D45232A618F0C00636989 /* NationalTrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTrendViewController.swift; sourceTree = "<group>"; };
@@ -694,6 +696,7 @@
 				296236DF1AC0B1A79BC70DC9 /* Pods_Cheffi.framework in Frameworks */,
 				FF5059792A79513300F90D27 /* KakaoSDK in Frameworks */,
 				CE0D45172A61712400636989 /* SwifterSwift in Frameworks */,
+				6B4053772BAB1A28007E2088 /* netfox in Frameworks */,
 				FF9793B22A74C22800A921A0 /* PanModal in Frameworks */,
 				6B3E2FA52B49C8F600828648 /* ViewStore in Frameworks */,
 			);
@@ -715,6 +718,7 @@
 			children = (
 				1B24CC8C1560BF374B8A3ED8 /* Pods-Cheffi.debug.xcconfig */,
 				5D148B9BF9EC9E451CCFEBDE /* Pods-Cheffi.release.xcconfig */,
+				A5A5049924D68E85F7C5AD84 /* Pods-Cheffi.stage.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1911,6 +1915,7 @@
 				FF5059782A79513300F90D27 /* KakaoSDK */,
 				5D89F8FF2B2EC693001C9DD6 /* ComposableArchitecture */,
 				6B3E2FA42B49C8F600828648 /* ViewStore */,
+				6B4053762BAB1A28007E2088 /* netfox */,
 			);
 			productName = Cheffi;
 			productReference = D4E244B52A60FF5A004E0167 /* Cheffi.app */;
@@ -1950,6 +1955,7 @@
 				FF9793B02A74C22800A921A0 /* XCRemoteSwiftPackageReference "PanModal" */,
 				FF5059772A79513300F90D27 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				5D89F8FE2B2EC693001C9DD6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				6B4053752BAB1A28007E2088 /* XCRemoteSwiftPackageReference "netfox" */,
 			);
 			productRefGroup = D4E244B62A60FF5A004E0167 /* Products */;
 			projectDirPath = "";
@@ -2367,12 +2373,128 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		6B4053782BAB1A7C007E2088 /* Stage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				API_BASE_URL = "http://www.naver.com";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "STAGE QA";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Stage;
+		};
+		6B4053792BAB1A7C007E2088 /* Stage */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5A5049924D68E85F7C5AD84 /* Pods-Cheffi.stage.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Cheffi/Cheffi.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20240321013717;
+				DEVELOPMENT_TEAM = A9F8XLHP2Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "이미지를 불러오기 위해 사진 권한을 허용합니다. (선택 권한)";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 찍기 위해 카메라 접근을 허용합니다. (선택 권한)";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheffi.cheffi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Stage;
+		};
+		6B40537A2BAB1A7C007E2088 /* Stage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20240321013717;
+				DEVELOPMENT_TEAM = 3D2GFZ7CZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sseoju.CheffiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cheffi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Cheffi";
+			};
+			name = Stage;
+		};
 		CE1A6A8C2A62AE4D00FFE93D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20240321013717;
 				DEVELOPMENT_TEAM = 3D2GFZ7CZT;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
@@ -2391,7 +2513,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20240321013717;
 				DEVELOPMENT_TEAM = 3D2GFZ7CZT;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
@@ -2463,7 +2585,7 @@
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG QA";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -2535,7 +2657,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cheffi/Cheffi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20240321013717;
 				DEVELOPMENT_TEAM = A9F8XLHP2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
@@ -2574,7 +2696,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cheffi/Cheffi.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20240321013717;
 				DEVELOPMENT_TEAM = A9F8XLHP2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cheffi/Resources/Info.plist;
@@ -2611,6 +2733,7 @@
 			buildConfigurations = (
 				CE1A6A8C2A62AE4D00FFE93D /* Debug */,
 				CE1A6A8D2A62AE4D00FFE93D /* Release */,
+				6B40537A2BAB1A7C007E2088 /* Stage */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2620,6 +2743,7 @@
 			buildConfigurations = (
 				D4E244C72A60FF5D004E0167 /* Debug */,
 				D4E244C82A60FF5D004E0167 /* Release */,
+				6B4053782BAB1A7C007E2088 /* Stage */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2629,6 +2753,7 @@
 			buildConfigurations = (
 				D4E244CA2A60FF5D004E0167 /* Debug */,
 				D4E244CB2A60FF5D004E0167 /* Release */,
+				6B4053792BAB1A7C007E2088 /* Stage */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2642,6 +2767,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.5.5;
+			};
+		};
+		6B4053752BAB1A28007E2088 /* XCRemoteSwiftPackageReference "netfox" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kasketis/netfox";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.21.0;
 			};
 		};
 		CE0D45152A61712400636989 /* XCRemoteSwiftPackageReference "SwifterSwift" */ = {
@@ -2679,6 +2812,11 @@
 		6B3E2FA42B49C8F600828648 /* ViewStore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ViewStore;
+		};
+		6B4053762BAB1A28007E2088 /* netfox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B4053752BAB1A28007E2088 /* XCRemoteSwiftPackageReference "netfox" */;
+			productName = netfox;
 		};
 		CE0D45162A61712400636989 /* SwifterSwift */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -70,8 +70,8 @@ platform :ios do
 
     build_app(
       workspace: "Cheffi.xcworkspace",
-      configuration: "Release",
-      scheme: "Cheffi",
+      configuration: "Stage",
+      scheme: "Cheffi Stage",
       silent: false,
       clean: true,
       include_bitcode: false,
