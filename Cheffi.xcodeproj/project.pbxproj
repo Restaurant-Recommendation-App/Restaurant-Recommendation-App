@@ -120,6 +120,7 @@
 		D42F793E2B4AA6A400F571B0 /* AreaAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42F793D2B4AA6A400F571B0 /* AreaAPIEndpoints.swift */; };
 		D43331A92A6D32AE00E6CB4B /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43331A82A6D32AE00E6CB4B /* UICollectionView+Extensions.swift */; };
 		D43761CE2B02555F00F9AE25 /* SearchViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43761CD2B02555F00F9AE25 /* SearchViewLayout.swift */; };
+		D43C4FC02B8207B600047B7F /* NotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43C4FBF2B8207B600047B7F /* NotificationRequest.swift */; };
 		D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */; };
 		D441C0202A66965400063822 /* CheffiRecommendationCatogoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C01F2A66965400063822 /* CheffiRecommendationCatogoryPageView.swift */; };
 		D441C0232A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */; };
@@ -460,6 +461,7 @@
 		D42F793D2B4AA6A400F571B0 /* AreaAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAPIEndpoints.swift; sourceTree = "<group>"; };
 		D43331A82A6D32AE00E6CB4B /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		D43761CD2B02555F00F9AE25 /* SearchViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewLayout.swift; sourceTree = "<group>"; };
+		D43C4FBF2B8207B600047B7F /* NotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequest.swift; sourceTree = "<group>"; };
 		D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationCell.swift; sourceTree = "<group>"; };
 		D441C01F2A66965400063822 /* CheffiRecommendationCatogoryPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationCatogoryPageView.swift; sourceTree = "<group>"; };
 		D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationCategoryPageCell.swift; sourceTree = "<group>"; };
@@ -1639,6 +1641,7 @@
 				FFB29BC02ACBDFAA000E473E /* NotificationDTO.swift */,
 				FF35FB152ADD7CD8002D9E47 /* ChangeProfilePhotoRequest.swift */,
 				D420F1682AE6480500DC10ED /* AreaDTO.swift */,
+				D43C4FBF2B8207B600047B7F /* NotificationRequest.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2157,6 +2160,7 @@
 				D43761CE2B02555F00F9AE25 /* SearchViewLayout.swift in Sources */,
 				D4512EE42B70F5B900D7F65E /* ReviewsByAreaRequest.swift in Sources */,
 				D47C68A32B307F2F007F7650 /* SearchViewHeader.swift in Sources */,
+				D43C4FC02B8207B600047B7F /* NotificationRequest.swift in Sources */,
 				FF3E0D572ACB1158009B236D /* ProfileTagCell.swift in Sources */,
 				FF3E0D522ACB0DA4009B236D /* ProfileTagListView.swift in Sources */,
 				CE42BA622A6B9D8F00EBB80A /* UIColor+Extensions.swift in Sources */,

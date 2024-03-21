@@ -16,6 +16,11 @@ class NotificationViewController: UIViewController {
         return vc
     }
     
+    private enum Constants {
+        static let cellHeight: CGFloat = 106
+        static let deleteViewHeight: CGFloat = 80.0
+    }
+    
     private var viewModel: NotificationViewModelType!
     private var cancellables: Set<AnyCancellable> = []
     @IBOutlet private weak var headerView: NotificationHeaderView!
@@ -24,11 +29,6 @@ class NotificationViewController: UIViewController {
     @IBOutlet private weak var deleteSelectionButton: UIButton!
     @IBOutlet private weak var deleteViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var emptyView: UIView!
-    
-    private enum Constants {
-        static let cellHeight: CGFloat = 106
-        static let deleteViewHeight: CGFloat = 80.0
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,24 +90,29 @@ class NotificationViewController: UIViewController {
     
     private func setupBindings() {
         viewModel.notificationsPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] notifications in
                 self?.showEmptyView(notifications.isEmpty)
+                self?.tableView.reloadData()
             }
             .store(in: &cancellables)
         
         viewModel.errorPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 self?.handleError(error)
             }
             .store(in: &cancellables)
         
         viewModel.isDeletingPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] isDeleting in
                 self?.tableView.reloadData()
             }
             .store(in: &cancellables)
         
         viewModel.selectIndexPathsPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] selectIndexPaths in
                 self?.updateDeleteSelectionButton(isEnabled: !selectIndexPaths.isEmpty)
             }
@@ -141,16 +146,9 @@ class NotificationViewController: UIViewController {
         if isAllDelete {
             // 알림 리스트 초기화
             viewModel.notificationRemoveAll()
-            tableView.reloadData()
-            viewModel.selectIndexPathsRemoveAll()
-            viewModel.readNotificationRemoveAll()
         } else {
-            for indexPath in viewModel.selectIndexPaths.sorted(by: >) {
-                viewModel.readNotificationRemove(at: indexPath)
-                viewModel.notificationRemove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                viewModel.selectIndexPathRemove(at: indexPath)
-            }
+            let indexPaths = viewModel.selectIndexPaths.sorted(by: >)
+            viewModel.notificationRemove(at: indexPaths)
         }
     }
     
@@ -225,8 +223,23 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
         guard let cell = tableView.cellForRow(at: indexPath) as? NotificationCell else { return }
         let isDeleting: Bool = viewModel.isDeleting
         if isDeleting, let _ = viewModel.selectIndexPaths.firstIndex(of: indexPath) {
-            viewModel.selectIndexPathRemove(at: indexPath)
+            viewModel.selectIndexPathRemove(at: [indexPath])
             cell.updateSelectionButton()
+        }
+    }
+}
+
+
+extension NotificationViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let contentOffsetY = tableView.contentOffset.y
+        let contentHeight = tableView.contentSize.height
+        let height = tableView.frame.height
+        let actualHeight = (contentHeight - height > 0) ? contentHeight - height : 0
+
+        if contentOffsetY > actualHeight {
+            viewModel.scrolledToBottom()
         }
     }
 }

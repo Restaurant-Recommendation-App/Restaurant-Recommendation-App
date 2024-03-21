@@ -30,7 +30,7 @@ enum UserDefaultsManager {
     
     enum NotificationInfo {
         @UserDefault(key: "notificationIds", defaultValue: [])
-        static var notificationIds: [String]
+        static var notificationIds: [Int]
     }
         
     enum AreaInfo {

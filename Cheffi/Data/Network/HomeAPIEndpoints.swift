@@ -15,8 +15,19 @@ struct HomeAPIEndpoints {
         )
     }
     
-    static func getNotifications() -> Endpoint<[NotificationDTO]> {
-        return Endpoint(path: "notification",
-                        method: .get)
+    static func getNotifications(notificationRequest: NotificationRequest) -> Endpoint<PaginationResults<[NotificationDTO]>> {
+        return Endpoint(path: "api/v1/notifications",
+                        method: .get,
+                        headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],
+                        queryParametersEncodable: notificationRequest)
+    }
+    
+    static func deleteNotifications(ids: [String], deleteAll: Bool) -> Endpoint<Results<[String]>> {
+        let params: [String: Any] = ["notifications": ids,
+                                     "delete_all": deleteAll]
+        return Endpoint(path: "api/v1/notifications",
+                        method: .delete,
+                        headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],
+                        queryParameters: params)
     }
 }
