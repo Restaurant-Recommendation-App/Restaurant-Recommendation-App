@@ -108,7 +108,7 @@ class SimilarChefCell: UITableViewCell {
     private func reloadData(users: [User]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
         snapshot.appendSections([0])
-        snapshot.appendItems(users.map { $0.nickname })
+        snapshot.appendItems(users.map { $0.nickname ?? "" })
         self.dataSource?.apply(snapshot, animatingDifferences: true)
     }
     

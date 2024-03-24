@@ -12,20 +12,20 @@ struct Authority: Codable {
 }
 
 struct UserDTO: Codable {
-    let email: String
-    let locked: Bool
-    let expired: Bool
-    let activated: Bool
-    let nickname: String
-    let name: String
-    let userType: Provider
-    let adAgreed: Bool
-    let analysisAgreed: Bool
-    let cheffiCoinCount: Int
-    let pointCount: Int
+    let email: String?
+    let locked: Bool?
+    let expired: Bool?
+    let activated: Bool?
+    let nickname: String?
+    let name: String?
+    let userType: Provider?
+    let adAgreed: Bool?
+    let analysisAgreed: Bool?
+    let cheffiCoinCount: Int?
+    let pointCount: Int?
     let photoURL: String?
-    let isNewUser: Bool
-    let profileCompleted: Bool
+    let isNewUser: Bool?
+    let profileCompleted: Bool?
     let authorities: [Authority]
     
     enum CodingKeys: String, CodingKey {

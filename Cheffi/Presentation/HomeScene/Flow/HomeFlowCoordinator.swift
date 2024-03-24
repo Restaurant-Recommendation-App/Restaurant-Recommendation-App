@@ -31,7 +31,8 @@ final class HomeFlowCoordinator {
     }
     
     func start() {
-        let actions = HomeViewModelActions(showPopup: showPopup,
+        let actions = HomeViewModelActions(showSNSLoginView: showSNSLoginView,
+                                           showPopup: showPopup,
                                            showSimilarChefList: showSimilarChefList,
                                            showSearch: showSearch,
                                            showAllCheffiContents: showAllCheffiContents,
@@ -40,6 +41,11 @@ final class HomeFlowCoordinator {
                                            showAreaSelection: showAreaSelection)
         let vc = dependencies.makeViewController(actions: actions)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // TODO: 회원가입 api 연동 완료 후 제거 필요
+    private func showSNSLoginView() {
+        showLogin()
     }
     
     private func showPopup(text: String, subText: String, keyword: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) {

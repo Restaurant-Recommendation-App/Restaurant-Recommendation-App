@@ -45,6 +45,9 @@ class HomeViewController: UIViewController {
         print("----------- session token")
         print(UserDefaultsManager.AuthInfo.sessionToken)
         print("--------------------------------------------------")
+        
+        // TODO: 회원가입 api 연동 완료 후 제거 필요
+        viewModel.showSNSLoginView()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -104,7 +104,9 @@ class SNSLoginViewController: UIViewController {
             if userData.isNewUser == false {
                 self.dismissOne(amimated: true)
             } else {
-                viewModel.output.showProfileSetup()
+                // TODO: 회원가입 과정에서 api 완벽 연동 후 제거 필요
+                self.dismissOne(amimated: true)
+//                viewModel.output.showProfileSetup()
             }
         }
     }
@@ -121,6 +123,22 @@ class SNSLoginViewController: UIViewController {
     }
     
     @IBAction private func didTapAppleLogin(_ sender: UIButton) {
-        viewModel.input.appleLoginDidTap()
+        // TODO: Apple 로그인 구현 완료 후, 제거 필요
+        let vc = PopupViewController.instance(text: "Apple 로그인은 구현 중에 있습니다",
+                                              subText: "",
+                                              keyword: "구현 중",
+                                              popupState: .nonMember,
+                                              leftButtonTitle: "취소",
+                                              rightButtonTitle: "확인",
+                                              leftHandler: nil,
+                                              rightHandler: nil)
+                
+        if let presentVC = navigationController?.presentedViewController {
+            presentVC.present(vc, animated: true)
+        } else {
+            navigationController?.present(vc, animated: true)
+        }
+        
+//        viewModel.input.appleLoginDidTap()
     }
 }

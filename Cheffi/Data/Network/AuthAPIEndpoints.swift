@@ -11,7 +11,7 @@ struct AuthAPIEndpoints {
     static func postOauthKakaoLogin(idToken: String) -> Endpoint<Results<UserDTO>> {
         return Endpoint(path: "api/v1/oauth/login/kakao",
                         method: .post,
-                        bodyParameters: ["token":idToken,
+                        bodyParameters: ["token": idToken,
                                          "platform": "IOS"])
     }
     
