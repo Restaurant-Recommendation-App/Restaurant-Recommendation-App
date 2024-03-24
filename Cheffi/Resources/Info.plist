@@ -7,6 +7,15 @@
 		<string>kakaokompassauth</string>
 		<string>kakaolink</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIImageName</key>
+		<string>icCheck</string>
+	</dict>
 	<key>ApiBaseURL</key>
 	<string>$(API_BASE_URL)</string>
 	<key>CFBundleURLTypes</key>
