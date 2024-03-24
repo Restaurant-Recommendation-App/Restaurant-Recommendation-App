@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,7 +20,6 @@
 		6B08FEA22B541EAD00BBC74B /* RestaurantRegistComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FEA12B541EAD00BBC74B /* RestaurantRegistComposeView.swift */; };
 		6B08FEA42B54216600BBC74B /* ReviewComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FEA32B54216600BBC74B /* ReviewComposeView.swift */; };
 		6B08FEA62B54217000BBC74B /* ReviewComposeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FEA52B54217000BBC74B /* ReviewComposeReducer.swift */; };
-		6B3E2FA52B49C8F600828648 /* ViewStore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B3E2FA42B49C8F600828648 /* ViewStore */; };
 		6B4053772BAB1A28007E2088 /* netfox in Frameworks */ = {isa = PBXBuildFile; productRef = 6B4053762BAB1A28007E2088 /* netfox */; };
 		6B40B2FB2B6641F200945946 /* TextFieldBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40B2FA2B6641F200945946 /* TextFieldBarView.swift */; };
 		6B40B2FD2B66454200945946 /* TextFieldBarReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40B2FC2B66454200945946 /* TextFieldBarReducer.swift */; };
@@ -48,6 +47,7 @@
 		6BA9F55B2B4C430D00A96321 /* RestaurantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA9F55A2B4C430D00A96321 /* RestaurantListView.swift */; };
 		6BA9F55D2B4C497C00A96321 /* RestaurantListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA9F55C2B4C497C00A96321 /* RestaurantListReducer.swift */; };
 		6BBB2A672B48746E00DFDD35 /* NearRestaurantListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBB2A662B48746E00DFDD35 /* NearRestaurantListReducer.swift */; };
+		6BC0091B2BB0007700307904 /* ViewStore in Frameworks */ = {isa = PBXBuildFile; productRef = 6BC0091A2BB0007700307904 /* ViewStore */; };
 		6BD47F872B5C12D6002DAA3A /* TabBarKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD47F862B5C12D6002DAA3A /* TabBarKind.swift */; };
 		6BD47F892B5C2F2B002DAA3A /* NavigationBarReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD47F882B5C2F2B002DAA3A /* NavigationBarReducer.swift */; };
 		6BD628312B484BC600FFA805 /* RestaurantItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD628302B484BC600FFA805 /* RestaurantItemView.swift */; };
@@ -695,10 +695,10 @@
 				5D89F9002B2EC693001C9DD6 /* ComposableArchitecture in Frameworks */,
 				296236DF1AC0B1A79BC70DC9 /* Pods_Cheffi.framework in Frameworks */,
 				FF5059792A79513300F90D27 /* KakaoSDK in Frameworks */,
+				6BC0091B2BB0007700307904 /* ViewStore in Frameworks */,
 				CE0D45172A61712400636989 /* SwifterSwift in Frameworks */,
 				6B4053772BAB1A28007E2088 /* netfox in Frameworks */,
 				FF9793B22A74C22800A921A0 /* PanModal in Frameworks */,
-				6B3E2FA52B49C8F600828648 /* ViewStore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1914,8 +1914,8 @@
 				FF9793B12A74C22800A921A0 /* PanModal */,
 				FF5059782A79513300F90D27 /* KakaoSDK */,
 				5D89F8FF2B2EC693001C9DD6 /* ComposableArchitecture */,
-				6B3E2FA42B49C8F600828648 /* ViewStore */,
 				6B4053762BAB1A28007E2088 /* netfox */,
+				6BC0091A2BB0007700307904 /* ViewStore */,
 			);
 			productName = Cheffi;
 			productReference = D4E244B52A60FF5A004E0167 /* Cheffi.app */;
@@ -1956,6 +1956,7 @@
 				FF5059772A79513300F90D27 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				5D89F8FE2B2EC693001C9DD6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				6B4053752BAB1A28007E2088 /* XCRemoteSwiftPackageReference "netfox" */,
+				6B4DADBC2BAFFF0D00DBDE61 /* XCLocalSwiftPackageReference "Package/ViewStore" */,
 			);
 			productRefGroup = D4E244B62A60FF5A004E0167 /* Products */;
 			projectDirPath = "";
@@ -2760,6 +2761,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		6B4DADBC2BAFFF0D00DBDE61 /* XCLocalSwiftPackageReference "Package/ViewStore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Package/ViewStore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		5D89F8FE2B2EC693001C9DD6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -2809,14 +2817,15 @@
 			package = 5D89F8FE2B2EC693001C9DD6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
-		6B3E2FA42B49C8F600828648 /* ViewStore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ViewStore;
-		};
 		6B4053762BAB1A28007E2088 /* netfox */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6B4053752BAB1A28007E2088 /* XCRemoteSwiftPackageReference "netfox" */;
 			productName = netfox;
+		};
+		6BC0091A2BB0007700307904 /* ViewStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B4DADBC2BAFFF0D00DBDE61 /* XCLocalSwiftPackageReference "Package/ViewStore" */;
+			productName = ViewStore;
 		};
 		CE0D45162A61712400636989 /* SwifterSwift */ = {
 			isa = XCSwiftPackageProductDependency;
