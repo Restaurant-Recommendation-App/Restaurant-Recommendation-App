@@ -16,7 +16,7 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageName</key>
-		<string>icCheck</string>
+		<string>empty_menu_background</string>
 	</dict>
 	<key>ApiBaseURL</key>
 	<string>$(API_BASE_URL)</string>
