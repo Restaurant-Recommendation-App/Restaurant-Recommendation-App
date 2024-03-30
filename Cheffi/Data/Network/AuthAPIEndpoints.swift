@@ -39,7 +39,7 @@ struct AuthAPIEndpoints {
     static func postPhosts(imageData: Data,
                            changeProfilePhotoRequest: ChangeProfilePhotoRequest) -> Endpoint<Results<String>> {
         let boundary = "Boundary-\(UUID().uuidString)"
-        return Endpoint(path: "api/v1/avatars/photos",
+        return Endpoint(path: "api/v1/avatars/photo-tab",
                         method: .post,
                         headerParameters: [
                             "Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? "",

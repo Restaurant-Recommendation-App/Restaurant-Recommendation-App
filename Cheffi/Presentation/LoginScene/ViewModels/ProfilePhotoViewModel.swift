@@ -81,7 +81,7 @@ extension ProfilePhotoViewModel: ProfilePhotoViewModelInput {
     }
     
     func postPhostosDidTap() {
-        let changeProfilePhotoRequest = ChangeProfilePhotoRequest(defaults: false)
+        let changeProfilePhotoRequest = ChangeProfilePhotoRequest(defaults: false, introduction: "stringstri")
         if let imageData = self._imageData {
             requestPostPhotosSubject.send((imageData, changeProfilePhotoRequest))
         } else {
