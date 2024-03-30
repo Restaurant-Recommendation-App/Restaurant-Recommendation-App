@@ -94,6 +94,13 @@ struct RestaurantRegistComposeView: View {
                     action: { .confirmPopupAction($0) }
                 ))
             }
+            
+            if let errorState = viewStore.error {
+                ConfirmPopupView(store.scope(
+                    state: \.errorPopupState,
+                    action: { .errorPopupAction($0) }
+                ))
+            }
         }
         .animation(.default, value: viewStore.isShowConfirmPopup)
         .onAppear {

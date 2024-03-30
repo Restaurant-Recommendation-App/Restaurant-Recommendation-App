@@ -49,6 +49,11 @@ struct RestaurantRegistComposeReducer: Reducer {
             primaryButtonTitle: "이해했어요",
             optionButtonTitle: "다시 보지 않기"
         )
+        var errorPopupState = ConfirmPopupReducer.State(
+            title: "일시적인 오류가 발생했습니다.\n서비스 이용에 불편을 드려 죄송합니다.",
+            description: "",
+            primaryButtonTitle: "확인"
+        )
         var isShowConfirmPopup: Bool = false
         var error: String?
     }
@@ -62,6 +67,7 @@ struct RestaurantRegistComposeReducer: Reducer {
         case bottomButtonAction(BottomButtonReducer.Action)
         case setEnableNext
         case confirmPopupAction(ConfirmPopupReducer.Action)
+        case errorPopupAction(ConfirmPopupReducer.Action)
         case onAppear
         case getArea
         case successGetArea([Area])
@@ -144,6 +150,12 @@ struct RestaurantRegistComposeReducer: Reducer {
                 state.isShowConfirmPopup = false
                 return .none
             }
+        case .errorPopupAction(let action):
+            switch action {
+            default:
+                state.error = nil
+                return .none
+            }
         case .onAppear:
             return .send(.getArea)
         case .getArea:
@@ -197,6 +209,11 @@ struct RestaurantRegistComposeReducer: Reducer {
             steps.send(.pushReviewCompose(info: restaurant))
             return .none
         case .occerError(let error):
+            state.errorPopupState = ConfirmPopupReducer.State(
+                title: "일시적인 오류가 발생했습니다.\n서비스 이용에 불편을 드려 죄송합니다.",
+                description: error.localizedDescription,
+                primaryButtonTitle: "확인"
+            )
             state.error = error.localizedDescription
             return .none
         }
