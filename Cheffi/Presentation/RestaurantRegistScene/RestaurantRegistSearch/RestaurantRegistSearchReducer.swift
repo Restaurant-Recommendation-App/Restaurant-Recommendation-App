@@ -65,7 +65,7 @@ struct RestaurantRegistSearchReducer: Reducer {
         switch action {
         case .onAppear:
             return .publisher {
-                useCase.getRestaurants(name: "Daughter", province: "", city: "")
+                useCase.getNearRestaurants()
                     .receive(on: UIScheduler.shared)
                     .map(Action.getNearRestaurants)
                     .catch { Just(Action.occerError($0)) }

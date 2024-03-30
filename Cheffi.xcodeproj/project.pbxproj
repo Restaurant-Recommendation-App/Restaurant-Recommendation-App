@@ -14,6 +14,7 @@
 		5D89F9052B2EF25D001C9DD6 /* RestaurantRegistSearchReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D89F9042B2EF25D001C9DD6 /* RestaurantRegistSearchReducer.swift */; };
 		6B007B0D2B64E1CD005BF86C /* BottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B007B0C2B64E1CD005BF86C /* BottomButtonView.swift */; };
 		6B007B0F2B64E37C005BF86C /* BottomButtonReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B007B0E2B64E37C005BF86C /* BottomButtonReducer.swift */; };
+		6B0497732BB7EFE200092A58 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0497722BB7EFE200092A58 /* LocationManager.swift */; };
 		6B08FE992B541D3900BBC74B /* RestaurantRegistComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE982B541D3900BBC74B /* RestaurantRegistComposeViewController.swift */; };
 		6B08FE9B2B541D6500BBC74B /* ReviewComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE9A2B541D6500BBC74B /* ReviewComposeViewController.swift */; };
 		6B08FEA02B541E7200BBC74B /* RestaurantRegistComposeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE9F2B541E7200BBC74B /* RestaurantRegistComposeReducer.swift */; };
@@ -357,6 +358,7 @@
 		5D89F9042B2EF25D001C9DD6 /* RestaurantRegistSearchReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistSearchReducer.swift; sourceTree = "<group>"; };
 		6B007B0C2B64E1CD005BF86C /* BottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonView.swift; sourceTree = "<group>"; };
 		6B007B0E2B64E37C005BF86C /* BottomButtonReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonReducer.swift; sourceTree = "<group>"; };
+		6B0497722BB7EFE200092A58 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		6B08FE982B541D3900BBC74B /* RestaurantRegistComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistComposeViewController.swift; sourceTree = "<group>"; };
 		6B08FE9A2B541D6500BBC74B /* ReviewComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewComposeViewController.swift; sourceTree = "<group>"; };
 		6B08FE9F2B541E7200BBC74B /* RestaurantRegistComposeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRegistComposeReducer.swift; sourceTree = "<group>"; };
@@ -1734,6 +1736,7 @@
 			children = (
 				CE42BA722A6BD1AE00EBB80A /* UserDefaultsManager.swift */,
 				FF97932B2A72BF9900A921A0 /* AccountManager.swift */,
+				6B0497722BB7EFE200092A58 /* LocationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -2337,6 +2340,7 @@
 				FFA6BA922ADBBDF40094913E /* UserAPIEndpoints.swift in Sources */,
 				D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */,
 				6B08FEA02B541E7200BBC74B /* RestaurantRegistComposeReducer.swift in Sources */,
+				6B0497732BB7EFE200092A58 /* LocationManager.swift in Sources */,
 				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,
 				FFC58AD12A8689FA0095BCF4 /* PhotoUseCase.swift in Sources */,
 				D420F1652AE4F57300DC10ED /* CityAreaTableViewCell.swift in Sources */,

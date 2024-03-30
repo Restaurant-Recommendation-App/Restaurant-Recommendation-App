@@ -33,10 +33,12 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     func makeRestaurantRegistSearchReducer(steps: PassthroughSubject<RouteStep, Never>) -> RestaurantRegistSearchReducer {
         let restaurantRepository = makeRestaurantRepository()
         let areaRepository = makeAreaRepository()
+        let locationManager = LocationManager()
         return RestaurantRegistSearchReducer(
             useCase: makeRestaurantUseCase(
                 restaurantRepository: restaurantRepository,
-                areaRepository: areaRepository
+                areaRepository: areaRepository,
+                locationManager: locationManager
             ),
             steps: steps
         )
@@ -50,10 +52,12 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     func makeRestaurantRegistComposeReducer(steps: PassthroughSubject<RouteStep, Never>) -> RestaurantRegistComposeReducer {
         let restaurantRepository = makeRestaurantRepository()
         let areaRepository = makeAreaRepository()
+        let locationManager = LocationManager()
         return RestaurantRegistComposeReducer(
             useCase: makeRestaurantUseCase(
                 restaurantRepository: restaurantRepository,
-                areaRepository: areaRepository
+                areaRepository: areaRepository,
+                locationManager: locationManager
             ),
             steps: steps
         )
@@ -70,10 +74,12 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     func makeReviewComposeReducer(steps: PassthroughSubject<RouteStep, Never>) -> ReviewComposeReducer {
         let restaurantRepository = makeRestaurantRepository()
         let areaRepository = makeAreaRepository()
+        let locationManager = LocationManager()
         return ReviewComposeReducer(
             useCase: makeRestaurantUseCase(
                 restaurantRepository: restaurantRepository,
-                areaRepository: areaRepository
+                areaRepository: areaRepository,
+                locationManager: locationManager
             ),
             steps: steps
         )
@@ -100,11 +106,13 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
 extension RestaurantRegistSceneDIContainer {
     func makeRestaurantUseCase(
         restaurantRepository: RestaurantRepository,
-        areaRepository: AreaRepository
+        areaRepository: AreaRepository,
+        locationManager: LocationManager
     ) -> RestaurantUseCase {
         return DefaultRestaurantUseCase(
             restaurantRepository: restaurantRepository,
-            areaRepository: areaRepository
+            areaRepository: areaRepository,
+            locationManager: locationManager
         )
     }
     
