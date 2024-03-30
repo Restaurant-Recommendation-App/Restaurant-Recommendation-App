@@ -22,6 +22,7 @@ struct RestaurantRegistComposeReducer: Reducer {
     }
     
     struct State: Equatable {
+        var areas: [Area] = []
         let navigationBarState = NavigationBarReducer.State(
             title: "내 맛집 등록",
             leftButtonKind: .back
@@ -29,26 +30,12 @@ struct RestaurantRegistComposeReducer: Reducer {
         var provinceDropDownPickerState = DropDownPickerReducer.State(
             placeHolder: "광역시 / 도",
             selection: nil,
-            options: [
-                "서울특별시",
-                "인천광역시",
-                "부산광역시",
-                "서울특별시2",
-                "인천광역시2",
-                "부산광역시2",
-                "서울특별시3",
-                "인천광역시3",
-                "부산광역시3"
-            ]
+            options: []
         )
         var cityDropDownPickerState = DropDownPickerReducer.State(
             placeHolder: "시 / 군 / 구",
             selection: nil,
-            options: [
-                "강남구",
-                "강동구",
-                "강북구"
-            ]
+            options: []
         )
         var roadNameAddressTextFieldBarState = TextFieldBarReducer.State(placeHolder: "도로명 주소 입력")
         var restaurantNameTextFieldBarState = TextFieldBarReducer.State(placeHolder: "식당 이름")
@@ -75,6 +62,9 @@ struct RestaurantRegistComposeReducer: Reducer {
         case bottomButtonAction(BottomButtonReducer.Action)
         case setEnableNext
         case confirmPopupAction(ConfirmPopupReducer.Action)
+        case onAppear
+        case getArea
+        case successGetArea([Area])
         case registRestaurant
         case successRegist(RestaurantInfoDTO)
         case occerError(Error)
@@ -97,6 +87,11 @@ struct RestaurantRegistComposeReducer: Reducer {
             case .select(let option):
                 state.provinceDropDownPickerState.selection = option
                 state.provinceDropDownPickerState.isShowDropdown.toggle()
+                state.cityDropDownPickerState = DropDownPickerReducer.State(
+                    placeHolder: state.cityDropDownPickerState.placeHolder,
+                    selection: nil,
+                    options: state.areas.first(where: { $0.province == option })?.cities ?? []
+                )
                 return .send(.setEnableNext)
             }
         case .cityDropDownPickerAction(let action):
@@ -149,6 +144,23 @@ struct RestaurantRegistComposeReducer: Reducer {
                 state.isShowConfirmPopup = false
                 return .none
             }
+        case .onAppear:
+            return .send(.getArea)
+        case .getArea:
+            return .publisher {
+                useCase.getAreas()
+                    .receive(on: UIScheduler.shared)
+                    .map(Action.successGetArea)
+                    .catch { Just(Action.occerError($0)) }
+            }
+        case .successGetArea(let areas):
+            state.areas = areas
+            state.provinceDropDownPickerState = DropDownPickerReducer.State(
+                placeHolder: state.provinceDropDownPickerState.placeHolder,
+                selection: nil,
+                options: areas.map(\.province)
+            )
+            return .none
         case .registRestaurant:
             guard
                 let province = state.provinceDropDownPickerState.selection,
