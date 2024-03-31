@@ -107,7 +107,7 @@ struct ReviewHashtagsView_Preview: PreviewProvider {
                                 description: nil
                             )
                         ],
-                        tag: TagsChangeRequest(foodTags: [], tasteTags: [])
+                        tags: TagsChangeRequest(foodTags: [], tasteTags: [])
                     ),
                     imageDatas: []
                 ),

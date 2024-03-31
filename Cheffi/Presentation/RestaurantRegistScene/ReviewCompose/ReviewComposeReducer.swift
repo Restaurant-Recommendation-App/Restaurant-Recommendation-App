@@ -195,7 +195,7 @@ struct ReviewComposeReducer: Reducer {
                     title: state.titleTextFieldBarState.txt,
                     text: state.mainTextEditorViewState.txt,
                     menus: state.composedMenus,
-                    tag: TagsChangeRequest(foodTags: [], tasteTags: [])
+                    tags: TagsChangeRequest(foodTags: [], tasteTags: [])
                 )
                 steps.send(
                     .pushReviewHashtags(

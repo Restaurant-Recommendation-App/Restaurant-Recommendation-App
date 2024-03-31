@@ -37,6 +37,7 @@ struct ReviewHashtagsReducer: Reducer {
         
         case getAllTags
         case successGetAllTags([Tag])
+        case postReview(reviewRequest: RegisterReviewRequest, imageDatas: [Data])
         case successPost(Int)
         case occerError(Error)
     }
@@ -48,8 +49,8 @@ struct ReviewHashtagsReducer: Reducer {
         case .tagButtonTapped(let tag):
             switch state.reviewRequestInfo {
             case .posting(let reviewRequest, let imageDatas):
-                var foodTags = reviewRequest.tag.foodTags
-                var tasteTags = reviewRequest.tag.tasteTags
+                var foodTags = reviewRequest.tags.foodTags
+                var tasteTags = reviewRequest.tags.tasteTags
                 switch tag.type {
                 case .food:
                     if foodTags.contains(where: { $0 == tag.id }) {
@@ -70,7 +71,7 @@ struct ReviewHashtagsReducer: Reducer {
                     title: reviewRequest.title,
                     text: reviewRequest.text,
                     menus: reviewRequest.menus,
-                    tag: TagsChangeRequest(foodTags: foodTags, tasteTags: tasteTags)
+                    tags: TagsChangeRequest(foodTags: foodTags, tasteTags: tasteTags)
                 )
                 state.reviewRequestInfo = .posting(review: review, imageDatas: imageDatas)
             case .modification(let tagsRequest):
@@ -102,12 +103,7 @@ struct ReviewHashtagsReducer: Reducer {
             case .rightButtonTapped:
                 switch state.reviewRequestInfo {
                 case .posting(let reviewRequest, let imageDatas):
-                    return .publisher {
-                        useCase.postReviews(registerReviewRequest: reviewRequest, images: imageDatas)
-                            .receive(on: UIScheduler.shared)
-                            .map(Action.successPost)
-                            .catch { Just(Action.occerError($0)) }
-                    }
+                    return .send(.postReview(reviewRequest: reviewRequest, imageDatas: imageDatas))
                 default:
                     // TODO: Eli - API 호출이 아닌 변경된 태그 저장만 하기
                     return .none
@@ -123,6 +119,13 @@ struct ReviewHashtagsReducer: Reducer {
         case .successGetAllTags(let tags):
             state.allTags = tags
             return .none
+        case .postReview(let reviewRequest, let imageDatas):
+            return .publisher {
+                useCase.postReviews(registerReviewRequest: reviewRequest, images: imageDatas)
+                    .receive(on: UIScheduler.shared)
+                    .map(Action.successPost)
+                    .catch { Just(Action.occerError($0)) }
+            }
         case .successPost(let id):
             // TODO: Eli - 리뷰상세 화면으로 이동
 //            steps.send(.......)

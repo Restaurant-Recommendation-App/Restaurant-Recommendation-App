@@ -33,19 +33,20 @@ struct ReviewAPIEndpoints {
     // 리뷰 등록 API
     static func postReviews(registerReviewRequest: RegisterReviewRequest,
                             images: [Data]) -> Endpoint<Results<Int>> {
+        let boundary = "Boundary-\(UUID().uuidString)"
         return Endpoint(
             path: "api/v1/reviews",
             method: .post,
             headerParameters: [
                 "Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? "",
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "multipart/form-data; boundary=\(boundary)"
             ],
             bodyParameters: [
                 "request": registerReviewRequest,
                 "images": images
             ],
-            bodyEncoding: .jsonSerializationData,
-            bodyBoundary: "Boundary-\(UUID().uuidString)"
+            bodyEncoding: .multipartFormData,
+            bodyBoundary: boundary
         )
     }
     
