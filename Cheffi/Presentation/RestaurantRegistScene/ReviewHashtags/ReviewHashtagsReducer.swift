@@ -24,17 +24,19 @@ struct ReviewHashtagsReducer: Reducer {
     struct State: Equatable {
         var reviewRequestInfo: ReviewHashtagsActionType
         
-        var allTags: [TagDTO] = []
+        var allTags: [Tag] = []
         
         var navigationBarState: NavigationBarReducer.State
     }
     
     enum Action {
         case onAppear
-        case tagButtonTapped(TagDTO)
+        case tagButtonTapped(Tag)
         
         case navigationBarAction(NavigationBarReducer.Action)
         
+        case getAllTags
+        case successGetAllTags([Tag])
         case successPost(Int)
         case occerError(Error)
     }
@@ -42,32 +44,7 @@ struct ReviewHashtagsReducer: Reducer {
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
         case .onAppear:
-            // TODO: API call - get all tags
-            let allTags = [
-                TagDTO(id: 0, type: .food, name: "한식"),
-                TagDTO(id: 1, type: .food, name: "일식"),
-                TagDTO(id: 2, type: .food, name: "중식"),
-                TagDTO(id: 3, type: .food, name: "샐러드"),
-                TagDTO(id: 4, type: .food, name: "해산물"),
-                TagDTO(id: 5, type: .food, name: "빵집"),
-                TagDTO(id: 6, type: .food, name: "분식"),
-                TagDTO(id: 7, type: .food, name: "면/국수"),
-                TagDTO(id: 8, type: .food, name: "돈까스"),
-                TagDTO(id: 9, type: .food, name: "피자"),
-                TagDTO(id: 10, type: .food, name: "치킨"),
-                TagDTO(id: 10, type: .taste, name: "매콤한"),
-                TagDTO(id: 12, type: .taste, name: "자극적인"),
-                TagDTO(id: 13, type: .taste, name: "달콤한"),
-                TagDTO(id: 14, type: .taste, name: "시원한"),
-                TagDTO(id: 15, type: .taste, name: "깔끔한"),
-                TagDTO(id: 16, type: .taste, name: "깊은맛"),
-                TagDTO(id: 17, type: .taste, name: "감성적인"),
-                TagDTO(id: 18, type: .taste, name: "사진맛집"),
-                TagDTO(id: 19, type: .taste, name: "혼술"),
-                TagDTO(id: 20, type: .taste, name: "혼밥")
-            ]
-            state.allTags = allTags
-            return .none
+            return .send(.getAllTags)
         case .tagButtonTapped(let tag):
             switch state.reviewRequestInfo {
             case .posting(let reviewRequest, let imageDatas):
@@ -136,6 +113,16 @@ struct ReviewHashtagsReducer: Reducer {
                     return .none
                 }
             }
+        case .getAllTags:
+            return .publisher {
+                useCase.getAllTags()
+                    .receive(on: UIScheduler.shared)
+                    .map(Action.successGetAllTags)
+                    .catch { Just(.occerError($0)) }
+            }
+        case .successGetAllTags(let tags):
+            state.allTags = tags
+            return .none
         case .successPost(let id):
             // TODO: Eli - 리뷰상세 화면으로 이동
 //            steps.send(.......)

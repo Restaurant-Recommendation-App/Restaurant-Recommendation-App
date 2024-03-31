@@ -129,8 +129,11 @@ extension HomeSceneDIContainer {
     }
         
     func makeCheffiReviewViewModel(reviewId: Int) -> CheffiReviewDetailViewModelType {
-        let repository = makeReviewRepository()
-        return CheffiReviewDetailViewModel(reviewId: reviewId, useCase: makeReviewUseCase(repository: repository))
+        let useCase = makeReviewUseCase(
+            reviewRepository: makeReviewRepository(),
+            tagRepository: makeTagRepository()
+        )
+        return CheffiReviewDetailViewModel(reviewId: reviewId, useCase: useCase)
     }
     
     func makeAreaSelectionViewModel() -> AreaSelectionViewModel {
@@ -157,8 +160,14 @@ extension HomeSceneDIContainer {
         return DefaultNotificationUseCase(repository: repository)
     }
     
-    func makeReviewUseCase(repository: ReviewRepository) -> ReviewUseCase {
-        return DefaultReviewUseCase(repository: repository)
+    func makeReviewUseCase(
+        reviewRepository: ReviewRepository,
+        tagRepository: TagRepository
+    ) -> ReviewUseCase {
+        DefaultReviewUseCase(
+            reviewRepository: reviewRepository,
+            tagRepository: tagRepository
+        )
     }
     
     func makeAreaUseCase(repository: AreaRepository) -> AreaUseCase {
@@ -186,6 +195,10 @@ extension HomeSceneDIContainer {
     
     func makeReviewRepository() -> ReviewRepository {
         return DefaultReviewRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeTagRepository() -> TagRepository {
+        DefaultTagRepository(dataTransferService: dependencies.apiDataTransferService)
     }
     
     func makeAreaRepository() -> AreaRepository {

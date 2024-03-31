@@ -94,11 +94,11 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     }
     
     func makeReviewHashtagsReducer(steps: PassthroughSubject<RouteStep, Never>) -> ReviewHashtagsReducer {
-        let repository = makeReviewRepository()
-        return ReviewHashtagsReducer(
-            useCase: makeReviewUseCase(repository: repository),
-            steps: steps
+        let useCase = makeReviewUseCase(
+            reviewRepository: makeReviewRepository(),
+            tagRepository: makeTagRepository()
         )
+        return ReviewHashtagsReducer(useCase: useCase, steps: steps)
     }
 }
 
@@ -116,8 +116,14 @@ extension RestaurantRegistSceneDIContainer {
         )
     }
     
-    func makeReviewUseCase(repository: ReviewRepository) -> ReviewUseCase {
-        DefaultReviewUseCase(repository: repository)
+    func makeReviewUseCase(
+        reviewRepository: ReviewRepository,
+        tagRepository: TagRepository
+    ) -> ReviewUseCase {
+        DefaultReviewUseCase(
+            reviewRepository: reviewRepository,
+            tagRepository: tagRepository
+        )
     }
 }
 
@@ -133,5 +139,9 @@ extension RestaurantRegistSceneDIContainer {
     
     func makeReviewRepository() -> DefaultReviewRepository {
         DefaultReviewRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeTagRepository() -> DefaultTagRepository {
+        DefaultTagRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

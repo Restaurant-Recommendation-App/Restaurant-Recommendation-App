@@ -12,7 +12,13 @@ enum TagType: String, Codable {
     case taste = "TASTE"
 }
 
-struct Tag: Codable {
+enum TagTypeRequest: String, Encodable {
+    case food = "FOOD"
+    case taste = "TASTE"
+    case all = "ALL"
+}
+
+struct Tag: Codable, Hashable {
     var id: Int
     var type: TagType
     var name: String

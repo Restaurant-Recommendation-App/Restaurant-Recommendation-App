@@ -10,7 +10,7 @@ import Combine
 
 
 protocol SimilarChefViewModelInput {
-    func requestGetTags(type: TagType)
+    func requestGetTags(type: TagTypeRequest)
     func setSelectTags(_ tags: [Tag])
 }
 
@@ -32,7 +32,7 @@ final class SimilarChefViewModel: SimilarChefViewModelType {
     private let useCase: SimilarChefUseCase
     private let selectedTagSubject = PassthroughSubject<[Tag], Never>()
     private let _tagsSubject = PassthroughSubject<[Tag], Never>()
-    private let getTagsSubject = PassthroughSubject<TagType, Never>()
+    private let getTagsSubject = PassthroughSubject<TagTypeRequest, Never>()
     private let getUsersSubject = PassthroughSubject<[String], Never>()
     private let _users = PassthroughSubject<[User], Never>()
     
@@ -46,7 +46,7 @@ final class SimilarChefViewModel: SimilarChefViewModelType {
         UserDefaultsManager.HomeSimilarChefInfo.tags = tags
     }
     
-    private func getTags(type: TagType) -> AnyPublisher<[Tag], DataTransferError> {
+    private func getTags(type: TagTypeRequest) -> AnyPublisher<[Tag], DataTransferError> {
         let subject = PassthroughSubject<[Tag], DataTransferError>()
         useCase.getTags(type: type)
             .print()
@@ -103,7 +103,7 @@ final class SimilarChefViewModel: SimilarChefViewModelType {
 
 // MARK: - Input
 extension SimilarChefViewModel: SimilarChefViewModelInput {
-    func requestGetTags(type: TagType) {
+    func requestGetTags(type: TagTypeRequest) {
         getTagsSubject.send(type)
     }
     

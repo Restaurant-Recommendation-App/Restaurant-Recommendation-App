@@ -22,7 +22,7 @@ final class DefaultSimilarChefRepository {
 }
 
 extension DefaultSimilarChefRepository: SimilarChefRepository {
-    func getTags(type: TagType) -> AnyPublisher<(Results<[TagDTO]>, HTTPURLResponse), DataTransferError> {
+    func getTags(type: TagTypeRequest) -> AnyPublisher<(Results<[TagDTO]>, HTTPURLResponse), DataTransferError> {
         let endpoint = TagAPIEndpoints.getTags(type: type)
         return dataTransferService.request(with: endpoint, on: backgroundQueue).eraseToAnyPublisher()
     }

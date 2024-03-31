@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol FoodSelectionViewModelInput {
-    func requestGetTags(type: TagType)
+    func requestGetTags(type: TagTypeRequest)
     func setSelectionTags(_ tags: [Tag])
 }
 
@@ -28,7 +28,7 @@ class FoodSelectionViewModel: FoodSelectionViewModelType {
     var output: FoodSelectionViewModelOutput { return self }
     
     private var cancellables: Set<AnyCancellable> = []
-    private var getTagsSubject = PassthroughSubject<TagType, Never>()
+    private var getTagsSubject = PassthroughSubject<TagTypeRequest, Never>()
     private var _selectionTags: [Tag] = []
     
     // MARK: - Init
@@ -38,7 +38,7 @@ class FoodSelectionViewModel: FoodSelectionViewModelType {
     }
     
     // MARK: - Private
-    private func getTags(type: TagType) -> AnyPublisher<[Tag], DataTransferError> {
+    private func getTags(type: TagTypeRequest) -> AnyPublisher<[Tag], DataTransferError> {
         let subject = PassthroughSubject<[Tag], DataTransferError>()
         useCase.getTags(type: type)
             .print()
@@ -59,7 +59,7 @@ class FoodSelectionViewModel: FoodSelectionViewModelType {
 
 // MARK: - Input
 extension FoodSelectionViewModel: FoodSelectionViewModelInput {
-    func requestGetTags(type: TagType) {
+    func requestGetTags(type: TagTypeRequest) {
         getTagsSubject.send(type)
     }
     

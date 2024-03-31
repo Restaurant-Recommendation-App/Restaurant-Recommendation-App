@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol TasteSelectionViewModelInput {
-    func requestGetTags(type: TagType)
+    func requestGetTags(type: TagTypeRequest)
     func requestPutTags()
     func setFoodSelectionTags(_ tags: [Tag])
     func setTasteSelectionTags(_ tags: [Tag])
@@ -30,7 +30,7 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
     var output: TasteSelectionViewModelOutput { return self }
     
     private var cancellables: Set<AnyCancellable> = []
-    private var getTagsSubject = PassthroughSubject<TagType, Never>()
+    private var getTagsSubject = PassthroughSubject<TagTypeRequest, Never>()
     private var putTagsSubject = PassthroughSubject<Void, Never>()
     private var _foodSelectionTags: [Tag] = []
     private var _tasteSelectionTags: [Tag] = []
@@ -42,7 +42,7 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
     }
     
     // MARK: - Private
-    private func getTags(type: TagType) -> AnyPublisher<[Tag], DataTransferError> {
+    private func getTags(type: TagTypeRequest) -> AnyPublisher<[Tag], DataTransferError> {
         let subject = PassthroughSubject<[Tag], DataTransferError>()
         useCase.getTags(type: type)
             .print()
@@ -83,7 +83,7 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
 
 // MARK: - Input
 extension TasteSelectionViewModel: TasteSelectionViewModelInput {
-    func requestGetTags(type: TagType) {
+    func requestGetTags(type: TagTypeRequest) {
         getTagsSubject.send(type)
     }
     
