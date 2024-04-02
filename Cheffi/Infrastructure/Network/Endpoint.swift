@@ -168,9 +168,9 @@ extension Requestable {
             } else if let images = bodyParameters["images"] as? [Data] {
                 for (index, imageData) in images.enumerated() {
                     httpBody.append(
-                        convertFileData(fieldName: "file",
+                        convertFileData(fieldName: "images",
                                         fileName: "\(index)_image.jpg",
-                                        mimeType: "multipart/form-data",
+                                        mimeType: "image/jpeg",
                                         fileData: imageData,
                                         using: bodyBoundary)
                     )
