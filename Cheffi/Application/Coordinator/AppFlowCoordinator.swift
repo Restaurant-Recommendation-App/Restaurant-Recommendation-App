@@ -119,30 +119,28 @@ final class AppFlowCoordinator: NSObject {
         isPresentPhotoAlbum: Bool,
         dismissCompletion: ((Data?) -> Void)?
     ) {
-        if loginFlowCoordinator == nil {
-            guard let navigationController = restaurantRegistFlowCoordinator.navigationController
-            else { return }
-            let loginSceneDIContainer = appDIContainer.makeLoginSceneDIContainer()
-            let loginCoordinator = loginSceneDIContainer.makeLoginFlowCoordinator(
-                navigationController: navigationController,
-                parentCoordinator: self
-            )
-            self.loginFlowCoordinator = loginCoordinator
-        }
+        guard let navigationController = restaurantRegistFlowCoordinator.navigationController
+        else { return }
+        let loginSceneDIContainer = appDIContainer.makeLoginSceneDIContainer()
+        let loginCoordinator = loginSceneDIContainer.makeLoginFlowCoordinator(
+            navigationController: navigationController,
+            parentCoordinator: self
+        )
+        self.loginFlowCoordinator = nil
+        self.loginFlowCoordinator = loginCoordinator
         self.loginFlowCoordinator?.showCameraViewController(isPresentPhotoAlbum: isPresentPhotoAlbum, dismissCompletion: dismissCompletion)
     }
     
     func showPhotoAlbum(dismissCompletion: (([Data?]) -> Void)?) {
-        if loginFlowCoordinator == nil {
-            guard let navigationController = restaurantRegistFlowCoordinator.navigationController
-            else { return }
-            let loginSceneDIContainer = appDIContainer.makeLoginSceneDIContainer()
-            let loginCoordinator = loginSceneDIContainer.makeLoginFlowCoordinator(
-                navigationController: navigationController,
-                parentCoordinator: self
-            )
-            self.loginFlowCoordinator = loginCoordinator
-        }
+        guard let navigationController = restaurantRegistFlowCoordinator.navigationController
+        else { return }
+        let loginSceneDIContainer = appDIContainer.makeLoginSceneDIContainer()
+        let loginCoordinator = loginSceneDIContainer.makeLoginFlowCoordinator(
+            navigationController: navigationController,
+            parentCoordinator: self
+        )
+        self.loginFlowCoordinator = nil
+        self.loginFlowCoordinator = loginCoordinator
         self.loginFlowCoordinator?.showPhotoAlbumWithoutPhotoCrop(dismissCompletion: dismissCompletion)
     }
     
