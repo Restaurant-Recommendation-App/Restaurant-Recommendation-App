@@ -15,8 +15,10 @@
 	<false/>
 	<key>UILaunchScreen</key>
 	<dict>
+		<key>UIColorName</key>
+		<string>Main-CTA</string>
 		<key>UIImageName</key>
-		<string>empty_menu_background</string>
+		<string>cheffilogo</string>
 	</dict>
 	<key>ApiBaseURL</key>
 	<string>$(API_BASE_URL)</string>
