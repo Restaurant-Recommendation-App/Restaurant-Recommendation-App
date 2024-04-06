@@ -127,6 +127,9 @@
 		D441C0232A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */; };
 		D4512EE32B70F59800D7F65E /* PaginationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D445B8F02B67CE4F002EE677 /* PaginationResults.swift */; };
 		D4512EE42B70F5B900D7F65E /* ReviewsByAreaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D445B8F22B69384E002EE677 /* ReviewsByAreaRequest.swift */; };
+		D46791132BB96604001F567F /* AgreementViewContrroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46791122BB96604001F567F /* AgreementViewContrroller.swift */; };
+		D46791152BB9705F001F567F /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46791142BB9705F001F567F /* AgreementView.swift */; };
+		D46791172BB9706C001F567F /* AgreementReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46791162BB9706C001F567F /* AgreementReducer.swift */; };
 		D47719042A8CC13100381A72 /* CheffiRecommendationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47719032A8CC13100381A72 /* CheffiRecommendationUseCase.swift */; };
 		D47719062A8D367900381A72 /* CheffiRecommendationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47719052A8D367900381A72 /* CheffiRecommendationRepository.swift */; };
 		D47C68A12B2EC6D8007F7650 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C68A02B2EC6D8007F7650 /* CategoryView.swift */; };
@@ -175,6 +178,7 @@
 		D4E24EE22A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */; };
 		D4EEF21C2A91BA9D008107DF /* ContentsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEF21B2A91BA9D008107DF /* ContentsResponseDTO.swift */; };
 		D4EEF21E2A91CE70008107DF /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEF21D2A91CE70008107DF /* Content.swift */; };
+		D4FAB0D22BC1198100AABB4A /* AgreementListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FAB0D12BC1198100AABB4A /* AgreementListView.swift */; };
 		FF14EF592AE2BB88007609FA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF14EF582AE2BB88007609FA /* ToastView.swift */; };
 		FF14EF5B2AE2BBE8007609FA /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF14EF5A2AE2BBE8007609FA /* ToastView.xib */; };
 		FF23F6722AE3FCA6000972EB /* ReviewInfoRelativeTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF23F6712AE3FCA6000972EB /* ReviewInfoRelativeTimeTests.swift */; };
@@ -469,6 +473,9 @@
 		D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationCategoryPageCell.swift; sourceTree = "<group>"; };
 		D445B8F02B67CE4F002EE677 /* PaginationResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationResults.swift; sourceTree = "<group>"; };
 		D445B8F22B69384E002EE677 /* ReviewsByAreaRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsByAreaRequest.swift; sourceTree = "<group>"; };
+		D46791122BB96604001F567F /* AgreementViewContrroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewContrroller.swift; sourceTree = "<group>"; };
+		D46791142BB9705F001F567F /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
+		D46791162BB9706C001F567F /* AgreementReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementReducer.swift; sourceTree = "<group>"; };
 		D47719032A8CC13100381A72 /* CheffiRecommendationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationUseCase.swift; sourceTree = "<group>"; };
 		D47719052A8D367900381A72 /* CheffiRecommendationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationRepository.swift; sourceTree = "<group>"; };
 		D47C68A02B2EC6D8007F7650 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -520,6 +527,7 @@
 		D4E24EE12A64F02E00F9A3B3 /* ContentTimeLockBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTimeLockBubbleView.swift; sourceTree = "<group>"; };
 		D4EEF21B2A91BA9D008107DF /* ContentsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsResponseDTO.swift; sourceTree = "<group>"; };
 		D4EEF21D2A91CE70008107DF /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		D4FAB0D12BC1198100AABB4A /* AgreementListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementListView.swift; sourceTree = "<group>"; };
 		FF14EF582AE2BB88007609FA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FF14EF5A2AE2BBE8007609FA /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		FF23F6712AE3FCA6000972EB /* ReviewInfoRelativeTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInfoRelativeTimeTests.swift; sourceTree = "<group>"; };
@@ -981,6 +989,7 @@
 		CE1A6A792A62960A00FFE93D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D4FAB0D02BC1196400AABB4A /* AgreementListView */,
 				6B795D0F2B939B660000FB43 /* TagItemButton */,
 				6B795D082B9389630000FB43 /* TagListView */,
 				6BDABB6E2B8260CC001E2A67 /* TextEditorView */,
@@ -1536,6 +1545,14 @@
 			path = RestaurantContent;
 			sourceTree = "<group>";
 		};
+		D4FAB0D02BC1196400AABB4A /* AgreementListView */ = {
+			isa = PBXGroup;
+			children = (
+				D4FAB0D12BC1198100AABB4A /* AgreementListView.swift */,
+			);
+			path = AgreementListView;
+			sourceTree = "<group>";
+		};
 		D9B9B210488FFC9E099F948F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1722,6 +1739,9 @@
 				FFDBC6482A81395D0009189C /* FollowSelection.storyboard */,
 				FFDF65312A8B3CB10078756E /* FollowSelectionCell.swift */,
 				FFDF65322A8B3CB10078756E /* FollowSelectionCell.xib */,
+				D46791122BB96604001F567F /* AgreementViewContrroller.swift */,
+				D46791142BB9705F001F567F /* AgreementView.swift */,
+				D46791162BB9706C001F567F /* AgreementReducer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2099,6 +2119,7 @@
 				FFF3EC672ABF1F6E00F6B431 /* ProfileImageSelectViewController.swift in Sources */,
 				D4C8713B2AD2B18300A1745B /* CheffiRecommendationHeader.swift in Sources */,
 				CE42BA6B2A6BB48100EBB80A /* String+Extensions.swift in Sources */,
+				D46791132BB96604001F567F /* AgreementViewContrroller.swift in Sources */,
 				6B795D042B9339000000FB43 /* ReviewHashtagsView.swift in Sources */,
 				FFB29BBC2ACBDDD6000E473E /* Notification.swift in Sources */,
 				6BBB2A672B48746E00DFDD35 /* NearRestaurantListReducer.swift in Sources */,
@@ -2140,6 +2161,7 @@
 				FF6801402AD2BF78001AB6E8 /* AuthUseCase.swift in Sources */,
 				FF6801382AD2B068001AB6E8 /* Results.swift in Sources */,
 				D4DBE8502B13042300D66800 /* RecommendedSearchLayoutProvider.swift in Sources */,
+				D46791152BB9705F001F567F /* AgreementView.swift in Sources */,
 				6BA9F5572B4AE5EE00A96321 /* EmptyViewButtonReducer.swift in Sources */,
 				6B40B2FB2B6641F200945946 /* TextFieldBarView.swift in Sources */,
 				D420F1672AE4F6D800DC10ED /* AreaSelectionViewModel.swift in Sources */,
@@ -2171,6 +2193,7 @@
 				FF3E0D572ACB1158009B236D /* ProfileTagCell.swift in Sources */,
 				FF3E0D522ACB0DA4009B236D /* ProfileTagListView.swift in Sources */,
 				CE42BA622A6B9D8F00EBB80A /* UIColor+Extensions.swift in Sources */,
+				D4FAB0D22BC1198100AABB4A /* AgreementListView.swift in Sources */,
 				D4E244BD2A60FF5A004E0167 /* HomeViewController.swift in Sources */,
 				6B7D8AEF2B53FBAF00786ACE /* RouteStep.swift in Sources */,
 				D420F1692AE6480500DC10ED /* AreaDTO.swift in Sources */,
@@ -2240,6 +2263,7 @@
 				CE1A6A752A6286CB00FFE93D /* SimilarChefProfileCell.swift in Sources */,
 				FF5059C22A7E8E4000F90D27 /* CheffiReviewDetailViewModel.swift in Sources */,
 				6B08FE992B541D3900BBC74B /* RestaurantRegistComposeViewController.swift in Sources */,
+				D46791172BB9706C001F567F /* AgreementReducer.swift in Sources */,
 				D441C0232A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift in Sources */,
 				D43331A92A6D32AE00E6CB4B /* UICollectionView+Extensions.swift in Sources */,
 				6BA9F5512B4A8C9B00A96321 /* EmptyDescriptionViewReducer.swift in Sources */,
