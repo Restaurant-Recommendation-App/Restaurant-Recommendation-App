@@ -34,9 +34,13 @@ struct AgreementView: View {
             
             HStack(alignment: .top, spacing: 8) {
                 Button(action: {
-                    // TODO: 액션 이벤트
+                    viewStore.send(.consentAllAction)
                 }, label: {
-                    Image("icTermUnselected")
+                    if viewStore.state.isAllConsented {
+                        Image("icSelectedFill")
+                    } else {
+                        Image("icUnselectedFill")
+                    }
                 })
                 .padding(10)
                 
@@ -65,9 +69,12 @@ struct AgreementView: View {
             Divider()
                 .padding(.top, 16)
             
-            AgreementListView()
-                .padding(.top, 24)
-                .padding(.horizontal, 16)
+            AgreementListView(store.scope(
+                state: \.agreementListState,
+                action: AgreementReducer.Action.tappedCheckBox
+            ))
+            .padding(.top, 24)
+            .padding(.horizontal, 16)
             
             Spacer()
             

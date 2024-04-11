@@ -130,6 +130,7 @@
 		D46791132BB96604001F567F /* AgreementViewContrroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46791122BB96604001F567F /* AgreementViewContrroller.swift */; };
 		D46791152BB9705F001F567F /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46791142BB9705F001F567F /* AgreementView.swift */; };
 		D46791172BB9706C001F567F /* AgreementReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46791162BB9706C001F567F /* AgreementReducer.swift */; };
+		D471C2B52BC40238000B7EDA /* AgreementListViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D471C2B42BC40238000B7EDA /* AgreementListViewReducer.swift */; };
 		D47719042A8CC13100381A72 /* CheffiRecommendationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47719032A8CC13100381A72 /* CheffiRecommendationUseCase.swift */; };
 		D47719062A8D367900381A72 /* CheffiRecommendationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47719052A8D367900381A72 /* CheffiRecommendationRepository.swift */; };
 		D47C68A12B2EC6D8007F7650 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C68A02B2EC6D8007F7650 /* CategoryView.swift */; };
@@ -476,6 +477,7 @@
 		D46791122BB96604001F567F /* AgreementViewContrroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewContrroller.swift; sourceTree = "<group>"; };
 		D46791142BB9705F001F567F /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
 		D46791162BB9706C001F567F /* AgreementReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementReducer.swift; sourceTree = "<group>"; };
+		D471C2B42BC40238000B7EDA /* AgreementListViewReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementListViewReducer.swift; sourceTree = "<group>"; };
 		D47719032A8CC13100381A72 /* CheffiRecommendationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationUseCase.swift; sourceTree = "<group>"; };
 		D47719052A8D367900381A72 /* CheffiRecommendationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationRepository.swift; sourceTree = "<group>"; };
 		D47C68A02B2EC6D8007F7650 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -1549,6 +1551,7 @@
 			isa = PBXGroup;
 			children = (
 				D4FAB0D12BC1198100AABB4A /* AgreementListView.swift */,
+				D471C2B42BC40238000B7EDA /* AgreementListViewReducer.swift */,
 			);
 			path = AgreementListView;
 			sourceTree = "<group>";
@@ -2140,6 +2143,7 @@
 				6B08FEA22B541EAD00BBC74B /* RestaurantRegistComposeView.swift in Sources */,
 				6BDABB702B826130001E2A67 /* TextEditorView.swift in Sources */,
 				FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */,
+				D471C2B52BC40238000B7EDA /* AgreementListViewReducer.swift in Sources */,
 				FF5059A62A7E08DE00F90D27 /* HomeAPIEndpoints.swift in Sources */,
 				FFA6BA942ADBC0730094913E /* RecommendFollowResponse.swift in Sources */,
 				FFDBC6812A83BBF90009189C /* PhotoAlbumViewController.swift in Sources */,
