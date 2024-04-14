@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class NationalTrendSceneDIContainer: NationalTrendFlowCoodinatorDependencies {
     func makeNationalTrendFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> NationalTrendFlowCoodinator {
@@ -15,18 +16,12 @@ final class NationalTrendSceneDIContainer: NationalTrendFlowCoodinatorDependenci
             dependencies: self)
     }
     
-    func makeViewController() -> UIViewController {
-        return NationalTrendViewController.instance()
+    // MARK: - National Trend
+    func makeNationalTrendViewController(reducer: NationalTrendReducer) -> NationalTrendViewController {
+        NationalTrendViewController.instance(reducer: reducer)
     }
     
-    func makePopupViewController(text: String, subText: String, keyword: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) -> PopupViewController {
-        return PopupViewController.instance(text: text,
-                                            subText: subText,
-                                            keyword: keyword,
-                                            popupState: popupState,
-                                            leftButtonTitle: leftButtonTitle,
-                                            rightButtonTitle: rightButtonTitle,
-                                            leftHandler: leftHandler,
-                                            rightHandler: rightHandler)
+    func makeNationalTrendReducer(steps: PassthroughSubject<RouteStep, Never>) -> NationalTrendReducer {
+        NationalTrendReducer(steps: steps)
     }
 }
