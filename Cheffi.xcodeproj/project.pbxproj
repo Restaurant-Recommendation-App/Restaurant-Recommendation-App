@@ -17,6 +17,7 @@
 		6B0497732BB7EFE200092A58 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0497722BB7EFE200092A58 /* LocationManager.swift */; };
 		6B0497792BBFDD6300092A58 /* NationalTrendReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0497782BBFDD6300092A58 /* NationalTrendReducer.swift */; };
 		6B04977B2BBFE0BB00092A58 /* NationalTrendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B04977A2BBFE0BB00092A58 /* NationalTrendView.swift */; };
+		6B04977D2BC0192B00092A58 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		6B08FE992B541D3900BBC74B /* RestaurantRegistComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE982B541D3900BBC74B /* RestaurantRegistComposeViewController.swift */; };
 		6B08FE9B2B541D6500BBC74B /* ReviewComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE9A2B541D6500BBC74B /* ReviewComposeViewController.swift */; };
 		6B08FEA02B541E7200BBC74B /* RestaurantRegistComposeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B08FE9F2B541E7200BBC74B /* RestaurantRegistComposeReducer.swift */; };
@@ -28,6 +29,8 @@
 		6B40B2FD2B66454200945946 /* TextFieldBarReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40B2FC2B66454200945946 /* TextFieldBarReducer.swift */; };
 		6B40B3002B66642900945946 /* DropDownPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40B2FF2B66642900945946 /* DropDownPickerView.swift */; };
 		6B40B3022B66654D00945946 /* DropDownPickerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40B3012B66654D00945946 /* DropDownPickerReducer.swift */; };
+		6B4C40482BC01A4900E20375 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C40472BC01A4900E20375 /* MyPageView.swift */; };
+		6B51B3412BCBB8A2006BBA14 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 6B51B3402BCBB8A2006BBA14 /* KakaoSDK */; };
 		6B7174372B42DD82009FEF35 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7174362B42DD82009FEF35 /* NavigationBarView.swift */; };
 		6B795CFE2B8B16500000FB43 /* RestaurantMenuComposePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B795CFD2B8B16500000FB43 /* RestaurantMenuComposePopupView.swift */; };
 		6B795D002B8B1E2F0000FB43 /* RestaurantMenuComposePopupReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B795CFF2B8B1E2F0000FB43 /* RestaurantMenuComposePopupReducer.swift */; };
@@ -50,6 +53,7 @@
 		6BA9F55B2B4C430D00A96321 /* RestaurantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA9F55A2B4C430D00A96321 /* RestaurantListView.swift */; };
 		6BA9F55D2B4C497C00A96321 /* RestaurantListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA9F55C2B4C497C00A96321 /* RestaurantListReducer.swift */; };
 		6BBB2A672B48746E00DFDD35 /* NearRestaurantListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBB2A662B48746E00DFDD35 /* NearRestaurantListReducer.swift */; };
+		6BBCCC432BCBABD2006D6751 /* MyPageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBCCC422BCBABD2006D6751 /* MyPageReducer.swift */; };
 		6BC0091B2BB0007700307904 /* ViewStore in Frameworks */ = {isa = PBXBuildFile; productRef = 6BC0091A2BB0007700307904 /* ViewStore */; };
 		6BD47F872B5C12D6002DAA3A /* TabBarKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD47F862B5C12D6002DAA3A /* TabBarKind.swift */; };
 		6BD47F892B5C2F2B002DAA3A /* NavigationBarReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD47F882B5C2F2B002DAA3A /* NavigationBarReducer.swift */; };
@@ -222,7 +226,6 @@
 		FF4659D42A87DF4900736AEA /* PhotoAlbumListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4659D22A87DF4900736AEA /* PhotoAlbumListCell.swift */; };
 		FF4659D52A87DF4900736AEA /* PhotoAlbumListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4659D32A87DF4900736AEA /* PhotoAlbumListCell.xib */; };
 		FF485D9D2A811D4B00E8B765 /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF485D9C2A811D4B00E8B765 /* ConnectionError.swift */; };
-		FF5059792A79513300F90D27 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FF5059782A79513300F90D27 /* KakaoSDK */; };
 		FF5059972A7DFC7200F90D27 /* AppConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5059962A7DFC7200F90D27 /* AppConfigurations.swift */; };
 		FF50599B2A7DFF8300F90D27 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF50599A2A7DFF8300F90D27 /* NetworkService.swift */; };
 		FF50599D2A7DFFAF00F90D27 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF50599C2A7DFFAF00F90D27 /* NetworkConfig.swift */; };
@@ -374,6 +377,7 @@
 		6B40B2FC2B66454200945946 /* TextFieldBarReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBarReducer.swift; sourceTree = "<group>"; };
 		6B40B2FF2B66642900945946 /* DropDownPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPickerView.swift; sourceTree = "<group>"; };
 		6B40B3012B66654D00945946 /* DropDownPickerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPickerReducer.swift; sourceTree = "<group>"; };
+		6B4C40472BC01A4900E20375 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		6B7174362B42DD82009FEF35 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		6B795CFD2B8B16500000FB43 /* RestaurantMenuComposePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMenuComposePopupView.swift; sourceTree = "<group>"; };
 		6B795CFF2B8B1E2F0000FB43 /* RestaurantMenuComposePopupReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMenuComposePopupReducer.swift; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 		6BA9F55A2B4C430D00A96321 /* RestaurantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListView.swift; sourceTree = "<group>"; };
 		6BA9F55C2B4C497C00A96321 /* RestaurantListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListReducer.swift; sourceTree = "<group>"; };
 		6BBB2A662B48746E00DFDD35 /* NearRestaurantListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearRestaurantListReducer.swift; sourceTree = "<group>"; };
+		6BBCCC422BCBABD2006D6751 /* MyPageReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageReducer.swift; sourceTree = "<group>"; };
 		6BD47F862B5C12D6002DAA3A /* TabBarKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarKind.swift; sourceTree = "<group>"; };
 		6BD47F882B5C2F2B002DAA3A /* NavigationBarReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarReducer.swift; sourceTree = "<group>"; };
 		6BD628302B484BC600FFA805 /* RestaurantItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantItemView.swift; sourceTree = "<group>"; };
@@ -702,11 +707,11 @@
 			files = (
 				5D89F9002B2EC693001C9DD6 /* ComposableArchitecture in Frameworks */,
 				296236DF1AC0B1A79BC70DC9 /* Pods_Cheffi.framework in Frameworks */,
-				FF5059792A79513300F90D27 /* KakaoSDK in Frameworks */,
 				6BC0091B2BB0007700307904 /* ViewStore in Frameworks */,
 				CE0D45172A61712400636989 /* SwifterSwift in Frameworks */,
 				6B4053772BAB1A28007E2088 /* netfox in Frameworks */,
 				FF9793B22A74C22800A921A0 /* PanModal in Frameworks */,
+				6B51B3412BCBB8A2006BBA14 /* KakaoSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -926,18 +931,20 @@
 			isa = PBXGroup;
 			children = (
 				CE0D452E2A61964E00636989 /* Flow */,
-				CE0D452D2A61964600636989 /* Views */,
+				CE0D452D2A61964600636989 /* MyPage */,
 			);
 			path = MyPageScene;
 			sourceTree = "<group>";
 		};
-		CE0D452D2A61964600636989 /* Views */ = {
+		CE0D452D2A61964600636989 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
 				CE0D45372A61AA5A00636989 /* MyPageViewController.swift */,
 				CE0D45392A61AA7700636989 /* MyPage.storyboard */,
+				6B4C40472BC01A4900E20375 /* MyPageView.swift */,
+				6BBCCC422BCBABD2006D6751 /* MyPageReducer.swift */,
 			);
-			path = Views;
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		CE0D452E2A61964E00636989 /* Flow */ = {
@@ -1924,10 +1931,10 @@
 			packageProductDependencies = (
 				CE0D45162A61712400636989 /* SwifterSwift */,
 				FF9793B12A74C22800A921A0 /* PanModal */,
-				FF5059782A79513300F90D27 /* KakaoSDK */,
 				5D89F8FF2B2EC693001C9DD6 /* ComposableArchitecture */,
 				6B4053762BAB1A28007E2088 /* netfox */,
 				6BC0091A2BB0007700307904 /* ViewStore */,
+				6B51B3402BCBB8A2006BBA14 /* KakaoSDK */,
 			);
 			productName = Cheffi;
 			productReference = D4E244B52A60FF5A004E0167 /* Cheffi.app */;
@@ -1965,10 +1972,10 @@
 			packageReferences = (
 				CE0D45152A61712400636989 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 				FF9793B02A74C22800A921A0 /* XCRemoteSwiftPackageReference "PanModal" */,
-				FF5059772A79513300F90D27 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				5D89F8FE2B2EC693001C9DD6 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				6B4053752BAB1A28007E2088 /* XCRemoteSwiftPackageReference "netfox" */,
 				6B4DADBC2BAFFF0D00DBDE61 /* XCLocalSwiftPackageReference "Package/ViewStore" */,
+				6B51B33F2BCBB8A2006BBA14 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			productRefGroup = D4E244B62A60FF5A004E0167 /* Products */;
 			projectDirPath = "";
@@ -2128,6 +2135,7 @@
 				6B795D022B9338E60000FB43 /* ReviewHashtagsViewController.swift in Sources */,
 				D420F1712AE64BE300DC10ED /* DefaultAreaRepository.swift in Sources */,
 				CE0D45422A626C3B00636989 /* SimilarChefCell.swift in Sources */,
+				6B04977D2BC0192B00092A58 /* (null) in Sources */,
 				6B08FEA22B541EAD00BBC74B /* RestaurantRegistComposeView.swift in Sources */,
 				6BDABB702B826130001E2A67 /* TextEditorView.swift in Sources */,
 				FF3197772A74C90E00F5DD41 /* CheffiReviewView.swift in Sources */,
@@ -2136,6 +2144,7 @@
 				FFDBC6812A83BBF90009189C /* PhotoAlbumViewController.swift in Sources */,
 				CE0D453C2A61AAD700636989 /* MyPageFlowCoodinator.swift in Sources */,
 				D47719042A8CC13100381A72 /* CheffiRecommendationUseCase.swift in Sources */,
+				6BBCCC432BCBABD2006D6751 /* MyPageReducer.swift in Sources */,
 				FFA6BA8C2ADBBC550094913E /* AvatarInfoResponse.swift in Sources */,
 				6B795D002B8B1E2F0000FB43 /* RestaurantMenuComposePopupReducer.swift in Sources */,
 				FFDBC6782A8280E20009189C /* UILabel+Extensions.swift in Sources */,
@@ -2181,6 +2190,7 @@
 				D4512EE42B70F5B900D7F65E /* ReviewsByAreaRequest.swift in Sources */,
 				D47C68A32B307F2F007F7650 /* SearchViewHeader.swift in Sources */,
 				D43C4FC02B8207B600047B7F /* NotificationRequest.swift in Sources */,
+				6B4C40482BC01A4900E20375 /* MyPageView.swift in Sources */,
 				FF3E0D572ACB1158009B236D /* ProfileTagCell.swift in Sources */,
 				FF3E0D522ACB0DA4009B236D /* ProfileTagListView.swift in Sources */,
 				CE42BA622A6B9D8F00EBB80A /* UIColor+Extensions.swift in Sources */,
@@ -2801,20 +2811,20 @@
 				minimumVersion = 1.21.0;
 			};
 		};
+		6B51B33F2BCBB8A2006BBA14 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 2.21.1;
+			};
+		};
 		CE0D45152A61712400636989 /* XCRemoteSwiftPackageReference "SwifterSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwifterSwift/SwifterSwift.git";
 			requirement = {
 				kind = exactVersion;
 				version = 5.3.0;
-			};
-		};
-		FF5059772A79513300F90D27 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.16.0;
 			};
 		};
 		FF9793B02A74C22800A921A0 /* XCRemoteSwiftPackageReference "PanModal" */ = {
@@ -2838,6 +2848,11 @@
 			package = 6B4053752BAB1A28007E2088 /* XCRemoteSwiftPackageReference "netfox" */;
 			productName = netfox;
 		};
+		6B51B3402BCBB8A2006BBA14 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B51B33F2BCBB8A2006BBA14 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
 		6BC0091A2BB0007700307904 /* ViewStore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6B4DADBC2BAFFF0D00DBDE61 /* XCLocalSwiftPackageReference "Package/ViewStore" */;
@@ -2847,11 +2862,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE0D45152A61712400636989 /* XCRemoteSwiftPackageReference "SwifterSwift" */;
 			productName = SwifterSwift;
-		};
-		FF5059782A79513300F90D27 /* KakaoSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FF5059772A79513300F90D27 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
-			productName = KakaoSDK;
 		};
 		FF9793B12A74C22800A921A0 /* PanModal */ = {
 			isa = XCSwiftPackageProductDependency;

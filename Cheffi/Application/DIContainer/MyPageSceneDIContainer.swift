@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class MyPageSceneDIContainer: MyPageFlowCoodinatorDependencies {
     func makeMyPageFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> MyPageFlowCoodinator {
@@ -15,18 +16,12 @@ final class MyPageSceneDIContainer: MyPageFlowCoodinatorDependencies {
             dependencies: self)
     }
     
-    func makeViewController() -> UIViewController {
-        return MyPageViewController.instance()
+    // MARK: - My Page
+    func makeMyPageViewController(reducer: MyPageReducer) -> MyPageViewController {
+        MyPageViewController.instance(reducer: reducer)
     }
     
-    func makePopupViewController(text: String, subText: String, keyword: String, popupState: PopupState, leftButtonTitle: String, rightButtonTitle: String, leftHandler: (() -> Void)?, rightHandler: (() -> Void)?) -> PopupViewController {
-        return PopupViewController.instance(text: text,
-                                            subText: subText,
-                                            keyword: keyword,
-                                            popupState: popupState,
-                                            leftButtonTitle: leftButtonTitle,
-                                            rightButtonTitle: rightButtonTitle,
-                                            leftHandler: leftHandler,
-                                            rightHandler: rightHandler)
+    func makeMyPageReducer(steps: PassthroughSubject<RouteStep, Never>) -> MyPageReducer {
+        MyPageReducer(steps: steps)
     }
 }

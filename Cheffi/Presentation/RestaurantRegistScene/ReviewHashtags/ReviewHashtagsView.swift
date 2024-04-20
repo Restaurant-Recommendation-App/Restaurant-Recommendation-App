@@ -114,7 +114,7 @@ struct ReviewHashtagsView_Preview: PreviewProvider {
                 navigationBarState: NavigationBarReducer.State(
                     title: "",
                     leftButtonKind: .back,
-                    rightButtonTitle: "게시하기"
+                    rightButtonKind: .posting
                 )
             )) {
                 ReviewHashtagsReducer(

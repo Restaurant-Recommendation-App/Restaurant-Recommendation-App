@@ -13,6 +13,7 @@ final class AppFlowCoordinator: NSObject {
     private let appDIContainer: AppDIContainer
     var nationalTrendFlowCoordinator: NationalTrendFlowCoodinator?
     var restaurantRegistFlowCoordinator: RestaurantRegistFlowCoordinator?
+    var myPageFlowCoordinator: MyPageFlowCoodinator?
     var loginNavigation: UINavigationController?
     var loginFlowCoordinator: LoginFlowCoordinator?
     
@@ -87,6 +88,7 @@ final class AppFlowCoordinator: NSObject {
             navigationController: myPageNavigationController,
             parentCoordinator: self
         )
+        self.myPageFlowCoordinator = myPageCoordinator
         myPageCoordinator.start()
         
         tabBarController.viewControllers = [
