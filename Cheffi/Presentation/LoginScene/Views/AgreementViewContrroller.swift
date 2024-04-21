@@ -8,7 +8,7 @@
 import UIKit
 import ComposableArchitecture
 
-class AgreementViewContrroller: UIViewController {
+final class AgreementViewContrroller: UIViewController {
     static func instance<T: AgreementViewContrroller>(reducer: AgreementReducer) -> T {
         let vc: T = T()
         vc.reducer = reducer

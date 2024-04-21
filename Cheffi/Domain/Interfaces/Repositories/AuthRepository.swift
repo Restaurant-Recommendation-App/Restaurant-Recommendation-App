@@ -12,7 +12,7 @@ protocol AuthRepository {
     // 카카오 로그인
     func postOauthKakaoLogin(idToken: String) -> AnyPublisher<(Results<UserDTO>, HTTPURLResponse), DataTransferError>
     // 약관 동의
-    func patchTerms(adAgreed: Bool, analysisAgreed: Bool) -> AnyPublisher<(Results<UserDTO>, HTTPURLResponse), DataTransferError>
+    func patchTerms(adAgreed: Bool) -> AnyPublisher<(Results<UserDTO>, HTTPURLResponse), DataTransferError>
     // 닉네임 중복 확인
     func getNicknameInuse(nickname: String) -> AnyPublisher<(Results<Bool>, HTTPURLResponse), DataTransferError>
     // 닉네임 변경

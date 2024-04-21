@@ -10,7 +10,7 @@ import Combine
 
 protocol TagUseCase {
     func getTags(type: TagType) -> AnyPublisher<[Tag], DataTransferError>
-    func putTags(tagRequest: TagsChangeRequest) -> AnyPublisher<TagsChangeResponse, DataTransferError>
+    func putTags(tagRequest: TestTagsChangeRequest) -> AnyPublisher<TagsChangeResponse, DataTransferError>
 }
 
 final class DefaultTagUseCase: TagUseCase {
@@ -25,7 +25,7 @@ final class DefaultTagUseCase: TagUseCase {
             .eraseToAnyPublisher()
     }
     
-    func putTags(tagRequest: TagsChangeRequest) -> AnyPublisher<TagsChangeResponse, DataTransferError> {
+    func putTags(tagRequest: TestTagsChangeRequest) -> AnyPublisher<TagsChangeResponse, DataTransferError> {
         return repository.putTags(tagRequest: tagRequest)
             .map { $0.0.data }
             .eraseToAnyPublisher()

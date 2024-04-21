@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Combine
 
 final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     struct Dependencies {
@@ -22,6 +22,25 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
         return LoginFlowCoordinator(navigationController: navigationController,
                                     parentCoordinator: parentCoordinator,
                                     dependencies: self)
+    }
+    
+    // MARK: - Agreement
+    func makeAgreementViewController(reducer: AgreementReducer) -> AgreementViewContrroller {
+        return AgreementViewContrroller.instance(reducer: reducer)
+    }
+    
+    func makeAgreementReducer(steps: PassthroughSubject<RouteStep, Never>) -> AgreementReducer {
+        let repository = makeAuthRepository()
+        return AgreementReducer(useCase: makeAuthUseCase(repository: repository), steps: steps)
+    }
+    
+    // MARK: UserRegistCompletion
+    func makeUserRegistComplViewController(reducer: UserRegistComplReducer) -> UserRegistCompletionViewController {
+        return UserRegistCompletionViewController.instance(reducer: reducer)
+    }
+    
+    func makeUserRegistComplReducer(steps: PassthroughSubject<RouteStep, Never>) -> UserRegistComplReducer {
+        return UserRegistComplReducer(steps: steps)
     }
     
     // MARK: - SNS Login
@@ -44,7 +63,7 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
         profilePhotoViewModel: ProfilePhotoViewModelType,
         foodSelectionViewModel: FoodSelectionViewModelType,
         tasteSelectionViewModel: TasteSelectionViewModelType,
-        followSelectionViewModel: FollowSelectionViewModelType
+        profileRegistComplReducer: ProfileRegistCompleReducer
     ) -> ProfileSetupViewController {
         let viewModel = makeProfileSetupViewModel()
         return ProfileSetupViewController.instance(viewModel: viewModel,
@@ -52,7 +71,7 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
                                                    profilePhotoViewController: makeProfilePhotoViewController(viewMoel: profilePhotoViewModel),
                                                    foodSelectionViewController: makeFoodSelectionViewController(viewModel: foodSelectionViewModel),
                                                    tasteSelectionViewController: makeTasteSelectionViewController(viewModel: tasteSelectionViewModel),
-                                                   followSelectionViewController: makeFollowSelectionViewController(viewModel: followSelectionViewModel))
+                                                   profileRegistComplViewController: makeProfileRegistCompletionViewController(reducer: profileRegistComplReducer))
     }
     
     // MARK: - Nickname
@@ -98,6 +117,15 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
         return TasteSelectionViewModel(useCase: makeTagUseCase(repository: repository))
     }
     
+    // MARK: - ProfileRegistCompletion
+    func makeProfileRegistCompletionViewController(reducer: ProfileRegistCompleReducer) -> ProfileRegistCompletionViewController {
+        return ProfileRegistCompletionViewController.instance(reducer: reducer)
+    }
+
+    func makeProfileRegistComplReducer(steps: PassthroughSubject<RouteStep, Never>) -> ProfileRegistCompleReducer {
+        return ProfileRegistCompleReducer(steps: steps)
+    }
+
     // MARK: - FollowSelection
     func makeFollowSelectionViewController(viewModel: FollowSelectionViewModelType) -> FollowSelectionViewController {
         return FollowSelectionViewController.instance(viewModel: viewModel)

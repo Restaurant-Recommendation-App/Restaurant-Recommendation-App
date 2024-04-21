@@ -14,7 +14,7 @@ struct TagAPIEndpoints {
                         queryParameters: ["type": type.rawValue])
     }
     
-    static func putTags(tagRequest: TagsChangeRequest) -> Endpoint<Results<TagsChangeResponse>> {
+    static func putTags(tagRequest: TestTagsChangeRequest) -> Endpoint<Results<TagsChangeResponse>> {
         return Endpoint(path: "api/v1/avatars/tags",
                         method: .put,
                         headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],

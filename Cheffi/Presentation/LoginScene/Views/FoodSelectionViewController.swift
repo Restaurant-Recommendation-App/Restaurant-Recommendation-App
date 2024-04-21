@@ -44,8 +44,7 @@ class FoodSelectionViewController: UIViewController {
     private func setupViews() {
         nextButton.setTitle("다음".localized(), for: .normal)
         nextButton.didTapButton = { [weak self] in
-            let selectionTags = self?.viewModel.output.selectionTags ?? []
-            self?.delegate?.didTapNext(params: [.profileFoodSelection: selectionTags])
+            self?.viewModel.input.requestPutTags()
         }
         
         titleLabel.textColor = .cheffiGray9
@@ -76,6 +75,21 @@ class FoodSelectionViewController: UIViewController {
                 self?.reload(with: tags)
             }
             .store(in: &cancellables)
+        
+        viewModel.output.updateCompletionTags
+            .sink { completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    print("---------------------------------------")
+                    print(error)
+                    print("---------------------------------------")
+                }
+            } receiveValue: { [weak self] tagResponse in
+                self?.delegate?.didTapNext(params: [:])
+            }
+            .store(in: &cancellables)
+
 
     }
     

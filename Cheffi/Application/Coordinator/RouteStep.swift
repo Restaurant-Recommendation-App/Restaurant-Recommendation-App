@@ -10,8 +10,12 @@ import Foundation
 enum RouteStep {
     case popToNavigationController
     case dismissRestaurantRegist
+    case dismissTermsView
     case pushRestaurantRegistSearch
     case pushRestaurantRegistCompose
+    case pushAgreementViewController
+    case pushUserRegistComplViewController
+    case pushProfileSetupViewController
     case pushReviewCompose(info: RestaurantInfoDTO)
     case presentCamera(
         isPresentPhotoAlbum: Bool,

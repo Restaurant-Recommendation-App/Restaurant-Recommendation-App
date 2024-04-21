@@ -10,12 +10,13 @@ import Combine
 
 protocol FoodSelectionViewModelInput {
     func requestGetTags(type: TagType)
+    func requestPutTags()
     func setSelectionTags(_ tags: [Tag])
 }
 
 protocol FoodSelectionViewModelOutput {
     var responseTags: AnyPublisher<[Tag], DataTransferError> { get }
-    var selectionTags: [Tag] { get }
+    var updateCompletionTags: AnyPublisher<TagsChangeResponse?, DataTransferError> { get }
 }
 
 protocol FoodSelectionViewModelType {
@@ -29,6 +30,7 @@ class FoodSelectionViewModel: FoodSelectionViewModelType {
     
     private var cancellables: Set<AnyCancellable> = []
     private var getTagsSubject = PassthroughSubject<TagType, Never>()
+    private var putTagsSubject = PassthroughSubject<Void, Never>()
     private var _selectionTags: [Tag] = []
     
     // MARK: - Init
@@ -55,12 +57,38 @@ class FoodSelectionViewModel: FoodSelectionViewModelType {
             .store(in: &cancellables)
         return subject.eraseToAnyPublisher()
     }
+    
+    private func putTags() -> AnyPublisher<TagsChangeResponse?, DataTransferError> {
+        let subject = PassthroughSubject<TagsChangeResponse?, DataTransferError>()
+        let tagRequest = TestTagsChangeRequest(ids: _selectionTags.map({ $0.id }), type: .food)
+        
+        useCase.putTags(tagRequest: tagRequest)
+            .print()
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    subject.send(completion: .finished)
+                case .failure(let error):
+                    // TODO: 중복 태그 요청 에러 대응 필요
+                    subject.send(nil)
+//                    subject.send(completion: .failure(error))
+                }
+            } receiveValue: { tagResponse in
+                subject.send(tagResponse)
+            }
+            .store(in: &cancellables)
+        return subject.eraseToAnyPublisher()
+    }
 }
 
 // MARK: - Input
 extension FoodSelectionViewModel: FoodSelectionViewModelInput {
     func requestGetTags(type: TagType) {
         getTagsSubject.send(type)
+    }
+    
+    func requestPutTags() {
+        putTagsSubject.send(())
     }
     
     func setSelectionTags(_ tags: [Tag]) {
@@ -84,7 +112,19 @@ extension FoodSelectionViewModel: FoodSelectionViewModelOutput {
             .eraseToAnyPublisher()
     }
     
-    var selectionTags: [Tag] {
-        return _selectionTags
+    var updateCompletionTags: AnyPublisher<TagsChangeResponse?, DataTransferError> {
+        return putTagsSubject
+            .flatMap { [weak self] type -> AnyPublisher<TagsChangeResponse?, DataTransferError> in
+                guard let self = self else {
+                    return Future { promise in
+                        promise(.success(nil))
+                    }.eraseToAnyPublisher()
+                }
+                
+                return self.putTags()
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
+
 }

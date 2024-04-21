@@ -148,7 +148,13 @@
 		D49D1A9A2A73BB6500CB86FA /* UIControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D1A992A73BB6500CB86FA /* UIControl+Combine.swift */; };
 		D49D1AA22A73C7AE00CB86FA /* CheffiRecommendationContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D1AA12A73C7AD00CB86FA /* CheffiRecommendationContentsViewModel.swift */; };
 		D49F2D382AC6AC0400603CDC /* RestaurantContentItemViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F2D372AC6AC0400603CDC /* RestaurantContentItemViewModelTest.swift */; };
+		D4A779CC2BD283A7007241B7 /* ProfileRegistCompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A779CB2BD283A7007241B7 /* ProfileRegistCompletionView.swift */; };
+		D4A779CE2BD3641A007241B7 /* ProfileRegistCompleReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A779CD2BD3641A007241B7 /* ProfileRegistCompleReducer.swift */; };
+		D4A779D02BD3C2D4007241B7 /* ProfileRegistCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A779CF2BD3C2D4007241B7 /* ProfileRegistCompletionViewController.swift */; };
 		D4ABC29F2A78D3E900B4152B /* CheffiRecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ABC29E2A78D3E900B4152B /* CheffiRecommendationViewModel.swift */; };
+		D4B122202BCE88BF00D9FC29 /* UserRegistCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1221F2BCE88BF00D9FC29 /* UserRegistCompletionViewController.swift */; };
+		D4B122222BCE89A200D9FC29 /* UserRegistComplReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B122212BCE89A200D9FC29 /* UserRegistComplReducer.swift */; };
+		D4B122242BCE8DE000D9FC29 /* UserRegistCompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B122232BCE8DE000D9FC29 /* UserRegistCompletionView.swift */; };
 		D4B57AE42B382E68006E7C7E /* SearchCategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B57AE32B382E68006E7C7E /* SearchCategoryListCell.swift */; };
 		D4BA3BB62A78C616009CA7E0 /* PopularRestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA3BB52A78C616009CA7E0 /* PopularRestaurantViewModel.swift */; };
 		D4BD73462B3823BB0074277A /* SearchCategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD73452B3823BB0074277A /* SearchCategoryListView.swift */; };
@@ -495,7 +501,13 @@
 		D49D1A992A73BB6500CB86FA /* UIControl+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Combine.swift"; sourceTree = "<group>"; };
 		D49D1AA12A73C7AD00CB86FA /* CheffiRecommendationContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationContentsViewModel.swift; sourceTree = "<group>"; };
 		D49F2D372AC6AC0400603CDC /* RestaurantContentItemViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantContentItemViewModelTest.swift; sourceTree = "<group>"; };
+		D4A779CB2BD283A7007241B7 /* ProfileRegistCompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegistCompletionView.swift; sourceTree = "<group>"; };
+		D4A779CD2BD3641A007241B7 /* ProfileRegistCompleReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegistCompleReducer.swift; sourceTree = "<group>"; };
+		D4A779CF2BD3C2D4007241B7 /* ProfileRegistCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegistCompletionViewController.swift; sourceTree = "<group>"; };
 		D4ABC29E2A78D3E900B4152B /* CheffiRecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationViewModel.swift; sourceTree = "<group>"; };
+		D4B1221F2BCE88BF00D9FC29 /* UserRegistCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistCompletionViewController.swift; sourceTree = "<group>"; };
+		D4B122212BCE89A200D9FC29 /* UserRegistComplReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistComplReducer.swift; sourceTree = "<group>"; };
+		D4B122232BCE8DE000D9FC29 /* UserRegistCompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistCompletionView.swift; sourceTree = "<group>"; };
 		D4B57AE32B382E68006E7C7E /* SearchCategoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCategoryListCell.swift; sourceTree = "<group>"; };
 		D4BA3BB52A78C616009CA7E0 /* PopularRestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantViewModel.swift; sourceTree = "<group>"; };
 		D4BD73452B3823BB0074277A /* SearchCategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCategoryListView.swift; sourceTree = "<group>"; };
@@ -1745,6 +1757,12 @@
 				D46791122BB96604001F567F /* AgreementViewContrroller.swift */,
 				D46791142BB9705F001F567F /* AgreementView.swift */,
 				D46791162BB9706C001F567F /* AgreementReducer.swift */,
+				D4B1221F2BCE88BF00D9FC29 /* UserRegistCompletionViewController.swift */,
+				D4B122232BCE8DE000D9FC29 /* UserRegistCompletionView.swift */,
+				D4B122212BCE89A200D9FC29 /* UserRegistComplReducer.swift */,
+				D4A779CF2BD3C2D4007241B7 /* ProfileRegistCompletionViewController.swift */,
+				D4A779CB2BD283A7007241B7 /* ProfileRegistCompletionView.swift */,
+				D4A779CD2BD3641A007241B7 /* ProfileRegistCompleReducer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2210,6 +2228,7 @@
 				FFC7C6652A888B6900EBE162 /* PhotoCropViewController.swift in Sources */,
 				6BE9EF882B6F8C3E00252048 /* ConfirmPopupView.swift in Sources */,
 				D49B592C2A653454003C108E /* RestaurantContentCell.swift in Sources */,
+				D4B122242BCE8DE000D9FC29 /* UserRegistCompletionView.swift in Sources */,
 				FF5F48E82AE4DA5300B732BC /* RestaurantInfoDTO.swift in Sources */,
 				5D89F9052B2EF25D001C9DD6 /* RestaurantRegistSearchReducer.swift in Sources */,
 				D49B592A2A652A35003C108E /* CheffiRecommendationContensView.swift in Sources */,
@@ -2268,6 +2287,7 @@
 				FF5059C22A7E8E4000F90D27 /* CheffiReviewDetailViewModel.swift in Sources */,
 				6B08FE992B541D3900BBC74B /* RestaurantRegistComposeViewController.swift in Sources */,
 				D46791172BB9706C001F567F /* AgreementReducer.swift in Sources */,
+				D4A779D02BD3C2D4007241B7 /* ProfileRegistCompletionViewController.swift in Sources */,
 				D441C0232A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift in Sources */,
 				D43331A92A6D32AE00E6CB4B /* UICollectionView+Extensions.swift in Sources */,
 				6BA9F5512B4A8C9B00A96321 /* EmptyDescriptionViewReducer.swift in Sources */,
@@ -2276,6 +2296,7 @@
 				6BA9B9862B42D0C90010290C /* SearchBarReducer.swift in Sources */,
 				D4C0FA6E2A9DB37F0056B885 /* RestaurantContentItemViewModel.swift in Sources */,
 				FFA6BA872ADBBB110094913E /* FollowSelectionViewModel.swift in Sources */,
+				D4A779CC2BD283A7007241B7 /* ProfileRegistCompletionView.swift in Sources */,
 				FFDBC67A2A83AD760009189C /* NicknameVIewModel.swift in Sources */,
 				D4C8713E2AD3C26800A1745B /* AllCheffiContentsViewController.swift in Sources */,
 				FFAA44FA2A83C30E0090AA9E /* ProfilePhotoViewModel.swift in Sources */,
@@ -2364,6 +2385,7 @@
 				CE0D45192A617FC500636989 /* NationalTrendSceneDIContainer.swift in Sources */,
 				FFC58AD12A8689FA0095BCF4 /* PhotoUseCase.swift in Sources */,
 				D420F1652AE4F57300DC10ED /* CityAreaTableViewCell.swift in Sources */,
+				D4B122222BCE89A200D9FC29 /* UserRegistComplReducer.swift in Sources */,
 				FF50599D2A7DFFAF00F90D27 /* NetworkConfig.swift in Sources */,
 				FFB29BBE2ACBDF50000E473E /* NotificationRepository.swift in Sources */,
 				D4D34BE62B3C655100AC46A5 /* SearchUseCase.swift in Sources */,
@@ -2384,10 +2406,12 @@
 				6B795D0C2B9389F50000FB43 /* SizeReader.swift in Sources */,
 				FFA6BA962ADBC1BA0094913E /* FollowResponse.swift in Sources */,
 				CE42BA6D2A6BB98600EBB80A /* PopupViewController.swift in Sources */,
+				D4A779CE2BD3641A007241B7 /* ProfileRegistCompleReducer.swift in Sources */,
 				FF35FB122ADD76CC002D9E47 /* RegisterReviewRequest.swift in Sources */,
 				FF35FB0A2ADD549A002D9E47 /* RatingInfoDTO.swift in Sources */,
 				FFFD94E72A8122A1001475AF /* ProfileSetupViewController.swift in Sources */,
 				FF35FB182ADD7FF0002D9E47 /* ReviewRepository.swift in Sources */,
+				D4B122202BCE88BF00D9FC29 /* UserRegistCompletionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

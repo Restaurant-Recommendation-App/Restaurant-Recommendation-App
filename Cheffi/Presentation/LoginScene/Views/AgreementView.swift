@@ -13,15 +13,11 @@ import ViewStore
 @ViewStore(AgreementReducer.self)
 struct AgreementView: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            NavigationBarView(
-                Store(initialState: NavigationBarReducer.State(
-                    title: "",
-                    leftButtonKind: .back
-                )) {
-                    NavigationBarReducer()._printChanges()
-                }
-            )
+        VStack(alignment: .leading, spacing: 0) {            
+            NavigationBarView(store.scope(
+                state: \.navigationBarState,
+                action: AgreementReducer.Action.navigationBarAction
+            ))
             
             Text("약관에 동의해주세요")
                 .multilineTextAlignment(.leading)

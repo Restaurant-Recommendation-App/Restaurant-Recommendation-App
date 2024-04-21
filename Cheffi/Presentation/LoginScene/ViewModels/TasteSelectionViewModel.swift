@@ -11,8 +11,7 @@ import Combine
 protocol TasteSelectionViewModelInput {
     func requestGetTags(type: TagType)
     func requestPutTags()
-    func setFoodSelectionTags(_ tags: [Tag])
-    func setTasteSelectionTags(_ tags: [Tag])
+    func setSelectionTags(_ tags: [Tag])
 }
 
 protocol TasteSelectionViewModelOutput {
@@ -32,8 +31,7 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
     private var cancellables: Set<AnyCancellable> = []
     private var getTagsSubject = PassthroughSubject<TagType, Never>()
     private var putTagsSubject = PassthroughSubject<Void, Never>()
-    private var _foodSelectionTags: [Tag] = []
-    private var _tasteSelectionTags: [Tag] = []
+    private var _selectionTags: [Tag] = []
     
     // MARK: - Init
     private let useCase: TagUseCase
@@ -62,8 +60,8 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
     
     private func putTags() -> AnyPublisher<TagsChangeResponse?, DataTransferError> {
         let subject = PassthroughSubject<TagsChangeResponse?, DataTransferError>()
-        let tagRequest = TagsChangeRequest(foodTags: _foodSelectionTags.map({ $0.id }),
-                                          tasteTags: _tasteSelectionTags.map({ $0.id }))
+        let tagRequest = TestTagsChangeRequest(ids: _selectionTags.map({ $0.id }), type: .taste)
+        
         useCase.putTags(tagRequest: tagRequest)
             .print()
             .sink { completion in
@@ -71,7 +69,9 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
                 case .finished:
                     subject.send(completion: .finished)
                 case .failure(let error):
-                    subject.send(completion: .failure(error))
+                    // TODO: 중복 태그 요청 에러 대응 필요
+                    subject.send(nil)
+//                    subject.send(completion: .failure(error))
                 }
             } receiveValue: { tagResponse in
                 subject.send(tagResponse)
@@ -91,12 +91,8 @@ extension TasteSelectionViewModel: TasteSelectionViewModelInput {
         putTagsSubject.send(())
     }
     
-    func setFoodSelectionTags(_ tags: [Tag]) {
-        self._foodSelectionTags = tags
-    }
-    
-    func setTasteSelectionTags(_ tags: [Tag]) {
-        self._tasteSelectionTags = tags
+    func setSelectionTags(_ tags: [Tag]) {
+        self._selectionTags = tags
     }
 }
 
