@@ -93,22 +93,22 @@ class NicknameViewModel: NicknameViewModelType {
     }
     
     private func patchNickname(nickname: String) -> AnyPublisher<String?, DataTransferError> {
-        let subject = CurrentValueSubject<String?, DataTransferError>(nickname)
-        // TODO: 아래 주석 제거 필요
-//        subject.send(nickname)
-//        useCase.patchNickname(nickname: nickname)
-//            .print()
-//            .sink { completion in
-//                switch completion {
-//                case .finished:
-//                    subject.send(completion: .finished)
-//                case .failure(let error):
-//                    subject.send(completion: .failure(error))
-//                }
-//            } receiveValue: { (nickname, _) in
-//                subject.send(nickname)
-//            }
-//            .store(in: &cancellables)
+        let subject = PassthroughSubject<String?, DataTransferError>()
+        
+        useCase.patchNickname(nickname: nickname)
+            .print()
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    subject.send(completion: .finished)
+                case .failure(let error):
+                    subject.send(completion: .failure(error))
+                }
+            } receiveValue: { (nickname, _) in
+                subject.send(nickname)
+            }
+            .store(in: &cancellables)
+        
         return subject.eraseToAnyPublisher()
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 struct ChangeProfilePhotoRequest: Codable {
     let defaults: Bool
-    let introduction: String
+    let introduction: String?
     
     enum CodingKeys: String, CodingKey {
         case defaults = "default"

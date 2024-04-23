@@ -16,7 +16,7 @@ protocol TasteSelectionViewModelInput {
 
 protocol TasteSelectionViewModelOutput {
     var responseTags: AnyPublisher<[Tag], DataTransferError> { get }
-    var updateCompletionTags: AnyPublisher<TagsChangeResponse?, DataTransferError> { get }
+    var updateCompletionTags: AnyPublisher<[String], DataTransferError> { get }
 }
 
 protocol TasteSelectionViewModelType {
@@ -58,23 +58,27 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
         return subject.eraseToAnyPublisher()
     }
     
-    private func putTags() -> AnyPublisher<TagsChangeResponse?, DataTransferError> {
-        let subject = PassthroughSubject<TagsChangeResponse?, DataTransferError>()
+    private func putTags() -> AnyPublisher<[String], DataTransferError> {
         let tagRequest = TestTagsChangeRequest(ids: _selectionTags.map({ $0.id }), type: .taste)
         
-        useCase.putTags(tagRequest: tagRequest)
+        return useCase.putTags(tagRequest: tagRequest)
+            .flatMap { _ in self.postRegisterProfile() }
+            .eraseToAnyPublisher()
+    }
+    
+    private func postRegisterProfile() -> AnyPublisher<[String], DataTransferError> {
+        let subject = PassthroughSubject<[String], DataTransferError>()
+        useCase.postRegisterUserProfile()
             .print()
             .sink { completion in
                 switch completion {
                 case .finished:
                     subject.send(completion: .finished)
                 case .failure(let error):
-                    // TODO: 중복 태그 요청 에러 대응 필요
-                    subject.send(nil)
-//                    subject.send(completion: .failure(error))
+                    subject.send(completion: .failure(error))
                 }
-            } receiveValue: { tagResponse in
-                subject.send(tagResponse)
+            } receiveValue: { results in
+                subject.send(results)
             }
             .store(in: &cancellables)
         return subject.eraseToAnyPublisher()
@@ -112,12 +116,12 @@ extension TasteSelectionViewModel: TasteSelectionViewModelOutput {
             .eraseToAnyPublisher()
     }
     
-    var updateCompletionTags: AnyPublisher<TagsChangeResponse?, DataTransferError> {
+    var updateCompletionTags: AnyPublisher<[String], DataTransferError> {
         return putTagsSubject
-            .flatMap { [weak self] type -> AnyPublisher<TagsChangeResponse?, DataTransferError> in
+            .flatMap { [weak self] type -> AnyPublisher<[String], DataTransferError> in
                 guard let self = self else {
                     return Future { promise in
-                        promise(.success(nil))
+                        promise(.success([]))
                     }.eraseToAnyPublisher()
                 }
                 

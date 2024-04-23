@@ -125,6 +125,7 @@
 		D441C01E2A6693E300063822 /* CheffiRecommendationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C01D2A6693E300063822 /* CheffiRecommendationCell.swift */; };
 		D441C0202A66965400063822 /* CheffiRecommendationCatogoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C01F2A66965400063822 /* CheffiRecommendationCatogoryPageView.swift */; };
 		D441C0232A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */; };
+		D445C1682BD6AA7B00066F16 /* UITextView+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D445C1672BD6AA7B00066F16 /* UITextView+Combine.swift */; };
 		D4512EE32B70F59800D7F65E /* PaginationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D445B8F02B67CE4F002EE677 /* PaginationResults.swift */; };
 		D4512EE42B70F5B900D7F65E /* ReviewsByAreaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D445B8F22B69384E002EE677 /* ReviewsByAreaRequest.swift */; };
 		D46791132BB96604001F567F /* AgreementViewContrroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46791122BB96604001F567F /* AgreementViewContrroller.swift */; };
@@ -480,6 +481,7 @@
 		D441C0222A66985C00063822 /* CheffiRecommendationCategoryPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheffiRecommendationCategoryPageCell.swift; sourceTree = "<group>"; };
 		D445B8F02B67CE4F002EE677 /* PaginationResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationResults.swift; sourceTree = "<group>"; };
 		D445B8F22B69384E002EE677 /* ReviewsByAreaRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsByAreaRequest.swift; sourceTree = "<group>"; };
+		D445C1672BD6AA7B00066F16 /* UITextView+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Combine.swift"; sourceTree = "<group>"; };
 		D46791122BB96604001F567F /* AgreementViewContrroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewContrroller.swift; sourceTree = "<group>"; };
 		D46791142BB9705F001F567F /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
 		D46791162BB9706C001F567F /* AgreementReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementReducer.swift; sourceTree = "<group>"; };
@@ -1073,6 +1075,7 @@
 				FFC58AD42A8756B10095BCF4 /* UIApplication+Extensions.swift */,
 				FFC7C66F2A88F87400EBE162 /* UIImage+Extensions.swift */,
 				FFA6BA6E2ADA8B670094913E /* Data+Extensions.swift */,
+				D445C1672BD6AA7B00066F16 /* UITextView+Combine.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2358,6 +2361,7 @@
 				D420F16B2AE64A4D00DC10ED /* Area.swift in Sources */,
 				6B795D132B93A1EE0000FB43 /* TagItemButton.swift in Sources */,
 				FFB29BAF2ACBD463000E473E /* NotificationViewModel.swift in Sources */,
+				D445C1682BD6AA7B00066F16 /* UITextView+Combine.swift in Sources */,
 				D49D1A9A2A73BB6500CB86FA /* UIControl+Combine.swift in Sources */,
 				D4CABD7A2AD84FBD00BAAC5B /* RestaurantContentItemType.swift in Sources */,
 				D4034B762B025B8000D1E68D /* RecentSearchLayoutProvider.swift in Sources */,

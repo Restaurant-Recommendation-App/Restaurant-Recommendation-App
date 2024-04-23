@@ -11,6 +11,8 @@ import ViewStore
 
 @ViewStore(ProfileRegistCompleReducer.self)
 struct ProfileRegistCompletionView: View {
+    let username: String = UserDefaultsManager.UserInfo.user?.nickname ?? ""
+    
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             Image("empty_menu_background")
@@ -19,7 +21,7 @@ struct ProfileRegistCompletionView: View {
                 .padding(.top, 176
                 )
             
-            Text("김맛집님 환영해요")
+            Text("\(username)님 환영해요")
                 .font(
                     Font.custom("SUIT", size: 24)
                         .weight(.medium)

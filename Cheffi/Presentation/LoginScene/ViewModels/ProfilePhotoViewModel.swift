@@ -16,7 +16,9 @@ struct ProfilePhotoViewModelActions {
 }
 
 protocol ProfilePhotoViewModelInput {
-    func setImageData(imageData: Data?)
+    func setPlaceHolder(_ text: String)
+    func setImageData(imageData: Data)
+    func setIntroduction(_ text: String)
     func postPhostosDidTap()
 }
 
@@ -31,13 +33,18 @@ protocol ProfilePhotoViewModelOutput {
 protocol ProfilePhotoViewModelType {
     var input: ProfilePhotoViewModelInput { get }
     var output: ProfilePhotoViewModelOutput { get }
+    var isPhotoSelected: Bool { get set }
 }
 
 final class ProfilePhotoViewModel: ProfilePhotoViewModelType {
     var input: ProfilePhotoViewModelInput { return self }
     var output: ProfilePhotoViewModelOutput { return self }
+    var isPhotoSelected: Bool = false
     
-    private var _imageData: Data? = nil
+    private var _placeHolder: String = ""
+    private var _imageData: Data = Data()
+    private var _introduction: String = ""
+    
     private var requestPostPhotosSubject = PassthroughSubject<(Data, ChangeProfilePhotoRequest), Never>()
     
     // MARK: - Init
@@ -76,19 +83,28 @@ final class ProfilePhotoViewModel: ProfilePhotoViewModelType {
 
 // MARK: - Input
 extension ProfilePhotoViewModel: ProfilePhotoViewModelInput {
-    func setImageData(imageData: Data?) {
+    func setPlaceHolder(_ text: String) {
+        _placeHolder = text
+    }
+    
+    func setImageData(imageData: Data) {
         _imageData = imageData
     }
     
+    func setIntroduction(_ text: String) {
+        _introduction = text
+    }
+    
     func postPhostosDidTap() {
-        let changeProfilePhotoRequest = ChangeProfilePhotoRequest(defaults: false, introduction: "stringstri")
-        if let imageData = self._imageData {
-            requestPostPhotosSubject.send((imageData, changeProfilePhotoRequest))
+        let changeProfilePhotoRequest: ChangeProfilePhotoRequest
+        
+        if _introduction == _placeHolder {
+            changeProfilePhotoRequest = ChangeProfilePhotoRequest(defaults: false, introduction: "1234567890")
         } else {
-            print("---------------------------------------")
-            print("이미지 데이터 없음")
-            print("---------------------------------------")
+            changeProfilePhotoRequest = ChangeProfilePhotoRequest(defaults: false, introduction: _introduction)
         }
+        
+        requestPostPhotosSubject.send((self._imageData, changeProfilePhotoRequest))
     }
 }
 

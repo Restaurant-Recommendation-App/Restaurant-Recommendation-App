@@ -14,7 +14,7 @@ import ViewStore
 struct UserRegistCompletionView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            Image("empty_menu_background")
+            Image("UserRegistCompletion")
                 .resizable()
                 .frame(width: 120, height: 120)
                 .padding(.top, 171)
@@ -24,6 +24,7 @@ struct UserRegistCompletionView: View {
                     .weight(.medium)
                 )
                 .foregroundColor(.cheffiGray9)
+                .padding(.top, 20)
             
             Text("쉐피에 오신걸 환영합니다")
                 .font(Font.custom("SUIT", size: 24)

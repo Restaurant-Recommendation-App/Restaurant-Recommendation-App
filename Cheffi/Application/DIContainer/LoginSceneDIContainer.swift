@@ -103,8 +103,9 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     func makeFoodSelectionViewModel() -> FoodSelectionViewModelType {
-        let repository = makeTagRepository()
-        return FoodSelectionViewModel(useCase: makeTagUseCase(repository: repository))
+        let tagRepository = makeTagRepository()
+        let userRepository =  makeUserRepository()
+        return FoodSelectionViewModel(useCase: makeTagUseCase(tagRepository: tagRepository, userRepository: userRepository))
     }
     
     // MARK: - Taste
@@ -113,8 +114,9 @@ final class LoginSceneDIContainer: LoginFlowCoordinatorDependencies {
     }
     
     func makeTasteSelectionViewModel() -> TasteSelectionViewModelType {
-        let repository = makeTagRepository()
-        return TasteSelectionViewModel(useCase: makeTagUseCase(repository: repository))
+        let tagRepository = makeTagRepository()
+        let userRepository =  makeUserRepository()
+        return TasteSelectionViewModel(useCase: makeTagUseCase(tagRepository: tagRepository, userRepository: userRepository))
     }
     
     // MARK: - ProfileRegistCompletion
@@ -192,8 +194,8 @@ extension LoginSceneDIContainer {
         return DefaultAuthUserCase(repository: repository)
     }
     
-    func makeTagUseCase(repository: TagRepository) -> TagUseCase {
-        return DefaultTagUseCase(repository: repository)
+    func makeTagUseCase(tagRepository: TagRepository, userRepository: UserRepository) -> TagUseCase {
+        return DefaultTagUseCase(tagRepository: tagRepository, userRepository: userRepository)
     }
     
     func makeUserUseCase(repository: UserRepository) -> UserUseCase {
