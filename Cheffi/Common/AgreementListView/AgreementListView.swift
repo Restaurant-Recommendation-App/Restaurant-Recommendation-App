@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import ViewStore
 
-enum Term: Int, CaseIterable, Identifiable {
+enum Terms: Int, CaseIterable, Identifiable {
     var id: Self {
         return self
     }
@@ -20,7 +20,7 @@ enum Term: Int, CaseIterable, Identifiable {
     case location
     case marketing
 
-    func termTitle() -> String {
+    func title() -> String {
         switch self {
         case .age:
             return "[필수] 만 14세 이상입니다."
@@ -40,7 +40,7 @@ enum Term: Int, CaseIterable, Identifiable {
 struct AgreementListView: View {
     var body: some View {
         LazyVStack(spacing: 4) {
-            ForEach(Term.allCases) { term in
+            ForEach(Terms.allCases) { term in
                 HStack {
                     Button {
                         viewStore.send(.input(term))
@@ -57,7 +57,7 @@ struct AgreementListView: View {
                     }
                     .padding(10)
                     
-                    Text(term.termTitle())
+                    Text(term.title())
                         .multilineTextAlignment(.leading)
                         .font(
                             Font.custom("SUIT", size: 15)
