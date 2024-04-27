@@ -38,12 +38,6 @@ enum Term: Int, CaseIterable, Identifiable {
 
 @ViewStore(AgreementListViewReducer.self)
 struct AgreementListView: View {
-    private enum Metrics {
-        static let barPaddingEdgeInsets = EdgeInsets(top: 20.0, leading: 16.0, bottom: 16.0, trailing: 16.0)
-        static let barHeight = 40.0
-        static let barCornerRadius = 6.0
-    }
-
     var body: some View {
         LazyVStack(spacing: 4) {
             ForEach(Term.allCases) { term in
@@ -75,7 +69,7 @@ struct AgreementListView: View {
                     Spacer()
                     
                     Button {
-                        // TODO: 액션 이벤트
+                        // TODO: 액션 이벤트 (웹뷰 작업)
                     } label: {
                         Image("icMoreRight")
                             .renderingMode(.template)
