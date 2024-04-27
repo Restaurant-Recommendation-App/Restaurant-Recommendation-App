@@ -60,7 +60,7 @@ class FoodSelectionViewModel: FoodSelectionViewModelType {
     
     private func putTags() -> AnyPublisher<TagsChangeResponse?, DataTransferError> {
         let subject = PassthroughSubject<TagsChangeResponse?, DataTransferError>()
-        let tagRequest = TestTagsChangeRequest(ids: _selectionTags.map({ $0.id }), type: .food)
+        let tagRequest = ProfileTagsChangeRequest(ids: _selectionTags.map({ $0.id }), type: .food)
         
         useCase.putTags(tagRequest: tagRequest)
             .print()

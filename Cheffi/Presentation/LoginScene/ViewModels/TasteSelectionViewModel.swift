@@ -59,7 +59,7 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
     }
     
     private func putTags() -> AnyPublisher<[String], DataTransferError> {
-        let tagRequest = TestTagsChangeRequest(ids: _selectionTags.map({ $0.id }), type: .taste)
+        let tagRequest = ProfileTagsChangeRequest(ids: _selectionTags.map({ $0.id }), type: .taste)
         
         return useCase.putTags(tagRequest: tagRequest)
             .flatMap { _ in self.postRegisterProfile() }

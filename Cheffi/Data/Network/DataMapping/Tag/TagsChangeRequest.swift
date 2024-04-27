@@ -17,7 +17,7 @@ struct TagsChangeRequest: Codable, Equatable {
     }
 }
 
-struct TestTagsChangeRequest: Codable, Equatable {
+struct ProfileTagsChangeRequest: Codable, Equatable {
     let ids: [Int]
     let type: TagType
 }
