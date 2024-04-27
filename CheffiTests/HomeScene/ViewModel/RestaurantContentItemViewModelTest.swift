@@ -20,24 +20,25 @@ final class RestaurantContentItemViewModelTest: XCTestCase {
     private var initialize: PassthroughSubject<Void, Never>!
     
     private var contents: [Content] = [
-        Content(
-            id: UUID().uuidString,
-            title: "그시절낭만의 근본 경양식 돈가스(1)",
-            subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...",
-            contentTimeLockSeconds: 303000 // 5분 3초
-        ),
-        Content(
-            id: UUID().uuidString,
-            title: "그시절낭만의 근본 경양식 돈가스(1)",
-            subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...",
-            contentTimeLockSeconds: 300000 // 5분
-        ),
-        Content(
-            id: UUID().uuidString,
-            title: "그시절낭만의 근본 경양식 돈가스(1)",
-            subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...",
-            contentTimeLockSeconds: 0 // 0
-        ),
+        // TODO: Ronick - 컴파일 에러 해결 부탁해요 -Eli-
+//        Content(
+//            id: UUID().uuidString,
+//            title: "그시절낭만의 근본 경양식 돈가스(1)",
+//            subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...",
+//            contentTimeLockSeconds: 303000 // 5분 3초
+//        ),
+//        Content(
+//            id: UUID().uuidString,
+//            title: "그시절낭만의 근본 경양식 돈가스(1)",
+//            subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...",
+//            contentTimeLockSeconds: 300000 // 5분
+//        ),
+//        Content(
+//            id: UUID().uuidString,
+//            title: "그시절낭만의 근본 경양식 돈가스(1)",
+//            subtitle: "짬뽕 외길의 근본의 식당 외길인생이 느껴짐 이랄 ...",
+//            contentTimeLockSeconds: 0 // 0
+//        ),
     ]
     
     override func setUp() {

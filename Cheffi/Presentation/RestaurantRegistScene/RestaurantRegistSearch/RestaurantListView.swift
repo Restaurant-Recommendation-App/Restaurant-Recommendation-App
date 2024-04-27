@@ -15,7 +15,11 @@ struct RestaurantListView: View {
         ScrollView(.vertical) {
             LazyVStack {
                 ForEach(viewStore.restaurantList, id: \.self) { restaurant in
-                    RestaurantItemView(restaurant: restaurant, itemWidth: .infinity)
+                    RestaurantItemView(
+                        restaurant: restaurant,
+                        highlightKeyword: viewStore.highlightKeyword,
+                        itemWidth: .infinity
+                    )
                         .gesture(
                             TapGesture()
                                 .onEnded { _ in

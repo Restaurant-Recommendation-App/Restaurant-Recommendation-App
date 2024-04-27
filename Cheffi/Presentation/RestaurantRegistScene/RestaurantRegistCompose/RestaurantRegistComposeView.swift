@@ -27,7 +27,7 @@ struct RestaurantRegistComposeView: View {
             VStack(spacing: 0) {
                 NavigationBarView(store.scope(
                     state: \.navigationBarState,
-                    action: RestaurantRegistComposeReducer.Action.navigationBarAction
+                    action: { .navigationBarAction($0) }
                 ))
                 
                 Text("등록하는 식당의\n정보를 알려주세요.")
@@ -45,7 +45,7 @@ struct RestaurantRegistComposeView: View {
                 HStack(spacing: 0) {
                     DropDownPickerView(store.scope(
                         state: \.provinceDropDownPickerState,
-                        action: RestaurantRegistComposeReducer.Action.provinceDropDownPickerAction
+                        action: { .provinceDropDownPickerAction($0) }
                     ))
                     
                     Spacer()
@@ -53,7 +53,7 @@ struct RestaurantRegistComposeView: View {
                     
                     DropDownPickerView(store.scope(
                         state: \.cityDropDownPickerState,
-                        action: RestaurantRegistComposeReducer.Action.cityDropDownPickerAction
+                        action: { .cityDropDownPickerAction($0) }
                     ))
                     
                 }
@@ -63,7 +63,7 @@ struct RestaurantRegistComposeView: View {
                 
                 TextFieldBarView(store.scope(
                     state: \.roadNameAddressTextFieldBarState,
-                    action: RestaurantRegistComposeReducer.Action.roadNameAddressTextFieldBarAction
+                    action: { .roadNameAddressTextFieldBarAction($0) }
                 ))
                 .padding(.top, Metrics.textFieldTopPadding)
                 
@@ -75,7 +75,7 @@ struct RestaurantRegistComposeView: View {
                 
                 TextFieldBarView(store.scope(
                     state: \.restaurantNameTextFieldBarState,
-                    action: RestaurantRegistComposeReducer.Action.restaurantNameTextFieldBarAction
+                    action: { .restaurantNameTextFieldBarAction($0) }
                 ))
                 .padding(.top, Metrics.textFieldTopPadding)
                 
@@ -83,7 +83,7 @@ struct RestaurantRegistComposeView: View {
                 
                 BottomButtonView(store.scope(
                     state: \.bottomButtonState,
-                    action: RestaurantRegistComposeReducer.Action.bottomButtonAction
+                    action: { .bottomButtonAction($0) }
                 ))
             }
             .padding(.horizontal, Metrics.outsidePadding)
@@ -91,11 +91,21 @@ struct RestaurantRegistComposeView: View {
             if viewStore.isShowConfirmPopup {
                 ConfirmPopupView(store.scope(
                     state: \.confirmPopupState,
-                    action: RestaurantRegistComposeReducer.Action.confirmPopupAction
+                    action: { .confirmPopupAction($0) }
+                ))
+            }
+            
+            if let errorState = viewStore.error {
+                ConfirmPopupView(store.scope(
+                    state: \.errorPopupState,
+                    action: { .errorPopupAction($0) }
                 ))
             }
         }
         .animation(.default, value: viewStore.isShowConfirmPopup)
+        .onAppear {
+            viewStore.send(.onAppear)
+        }
     }
 }
 

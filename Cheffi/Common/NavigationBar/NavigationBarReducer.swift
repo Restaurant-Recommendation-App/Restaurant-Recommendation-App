@@ -14,10 +14,26 @@ struct NavigationBarReducer: Reducer {
         case back = "icBack"
     }
     
+    enum RightButtonKind: String {
+        case posting = "게시하기"
+        case modification = "수정하기"
+        case setting = "setting_icon"
+        
+        var isImage: Bool {
+            switch self {
+            case .posting,
+                    .modification:
+                return false
+            case .setting:
+                return true
+            }
+        }
+    }
+    
     struct State: Equatable {
         let title: String
         let leftButtonKind: LeftButtonKind
-        var rightButtonTitle: String?
+        var rightButtonKind: RightButtonKind?
     }
     
     enum Action {

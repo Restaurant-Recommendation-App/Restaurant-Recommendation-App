@@ -22,6 +22,7 @@ struct RestaurantRegistComposeReducer: Reducer {
     }
     
     struct State: Equatable {
+        var areas: [Area] = []
         let navigationBarState = NavigationBarReducer.State(
             title: "내 맛집 등록",
             leftButtonKind: .back
@@ -29,26 +30,12 @@ struct RestaurantRegistComposeReducer: Reducer {
         var provinceDropDownPickerState = DropDownPickerReducer.State(
             placeHolder: "광역시 / 도",
             selection: nil,
-            options: [
-                "서울특별시",
-                "인천광역시",
-                "부산광역시",
-                "서울특별시2",
-                "인천광역시2",
-                "부산광역시2",
-                "서울특별시3",
-                "인천광역시3",
-                "부산광역시3"
-            ]
+            options: []
         )
         var cityDropDownPickerState = DropDownPickerReducer.State(
             placeHolder: "시 / 군 / 구",
             selection: nil,
-            options: [
-                "강남구",
-                "강동구",
-                "강북구"
-            ]
+            options: []
         )
         var roadNameAddressTextFieldBarState = TextFieldBarReducer.State(placeHolder: "도로명 주소 입력")
         var restaurantNameTextFieldBarState = TextFieldBarReducer.State(placeHolder: "식당 이름")
@@ -61,6 +48,11 @@ struct RestaurantRegistComposeReducer: Reducer {
             description: "등록한 정보가 정확한 정보가 아닐경우\n리뷰가 삭제될 수 있습니다.",
             primaryButtonTitle: "이해했어요",
             optionButtonTitle: "다시 보지 않기"
+        )
+        var errorPopupState = ConfirmPopupReducer.State(
+            title: "일시적인 오류가 발생했습니다.\n서비스 이용에 불편을 드려 죄송합니다.",
+            description: "",
+            primaryButtonTitle: "확인"
         )
         var isShowConfirmPopup: Bool = false
         var error: String?
@@ -75,6 +67,10 @@ struct RestaurantRegistComposeReducer: Reducer {
         case bottomButtonAction(BottomButtonReducer.Action)
         case setEnableNext
         case confirmPopupAction(ConfirmPopupReducer.Action)
+        case errorPopupAction(ConfirmPopupReducer.Action)
+        case onAppear
+        case getArea
+        case successGetArea([Area])
         case registRestaurant
         case successRegist(RestaurantInfoDTO)
         case occerError(Error)
@@ -97,6 +93,11 @@ struct RestaurantRegistComposeReducer: Reducer {
             case .select(let option):
                 state.provinceDropDownPickerState.selection = option
                 state.provinceDropDownPickerState.isShowDropdown.toggle()
+                state.cityDropDownPickerState = DropDownPickerReducer.State(
+                    placeHolder: state.cityDropDownPickerState.placeHolder,
+                    selection: nil,
+                    options: state.areas.first(where: { $0.province == option })?.cities ?? []
+                )
                 return .send(.setEnableNext)
             }
         case .cityDropDownPickerAction(let action):
@@ -149,6 +150,29 @@ struct RestaurantRegistComposeReducer: Reducer {
                 state.isShowConfirmPopup = false
                 return .none
             }
+        case .errorPopupAction(let action):
+            switch action {
+            default:
+                state.error = nil
+                return .none
+            }
+        case .onAppear:
+            return .send(.getArea)
+        case .getArea:
+            return .publisher {
+                useCase.getAreas()
+                    .receive(on: UIScheduler.shared)
+                    .map(Action.successGetArea)
+                    .catch { Just(Action.occerError($0)) }
+            }
+        case .successGetArea(let areas):
+            state.areas = areas
+            state.provinceDropDownPickerState = DropDownPickerReducer.State(
+                placeHolder: state.provinceDropDownPickerState.placeHolder,
+                selection: nil,
+                options: areas.map(\.province)
+            )
+            return .none
         case .registRestaurant:
             guard
                 let province = state.provinceDropDownPickerState.selection,
@@ -156,6 +180,7 @@ struct RestaurantRegistComposeReducer: Reducer {
             else {
                 return .send(.occerError(RequestGenerationError.components))
             }
+            let name = state.restaurantNameTextFieldBarState.txt
             let address = Address(
                 province: province,
                 city: city,
@@ -163,22 +188,32 @@ struct RestaurantRegistComposeReducer: Reducer {
                 fullLotNumberAddress: state.roadNameAddressTextFieldBarState.txt,
                 fullRodNameAddress: state.roadNameAddressTextFieldBarState.txt
             )
-            let restaurant = RestaurantInfoDTO(
-                id: 0,
-                name: state.restaurantNameTextFieldBarState.txt,
-                address: address,
-                registered: false
-            )
+            let restaurant = RestaurantRegistRequest(name: name, detailedAddress: address)
             state.isShowConfirmPopup = false
             return .publisher {
                 useCase.registRestaurant(restaurant: restaurant)
-                    .map { _ in Action.successRegist(restaurant) }
+                    .receive(on: UIScheduler.shared)
+                    .map { 
+                        Action.successRegist(
+                            RestaurantInfoDTO(
+                                id: $0,
+                                name: name,
+                                address: address,
+                                registered: true
+                            )
+                        )
+                    }
                     .catch { Just(Action.occerError($0)) }
             }
         case .successRegist(let restaurant):
             steps.send(.pushReviewCompose(info: restaurant))
             return .none
         case .occerError(let error):
+            state.errorPopupState = ConfirmPopupReducer.State(
+                title: "일시적인 오류가 발생했습니다.\n서비스 이용에 불편을 드려 죄송합니다.",
+                description: error.localizedDescription,
+                primaryButtonTitle: "확인"
+            )
             state.error = error.localizedDescription
             return .none
         }

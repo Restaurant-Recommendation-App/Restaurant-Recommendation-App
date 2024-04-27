@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>앱은 사용자의 현재 위치를 파악하여 주변의 맛집을 검색하고 표시하는 데 사용합니다.</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakaokompassauth</string>
@@ -13,8 +15,10 @@
 	<false/>
 	<key>UILaunchScreen</key>
 	<dict>
+		<key>UIColorName</key>
+		<string>Main-CTA</string>
 		<key>UIImageName</key>
-		<string>icCheck</string>
+		<string>cheffilogo</string>
 	</dict>
 	<key>ApiBaseURL</key>
 	<string>$(API_BASE_URL)</string>

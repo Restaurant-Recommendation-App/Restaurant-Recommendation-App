@@ -24,7 +24,11 @@ struct NearRestaurantListView: View {
                 spacing: 0
             ) {
                 ForEach(viewStore.nearRestaurantList, id: \.self) { restaurant in
-                    RestaurantItemView(restaurant: restaurant, itemWidth: Metrics.itemWidth)
+                    RestaurantItemView(
+                        restaurant: restaurant,
+                        highlightKeyword: nil,
+                        itemWidth: Metrics.itemWidth
+                    )
                 }
             }
         }

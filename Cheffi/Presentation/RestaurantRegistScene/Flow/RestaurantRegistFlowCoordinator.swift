@@ -59,7 +59,7 @@ final class RestaurantRegistFlowCoordinator {
                     presentPhotoAlbum(dismissCompletion: dismissCompletion)
                 case .pushReviewHashtags(let reviewHashtagsAction):
                     pushReviewHashtags(reviewHashtagsAction)
-                default: break
+                default: return
                 }
             }
             .store(in: &cancellables)

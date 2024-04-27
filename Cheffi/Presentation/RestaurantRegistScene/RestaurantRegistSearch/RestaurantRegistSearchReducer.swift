@@ -65,7 +65,8 @@ struct RestaurantRegistSearchReducer: Reducer {
         switch action {
         case .onAppear:
             return .publisher {
-                useCase.getRestaurants(name: "Daughter", province: "", city: "")
+                useCase.getNearRestaurants()
+                    .receive(on: UIScheduler.shared)
                     .map(Action.getNearRestaurants)
                     .catch { Just(Action.occerError($0)) }
             }
@@ -91,8 +92,10 @@ struct RestaurantRegistSearchReducer: Reducer {
             switch action {
             case .input(let text):
                 state.searchBarState.searchQuery = text
+                state.restaurantListState.highlightKeyword = text
                 return .publisher {
                     useCase.getRestaurants(name: text, province: "", city: "")
+                        .receive(on: UIScheduler.shared)
                         .map(Action.getRestaurants)
                         .catch { Just(Action.occerError($0)) }
                 }

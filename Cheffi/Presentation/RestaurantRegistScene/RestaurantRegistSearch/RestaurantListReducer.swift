@@ -11,6 +11,7 @@ import ComposableArchitecture
 struct RestaurantListReducer: Reducer {
     struct State: Equatable {
         var restaurantList: [RestaurantInfoDTO] = []
+        var highlightKeyword: String = ""
     }
     
     enum Action {

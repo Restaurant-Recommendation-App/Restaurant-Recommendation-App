@@ -89,33 +89,36 @@ struct ReviewHashtagsView_Preview: PreviewProvider {
     static var previews: some View {
         ReviewHashtagsView(
             Store(initialState: ReviewHashtagsReducer.State(
-                reviewRequestInfo: .posting(RegisterReviewRequest(
-                    restaurantId: 1234,
-                    registered: false,
-                    title: "기사식당",
-                    text: "훌륭한 맛입니다.",
-                    menus: [
-                        MenuDTO(
-                            name: "Pizza",
-                            price: 14000,
-                            description: nil
-                        ),
-                        MenuDTO(
-                            name: "Cheeze Pizza",
-                            price: 19000,
-                            description: nil
-                        )
-                    ],
-                    tag: TagsChangeRequest(foodTags: [], tasteTags: [])
-                )),
+                reviewRequestInfo: .posting(
+                    review: RegisterReviewRequest(
+                        restaurantId: 1234,
+                        registered: false,
+                        title: "기사식당",
+                        text: "훌륭한 맛입니다.",
+                        menus: [
+                            MenuDTO(
+                                name: "Pizza",
+                                price: 14000,
+                                description: nil
+                            ),
+                            MenuDTO(
+                                name: "Cheeze Pizza",
+                                price: 19000,
+                                description: nil
+                            )
+                        ],
+                        tags: TagsChangeRequest(foodTags: [], tasteTags: [])
+                    ),
+                    imageDatas: []
+                ),
                 navigationBarState: NavigationBarReducer.State(
                     title: "",
                     leftButtonKind: .back,
-                    rightButtonTitle: "게시하기"
+                    rightButtonKind: .posting
                 )
             )) {
                 ReviewHashtagsReducer(
-                    useCase: PreviewRestaurantRegistUseCase(),
+                    useCase: PreviewReviewUseCase(),
                     steps: PassthroughSubject<RouteStep, Never>()
                 )
                     ._printChanges()

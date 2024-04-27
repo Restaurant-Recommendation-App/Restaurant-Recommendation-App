@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Area: Decodable {
+struct Area: Decodable, Equatable {
     let province: String
     let cities: [String]
 }

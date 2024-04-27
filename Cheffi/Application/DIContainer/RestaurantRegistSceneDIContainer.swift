@@ -31,8 +31,17 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     }
 
     func makeRestaurantRegistSearchReducer(steps: PassthroughSubject<RouteStep, Never>) -> RestaurantRegistSearchReducer {
-        let repository = makeRestaurantRepository()
-        return RestaurantRegistSearchReducer(useCase: makeRestaurantUseCase(repository: repository), steps: steps)
+        let restaurantRepository = makeRestaurantRepository()
+        let areaRepository = makeAreaRepository()
+        let locationManager = LocationManager()
+        return RestaurantRegistSearchReducer(
+            useCase: makeRestaurantUseCase(
+                restaurantRepository: restaurantRepository,
+                areaRepository: areaRepository,
+                locationManager: locationManager
+            ),
+            steps: steps
+        )
     }
     
     // MARK: - Restaurant Regist Compose
@@ -41,9 +50,15 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     }
     
     func makeRestaurantRegistComposeReducer(steps: PassthroughSubject<RouteStep, Never>) -> RestaurantRegistComposeReducer {
-        let repository = makeRestaurantRepository()
+        let restaurantRepository = makeRestaurantRepository()
+        let areaRepository = makeAreaRepository()
+        let locationManager = LocationManager()
         return RestaurantRegistComposeReducer(
-            useCase: makeRestaurantUseCase(repository: repository), 
+            useCase: makeRestaurantUseCase(
+                restaurantRepository: restaurantRepository,
+                areaRepository: areaRepository,
+                locationManager: locationManager
+            ),
             steps: steps
         )
     }
@@ -57,9 +72,15 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     }
     
     func makeReviewComposeReducer(steps: PassthroughSubject<RouteStep, Never>) -> ReviewComposeReducer {
-        let repository = makeRestaurantRepository()
+        let restaurantRepository = makeRestaurantRepository()
+        let areaRepository = makeAreaRepository()
+        let locationManager = LocationManager()
         return ReviewComposeReducer(
-            useCase: makeRestaurantUseCase(repository: repository),
+            useCase: makeRestaurantUseCase(
+                restaurantRepository: restaurantRepository,
+                areaRepository: areaRepository,
+                locationManager: locationManager
+            ),
             steps: steps
         )
     }
@@ -73,24 +94,54 @@ final class RestaurantRegistSceneDIContainer: RestaurantRegistFlowCoordinatorDep
     }
     
     func makeReviewHashtagsReducer(steps: PassthroughSubject<RouteStep, Never>) -> ReviewHashtagsReducer {
-        let repository = makeRestaurantRepository()
-        return ReviewHashtagsReducer(
-            useCase: makeRestaurantUseCase(repository: repository),
-            steps: steps
+        let useCase = makeReviewUseCase(
+            reviewRepository: makeReviewRepository(),
+            tagRepository: makeTagRepository()
         )
+        return ReviewHashtagsReducer(useCase: useCase, steps: steps)
     }
 }
 
 // MARK: - Use Cases
 extension RestaurantRegistSceneDIContainer {
-    func makeRestaurantUseCase(repository: RestaurantRepository) -> RestaurantUseCase {
-        return DefaultRestaurantUseCase(repository: repository)
+    func makeRestaurantUseCase(
+        restaurantRepository: RestaurantRepository,
+        areaRepository: AreaRepository,
+        locationManager: LocationManager
+    ) -> RestaurantUseCase {
+        return DefaultRestaurantUseCase(
+            restaurantRepository: restaurantRepository,
+            areaRepository: areaRepository,
+            locationManager: locationManager
+        )
+    }
+    
+    func makeReviewUseCase(
+        reviewRepository: ReviewRepository,
+        tagRepository: TagRepository
+    ) -> ReviewUseCase {
+        DefaultReviewUseCase(
+            reviewRepository: reviewRepository,
+            tagRepository: tagRepository
+        )
     }
 }
 
 // MARK: - Repositories
 extension RestaurantRegistSceneDIContainer {
     func makeRestaurantRepository() -> DefaultRestaurantRepository {
-        return DefaultRestaurantRepository(dataTransferService: dependencies.apiDataTransferService)
+        DefaultRestaurantRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeAreaRepository() -> DefaultAreaRepository {
+        DefaultAreaRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeReviewRepository() -> DefaultReviewRepository {
+        DefaultReviewRepository(dataTransferService: dependencies.apiDataTransferService)
+    }
+    
+    func makeTagRepository() -> DefaultTagRepository {
+        DefaultTagRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }

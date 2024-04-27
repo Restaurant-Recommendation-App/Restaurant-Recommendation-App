@@ -32,15 +32,19 @@ struct NavigationBarView: View {
                 .foregroundColor(.cheffiBlack)
                 .frame(maxWidth: .infinity, alignment: .center)
             
-            if let rightButtonTitle = viewStore.rightButtonTitle {
+            if let rightButtonKind = viewStore.rightButtonKind {
                 Button {
                     viewStore.send(.rightButtonTapped)
                 } label: {
-                    Text(rightButtonTitle)
-                        .font(.custom("SUIT", size: 16).weight(.semibold))
-                        .frame(height: Metrics.navigationBarViewHeight)
-                        .padding(.horizontal, Metrics.rightButtonHorizontalPadding)
-                        .foregroundColor(.mainCTA)
+                    if rightButtonKind.isImage {
+                        Image(rightButtonKind.rawValue)
+                    } else {
+                        Text(rightButtonKind.rawValue)
+                            .font(.custom("SUIT", size: 16).weight(.semibold))
+                            .frame(height: Metrics.navigationBarViewHeight)
+                            .padding(.horizontal, Metrics.rightButtonHorizontalPadding)
+                            .foregroundColor(.mainCTA)
+                    }
                 }
             } else {
                 Spacer(minLength: Metrics.navigationBarViewHeight)
@@ -57,7 +61,7 @@ struct NavigationBarView_Preview: PreviewProvider {
             Store(initialState: NavigationBarReducer.State(
                 title: "내 맛집 등록",
                 leftButtonKind: .close,
-                rightButtonTitle: "게시하기"
+                rightButtonKind: .posting
             )) {
                 NavigationBarReducer()._printChanges()
             }

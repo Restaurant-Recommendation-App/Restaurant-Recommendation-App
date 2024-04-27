@@ -9,13 +9,13 @@ import UIKit
 import ComposableArchitecture
 
 enum ReviewHashtagsActionType: Equatable {
-    case posting(RegisterReviewRequest)
+    case posting(review: RegisterReviewRequest, imageDatas: [Data])
     case modification(TagsChangeRequest)
     
-    var naviRightButtonTitle: String {
+    var naviRightButtonKind: NavigationBarReducer.RightButtonKind {
         switch self {
-        case .posting: return "게시하기"
-        case .modification: return "수정하기"
+        case .posting: return .posting
+        case .modification: return .modification
         }
     }
 }
@@ -48,7 +48,7 @@ class ReviewHashtagsViewController: UIViewController {
                     navigationBarState: NavigationBarReducer.State(
                         title: "",
                         leftButtonKind: .back,
-                        rightButtonTitle: reviewHashtagsAction.naviRightButtonTitle
+                        rightButtonKind: reviewHashtagsAction.naviRightButtonKind
                     )
                 )) {
                     reducer._printChanges()

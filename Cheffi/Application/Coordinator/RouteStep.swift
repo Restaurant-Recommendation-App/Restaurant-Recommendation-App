@@ -25,4 +25,7 @@ enum RouteStep {
         dismissCompletion: (([Data?]) -> Void)?
     )
     case pushReviewHashtags(ReviewHashtagsActionType)
+    case dismissNationalTrend
+    case pushNationalTrend
+    case pushMyPage
 }
