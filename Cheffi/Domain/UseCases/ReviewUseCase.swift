@@ -80,7 +80,9 @@ final class PreviewReviewUseCase: ReviewUseCase {
                     menus: [
                         MenuDTO(name: "김밥", price: 3500, description: nil),
                         MenuDTO(name: "참치김밥", price: 4500, description: nil)
-                    ]
+                    ],
+                    purchased: true,
+                    writenByUser: false
                 )
             ))
         }
@@ -121,7 +123,9 @@ final class PreviewReviewUseCase: ReviewUseCase {
                     menus: [
                         MenuDTO(name: "김밥", price: 3500, description: nil),
                         MenuDTO(name: "참치김밥", price: 4500, description: nil)
-                    ]
+                    ],
+                    purchased: true,
+                    writenByUser: false
                 )
             ))
         }
