@@ -10,5 +10,5 @@ import Combine
 
 protocol TagRepository {
     func getTags(type: TagTypeRequest) -> AnyPublisher<(Results<[TagDTO]>, HTTPURLResponse), DataTransferError>
-    func putTags(tagRequest: TagsChangeRequest) -> AnyPublisher<(Results<TagsChangeResponse>, HTTPURLResponse), DataTransferError>
+    func putTags(tagRequest: ProfileTagsChangeRequest) -> AnyPublisher<(Results<TagsChangeResponse>, HTTPURLResponse), DataTransferError>
 }

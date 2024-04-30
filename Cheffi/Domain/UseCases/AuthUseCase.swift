@@ -10,7 +10,7 @@ import Combine
 
 protocol AuthUseCase {
     func postOauthKakaoLoing(idToken: String) -> AnyPublisher<(User, HTTPURLResponse), DataTransferError>
-    func patchTerms(adAgreed: Bool, analysisAgreed: Bool) -> AnyPublisher<(User, HTTPURLResponse), DataTransferError>
+    func patchTerms(adAgreed: Bool) -> AnyPublisher<(User, HTTPURLResponse), DataTransferError>
     func getNicknameInuse(nickname: String) -> AnyPublisher<(Bool, HTTPURLResponse), DataTransferError>
     func patchNickname(nickname: String) -> AnyPublisher<(String, HTTPURLResponse), DataTransferError>
 }
@@ -27,8 +27,8 @@ final class DefaultAuthUserCase: AuthUseCase {
             .eraseToAnyPublisher()
     }
     
-    func patchTerms(adAgreed: Bool, analysisAgreed: Bool) -> AnyPublisher<(User, HTTPURLResponse), DataTransferError> {
-        return repository.patchTerms(adAgreed: adAgreed, analysisAgreed: analysisAgreed)
+    func patchTerms(adAgreed: Bool) -> AnyPublisher<(User, HTTPURLResponse), DataTransferError> {
+        return repository.patchTerms(adAgreed: adAgreed)
             .map { ($0.0.data.toDomain(), $0.1) }
             .eraseToAnyPublisher()
     }

@@ -115,7 +115,7 @@ class NicknameViewController: UIViewController {
                 }
             } receiveValue: { [weak self] isInuse in
                 // TODO: - 로딩 화면 종료
-                self?.viewModel.input.updateMessageAndStatus(isInuse: isInuse)
+                self?.viewModel.input.updateDuplicationMessage(isInuse: isInuse)
             }
             .store(in: &cancellables)
 

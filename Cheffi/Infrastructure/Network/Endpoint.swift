@@ -161,7 +161,7 @@ extension Requestable {
                 httpBody.append(
                     convertFileData(fieldName: "file",
                                     fileName: "profile.jpg",
-                                    mimeType: "multipart/form-data",
+                                    mimeType: "image/jpg",
                                     fileData: imageData,
                                     using: bodyBoundary)
                 )

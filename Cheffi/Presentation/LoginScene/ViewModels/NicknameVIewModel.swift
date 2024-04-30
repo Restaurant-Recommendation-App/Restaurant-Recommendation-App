@@ -17,7 +17,7 @@ enum NicknameMessageStatus {
 
 protocol NicknameViewModelInput {
     var nicknameSubject: PassthroughSubject<String, Never> { get }
-    func updateMessageAndStatus(isInuse: Bool)
+    func updateDuplicationMessage(isInuse: Bool)
     func checkNicknameDuplicationDidTap()
     func requestPatchNicknameDidTap()
     func saveToLocalDB(nickname: String)
@@ -94,6 +94,7 @@ class NicknameViewModel: NicknameViewModelType {
     
     private func patchNickname(nickname: String) -> AnyPublisher<String?, DataTransferError> {
         let subject = PassthroughSubject<String?, DataTransferError>()
+        
         useCase.patchNickname(nickname: nickname)
             .print()
             .sink { completion in
@@ -107,6 +108,7 @@ class NicknameViewModel: NicknameViewModelType {
                 subject.send(nickname)
             }
             .store(in: &cancellables)
+        
         return subject.eraseToAnyPublisher()
     }
 }
@@ -122,10 +124,22 @@ extension NicknameViewModel: NicknameViewModelInput {
     }
     
     func checkNicknameDuplicationDidTap() {
-        checkNicknameDuplicationDidTapSubject.send(())
+        guard let nickname = _nickname else { return }
+        
+        if nickname.isValidNickname() {
+            checkNicknameDuplicationDidTapSubject.send(())
+        } else {
+            if nickname.containsKoreanVowelsAndConsonants() {
+                _message.send("자음과 모음을 단독으로 사용할 수 없어요.")
+                _messageStatus.send(.numberOfCharError)
+            } else {
+                _message.send("한글과 영어, 숫자의 조합만 사용할 수 있어요.")
+                _messageStatus.send(.numberOfCharError)
+            }
+        }
     }
     
-    func updateMessageAndStatus(isInuse: Bool) {
+    func updateDuplicationMessage(isInuse: Bool) {
         if isInuse {
             _message.send("이미 사용중인 닉네임 입니다.")
             _messageStatus.send(.duplicateError)
@@ -143,7 +157,7 @@ extension NicknameViewModel: NicknameViewModelInput {
 // MARK: Output
 extension NicknameViewModel: NicknameViewModelOutput {
     var maxNicknameCount: Int {
-        8
+        9
     }
     
     var isInuseNickname: AnyPublisher<Bool, DataTransferError> {
@@ -190,7 +204,7 @@ extension NicknameViewModel: NicknameViewModelOutput {
     
     
     func showMessageForExceedingMaxCount() {
-        _message.send("8글자 이상은 입력되지 않습니다.")
+        _message.send("9글자 이상은 사용할 수 없어요.")
         _messageStatus.send(.numberOfCharError)
     }
 }

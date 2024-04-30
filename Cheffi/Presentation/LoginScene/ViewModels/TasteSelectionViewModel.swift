@@ -11,13 +11,12 @@ import Combine
 protocol TasteSelectionViewModelInput {
     func requestGetTags(type: TagTypeRequest)
     func requestPutTags()
-    func setFoodSelectionTags(_ tags: [Tag])
-    func setTasteSelectionTags(_ tags: [Tag])
+    func setSelectionTags(_ tags: [Tag])
 }
 
 protocol TasteSelectionViewModelOutput {
     var responseTags: AnyPublisher<[Tag], DataTransferError> { get }
-    var updateCompletionTags: AnyPublisher<TagsChangeResponse?, DataTransferError> { get }
+    var updateCompletionTags: AnyPublisher<[String], DataTransferError> { get }
 }
 
 protocol TasteSelectionViewModelType {
@@ -32,8 +31,7 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
     private var cancellables: Set<AnyCancellable> = []
     private var getTagsSubject = PassthroughSubject<TagTypeRequest, Never>()
     private var putTagsSubject = PassthroughSubject<Void, Never>()
-    private var _foodSelectionTags: [Tag] = []
-    private var _tasteSelectionTags: [Tag] = []
+    private var _selectionTags: [Tag] = []
     
     // MARK: - Init
     private let useCase: TagUseCase
@@ -60,11 +58,17 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
         return subject.eraseToAnyPublisher()
     }
     
-    private func putTags() -> AnyPublisher<TagsChangeResponse?, DataTransferError> {
-        let subject = PassthroughSubject<TagsChangeResponse?, DataTransferError>()
-        let tagRequest = TagsChangeRequest(foodTags: _foodSelectionTags.map({ $0.id }),
-                                          tasteTags: _tasteSelectionTags.map({ $0.id }))
-        useCase.putTags(tagRequest: tagRequest)
+    private func putTags() -> AnyPublisher<[String], DataTransferError> {
+        let tagRequest = ProfileTagsChangeRequest(ids: _selectionTags.map({ $0.id }), type: .taste)
+        
+        return useCase.putTags(tagRequest: tagRequest)
+            .flatMap { _ in self.postRegisterProfile() }
+            .eraseToAnyPublisher()
+    }
+    
+    private func postRegisterProfile() -> AnyPublisher<[String], DataTransferError> {
+        let subject = PassthroughSubject<[String], DataTransferError>()
+        useCase.postRegisterUserProfile()
             .print()
             .sink { completion in
                 switch completion {
@@ -73,8 +77,8 @@ class TasteSelectionViewModel: TasteSelectionViewModelType {
                 case .failure(let error):
                     subject.send(completion: .failure(error))
                 }
-            } receiveValue: { tagResponse in
-                subject.send(tagResponse)
+            } receiveValue: { results in
+                subject.send(results)
             }
             .store(in: &cancellables)
         return subject.eraseToAnyPublisher()
@@ -91,12 +95,8 @@ extension TasteSelectionViewModel: TasteSelectionViewModelInput {
         putTagsSubject.send(())
     }
     
-    func setFoodSelectionTags(_ tags: [Tag]) {
-        self._foodSelectionTags = tags
-    }
-    
-    func setTasteSelectionTags(_ tags: [Tag]) {
-        self._tasteSelectionTags = tags
+    func setSelectionTags(_ tags: [Tag]) {
+        self._selectionTags = tags
     }
 }
 
@@ -116,12 +116,12 @@ extension TasteSelectionViewModel: TasteSelectionViewModelOutput {
             .eraseToAnyPublisher()
     }
     
-    var updateCompletionTags: AnyPublisher<TagsChangeResponse?, DataTransferError> {
+    var updateCompletionTags: AnyPublisher<[String], DataTransferError> {
         return putTagsSubject
-            .flatMap { [weak self] type -> AnyPublisher<TagsChangeResponse?, DataTransferError> in
+            .flatMap { [weak self] type -> AnyPublisher<[String], DataTransferError> in
                 guard let self = self else {
                     return Future { promise in
-                        promise(.success(nil))
+                        promise(.success([]))
                     }.eraseToAnyPublisher()
                 }
                 

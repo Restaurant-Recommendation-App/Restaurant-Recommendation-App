@@ -28,8 +28,8 @@ extension DefaultAuthRepository: AuthRepository {
             .eraseToAnyPublisher()
     }
     
-    func patchTerms(adAgreed: Bool, analysisAgreed: Bool) -> AnyPublisher<(Results<UserDTO>, HTTPURLResponse), DataTransferError> {
-        let endpoint = AuthAPIEndpoints.patchTerms(adAgreed: adAgreed, analysisAgreed: analysisAgreed)
+    func patchTerms(adAgreed: Bool) -> AnyPublisher<(Results<UserDTO>, HTTPURLResponse), DataTransferError> {
+        let endpoint = AuthAPIEndpoints.patchTerms(adAgreed: adAgreed)
         return dataTransferService.request(with: endpoint, on: backgroundQueue).eraseToAnyPublisher()
     }
     

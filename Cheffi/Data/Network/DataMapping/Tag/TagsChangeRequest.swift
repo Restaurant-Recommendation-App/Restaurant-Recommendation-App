@@ -16,3 +16,8 @@ struct TagsChangeRequest: Codable, Equatable {
         case tasteTags = "taste_tags"
     }
 }
+
+struct ProfileTagsChangeRequest: Codable, Equatable {
+    let ids: [Int]
+    let type: TagType
+}

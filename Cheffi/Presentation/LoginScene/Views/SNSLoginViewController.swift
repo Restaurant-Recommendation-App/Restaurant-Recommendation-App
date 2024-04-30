@@ -104,9 +104,7 @@ class SNSLoginViewController: UIViewController {
             if userData.isNewUser == false {
                 self.dismissOne(amimated: true)
             } else {
-                // TODO: 회원가입 과정에서 api 완벽 연동 후 제거 필요
-                self.dismissOne(amimated: true)
-//                viewModel.output.showProfileSetup()
+                viewModel.output.showProfileSetup()
             }
         }
     }

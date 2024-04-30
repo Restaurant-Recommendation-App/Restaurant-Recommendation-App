@@ -8,11 +8,6 @@
 import Foundation
 
 struct TagsChangeResponse: Codable {
-    let foodTags: [TagDTO]
-    let tasteTags: [TagDTO]
-    
-    enum CodingKeys: String, CodingKey {
-        case foodTags = "food_tags"
-        case tasteTags = "taste_tags"
-    }
+    let tags: [TagDTO]
+    let type: TagType
 }

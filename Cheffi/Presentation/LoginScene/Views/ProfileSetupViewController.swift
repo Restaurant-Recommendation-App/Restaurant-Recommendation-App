@@ -18,14 +18,14 @@ class ProfileSetupViewController: UIViewController {
                                                         profilePhotoViewController: ProfilePhotoViewController,
                                                         foodSelectionViewController: FoodSelectionViewController,
                                                         tasteSelectionViewController: TasteSelectionViewController,
-                                                        followSelectionViewController: FollowSelectionViewController) -> T {
+                                                        profileRegistComplViewController: ProfileRegistCompletionViewController) -> T {
         let vc: T = .instance(storyboardName: .profileSetup)
         vc.viewModel = viewModel
         vc.nicknameViewController = nicknameViewController
         vc.profilePhotoViewController = profilePhotoViewController
         vc.foodSelectionViewController = foodSelectionViewController
         vc.tasteSelectionViewController = tasteSelectionViewController
-        vc.followSelectionViewController = followSelectionViewController
+        vc.profileRegistComplViewController = profileRegistComplViewController
         return vc
     }
     
@@ -38,7 +38,7 @@ class ProfileSetupViewController: UIViewController {
     private var profilePhotoViewController: ProfilePhotoViewController!
     private var foodSelectionViewController: FoodSelectionViewController!
     private var tasteSelectionViewController: TasteSelectionViewController!
-    private var followSelectionViewController: FollowSelectionViewController!
+    private var profileRegistComplViewController: ProfileRegistCompletionViewController!
     private var cancellables = Set<AnyCancellable>()
     
     private enum Constants {
@@ -65,13 +65,12 @@ class ProfileSetupViewController: UIViewController {
         profilePhotoViewController.delegate = self
         foodSelectionViewController.delegate = self
         tasteSelectionViewController.delegate = self
-        followSelectionViewController.delegate = self
         viewControllersList = [
             nicknameViewController,
             profilePhotoViewController,
             foodSelectionViewController,
             tasteSelectionViewController,
-            followSelectionViewController
+            profileRegistComplViewController
         ]
         
         pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)

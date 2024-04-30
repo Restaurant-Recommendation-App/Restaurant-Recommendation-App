@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 protocol FontType {
     var name: String { get }
@@ -70,4 +71,8 @@ extension FontType where Self: RawRepresentable, Self.RawValue == String {
 
 extension UIFont: FontType {
     var name: String { return self.fontName }
+    
+    func toFont() -> Font {
+        return Font(self)
+    }
 }

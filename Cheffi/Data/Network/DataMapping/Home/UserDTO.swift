@@ -26,7 +26,7 @@ struct UserDTO: Codable {
     let photoURL: String?
     let isNewUser: Bool?
     let profileCompleted: Bool?
-    let authorities: [Authority]
+    let authorities: [Authority]?
     
     enum CodingKeys: String, CodingKey {
         case email, expired, nickname, name, locked, activated, authorities

@@ -27,7 +27,7 @@ extension DefaultTagRepository: TagRepository {
         return dataTransferService.request(with: endpoint, on: backgroundQueue).eraseToAnyPublisher()
     }
     
-    func putTags(tagRequest: TagsChangeRequest) -> AnyPublisher<(Results<TagsChangeResponse>, HTTPURLResponse), DataTransferError> {
+    func putTags(tagRequest: ProfileTagsChangeRequest) -> AnyPublisher<(Results<TagsChangeResponse>, HTTPURLResponse), DataTransferError> {
         let endpoint = TagAPIEndpoints.putTags(tagRequest: tagRequest)
         return dataTransferService.request(with: endpoint, on: backgroundQueue).eraseToAnyPublisher()
     }

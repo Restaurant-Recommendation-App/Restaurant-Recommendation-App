@@ -16,7 +16,7 @@ struct TagAPIEndpoints {
         )
     }
     
-    static func putTags(tagRequest: TagsChangeRequest) -> Endpoint<Results<TagsChangeResponse>> {
+    static func putTags(tagRequest: ProfileTagsChangeRequest) -> Endpoint<Results<TagsChangeResponse>> {
         Endpoint(
             path: "api/v1/avatars/tags",
             method: .put,

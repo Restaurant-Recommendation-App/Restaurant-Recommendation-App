@@ -15,12 +15,11 @@ struct AuthAPIEndpoints {
                                          "platform": "IOS"])
     }
     
-    static func patchTerms(adAgreed: Bool, analysisAgreed: Bool) -> Endpoint<Results<UserDTO>> {
+    static func patchTerms(adAgreed: Bool) -> Endpoint<Results<UserDTO>> {
         return Endpoint(path: "api/v1/users/terms",
                         method: .patch,
                         headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],
-                        bodyParameters: ["ad_agreed": adAgreed,
-                                         "analysis_agreed": analysisAgreed])
+                        bodyParameters: ["adAgreed": adAgreed])
     }
     
     static func getNicknameInuse(nickname: String) -> Endpoint<Results<Bool>> {
@@ -39,7 +38,7 @@ struct AuthAPIEndpoints {
     static func postPhosts(imageData: Data,
                            changeProfilePhotoRequest: ChangeProfilePhotoRequest) -> Endpoint<Results<String>> {
         let boundary = "Boundary-\(UUID().uuidString)"
-        return Endpoint(path: "api/v1/avatars/photos",
+        return Endpoint(path: "api/v1/avatars/photo-tab",
                         method: .post,
                         headerParameters: [
                             "Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? "",

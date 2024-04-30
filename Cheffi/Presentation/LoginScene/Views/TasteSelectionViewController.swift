@@ -56,7 +56,7 @@ class TasteSelectionViewController: UIViewController {
                                        font: subTitleFont, keywordFont: subTitleFont)
         
         tasteTagListView.didTapTagsHandler = { [weak self] selectedTags in
-            self?.viewModel.input.setTasteSelectionTags(selectedTags)
+            self?.viewModel.input.setSelectionTags(selectedTags)
             self?.nextButton.isEnable = selectedTags.count >= Constants.maximumNumberOfSelection
         }
     }
@@ -99,6 +99,6 @@ class TasteSelectionViewController: UIViewController {
     // MARK: - Public
     func setParams(_ params: [ProfilePageKey: Any]) {
         guard let foodSelectionTags = params[.profileFoodSelection] as? [Tag] else { return }
-        viewModel.input.setFoodSelectionTags(foodSelectionTags)
+        viewModel.input.setSelectionTags(foodSelectionTags)
     }
 }

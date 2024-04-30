@@ -14,7 +14,7 @@ enum PhotoSelectionState {
     var image: UIImage {
         switch self {
         case .photoSelect:
-            return UIImage(named: "icPhotoSelect")!
+            return UIImage(named: "icSelectedFill")!
         case .photoDeselect:
             return UIImage(named: "icPhotoDeselect")!
         }
