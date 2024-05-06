@@ -25,7 +25,6 @@ struct MyPageView: View {
             ScrollView(.vertical) {
                 VStack(spacing: 0) {
                     HStack(spacing: 24.0) {
-                        // TODO: viewStore.thumbnail
                         Image("empty_menu_background")
                             .frame(width: 100.0, height: 100.0)
                             .cornerRadius(50.0)
@@ -33,8 +32,7 @@ struct MyPageView: View {
                         VStack(spacing: 18.0) {
                             HStack(alignment: .center, spacing: 22.0) {
                                 VStack(spacing: 2.0) {
-                                    // TODO: viewStore.review
-                                    Text("134546752324354656452")
+                                    Text("\(viewStore.profile?.post ?? 0)")
                                         .lineLimit(1)
                                         .font(.custom("SUIT", size: 18).weight(.semibold))
                                         .foregroundColor(.cheffiBlack)
@@ -49,8 +47,7 @@ struct MyPageView: View {
                                     .foregroundColor(.cheffiGray2)
                                 
                                 VStack(spacing: 2.0) {
-                                    // TODO: viewStore.followers
-                                    Text("4312542343452452345")
+                                    Text("\(viewStore.profile?.followerCount ?? 0)")
                                         .lineLimit(1)
                                         .font(.custom("SUIT", size: 18).weight(.semibold))
                                         .foregroundColor(.cheffiBlack)
@@ -65,8 +62,7 @@ struct MyPageView: View {
                                     .foregroundColor(.cheffiGray2)
                                 
                                 VStack(spacing: 2.0) {
-                                    // TODO: viewStore.followings
-                                    Text("4554534234543423")
+                                    Text("\(viewStore.profile?.followingCount ?? 0)")
                                         .lineLimit(1)
                                         .font(.custom("SUIT", size: 18).weight(.semibold))
                                         .foregroundColor(.cheffiBlack)
@@ -98,15 +94,13 @@ struct MyPageView: View {
                     }
                     .padding(.bottom, 20.0)
                     
-                    // TODO: viewStore.nickname
-                    Text("김맛집")
+                    Text(viewStore.profile?.nickname?.value ?? "김맛집")
                         .font(.custom("SUIT", size: 20).weight(.medium))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.black)
                         .padding(.bottom, 10.0)
                     
-                    // TODO: viewStore.introduction
-                    Text("김맛집 쉐피 입니다 :)")
+                    Text(viewStore.profile?.introduction ?? "\(viewStore.profile?.nickname?.value ?? "김맛집") 쉐피입니다 :)")
                         .font(.custom("SUIT", size: 15))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.black)
@@ -114,7 +108,7 @@ struct MyPageView: View {
                     
                     HStack(spacing: 0) {
                         HStack(spacing: 12.0) {
-                            Text("456")
+                            Text("\(viewStore.profile?.cheffiCoin ?? 0)")
                                 .font(.custom("SUIT", size: 16).weight(.semibold))
                                 .foregroundColor(.mainCTA)
                             
@@ -131,7 +125,7 @@ struct MyPageView: View {
                     .padding(.bottom, 12.0)
                     
                     FlexibleTagListView(
-                        data: viewStore.allTags,
+                        data: viewStore.profile?.tags ?? [],
                         spacing: 8.0,
                         alignment: .leading
                     ) { item in
@@ -228,13 +222,13 @@ struct MyPageView: View {
                             
                             if viewStore.isEmptyBookmarkedReviewThumbnailList {
                                 VStack(spacing: 0) {
-                                    Image(.emptyPurchasedReviewThumbnailList)
+                                    Image(.emptyBookmarkedReviewThumbnailList)
                                         .padding(.top, 106.0)
                                     
                                     Text("찜한 리뷰가 없어요")
                                         .font(.custom("SUIT", size: 16))
                                         .foregroundColor(.cheffiGray6)
-                                        .padding(.top, 20.0)
+                                        .padding(.top, 14.0)
                                     
                                     Spacer()
                                 }
@@ -270,6 +264,7 @@ struct MyPageView_Preview: PreviewProvider {
         MyPageView(
             Store(initialState: MyPageReducer.State()) {
                 MyPageReducer(
+                    useCase: PreviewProfileUseCase(),
                     steps: PassthroughSubject<RouteStep, Never>()
                 )._printChanges()
             }

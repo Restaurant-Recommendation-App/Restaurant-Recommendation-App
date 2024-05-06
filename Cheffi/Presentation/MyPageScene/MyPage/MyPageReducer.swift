@@ -10,11 +10,14 @@ import Combine
 import ComposableArchitecture
 
 struct MyPageReducer: Reducer {
+    private let useCase: ProfileUseCase
     let steps: PassthroughSubject<RouteStep, Never>
     
     init(
+        useCase: ProfileUseCase,
         steps: PassthroughSubject<RouteStep, Never>
     ) {
+        self.useCase = useCase
         self.steps = steps
     }
     
@@ -36,16 +39,7 @@ struct MyPageReducer: Reducer {
             emptyViewButtonState: EmptyViewButtonReducer.State(title: "맛집 직접 등록하기")
         )
         
-        var allTags: [Tag] = [
-            // TODO: API 연동
-            Tag(id: 0, type: .food, name: "매콤한"),
-            Tag(id: 1, type: .food, name: "노포"),
-            Tag(id: 2, type: .food, name: "웨이팅 짧은"),
-            Tag(id: 3, type: .food, name: "아시아음식"),
-            Tag(id: 4, type: .food, name: "한식"),
-            Tag(id: 5, type: .food, name: "비건"),
-            Tag(id: 6, type: .food, name: "분위기 있는 곳")
-        ]
+        var profile: Profile?
     }
     
     enum Action {
@@ -55,6 +49,10 @@ struct MyPageReducer: Reducer {
         case purchasedReviewThumbnailListAction(ReviewThumbnailListReducer.Action)
         case bookmarkedReviewThumbnailListAction(ReviewThumbnailListReducer.Action)
         case restaurantEmptyAction(EmptyDescriptionViewReducer.Action)
+        
+        case getProfile(Int?)
+        case successGetProfile(Profile)
+        case occurError(Error)
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
@@ -360,7 +358,7 @@ struct MyPageReducer: Reducer {
                     writenByUser: false
                 )
             ])
-            return .none
+            return .send(.getProfile(nil))
         case .navigationBarAction(let action):
             switch action {
             case .rightButtonTapped:
@@ -387,6 +385,20 @@ struct MyPageReducer: Reducer {
                     return .none
                 }
             }
+        case .getProfile(let id):
+            return .publisher {
+                useCase.getProfile(id: id)
+                    .receive(on: UIScheduler.shared)
+                    .map(Action.successGetProfile)
+                    .catch { Just(.occurError($0)) }
+            }
+        case .successGetProfile(let profile):
+            state.profile = profile
+            return .none
+        case .occurError(let error):
+            // TODO: Eli - 에러 핸들링
+//            state.error = error.localizedDescription
+            return .none
         }
     }
 }

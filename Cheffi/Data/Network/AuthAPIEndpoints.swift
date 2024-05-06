@@ -19,7 +19,7 @@ struct AuthAPIEndpoints {
         return Endpoint(path: "api/v1/users/terms",
                         method: .patch,
                         headerParameters: ["Authorization": UserDefaultsManager.AuthInfo.sessionToken ?? ""],
-                        bodyParameters: ["adAgreed": adAgreed])
+                        bodyParameters: ["ad_agreed": adAgreed])
     }
     
     static func getNicknameInuse(nickname: String) -> Endpoint<Results<Bool>> {

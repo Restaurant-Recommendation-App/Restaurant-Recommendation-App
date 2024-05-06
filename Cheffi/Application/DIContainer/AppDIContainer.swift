@@ -42,6 +42,7 @@ final class AppDIContainer {
     }
     
     func makeMyPageFlowCoordinator() -> MyPageSceneDIContainer {
-        return MyPageSceneDIContainer()
+        let dependencies = MyPageSceneDIContainer.Dependencies(apiDataTransferService: apiDataTransferService)
+        return MyPageSceneDIContainer(dependencies: dependencies)
     }
 }

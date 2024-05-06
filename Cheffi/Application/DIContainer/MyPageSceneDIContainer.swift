@@ -9,6 +9,15 @@ import UIKit
 import Combine
 
 final class MyPageSceneDIContainer: MyPageFlowCoodinatorDependencies {
+    struct Dependencies {
+        let apiDataTransferService: DataTransferService
+    }
+    
+    private let dependencies: Dependencies
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+    }
+    
     func makeMyPageFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> MyPageFlowCoodinator {
         return MyPageFlowCoodinator(
             navigationController: navigationController,
@@ -22,6 +31,21 @@ final class MyPageSceneDIContainer: MyPageFlowCoodinatorDependencies {
     }
     
     func makeMyPageReducer(steps: PassthroughSubject<RouteStep, Never>) -> MyPageReducer {
-        MyPageReducer(steps: steps)
+        let useCase = makeProfileUseCase(repository: makeProfileRepository())
+        return MyPageReducer(useCase: useCase, steps: steps)
+    }
+}
+
+// MARK: - Use Cases
+extension MyPageSceneDIContainer {
+    private func makeProfileUseCase(repository: ProfileRepository) -> ProfileUseCase {
+        DefaultProfileUseCase(repository: repository)
+    }
+}
+
+// MARK: - Repositories
+extension MyPageSceneDIContainer {
+    private func makeProfileRepository() -> DefaultProfileRepository {
+        DefaultProfileRepository(dataTransferService: dependencies.apiDataTransferService)
     }
 }
