@@ -19,12 +19,16 @@ struct NavigationBarView: View {
     
     var body: some View {
         HStack {
-            Button {
-                viewStore.send(.leftButtonTapped)
-            } label: {
-                Image(viewStore.leftButtonKind.rawValue)
+            if let leftButtonKind = viewStore.leftButtonKind {
+                Button {
+                    viewStore.send(.leftButtonTapped)
+                } label: {
+                    Image(leftButtonKind.rawValue)
+                }
+                .frame(width: Metrics.navigationBarViewHeight, alignment: .leading)
+            } else {
+                Spacer(minLength: Metrics.navigationBarViewHeight)
             }
-            .frame(width: Metrics.navigationBarViewHeight, alignment: .leading)
             
             Text(viewStore.title)
                 .font(.custom("SUIT", size: 16).weight(.semibold))

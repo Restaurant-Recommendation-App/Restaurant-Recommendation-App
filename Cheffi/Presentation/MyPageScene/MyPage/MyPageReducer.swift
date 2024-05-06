@@ -21,12 +21,20 @@ struct MyPageReducer: Reducer {
     struct State: Equatable {
         let navigationBarState = NavigationBarReducer.State(
             title: "마이페이지",
-            leftButtonKind: .back,
+            leftButtonKind: nil,
             rightButtonKind: .setting
         )
         var myReviewThumbnailListState = ReviewThumbnailListReducer.State()
         var purchasedReviewThumbnailListState = ReviewThumbnailListReducer.State()
         var bookmarkedReviewThumbnailListState = ReviewThumbnailListReducer.State()
+        var isEmptyMyReviewThumbnailList: Bool = false
+        var isEmptyPurchasedReviewThumbnailList: Bool = false
+        var isEmptyBookmarkedReviewThumbnailList: Bool = false
+        let myReviewEmptyState = EmptyDescriptionViewReducer.State(
+            imageName: "empty_restaurant",
+            descriptionText: "나만의 맛집을 소개하고\n다른 쉐피들과 맛을 탐구해보세요",
+            emptyViewButtonState: EmptyViewButtonReducer.State(title: "맛집 직접 등록하기")
+        )
         
         var allTags: [Tag] = [
             // TODO: API 연동
@@ -46,11 +54,13 @@ struct MyPageReducer: Reducer {
         case myReviewThumbnailListAction(ReviewThumbnailListReducer.Action)
         case purchasedReviewThumbnailListAction(ReviewThumbnailListReducer.Action)
         case bookmarkedReviewThumbnailListAction(ReviewThumbnailListReducer.Action)
+        case restaurantEmptyAction(EmptyDescriptionViewReducer.Action)
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
         case .onAppear:
+            state.isEmptyMyReviewThumbnailList = true
             state.myReviewThumbnailListState = .init(reviews: [
                 // TODO: API 연동
                 ReviewInfoDTO(
@@ -144,6 +154,7 @@ struct MyPageReducer: Reducer {
                     writenByUser: true
                 )
             ])
+            state.isEmptyPurchasedReviewThumbnailList = true
             state.purchasedReviewThumbnailListState = .init(reviews: [
                 // TODO: API 연동
                 ReviewInfoDTO(
@@ -273,6 +284,7 @@ struct MyPageReducer: Reducer {
                     writenByUser: false
                 )
             ])
+            state.isEmptyBookmarkedReviewThumbnailList = true
             state.bookmarkedReviewThumbnailListState = .init(reviews: [
                 // TODO: API 연동
                 ReviewInfoDTO(
@@ -365,6 +377,15 @@ struct MyPageReducer: Reducer {
                 // TODO: 리뷰상세로 이동
     //            steps.send(.pushReviewDetail)
                 return .none
+            }
+        case .restaurantEmptyAction(let action):
+            switch action {
+            case .emptyViewButtonAction(let action):
+                switch action {
+                case .tapButton:
+                    steps.send(.pushRestaurantRegistCompose)
+                    return .none
+                }
             }
         }
     }

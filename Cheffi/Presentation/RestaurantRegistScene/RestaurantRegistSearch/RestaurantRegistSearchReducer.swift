@@ -71,7 +71,8 @@ struct RestaurantRegistSearchReducer: Reducer {
                     .catch { Just(Action.occerError($0)) }
             }
         case .getNearRestaurants(let list):
-            state.isEmptyNearRestaurant = list.isEmpty
+//            state.isEmptyNearRestaurant = list.isEmpty
+            state.isEmptyNearRestaurant = true
             state.nearRestaurantListState.nearRestaurantList = list
             return .none
         case .getRestaurants(let list):

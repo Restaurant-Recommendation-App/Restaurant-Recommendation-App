@@ -32,7 +32,7 @@ struct NavigationBarReducer: Reducer {
     
     struct State: Equatable {
         let title: String
-        let leftButtonKind: LeftButtonKind
+        let leftButtonKind: LeftButtonKind?
         var rightButtonKind: RightButtonKind?
     }
     

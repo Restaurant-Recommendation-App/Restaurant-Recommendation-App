@@ -30,6 +30,7 @@ final class MyPageFlowCoodinator {
         steps
             .sink { [weak self] step in
                 guard let self else { return }
+                // TODO: pushRestaurantRegistCompose
                 switch step {
                 case .pushMyPage:
                     pushMyPage()

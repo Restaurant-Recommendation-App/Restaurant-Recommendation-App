@@ -174,32 +174,84 @@ struct MyPageView: View {
                             }
                         
                         TabView(selection: $currentTabIndex) {
-                            ReviewThumbnailListView(store.scope(
-                                state: \.myReviewThumbnailListState,
-                                action: { .myReviewThumbnailListAction($0) }
-                            ))
-                            .readSize { size in
-                                readedReviewThumbnailListHeight = size.height
+                            if viewStore.isEmptyMyReviewThumbnailList {
+                                VStack(spacing: 0) {
+                                    EmptyDescriptionView(store.scope(
+                                        state: \.myReviewEmptyState,
+                                        action: { .restaurantEmptyAction($0) }
+                                    ))
+                                    .frame(minHeight: 274)
+                                    
+                                    Spacer()
+                                }
+                                .readSize { size in
+                                    readedReviewThumbnailListHeight = size.height
+                                }
+                                .tag(0)
+                            } else {
+                                ReviewThumbnailListView(store.scope(
+                                    state: \.myReviewThumbnailListState,
+                                    action: { .myReviewThumbnailListAction($0) }
+                                ))
+                                .readSize { size in
+                                    readedReviewThumbnailListHeight = size.height
+                                }
+                                .tag(0)
                             }
-                            .tag(0)
                             
-                            ReviewThumbnailListView(store.scope(
-                                state: \.purchasedReviewThumbnailListState,
-                                action: { .purchasedReviewThumbnailListAction($0) }
-                            ))
-                            .readSize { size in
-                                readedReviewThumbnailListHeight = size.height
+                            if viewStore.isEmptyPurchasedReviewThumbnailList {
+                                VStack(spacing: 0) { 
+                                    Image(.emptyPurchasedReviewThumbnailList)
+                                        .padding(.top, 106.0)
+                                    
+                                    Text("구매한 리뷰가 없어요")
+                                        .font(.custom("SUIT", size: 16))
+                                        .foregroundColor(.cheffiGray6)
+                                        .padding(.top, 20.0)
+                                    
+                                    Spacer()
+                                }
+                                .readSize { size in
+                                    readedReviewThumbnailListHeight = size.height
+                                }
+                                .tag(1)
+                            } else {
+                                ReviewThumbnailListView(store.scope(
+                                    state: \.purchasedReviewThumbnailListState,
+                                    action: { .purchasedReviewThumbnailListAction($0) }
+                                ))
+                                .readSize { size in
+                                    readedReviewThumbnailListHeight = size.height
+                                }
+                                .tag(1)
                             }
-                            .tag(1)
                             
-                            ReviewThumbnailListView(store.scope(
-                                state: \.bookmarkedReviewThumbnailListState,
-                                action: { .bookmarkedReviewThumbnailListAction($0) }
-                            ))
-                            .readSize { size in
-                                readedReviewThumbnailListHeight = size.height
+                            if viewStore.isEmptyBookmarkedReviewThumbnailList {
+                                VStack(spacing: 0) {
+                                    Image(.emptyPurchasedReviewThumbnailList)
+                                        .padding(.top, 106.0)
+                                    
+                                    Text("찜한 리뷰가 없어요")
+                                        .font(.custom("SUIT", size: 16))
+                                        .foregroundColor(.cheffiGray6)
+                                        .padding(.top, 20.0)
+                                    
+                                    Spacer()
+                                }
+                                .readSize { size in
+                                    readedReviewThumbnailListHeight = size.height
+                                }
+                                .tag(2)
+                            } else {
+                                ReviewThumbnailListView(store.scope(
+                                    state: \.bookmarkedReviewThumbnailListState,
+                                    action: { .bookmarkedReviewThumbnailListAction($0) }
+                                ))
+                                .readSize { size in
+                                    readedReviewThumbnailListHeight = size.height
+                                }
+                                .tag(2)
                             }
-                            .tag(2)
                         }
                         .tabViewStyle(.page(indexDisplayMode: .never))
                         .frame(height: readedReviewThumbnailListHeight)
