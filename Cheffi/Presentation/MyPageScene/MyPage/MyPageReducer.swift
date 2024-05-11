@@ -12,13 +12,17 @@ import ComposableArchitecture
 struct MyPageReducer: Reducer {
     private let useCase: ProfileUseCase
     let steps: PassthroughSubject<RouteStep, Never>
+    /// 유저 프로필 요청시 필요한 ID. `nil` 이면 자기 자신의 프로필페이지를 뜻함.
+    private let userId: Int?
     
     init(
         useCase: ProfileUseCase,
-        steps: PassthroughSubject<RouteStep, Never>
+        steps: PassthroughSubject<RouteStep, Never>,
+        userId: Int?
     ) {
         self.useCase = useCase
         self.steps = steps
+        self.userId = userId
     }
     
     struct State: Equatable {
@@ -358,7 +362,7 @@ struct MyPageReducer: Reducer {
                     writenByUser: false
                 )
             ])
-            return .send(.getProfile(nil))
+            return .send(.getProfile(userId))
         case .navigationBarAction(let action):
             switch action {
             case .rightButtonTapped:

@@ -30,9 +30,12 @@ final class MyPageSceneDIContainer: MyPageFlowCoodinatorDependencies {
         MyPageViewController.instance(reducer: reducer)
     }
     
-    func makeMyPageReducer(steps: PassthroughSubject<RouteStep, Never>) -> MyPageReducer {
+    func makeMyPageReducer(
+        steps: PassthroughSubject<RouteStep, Never>,
+        userId: Int?
+    ) -> MyPageReducer {
         let useCase = makeProfileUseCase(repository: makeProfileRepository())
-        return MyPageReducer(useCase: useCase, steps: steps)
+        return MyPageReducer(useCase: useCase, steps: steps, userId: userId)
     }
 }
 

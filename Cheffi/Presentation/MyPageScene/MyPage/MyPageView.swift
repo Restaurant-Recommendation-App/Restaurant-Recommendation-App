@@ -265,7 +265,8 @@ struct MyPageView_Preview: PreviewProvider {
             Store(initialState: MyPageReducer.State()) {
                 MyPageReducer(
                     useCase: PreviewProfileUseCase(),
-                    steps: PassthroughSubject<RouteStep, Never>()
+                    steps: PassthroughSubject<RouteStep, Never>(),
+                    userId: nil
                 )._printChanges()
             }
         )

@@ -10,7 +10,10 @@ import Combine
 
 protocol MyPageFlowCoodinatorDependencies {
     func makeMyPageViewController(reducer: MyPageReducer) -> MyPageViewController
-    func makeMyPageReducer(steps: PassthroughSubject<RouteStep, Never>) -> MyPageReducer
+    func makeMyPageReducer(
+        steps: PassthroughSubject<RouteStep, Never>,
+        userId: Int?
+    ) -> MyPageReducer
 }
 
 final class MyPageFlowCoodinator {
@@ -32,18 +35,18 @@ final class MyPageFlowCoodinator {
                 guard let self else { return }
                 // TODO: pushRestaurantRegistCompose
                 switch step {
-                case .pushMyPage:
-                    pushMyPage()
+                case .pushMyPage(let userId):
+                    pushMyPage(userId: userId)
                 default: return
                 }
             }
             .store(in: &cancellables)
         
-        steps.send(.pushMyPage)
+        steps.send(.pushMyPage(userId: nil))
     }
     
-    private func pushMyPage() {
-        let reducer = dependencies.makeMyPageReducer(steps: steps)
+    private func pushMyPage(userId: Int?) {
+        let reducer = dependencies.makeMyPageReducer(steps: steps, userId: userId)
         let vc = dependencies.makeMyPageViewController(reducer: reducer)
         navigationController?.pushViewController(vc, animated: true)
     }

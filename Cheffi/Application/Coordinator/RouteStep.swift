@@ -27,5 +27,5 @@ enum RouteStep {
     case pushReviewHashtags(ReviewHashtagsActionType)
     case dismissNationalTrend
     case pushNationalTrend
-    case pushMyPage
+    case pushMyPage(userId: Int?)
 }
